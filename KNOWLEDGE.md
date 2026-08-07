@@ -113,18 +113,29 @@ Five worker profiles under `~/.hermes/profiles/`:
 
 ## Vault Layout
 
+Grouped by category as of 2026-08-07. Earlier revisions dumped skills
+flat at the repo root; category folders now own them.
+
 ```
 AgentSkillsVault/
 ├── README.md
 ├── KNOWLEDGE.md                      ← this file
-├── kanban-orchestrator/              (10 refs + 1 template + SKILL.md)
-├── kanban-cron-overseer/             (1 ref + SKILL.md)
-├── aisides-ai-self-review/           (3 refs + SKILL.md)
-├── cron-pipeline-state-machine/      (2 refs + SKILL.md)
+├── devops/
+│   ├── kanban-orchestrator/          (10 refs + 1 template + SKILL.md)
+│   ├── kanban-cron-overseer/         (1 ref + SKILL.md)
+│   └── cron-pipeline-state-machine/  (2 refs + SKILL.md)
+├── software-development/
+│   └── aisides-ai-self-review/       (3 refs + SKILL.md)
+└── game-dev/
+    ├── cat-game-architecture/        (3 refs + SKILL.md)
+    ├── kimi3-game-gen/               (5 refs + 1 asset + 1 script + SKILL.md)
+    ├── gdd-markdown-template/        (SKILL.md + 26 section assets)
+    ├── technical-design-document/    (1 ref + 13 doc assets + SKILL.md)
+    └── webapp-testing/               (3 examples + 1 script + SKILL.md)
 ```
 
 Install procedure (local-copy, not hub):
-1. `cp -r <vault-skill-dir> ~/AppData/Local/hermes/skills/<category>/<skill-name>/`
+1. `cp -r <category>/<skill-dir> ~/AppData/Local/hermes/skills/<category>/<skill-name>/`
 2. Verify: `skill_view(name='<skill-name>')` returns `readiness_status: available`
 3. Verify: `hermes skills list | grep <skill-name>` shows `Status: enabled`
 4. For worker profiles: copy to `~/.hermes/profiles/<worker>/skills/<category>/`
