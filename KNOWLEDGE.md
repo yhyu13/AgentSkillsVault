@@ -113,7 +113,7 @@ Five worker profiles under `~/.hermes/profiles/`:
 
 ## Vault Layout
 
-Grouped by category as of 2026-08-07. Earlier revisions dumped skills
+Grouped by category as of 2026-08-08. Earlier revisions dumped skills
 flat at the repo root; category folders now own them.
 
 ```
@@ -126,6 +126,8 @@ AgentSkillsVault/
 │   └── cron-pipeline-state-machine/  (2 refs + SKILL.md)
 ├── software-development/
 │   └── aisides-ai-self-review/       (3 refs + SKILL.md)
+├── FDE/                              ← NEW 2026-08-08
+│   └── book-chapter-to-vault/        (4 refs + 2 scripts + worked example + SKILL.md)
 └── game-dev/
     ├── cat-game-architecture/        (3 refs + SKILL.md)
     ├── kimi3-game-gen/               (5 refs + 1 asset + 1 script + SKILL.md)
