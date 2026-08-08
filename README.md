@@ -19,7 +19,8 @@ AgentSkillsVault/
 ├── software-development/            ← code review, self-review
 │   └── aisides-ai-self-review/
 ├── FDE/                             ← Forward Deployed Engineer / personal knowledge workflows
-│   └── book-chapter-to-vault/       ← .docx chapter → learning notes + cheatsheet + kanban + mindmap
+│   ├── book-chapter-to-vault/       ← .docx book chapter → learning notes + cheatsheet + kanban + mindmap
+│   └── analysis-to-vault/           ← long-form analytical article → thesis + argument map + cheatsheet + day-job notes
 └── game-dev/                        ← game design + 3D/web game tooling
     ├── cat-game-architecture/
     ├── kimi3-game-gen/
@@ -36,7 +37,8 @@ AgentSkillsVault/
 | devops/kanban-cron-overseer | devops | AgentMOD overseer |
 | devops/cron-pipeline-state-machine | devops | (reference pattern) |
 | software-development/aisides-ai-self-review | software-development | AISides caretaker |
-| FDE/book-chapter-to-vault | FDE | FDE × AI PM learning vault (notes + cheatsheet + kanban + mindmap from .docx chapters) |
+| FDE/book-chapter-to-vault | FDE | .docx book chapter → learning notes + cheatsheet + kanban + mindmap |
+| FDE/analysis-to-vault | FDE | long-form analytical article → thesis + argument map + day-job notes |
 | game-dev/cat-game-architecture | game-dev | C.A.T / GDC 2026 AI-driven 3D game refactor |
 | game-dev/kimi3-game-gen | game-dev | KIMI3 vibecoding-webapp-swarm (parallel coder agents) |
 | game-dev/gdd-markdown-template | game-dev | 13-section GDD scaffold |

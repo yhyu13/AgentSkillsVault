@@ -127,7 +127,8 @@ AgentSkillsVault/
 ├── software-development/
 │   └── aisides-ai-self-review/       (3 refs + SKILL.md)
 ├── FDE/                              ← NEW 2026-08-08
-│   └── book-chapter-to-vault/        (4 refs + 2 scripts + worked example + SKILL.md)
+│   ├── book-chapter-to-vault/        (4 refs + 2 scripts + worked example + SKILL.md)
+│   └── analysis-to-vault/            (4 refs + worked example + SKILL.md; reuses extract_docx.py from book-chapter-to-vault)
 └── game-dev/
     ├── cat-game-architecture/        (3 refs + SKILL.md)
     ├── kimi3-game-gen/               (5 refs + 1 asset + 1 script + SKILL.md)
