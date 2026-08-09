@@ -133,6 +133,7 @@ AgentSkillsVault/
     ├── cat-game-architecture/        (3 refs + SKILL.md)
     ├── kimi3-game-gen/               (5 refs + 1 asset + 1 script + SKILL.md)
     ├── gdd-markdown-template/        (SKILL.md + 26 section assets)
+    ├── single-file-html-game/        (4 refs + 1 asset + 2 scripts + SKILL.md)
     ├── technical-design-document/    (1 ref + 13 doc assets + SKILL.md)
     └── webapp-testing/               (3 examples + 1 script + SKILL.md)
 ```

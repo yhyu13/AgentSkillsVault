@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#173a4b">
+  <title>新游戏</title>
+  <style>
+    :root {
+      --bg: #eef2ef;
+      --paper: #fffefa;
+      --ink: #14252d;
+      --muted: #607179;
+      --line: #c5d0cd;
+      --blue: #176b91;
+      --teal: #24735f;
+      --gold: #c18a22;
+      --dark: #173a4b;
+      --radius: 8px;
+      --shadow: 0 10px 28px rgba(19, 43, 51, .1);
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+      background: var(--bg);
+      -webkit-tap-highlight-color: transparent;
+    }
+    button, input, select { font: inherit; }
+    .shell { width: min(420px, calc(100vw - 24px)); margin: 0 auto; }
+    .head { padding: 18px 0 10px; text-align: center; }
+    .head h1 { margin: 0; font-size: clamp(22px, 5vw, 28px); color: var(--dark); }
+    .head p { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+    .stage {
+      position: relative;
+      width: 100%;
+      max-width: 390px;
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      touch-action: none;
+    }
+    .stage canvas { display: block; width: 100%; height: 100%; }
+    .bar {
+      display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+      padding: 12px 0;
+    }
+    .bar button {
+      min-height: 40px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      color: var(--ink);
+      font-weight: 800;
+    }
+    .bar button.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+    .msg { color: var(--muted); font-size: 13px; text-align: center; min-height: 18px; }
+    .row { display: flex; justify-content: space-between; gap: 8px; padding: 10px 0; }
+    .stat { display: flex; flex-direction: column; align-items: center; min-width: 60px; }
+    .stat b { font-size: 18px; color: var(--blue); }
+    .stat span { font-size: 11px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="head">
+      <h1>新游戏</h1>
+      <p id="hint">点击舞台开始 / 触屏支持</p>
+    </header>
+    <div class="row">
+      <div class="stat"><b id="scoreVal">0</b><span>得分</span></div>
+      <div class="stat"><b id="bestVal">0</b><span>最佳</span></div>
+      <div class="stat"><b id="starsVal">☆☆☆</b><span>三星</span></div>
+    </div>
+    <div class="stage" id="stage">
+      <canvas id="canvas" width="390" height="390"></canvas>
+    </div>
+    <p class="msg" id="msg">准备开始。</p>
+    <div class="bar">
+      <button id="startBtn" class="primary">开始</button>
+      <button id="pauseBtn">暂停 (Space)</button>
+      <button id="resetBtn">重开 (R)</button>
+      <button id="exportBtn">导出存档</button>
+      <button id="importBtn">导入存档</button>
+    </div>
+  </main>
+  <script>
+  (() => {
+    "use strict";
+
+    // ---------- Configuration ----------
+    const PREFIX = "NEWG";          // change to a unique 2-8 char tag
+    const ARCHIVE_VERSION = "1";
+    const MAX_CODE_LENGTH = 12_000;
+    const STORAGE_KEY = "newg.save.v1";
+
+    // ---------- Pure helpers ----------
+    function makeRng(seed) {
+      let s = seed >>> 0;
+      return () => {
+        s ^= s << 13; s ^= s >>> 17; s ^= s << 5;
+        return (s >>> 0) / 4294967296;
+      };
+    }
+    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+    // ---------- Pure state transitions ----------
+    function freshState() {
+      return {
+        seed: 0xC1,                   // bump per chapter; deterministic
+        running: false,
+        paused: false,
+        score: 0,
+        best: 0,
+        stars: 0,
+        ended: false
+      };
+    }
+    function reset(state) {
+      const next = freshState();
+      next.best = state.best;
+      return next;
+    }
+    function tick(state, input, dt) {
+      // Replace with your own rule engine. Must be deterministic given
+      // (state, input, dt).
+      return state;
+    }
+
+    // ---------- Archive code (see references/archive-code.md) ----------
+    function fnv1a(s) {
+      let h = 0x811c9dc5;
+      for (let i = 0; i < s.length; i++) {
+        h ^= s.charCodeAt(i);
+        h = Math.imul(h, 0x01000193);
+      }
+      return (h >>> 0).toString(16).padStart(8, "0");
+    }
+    function b64UrlEncode(text) {
+      const bytes = new TextEncoder().encode(text);
+      let bin = "";
+      for (let i = 0; i < bytes.length; i += 0x8000) {
+        bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+      }
+      return btoa(bin).replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/u, "");
+    }
+    function b64UrlDecode(value) {
+      if (!/^[A-Za-z0-9_-]+$/u.test(value)) throw new Error("payload not base64url");
+      const padded = value.replaceAll("-", "+").replaceAll("_", "/")
+        + "=".repeat((4 - value.length % 4) % 4);
+      const bin = atob(padded);
+      const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+      return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+    }
+    function normalize(state) {
+      return {
+        seed: state.seed >>> 0,
+        running: !!state.running,
+        paused: !!state.paused,
+        score: clamp(Number(state.score) || 0, 0, 1e9),
+        best: clamp(Number(state.best) || 0, 0, 1e9),
+        stars: clamp(Number(state.stars) || 0, 0, 3),
+        ended: !!state.ended
+      };
+    }
+    function encodeArchive(state) {
+      const payload = b64UrlEncode(JSON.stringify(normalize(state)));
+      const signed = `${ARCHIVE_VERSION}.${payload}`;
+      return `${PREFIX}.${signed}.${fnv1a(signed)}`;
+    }
+    function decodeArchive(code) {
+      if (typeof code !== "string" || !code || code.length > MAX_CODE_LENGTH) {
+        throw new Error("archive length invalid");
+      }
+      const parts = code.trim().split(".");
+      if (parts.length !== 4 || parts[0] !== PREFIX) throw new Error("prefix invalid");
+      const [, version, payload, checksum] = parts;
+      if (version !== ARCHIVE_VERSION) throw new Error(`unsupported version: ${version}`);
+      if (fnv1a(`${version}.${payload}`) !== checksum) throw new Error("checksum mismatch");
+      const parsed = JSON.parse(b64UrlDecode(payload));
+      return normalize(parsed);
+    }
+
+    // ---------- Renderer ----------
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let state = freshState();
+    function render() {
+      const w = canvas.width, h = canvas.height;
+      ctx.fillStyle = "#fffefa";
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = "#173a4b";
+      ctx.font = "bold 18px system-ui, \"Microsoft YaHei\"";
+      ctx.textAlign = "center";
+      ctx.fillText(state.running ? (state.paused ? "已暂停" : "进行中") : "未开始", w / 2, h / 2);
+    }
+
+    // ---------- UI ----------
+    const scoreVal = document.getElementById("scoreVal");
+    const bestVal = document.getElementById("bestVal");
+    const starsVal = document.getElementById("starsVal");
+    const msg = document.getElementById("msg");
+    function updateHud() {
+      scoreVal.textContent = String(state.score);
+      bestVal.textContent = String(state.best);
+      starsVal.textContent = "★".repeat(state.stars) + "☆".repeat(3 - state.stars);
+    }
+    function persist() {
+      try { localStorage.setItem(STORAGE_KEY, encodeArchive(state)); }
+      catch (e) { /* ignore quota errors */ }
+    }
+    function restore() {
+      try {
+        const code = localStorage.getItem(STORAGE_KEY);
+        if (!code) return false;
+        const next = decodeArchive(code);
+        state.best = Math.max(state.best, next.best);
+        return true;
+      } catch (e) {
+        msg.textContent = "存档已损坏或被篡改。";
+        return false;
+      }
+    }
+
+    document.getElementById("startBtn").onclick = () => {
+      state = reset(state); state.running = true; render(); updateHud(); persist();
+    };
+    document.getElementById("pauseBtn").onclick = () => {
+      if (!state.running) return;
+      state.paused = !state.paused; render(); updateHud(); persist();
+    };
+    document.getElementById("resetBtn").onclick = () => {
+      state = reset(state); render(); updateHud(); persist();
+    };
+    document.getElementById("exportBtn").onclick = async () => {
+      const code = encodeArchive(state);
+      try {
+        await navigator.clipboard.writeText(code);
+        msg.textContent = "存档码已复制到剪贴板。";
+      } catch {
+        prompt("复制下方存档码：", code);
+      }
+    };
+    document.getElementById("importBtn").onclick = () => {
+      const code = prompt("粘贴存档码：");
+      if (!code) return;
+      try {
+        const next = decodeArchive(code);
+        state.best = Math.max(state.best, next.best);
+        msg.textContent = "存档已导入。";
+        render(); updateHud(); persist();
+      } catch (e) {
+        msg.textContent = "存档码无效或被篡改：" + e.message;
+      }
+    };
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === " ") { e.preventDefault(); document.getElementById("pauseBtn").click(); }
+      if (e.key === "r" || e.key === "R") { document.getElementById("resetBtn").click(); }
+    });
+
+    // ---------- Test surface (window.__<name>Test) ----------
+    window.__newgTest = {
+      validateContent() {
+        return {
+          // structural totals — keep aligned with README / AUDIT
+          chapters: 1,
+          prefix: PREFIX,
+          version: ARCHIVE_VERSION,
+          maxCodeLength: MAX_CODE_LENGTH
+        };
+      },
+      freshState,
+      reset,
+      tick,
+      encodeArchive,
+      decodeArchive,
+      normalize,
+      getState: () => ({ ...state })
+    };
+
+    // ---------- Boot ----------
+    restore();
+    render();
+    updateHud();
+  })();
+  </script>
+</body>
+</html>

@@ -25,6 +25,7 @@ AgentSkillsVault/
     ├── cat-game-architecture/
     ├── kimi3-game-gen/
     ├── gdd-markdown-template/
+    ├── single-file-html-game/
     ├── technical-design-document/
     └── webapp-testing/
 ```
@@ -42,6 +43,7 @@ AgentSkillsVault/
 | game-dev/cat-game-architecture | game-dev | C.A.T / GDC 2026 AI-driven 3D game refactor |
 | game-dev/kimi3-game-gen | game-dev | KIMI3 vibecoding-webapp-swarm (parallel coder agents) |
 | game-dev/gdd-markdown-template | game-dev | 13-section GDD scaffold |
+| game-dev/single-file-html-game | game-dev | mini-browser-games style single-file HTML games + tier audit |
 | game-dev/technical-design-document | game-dev | TDD scaffold (engineering counterpart to GDD) |
 | game-dev/webapp-testing | game-dev | Playwright verification of running web game |
 
