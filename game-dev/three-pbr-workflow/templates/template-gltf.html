@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>glTF PBR Viewer</title>
+  <style>
+    html, body { margin: 0; padding: 0; overflow: hidden; background: #000; font-family: system-ui; }
+    canvas { display: block; }
+    #drop {
+      position: fixed; top: 12px; left: 12px; color: #fff; font-size: 12px;
+      background: rgba(0,0,0,0.5); padding: 6px 10px; border-radius: 4px; z-index: 10;
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "lil-gui": "https://cdn.jsdelivr.net/npm/lil-gui@0.20.0/dist/lil-gui.esm.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="drop">Drop .glb / .gltf here, or paste a URL</div>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+    import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+    import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+    import GUI from 'lil-gui';
+
+    // ============ 👈 MODEL CONFIG ============
+    const MODEL = {
+      url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Binary/DamagedHelmet.glb',
+      scale: 1.0,
+      autoCenter: true,
+      autoRotate: true
+    };
+    // ========================================
+
+    // ============ 👈 CAMERA CONFIG ============
+    const CAMERA = { fov: 45, position: [3, 2, 4], target: [0, 0.5, 0] };
+    // ========================================
+
+    // ============ 👈 POST CONFIG ============
+    const POST = { bloomStrength: 0.5, bloomRadius: 0.6, bloomThreshold: 0.8, exposure: 1.0 };
+    // ========================================
+
+    // ---- Renderer ----
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = POST.exposure;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    document.body.appendChild(renderer.domElement);
+
+    // ---- Scene ----
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0a0a0a);
+
+    const camera = new THREE.PerspectiveCamera(CAMERA.fov, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(...CAMERA.position);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(...CAMERA.target);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.autoRotate = MODEL.autoRotate;
+    controls.update();
+
+    // ---- HDR ----
+    new RGBELoader().load(
+      'https://dl.polyhaven.org/file.php?id=studio_small_03_1k&format=hdr',
+      (hdr) => {
+        const pmrem = new THREE.PMREMGenerator(renderer);
+        scene.environment = pmrem.fromEquirectangular(hdr).texture;
+        hdr.dispose(); pmrem.dispose();
+      }
+    );
+
+    // ---- Lights ----
+    const key = new THREE.DirectionalLight(0xffffff, 2.5);
+    key.position.set(5, 8, 4);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    scene.add(key);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+
+    // ---- Floor ----
+    const floor = new THREE.Mesh(
+      new THREE.CircleGeometry(10, 64),
+      new THREE.MeshPhysicalMaterial({ color: 0x111111, metalness: 0.9, roughness: 0.2 })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    // ---- Loaders ----
+    const draco = new DRACOLoader();
+    draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/libs/draco/');
+    const gltf = new GLTFLoader();
+    gltf.setDRACOLoader(draco);
+
+    let currentModel = null;
+    function loadModel(url) {
+      if (currentModel) {
+        scene.remove(currentModel);
+        currentModel.traverse(o => { if (o.isMesh) o.geometry.dispose(); });
+      }
+      gltf.load(url, (g) => {
+        currentModel = g.scene;
+        currentModel.scale.setScalar(MODEL.scale);
+        currentModel.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; }});
+        if (MODEL.autoCenter) {
+          const box = new THREE.Box3().setFromObject(currentModel);
+          const center = box.getCenter(new THREE.Vector3());
+          currentModel.position.sub(center);
+          currentModel.position.y -= box.min.y - center.y;
+        }
+        scene.add(currentModel);
+      });
+    }
+    loadModel(MODEL.url);
+
+    // ---- Drag & Drop ----
+    window.addEventListener('dragover', e => e.preventDefault());
+    window.addEventListener('drop', e => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      if (file && /\.(glb|gltf)$/i.test(file.name)) {
+        const url = URL.createObjectURL(file);
+        loadModel(url);
+      }
+    });
+
+    // ---- Post ----
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    composer.addPass(new UnrealBloomPass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight),
+      POST.bloomStrength, POST.bloomRadius, POST.bloomThreshold
+    ));
+    composer.addPass(new OutputPass());
+
+    // ---- GUI ----
+    const gui = new GUI({ title: 'glTF Controls' });
+    gui.add(MODEL, 'autoRotate').onChange(v => controls.autoRotate = v);
+    gui.add(POST, 'exposure', 0.1, 3, 0.05).onChange(v => renderer.toneMappingExposure = v);
+
+    // ---- Resize ----
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      composer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // ---- Loop ----
+    (function animate() {
+      controls.update();
+      composer.render();
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+</html>

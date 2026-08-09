@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>PBR Material Showcase</title>
+  <style>
+    html, body { margin: 0; padding: 0; overflow: hidden; background: #000; font-family: system-ui, -apple-system, sans-serif; }
+    canvas { display: block; }
+    #info { position: fixed; top: 12px; left: 12px; color: #fff; font-size: 12px; opacity: 0.7; pointer-events: none; z-index: 10; }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "lil-gui": "https://cdn.jsdelivr.net/npm/lil-gui@0.20.0/dist/lil-gui.esm.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="info">Drag to orbit · Right-drag to pan · Scroll to zoom</div>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+    import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+    import GUI from 'lil-gui';
+
+    // ============ 👈 SCENE CONFIG ============
+    const SCENE = {
+      layout: 'grid-3x2',            // 'grid-3x2' | 'circle' | 'row'
+      floorReflection: true,         // 反射地板
+      floorRoughness: 0.15,
+      autoRotate: true,
+      autoRotateSpeed: 0.3,
+      backgroundColor: 0x0a0a0a
+    };
+    // ========================================
+
+    // ============ 👈 CAMERA CONFIG ============
+    const CAMERA = {
+      fov: 35,
+      position: [0, 3, 9],
+      target: [0, 0.5, 0]
+    };
+    // ========================================
+
+    // ============ 👈 POST CONFIG ============
+    const POST = {
+      bloomStrength: 0.4,
+      bloomRadius: 0.6,
+      bloomThreshold: 0.85,
+      exposure: 1.0
+    };
+    // ========================================
+
+    // ============ 👈 MATERIALS CONFIG ============
+    // 6 个不同 PBR 材质样本,可改参数实时看效果
+    const MATERIAL_PRESETS = [
+      { name: 'Polished Metal', color: 0xdddddd, metalness: 1.0, roughness: 0.05, clearcoat: 0, transmission: 0 },
+      { name: 'Brushed Steel',  color: 0xaaaaaa, metalness: 1.0, roughness: 0.45, anisotropy: 0.8 },
+      { name: 'Car Paint',      color: 0xaa1a1a, metalness: 0.85, roughness: 0.18, clearcoat: 1.0, clearcoatRoughness: 0.05 },
+      { name: 'Frosted Glass',  color: 0xffffff, metalness: 0.0, roughness: 0.05, transmission: 0.95, thickness: 0.5, ior: 1.5 },
+      { name: 'Jade',           color: 0x4fa577, metalness: 0.0, roughness: 0.25, clearcoat: 0.6, sheen: 0.3, sheenColor: 0x88ffaa },
+      { name: 'Velvet',         color: 0x6633aa, metalness: 0.0, roughness: 0.85, sheen: 1.0, sheenColor: 0xaa66ff }
+    ];
+    // ========================================
+
+    // ---- Renderer ----
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = POST.exposure;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    document.body.appendChild(renderer.domElement);
+
+    // ---- Scene & Camera ----
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(SCENE.backgroundColor);
+
+    const camera = new THREE.PerspectiveCamera(CAMERA.fov, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(...CAMERA.position);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(...CAMERA.target);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.autoRotate = SCENE.autoRotate;
+    controls.autoRotateSpeed = SCENE.autoRotateSpeed;
+    controls.update();
+
+    // ---- HDR Environment (CC0 from Poly Haven) ----
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    pmrem.compileEquirectangularShader();
+    new RGBELoader().load(
+      'https://dl.polyhaven.org/file.php?id=studio_small_03_1k&format=hdr',
+      (hdr) => {
+        const envMap = pmrem.fromEquirectangular(hdr).texture;
+        scene.environment = envMap;
+        // scene.background = envMap; // 取消注释用 HDR 当背景
+        hdr.dispose();
+        pmrem.dispose();
+      }
+    );
+
+    // ---- Lights ----
+    const key = new THREE.DirectionalLight(0xffffff, 2.5);
+    key.position.set(5, 8, 3);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    key.shadow.camera.near = 0.5;
+    key.shadow.camera.far = 30;
+    key.shadow.camera.left = -8; key.shadow.camera.right = 8;
+    key.shadow.camera.top = 8;    key.shadow.camera.bottom = -8;
+    key.shadow.bias = -0.0005;
+    scene.add(key);
+
+    const fill = new THREE.DirectionalLight(0x88aaff, 0.6);
+    fill.position.set(-4, 3, -2);
+    scene.add(fill);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+
+    // ---- Floor ----
+    if (SCENE.floorReflection) {
+      const floorGeo = new THREE.CircleGeometry(20, 64);
+      const floorMat = new THREE.MeshPhysicalMaterial({
+        color: 0x111111,
+        metalness: 0.9,
+        roughness: SCENE.floorRoughness,
+        envMapIntensity: 1.0
+      });
+      const floor = new THREE.Mesh(floorGeo, floorMat);
+      floor.rotation.x = -Math.PI / 2;
+      floor.receiveShadow = true;
+      scene.add(floor);
+    }
+
+    // ---- Material Spheres ----
+    const spheres = [];
+    MATERIAL_PRESETS.forEach((p, i) => {
+      const geo = new THREE.SphereGeometry(0.6, 64, 64);
+      const mat = new THREE.MeshPhysicalMaterial({
+        color: p.color,
+        metalness: p.metalness ?? 0,
+        roughness: p.roughness ?? 0.5,
+        clearcoat: p.clearcoat ?? 0,
+        clearcoatRoughness: p.clearcoatRoughness ?? 0.1,
+        transmission: p.transmission ?? 0,
+        thickness: p.thickness ?? 0,
+        ior: p.ior ?? 1.5,
+        anisotropy: p.anisotropy ?? 0,
+        sheen: p.sheen ?? 0,
+        sheenColor: p.sheenColor ?? 0x000000
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      mesh.userData.preset = p;
+      spheres.push(mesh);
+      scene.add(mesh);
+    });
+
+    // ---- Layout ----
+    function layoutSpheres() {
+      const n = spheres.length;
+      if (SCENE.layout === 'row') {
+        spheres.forEach((s, i) => { s.position.set((i - (n-1)/2) * 2.0, 0.7, 0); });
+      } else if (SCENE.layout === 'circle') {
+        spheres.forEach((s, i) => {
+          const a = (i / n) * Math.PI * 2;
+          s.position.set(Math.cos(a) * 3, 0.7, Math.sin(a) * 3);
+        });
+      } else { // grid-3x2
+        spheres.forEach((s, i) => {
+          const col = i % 3, row = Math.floor(i / 3);
+          s.position.set((col - 1) * 2.2, 0.7, (row - 0.5) * 2.2);
+        });
+      }
+    }
+    layoutSpheres();
+
+    // ---- Post Processing ----
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    const bloom = new UnrealBloomPass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight),
+      POST.bloomStrength, POST.bloomRadius, POST.bloomThreshold
+    );
+    composer.addPass(bloom);
+    composer.addPass(new OutputPass());
+
+    // ---- GUI ----
+    const gui = new GUI({ title: 'PBR Controls' });
+    const fScene = gui.addFolder('Scene');
+    fScene.add(SCENE, 'autoRotate');
+    fScene.add(SCENE, 'autoRotateSpeed', 0, 5, 0.1).onChange(v => controls.autoRotateSpeed = v);
+    fScene.add(SCENE, 'layout', ['grid-3x2', 'circle', 'row']).onChange(layoutSpheres);
+
+    const fPost = gui.addFolder('Post');
+    fPost.add(POST, 'bloomStrength', 0, 3, 0.05).onChange(v => bloom.strength = v);
+    fPost.add(POST, 'bloomRadius', 0, 1, 0.05).onChange(v => bloom.radius = v);
+    fPost.add(POST, 'bloomThreshold', 0, 1, 0.01).onChange(v => bloom.threshold = v);
+    fPost.add(POST, 'exposure', 0.1, 3, 0.05).onChange(v => renderer.toneMappingExposure = v);
+
+    const fMat = gui.addFolder('Materials');
+    spheres.forEach((s, i) => {
+      const f = fMat.addFolder(s.userData.preset.name);
+      f.add(s.material, 'metalness', 0, 1, 0.01);
+      f.add(s.material, 'roughness', 0, 1, 0.01);
+      if (s.userData.preset.clearcoat) f.add(s.material, 'clearcoat', 0, 1, 0.01);
+      if (s.userData.preset.transmission) f.add(s.material, 'transmission', 0, 1, 0.01);
+      f.addColor(s.material, 'color');
+    });
+
+    // ---- Resize ----
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      composer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // ---- Render Loop ----
+    function animate() {
+      controls.update();
+      composer.render();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>

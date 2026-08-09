@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>PBR Product Showcase</title>
+  <style>
+    html, body { margin: 0; padding: 0; overflow: hidden; background: #000; font-family: system-ui; }
+    canvas { display: block; }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "lil-gui": "https://cdn.jsdelivr.net/npm/lil-gui@0.20.0/dist/lil-gui.esm.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+    import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+    import GUI from 'lil-gui';
+
+    // ============ 👈 SCENE CONFIG ============
+    const SCENE = {
+      productShape: 'torusKnot',     // 'torusKnot' | 'cube' | 'cylinder' | 'sphere'
+      productColor: 0x4488ff,
+      metalness: 0.9,
+      roughness: 0.15,
+      clearcoat: 1.0,
+      pedestalColor: 0x222222,
+      backgroundColor: 0x000000
+    };
+    // ========================================
+
+    // ============ 👈 CAMERA CONFIG ============
+    const CAMERA = { fov: 40, position: [4, 2.5, 5], target: [0, 0.8, 0] };
+    // ========================================
+
+    // ============ 👈 POST CONFIG ============
+    const POST = { bloomStrength: 0.5, bloomRadius: 0.7, bloomThreshold: 0.7, exposure: 1.1 };
+    // ========================================
+
+    // ---- Renderer ----
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = POST.exposure;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    document.body.appendChild(renderer.domElement);
+
+    // ---- Scene ----
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(SCENE.backgroundColor);
+
+    const camera = new THREE.PerspectiveCamera(CAMERA.fov, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(...CAMERA.position);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(...CAMERA.target);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.update();
+
+    // ---- HDR ----
+    new RGBELoader().load(
+      'https://dl.polyhaven.org/file.php?id=studio_small_03_1k&format=hdr',
+      (hdr) => {
+        const pmrem = new THREE.PMREMGenerator(renderer);
+        scene.environment = pmrem.fromEquirectangular(hdr).texture;
+        hdr.dispose(); pmrem.dispose();
+      }
+    );
+
+    // ---- Lights ----
+    const key = new THREE.DirectionalLight(0xffffff, 3);
+    key.position.set(5, 8, 4);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    scene.add(key);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+
+    // ---- Pedestal ----
+    const pedGeo = new THREE.CylinderGeometry(1.5, 1.8, 0.4, 64);
+    const pedMat = new THREE.MeshPhysicalMaterial({
+      color: SCENE.pedestalColor, metalness: 0.7, roughness: 0.3
+    });
+    const pedestal = new THREE.Mesh(pedGeo, pedMat);
+    pedestal.position.y = 0.2;
+    pedestal.castShadow = true; pedestal.receiveShadow = true;
+    scene.add(pedestal);
+
+    // ---- Floor ----
+    const floor = new THREE.Mesh(
+      new THREE.PlaneGeometry(40, 40),
+      new THREE.MeshStandardMaterial({ color: 0x050505, metalness: 0.8, roughness: 0.2 })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    // ---- Product ----
+    function makeGeometry() {
+      switch (SCENE.productShape) {
+        case 'cube':     return new THREE.BoxGeometry(1.4, 1.4, 1.4, 4, 4, 4);
+        case 'cylinder': return new THREE.CylinderGeometry(0.8, 0.8, 1.6, 64);
+        case 'sphere':   return new THREE.SphereGeometry(1.0, 64, 64);
+        default:         return new THREE.TorusKnotGeometry(0.6, 0.22, 200, 32);
+      }
+    }
+    const product = new THREE.Mesh(
+      makeGeometry(),
+      new THREE.MeshPhysicalMaterial({
+        color: SCENE.productColor,
+        metalness: SCENE.metalness,
+        roughness: SCENE.roughness,
+        clearcoat: SCENE.clearcoat,
+        clearcoatRoughness: 0.05
+      })
+    );
+    product.position.y = 1.4;
+    product.castShadow = true;
+    scene.add(product);
+
+    // ---- Post ----
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    composer.addPass(new UnrealBloomPass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight),
+      POST.bloomStrength, POST.bloomRadius, POST.bloomThreshold
+    ));
+    composer.addPass(new OutputPass());
+
+    // ---- GUI ----
+    const gui = new GUI({ title: 'Product' });
+    gui.add(SCENE, 'productShape', ['torusKnot', 'cube', 'cylinder', 'sphere']).onChange(() => {
+      product.geometry.dispose();
+      product.geometry = makeGeometry();
+    });
+    const f = gui.addFolder('Material');
+    f.addColor(SCENE, 'productColor').onChange(v => product.material.color.set(v));
+    f.add(SCENE, 'metalness', 0, 1, 0.01).onChange(v => product.material.metalness = v);
+    f.add(SCENE, 'roughness', 0, 1, 0.01).onChange(v => product.material.roughness = v);
+    f.add(SCENE, 'clearcoat', 0, 1, 0.01).onChange(v => product.material.clearcoat = v);
+
+    // ---- Resize ----
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      composer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // ---- Loop ----
+    (function animate() {
+      product.rotation.y += 0.005;
+      controls.update();
+      composer.render();
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+</html>
