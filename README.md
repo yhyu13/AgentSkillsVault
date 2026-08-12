@@ -16,8 +16,9 @@ AgentSkillsVault/
 │   ├── kanban-orchestrator/
 │   ├── kanban-cron-overseer/
 │   └── cron-pipeline-state-machine/
-├── software-development/            ← code review, self-review
-│   └── aisides-ai-self-review/
+├── software-development/            ← code review, self-review, research analysis
+│   ├── aisides-ai-self-review/
+│   └── technical-research-analysis-doc/  ← TorchLight 调研分析文档格式 (背景→结论先行→影响链条→mermaid→方案对比)
 ├── FDE/                             ← Forward Deployed Engineer / personal knowledge workflows
 │   ├── book-chapter-to-vault/       ← .docx book chapter → learning notes + cheatsheet + kanban + mindmap
 │   └── analysis-to-vault/           ← long-form analytical article → thesis + argument map + cheatsheet + day-job notes
@@ -42,6 +43,7 @@ AgentSkillsVault/
 | devops/kanban-cron-overseer | devops | AgentMOD overseer |
 | devops/cron-pipeline-state-machine | devops | (reference pattern) |
 | software-development/aisides-ai-self-review | software-development | AISides caretaker |
+| software-development/technical-research-analysis-doc | software-development | UE pak/打包/热更/渲染 调研 → TorchLight 格式分析文档（背景→结论先行→影响链条→mermaid→方案对比） |
 | FDE/book-chapter-to-vault | FDE | .docx book chapter → learning notes + cheatsheet + kanban + mindmap |
 | FDE/analysis-to-vault | FDE | long-form analytical article → thesis + argument map + day-job notes |
 | game-dev/cat-game-architecture | game-dev | C.A.T / GDC 2026 AI-driven 3D game refactor |
