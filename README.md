@@ -12,6 +12,8 @@ subdirs.
 AgentSkillsVault/
 ├── README.md
 ├── KNOWLEDGE.md
+├── agents/                          ← agent autonomy & persistence patterns
+│   └── goal-persistence/
 ├── devops/                          ← orchestration, kanban, cron pipelines
 │   ├── kanban-orchestrator/
 │   ├── kanban-cron-overseer/
@@ -22,7 +24,7 @@ AgentSkillsVault/
 ├── FDE/                             ← Forward Deployed Engineer / personal knowledge workflows
 │   ├── book-chapter-to-vault/       ← .docx book chapter → learning notes + cheatsheet + kanban + mindmap
 │   └── analysis-to-vault/           ← long-form analytical article → thesis + argument map + cheatsheet + day-job notes
-└── game-dev/                        ← game design + 3D/web game tooling
+├── game-dev/                        ← game design + 3D/web game tooling
     ├── cat-game-architecture/
     ├── kimi3-game-gen/
     ├── gdd-markdown-template/
@@ -33,12 +35,19 @@ AgentSkillsVault/
     ├── technical-design-document/
     ├── three-pbr-workflow/
     └── webapp-testing/
+├── math/                            ← rigorous math proof generation + adversarial audit
+│   └── rigorous-proof/
+└── management/                      ← 职场向上汇报 (ManageUp) + 管理方法论 (mgmt-skill) + 角色顾问
+    ├── manage-up-core/ + 14 汇报技能 (weekly-report, project-update, style-* 等)
+    ├── mgmt-discipline/ mgmt-individual/ mgmt-org/  (方法论知识库)
+    └── bezos-advisor/ god-leader-advisor/ renzhengfei-advisor/ zhangyiming-advisor/  (角色顾问)
 ```
 
 ## Skills
 
 | Skill | Category | Used By |
 |-------|----------|---------|
+| agents/goal-persistence | agents | persistent goal: durable state + idle self-start + anti-drift steering + resume |
 | devops/kanban-orchestrator | devops | AgentMOD caretaker, AISides caretaker, PKB caretaker |
 | devops/kanban-cron-overseer | devops | AgentMOD overseer |
 | devops/cron-pipeline-state-machine | devops | (reference pattern) |
@@ -56,6 +65,21 @@ AgentSkillsVault/
 | game-dev/technical-design-document | game-dev | TDD scaffold (engineering counterpart to GDD) |
 | game-dev/three-pbr-workflow | game-dev | token-friendly Three.js PBR scene scaffolding |
 | game-dev/webapp-testing | game-dev | Playwright verification of running web game |
+| math/rigorous-proof | math | rigorous math proof generation + adversarial audit (theorem → complete proof → compilable LaTeX) |
+| management/manage-up-core | management | ManageUp 核心方法论（反空话五大原则：BLUF/数据锚定/So-What/行动导向/校准语言） |
+| management/weekly-report | management | 数据驱动周报/月报 |
+| management/project-update | management | 项目进展汇报（红绿灯+风险矩阵） |
+| management/performance-review | management | 绩效自评/述职 |
+| management/proposal | management | 提案/资源申请（ROI + 不行动代价） |
+| management/meeting-summary | management | 会议纪要（聚焦决策与行动项） |
+| management/quarterly-review | management | 季度复盘/QBR（记分卡+根因分析） |
+| management/upward-email | management | 向上汇报邮件 |
+| management/one-on-one-prep | management | 1:1 沟通准备 |
+| management/style-bytedance / alibaba / tencent / google / amazon / microsoft | management | 大厂汇报风格（OKR/双轨制/指标/LP/Connects） |
+| management/mgmt-discipline | management | 15 管理学科横切方法论知识库 |
+| management/mgmt-individual | management | 管理大师/实践者个人方法论（德鲁克/波特/科特勒等） |
+| management/mgmt-org | management | 17 标杆企业组织方法论（华为/字节/亚马逊/丰田等） |
+| management/bezos-advisor / god-leader-advisor / renzhengfei-advisor / zhangyiming-advisor | management | 角色化管理顾问 |
 
 See [KNOWLEDGE.md](KNOWLEDGE.md) for operational findings: Claude CLI
 adoption status, parallelism config, worker profile setup, and live
