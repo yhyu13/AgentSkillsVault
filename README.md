@@ -20,17 +20,20 @@ AgentSkillsVault/
 │   └── cron-pipeline-state-machine/
 ├── software-development/            ← code review, self-review, research analysis
 │   ├── aisides-ai-self-review/
-│   └── technical-research-analysis-doc/  ← TorchLight 调研分析文档格式 (背景→结论先行→影响链条→mermaid→方案对比)
+│   ├── technical-research-analysis-doc/  ← TorchLight 调研分析文档格式 (背景→结论先行→影响链条→mermaid→方案对比)
+│   └── journey/                     ← two-column ME/YOU project history + vibe-coding lessons
 ├── FDE/                             ← Forward Deployed Engineer / personal knowledge workflows
 │   ├── book-chapter-to-vault/       ← .docx book chapter → learning notes + cheatsheet + kanban + mindmap
 │   └── analysis-to-vault/           ← long-form analytical article → thesis + argument map + cheatsheet + day-job notes
 ├── game-dev/                        ← game design + 3D/web game tooling
     ├── cat-game-architecture/
+    ├── guide-from-probes/           ← deterministic E2E probes → playthrough guide (no screenshots needed)
     ├── kimi3-game-gen/
     ├── gdd-markdown-template/
     ├── intro-scene-until-perfect/
     ├── phaser-gamedev/
     ├── playwright-testing/
+    ├── render-quality-loop/         ← screenshot sweep → render-quality evaluation → improve loop
     ├── single-file-html-game/
     ├── technical-design-document/
     ├── three-pbr-workflow/
@@ -53,14 +56,17 @@ AgentSkillsVault/
 | devops/cron-pipeline-state-machine | devops | (reference pattern) |
 | software-development/aisides-ai-self-review | software-development | AISides caretaker |
 | software-development/technical-research-analysis-doc | software-development | UE pak/打包/热更/渲染 调研 → TorchLight 格式分析文档（背景→结论先行→影响链条→mermaid→方案对比） |
+| software-development/journey | software-development | two-column ME/YOU project history + vibe-coding lessons |
 | FDE/book-chapter-to-vault | FDE | .docx book chapter → learning notes + cheatsheet + kanban + mindmap |
 | FDE/analysis-to-vault | FDE | long-form analytical article → thesis + argument map + day-job notes |
 | game-dev/cat-game-architecture | game-dev | C.A.T / GDC 2026 AI-driven 3D game refactor |
+| game-dev/guide-from-probes | game-dev | deterministic E2E probes (assertions = ground truth) → human-readable playthrough guide |
 | game-dev/kimi3-game-gen | game-dev | KIMI3 vibecoding-webapp-swarm (parallel coder agents) |
 | game-dev/gdd-markdown-template | game-dev | 13-section GDD scaffold |
 | game-dev/intro-scene-until-perfect | game-dev | scope-cut to ONE scene + infinite polish loop (GDD + Art Book + Code Book) |
 | game-dev/phaser-gamedev | game-dev | Phaser 3 2D games: scenes, sprites, physics, tilemaps, animations |
 | game-dev/playwright-testing | game-dev | Playwright MCP / Vitest / Jest frontend + canvas game testing |
+| game-dev/render-quality-loop | game-dev | screenshot sweep → honest render-quality evaluation → improve code loop |
 | game-dev/single-file-html-game | game-dev | mini-browser-games style single-file HTML games + tier audit |
 | game-dev/technical-design-document | game-dev | TDD scaffold (engineering counterpart to GDD) |
 | game-dev/three-pbr-workflow | game-dev | token-friendly Three.js PBR scene scaffolding |
