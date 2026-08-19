@@ -40,10 +40,14 @@ AgentSkillsVault/
     └── webapp-testing/
 ├── math/                            ← rigorous math proof generation + adversarial audit
 │   └── rigorous-proof/
-└── management/                      ← 职场向上汇报 (ManageUp) + 管理方法论 (mgmt-skill) + 角色顾问
+├── management/                      ← 职场向上汇报 (ManageUp) + 管理方法论 (mgmt-skill) + 角色顾问
     ├── manage-up-core/ + 14 汇报技能 (weekly-report, project-update, style-* 等)
     ├── mgmt-discipline/ mgmt-individual/ mgmt-org/  (方法论知识库)
     └── bezos-advisor/ god-leader-advisor/ renzhengfei-advisor/ zhangyiming-advisor/  (角色顾问)
+└── content/                         ← 博客/长文 → 社媒内容再利用 (Content Repurposing)
+    ├── blog-to-twitter-post/
+    ├── blog-to-linkedin-post/
+    └── long-blog-to-viral-social-posts/
 ```
 
 ## Skills
@@ -86,6 +90,9 @@ AgentSkillsVault/
 | management/mgmt-individual | management | 管理大师/实践者个人方法论（德鲁克/波特/科特勒等） |
 | management/mgmt-org | management | 17 标杆企业组织方法论（华为/字节/亚马逊/丰田等） |
 | management/bezos-advisor / god-leader-advisor / renzhengfei-advisor / zhangyiming-advisor | management | 角色化管理顾问 |
+| content/blog-to-twitter-post | content | 博客 → Twitter/X 帖子（源锚定 + 趋势 + 平台规则 + 视觉简报） |
+| content/blog-to-linkedin-post | content | 博客 → LinkedIn 思想领导力帖子（3 版本 + 推荐） |
+| content/long-blog-to-viral-social-posts | content | 长文 → 病毒式社媒帖子（钩子模板 + 平台规则） |
 
 See [KNOWLEDGE.md](KNOWLEDGE.md) for operational findings: Claude CLI
 adoption status, parallelism config, worker profile setup, and live
