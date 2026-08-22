@@ -13,7 +13,8 @@ AgentSkillsVault/
 ├── README.md
 ├── KNOWLEDGE.md
 ├── agents/                          ← agent autonomy & persistence patterns
-│   └── goal-persistence/
+│   ├── goal-persistence/            ← Codex product contract (row + idle + anti-drift)
+│   └── goal-design-principles/      ← DSH harness architecture (plugins, fold, CAS, phase≠activation)
 ├── devops/                          ← orchestration, kanban, cron pipelines
 │   ├── kanban-orchestrator/
 │   ├── kanban-cron-overseer/
@@ -55,6 +56,7 @@ AgentSkillsVault/
 | Skill | Category | Used By |
 |-------|----------|---------|
 | agents/goal-persistence | agents | persistent goal: durable state + idle self-start + anti-drift steering + resume |
+| agents/goal-design-principles | agents | DSH goal harness: plugins on a capability seam, event-sourced fold, CAS, phase ≠ activation, runtime authority |
 | devops/kanban-orchestrator | devops | AgentMOD caretaker, AISides caretaker, PKB caretaker |
 | devops/kanban-cron-overseer | devops | AgentMOD overseer |
 | devops/cron-pipeline-state-machine | devops | (reference pattern) |
