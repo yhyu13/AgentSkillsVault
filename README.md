@@ -48,7 +48,8 @@ AgentSkillsVault/
 └── content/                         ← 博客/长文 → 社媒内容再利用 (Content Repurposing)
     ├── blog-to-twitter-post/
     ├── blog-to-linkedin-post/
-    └── long-blog-to-viral-social-posts/
+    ├── long-blog-to-viral-social-posts/
+    └── tech-design-to-zhihu/        ← 技术设计稿 → 知乎专栏（无 mermaid，出 PNG）
 ```
 
 ## Skills
@@ -95,6 +96,7 @@ AgentSkillsVault/
 | content/blog-to-twitter-post | content | 博客 → Twitter/X 帖子（源锚定 + 趋势 + 平台规则 + 视觉简报） |
 | content/blog-to-linkedin-post | content | 博客 → LinkedIn 思想领导力帖子（3 版本 + 推荐） |
 | content/long-blog-to-viral-social-posts | content | 长文 → 病毒式社媒帖子（钩子模板 + 平台规则） |
+| content/tech-design-to-zhihu | content | 技术设计/架构分析 → 知乎专栏（PNG 配图，不渲染 mermaid/SVG） |
 
 See [KNOWLEDGE.md](KNOWLEDGE.md) for operational findings: Claude CLI
 adoption status, parallelism config, worker profile setup, and live
