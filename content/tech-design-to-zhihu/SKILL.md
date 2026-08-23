@@ -40,7 +40,7 @@ Default `<out>`: beside the source as `<stem>-zhihu/`, or the path the user name
 
 ### 1. Read the pile
 
-Read the source end-to-end. Collect: thesis, 是什么/不是什么 pairs, diagrams (mermaid / SVG / PNG), named mechanisms, contrasts with other systems, file indexes (usually drop).
+Read the source end-to-end. Collect: thesis, the **thread** (ordered 是什么/不是什么 steps), tree layers (根/主干/分支/树叶), diagrams (mermaid / SVG / PNG), named mechanisms, contrasts with other systems, file indexes (usually drop). Prefer the source's thread as the article spine when it exists.
 
 If mermaid or SVG exists and no PNG yet, you will convert in step 4 — do not leave the fence for later.
 

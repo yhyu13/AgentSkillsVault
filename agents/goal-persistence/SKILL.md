@@ -9,7 +9,7 @@ metadata:
 
 # Goal persistence
 
-An objective that keeps an agent working across turns, sessions, and process restarts until it is genuinely complete — never narrowed, never self-declared done early. Distilled from the Codex goal feature (canonical source: `D:\GitRepo-AI\codex\docs\goal-feature.md`).
+An objective that keeps an agent working across turns, sessions, and process restarts until it is genuinely complete — never narrowed, never self-declared done early. Distilled from the Codex goal feature (analysis note: `docs/goal-feature.md` in that repo).
 
 ## The mechanism
 

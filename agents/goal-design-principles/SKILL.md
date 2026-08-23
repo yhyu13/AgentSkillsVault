@@ -1,7 +1,7 @@
 ---
 name: goal-design-principles
-description: Design a goal subsystem as a harness, not a loop patch — plugins on a capability seam, event-sourced state, CAS, persistent phase orthogonal to process-local activation, runtime authority, idle self-start, anti-drift re-injection. Use when designing or implementing a long-running goal/objective feature, splitting it into plugins, choosing event sourcing vs a row store, separating phase from activation, wiring CAS or live permission, or asking how DSH/deepseek-harness packages/goal is structured (根/主干/分支/树叶, 事件溯源, 能力接缝). Pair with goal-persistence for the product contract.
-version: 1.0.0
+description: Design a goal subsystem as a harness, not a loop patch — walk the thread (需求→接缝→根→主干→切开), then pin 是什么/不是什么 on root, trunk, and four orthogonal branches (phase, activation, authority, round). Use when designing or implementing a long-running goal/objective, splitting it into plugins, choosing event sourcing vs a row store, separating phase from activation, wiring CAS or live permission, or asking how DSH/deepseek-harness packages/goal is structured (根/主干/分支/树叶, 是什么/不是什么). Pair with goal-persistence for the product contract.
+version: 1.1.0
 metadata:
   category: agents
   created_by: agent
@@ -9,11 +9,13 @@ metadata:
 
 # Goal design principles
 
-A long-running goal is a **harness subsystem**: plugins on a capability seam, state folded from the session log, live permission re-granted every process. Distilled from DeepSeek Harness `packages/goal/` (analysis note: `MyDoc/goal-design-principles.md` in that repo).
+A long-running goal is a **harness subsystem**. Distilled from DeepSeek Harness `packages/goal/` (analysis note: `MyDoc/goal-design-principles.md` in that repo).
 
-The product contract — durable objective, idle self-start, anti-drift, evidence-first complete — lives in **goal-persistence**. This skill is the architecture of how to *build* that contract without patching the agent loop.
+The product contract — durable objective, idle self-start, anti-drift, evidence-first complete — lives in **goal-persistence**. This skill is how to *build* that contract without patching the agent loop.
 
-**Spine:** durable state and live permission stay separate. State can replay. Permission must be re-granted.
+**Spine:** 状态可回放，权限必须重授. Durable state and live permission stay separate. State can replay. Permission must be re-granted.
+
+Walk the **thread** first. Then pin **是什么 / 不是什么** on each tree layer. Leaves only implement their branch — they do not invent a fifth.
 
 ## When not to use
 
@@ -21,73 +23,99 @@ The product contract — durable objective, idle self-start, anti-drift, evidenc
 - The product *what* (status machine, steering prompt, budget) without the *how* — use **goal-persistence**.
 - A retry queue, timer poll, or loop counter dressed as persistence.
 
-## Root / trunk / branches / leaves
+## Thread
+
+If a step's **不是什么** is what you built, later leaves will split in the same place.
+
+| Step | 是什么 | 不是什么 |
+|---|---|---|
+| Need | Agent holds one objective across turns until genuinely complete | Patch `agent-loop`, add a counter, or put "please continue" in the prompt |
+| Seam | One Goal service owns state; command / tool / driver consume it | A monolith; consumers each keep a copy |
+| Root | Every mutation appends `goal/change`; current state is a fold | A side table; in-memory steering that dies on restart |
+| Trunk | Strict fold + CAS → what version, what phase | Last-write-wins; scattered booleans |
+| Cut | `phase` is durable; activation / authority / round are runtime-only | Logging "may auto-continue" so restore/fork resume by themselves |
+
+Cross-cutting (not a fifth branch): capability seam, branded `GoalId`, Config that throws at load.
+
+## Tree — 是什么 / 不是什么 per layer
 
 ```
-session log  (root: only durable truth)
-    └── lifecycle state machine  (trunk: what version, what phase)
-            ├── phase        persistent progress
-            ├── activation   process-local "may auto-continue"
-            ├── authority    live "who may mutate / stop"
-            └── round        when to start the next turn, how to anti-drift
+session log                          root
+    └── lifecycle state machine      trunk
+            ├── phase                durable progress
+            ├── activation           process-local "may auto-continue"
+            ├── authority            live "who may mutate / stop"
+            └── round                when to continue, how to anti-drift
 ```
 
-| Layer | Answers | Persistence |
+### Root · session log
+
+Answers: what is true after replay?
+
+- **是什么:** all durable goal state is appended `goal/change`. Anything that reaches a model request is reconstructible from the log (continuation prompts are `user/message` tagged with a goal source).
+- **不是什么:** a SQLite row per session (Codex). Current fields with the log as a side effect. In-memory steering.
+
+### Trunk · replayable lifecycle
+
+Answers: what version, what phase?
+
+- **是什么:** fold the event stream. Strict fold validates transitions and throws; projection fold keeps the latest snapshot because the write path already validated. Mutations carry `{ id, revision }` (`+1`). Phase transitions are checked at fold *and* service. Operations/commands are closed unions; miss one and `assertNever` fires.
+- **不是什么:** last-write-wins. A mutex. Boolean flags standing in for phase.
+
+### Branch · phase
+
+Answers: how far along?
+
+- **是什么:** `active` / `paused` / `blocked` / `complete`, written to the log. `block` only from `active`; the first three may `complete`.
+- **不是什么:** "may this process auto-continue". `armed` does not live on phase.
+- **Leaves:** allowed `transition()` set, `validateSnapshotTransition`, `decodeSnapshot`, `resolveBlockReason`.
+
+### Branch · activation
+
+Answers: may *this process* auto-continue?
+
+- **是什么:** `armed` / `disarmed`, process-local, never logged. `session-start` / restore / fork force `disarmed`. create/resume → armed; pause/complete/block/clear → disarmed; edit unchanged.
+- **不是什么:** a field on `goal/change` that replays with state. A restored session with `phase=active` must not start running by itself.
+- **Leaves:** `session-start` disarm, `disarm()` / `resume()` remaining-budget check, `goal/changed` → checkpoint → `requestDrive`.
+
+Legal pair: `phase=active` and `activation=disarmed`.
+
+### Branch · authority
+
+Answers: who may mutate or stop?
+
+- **是什么:** live facts at execution — surviving agent, `running`, current initiator, open turn. Mutating the objective needs a host-issued `{ kind: 'user' }` in the current root-agent turn. `complete` / `blocked` also accept the current goal round as a narrow channel: report termination, never rewrite the objective.
+- **不是什么:** prompt-only restraint. Persisted root/fork lineage as live permission. Subagent, injected message, or expired turn.
+- **Leaves:** `goalToolExecution` / `requireDirectHuman` / `completionAuthority`; `blockedAfterConsecutiveRounds`.
+
+### Branch · round
+
+Answers: when to start the next turn, how to anti-drift?
+
+- **是什么:** drive only when idle **and** `active` **and** `armed` **and** budget remains. Reserve `roundsStarted + 1`, inject the full objective. At most one continuation per idle. Complete against workspace / durable state with evidence. `blocked` needs the same condition for N consecutive rounds plus a concrete reason. Persist/queue/driver failure disarms or blocks. Teardown closes admission, disarms every goal, cancels in-flight turns, awaits quiescence.
+- **不是什么:** a retry queue, a timer, a loop counter, a busy-loop. "The model said so" as complete. Optimistic retry on failure.
+- **Leaves:** `drive()` reservation, `validReservation` + `agent/pre-step`, `renderGoalRoundPrompt`, wrapup, fail-stop disarm.
+
+Do not invent a fifth branch until it answers a question the four do not.
+
+## Cross-cutting
+
+| Discipline | 是什么 | 不是什么 |
 |---|---|---|
-| **Root** | What is true after replay? | `goal/change` events on the session log |
-| **Trunk** | What version, what phase? | Fold + CAS commit (`revision + 1`) |
-| **phase** | How far along? | Durable |
-| **activation** | May this process auto-continue? | Process-local; never logged |
-| **authority** | Who may mutate or stop? | Runtime; never logged |
-| **round** | When to continue, how to steer? | Runtime |
+| Seam | `dsh-goal` owns `ctx.goals`; tool / command / driver consume it and `Agent`. Loop unchanged. | A goal branch inside the loop |
+| Branded id | `GoalId = Branded<'GoalId'>` | Bare `string` at a package boundary |
+| Fail loud | Tunables are validated Config (`blockedAfterConsecutiveRounds`, `defaultMaxGoalRounds`) | `DEFAULT_*` or `?? default` inside `run()` |
 
-Leaves are the terminal implementations on each branch — transition tables, `session-start` disarm, execution-time grant checks, idle driver + steering prompt. Do not invent a fifth branch until it answers a question the four do not.
+## Persistence choice
 
-## Composition
-
-**Plugins, not loop changes.** Own state in a Goal service (`ctx.goals`). Model tool, human command, and round driver are consumers of that service and of `Agent`. The agent loop gains no goal branch.
-
-**Capability seam.** A complete seam is Service Definition / Provider / Consumer. Scheduling, commands, and tools do not own state.
-
-**Closed unions + `assertNever`.** `GoalPhase`, operations, and commands are closed; illegal transitions fail at fold *and* at the service. No boolean flags standing in for phase.
-
-**Branded ids.** `GoalId = Branded<'GoalId'>` — never a bare `string` at a package boundary.
-
-**Explicit config, fail loud.** Tunables (`blockedAfterConsecutiveRounds`, `defaultMaxGoalRounds`) are validated Config fields. Illegal values throw at load. A `DEFAULT_*` constant or `?? default` inside `run()` is not configurability.
-
-## Persistence
-
-**Log is the only truth.** Every mutation appends `goal/change`. Current state is a fold. Strict fold validates transitions and throws; projection fold keeps the latest snapshot because the write path already validated.
-
-Not a SQLite row per session with the log as a side effect. Codex goal-persistence uses the row; DSH uses the fold. Pick one source of truth — do not keep both.
-
-**Model-visible ⟺ logged.** Anything that reaches a model request is reconstructible from the session log. Goal state is `goal/change`. Continuation prompts are `user/message` events tagged with a goal source. In-memory steering that dies on restart is not a goal.
-
-**CAS.** Every mutation carries `{ id, revision }`. Revision is monotonic `+1`. Stale refs throw. The model `get`s, then copies the exact id/revision — no last-write-wins, no mutex.
-
-## Permission (orthogonal to persistence)
-
-**Phase ≠ activation.**
-
-| | phase | activation |
+| | Event-sourced fold (DSH) | Row store (Codex) |
 |---|---|---|
-| Values | `active` / `paused` / `blocked` / `complete` | `armed` / `disarmed` |
-| Stored | yes | never |
-| On `session-start` | replayed | forced `disarmed` |
+| Source of truth | session log | SQLite row keyed by thread |
+| Replay | fold `goal/change` | re-read the row |
+| Resume auto-run | no — activation is process-local | yes — re-arm if status is active |
+| Use when | the harness already event-sources the session; model-visible ⟺ logged is law | a dedicated state DB already exists and the session log is not the product log |
 
-Do not log "may auto-continue". Restore and fork must not resume execution by themselves.
-
-**Runtime authority, host-issued.** Check live facts at execution: surviving agent, `running`, current initiator, open turn. Mutating the objective requires a host-issued `{ kind: 'user' }` message in the current root-agent turn. `complete` / `blocked` also accept the current goal round as a narrow channel — report termination, never rewrite the objective.
-
-Prompt-only restraint is not authority. Persisted root/fork lineage is not live permission.
-
-## Loop
-
-**Idle self-start, one continuation per idle.** Drive only when idle **and** `active` **and** `armed` **and** budget remains. Reserve the next round (`roundsStarted + 1`) and enqueue one followup. Not a retry queue, not a timer, not a loop counter.
-
-**Anti-drift + evidence-first.** Every continuation re-injects the full objective. Complete against workspace / durable state with evidence — never on the model's say-so. `blocked` requires the same condition for N consecutive rounds plus a concrete reason.
-
-**Fail-stop + graceful release.** Persist, queue, or driver failure disarms / blocks — no optimistic retry. Teardown closes admission, disarms every goal, cancels in-flight turns, awaits quiescence.
+The rest of the tree (CAS or equivalent occupancy, phase machine, idle self-start, anti-drift, fail-stop) applies to both. Pick one source of truth — do not keep both.
 
 ## Design checklist
 
@@ -113,22 +141,9 @@ dsh-command-goal         Consumer — human /goal
 dsh-goal-round-driver    Consumer — idle drive + anti-drift prompt
 ```
 
-Data flow: human or model mutates through the service → `goal/change` lands on the log → fold updates the snapshot → `goal/changed` notifies the driver → if idle/active/armed, one reserved followup with the full objective.
-
-## Persistence choice
-
-| | Event-sourced fold (DSH) | Row store (Codex) |
-|---|---|---|
-| Source of truth | session log | SQLite row keyed by thread |
-| Replay | fold `goal/change` | re-read the row |
-| Resume auto-run | no — activation is process-local | yes — re-arm if status is active |
-| Use when | the harness already event-sources the session; model-visible ⟺ logged is law | a dedicated state DB already exists and the session log is not the product log |
-
-The rest of the checklist (CAS or equivalent occupancy, phase/status machine, idle self-start, anti-drift, fail-stop) applies to both.
+Human or model mutates through the service → `goal/change` lands on the log → fold updates the snapshot → `goal/changed` notifies the driver → if idle/active/armed, one reserved followup with the full objective.
 
 ## Canonical files
-
-Load-bearing DSH paths (full index in the source doc):
 
 | Concern | File |
 |---|---|
