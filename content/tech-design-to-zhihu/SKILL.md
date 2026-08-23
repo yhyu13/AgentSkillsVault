@@ -2,12 +2,12 @@
 name: tech-design-to-zhihu
 description: >-
   Write a Zhihu 专栏 from a technical design or architecture analysis. Speak
-  human Chinese, walk 是什么/不是什么 then the thread then 根/主干/分支/树叶, emit as many
+  human Chinese, walk 是什么/不是什么 then the thread then 树根→主干→分支→树叶, emit as many
   PNG figures as the argument needs (Zhihu has no mermaid/SVG), open with a
   TL;DR, close with 收获和结论 plus PS/PPS/PPPS. Use when the user asks 写成知乎文章,
   技术设计稿转知乎, 知乎长文, 知乎没有 mermaid, 说人话, 多图, TL;DR, 收获和结论, or PS PPS.
   Not a design skill — that is goal-design-principles.
-version: 1.2.0
+version: 1.2.1
 metadata:
   category: content
   created_by: agent
@@ -37,11 +37,11 @@ metadata:
 
 上一步没钉住，后面段落会散。
 
-1. **读源** — 抽出主线、是什么/不是什么、树（根/主干/分支/树叶）。源是采石场，不是逐句脚本。
+1. **读源** — 抽出主线、是什么/不是什么、树（树根 → 主干 → 分支 → 树叶）。源是采石场，不是逐句脚本。
 2. **TL;DR** — 标题下立刻给 3–5 条。扫完能走。每条一句人话，可与收获对应，但更短。
 3. **开口** — 一句人话钉主线。不要「本文拆解 packages/…」。
 4. **错路对照** — 读者的第一反应往往是错的。先画错路，再画正路。
-5. **脉络图** — 需求 → 接缝 → 根 → 主干 → 切开。每步口头说「是什么 / 不是什么」。
+5. **脉络图** — 需求 → 接缝 → 树根 → 主干 → 切开。每步口头说「是什么 / 不是什么」。
 6. **整棵树** — 每层回答一个问题。红字是「不是什么」。
 7. **按枝往下讲** — 每根分支：短段人话 → 一张图 → 必要时再补一张「人话放大图」（CAS、两本账、证据先行…）。
 8. **收获和结论** — 必写。收获是能搬走的判断（通常 5–7 条，配总图）。结论把主线再说一遍，落到读者能用的切割上。不要新开论点。
@@ -64,7 +64,7 @@ metadata:
               └── 错路 / 正路          图
                     └── 脉络            图 + 短表
                           └── 树全貌     图
-                                ├── 根 / 主干     图
+                                ├── 树根 / 主干     图
                                 ├── phase / activation
                                 ├── authority
                                 └── round / 证据
@@ -148,4 +148,4 @@ metadata:
 |---|---|---|
 | 给谁 | 要设计 / 实现长期目标的 agent | 要把设计稿写成知乎专栏的 agent |
 | 产出 | 检查清单、接缝、CAS、phase≠activation | `article.md` + PNG + `PUBLISH.md` |
-| 结构 | 脉络 + 是什么/不是什么 + 树（给实现用） | 同一骨架，改写成说人话、多图、带收获 |
+| 结构 | 脉络 + 是什么/不是什么 + 树根→主干→分支→树叶 | 同一骨架，改写成说人话、多图、带收获 |

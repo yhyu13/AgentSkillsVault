@@ -1,7 +1,7 @@
 ---
 name: goal-design-principles
-description: Design a goal subsystem as a harness, not a loop patch — walk the thread (需求→接缝→根→主干→切开), then pin 是什么/不是什么 on root, trunk, and four orthogonal branches (phase, activation, authority, round). Use when designing or implementing a long-running goal/objective, splitting it into plugins, choosing event sourcing vs a row store, separating phase from activation, wiring CAS or live permission, or asking how DSH/deepseek-harness packages/goal is structured (根/主干/分支/树叶, 是什么/不是什么). Pair with goal-persistence for the product contract.
-version: 1.1.0
+description: Design a goal subsystem as a harness, not a loop patch — walk the thread (需求→接缝→树根→主干→切开), then pin 是什么/不是什么 on 树根, trunk, and four orthogonal branches (phase, activation, authority, round). Use when designing or implementing a long-running goal/objective, splitting it into plugins, choosing event sourcing vs a row store, separating phase from activation, wiring CAS or live permission, or asking how DSH/deepseek-harness packages/goal is structured (树根→主干→分支→树叶, 是什么/不是什么). Pair with goal-persistence for the product contract.
+version: 1.1.1
 metadata:
   category: agents
   created_by: agent
@@ -31,7 +31,7 @@ If a step's **不是什么** is what you built, later leaves will split in the s
 |---|---|---|
 | Need | Agent holds one objective across turns until genuinely complete | Patch `agent-loop`, add a counter, or put "please continue" in the prompt |
 | Seam | One Goal service owns state; command / tool / driver consume it | A monolith; consumers each keep a copy |
-| Root | Every mutation appends `goal/change`; current state is a fold | A side table; in-memory steering that dies on restart |
+| 树根 | Every mutation appends `goal/change`; current state is a fold | A side table; in-memory steering that dies on restart |
 | Trunk | Strict fold + CAS → what version, what phase | Last-write-wins; scattered booleans |
 | Cut | `phase` is durable; activation / authority / round are runtime-only | Logging "may auto-continue" so restore/fork resume by themselves |
 
@@ -40,15 +40,17 @@ Cross-cutting (not a fifth branch): capability seam, branded `GoalId`, Config th
 ## Tree — 是什么 / 不是什么 per layer
 
 ```
-session log                          root
-    └── lifecycle state machine      trunk
+session log                          树根
+    └── lifecycle state machine      主干
             ├── phase                durable progress
             ├── activation           process-local "may auto-continue"
             ├── authority            live "who may mutate / stop"
             └── round                when to continue, how to anti-drift
 ```
 
-### Root · session log
+Layers in order: **树根 → 主干 → 分支 → 树叶**.
+
+### 树根 · session log
 
 Answers: what is true after replay?
 
