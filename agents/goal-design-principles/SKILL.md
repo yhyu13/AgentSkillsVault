@@ -9,7 +9,7 @@ metadata:
 
 # Goal design principles
 
-A long-running goal is a **harness subsystem**: plugins on a capability seam, state folded from the session log, live permission re-granted every process. Distilled from DeepSeek Harness `packages/goal/` (canonical source: `D:\GitRepo-AI\deepseek-harness\MyDoc\goal-design-principles.md`).
+A long-running goal is a **harness subsystem**: plugins on a capability seam, state folded from the session log, live permission re-granted every process. Distilled from DeepSeek Harness `packages/goal/` (analysis note: `MyDoc/goal-design-principles.md` in that repo).
 
 The product contract — durable objective, idle self-start, anti-drift, evidence-first complete — lives in **goal-persistence**. This skill is the architecture of how to *build* that contract without patching the agent loop.
 
