@@ -1,85 +1,151 @@
 ---
 name: tech-design-to-zhihu
 description: >-
-  Turn a technical design or architecture analysis (是什么/不是什么, 根/主干/分支,
-  ADRs, mermaid) into a Zhihu 专栏 article. Zhihu does not render mermaid or SVG
-  — emit PNG diagrams and paste-ready Chinese prose. Use when the user asks
-  写成知乎文章, 技术设计稿转知乎专栏, 知乎长文 from a design doc, 知乎没有 mermaid, or
-  wants a public rewrite of packages/*/README-style analysis.
-version: 1.0.0
+  Write a Zhihu 专栏 from a technical design or architecture analysis. Speak
+  human Chinese, walk 是什么/不是什么 then the thread then 根/主干/分支/树叶, emit as many
+  PNG figures as the argument needs (Zhihu has no mermaid/SVG), open with a
+  TL;DR, close with 收获和结论 plus PS/PPS/PPPS. Use when the user asks 写成知乎文章,
+  技术设计稿转知乎, 知乎长文, 知乎没有 mermaid, 说人话, 多图, TL;DR, 收获和结论, or PS PPS.
+  Not a design skill — that is goal-design-principles.
+version: 1.2.0
 metadata:
   category: content
   created_by: agent
 ---
 
-# Tech design → Zhihu column
+# 技术设计稿 → 知乎专栏
 
-Rewrite a technical design document as a **Zhihu 专栏** the public can read. The source is a quarry, not a script. The article has one thesis. Zhihu does not render mermaid or SVG — every diagram is a **PNG**.
+这是**写作 skill**。把一份技术设计 / 架构分析，改写成给人读的知乎专栏。
 
-Worked example: `examples/goal-design-principles/` (from DeepSeek Harness `packages/goal` analysis). Companion architecture skill: **goal-design-principles**.
+设计判断本身（怎么做长期目标、怎么切插件）住在 **goal-design-principles**。本 skill 不管「系统该怎么设计」，只管「怎么讲给知乎读者听」。
 
-## When not to use
+工作示例：`examples/goal-design-principles/`。平台细则：`references/zhihu-platform-rules.md`。
 
-- A feed-sized 想法 / 短帖 — use a social-post skill.
-- A LinkedIn / X post — use `blog-to-linkedin-post` / `blog-to-twitter-post`.
-- Publishing via Zhihu Open Platform APIs — this skill stops at a paste pack.
-- The source is only a topic or outline. Ask for the design doc; do not invent architecture.
+## 概念 · 是什么 / 不是什么
 
-## Output pack
+| | 是什么 | 不是什么 |
+|---|---|---|
+| 这份 skill | 把设计稿改写成知乎专栏：说人话、多 PNG、按脉络带读者走、以收获和结论收束 | 设计 skill；翻译设计文档；LinkedIn / X 短帖；知乎 Open API 发布 |
+| 文章 | 一篇有主线的人话。读者走完能搬走几句判断 | 12 条原则清单、文件索引、ADR 摘要、源码导读 |
+| 图 | 每个论点一张 PNG。标题即论点，红字钉「不是什么」 | mermaid 围栏、SVG、装饰截图、「如图所示」空指 |
+| 开头 | **TL;DR**：3–5 条可抄判断，扫完就能走 | 目录、摘要腔、「本文将介绍」 |
+| 收束 | 收获和结论 + **PS / PPS / PPPS** 三层附言 | 「本文介绍了…」「更多细节见源码」 |
+
+知乎不渲染 mermaid，也不显示 SVG。图必须是 PNG。本地 `images/` 粘贴后不会自动带上，人要按 `PUBLISH.md` 上传。
+
+## 逻辑脉络（写作顺序）
+
+上一步没钉住，后面段落会散。
+
+1. **读源** — 抽出主线、是什么/不是什么、树（根/主干/分支/树叶）。源是采石场，不是逐句脚本。
+2. **TL;DR** — 标题下立刻给 3–5 条。扫完能走。每条一句人话，可与收获对应，但更短。
+3. **开口** — 一句人话钉主线。不要「本文拆解 packages/…」。
+4. **错路对照** — 读者的第一反应往往是错的。先画错路，再画正路。
+5. **脉络图** — 需求 → 接缝 → 根 → 主干 → 切开。每步口头说「是什么 / 不是什么」。
+6. **整棵树** — 每层回答一个问题。红字是「不是什么」。
+7. **按枝往下讲** — 每根分支：短段人话 → 一张图 → 必要时再补一张「人话放大图」（CAS、两本账、证据先行…）。
+8. **收获和结论** — 必写。收获是能搬走的判断（通常 5–7 条，配总图）。结论把主线再说一遍，落到读者能用的切割上。不要新开论点。
+9. **PS / PPS / PPPS** — 必写。结论之后三层附言，给读完的人，不给目录。
+
+## 主干（三条写作纪律）
+
+**说人话。** 先比喻，后术语。一段一个意思。`fold`、`CAS`、`activation` 必须在第一次出现时用大白话落地（「把流水账折一遍得到现在」「改之前记下第几版」「这一进程还准不准自动续」）。仓库内部名能不出现就不出现；出现就要带一句人话。
+
+**图先行，能多则多。** 每个独立论点配一张 PNG。宁多一张人话对照图，不少一张让读者空转的段。标题即论点。不要把 12 个意思塞进一张图。
+
+**是什么 / 不是什么钉概念。** 每段先说它是什么，紧跟它不是什么。表可以有一张总表；正文用对比句，不要整页 spec。
+
+## 分支（文章长什么样）
+
+```
+标题
+  └── TL;DR                 3–5 条，扫完能走
+        └── 开口（一句主线）
+              └── 错路 / 正路          图
+                    └── 脉络            图 + 短表
+                          └── 树全貌     图
+                                ├── 根 / 主干     图
+                                ├── phase / activation
+                                ├── authority
+                                └── round / 证据
+                                      └── 收获和结论   总图
+                                            └── PS / PPS / PPPS
+```
+
+树叶（文件路径、函数名）最多作点到为止的例子，不进目录，不进收获。
+
+## 树叶（动手步骤）
+
+### 读源
+
+列出：主线、脉络步骤、每层是什么/不是什么、已有图、缺的图、读者未带上的概念。文件索引默认丢掉。
+
+### 补图
+
+缺图就画 SVG 再栅格成 PNG（标题 + 4–8 个框，浅底，中文标签，红字 = 不是什么）。已有 PNG 且论点已在图上，复制进 `images/`，改 alt 为论点。禁止留下 ` ```mermaid ` 和 `.svg` 链接。
+
+人话放大图优先补这些空洞：错路、同时写入、模型可见 ⟺ 已落账、两种记账法、证据先行、收获总图。
+
+### 写正文
+
+- 标题下第一块就是 **TL;DR**（见下）。然后才开口。
+- 短段。像对工程师说话，不像写 README。
+- 每走一步：人话 → 是/不是 → 图。
+- 标题最多 `####`。不要 GitHub admonition。
+- 专栏大约 2500–6000 字。超过 8000 就砍或拆。
+
+### TL;DR（必写，放标题正下方）
+
+给只想扫一眼的读者。3–5 条子弹，每条一句人话。
+
+- 是：能抄走的判断，和收获同向、比收获更短。
+- 不是：目录、摘要腔、「本文将介绍三点」。
+- 读完 TL;DR 可以走；正文是给愿意走完的人。
+
+### 收获和结论（必写）
+
+文章在「收获和结论」之前不算完。
+
+- **收获：** 5–7 条读者能抄到自己系统里的判断。每条一句人话 + 半句「不是什么」。配一张总图。
+- **结论：** 一段，把开口的主线落地。告诉读者能搬走的是切割，不是文件名。
+- 收获里不要出现路径、函数、包名。那些不是收获。
+
+### PS / PPS / PPPS（必写，放结论之后）
+
+给读完的人，不给目录。三层，一层一句到两句，不新开主干论点。
+
+| | 写什么 | 不是什么 |
+|---|---|---|
+| **PS.** | 只带走一句时带走哪句（主线的人话版） | 又一篇收获清单 |
+| **PPS.** | 最容易混淆的邻概念（这篇和「把模型训得更听话」不是一回事） | 新开一章 |
+| **PPPS.** | 过时声明 + 读者自己系统里会裂开的那一刀 | 推销、关注、下期预告 |
+
+三条都写。少写一层就不算完。
+
+### 交付包
 
 ```
 <out>/
-  article.md      paste-ready body (no mermaid, no SVG)
-  images/*.png    figures in article order
-  PUBLISH.md      upload order + title + 一句话导语
+  article.md      可粘贴正文（无 mermaid、无 SVG）
+  images/*.png    按文中出现顺序
+  PUBLISH.md      标题、导语、上传顺序
 ```
 
-Default `<out>`: beside the source as `<stem>-zhihu/`, or the path the user names.
+默认写在源旁边 `<stem>-zhihu/`，或用户指定路径。
 
-## Workflow
+## 完成标准
 
-### 1. Read the pile
+- `article.md` 无 mermaid、无 SVG 链接
+- 每个独立论点有一张 PNG 在 `images/`，数量按论点加，不按「最少几张」封顶
+- 开口主线 = 文章主线 = 结论主线 = TL;DR 第一条所服务的那句
+- 标题下有 TL;DR（3–5 条）；文末有收获和结论；结论后有 PS、PPS、PPPS 三层
+- `PUBLISH.md` 列出上传顺序
+- 本 skill 目录无本机绝对路径
 
-Read the source end-to-end. Collect: thesis, the **thread** (ordered 是什么/不是什么 steps), tree layers (根/主干/分支/树叶), diagrams (mermaid / SVG / PNG), named mechanisms, contrasts with other systems, file indexes (usually drop). Prefer the source's thread as the article spine when it exists.
+## 和 goal-design-principles 的分工
 
-If mermaid or SVG exists and no PNG yet, you will convert in step 4 — do not leave the fence for later.
-
-### 2. Pick one public thesis
-
-Write 2–3 candidate openings that imply different angles. Choose one (or the user picks). The rest of the article must serve that opening.
-
-Default angle for harness / architecture docs: **the judgment a practitioner can steal**, not the file tree. Example: 「状态可回放，权限必须重授」beats 「本文拆解 packages/goal」。
-
-### 3. Ground the reader
-
-List concepts the Zhihu reader does **not** walk in with (fold, CAS, capability seam, phase vs activation). Each must be grounded in a block before a later block leans on it. Repo-internal names (`dsh-goal`, `GOAL_STALE_REVISION`) earn a line of gloss or they stay out.
-
-### 4. Diagrams → PNG only
-
-Zhihu will not render mermaid. SVG does not display. Read `references/zhihu-platform-rules.md`.
-
-For every figure the article needs:
-
-| Source | Action |
-|---|---|
-| Existing PNG that already states the claim | Copy into `images/`, keep the claim in alt text |
-| Mermaid / ASCII / SVG | Render or redraw as PNG. Prefer the existing renderer in the repo (`html/…/*.png`) over regenerating. If none exists, draw a clean diagram PNG (title + 4–8 labeled boxes, light background, Chinese labels). |
-| Decorative screenshot | Omit unless it proves a claim |
-
-Never ship ` ```mermaid ` in `article.md`. Never link `.svg`. Alt text states the figure's claim, not "架构图".
-
-### 5. Write original Chinese prose
-
-- One idea per short paragraph. Prose carries argument; one table is enough for a true parallel set (four branches, two persistence choices).
-- Recast 是什么 / 不是什么 as contrast sentences, not a spec dump.
-- Drop file-path indexes from the body. At most a short trailing 「想对照源码」 of ≤ 8 lines if the user asked.
-- Do not invent anecdotes, metrics, or affiliation.
-- Headings stop at `####`. No GitHub admonitions.
-
-### 6. Publish notes
-
-Write `PUBLISH.md`: recommended title, 30–40 字导语, image upload order matching the article, reminder that local `images/` paths will not resolve on Zhihu until uploaded.
-
-## Completion
-
-Done when `article.md` has no mermaid/SVG, every figure is a PNG on disk, the opening's thesis is the article's thesis, and `PUBLISH.md` lists upload order. Then copy this skill directory to the vault if the user asked to publish the skill itself.
+| | goal-design-principles | tech-design-to-zhihu（本 skill） |
+|---|---|---|
+| 给谁 | 要设计 / 实现长期目标的 agent | 要把设计稿写成知乎专栏的 agent |
+| 产出 | 检查清单、接缝、CAS、phase≠activation | `article.md` + PNG + `PUBLISH.md` |
+| 结构 | 脉络 + 是什么/不是什么 + 树（给实现用） | 同一骨架，改写成说人话、多图、带收获 |

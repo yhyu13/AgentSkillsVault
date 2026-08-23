@@ -37,7 +37,9 @@ Not supported (will show as raw text or vanish):
 
 - 专栏: 2 000–6 000 汉字 is the readable band for a technical design rewrite. Past 8 000, cut or split.
 - 回答 under a question: 800–2 500 汉字 unless the user asked for a 专栏.
-- Short paragraphs. One idea per paragraph. Walls of 是什么 / 不是什么 / 证据 bullets are a design doc, not a Zhihu article — rewrite as prose, keep at most one compact table.
+- Short paragraphs. One idea per paragraph. Speak human Chinese. Recast 是什么 / 不是什么 as contrast sentences; at most one compact thread table.
+- **Figures:** one PNG per independent claim. Prefer more 人话 diagrams over fewer dense ones.
+- **Open with TL;DR** (3–5 steal-able bullets under the title). **Close with 收获和结论** plus **PS / PPS / PPPS**. Steal-able judgments, not a file index.
 - Title is the feed hook. Do not start with 「本文介绍」 or the source filename.
 
 ## Voice
