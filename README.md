@@ -50,7 +50,9 @@ AgentSkillsVault/
     ├── blog-to-linkedin-post/
     ├── long-blog-to-viral-social-posts/
     ├── tech-design-to-zhihu/        ← 技术设计稿 → 知乎专栏（无 mermaid，出 PNG）
-    └── gracker-writing/             ← 技术文章写作（准确/有用/易读，Android/性能优化长文）
+    ├── gracker-writing/             ← 技术文章写作（准确/有用/易读，Android/性能优化长文）
+    ├── social-push/                 ← 一句话发布内容到多平台（小红书/X/知乎/微博/微信/掘金/Linux.do）
+    └── agent-browser/               ← agent-browser CLI 浏览器自动化（social-push 依赖）
 ```
 
 ## Skills
@@ -99,6 +101,8 @@ AgentSkillsVault/
 | content/long-blog-to-viral-social-posts | content | 长文 → 病毒式社媒帖子（钩子模板 + 平台规则） |
 | content/tech-design-to-zhihu | content | 技术设计稿 → 知乎专栏：说人话、多 PNG、TL;DR + 收获结论 + PS/PPS/PPPS |
 | content/gracker-writing | content | 技术文章写作：准确/有用/易读，翻译腔修正 + 四层质检（Android/性能优化/Perfetto） |
+| content/social-push | content | 一句话发布内容到多平台（小红书/X/知乎/微博/微信/掘金/Linux.do），基于 agent-browser |
+| content/agent-browser | content | agent-browser CLI 浏览器自动化（快照/ref/登录态，social-push 依赖） |
 
 See [KNOWLEDGE.md](KNOWLEDGE.md) for operational findings: Claude CLI
 adoption status, parallelism config, worker profile setup, and live

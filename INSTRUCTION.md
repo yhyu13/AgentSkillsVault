@@ -29,6 +29,9 @@
 | blog-to-linkedin-post | sibling | `D:\GitRepo-AI\content-repurposing-skills\blog-to-linkedin-post` |
 | long-blog-to-viral-social-posts | sibling | `D:\GitRepo-AI\content-repurposing-skills\long-blog-to-viral-social-posts` |
 | tech-design-to-zhihu | local | written by agent (`metadata.created_by: agent`) |
+| gracker-writing | sibling | `D:\GitRepo-AI\gracker-writing` (GitHub: Gracker/gracker-writing) |
+| social-push | sibling | `D:\GitRepo-AI\social-push\skills\social-push` (GitHub: jihe520/social-push) |
+| agent-browser | repo (vendored) | `github.com/vercel-labs/agent-browser`, vendored in `D:\GitRepo-AI\social-push\skills\agent-browser` |
 
 ### devops/
 | skill | origin | source |
@@ -159,7 +162,6 @@ so the origin is known before the copy happens:
 
 | source | skills | suggested category |
 |--------|--------|--------------------|
-| `D:\GitRepo-AI\gracker-writing` | gracker-writing (技术长文写作) | content/ |
 | `D:\GitRepo-AI\img2threejs` | img2threejs (image → procedural Three.js) | game-dev/ |
 | `D:\GitRepo-AI\renderdoc\renderdoc-skill` | renderdoc-gpu-debug | game-dev/ |
 | `D:\GitRepo-AI\threejs-game-skills\skills\*` | 9 × threejs-* | game-dev/ |
