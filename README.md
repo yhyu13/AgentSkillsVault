@@ -49,7 +49,8 @@ AgentSkillsVault/
     ├── blog-to-twitter-post/
     ├── blog-to-linkedin-post/
     ├── long-blog-to-viral-social-posts/
-    └── tech-design-to-zhihu/        ← 技术设计稿 → 知乎专栏（无 mermaid，出 PNG）
+    ├── tech-design-to-zhihu/        ← 技术设计稿 → 知乎专栏（无 mermaid，出 PNG）
+    └── gracker-writing/             ← 技术文章写作（准确/有用/易读，Android/性能优化长文）
 ```
 
 ## Skills
@@ -97,6 +98,7 @@ AgentSkillsVault/
 | content/blog-to-linkedin-post | content | 博客 → LinkedIn 思想领导力帖子（3 版本 + 推荐） |
 | content/long-blog-to-viral-social-posts | content | 长文 → 病毒式社媒帖子（钩子模板 + 平台规则） |
 | content/tech-design-to-zhihu | content | 技术设计稿 → 知乎专栏：说人话、多 PNG、TL;DR + 收获结论 + PS/PPS/PPPS |
+| content/gracker-writing | content | 技术文章写作：准确/有用/易读，翻译腔修正 + 四层质检（Android/性能优化/Perfetto） |
 
 See [KNOWLEDGE.md](KNOWLEDGE.md) for operational findings: Claude CLI
 adoption status, parallelism config, worker profile setup, and live
