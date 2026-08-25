@@ -53,6 +53,7 @@ AgentSkillsVault/
     ├── gracker-writing/             ← 技术文章写作（准确/有用/易读，Android/性能优化长文）
     ├── shuorenhua/                  ← 去 AI 味/说人话（先保信息，再谈风格）
     ├── social-push/                 ← 一句话发布内容到多平台（小红书/X/知乎/微博/微信/掘金/Linux.do）
+    ├── content-craft/               ← 内容生产总纲（提炼自全部内容 skill 的共同手艺）
     └── agent-browser/               ← agent-browser CLI 浏览器自动化（social-push 依赖）
 ```
 
@@ -105,6 +106,7 @@ AgentSkillsVault/
 | content/shuorenhua | content | 去 AI 味/说人话：中文 AI 腔清理，保真合同 + Tier/档位/scope + 回读质检 |
 | content/social-push | content | 一句话发布内容到多平台（小红书/X/知乎/微博/微信/掘金/Linux.do），基于 agent-browser |
 | content/agent-browser | content | agent-browser CLI 浏览器自动化（快照/ref/登录态，social-push 依赖） |
+| content/content-craft | content | 内容生产总纲：准确/有用/易读 + 活人感 + 去 AI 味 + 四形态骨架 + 发布红线（提炼自全部内容 skill） |
 
 See [KNOWLEDGE.md](KNOWLEDGE.md) for operational findings: Claude CLI
 adoption status, parallelism config, worker profile setup, and live
