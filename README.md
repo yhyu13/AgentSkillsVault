@@ -52,6 +52,7 @@ AgentSkillsVault/
     ├── tech-design-to-zhihu/        ← 技术设计稿 → 知乎专栏（无 mermaid，出 PNG）
     ├── gracker-writing/             ← 技术文章写作（准确/有用/易读，Android/性能优化长文）
     ├── shuorenhua/                  ← 去 AI 味/说人话（先保信息，再谈风格）
+    ├── notes-on-writing/            ← Michael Nielsen 写作笔记（目的/标题/开头/危险词/结构/经典风格）
     ├── social-push/                 ← 一句话发布内容到多平台（小红书/X/知乎/微博/微信/掘金/Linux.do）
     ├── content-craft/               ← 内容生产总纲（提炼自全部内容 skill 的共同手艺）
     └── agent-browser/               ← agent-browser CLI 浏览器自动化（social-push 依赖）
@@ -104,6 +105,7 @@ AgentSkillsVault/
 | content/tech-design-to-zhihu | content | 技术设计稿 → 知乎专栏：说人话、多 PNG、TL;DR + 收获结论 + PS/PPS/PPPS |
 | content/gracker-writing | content | 技术文章写作：准确/有用/易读，翻译腔修正 + 四层质检（Android/性能优化/Perfetto） |
 | content/shuorenhua | content | 去 AI 味/说人话：中文 AI 腔清理，保真合同 + Tier/档位/scope + 回读质检 |
+| content/notes-on-writing | content | Michael Nielsen 写作笔记：目的/标题/开头/危险词/结构/经典风格（英文） |
 | content/social-push | content | 一句话发布内容到多平台（小红书/X/知乎/微博/微信/掘金/Linux.do），基于 agent-browser |
 | content/agent-browser | content | agent-browser CLI 浏览器自动化（快照/ref/登录态，social-push 依赖） |
 | content/content-craft | content | 内容生产总纲：准确/有用/易读 + 活人感 + 去 AI 味 + 四形态骨架 + 发布红线（提炼自全部内容 skill） |
