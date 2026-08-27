@@ -2,13 +2,13 @@
 name: tech-design-to-zhihu
 description: >-
   Write a Zhihu 专栏 from a technical design or architecture analysis. Speak
-  human Chinese, walk 是什么/不是什么 then the thread then 树根→主干→分支→树叶, emit as many
-  PNG figures as the argument needs (Zhihu has no mermaid/SVG), open with a
-  TL;DR and a first-person hook, close with 收获和结论 plus a discussion prompt and
+  human Chinese, walk 是什么/不是什么 then the thread then 树根→主干→分支→树叶, lead with
+  real project screenshots as PNG figures (RenderDoc capture frames, running
+  app / game highlight frames — Zhihu has no mermaid/SVG), open with a TL;DR
+  and a first-person hook, close with 收获和结论 plus a discussion prompt and
   optional PS/PPS/PPPS. Use when the user asks 写成知乎文章, 技术设计稿转知乎, 知乎长文,
-  知乎没有 mermaid, 说人话, 去 AI 味, 多图, TL;DR, 收获和结论, or PS PPS. Not a design skill — that
-  is goal-design-principles.
-version: 1.5.0
+  知乎没有 mermaid, 说人话, 去 AI 味, 多图, TL;DR, 收获和结论, or PS PPS. Not a design skill.
+version: 1.6.0
 metadata:
   category: content
   created_by: agent
@@ -18,7 +18,7 @@ metadata:
 
 这是**写作 skill**。把一份技术设计 / 架构分析，改写成给人读的知乎专栏。
 
-设计判断本身（怎么做长期目标、怎么切插件）住在 **goal-design-principles**。本 skill 不管「系统该怎么设计」，只管「怎么讲给知乎读者听」。
+本 skill 不管「系统该怎么设计」，只管「怎么讲给知乎读者听」。设计判断本身（接缝、切法、取舍）住在源设计稿里，不在本 skill。
 
 平台细则：`references/zhihu-platform-rules.md`。
 
@@ -28,11 +28,11 @@ metadata:
 |---|---|---|
 | 这份 skill | 把设计稿改写成知乎专栏：说人话、多 PNG、按脉络带读者走、以收获和结论收束 | 设计 skill；翻译设计文档；LinkedIn / X 短帖；知乎 Open API 发布 |
 | 文章 | 一篇有主线的人话。读者走完能搬走几句判断 | 12 条原则清单、文件索引、ADR 摘要、源码导读 |
-| 图 | 每个论点一张 PNG。标题即论点；「不是什么」用红字标是可选的风格 | mermaid 围栏、SVG、装饰截图、「如图所示」空指 |
+| 图 | 每个论点一张 PNG，**优先项目实拍截图**（RenderDoc 截帧、运行画面、游戏高光帧），标题即论点；「不是什么」用红字标是可选的风格 | mermaid 围栏、SVG、纯说明性示意图当主图、装饰截图、「如图所示」空指 |
 | 开头 | **TL;DR**：3–5 条可抄判断，扫完就能走；下一句作者开场（第一人称钩子） | 目录、摘要腔、「本文将介绍」 |
 | 收束 | 收获和结论 + 一个讨论口；**PS / PPS / PPPS** 可选 | 「本文介绍了…」「更多细节见源码」 |
 
-知乎不渲染 mermaid，也不显示 SVG。图必须是 PNG。本地 `images/` 粘贴后不会自动带上，人要按 `PUBLISH.md` 上传。
+知乎不渲染 mermaid，也不显示 SVG。图必须是 PNG，且以项目实拍截图为主（RenderDoc 截帧 / 运行画面 / 游戏高光帧），说明性示意图只作配角。本地 `images/` 粘贴后不会自动带上，人要按 `PUBLISH.md` 上传。
 
 ## 逻辑脉络（写作顺序）
 
@@ -54,7 +54,7 @@ metadata:
 
 **说人话，像人。** 先比喻，后术语。一段一个意思。`fold`、`CAS`、`activation` 第一次出现就用大白话落地。仓库内部名能不出现就不出现；出现就带一句人话。警惕「口语里不会用的词」——不是真术语就是装权威，装权威的删。活人感靠三样：**具体**（场景、工具、版本、trace、路径）、**取舍**（为什么这么判、什么条件下成立）、**不装**（不把普通事实写成时代趋势）；没有具体对象、动作或证据的段，语气再顺也按 AI 味处理。
 
-**图先行，能多则多。** 每个独立论点配一张 PNG。宁多一张人话对照图，不少一张让读者空转的段。标题即论点。不要把 12 个意思塞进一张图。
+**图先行，能多则多，优先实拍。** 每个独立论点配一张 PNG，优先项目实拍截图（RenderDoc 截帧、运行画面、游戏高光帧）——这是项目「最好的一面」，比手画示意图更吸睛。宁多一张人话对照图，不少一张让读者空转的段。标题即论点。不要把 12 个意思塞进一张图。
 
 **是什么 / 不是什么钉概念。** 用对比句钉住关键概念，但**全文对比句 ≤ 3 处**（一张总表算一处），不要每段都套——每段都套就滑成「二元对比假戏剧」的模板腔。表可以有一张总表；正文用对比句，不要整页 spec。
 
@@ -69,7 +69,7 @@ metadata:
 - 事实关系不改写：`展示了云架构的潜力` 不能写成 `采用了云架构`；「提升效率」不能扩成「省时间 / 降成本」；抽象信息不擅自具体化。范围、条件、否定、完成态、方向、强度都算事实，不随语气一起删。
 - quote 加引号的前提是逐字出现在源里；改写的句子标 `derived`，不加引号。
 - 无源引用（`研究表明 / 数据显示 / 专家指出`）：论点能独立成立才留，否则删或标「缺来源」，不补虚构出处。
-- 不编造 URL、API、类名、客户证言、截图。没有 URL 就写 `[LINK — 发布前替换]`。
+- 不编造 URL、API、类名、客户证言、截图。截图必须来自项目实拍（RenderDoc 截帧 / 运行画面 / 游戏高光帧），不 P 出不存在的效果；没有截图就开口要，不拿示意图冒充。没有 URL 就写 `[LINK — 发布前替换]`。
 - 观点要有来源：作者、文档、issue、commit、trace、实验、读者反馈——不借「很多人」撑场。
 
 ### 去 AI 味（先保信息，再谈风格）
@@ -131,7 +131,13 @@ metadata:
 
 ### 补图
 
-缺图就画 SVG 再栅格成 PNG（标题 + 4–8 个框，浅底，中文标签）。「不是什么」用红字标是可选风格，全文最多 1–2 张图用。已有 PNG 且论点已在图上，复制进 `images/`，改 alt 为论点。禁止留下 ` ```mermaid ` 和 `.svg` 链接。
+图优先用项目实拍截图，把项目最好的一面摆出来（eye-catching）：
+
+- **首选**：RenderDoc 截帧（管线、纹理、网格、像素历史、GPU 计数器）、app 运行画面、游戏高光帧。这些是「真东西」，读者一眼看到项目长什么样、跑成什么样。
+- 每个论点一张图；截图能表达论点就直接用截图，alt / 标题写成论点句。挑最吸睛的帧，别拿灰扑扑的调试中间态充数。
+- 截图不足表达架构脉络（接缝、树、切开）时，才画示意 SVG 再栅格成 PNG（标题 + 4–8 个框，浅底，中文标签）；但示意图是配角，不能替代实拍截图。
+- 截图必须真实：来自项目本身，不编造、不 P 出不存在的效果。没有截图就开口要（RenderDoc 截帧 / 运行截图 / 游戏高光帧）。
+- 「不是什么」用红字标是可选风格，全文最多 1–2 张图用。已有 PNG 且论点已在图上，复制进 `images/`，改 alt 为论点。禁止留下 ` ```mermaid ` 和 `.svg` 链接。
 
 人话放大图优先补这些空洞：错路、同时写入、模型可见 ⟺ 已落账、两种记账法、证据先行、收获总图。
 
@@ -185,7 +191,7 @@ metadata:
 ## 完成标准
 
 - `article.md` 无 mermaid、无 SVG 链接
-- 每个独立论点有一张 PNG 在 `images/`，数量按论点加，不按「最少几张」封顶
+- 每个独立论点有一张 PNG 在 `images/`，数量按论点加，不按「最少几张」封顶；图以项目实拍截图为主（RenderDoc 截帧 / 运行画面 / 游戏高光帧），说明性示意图只作配角
 - 开口主线 = 文章主线 = 结论主线 = TL;DR 第一条所服务的那句；核心观点全文只出现 2 次
 - 标题下有 TL;DR（3–5 条）和一句作者开场占位；架构类有「为什么 / 验证哪条能力」；文末有收获和结论，结论后有一个讨论口
 - 「是什么 / 不是什么」对比句全文 ≤ 3 处；红字「不是什么」≤ 2 张图
@@ -194,11 +200,3 @@ metadata:
 - **双向回读已过**：保真（数字带参照物、claim 能回指源、关系没改）+ 残留（无总结腔 / narrator 腔 / 空泛判断）
 - `PUBLISH.md` 只列上传顺序，**不自动发布**——只暂存草稿交用户确认
 - 本 skill 目录无本机绝对路径
-
-## 和 goal-design-principles 的分工
-
-| | goal-design-principles | tech-design-to-zhihu（本 skill） |
-|---|---|---|
-| 给谁 | 要设计 / 实现长期目标的 agent | 要把设计稿写成知乎专栏的 agent |
-| 产出 | 检查清单、接缝、CAS、phase≠activation | `article.md` + PNG + `PUBLISH.md` |
-| 结构 | 脉络 + 是什么/不是什么 + 树根→主干→分支→树叶 | 同一骨架，改写成说人话、多图、带收获 |

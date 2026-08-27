@@ -20,7 +20,6 @@
 | skill | origin | source |
 |-------|--------|--------|
 | goal-persistence | sibling (distilled) | `D:\GitRepo-AI\codex` — goal feature (`codex-rs/ext/goal/`) |
-| goal-design-principles | sibling (distilled) | `D:\GitRepo-AI\deepseek-harness` — DSH goal subsystem |
 
 ### content/
 | skill | origin | source |
