@@ -106,5 +106,5 @@ flowchart TD
 
 ## Reference anchors
 
-- 格式范本：`C:\Users\XINDONG\Downloads\MacOS升级影响recook和热更包体调研分析\MacOS升级影响recook和热更包体调研分析.md`
-- S16 实例：`F:\XD\P4V\tl_yuhang_testugs\frontend\trunk\S16_subpak\Plan.md`
+- 格式范本：`references/MacOS升级影响recook和热更包体调研分析/MacOS升级影响recook和热更包体调研分析.md`（含 `图片和附件/` 图片，已随 skill 入库）
+- S16 实例：`references/S16_subpak_ImplPlan.md`（原 `S16_subpak/Plan.md` 已重命名为 `ImplPlan.md`）

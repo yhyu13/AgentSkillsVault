@@ -115,7 +115,7 @@ Use Kilo's `agent_manager` tool with `mode: "worktree"` to fan out N agents in p
 
 ## Worked example — "Blood Moon Survivors"
 
-A real KIMI3 case (see `C:\Git-repo-my\VibeGames\kimi3.md`): user gave a 2-line prompt ("build a Vampire Survivors-like" + "fix the boss HP bar bug"), and the system produced ~5,000 LOC, deployed to `https://iwgf77mjicz7o.ok.kimi.link/`.
+A real KIMI3 case (see [`references/kimi3-analysis.md`](references/kimi3-analysis.md)): user gave a 2-line prompt ("build a Vampire Survivors-like" + "fix the boss HP bar bug"), and the system produced ~5,000 LOC, deployed to `https://iwgf77mjicz7o.ok.kimi.link/`.
 
 Architecture that emerged:
 
