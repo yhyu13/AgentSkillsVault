@@ -96,7 +96,9 @@
 | skill | origin | source |
 |-------|--------|--------|
 | aisides-ai-self-review | local | written for the AISides project |
+| debugger-persona | local | written — debug diagnosis + Chinese doc writing + code discipline persona |
 | journey | local | written (two-column ME/YOU history) |
+| software-dev-loop | local | written — composes goal / docs / test / memory into one dev loop |
 | technical-research-analysis-doc | local | written — TorchLight 调研分析 format |
 
 ## Update workflow

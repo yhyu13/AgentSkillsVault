@@ -20,6 +20,8 @@ AgentSkillsVault/
 │   └── cron-pipeline-state-machine/
 ├── software-development/            ← code review, self-review, research analysis
 │   ├── aisides-ai-self-review/
+│   ├── debugger-persona/            ← debug diagnosis + Chinese doc writing + code discipline persona
+│   ├── software-dev-loop/           ← goal → docs → test → memory dev loop
 │   ├── technical-research-analysis-doc/  ← TorchLight 调研分析文档格式 (背景→结论先行→影响链条→mermaid→方案对比)
 │   └── journey/                     ← two-column ME/YOU project history + vibe-coding lessons
 ├── FDE/                             ← Forward Deployed Engineer / personal knowledge workflows
@@ -66,6 +68,8 @@ AgentSkillsVault/
 | devops/kanban-cron-overseer | devops | AgentMOD overseer |
 | devops/cron-pipeline-state-machine | devops | (reference pattern) |
 | software-development/aisides-ai-self-review | software-development | AISides caretaker |
+| software-development/debugger-persona | software-development | debug diagnosis + Chinese doc writing + code discipline persona |
+| software-development/software-dev-loop | software-development | goal → plan doc → implement → test → journey → memory dev loop (holy grail) |
 | software-development/technical-research-analysis-doc | software-development | UE pak/打包/热更/渲染 调研 → TorchLight 格式分析文档（背景→结论先行→影响链条→mermaid→方案对比） |
 | software-development/journey | software-development | two-column ME/YOU project history + vibe-coding lessons |
 | FDE/book-chapter-to-vault | FDE | .docx book chapter → learning notes + cheatsheet + kanban + mindmap |
