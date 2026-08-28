@@ -11,6 +11,8 @@ metadata:
 
 A JOURNEY doc captures not just *what* was built, but *how*: the chronological back-and-forth between the human (deciding, correcting, killing) and the AI (executing, falsifying, reporting), plus the reusable working-style lessons that fell out. It is a durable record, not a chat summary.
 
+**本项目缘起·经过·结果**：缘起是 Radiance Cascades 演示（2D→3D 迁移）收尾时留下的 `journey.md`——一份 ME/YOU 双列记录人机来回的文档，事后证明比聊天记录更能沉淀经验。经过是把它抽成通用 skill，并两轮收敛：先确立双列叙述与 vibe-coding 经验结构，再改为中文输出、风险/TODO 前置高亮、`JOURNEY.md` 存项目根目录。结果是一个跨项目复用、把项目历史写成固定结构的写作 skill。
+
 **Output conventions (non-negotiable):**
 
 - Written in **Chinese**.
