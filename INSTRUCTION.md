@@ -101,6 +101,7 @@
 | software-dev-loop | local | written — composes goal / docs / test / memory into one dev loop |
 | technical-research-analysis-doc | local | written — TorchLight 调研分析 format |
 | skill-auto-improve-mirror | local | written by agent (Hermes) — skill improvement + version-aware cross-harness mirror (scripts/mirror_agent_skills.py) |
+| governance-doc-design | local (distilled) | distilled from `F:\XD\git-repo\cindy\docs` conventions (product/design/dev/legal rule buckets, 状态+读取时机+事实来源 skeleton, append-only decision log) |
 
 ## Update workflow
 
