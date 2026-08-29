@@ -112,47 +112,34 @@ AgentSkillsVault/
 | content/agent-browser | content | agent-browser CLI 浏览器自动化（快照/ref/登录态，social-push 依赖） |
 | content/content-craft | content | 内容生产总纲：准确/有用/易读 + 活人感 + 去 AI 味 + 四形态骨架 + 发布红线（提炼自全部内容 skill） |
 
-## 最值得优先使用
+## 评分（0 / 10 / 20）
 
-从 97 个 skill 里挑出的高价值子集（标准：被其他 skill 引用最多 + 是总纲/入口 + 覆盖面广）。先加载「总纲与入口」这几个，再按场景取用；完整清单见上表。
+逐份通读全部 skill 后打分：**0 无用 · 10 专业 · 20 天才**。结果：**16 个 20 分（天才）、81 个 10 分（专业）、0 个 0 分**——重复/破损已在前几轮清理掉，剩下没有「无用」的。
 
-### 总纲与入口
-| Skill | 什么时候用 |
-|---|---|
-| `software-dev-loop` | 软件开发一条龙：goal→plan→implement→test→journey→memory，最该默认加载 |
-| `workflows` | 不知道该先用哪个 skill 时，三套标准工作流（新项目 / 攻坚 / 迭代） |
-| `content-craft` | 写任何技术/社媒内容的总纲（准确/有用/易读 + 去 AI 味） |
-| `manage-up-core` | 写任何职场报告的总纲（BLUF / 数据锚定 / So-What） |
+### 20 分 · 天才（最值得用）
 
-### 写代码与调试
-| Skill | 什么时候用 |
-|---|---|
-| `tdd` | 红绿循环：先写测试再写实现 |
-| `implement` | 按 spec / tickets 落地实现 |
-| `code-review` | 审查改动（standards + spec 双轴） |
-| `diagnosing-bugs` | 硬 bug / 性能回归的诊断循环 |
-| `debugger-persona` | 要一个会中文、写文档干净、会修代码的调试人格 |
-| `codebase-design` | 设计深模块、找 seam、让代码可测 / AI 可导航 |
+| Skill | 类别 | 为什么是天才 |
+|---|---|---|
+| `goal-persistence` | agents | 持久目标的非显然洞察：durable state + idle self-start + anti-drift |
+| `rigorous-proof` | math | 对抗式审计的数学证明法 |
+| `shuorenhua` | content | 去 AI 味的 Tier/scope/protected-span 系统 |
+| `manage-up-core` | management | 反空话替换表 + 先问再写，精炼方法论 |
+| `god-leader-advisor` | management | 带出处纪律的元顾问 + 生命线模型 |
+| `workflows` | qiushi | 跨 skill 编排 + 显式数据交接 |
+| `mass-line` | qiushi | 「群众路线」→ AI 信息源映射，真正新颖 |
+| `journey` | software-development | ME/YOU 双列 + vibe-coding 论纲 |
+| `grilling` | MattSkills | frontier 访谈轮次 + 事实/决策分离 |
+| `diagnosing-bugs` | MattSkills | 先反馈环后假设的调试法 |
+| `wayfinder` | MattSkills | 战争迷雾决策图，plan-don't-do |
+| `cat-game-architecture` | game-dev | GDC 2026 C.A.T 提炼成可 grep 验证的规则 |
+| `guide-from-probes` | game-dev | 断言而非像素才是 ground truth |
+| `intro-scene-until-perfect` | game-dev | 单场景打磨的 scope 纪律 |
+| `game-template` | opengame-harness | 物理态家族演化 + 稳定性指标 |
+| `game-template-engineering` | opengame-harness | KEEP/COPY hook 纪律 + 反幻觉规则 |
 
-### 文档、复盘与记忆
-| Skill | 什么时候用 |
-|---|---|
-| `journey` | 把项目历史写成 ME/YOU 双列 + vibe-coding 经验 |
-| `technical-research-analysis-doc` | 调研分析：结论先行 + 代码锚点 + 影响链条 |
-| `research` | 对高信源做调研并落盘 |
-| `goal-persistence` | 让目标跨会话 / 跨重启一直推进 |
+### 10 分 · 专业（81 个）
 
-### 规划与决策
-| Skill | 什么时候用 |
-|---|---|
-| `wayfinder` | 大任务拆成决策票，逐个解决 |
-| `contradiction-analysis` | 面对 trade-off / 瓶颈时找主要矛盾与切入点 |
-
-### 按需（职场 / 顾问）
-| Skill | 什么时候用 |
-|---|---|
-| `style-report` | 按六大公司风格写周报 / 述职 / 绩效 |
-| `god-leader-advisor` | 要一个 all-in-one 领导力顾问 |
+其余全部为 10 分——清晰、可执行、做好本职，是扎实的默认项。不在上面 16 个里的，都是 10 分。
 
 See [KNOWLEDGE.md](KNOWLEDGE.md) for operational findings: Claude CLI
 adoption status, parallelism config, worker profile setup, and live
