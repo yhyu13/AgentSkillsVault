@@ -1,8 +1,3 @@
----
-name: style-microsoft
-description: "将报告适配 Microsoft Connects 和 Model/Coach/Care 框架。Use when writing reports in Microsoft style with impact narratives and growth mindset. Triggers on: 'Microsoft 风格', 'Microsoft style', '微软', 'Connects', 'Model Coach Care', '微软绩效', '按微软格式写'."
----
-
 # Microsoft 汇报风格 (Microsoft Reporting Style)
 
 继承 `manage-up-core` 五大原则。本技能将报告适配 Microsoft 的 Connects 框架——强调 impact、growth mindset、balanced reflection（成就与成长并重）。

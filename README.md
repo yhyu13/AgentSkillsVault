@@ -43,7 +43,7 @@ AgentSkillsVault/
 ├── math/                            ← rigorous math proof generation + adversarial audit
 │   └── rigorous-proof/
 ├── management/                      ← 职场向上汇报 (ManageUp) + 管理方法论 (mgmt-skill) + 角色顾问
-    ├── manage-up-core/ + 14 汇报技能 (weekly-report, project-update, style-* 等)
+    ├── manage-up-core/ + 9 汇报技能 (weekly-report, project-update, style-report 等)
     ├── mgmt-discipline/ mgmt-individual/ mgmt-org/  (方法论知识库)
     └── bezos-advisor/ god-leader-advisor/ renzhengfei-advisor/ zhangyiming-advisor/  (角色顾问)
 └── content/                         ← 博客/长文 → 社媒内容再利用 (Content Repurposing)
@@ -96,7 +96,7 @@ AgentSkillsVault/
 | management/quarterly-review | management | 季度复盘/QBR（记分卡+根因分析） |
 | management/upward-email | management | 向上汇报邮件 |
 | management/one-on-one-prep | management | 1:1 沟通准备 |
-| management/style-bytedance / alibaba / tencent / google / amazon / microsoft | management | 大厂汇报风格（OKR/双轨制/指标/LP/Connects） |
+| management/style-report | management | 大厂汇报风格（阿里/亚马逊/字节/谷歌/微软/腾讯，合并自 6 个 style-*） |
 | management/mgmt-discipline | management | 15 管理学科横切方法论知识库 |
 | management/mgmt-individual | management | 管理大师/实践者个人方法论（德鲁克/波特/科特勒等） |
 | management/mgmt-org | management | 17 标杆企业组织方法论（华为/字节/亚马逊/丰田等） |

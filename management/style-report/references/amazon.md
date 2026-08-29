@@ -1,8 +1,3 @@
----
-name: style-amazon
-description: "将报告适配 Amazon 叙事文化和 Leadership Principles 框架。Use when writing reports in Amazon style with narrative memos and LP-tagged accomplishments. Triggers on: 'Amazon 风格', 'Amazon style', '亚马逊', 'Leadership Principles', 'LP', '6-pager', 'Forte', '按亚马逊格式写'."
----
-
 # Amazon 汇报风格 (Amazon Reporting Style)
 
 继承 `manage-up-core` 五大原则。本技能将报告适配 Amazon 的叙事写作文化——6-pager 式清晰叙事、Leadership Principles 行为证据、数据先于形容词。

@@ -1,8 +1,3 @@
----
-name: style-alibaba
-description: "将报告适配阿里巴巴双轨制（业绩+价值观）汇报风格。Use when writing reports in Alibaba style with KPI + values evidence. Triggers on: '阿里风格', '阿里巴巴', 'Alibaba', '六脉神剑', '双轨制', '阿里周报', '阿里述职', '按阿里格式写', 'Alibaba style'."
----
-
 # 阿里巴巴汇报风格 (Alibaba Reporting Style)
 
 继承 `manage-up-core` 五大原则。本技能将报告适配阿里巴巴的双轨制文化——业绩与价值观并重，用事实说话。

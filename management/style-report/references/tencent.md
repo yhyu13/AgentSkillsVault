@@ -1,8 +1,3 @@
----
-name: style-tencent
-description: "将报告适配腾讯产品指标驱动的汇报风格。Use when writing reports in Tencent style with product metrics focus. Triggers on: '腾讯风格', '腾讯', 'Tencent', '数据先说', '腾讯周报', '按腾讯格式写', 'Tencent style'."
----
-
 # 腾讯汇报风格 (Tencent Reporting Style)
 
 继承 `manage-up-core` 五大原则。本技能将报告适配腾讯的产品指标驱动文化——数据先说、项目闭环、跨 BG 依赖清晰。

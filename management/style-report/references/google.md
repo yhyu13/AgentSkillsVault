@@ -1,8 +1,3 @@
----
-name: style-google
-description: "将报告适配 Google OKR 和 GRAD 绩效评估风格。Use when writing reports in Google style with outcome-based OKRs and impact narratives. Triggers on: 'Google 风格', 'Google style', 'Google OKR', 'GRAD', 'Google 绩效', 'Google self-review', '按谷歌格式写'."
----
-
 # Google 汇报风格 (Google Reporting Style)
 
 继承 `manage-up-core` 五大原则。本技能将报告适配 Google 的 OKR 体系和 GRAD 绩效框架——强调 outcome-based KRs、stretch goals 和 impact 叙事。

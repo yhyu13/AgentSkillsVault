@@ -69,13 +69,13 @@
 ### management/
 | skill | origin | source |
 |-------|--------|--------|
-| manage-up-core + 14 (weekly-report, project-update, performance-review, proposal, meeting-summary, quarterly-review, upward-email, one-on-one-prep, style-alibaba/amazon/bytedance/google/microsoft/tencent) | sibling | `D:\GitRepo-AI\manage-up\skills\<name>` |
+| manage-up-core + 9 (weekly-report, project-update, performance-review, proposal, meeting-summary, quarterly-review, upward-email, one-on-one-prep, style-report) | sibling | `D:\GitRepo-AI\manage-up\skills\<name>` — style-report 合并自 style-alibaba/amazon/bytedance/google/microsoft/tencent 6 个，各自内容在 `style-report/references/` |
 | mgmt-discipline | sibling | `D:\GitRepo-AI\mgmt-skill\mgmt-skills\discipline` (+ router SKILL.md) |
 | mgmt-individual | sibling | `D:\GitRepo-AI\mgmt-skill\mgmt-skills\individual` (+ router SKILL.md) |
 | mgmt-org | sibling | `D:\GitRepo-AI\mgmt-skill\mgmt-skills\org` (+ router SKILL.md) |
 | bezos-advisor / god-leader-advisor / renzhengfei-advisor / zhangyiming-advisor | sibling | `D:\GitRepo-AI\mgmt-skill\advisor-skills\<name>.md` |
 | qiushi-methodology (11: 矛盾分析/实践论/群众路线/集中力量/调查研究/批评自我批评/统筹兼顾/持久战/星星之火/武装思想/workflows) | local | distilled from Mao 求是 methodology (原著依据 in `original-texts.md`) |
-| torchcookpackopt-weekly-report | local | written for the torchcookpackopt project |
+| torchcookpackopt-weekly-report | local | written for the torchcookpackopt project — moved to `archived/` (project-specific, not active) |
 
 ### math/
 | skill | origin | source |
@@ -85,7 +85,7 @@
 ### MattSkills/
 | skill | origin | source |
 |-------|--------|--------|
-| all 35 (engineering / in-progress / misc / productivity) | repo | matt-pocock skills collection |
+| 19 kept (engineering 17 + productivity grilling/handoff) | repo | matt-pocock skills collection — 16 trimmed (in-progress/ + misc/ + productivity aliases/non-dev + grill-with-docs)，recoverable via `npx skills add matt-pocock` |
 
 ### opengame-harness/
 | skill | origin | source |

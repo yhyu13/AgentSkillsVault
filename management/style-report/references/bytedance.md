@@ -1,8 +1,3 @@
----
-name: style-bytedance
-description: "将报告适配字节跳动 OKR 驱动的汇报风格。Use when writing reports in ByteDance style, OKR-anchored format. Triggers on: '字节风格', '字节跳动', 'ByteDance', '飞书OKR', 'OKR周报', '字节周报', '按字节格式写', 'ByteDance style'."
----
-
 # 字节跳动汇报风格 (ByteDance Reporting Style)
 
 继承 `manage-up-core` 五大原则。本技能将报告适配字节跳动的 OKR 驱动文化——高透明度、强对齐、数据密度高。
