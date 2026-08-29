@@ -1,7 +1,7 @@
 ---
 name: game-dev-loop
 description: The complete game-development loop — persist the goal → classify the game idea → write GDD + TDD → pick an engine and scaffold → implement → test and debug → render-quality + playthrough guide → polish → write durable memory. Use when starting or running a real game build, when a task needs design, docs, code, testing, and polish chained in order, or when the user asks for a game "from idea to playable".
-version: 1.0.0
+version: 1.1.0
 metadata:
   category: game-dev
   created_by: agent
@@ -98,10 +98,16 @@ advance to the next step — or repeat — on an unanswered gate.
 
 ## Round report (fixed format)
 
-At the end of every round, emit exactly this block — nothing else as the round's summary:
+At the end of every round, emit exactly this block — nothing else as the round's
+summary. The agent does NOT judge success/failure itself; it restates the
+original criteria, reports each one's current status, and gives only a
+confidence score so the human can judge:
 
 ```
-success/failure: <success | failure>
+success criteria: <restate this round's original criteria verbatim>
+criteria status: <one line per criterion: met / not met / partial, with evidence>
+success confidence: <0-10>
+failure confidence: <0-10>
 touch: <files/areas modified>
 not touch: <files/areas deliberately left alone>
 next: <single next action>
@@ -109,9 +115,13 @@ self review status: <critic rounds run, blocking issues remaining>
 next step status: <auto-start | wait-for-user | done>
 ```
 
+The two confidence scores (0–10) are the agent's own estimate of how likely the
+round succeeded and how likely it failed — they are NOT a verdict. The human
+decides success/failure from the criteria status, not from the scores.
+
 ## Termination
 
-The loop ends when the goal's completion audit passes against real state — tests green, quality meets the bar, memory and guide written — and the final round report says `next step status: done`. A failing test, an unmet goal, or a quality shortfall is not termination; it is a return to step 3 (plan).
+The loop ends when the goal's completion audit passes against real state — tests green, quality meets the bar, memory and guide written — and the final round report shows all criteria `met` with `next step status: done`. The agent never declares the loop a success itself; the human does, from the criteria status. A failing test, an unmet goal, or a quality shortfall is not termination; it is a return to step 3 (plan).
 
 ## When NOT to use
 
