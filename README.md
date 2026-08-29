@@ -30,6 +30,7 @@ AgentSkillsVault/
 │   ├── book-chapter-to-vault/       ← .docx book chapter → learning notes + cheatsheet + kanban + mindmap
 │   └── analysis-to-vault/           ← long-form analytical article → thesis + argument map + cheatsheet + day-job notes
 ├── game-dev/                        ← game design + 3D/web game tooling
+    ├── game-dev-loop/               ← orchestrator: classify → GDD/TDD → scaffold → implement → test/debug → quality → guide → memory
     ├── cat-game-architecture/
     ├── guide-from-probes/           ← deterministic E2E probes → playthrough guide (no screenshots needed)
     ├── kimi3-game-gen/
@@ -45,6 +46,7 @@ AgentSkillsVault/
 ├── math/                            ← rigorous math proof generation + adversarial audit
 │   └── rigorous-proof/
 ├── management/                      ← 职场向上汇报 (ManageUp) + 管理方法论 (mgmt-skill) + 角色顾问
+    ├── management-loop/             ← router: classify → report/advice/knowledge/methodology → apply → verify → memory
     ├── manage-up-core/ + 9 汇报技能 (weekly-report, project-update, style-report 等)
     ├── mgmt-discipline/ mgmt-individual/ mgmt-org/  (方法论知识库)
     └── bezos-advisor/ god-leader-advisor/ renzhengfei-advisor/ zhangyiming-advisor/  (角色顾问)
@@ -79,6 +81,7 @@ AgentSkillsVault/
 | FDE/book-chapter-to-vault | FDE | .docx book chapter → learning notes + cheatsheet + kanban + mindmap |
 | FDE/analysis-to-vault | FDE | long-form analytical article → thesis + argument map + day-job notes |
 | game-dev/cat-game-architecture | game-dev | C.A.T / GDC 2026 AI-driven 3D game refactor |
+| game-dev/game-dev-loop | game-dev | orchestrator: classify → GDD/TDD → scaffold → implement → test/debug → quality → guide → memory |
 | game-dev/guide-from-probes | game-dev | deterministic E2E probes (assertions = ground truth) → human-readable playthrough guide |
 | game-dev/kimi3-game-gen | game-dev | KIMI3 vibecoding-webapp-swarm (parallel coder agents) |
 | game-dev/gdd-markdown-template | game-dev | 13-section GDD scaffold |
@@ -92,6 +95,7 @@ AgentSkillsVault/
 | game-dev/webapp-testing | game-dev | Playwright verification of running web game |
 | math/rigorous-proof | math | rigorous math proof generation + adversarial audit (theorem → complete proof → compilable LaTeX) |
 | management/manage-up-core | management | ManageUp 核心方法论（反空话五大原则：BLUF/数据锚定/So-What/行动导向/校准语言） |
+| management/management-loop | management | router: classify → report/advice/knowledge/methodology → apply (anti-fluff) → verify → memory |
 | management/weekly-report | management | 数据驱动周报/月报 |
 | management/project-update | management | 项目进展汇报（红绿灯+风险矩阵） |
 | management/performance-review | management | 绩效自评/述职 |

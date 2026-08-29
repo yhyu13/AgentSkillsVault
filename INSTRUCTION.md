@@ -65,6 +65,7 @@
 | ue4-shader-debug | local | written (UE4 shader compile debugging) |
 | ue-renderdoc-auto-capture | local | from `~/.kilo/skills` (Kilo Code agent output; RenderDoc/rdc-cli) |
 | webapp-testing | repo | `github.com/ComposioHQ/awesome-claude-skills` |
+| game-dev-loop | local | written — orchestrator over the 14 game-dev skills (classify → GDD/TDD → scaffold → implement → test/debug → quality → guide → memory) |
 
 ### management/
 | skill | origin | source |
@@ -76,6 +77,7 @@
 | bezos-advisor / god-leader-advisor / renzhengfei-advisor / zhangyiming-advisor | sibling | `D:\GitRepo-AI\mgmt-skill\advisor-skills\<name>.md` |
 | qiushi-methodology (11: 矛盾分析/实践论/群众路线/集中力量/调查研究/批评自我批评/统筹兼顾/持久战/星星之火/武装思想/workflows) | local | distilled from Mao 求是 methodology (原著依据 in `original-texts.md`) |
 | torchcookpackopt-weekly-report | local | written for the torchcookpackopt project — moved to `archived/` (project-specific, not active) |
+| management-loop | local | written — router/orchestrator over the management skills (report / advice / knowledge / methodology clusters) |
 
 ### math/
 | skill | origin | source |
