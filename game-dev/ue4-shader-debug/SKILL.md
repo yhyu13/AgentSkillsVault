@@ -1,3 +1,12 @@
+---
+name: ue4-shader-debug
+description: Systematically diagnose and fix Unreal Engine shader compiler errors (X3000 unrecognized identifier, X3003 redefinition, X3004 undeclared identifier, X3017 type mismatch) — include-guard, conditional-define, variable-scope, and C++ compilation-environment root causes. Use when UE4/UE5 shader compilation fails with `error X30xx`.
+version: 1.0.0
+metadata:
+  category: game-dev
+  created_by: agent
+---
+
 # UE4 Shader Compiler Debug Skill
 
 > Handles shader compilation failures in Unreal Engine 4 by providing systematic diagnosis and fixes.
