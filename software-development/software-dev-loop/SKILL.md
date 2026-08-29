@@ -1,7 +1,7 @@
 ---
 name: software-dev-loop
-description: The complete software-development loop — persist the goal → write a plan doc and self-critique it → implement and self-critique → red-green test + benchmark → dump JOURNEY in between → write durable long-term memory. Use when starting or running a real software build, when a task needs goal, docs, testing, and memory chained in order, or when the user asks for the "holy grail" dev workflow.
-version: 1.1.0
+description: The complete software-development loop — persist the goal → write a plan doc and harden it with the source-anchored-design critic loop → implement and critic-harden → red-green test + benchmark → dump JOURNEY in between → write durable long-term memory. Use when starting or running a real software build, when a task needs goal, docs, testing, and memory chained in order, or when the user asks for the "holy grail" dev workflow.
+version: 1.2.0
 metadata:
   category: software-development
   created_by: agent
@@ -25,8 +25,8 @@ goal → plan doc → implement → test → journey → long-term memory
 ## The loop
 
 1. **Persist the goal.** Capture the objective once; keep it intact for the whole run. (`goal-persistence`)
-2. **Write a plan doc, then self-critique it.** Decide on paper before code; critique the plan once and improve it before implementing.
-3. **Implement the plan, then self-critique the implementation.**
+2. **Write a plan doc, then harden it.** Decide on paper before code; run the `source-anchored-design` critic loop on the plan once and improve it before implementing.
+3. **Implement the plan, then critic-harden the implementation.** Send the diff to ONE critic subagent (fresh context — never self-review), re-verify the critic's load-bearing claims against source, apply minimal fixes, repeat until blocking = 0.
 4. **Test.** Red-green TDD for behavior, plus a benchmark that measures how good the result is. (`tdd`)
 5. **Dump a JOURNEY in between.** Record the human/AI back-and-forth and lessons at checkpoints, not only at the end. (`journey`)
 6. **Write long-term memory.** Persist durable facts, decisions, and lessons so the next session resumes instead of re-discovering.
@@ -38,7 +38,7 @@ goal → plan doc → implement → test → journey → long-term memory
 | Pillar | Skill | Contribution |
 |---|---|---|
 | Goal | `goal-persistence` | durable objective, anti-drift steering, completion audit |
-| Documentation — plan/design | `content-craft`, `technical-research-analysis-doc` | 结论先行, 说人话, code anchors, impact chain |
+| Documentation — plan/design | `content-craft`, `technical-research-analysis-doc`, `source-anchored-design` | 结论先行, 说人话, code anchors, impact chain, critic-hardened |
 | Documentation — journey | `journey` | ME/YOU two-column history, risks/TODO up top, vibe-coding lessons |
 | Testing | `tdd` | red-green loop, seams, vertical slices, anti-patterns |
 | Benchmark | (this skill) | a numeric baseline so "better" is measured, not felt |
@@ -48,7 +48,7 @@ goal → plan doc → implement → test → journey → long-term memory
 ## Rules
 
 1. **Goal first, never narrowed.** Re-inject the objective every turn; audit completion against real state, never self-declared.
-2. **Plan before code.** A plan doc names the approach, the seams, and the success criteria. Self-critique it once before implementing.
+2. **Plan before code.** A plan doc names the approach, the seams, and the success criteria. Harden it with the `source-anchored-design` critic loop once before implementing — a fresh-context critic, never self-review.
 3. **Vertical slices.** One test → one implementation → repeat. Don't write all tests then all code.
 4. **Measure goodness.** "It works" is not a result; a benchmark number against a baseline is.
 5. **Write memory as you go.** Decisions and gotchas land in the durable store the same turn they happen.
@@ -75,9 +75,44 @@ A fresh session must resume without re-discovering what this one learned.
 
 Either way the contract is the same: read first, append as you learn, never let a discovered fact live only in the chat.
 
+## Per-round gate (answer at the end of EVERY round)
+
+A round does not close until all four questions are answered explicitly. Do not
+advance to the next step — or repeat — on an unanswered gate.
+
+1. **Success / fail criteria?** State the acceptance bar for THIS round: what
+   must be true (tests green? benchmark met? blocking issues = 0?) for the round
+   to count as success vs failure. No criteria = drift, not a round.
+2. **What should touch / not touch?** State the scope boundary: which files /
+   areas / behaviors this round may modify, and which are off-limits. Anything
+   outside the boundary is a scope violation, not a fix.
+3. **Report criteria?** State what the end-of-round report must contain — use the
+   fixed report format below, nothing else as the round summary.
+4. **Self-review rounds + next step?** State how many critic rounds you will run
+   before accepting (`source-anchored-design`: repeat until blocking = 0; set a
+   hard cap if the round has a budget), and whether the next step auto-starts and
+   repeats.
+
+## Round report (fixed format)
+
+At the end of every round, emit exactly this block — nothing else as the round's
+summary:
+
+```
+success/failure: <success | failure>
+touch: <files/areas modified>
+not touch: <files/areas deliberately left alone>
+next: <single next action>
+self review status: <critic rounds run, blocking issues remaining>
+next step status: <auto-start | wait-for-user | done>
+```
+
 ## Termination
 
-The loop ends when the goal's completion audit passes against real state — tests green, benchmark meets baseline, memory and journey written. A failing test or unmet goal is not termination; it is a return to step 2.
+The loop ends when the goal's completion audit passes against real state — tests
+green, benchmark meets baseline, memory and journey written — and the final round
+report says `next step status: done`. A failing test or unmet goal is not
+termination; it is a return to step 2 (plan).
 
 ## When NOT to use
 
