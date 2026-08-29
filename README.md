@@ -112,6 +112,48 @@ AgentSkillsVault/
 | content/agent-browser | content | agent-browser CLI 浏览器自动化（快照/ref/登录态，social-push 依赖） |
 | content/content-craft | content | 内容生产总纲：准确/有用/易读 + 活人感 + 去 AI 味 + 四形态骨架 + 发布红线（提炼自全部内容 skill） |
 
+## 最值得优先使用
+
+从 97 个 skill 里挑出的高价值子集（标准：被其他 skill 引用最多 + 是总纲/入口 + 覆盖面广）。先加载「总纲与入口」这几个，再按场景取用；完整清单见上表。
+
+### 总纲与入口
+| Skill | 什么时候用 |
+|---|---|
+| `software-dev-loop` | 软件开发一条龙：goal→plan→implement→test→journey→memory，最该默认加载 |
+| `workflows` | 不知道该先用哪个 skill 时，三套标准工作流（新项目 / 攻坚 / 迭代） |
+| `content-craft` | 写任何技术/社媒内容的总纲（准确/有用/易读 + 去 AI 味） |
+| `manage-up-core` | 写任何职场报告的总纲（BLUF / 数据锚定 / So-What） |
+
+### 写代码与调试
+| Skill | 什么时候用 |
+|---|---|
+| `tdd` | 红绿循环：先写测试再写实现 |
+| `implement` | 按 spec / tickets 落地实现 |
+| `code-review` | 审查改动（standards + spec 双轴） |
+| `diagnosing-bugs` | 硬 bug / 性能回归的诊断循环 |
+| `debugger-persona` | 要一个会中文、写文档干净、会修代码的调试人格 |
+| `codebase-design` | 设计深模块、找 seam、让代码可测 / AI 可导航 |
+
+### 文档、复盘与记忆
+| Skill | 什么时候用 |
+|---|---|
+| `journey` | 把项目历史写成 ME/YOU 双列 + vibe-coding 经验 |
+| `technical-research-analysis-doc` | 调研分析：结论先行 + 代码锚点 + 影响链条 |
+| `research` | 对高信源做调研并落盘 |
+| `goal-persistence` | 让目标跨会话 / 跨重启一直推进 |
+
+### 规划与决策
+| Skill | 什么时候用 |
+|---|---|
+| `wayfinder` | 大任务拆成决策票，逐个解决 |
+| `contradiction-analysis` | 面对 trade-off / 瓶颈时找主要矛盾与切入点 |
+
+### 按需（职场 / 顾问）
+| Skill | 什么时候用 |
+|---|---|
+| `style-report` | 按六大公司风格写周报 / 述职 / 绩效 |
+| `god-leader-advisor` | 要一个 all-in-one 领导力顾问 |
+
 See [KNOWLEDGE.md](KNOWLEDGE.md) for operational findings: Claude CLI
 adoption status, parallelism config, worker profile setup, and live
 board state.
