@@ -1,7 +1,7 @@
 ---
 name: software-dev-loop
 description: The complete software-development loop — persist the goal → write a plan doc and harden it with the source-anchored-design critic loop → implement and critic-harden → red-green test + benchmark → dump JOURNEY in between → write durable long-term memory. Use when starting or running a real software build, when a task needs goal, docs, testing, and memory chained in order, or when the user asks for the "holy grail" dev workflow.
-version: 1.2.0
+version: 1.3.0
 metadata:
   category: software-development
   created_by: agent
@@ -80,9 +80,10 @@ Either way the contract is the same: read first, append as you learn, never let 
 A round does not close until all four questions are answered explicitly. Do not
 advance to the next step — or repeat — on an unanswered gate.
 
-1. **Success / fail criteria?** State the acceptance bar for THIS round: what
-   must be true (tests green? benchmark met? blocking issues = 0?) for the round
-   to count as success vs failure. No criteria = drift, not a round.
+1. **Success / fail criteria?** State the acceptance bar for THIS round — write
+   it down verbatim so it can be restated in the report. What must be true (tests
+   green? benchmark met? blocking issues = 0?) for the round to count as success
+   vs failure. No criteria = drift, not a round.
 2. **What should touch / not touch?** State the scope boundary: which files /
    areas / behaviors this round may modify, and which are off-limits. Anything
    outside the boundary is a scope violation, not a fix.
@@ -96,10 +97,15 @@ advance to the next step — or repeat — on an unanswered gate.
 ## Round report (fixed format)
 
 At the end of every round, emit exactly this block — nothing else as the round's
-summary:
+summary. The agent does NOT judge success/failure itself; it restates the
+original criteria, reports each one's current status, and gives only a
+confidence score so the human can judge:
 
 ```
-success/failure: <success | failure>
+success criteria: <restate this round's original criteria verbatim>
+criteria status: <one line per criterion: met / not met / partial, with evidence>
+success confidence: <0-10>
+failure confidence: <0-10>
 touch: <files/areas modified>
 not touch: <files/areas deliberately left alone>
 next: <single next action>
@@ -107,12 +113,17 @@ self review status: <critic rounds run, blocking issues remaining>
 next step status: <auto-start | wait-for-user | done>
 ```
 
+The two confidence scores (0–10) are the agent's own estimate of how likely the
+round succeeded and how likely it failed — they are NOT a verdict. The human
+decides success/failure from the criteria status, not from the scores.
+
 ## Termination
 
 The loop ends when the goal's completion audit passes against real state — tests
 green, benchmark meets baseline, memory and journey written — and the final round
-report says `next step status: done`. A failing test or unmet goal is not
-termination; it is a return to step 2 (plan).
+report shows all criteria `met` with `next step status: done`. The agent never
+declares the loop a success itself; the human does, from the criteria status. A
+failing test or unmet goal is not termination; it is a return to step 2 (plan).
 
 ## When NOT to use
 
