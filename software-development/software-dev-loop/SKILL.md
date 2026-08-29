@@ -1,7 +1,7 @@
 ---
 name: software-dev-loop
 description: The complete software-development loop — persist the goal → write a plan doc and self-critique it → implement and self-critique → red-green test + benchmark → dump JOURNEY in between → write durable long-term memory. Use when starting or running a real software build, when a task needs goal, docs, testing, and memory chained in order, or when the user asks for the "holy grail" dev workflow.
-version: 1.0.0
+version: 1.1.0
 metadata:
   category: software-development
   created_by: agent
@@ -15,6 +15,12 @@ One loop that chains the vault's dev skills into a single build process. It does
 goal → plan doc → implement → test → journey → long-term memory
   └──────────────← bug or goal unmet ←──────────────┘
 ```
+
+## When to Use
+
+- Starting or running a real software build where goal, docs, tests, and memory should chain in order.
+- A task large enough that "just write code" would drift — you need a persisted goal and a plan on paper first.
+- The user asks for the "holy grail" dev workflow.
 
 ## The loop
 

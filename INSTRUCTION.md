@@ -100,6 +100,7 @@
 | journey | local | written (two-column ME/YOU history) |
 | software-dev-loop | local | written — composes goal / docs / test / memory into one dev loop |
 | technical-research-analysis-doc | local | written — TorchLight 调研分析 format |
+| skill-auto-improve-mirror | local | written by agent (Hermes) — skill improvement + version-aware cross-harness mirror (scripts/mirror_agent_skills.py) |
 
 ## Update workflow
 
