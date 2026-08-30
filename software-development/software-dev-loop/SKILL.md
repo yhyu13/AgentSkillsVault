@@ -104,10 +104,13 @@ confidence score so the human can judge:
 ```
 success criteria: <restate this round's original criteria verbatim>
 criteria status: <one line per criterion: met / not met / partial, with evidence>
-success confidence: <0-10>
-failure confidence: <0-10>
-touch: <files/areas modified>
-not touch: <files/areas deliberately left alone>
+success confidence: <0-10>, <why>
+failure confidence: <0-10>, <why>
+goal sticked: <what subparts of goal done so far>
+touched: <files/areas modified>
+not touched: <files/areas deliberately left alone>
+test ran: <results> <wall clock time spent>
+journey: <what has been updated in short>
 next: <single next action>
 self review status: <critic rounds run, blocking issues remaining>
 next step status: <auto-start | wait-for-user | done>
