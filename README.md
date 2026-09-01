@@ -84,6 +84,7 @@ AgentSkillsVault/
 | software-development/technical-research-analysis-doc | software-development | UE pak/打包/热更/渲染 调研 → TorchLight 格式分析文档（背景→结论先行→影响链条→mermaid→方案对比） |
 | software-development/journey | software-development | two-column ME/YOU project history + vibe-coding lessons |
 | software-development/skill-auto-improve-mirror | software-development | improve-in-place + version + mirror skills to cross-harness ~/.agents/skills/ (Kilo Code, Cursor, Claude Code) |
+| software-development/llm-friendly-dsl-verification | software-development | prove an LLM-friendly DSL end-to-end (compile→run→semantic-golden→fix-feedback→scene) with real evidence |
 | software-development/governance-doc-design | software-development | author governance/rule/design docs: product/design/dev/legal buckets, 状态+读取时机+事实来源 skeleton, append-only decision log |
 | FDE/book-chapter-to-vault | FDE | .docx book chapter → learning notes + cheatsheet + kanban + mindmap |
 | FDE/analysis-to-vault | FDE | long-form analytical article → thesis + argument map + day-job notes |
