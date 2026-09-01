@@ -61,6 +61,13 @@ AgentSkillsVault/
     ├── social-push/                 ← 一句话发布内容到多平台（小红书/X/知乎/微博/微信/掘金/Linux.do）
     ├── content-craft/               ← 内容生产总纲（提炼自全部内容 skill 的共同手艺）
     └── agent-browser/               ← agent-browser CLI 浏览器自动化（social-push 依赖）
+└── design/                          ← anti-slop 前端设计 taste（Leonxlnx/taste-skill 精选 6/13）
+    ├── taste-frontend/              ← 旗舰 v2：读 brief → 推断设计语言 → 出不像模板的界面
+    ├── taste-redesign/              ← 现有项目：先审计 UI → 再修布局/间距/层级/样式
+    ├── taste-output/                ← 反截断：强制完整输出，禁占位注释
+    ├── taste-imagegen-web/          ← 网页 comps 图（每 section 一张横向图）
+    ├── taste-imagegen-mobile/       ← 移动端 screen/flow 图
+    └── taste-brandkit/              ← 品牌 kit 板（logo/配色/字体/身份应用）
 ```
 
 ## Skills
@@ -119,6 +126,12 @@ AgentSkillsVault/
 | content/social-push | content | 一句话发布内容到多平台（小红书/X/知乎/微博/微信/掘金/Linux.do），基于 agent-browser |
 | content/agent-browser | content | agent-browser CLI 浏览器自动化（快照/ref/登录态，social-push 依赖） |
 | content/content-craft | content | 内容生产总纲：准确/有用/易读 + 活人感 + 去 AI 味 + 四形态骨架 + 发布红线（提炼自全部内容 skill） |
+| design/taste-frontend | design | anti-slop 前端（旗舰 v2）：读 brief → 推断设计语言 → VARIANCE/MOTION/DENSITY 三旋钮 → 出不像模板的界面 |
+| design/taste-redesign | design | 现有项目升级：审计 UI → 识别 generic AI 模式 → 高级设计标准（不破坏功能） |
+| design/taste-output | design | 反截断：完整代码输出、禁占位注释、token 拆分处理 |
+| design/taste-imagegen-web | design | 网页 comps 参考图（每 section 单独一张横向图，供编码模型复刻） |
+| design/taste-imagegen-mobile | design | 移动端 screen/flow 参考图（iOS/Android/跨平台） |
+| design/taste-brandkit | design | 品牌 kit 板：logo 方向/配色/字体/身份应用 |
 
 ## 评分（0 / 10 / 20）
 
