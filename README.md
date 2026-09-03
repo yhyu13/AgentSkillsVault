@@ -61,13 +61,15 @@ AgentSkillsVault/
     ├── social-push/                 ← 一句话发布内容到多平台（小红书/X/知乎/微博/微信/掘金/Linux.do）
     ├── content-craft/               ← 内容生产总纲（提炼自全部内容 skill 的共同手艺）
     └── agent-browser/               ← agent-browser CLI 浏览器自动化（social-push 依赖）
-└── design/                          ← anti-slop 前端设计 taste（Leonxlnx/taste-skill 精选 6/13）
+└── design/                          ← anti-slop 前端设计 taste（Leonxlnx/taste-skill 精选 7/13 + 本地 router）
+    ├── taste-director/              ← 路由总纲：按意图分发到下面 7 个 + 共享 taste 契约
     ├── taste-frontend/              ← 旗舰 v2：读 brief → 推断设计语言 → 出不像模板的界面
     ├── taste-redesign/              ← 现有项目：先审计 UI → 再修布局/间距/层级/样式
     ├── taste-output/                ← 反截断：强制完整输出，禁占位注释
     ├── taste-imagegen-web/          ← 网页 comps 图（每 section 一张横向图）
     ├── taste-imagegen-mobile/       ← 移动端 screen/flow 图
-    └── taste-brandkit/              ← 品牌 kit 板（logo/配色/字体/身份应用）
+    ├── taste-brandkit/              ← 品牌 kit 板（logo/配色/字体/身份应用）
+    └── taste-stitch/                ← 给 Google Stitch 屏幕生成的语义 DESIGN.md 设计系统
 ```
 
 ## Skills
@@ -133,6 +135,8 @@ AgentSkillsVault/
 | design/taste-imagegen-web | design | 网页 comps 参考图（每 section 单独一张横向图，供编码模型复刻） |
 | design/taste-imagegen-mobile | design | 移动端 screen/flow 参考图（iOS/Android/跨平台） |
 | design/taste-brandkit | design | 品牌 kit 板：logo 方向/配色/字体/身份应用 |
+| design/taste-stitch | design | 给 Google Stitch 屏幕生成的语义 DESIGN.md 设计系统（taste 品味 → Stitch Visual Descriptions） |
+| design/taste-director | design | router 总纲：按意图分发到 7 个 taste-* 子技能 + 共享 anti-slop taste 契约 |
 
 ## 评分（0 / 10 / 20）
 
