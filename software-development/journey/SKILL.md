@@ -64,9 +64,9 @@ Regardless of project, look for and surface these recurring patterns:
 
 ## Worked example
 
-`d:\GitRepo-My\radiance-cascades-demo\3d\doc\11_generalization\journey.md` — a 10-era JOURNEY of the Radiance Cascades demo (2D→3D migration → cascade architecture → hybrid → measurement-first MBRC → ShaderToy pivot → data-driven-kernel refactor), ending in the vibe-coding lesson section. Use it as the template for structure, column voice, and lesson extraction. (It predates the current conventions: the new output is Chinese, named `JOURNEY.md`, and placed at the project root.)
+`<radiance-cascades>/3d/doc/11_generalization/journey.md` — a 10-era JOURNEY of the Radiance Cascades demo (2D→3D migration → cascade architecture → hybrid → measurement-first MBRC → ShaderToy pivot → data-driven-kernel refactor), ending in the vibe-coding lesson section. Use it as the template for structure, column voice, and lesson extraction. (It predates the current conventions: the new output is Chinese, named `JOURNEY.md`, and placed at the project root.)
 
 ## Reference anchors
 
-- Canonical example: `d:\GitRepo-My\radiance-cascades-demo\3d\doc\11_generalization\journey.md`
-- Source-of-truth for that example's history: `C:\Users\XINDONG\.claude\projects\d--GitRepo-My-radiance-cascades-demo\memory\*.md` and `.wolf\cerebrum.md`
+- Canonical example: `<radiance-cascades>/3d/doc/11_generalization/journey.md`
+- Source-of-truth for that example's history: `<claude-project-history>/<radiance-cascades>/memory/*.md` and `.wolf\cerebrum.md`

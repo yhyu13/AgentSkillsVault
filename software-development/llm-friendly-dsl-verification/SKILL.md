@@ -52,7 +52,7 @@ metadata:
 | `scene_accept.py` | 配方 → tscn → 真场景加载 → 节点/类/状态/规则断言 |
 | `scene_lifecycle.py` | 场景增删实体/玩到终点态 → 生命周期 + 游戏轨迹 |
 
-（gdsl 实现在 `D:\GitRepo-My\godot\gdsl\toolchain\`，可作为样板。）
+（gdsl 实现在 `<godot-gdsl>/toolchain/`，可作为样板。）
 
 ## LLM 冷测（measure LLM-friendliness）
 
@@ -108,5 +108,5 @@ metadata:
 
 ## 参考实现
 
-- gdsl（Godot 配方语言）：`D:\GitRepo-My\godot\gdsl\` + `doc_ai/GDSL_RETROSPECTIVE.md` + JOURNEY。
+- gdsl（Godot 配方语言）：`<godot-gdsl>/` + `doc_ai/GDSL_RETROSPECTIVE.md` + JOURNEY。
 - 验收线示例：LLM 友好 = 16/16 first-try；语义 = 8/8 golden + 写反被抓 + LLM 修对；场景 = TC-1..8 + 声明式路径。

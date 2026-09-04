@@ -14,7 +14,7 @@ metadata:
 
 A disciplined structure for project governance docs — product rules, design
 rules, dev rules, and legal/compliance. Derived from the Cindy client repo's
-`docs/` conventions (F:\XD\git-repo\cindy\docs), which is the reference
+`docs/` conventions (<cindy-repo>/docs), which is the reference
 implementation; the pattern is reusable for any repo that wants rules an agent
 can actually follow.
 

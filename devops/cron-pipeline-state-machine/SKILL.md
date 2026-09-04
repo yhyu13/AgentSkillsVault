@@ -146,7 +146,7 @@ The result: 3 cron ticks of wasted planning (v175/v176/v177), no actual test imp
 
 The cron's Agent #5 (project critic) writes `PENDING_PROJECT_AUDIT.md` based on `search_files` queries against the cron's workdir. **Two systematic accuracy gaps observed (2026-07-13):**
 
-1. **Workdir-relative searches miss repo-root files.** Agent #5 ran `search_files pattern="AGENTS.md" path="<workdir>"` and reported "AGENTS.md is MISSING from the project root." But AGENTS.md was at `/home/hangyu5/Documents/Gitrepo-My/AMG/AGENTS.md` (the repo root), NOT in the workdir subdir `sdv-mod-generator/`. The audit was wrong.
+1. **Workdir-relative searches miss repo-root files.** Agent #5 ran `search_files pattern="AGENTS.md" path="<workdir>"` and reported "AGENTS.md is MISSING from the project root." But AGENTS.md was at `<repo-root>/AGENTS.md` (the repo root), NOT in the workdir subdir `sdv-mod-generator/`. The audit was wrong.
 
 2. **Audits claim markers are updated when they're not.** Agent #5's v169-v173 audit said "PENDING_REVIEW_v172.md ... the v172 review is KEEP per a re-audit, so the FIX verdict was overwritten — no action needed unless the file still shows FIX." The file DID still show FIX (verified by the parent). The audit's confidence didn't match reality.
 

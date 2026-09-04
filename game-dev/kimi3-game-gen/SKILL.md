@@ -59,7 +59,7 @@ These rules are what make parallel agents safe to run at the same time.
 
 ## Stage 1 — Design (Designer agent)
 
-Spawn one Designer agent. It reads [`assets/design-doc-template.md`](assets/design-doc-template.md) and emits one Markdown file per concern, into `/mnt/agents/output/design/`. Use [`references/gdd-template.md`](references/gdd-template.md) as the section checklist (adapted from `C:\Git-repo-my\GDDMarkdownTemplate`).
+Spawn one Designer agent. It reads [`assets/design-doc-template.md`](assets/design-doc-template.md) and emits one Markdown file per concern, into `/mnt/agents/output/design/`. Use [`references/gdd-template.md`](references/gdd-template.md) as the section checklist (adapted from `<gdd-template>`).
 
 Typical output: ~6 docs / ~65 KB total covering concept, gameplay, systems, art direction, audio direction, technical risk register.
 

@@ -548,7 +548,7 @@ Q3: 这个场景在视觉上有没有"极致 case"(极限黑/极限白/极限密
 
 ### 9.1 项目背景
 
-- **项目**:`c:/Git-repo-my/VibeGames/7_hotlineShanghai`
+- **项目**:`<vibegames>/7_hotlineShanghai`
 - **类型**:Hotline Miami-style 顶视角像素射击 + 1937 上海抗战背景 + 2D Radiance Cascades 实时光影
 - **架构**:C.A.T(core/ 平台纯净 + engine/ 平台适配)
 - **本次 commit `a80503c`**:scope 砍到 1 个 intro scene,1 day 内完成 Part 1(执行型)+ Part 2(创造型)

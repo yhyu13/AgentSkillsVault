@@ -16,7 +16,7 @@ diagnose ? fix ? recapture.
 
 ```powershell
 rdc doctor            # rdc-cli installed, renderdoc.pyd found (v1.41 at
-                      # C:\Users\yuhang\AppData\Local\rdc\renderdoc\renderdoc.pyd)
+                      # <user>\AppData\Local\rdc\renderdoc\renderdoc.pyd)
 python --version      # must match the pyd (3.13 here)
 ```
 
