@@ -1,0 +1,3 @@
+interface:
+  display_name: "Explain Better"
+  short_description: "把看不懂的解释换成更易懂的形式(简化文字/结构图/可交互网页/讲解视频)"
