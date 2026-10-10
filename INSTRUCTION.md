@@ -122,6 +122,7 @@
 | technical-research-analysis-doc | local | written — TorchLight 调研分析 format |
 | skill-auto-improve-mirror | local | written by agent (Hermes) — skill improvement + version-aware cross-harness mirror (scripts/mirror_agent_skills.py) |
 | governance-doc-design | local (distilled) | distilled from `F:\XD\git-repo\cindy\docs` conventions (product/design/dev/legal rule buckets, 状态+读取时机+事实来源 skeleton, append-only decision log) |
+| truth-seeking-research | local | 用户系统提示词蒸馏：求真优先、0–4 级可信度、检索边界、脚本计算、固定输出格式（英文改写 → 结论先行 → `[判断与建议]` → 免责声明）。分发：vault → `~/.claude/skills`、`~/.codex/skills`、`~/.kilo/skills`（副本）+ `~/.agents/skills`（符号链接）+ `%LOCALAPPDATA%\hermes\skills\software-development\`（副本） |
 
 ### writing/
 | skill | origin | source |

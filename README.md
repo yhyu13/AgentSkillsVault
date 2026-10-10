@@ -24,6 +24,7 @@ AgentSkillsVault/
 │   ├── software-dev-loop/           ← goal → docs → test → memory dev loop
 │   ├── technical-research-analysis-doc/  ← TorchLight 调研分析文档格式 (背景→结论先行→影响链条→mermaid→方案对比)
 │   ├── skill-auto-improve-mirror/   ← improve + version + mirror skills to cross-harness ~/.agents/skills/
+│   ├── truth-seeking-research/      ← 求真优先 + 0–4 级可信度引用 + 结论先行输出格式
 │   ├── governance-doc-design/       ← author governance/rule/design docs (buckets + 状态 + 事实来源 + decision log)
 │   └── journey/                     ← two-column ME/YOU project history + vibe-coding lessons
 ├── FDE/                             ← Forward Deployed Engineer / personal knowledge workflows
@@ -92,6 +93,7 @@ AgentSkillsVault/
 | software-development/skill-auto-improve-mirror | software-development | improve-in-place + version + mirror skills to cross-harness ~/.agents/skills/ (Kilo Code, Cursor, Claude Code) |
 | software-development/llm-friendly-dsl-verification | software-development | prove an LLM-friendly DSL end-to-end (compile→run→semantic-golden→fix-feedback→scene) with real evidence |
 | software-development/governance-doc-design | software-development | author governance/rule/design docs: product/design/dev/legal buckets, 状态+读取时机+事实来源 skeleton, append-only decision log |
+| software-development/truth-seeking-research | software-development | 事实/研究/数据问题：求真优先、0–4 级引用、脚本计算、英文改写 + 结论先行 + 免责声明 |
 | FDE/book-chapter-to-vault | FDE | .docx book chapter → learning notes + cheatsheet + kanban + mindmap |
 | FDE/analysis-to-vault | FDE | long-form analytical article → thesis + argument map + day-job notes |
 | game-dev/cat-game-architecture | game-dev | C.A.T / GDC 2026 AI-driven 3D game refactor |
