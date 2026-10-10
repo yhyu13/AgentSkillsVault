@@ -126,7 +126,7 @@
 ### writing/
 | skill | origin | source |
 |-------|--------|--------|
-| karpathy-explain-better | local | distilled from Karpathy 2026-10-02 X post (4 AI uses: ASD-STE100 简化文字 → 结构图 → 可交互网页 → 讲解视频)；SKILL.md 含触发条件/形式组合/工作流/交付前自检/常见坑；references/modes.md 含每种形式的提示词模板与判断清单
+| karpathy-explain-better | local | distilled from Karpathy 2026-10-02 X post (4 AI uses: ASD-STE100 简化文字 → 结构图 → 可交互网页 → 讲解视频)；SKILL.md 含触发条件/形式组合/工作流/交付前自检/常见坑；references/modes.md 含每种形式的提示词模板与判断清单；**references/form4-video-delivery.md** 形式 4 交付细则（时长口径 / 逐帧亚像素渲染 / 校验三件套 / faststart+Range / 跨平台清单）；**references/scripts/** 四件可运行脚本（`ffmedia.py` 探测、`plan_timeline.py` 时长规划、`render_pipe.py` 逐帧渲染、`verify_video.py` 交付校验）+ README（含抖动阈值标定表）；分发：vault → `~/.claude/skills`（副本）→ `~/.codex`、`~/.kilo`（副本）+ `~/.agents/skills`（符号链接视图）
 
 ## Update workflow
 
@@ -197,3 +197,21 @@ so the origin is known before the copy happens:
 | `D:\GitRepo-AI\renderdoc\renderdoc-skill` | renderdoc-gpu-debug | game-dev/ |
 | `D:\GitRepo-AI\threejs-game-skills\skills\*` | 9 × threejs-* | game-dev/ |
 | `D:\GitRepo-AI\kilocode` / `kilo-marketplace` / `AutoUE` / `Unreal*` / `VibeUE-master` | (audit before copying) | tbd |
+
+---
+
+## 沉淀流程（Agent 必须遵守）
+
+**不要在任务进行中顺手改 skill。** 沉淀走「候选队列 → 人工批量审核 → 才动 skill」：
+
+1. 任务中发现可复用经验 → 追加到 vault 根目录 **`SKILL_CANDIDATES.md`**（一条一行，带证据、目标 skill、建议落位）。
+2. 任务结束时不改任何 skill，只更新候选队列。
+3. 用户批量审核后，才按候选条目改 skill（此时才 bump `version:` + 更新上面的 provenance 表）。
+4. 判断标准是可以被复用的做法/判据/坑，不是一次性的项目细节。
+
+### 改 skill 时的硬规则
+
+- **改前先 `git pull`**：本 vault 可能同时有多个 Agent / 机器在改（2026-10-07 实测两个会话同改一个 skill，靠提交时撞在一起合并）。
+- 同一 skill 一次只允许一个会话改；改完立刻提交并推送，别留未提交改动过夜。
+- 改完要分发：vault → `~/.claude/skills`（副本）→ `~/.codex/skills`、`~/.kilo/skills`（副本）+ `~/.agents/skills`（**符号链接视图**，目标写 `/c/Users/<user>/.claude/skills/<name>`；`ln -s` 需 `MSYS=winsymlinks:nativestrict`，否则 MSYS 会静默变成复制）。
+- 分发后用 `diff -rq <vault>/<cat>/<skill> <home>/<skill>` 验证**逐字节一致**。

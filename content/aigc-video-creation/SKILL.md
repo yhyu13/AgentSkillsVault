@@ -5,8 +5,8 @@ metadata:
   category: content
   created_by: agent
   source: 2026 AI 视频生成全攻略 (2026.md) — TapNow 视角 AI 视频生成深度长文
-  related_skills: [style-cn-platform-tutorial, content-craft, blog-to-linkedin-post]
-  version: 1.0.0
+  related_skills: [style-cn-platform-tutorial, content-craft, blog-to-linkedin-post, karpathy-explain-better]
+  version: 1.0.1
 ---
 
 # AIGC 视频生成创作手册 (aigc-video-creation)
@@ -25,6 +25,11 @@ metadata:
 | AI 视频翻车了(变形/闪烁/风格漂移) | 真人短片剪辑翻车 |
 | 提升 AI 视频"电影感" / 审美 | 写剧本/写分镜 |
 | 用 TapNow 类"一画布"工作台产出 | 简单的 GIF/动图生成 |
+| — | **代码渲染的讲解视频**(分镜→逐帧渲染→ffmpeg，用于把抽象概念讲清)：用 `karpathy-explain-better` 的形式 4 |
+
+> 两边不要混淆：本 skill 是「**让 AI 模型生成视频素材**」（文生视频/图生视频，防翻车、提质感）；
+> `karpathy-explain-better` 的形式 4 是「**用代码把概念渲染成讲解片**」（字体/时长/校验/发布都自己控），
+> 后者的问题（时长口径、字体回退、推镜抖动、抽帧校验）在本 skill 里都查不到，去那边看。
 
 ## 三大认知锚点(在动手前先想清楚)
 
