@@ -74,7 +74,8 @@ AgentSkillsVault/
     ├── taste-imagegen-web/          ← 网页 comps 图（每 section 一张横向图）
     ├── taste-imagegen-mobile/       ← 移动端 screen/flow 图
     ├── taste-brandkit/              ← 品牌 kit 板（logo/配色/字体/身份应用）
-    └── taste-stitch/                ← 给 Google Stitch 屏幕生成的语义 DESIGN.md 设计系统
+    ├── taste-stitch/                ← 给 Google Stitch 屏幕生成的语义 DESIGN.md 设计系统
+    └── anatomy/                     ← 等距 SVG 插图器：将想法做成"真实可工作的小机器"（40–300 件精密零件，4 色调光，分屏 SVG + WebGL + 3D），含 kit/references/scripts/examples（11.7 MB，wheresryan22/anatomy，MIT）
 └── writing/                         ← 「换种形式让人看懂」工作流（不堆文字 / 画图 / 试出来 / 讲清楚）
     └── karpathy-explain-better/     ← Karpathy 4 法：简化文字(ASD-STE100) → 结构图 → 可交互网页 → 讲解视频；含判断清单与升级/降级信号
 ```
@@ -149,6 +150,7 @@ AgentSkillsVault/
 | design/taste-brandkit | design | 品牌 kit 板：logo 方向/配色/字体/身份应用 |
 | design/taste-stitch | design | 给 Google Stitch 屏幕生成的语义 DESIGN.md 设计系统（taste 品味 → Stitch Visual Descriptions） |
 | design/taste-director | design | router 总纲：按意图分发到 7 个 taste-* 子技能 + 共享 anti-slop taste 契约 |
+| design/anatomy | design | 等距 SVG 插图器：将想法做成"真实可工作的小机器"（40–300 件精密零件，4 色调光，分屏 SVG + WebGL + 3D），含 kit/references/scripts/examples（11.7 MB，wheresryan22/anatomy，MIT） |
 | writing/karpathy-explain-better | writing | Karpathy 4 法：别再说「再解释一遍」——把答案换成简化文字 / 结构图 / 可交互网页 / 讲解视频。SKILL.md + references/modes.md（含每种形式的提示词模板、判断清单、决策树） |
 
 ## 评分（0 / 10 / 20）
