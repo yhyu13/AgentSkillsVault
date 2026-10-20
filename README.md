@@ -66,7 +66,8 @@ AgentSkillsVault/
     ├── content-craft/               ← 内容生产总纲（提炼自全部内容 skill 的共同手艺）
     ├── lieflat-charts/              ← 数据可视化/报告生成（数据契约先行选图 + Lupi/Glance 双阅读速度 + Mono 语法 + 彩色系统 + 12 套中英报告模板）
     ├── agent-browser/               ← agent-browser CLI 浏览器自动化（social-push 依赖）
-    └── yu-hang-writing-style/       ← 俞航工程笔记文风（技术规划/排查笔记/进展周报/使用手册/测试说明，去 AI 味）
+    ├── yu-hang-writing-style/       ← 俞航工程笔记文风（技术规划/排查笔记/进展周报/使用手册/测试说明，去 AI 味）
+    └── progress-doc-style/          ← 进度/OKR 跟踪文档文风（OKR 简述表 + 行动项七列表 + 状态三符号 + 备注一句话）
 └── design/                          ← anti-slop 前端设计 taste（Leonxlnx/taste-skill 精选 7/13 + 本地 router）
     ├── taste-director/              ← 路由总纲：按意图分发到下面 7 个 + 共享 taste 契约
     ├── taste-frontend/              ← 旗舰 v2：读 brief → 推断设计语言 → 出不像模板的界面
@@ -144,6 +145,7 @@ AgentSkillsVault/
 | content/content-craft | content | 内容生产总纲：准确/有用/易读 + 活人感 + 去 AI 味 + 四形态骨架 + 发布红线（提炼自全部内容 skill） |
 | content/lieflat-charts | content | 数据可视化/报告生成：数据契约先行选图（决策树）→ 一张图一个结论 → Lupi(细读)/Glance(快读) 双速度 → Mono 灰阶语法 → 自动彩色系统 → 12 套中英报告模板 R01–R12。中文 图表品味法典 |
 | content/yu-hang-writing-style | content | 俞航本人的工程笔记文风：判断开头 + 数字/命令/路径原样 + 原因到结论显式带逻辑词 + 没定论留 TODO；含 AI 爱用词替换表。适用技术规划/排查笔记/周报/手册/测试说明 |
+| content/progress-doc-style | content | 进度/OKR 跟踪文档写作风格：标题带更新日期 + OKR 简述表 + 分目标章节 + 行动项七列表（对应KR/行动/状态/优先级/时间/交付物/备注）+ 状态三符号 + 备注一句话 + 附背景保留原文 |
 | design/taste-frontend | design | anti-slop 前端（旗舰 v2）：读 brief → 推断设计语言 → VARIANCE/MOTION/DENSITY 三旋钮 → 出不像模板的界面 |
 | design/taste-redesign | design | 现有项目升级：审计 UI → 识别 generic AI 模式 → 高级设计标准（不破坏功能） |
 | design/taste-output | design | 反截断：完整代码输出、禁占位注释、token 拆分处理 |
