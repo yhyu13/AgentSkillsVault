@@ -27,6 +27,7 @@ AgentSkillsVault/
 │   ├── truth-seeking-research/      ← 求真优先 + 0–4 级可信度引用 + 结论先行输出格式
 │   ├── prompt-pro/                  ← 把粗请求改写成可执行提纲（5 槽位）+ grounding 后再执行
 │   ├── skill-distill/               ← 会后沉淀流水线：四道闸 + 粒度 + 归属 + 三段式写法 + 防重复防膨胀 + PR 流程
+│   ├── perf-tracking-platform/      ← XD 性能跟踪分析平台领域知识：OKR 进度 + 指标口径 + 瓶颈判定 + 看板/报告
 │   ├── governance-doc-design/       ← author governance/rule/design docs (buckets + 状态 + 事实来源 + decision log)
 │   └── journey/                     ← two-column ME/YOU project history + vibe-coding lessons
 ├── FDE/                             ← Forward Deployed Engineer / personal knowledge workflows
@@ -99,6 +100,7 @@ AgentSkillsVault/
 | software-development/truth-seeking-research | software-development | 事实/研究/数据问题：求真优先、0–4 级引用、脚本计算、英文改写 + 结论先行 + 免责声明 |
 | software-development/prompt-pro | software-development | 把粗请求改写成可执行提纲（目标/验收/范围/约束/输出 5 槽位）；先 grounding 再落笔；提纲不单独成篇 |
 | software-development/skill-distill | software-development | 会后沉淀流水线：四道闸（可复用/有判断/有证据/有边界）+ 粒度 + 归属 + 三段式写法 + 防重复防膨胀 + PR 流程 + 自检清单 |
+| software-development/perf-tracking-platform | software-development | XD 游戏引擎性能跟踪分析平台：OKR/进度快照、指标口径（帧时间 P95/P99、卡顿率、长卡顿、低于 54fps 战斗场数、45 分钟温度曲线、loading）、瓶颈判定（GPU busy% vs gt/rt/gpu 取最大；CPU 拆模块、GPU 拆 pass）、看板地址与报告要求 |
 | FDE/book-chapter-to-vault | FDE | .docx book chapter → learning notes + cheatsheet + kanban + mindmap |
 | FDE/analysis-to-vault | FDE | long-form analytical article → thesis + argument map + day-job notes |
 | game-dev/cat-game-architecture | game-dev | C.A.T / GDC 2026 AI-driven 3D game refactor |
