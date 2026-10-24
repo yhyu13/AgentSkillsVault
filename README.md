@@ -78,9 +78,28 @@ AgentSkillsVault/
     ├── taste-brandkit/              ← 品牌 kit 板（logo/配色/字体/身份应用）
     ├── taste-stitch/                ← 给 Google Stitch 屏幕生成的语义 DESIGN.md 设计系统
     └── anatomy/                     ← 等距 SVG 插图器：将想法做成"真实可工作的小机器"（40–300 件精密零件，4 色调光，分屏 SVG + WebGL + 3D），含 kit/references/scripts/examples（11.7 MB，wheresryan22/anatomy，MIT）
-└── writing/                         ← 「换种形式让人看懂」工作流（不堆文字 / 画图 / 试出来 / 讲清楚）
-    └── karpathy-explain-better/     ← Karpathy 4 法：简化文字(ASD-STE100) → 结构图 → 可交互网页 → 讲解视频；含判断清单与升级/降级信号
+├── writing/                         ← 「换种形式让人看懂」工作流（不堆文字 / 画图 / 试出来 / 讲清楚）
+│   └── karpathy-explain-better/     ← Karpathy 4 法：简化文字(ASD-STE100) → 结构图 → 可交互网页 → 讲解视频；含判断清单与升级/降级信号
+└── vendor/                          ← 外部 repo 以 submodule 形式 vendored（不复制进分类目录）
+    └── anthropics-skills/           ← github.com/anthropics/skills（19 个官方 skill；pinned @ dbd4588）
 ```
+
+## User-level distribution（2026-10-24 起）
+
+四个 harness 的用户级 skill 目录**只有一份实体**，其余全是 Windows junction 视图：
+
+```
+~/.claude/skills/      ← 唯一实体（canonical store，143 个 skill）
+~/.kilo/skills/        ← 143 个 junction → ~/.claude/skills/<name>
+~/.codex/skills/       ← 143 个 junction → ~/.claude/skills/<name>
+~/.agents/skills/      ← 143 个 junction → ~/.claude/skills/<name>
+```
+
+- 好处：改一处四个 harness 同步生效；磁盘从 ~113 MB 降到 ~35 MB；不再有「哪个 harness 少装了几个 skill」的漂移。
+- 实测：Kilo 的 skill 扫描会跟随 junction（`.agents/skills/agent-browser` 是 junction，仍出现在 skill 列表里）。
+- 反面教材：`robocopy /E` 合并同名 skill 会**覆盖**同名的 `SKILL.md`（例如 anthropic 的 `webapp-testing` 盖掉了 vault 版本）——先比对 hash 再覆盖。
+- 去掉 anthropic 集里与既有 skill 重叠的 6 个：`frontend-design` / `brand-guidelines` / `theme-factory` / `internal-comms` / `doc-coauthoring` / `skill-creator`；`webapp-testing` 保留 vault 版本（ComposioHQ），弃用 anthropic 版本。
+- 上游 19 个里的其余 12 个（`academy-guide` `algorithmic-art` `canvas-design` `claude-api` `discernment-nudge` `docx` `mcp-builder` `pdf` `pptx` `slack-gif-creator` `web-artifacts-builder` `xlsx`）照装，源在 `vendor/anthropics-skills/`。
 
 ## Skills
 

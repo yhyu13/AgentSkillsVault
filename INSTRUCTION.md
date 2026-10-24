@@ -37,7 +37,7 @@
 | style-cn-tech-deep-dive | local (distilled) | iTech @ cnblogs.com/p/23085057 — ZCode 争议 + 开源复盘长文；提炼 10 个指纹（戏剧钩子 / 第 N 层 / 平心而论反转 / 逆向数字 / N 条死线 / 冒号双行标题 / 立场标 / 收尾三段 / 圈层黑话 / 信息差诚实声明）+ 6 节级结构模板 + 句式库。原文全文存 `content/style-cn-tech-deep-dive/references/source-zcode-article.md`（95 行）作为风格 ground truth |
 | lieflat-charts | repo (vendored) | `github.com/larashero3-dotcom/lieflat-charts` — cloned into `content/lieflat-charts`; vendored payload = SKILL.md + catalog.md + report-catalog.md + mono-tokens.js + color-presets.js + templates/ + scripts/ + examples/ + LICENSE. **跳过 `docs/assets/`**（38M README 预览图，可从源码仓库恢复）；PolyForm Noncommercial License. Skill 为「图表品味法典」：数据契约先行选图 + 一张图一个结论 + Lupi/Glance 双阅读速度 + Mono 视觉语法 + 彩色系统 + 12 套中英报告模板 |
 | yu-hang-writing-style | local | 俞航本人工程笔记文风（技术规划 / 排查笔记 / 进展周报 / 使用手册 / 测试说明；去 AI 味 + AI 爱用词替换表）。原始副本维护在 `~/.agents/skills/yu-hang-writing-style`，同步复制到 vault |
-| progress-doc-style | local (imported) | 用户提供：`C:\Users\1\Downloads\progress-doc-style`（源自《性能跟踪分析平台进度》，纯写作风格与结构范式，不绑定具体项目）。进度/OKR 跟踪文档：OKR 简述表 + 分目标章节 + 行动项七列表 + 状态三符号 + 备注一句话 + 附背景。分发：vault → `~/.claude/skills`、`~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills` |
+| progress-doc-style | local (imported) | 用户提供：`C:\Users\1\Downloads\progress-doc-style`（源自《性能跟踪分析平台进度》，纯写作风格与结构范式，不绑定具体项目）。进度/OKR 跟踪文档：OKR 简述表 + 分目标章节 + 行动项七列表 + 状态三符号 + 备注一句话 + 附背景。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 
 ### design/
 | skill | origin | source |
@@ -123,15 +123,50 @@
 | technical-research-analysis-doc | local | written — TorchLight 调研分析 format |
 | skill-auto-improve-mirror | local | written by agent (Hermes) — skill improvement + version-aware cross-harness mirror (scripts/mirror_agent_skills.py) |
 | governance-doc-design | local (distilled) | distilled from `F:\XD\git-repo\cindy\docs` conventions (product/design/dev/legal rule buckets, 状态+读取时机+事实来源 skeleton, append-only decision log) |
-| truth-seeking-research | local | 用户系统提示词蒸馏：求真优先、0–4 级可信度、检索边界、脚本计算、固定输出格式（英文改写 → 结论先行 → `[判断与建议]` → 免责声明）。分发：vault → `~/.claude/skills`、`~/.codex/skills`、`~/.kilo/skills`（副本）+ `~/.agents/skills`（符号链接）+ `%LOCALAPPDATA%\hermes\skills\software-development\`（副本） |
-| prompt-pro | local | 用户本地 skill：`C:\Users\yuhang\.minimax\skills\prompt-pro`。把粗请求补成可执行提纲（目标/验收/范围/约束/输出 五槽位），先 grounding 再落笔，提纲不单独成篇。先看真实系统再下笔的纪律 + 缺信息则问。分发：vault → `~/.claude/skills`、`~/.codex/skills`、`~/.kilo/skills` |
-| skill-distill | local | 用户贴出的 skill 文本（原出处未指明，标记 local）。会后沉淀流水线：四道闸（可复用/有判断/有证据/有边界）+ 粒度 + 归属 + 三段式写法 + 防重复防膨胀 + PR 流程 + 自检清单 + 红线。规范 skill 沉淀本身。分发：vault → `~/.claude/skills`、`~/.codex/skills`、`~/.kilo/skills` |
-| perf-tracking-platform | local (imported) | 用户提供：`C:\Users\1\Downloads\perf-tracking-platform`（XD 游戏引擎侧「性能跟踪分析平台」领域知识与工作指引：OKR/进度快照、指标口径、瓶颈判定、看板与报告要求；进度以 Feishu 进度文档为准）。分发：vault → `~/.claude/skills`、`~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills` |
+| truth-seeking-research | local | 用户系统提示词蒸馏：求真优先、0–4 级可信度、检索边界、脚本计算、固定输出格式（英文改写 → 结论先行 → `[判断与建议]` → 免责声明）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图）+ `%LOCALAPPDATA%\hermes\skills\software-development\`（副本） |
+| prompt-pro | local | 用户本地 skill：`C:\Users\yuhang\.minimax\skills\prompt-pro`。把粗请求补成可执行提纲（目标/验收/范围/约束/输出 五槽位），先 grounding 再落笔，提纲不单独成篇。先看真实系统再下笔的纪律 + 缺信息则问。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
+| skill-distill | local | 用户贴出的 skill 文本（原出处未指明，标记 local）。会后沉淀流水线：四道闸（可复用/有判断/有证据/有边界）+ 粒度 + 归属 + 三段式写法 + 防重复防膨胀 + PR 流程 + 自检清单 + 红线。规范 skill 沉淀本身。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
+| perf-tracking-platform | local (imported) | 用户提供：`C:\Users\1\Downloads\perf-tracking-platform`（XD 游戏引擎侧「性能跟踪分析平台」领域知识与工作指引：OKR/进度快照、指标口径、瓶颈判定、看板与报告要求；进度以 Feishu 进度文档为准）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
+
+### vendor/
+| skill | origin | source |
+|-------|--------|--------|
+| anthropics-skills (19 upstream) | repo (submodule) | `github.com/anthropics/skills` pinned @ `dbd4588f9e1033efb41dad4bef2f7947c8993d44` — submodule 路径 `vendor/anthropics-skills`，**不复制进分类目录**；用户级分发时从 `vendor/anthropics-skills/skills/<name>` 取 |
+
+**anthropic 集的取舍（2026-10-24）**
+
+| 上游 skill | 处置 | 理由 / 吸收方 |
+|------------|------|---------------|
+| `academy-guide` `algorithmic-art` `canvas-design` `claude-api` `discernment-nudge` `docx` `mcp-builder` `pdf` `pptx` `slack-gif-creator` `web-artifacts-builder` `xlsx` | **装** | vault 内无同类，能力不重复 |
+| `frontend-design` | 弃 | 与 `taste-frontend` / `taste-redesign` 重叠（同一套「别像 AI 默认」的审美判据） |
+| `brand-guidelines` | 弃 | 只讲 Anthropic 品牌色/字体，与 `taste-brandkit` / `taste-stitch` 重叠 |
+| `theme-factory` | 弃 | 主题配色/字体，与 `taste-brandkit` / `taste-stitch` / `lieflat-charts` 色彩预设重叠 |
+| `internal-comms` | 弃 | 与 manage-up 全套（`weekly-report` `project-update` `meeting-summary` `one-on-one-prep` `upward-email`）重叠 |
+| `doc-coauthoring` | 弃 | 与 `proposal` / `technical-design-document` / `content-craft` / `gracker-writing` 的写作流程重叠 |
+| `skill-creator` | 弃 | 与 `skill-distill` / `skill-auto-improve-mirror` / `self-improvement` 重叠 |
+| `webapp-testing` | 换版本 | 保留 vault 版本（ComposioHQ `awesome-claude-skills`），弃 anthropic 版本（同名会覆盖 vault 副本） |
+
+### 用户级分发（2026-10-24 定：单实体 + junction 视图）
+
+```
+~/.claude/skills/   ← 唯一实体（canonical store）
+~/.kilo/skills/     ← junction 视图 → ~/.claude/skills/<name>
+~/.codex/skills/    ← junction 视图
+~/.agents/skills/   ← junction 视图
+```
+
+规则：
+
+1. **只往 `~/.claude/skills` 写实体**，另外三个目录只放 junction（`cmd /c mklink /J <link> <target>`，junction 不需要管理员权限）。
+2. 删 junction 用 `cmd /c rmdir <link>`（只删链接）；`Remove-Item -Recurse` 对 junction 在 PS 5.1 上有误删目标内容的风险。
+3. 覆盖前先比 hash：`robocopy /E` 会覆盖同名 `SKILL.md`（实测 anthropic `webapp-testing` 盖掉 vault 版本）。
+4. 加新 skill：实体复制进 `~/.claude/skills/<name>`，再给另外三个目录补 junction（`mklink /J`）。
+5. 改完用 `Get-ChildItem <dir> -Directory | Where-Object { $_.Attributes -band [IO.FileAttributes]::ReparsePoint }` 验证视图是 junction 而不是实体副本。
 
 ### writing/
 | skill | origin | source |
 |-------|--------|--------|
-| karpathy-explain-better | local | distilled from Karpathy 2026-10-02 X post (4 AI uses: ASD-STE100 简化文字 → 结构图 → 可交互网页 → 讲解视频)；SKILL.md 含触发条件/形式组合/工作流/交付前自检/常见坑；references/modes.md 含每种形式的提示词模板与判断清单；**references/form4-video-delivery.md** 形式 4 交付细则（时长口径 / 逐帧亚像素渲染 / 校验三件套 / faststart+Range / 跨平台清单）；**references/scripts/** 四件可运行脚本（`ffmedia.py` 探测、`plan_timeline.py` 时长规划、`render_pipe.py` 逐帧渲染、`verify_video.py` 交付校验）+ README（含抖动阈值标定表）；分发：vault → `~/.claude/skills`（副本）→ `~/.codex`、`~/.kilo`（副本）+ `~/.agents/skills`（符号链接视图）
+| karpathy-explain-better | local | distilled from Karpathy 2026-10-02 X post (4 AI uses: ASD-STE100 简化文字 → 结构图 → 可交互网页 → 讲解视频)；SKILL.md 含触发条件/形式组合/工作流/交付前自检/常见坑；references/modes.md 含每种形式的提示词模板与判断清单；**references/form4-video-delivery.md** 形式 4 交付细则（时长口径 / 逐帧亚像素渲染 / 校验三件套 / faststart+Range / 跨平台清单）；**references/scripts/** 四件可运行脚本（`ffmedia.py` 探测、`plan_timeline.py` 时长规划、`render_pipe.py` 逐帧渲染、`verify_video.py` 交付校验）+ README（含抖动阈值标定表）；分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图）
 
 ## Update workflow
 
@@ -218,5 +253,5 @@ so the origin is known before the copy happens:
 
 - **改前先 `git pull`**：本 vault 可能同时有多个 Agent / 机器在改（2026-10-07 实测两个会话同改一个 skill，靠提交时撞在一起合并）。
 - 同一 skill 一次只允许一个会话改；改完立刻提交并推送，别留未提交改动过夜。
-- 改完要分发：vault → `~/.claude/skills`（副本）→ `~/.codex/skills`、`~/.kilo/skills`（副本）+ `~/.agents/skills`（**符号链接视图**，目标写 `/c/Users/<user>/.claude/skills/<name>`；`ln -s` 需 `MSYS=winsymlinks:nativestrict`，否则 MSYS 会静默变成复制）。
+- 改完要分发：**唯一实体写 `~/.claude/skills/<name>`**，另外三个目录只放 **junction**：`cmd /c mklink /J <link> <target>`（junction 不需要管理员权限；MSYS `ln -s` 在 Windows 上要 `MSYS=winsymlinks:nativestrict`，否则静默变成复制——所以统一用 `mklink /J`）。删 junction 用 `cmd /c rmdir <link>`（只删链接，不要 `Remove-Item -Recurse`）。
 - 分发后用 `diff -rq <vault>/<cat>/<skill> <home>/<skill>` 验证**逐字节一致**。
