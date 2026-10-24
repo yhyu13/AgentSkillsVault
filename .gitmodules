@@ -1,3 +1,75 @@
 [submodule "vendor/anthropics-skills"]
 	path = vendor/anthropics-skills
 	url = https://github.com/anthropics/skills.git
+[submodule "vendor/remotion-skills"]
+	path = vendor/remotion-skills
+	url = https://github.com/remotion-dev/skills.git
+[submodule "vendor/anidoodle"]
+	path = vendor/anidoodle
+	url = https://github.com/alexgreensh/anidoodle.git
+[submodule "vendor/guizang-product-video-skill"]
+	path = vendor/guizang-product-video-skill
+	url = https://github.com/op7418/guizang-product-video-skill.git
+[submodule "vendor/video-use"]
+	path = vendor/video-use
+	url = https://github.com/browser-use/video-use.git
+[submodule "vendor/make-interfaces-feel-better"]
+	path = vendor/make-interfaces-feel-better
+	url = https://github.com/jakubkrehel/make-interfaces-feel-better.git
+[submodule "vendor/tripo-skills"]
+	path = vendor/tripo-skills
+	url = https://github.com/meterlong/tripo-skills.git
+[submodule "vendor/onetake"]
+	path = vendor/onetake
+	url = https://github.com/feitangyuan/onetake.git
+[submodule "vendor/blender-mcp"]
+	path = vendor/blender-mcp
+	url = https://github.com/ahujasid/blender-mcp.git
+[submodule "vendor/tripo-3d-for-blender"]
+	path = vendor/tripo-3d-for-blender
+	url = https://github.com/Tripo-Developer/tripo-3d-for-blender.git
+[submodule "vendor/mengto-skills"]
+	path = vendor/mengto-skills
+	url = https://github.com/MengTo/Skills.git
+[submodule "vendor/unity-mcp"]
+	path = vendor/unity-mcp
+	url = https://github.com/CoplayDev/unity-mcp.git
+[submodule "vendor/ai-animation-skill"]
+	path = vendor/ai-animation-skill
+	url = https://github.com/Unclecheng-li/AI-Animation-Skill.git
+[submodule "vendor/opus55-3d-games"]
+	path = vendor/opus55-3d-games
+	url = https://github.com/yhyu13/opus55-3d-games.git
+[submodule "vendor/frontend-slides"]
+	path = vendor/frontend-slides
+	url = https://github.com/zarazhangrui/frontend-slides.git
+[submodule "vendor/generating-slides"]
+	path = vendor/generating-slides
+	url = https://github.com/whq217/generating-slides.git
+[submodule "vendor/html-ppt-skill"]
+	path = vendor/html-ppt-skill
+	url = https://github.com/lewislulu/html-ppt-skill.git
+[submodule "vendor/opus-video-prompts"]
+	path = vendor/opus-video-prompts
+	url = https://github.com/joeseesun/opus-video-prompts.git
+[submodule "vendor/opus5.5-video-prompts"]
+	path = vendor/opus5.5-video-prompts
+	url = https://github.com/Reger-c/opus5.5-video-prompts.git
+[submodule "vendor/opus-video-skills"]
+	path = vendor/opus-video-skills
+	url = https://github.com/tuzhechen2005/opus-video-skills.git
+[submodule "vendor/awesome-opus-5-5-videos"]
+	path = vendor/awesome-opus-5-5-videos
+	url = https://github.com/athemeroy/awesome-opus-5-5-videos.git
+[submodule "vendor/awesome-claude-video"]
+	path = vendor/awesome-claude-video
+	url = https://github.com/opusvideo/awesome-claude-video.git
+[submodule "vendor/awesome-opus-5.5-video"]
+	path = vendor/awesome-opus-5.5-video
+	url = https://github.com/zhuyansen/awesome-opus-5.5-video.git
+[submodule "vendor/awesome-claude-video-skills"]
+	path = vendor/awesome-claude-video-skills
+	url = https://github.com/zhuyansen/awesome-claude-video-skills.git
+[submodule "vendor/lemo-opuscar"]
+	path = vendor/lemo-opuscar
+	url = https://github.com/lemomo-ai/lemo-opuscar.git

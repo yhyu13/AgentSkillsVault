@@ -1,4 +1,4 @@
-# AgentSkillsVault
+﻿# AgentSkillsVault
 
 Personal vault of Agent skills sourced from local filesystem
 (not the hub). Skills are grouped by category; each category folder
@@ -17,7 +17,8 @@ AgentSkillsVault/
 ├── devops/                          ← orchestration, kanban, cron pipelines
 │   ├── kanban-orchestrator/
 │   ├── kanban-cron-overseer/
-│   └── cron-pipeline-state-machine/
+│   ├── cron-pipeline-state-machine/
+│   └── mock-devops-platform/        ← 模拟 DevOps 平台（部署/流水线/告警）场景数据
 ├── software-development/            ← code review, self-review, research analysis
 │   ├── aisides-ai-self-review/
 │   ├── debugger-persona/            ← debug diagnosis + Chinese doc writing + code discipline persona
@@ -46,6 +47,9 @@ AgentSkillsVault/
     ├── single-file-html-game/
     ├── technical-design-document/
     ├── three-pbr-workflow/
+    ├── ai-3d-toolchain/              ← Tripo + Blender CLI/MCP + Unity CLI/MCP + Auto-Rig Pro 环境搭建与自检
+    ├── ai-3d-scene-pipeline/         ← 概念多视角参考图 → 资产分流 → Tripo 道具 → 组装 → 多机位盲审
+    ├── ai-3d-character-pipeline/     ← T-pose 四视图 → Smart Mesh P2.0 → 绑骨蒙皮 → Mixamo → IK 精调
     └── webapp-testing/
 ├── math/                            ← rigorous math proof generation + adversarial audit
 │   └── rigorous-proof/
@@ -67,7 +71,12 @@ AgentSkillsVault/
     ├── lieflat-charts/              ← 数据可视化/报告生成（数据契约先行选图 + Lupi/Glance 双阅读速度 + Mono 语法 + 彩色系统 + 12 套中英报告模板）
     ├── agent-browser/               ← agent-browser CLI 浏览器自动化（social-push 依赖）
     ├── yu-hang-writing-style/       ← 俞航工程笔记文风（技术规划/排查笔记/进展周报/使用手册/测试说明，去 AI 味）
-    └── progress-doc-style/          ← 进度/OKR 跟踪文档文风（OKR 简述表 + 行动项七列表 + 状态三符号 + 备注一句话）
+    ├── progress-doc-style/          ← 进度/OKR 跟踪文档文风（OKR 简述表 + 行动项七列表 + 状态三符号 + 备注一句话）
+    ├── hyperframes/                 ← HTML 渲染成视频（渲染契约 / 工作流 / assets/frame-presets）
+    ├── hyperframes-cli/             ← `npx hyperframes` CLI（check / init / capture / usage）
+    ├── hyperframes-registry/        ← 450+ 现成 block / component 目录（查完再手写特效）
+    ├── hyperframes-video/           ← 视频交付路径（媒体/声音走 CLI 自带命令）
+    └── remotion-to-hyperframes/     ← Remotion 项目迁移到 HyperFrames（assets/ references/ scripts/）
 └── design/                          ← anti-slop 前端设计 taste（Leonxlnx/taste-skill 精选 7/13 + 本地 router）
     ├── taste-director/              ← 路由总纲：按意图分发到下面 7 个 + 共享 taste 契约
     ├── taste-frontend/              ← 旗舰 v2：读 brief → 推断设计语言 → 出不像模板的界面
@@ -77,11 +86,22 @@ AgentSkillsVault/
     ├── taste-imagegen-mobile/       ← 移动端 screen/flow 图
     ├── taste-brandkit/              ← 品牌 kit 板（logo/配色/字体/身份应用）
     ├── taste-stitch/                ← 给 Google Stitch 屏幕生成的语义 DESIGN.md 设计系统
-    └── anatomy/                     ← 等距 SVG 插图器：将想法做成"真实可工作的小机器"（40–300 件精密零件，4 色调光，分屏 SVG + WebGL + 3D），含 kit/references/scripts/examples（11.7 MB，wheresryan22/anatomy，MIT）
+    ├── anatomy/                     ← 等距 SVG 插图器：将想法做成"真实可工作的小机器"（40–300 件精密零件，4 色调光，分屏 SVG + WebGL + 3D），含 kit/references/scripts/examples（11.7 MB，wheresryan22/anatomy，MIT）
+    ├── frontend-slides/             ← HTML slide deck（bold-template-pack / STYLE_PRESETS / viewport-base.css）
+    ├── html-artifacts/              ← 自包含 HTML artifact（reference/ + scripts/）
+    ├── html-slides/                 ← HTML 幻灯片
+    ├── slideshow/                   ← 幻灯片编排
+    ├── ui-mockups/                  ← 产品 UI 截图级 mockup（浏览器窗口 chrome / 真实品牌图标）
+    ├── visual-explainer/            ← 可视化解释产物（commands/ kit/ mcp/ plan/ pptx/ video/ templates/）
+    └── web-prototype/               ← 网页原型（assets/ references/ example.html）
 ├── writing/                         ← 「换种形式让人看懂」工作流（不堆文字 / 画图 / 试出来 / 讲清楚）
 │   └── karpathy-explain-better/     ← Karpathy 4 法：简化文字(ASD-STE100) → 结构图 → 可交互网页 → 讲解视频；含判断清单与升级/降级信号
 └── vendor/                          ← 外部 repo 以 submodule 形式 vendored（不复制进分类目录）
-    └── anthropics-skills/           ← github.com/anthropics/skills（19 个官方 skill；pinned @ dbd4588）
+    ├── anthropics-skills/           ← github.com/anthropics/skills（19 个官方 skill；pinned @ dbd4588）
+    ├── tripo-skills/                ← github.com/meterlong/tripo-skills（Tripo 3D 生成 skill，装为 tripo-3d-generation）
+    ├── blender-mcp/                 ← github.com/ahujasid/blender-mcp（Blender MCP server + 插件）
+    ├── tripo-3d-for-blender/        ← github.com/Tripo-Developer/tripo-3d-for-blender（Tripo 官方 Blender 插件）
+    └── unity-mcp/                   ← github.com/CoplayDev/unity-mcp（MCP for Unity，MIT）
 ```
 
 ## User-level distribution（2026-10-24 起）
@@ -89,10 +109,10 @@ AgentSkillsVault/
 四个 harness 的用户级 skill 目录**只有一份实体**，其余全是 Windows junction 视图：
 
 ```
-~/.claude/skills/      ← 唯一实体（canonical store，143 个 skill）
-~/.kilo/skills/        ← 143 个 junction → ~/.claude/skills/<name>
-~/.codex/skills/       ← 143 个 junction → ~/.claude/skills/<name>
-~/.agents/skills/      ← 143 个 junction → ~/.claude/skills/<name>
+~/.claude/skills/      ← 唯一实体（canonical store，157 个 skill）
+~/.kilo/skills/        ← 157 个 junction → ~/.claude/skills/<name>
+~/.codex/skills/       ← 157 个 junction → ~/.claude/skills/<name>
+~/.agents/skills/      ← 157 个 junction → ~/.claude/skills/<name>
 ```
 
 - 好处：改一处四个 harness 同步生效；磁盘从 ~113 MB 降到 ~35 MB；不再有「哪个 harness 少装了几个 skill」的漂移。
@@ -135,6 +155,9 @@ AgentSkillsVault/
 | game-dev/single-file-html-game | game-dev | mini-browser-games style single-file HTML games + tier audit |
 | game-dev/technical-design-document | game-dev | TDD scaffold (engineering counterpart to GDD) |
 | game-dev/three-pbr-workflow | game-dev | token-friendly Three.js PBR scene scaffolding |
+| game-dev/ai-3d-toolchain | game-dev | Tripo + Blender CLI/MCP + Unity CLI/MCP + Auto-Rig Pro 环境搭建与自检（Windows 三道墙） |
+| game-dev/ai-3d-scene-pipeline | game-dev | 概念多视角参考图 → 资产分流(Tripo vs 代码) → Tripo 道具 → Blender/Unity 组装 → 独立 Agent 多机位盲审 |
+| game-dev/ai-3d-character-pipeline | game-dev | T-pose 四视图 → Tripo Smart Mesh P2.0 四边面 → 白模检查 → Auto-Rig Pro 绑骨蒙皮 → Mixamo 重定向 → IK 道具接触精调 |
 | game-dev/webapp-testing | game-dev | Playwright verification of running web game |
 | math/rigorous-proof | math | rigorous math proof generation + adversarial audit (theorem → complete proof → compilable LaTeX) |
 | management/manage-up-core | management | ManageUp 核心方法论（反空话五大原则：BLUF/数据锚定/So-What/行动导向/校准语言） |
@@ -175,6 +198,19 @@ AgentSkillsVault/
 | design/taste-director | design | router 总纲：按意图分发到 7 个 taste-* 子技能 + 共享 anti-slop taste 契约 |
 | design/anatomy | design | 等距 SVG 插图器：将想法做成"真实可工作的小机器"（40–300 件精密零件，4 色调光，分屏 SVG + WebGL + 3D），含 kit/references/scripts/examples（11.7 MB，wheresryan22/anatomy，MIT） |
 | writing/karpathy-explain-better | writing | Karpathy 4 法：别再说「再解释一遍」——把答案换成简化文字 / 结构图 / 可交互网页 / 讲解视频。SKILL.md + references/modes.md（含每种形式的提示词模板、判断清单、决策树） |
+| design/frontend-slides | design | HTML slide deck 生成（bold-template-pack / STYLE_PRESETS / viewport-base.css） |
+| design/html-artifacts | design | 自包含 HTML artifact 生成（reference/ + scripts/） |
+| design/html-slides | design | HTML 幻灯片生成 |
+| design/slideshow | design | 幻灯片编排 |
+| design/ui-mockups | design | 产品 UI 截图级 mockup（浏览器/app 窗口、仪表盘、编辑器） |
+| design/visual-explainer | design | 可视化解释产物（commands/ kit/ mcp/ plan/ pptx/ video/ templates/） |
+| design/web-prototype | design | 网页原型（assets/ references/ example.html） |
+| content/hyperframes | content | HTML → 视频渲染契约与工作流（渲染逐帧确定性） |
+| content/hyperframes-cli | content | `npx hyperframes` 命令行：check / init / capture / usage |
+| content/hyperframes-registry | content | 450+ 现成 block / component 目录，手写特效前先查 |
+| content/hyperframes-video | content | 视频交付路径；媒体与声音走 CLI 自带命令 |
+| content/remotion-to-hyperframes | content | Remotion 项目迁移到 HyperFrames |
+| devops/mock-devops-platform | devops | 模拟 DevOps 平台（部署/流水线/告警）场景数据 |
 
 ## 评分（0 / 10 / 20）
 

@@ -37,6 +37,11 @@
 | style-cn-tech-deep-dive | local (distilled) | iTech @ cnblogs.com/p/23085057 — ZCode 争议 + 开源复盘长文；提炼 10 个指纹（戏剧钩子 / 第 N 层 / 平心而论反转 / 逆向数字 / N 条死线 / 冒号双行标题 / 立场标 / 收尾三段 / 圈层黑话 / 信息差诚实声明）+ 6 节级结构模板 + 句式库。原文全文存 `content/style-cn-tech-deep-dive/references/source-zcode-article.md`（95 行）作为风格 ground truth |
 | lieflat-charts | repo (vendored) | `github.com/larashero3-dotcom/lieflat-charts` — cloned into `content/lieflat-charts`; vendored payload = SKILL.md + catalog.md + report-catalog.md + mono-tokens.js + color-presets.js + templates/ + scripts/ + examples/ + LICENSE. **跳过 `docs/assets/`**（38M README 预览图，可从源码仓库恢复）；PolyForm Noncommercial License. Skill 为「图表品味法典」：数据契约先行选图 + 一张图一个结论 + Lupi/Glance 双阅读速度 + Mono 视觉语法 + 彩色系统 + 12 套中英报告模板 |
 | yu-hang-writing-style | local | 俞航本人工程笔记文风（技术规划 / 排查笔记 / 进展周报 / 使用手册 / 测试说明；去 AI 味 + AI 爱用词替换表）。原始副本维护在 `~/.agents/skills/yu-hang-writing-style`，同步复制到 vault |
+| hyperframes | sibling (+ upstream assets) | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes` — HTML 渲染成视频（渲染契约 / 工作流）。vault 副本 = FDE 版本 ∪ 用户级已装的 `assets/frame-presets/*`（48 文件），故为超集，不会被 `/MIR` 删掉 |
+| hyperframes-cli | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-cli` — `npx hyperframes` 命令行（check / init / capture / usage） |
+| hyperframes-registry | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-registry` — 450+ 现成 block / component 目录（examples/ references/） |
+| hyperframes-video | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-video` — 视频交付路径；`/media-use`、`/figma` 两个 skill 未安装，原因与替代见本 skill 内文 |
+| remotion-to-hyperframes | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\remotion-to-hyperframes` — Remotion 项目迁移到 HyperFrames（assets/ references/ scripts/） |
 | progress-doc-style | local (imported) | 用户提供：`C:\Users\1\Downloads\progress-doc-style`（源自《性能跟踪分析平台进度》，纯写作风格与结构范式，不绑定具体项目）。进度/OKR 跟踪文档：OKR 简述表 + 分目标章节 + 行动项七列表 + 状态三符号 + 备注一句话 + 附背景。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 
 ### design/
@@ -50,6 +55,13 @@
 | taste-brandkit | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\brandkit` (GitHub: Leonxlnx/taste-skill) |
 | taste-stitch | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\stitch-skill` (GitHub: Leonxlnx/taste-skill) — original install name `stitch-design-taste` |
 | taste-director | local (distilled) | written — router/composer over the 7 taste-* skills (dispatch by intent + shared taste contract) |
+| frontend-slides | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\frontend-slides` — slide-deck HTML（bold-template-pack / STYLE_PRESETS / viewport-base.css） |
+| html-artifacts | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\html-artifacts` — 自包含 HTML artifact（reference/ + scripts/，Apache-2.0） |
+| html-slides | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\html-slides` |
+| slideshow | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\slideshow` |
+| ui-mockups | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\ui-mockups` — 产品 UI 截图级 mockup（浏览器窗口 chrome / 真实品牌图标） |
+| visual-explainer | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\visual-explainer` — 可视化解释产物（commands/ kit/ mcp/ plan/ pptx/ video/ templates/ + extension.ts） |
+| web-prototype | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\web-prototype` — 网页原型（assets/ references/ example.html） |
 
 > Skipped 6 of the repo's 13 skills as redundant/niche: `taste-skill-v1` (superseded by v2), `gpt-tasteskill` (stricter GPT/Codex variant, subsumed by v2), `soft-skill` / `minimalist-skill` / `brutalist-skill` (fixed style presets — v2 infers the design language from the brief), `image-to-code-skill` (pipeline = imagegen-web + taste-frontend). All recoverable from the sibling clone.
 
@@ -59,6 +71,7 @@
 | kanban-orchestrator | local (mirrored) | Hermes agent — `~/AppData/Local/hermes/skills/devops/` |
 | kanban-cron-overseer | local (mirrored) | Hermes agent — `~/AppData/Local/hermes/skills/devops/` |
 | cron-pipeline-state-machine | local | reference pattern doc (no upstream) |
+| mock-devops-platform | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\mock-devops-platform` — 模拟 DevOps 平台（部署/流水线/告警）场景数据 |
 
 ### FDE/
 | skill | origin | source |
@@ -84,6 +97,9 @@
 | ue-renderdoc-auto-capture | local | from `~/.kilo/skills` (Kilo Code agent output; RenderDoc/rdc-cli) |
 | webapp-testing | repo | `github.com/ComposioHQ/awesome-claude-skills` |
 | game-dev-loop | local | written — orchestrator over the 14 game-dev skills (classify → GDD/TDD → scaffold → implement → test/debug → quality → guide → memory) |
+| ai-3d-toolchain | local (distilled) | 提炼自 `ooo.run/post/how-to-use-ai-build-3d-games.html`（作者 @Saccc_c）+ 本机 Blender 5.2.2 / blender_mcp 实测：Tripo + Blender CLI/MCP + Unity CLI/MCP + Auto-Rig Pro 组件清单与验收门槛；**Windows 三道墙**（`curl \| sh` 只支持 macOS/Linux、GBK 崩在 emoji 且副作用已发生、Blender 5.x legacy 插件注册姿势） |
+| ai-3d-scene-pipeline | local (distilled) | 同上文章的场景段：概念多视角参考图 → 资产分流（Tripo 生成 vs Blender 代码搭建，判据"能否参数化"）→ Tripo 高精度道具 → Blender/Unity 组装 → **独立审查 Agent 多机位盲审**迭代。原文提示词存 `references/prompts.md`，机位表与差异清单格式存 `references/review-loop.md` |
+| ai-3d-character-pipeline | local (distilled) | 同上文章的角色段：T-pose 四视图 → Tripo Smart Mesh P2.0（四边面 + 最高精度）→ 白模检查（Texture / Edit Mesh 分支）→ Auto-Rig Pro 绑骨蒙皮 + 三项动作测试 → Mixamo 动作获取与重定向 → IK 手部/道具接触精调。原文提示词存 `references/prompts.md` |
 
 ### management/
 | skill | origin | source |
@@ -132,6 +148,10 @@
 | skill | origin | source |
 |-------|--------|--------|
 | anthropics-skills (19 upstream) | repo (submodule) | `github.com/anthropics/skills` pinned @ `dbd4588f9e1033efb41dad4bef2f7947c8993d44` — submodule 路径 `vendor/anthropics-skills`，**不复制进分类目录**；用户级分发时从 `vendor/anthropics-skills/skills/<name>` 取 |
+| tripo-skills (`tripo-3d-generation`) | repo (submodule) | `github.com/meterlong/tripo-skills` @ `ce707a6` — submodule 路径 `vendor/tripo-skills`；上游 SKILL.md 在仓库根，用户级实体装到 `~/.claude/skills/tripo-3d-generation`（**不复制进 game-dev/**，分发时从 `vendor/tripo-skills` 取） |
+| blender-mcp | repo (submodule) | `github.com/ahujasid/blender-mcp` @ `febcd90` — submodule 路径 `vendor/blender-mcp`（MCP server + Blender 插件源码；安装陷阱见 `game-dev/ai-3d-toolchain`） |
+| tripo-3d-for-blender | repo (submodule) | `github.com/Tripo-Developer/tripo-3d-for-blender` @ `d65412f` — submodule 路径 `vendor/tripo-3d-for-blender`（Tripo 官方 Blender 插件，MIT） |
+| unity-mcp | repo (submodule) | `github.com/CoplayDev/unity-mcp` @ `ed4e205` — submodule 路径 `vendor/unity-mcp`（MCP for Unity，MIT；官方 Unity MCP 走 Unity 6.3 `com.unity.ai.assistant` 包） |
 
 **anthropic 集的取舍（2026-10-24）**
 
