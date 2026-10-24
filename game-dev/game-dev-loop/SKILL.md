@@ -26,7 +26,7 @@ game idea → GDD/TDD → engine+template → implement → test/debug → quali
 ## The loop
 
 1. **Persist the goal.** Capture the objective once; keep it intact for the whole run. (`goal-persistence`)
-2. **Classify the idea.** Pick the archetype and the right engine/template before writing anything. A mismatched engine is the most expensive mistake. (`game-archetype-classifier` from opengame-harness, or reason inline for non-2D ideas.)
+2. **Classify the idea.** Pick the archetype and the right engine/template before writing anything. A mismatched engine is the most expensive mistake. (`game-archetype-classifier`, or reason inline for non-2D ideas.)
 3. **Write GDD + TDD.** Game Design Document first, then the Technical Design Document that makes each GDD section a buildable contract. (`gdd-markdown-template`, `technical-design-document`)
 4. **Scaffold.** Pick the engine/template and get a runnable skeleton before adding features:
    - 2D Phaser → `phaser-gamedev`
@@ -42,6 +42,12 @@ game idea → GDD/TDD → engine+template → implement → test/debug → quali
 
 **Loop back:** a failing test, an unmet goal, or a quality shortfall returns to the plan (step 3), not straight to more code.
 
+**2D / template-based variant:** for a 2D template project, `game-dev-agent-workflow` is the
+concrete phase script for steps 2–6 (classify → scaffold → design → assets → config/registration →
+implement → verify). Use it instead of re-deriving those phases; `game-template` /
+`game-template-engineering` cover scaffolding and the KEEP/COPY hook discipline,
+`game-debug` the living debug protocol, `game-build-verification` the pre-ship checklist.
+
 ## Pillars → skills
 
 | Pillar | Skill | Contribution |
@@ -49,7 +55,7 @@ game idea → GDD/TDD → engine+template → implement → test/debug → quali
 | Goal | `goal-persistence` | durable objective, anti-drift steering, completion audit |
 | Design — GDD | `gdd-markdown-template` | 13-section design doc |
 | Design — TDD | `technical-design-document` | engineering spec that complements the GDD |
-| Classify | `game-archetype-classifier` (opengame-harness) | physics-first archetype before scaffolding |
+| Classify | `game-archetype-classifier` | physics-first archetype before scaffolding |
 | Build — Phaser | `phaser-gamedev` | 2D scenes, sprites, physics, tilemaps |
 | Build — single-file | `single-file-html-game` | zero-dep HTML, tiered against GAME_TIERS.json |
 | Build — swarm | `kimi3-game-gen` | DDD + parallel coder agents, no asset files |

@@ -93,12 +93,13 @@
 | planetscale/* (15) | repo (submodule) | `github.com/planetscale/skills` @ `999045c` (MIT) — 变更门禁 / 只读盘点 / Vitess 安全评审 / schema 建议循环 |
 | dynatrace/* (11) | repo (submodule) | `github.com/Dynatrace/dynatrace-for-ai` @ `4f9aa71` (Apache-2.0) — DQL / 日志 / 链路 / 服务 / 成本 / 安全洞察；只装 11 个，平台专属的（aws/azure/gcp/mobile…）留 vendor |
 
-### FDE/
+### FDE/ — 个人学习库（learning-vault 流程）+ FDE 领域语料
 | skill | origin | source |
 |-------|--------|--------|
-| book-chapter-to-vault | local | distilled from an FDE book (ch2–4) |
-| analysis-to-vault | local | distilled from a deep-analysis FDE article |
-| investment-masters | repo (submodule) | `github.com/AlphaGBM/investment-masters` @ `b1a304f` (MIT) — 上游根即 skill（`masters/` 目录 + `catalog.json`）：投研大师方法蒸馏，含证据边界规则 |
+| book-chapter-to-vault | local | distilled from an FDE book (ch2–4)；模板本身 domain-agnostic，FDE 只是 worked example |
+| analysis-to-vault | local | distilled from a deep-analysis FDE article；同上，FDE 语料在 `examples/` |
+
+> 本目录不再放 `investment-masters`：它与 FDE 无关（AlphaGBM 投研大师包），已移出，源在 `vendor/investment-masters`（submodule @ `b1a304f`）。
 
 ### game-dev/
 | skill | origin | source |
@@ -124,6 +125,30 @@
 | ai-3d-toolchain | local (distilled) | 提炼自 `ooo.run/post/how-to-use-ai-build-3d-games.html`（作者 @Saccc_c）+ 本机 Blender 5.2.2 / blender_mcp 实测：Tripo + Blender CLI/MCP + Unity CLI/MCP + Auto-Rig Pro 组件清单与验收门槛；**Windows 三道墙**（`curl \| sh` 只支持 macOS/Linux、GBK 崩在 emoji 且副作用已发生、Blender 5.x legacy 插件注册姿势） |
 | ai-3d-scene-pipeline | local (distilled) | 同上文章的场景段：概念多视角参考图 → 资产分流（Tripo 生成 vs Blender 代码搭建，判据"能否参数化"）→ Tripo 高精度道具 → Blender/Unity 组装 → **独立审查 Agent 多机位盲审**迭代。原文提示词存 `references/prompts.md`，机位表与差异清单格式存 `references/review-loop.md` |
 | ai-3d-character-pipeline | local (distilled) | 同上文章的角色段：T-pose 四视图 → Tripo Smart Mesh P2.0（四边面 + 最高精度）→ 白模检查（Texture / Edit Mesh 分支）→ Auto-Rig Pro 绑骨蒙皮 + 三项动作测试 → Mixamo 动作获取与重定向 → IK 手部/道具接触精调。原文提示词存 `references/prompts.md` |
+| game-archetype-classifier | local (distilled) | OpenGame TS monorepo — 物理态优先的 2D 原型分类（不按题材名分类） |
+| game-asset-art-direction | local (distilled) | OpenGame TS monorepo — 2D 资产/动画/音频提示词与跨文件 key 一致性 |
+| game-build-verification | local (distilled) | OpenGame TS monorepo — 发版前静态检查 + build→test→visual 顺序 + 禁止操作表 |
+| game-debug | local (distilled) | OpenGame TS monorepo `agent-test/debug-skill` — 常驻 debug protocol（签名/成因/已验证修复） |
+| game-dev-agent-workflow | local (distilled) | OpenGame TS monorepo — 2D 模板项目的 7 阶段自主开发流程（`game-dev-loop` 的 2D 具体化） |
+| game-gdd-writing | local (distilled) | OpenGame TS monorepo — 每节都是下游构建契约的 GDD 写法（与 `gdd-markdown-template` 互补） |
+| game-grid-logic | local (distilled) | OpenGame TS monorepo — 离散网格游戏子类型判别与关卡/难度设计 |
+| game-platformer | local (distilled) | OpenGame TS monorepo — 横版重力游戏的移动/战斗/终极技能/敌人 AI |
+| game-template | local (distilled) | OpenGame TS monorepo `agent-test/template-skill` — meta-template 与物理态家族演化、稳定性指标 |
+| game-template-engineering | local (distilled) | OpenGame TS monorepo — KEEP/COPY/REFERENCE/UPDATE 四种操作纪律与 hook 模式 |
+| game-top-down-action | local (distilled) | OpenGame TS monorepo — 俯视动作游戏的 tilemap/arena 子模式与 8 向移动 |
+| game-tower-defense | local (distilled) | OpenGame TS monorepo — 塔防核心循环、路径/波次/经济设计 |
+| game-ui-heavy-narrative | local (distilled) | OpenGame TS monorepo — UI 驱动型游戏（视觉小说/卡牌/问答）的场景流模式 |
+
+> **合并记录（2026-10-24）：** 原 `opengame-harness/` 分类（14 个 skill）已并入 `game-dev/`。
+> 该分类本身不是 skill、也不构成任何运行时依赖——13 个 skill 均为自包含方法论文档，可单独安装使用。
+> 第 14 个 `game-skill` 是唯一绑定 OpenGame 仓库路径（`agent-test/template-skill`、`agent-test/debug-skill`）的，
+> 而该仓库不在 `D:\GitRepo-AI` 下，其 `cd agent-test/...` 命令永远无法执行，且内容已被
+> `game-template` + `game-debug` + `game-build-verification` 覆盖 → 已归档至 `archived/game-skill/` 并从各 harness 安装目录卸载。
+
+### archived/
+| skill | origin | source |
+|-------|--------|--------|
+| game-skill | local (distilled) | OpenGame TS monorepo `agent-test/template-skill` + `agent-test/debug-skill` 的说明书。**已退役**：仓库不在本机、命令路径失效、方法论已被 `game-template` / `game-debug` / `game-build-verification` 覆盖。仅作出处存档，不再安装 |
 
 ### management/
 | skill | origin | source |
@@ -146,11 +171,6 @@
 | skill | origin | source |
 |-------|--------|--------|
 | 19 kept (engineering 17 + productivity grilling/handoff) | repo | matt-pocock skills collection — 16 trimmed (in-progress/ + misc/ + productivity aliases/non-dev + grill-with-docs)，recoverable via `npx skills add matt-pocock` |
-
-### opengame-harness/
-| skill | origin | source |
-|-------|--------|--------|
-| all 14 (game-skill, game-template, game-debug, game-gdd-writing, game-*-genre, …) | local (distilled) | an **OpenGame** TS monorepo (`agent-test/template-skill`, `agent-test/debug-skill`, `packages/core/src/skills`) — source repo is NOT under `D:\GitRepo-AI` |
 
 ### software-development/
 | skill | origin | source |
@@ -254,7 +274,7 @@
 | `vendor/skillopt` | microsoft/SkillOpt | 84b36cd | MIT | 装 software-development/skillopt-sleep |
 | `vendor/distilly` | titanwings/distilly | 0afc45c | MIT | 装 software-development/distilly |
 | `vendor/agentskills-spec` | agentskills/agentskills | 69ef37e | Apache-2.0 | **只 vendor**：skill 格式规范，无 SKILL.md |
-| `vendor/investment-masters` | AlphaGBM/investment-masters | b1a304f | MIT | 装 FDE/investment-masters |
+| `vendor/investment-masters` | AlphaGBM/investment-masters | b1a304f | MIT | **只 vendor**（投研主题，与 FDE 无关；不再复制进分类目录） |
 | `vendor/company-brain` | nemock/company-brain | c82e2de | MIT | **只 vendor**：`derived_from` 边 + 置信度半衰期是设计模式 |
 | `vendor/claude-code-video-toolkit` | digitalsamba/claude-code-video-toolkit | da3f474 | MIT | 装 video/ 11 个 |
 | `vendor/video-shotcraft` | Vincentwei1021/video-shotcraft | 43bd349 | Apache-2.0 | 装 video/video-shotcraft |

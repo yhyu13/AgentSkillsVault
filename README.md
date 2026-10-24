@@ -40,10 +40,9 @@ AgentSkillsVault/
 │   ├── skillopt-sleep/              ← Microsoft SkillOpt：让 agent 自我优化 skill
 │   ├── distilly/                    ← Work + Persona 分离的蒸馏流程
 │   └── journey/                     ← two-column ME/YOU project history + vibe-coding lessons
-├── FDE/                             ← Forward Deployed Engineer / personal knowledge workflows
-│   ├── book-chapter-to-vault/       ← .docx book chapter → learning notes + cheatsheet + kanban + mindmap
-│   ├── analysis-to-vault/           ← long-form analytical article → thesis + argument map + cheatsheet + day-job notes
-│   └── investment-masters/          ← 投研大师方法蒸馏（含证据边界规则）
+├── FDE/                             ← 个人学习库（learning-vault 流程）+ FDE 领域语料
+│   ├── book-chapter-to-vault/       ← .docx book chapter → learning notes + cheatsheet + kanban + mindmap（模板 domain-agnostic）
+│   └── analysis-to-vault/           ← long-form analytical article → thesis + argument map + cheatsheet + day-job notes（同上）
 ├── game-dev/                        ← game design + 3D/web game tooling
     ├── game-dev-loop/               ← orchestrator: classify → GDD/TDD → scaffold → implement → test/debug → quality → guide → memory
     ├── cat-game-architecture/
@@ -63,6 +62,19 @@ AgentSkillsVault/
     ├── ai-3d-toolchain/              ← Tripo + Blender CLI/MCP + Unity CLI/MCP + Auto-Rig Pro 环境搭建与自检
     ├── ai-3d-scene-pipeline/         ← 概念多视角参考图 → 资产分流 → Tripo 道具 → 组装 → 多机位盲审
     ├── ai-3d-character-pipeline/     ← T-pose 四视图 → Smart Mesh P2.0 → 绑骨蒙皮 → Mixamo → IK 精调
+    ├── game-archetype-classifier/    ← 物理态优先的 2D 原型分类
+    ├── game-dev-agent-workflow/      ← 2D 模板项目 7 阶段自主开发流程
+    ├── game-gdd-writing/             ← GDD 每节 = 下游构建契约
+    ├── game-template/                ← meta-template 与物理态家族演化
+    ├── game-template-engineering/    ← KEEP/COPY/REFERENCE/UPDATE 操作纪律
+    ├── game-debug/                   ← 常驻 debug protocol（签名→成因→已验证修复）
+    ├── game-build-verification/      ← 发版前静态检查 + build→test→visual
+    ├── game-asset-art-direction/     ← 2D 资产/动画/音频提示词与 key 一致性
+    ├── game-grid-logic/              ← 离散网格（解谜/肉鸽/战棋/消除）
+    ├── game-platformer/              ← 横版重力（移动/战斗/终极技能）
+    ├── game-top-down-action/         ← 俯视动作（tilemap / arena）
+    ├── game-tower-defense/           ← 塔防（路径/波次/经济）
+    ├── game-ui-heavy-narrative/      ← UI 驱动（视觉小说/卡牌/问答）
     └── webapp-testing/
 ├── math/                            ← rigorous math proof generation + adversarial audit
 │   └── rigorous-proof/
@@ -212,8 +224,8 @@ AgentSkillsVault/
 | software-development/prompt-pro | software-development | 把粗请求改写成可执行提纲（目标/验收/范围/约束/输出 5 槽位）；先 grounding 再落笔；提纲不单独成篇 |
 | software-development/skill-distill | software-development | 会后沉淀流水线：四道闸（可复用/有判断/有证据/有边界）+ 粒度 + 归属 + 三段式写法 + 防重复防膨胀 + PR 流程 + 自检清单 |
 | software-development/perf-tracking-platform | software-development | XD 游戏引擎性能跟踪分析平台：OKR/进度快照、指标口径（帧时间 P95/P99、卡顿率、长卡顿、低于 54fps 战斗场数、45 分钟温度曲线、loading）、瓶颈判定（GPU busy% vs gt/rt/gpu 取最大；CPU 拆模块、GPU 拆 pass）、看板地址与报告要求 |
-| FDE/book-chapter-to-vault | FDE | .docx book chapter → learning notes + cheatsheet + kanban + mindmap |
-| FDE/analysis-to-vault | FDE | long-form analytical article → thesis + argument map + day-job notes |
+| FDE/book-chapter-to-vault | FDE | .docx book chapter → learning notes + cheatsheet + kanban + mindmap（流程 domain-agnostic，FDE 语料见 `examples/`） |
+| FDE/analysis-to-vault | FDE | long-form analytical article → thesis + argument map + day-job notes（同上） |
 | game-dev/cat-game-architecture | game-dev | C.A.T / GDC 2026 AI-driven 3D game refactor |
 | game-dev/game-dev-loop | game-dev | orchestrator: classify → GDD/TDD → scaffold → implement → test/debug → quality → guide → memory |
 | game-dev/guide-from-probes | game-dev | deterministic E2E probes (assertions = ground truth) → human-readable playthrough guide |
@@ -325,7 +337,7 @@ AgentSkillsVault/
 | software-development/skill-inspector | software-development | 装第三方 skill 前的注入/外泄/供应链扫描闸（NVIDIA SkillSpector，Apache-2.0） |
 | software-development/skillopt-sleep | software-development | 让 agent 自我优化 skill（Microsoft SkillOpt，MIT） |
 | software-development/distilly | software-development | Work + Persona 分离的蒸馏流程（titanwings/distilly，MIT） |
-| FDE/investment-masters | FDE | 投研大师方法蒸馏，含证据边界规则（AlphaGBM/investment-masters，MIT） |
+| vendor/investment-masters | vendor | 投研大师方法蒸馏，含证据边界规则（AlphaGBM/investment-masters，MIT）— 投研主题，与 FDE 无关，**只 vendor，不装进分类目录** |
 | video/video-shotcraft | video | 152 张 shot recipe 卡片（构图/运镜/节奏）（Vincentwei1021/video-shotcraft，Apache-2.0） |
 | video/ffmpeg / moviepy / elevenlabs / acestep / ltx2 / ideogram4 / qwen-edit / runpod / playwright-recording / synthetic-ui-demo / video_toolkit | video | 素材生成与加工全链路（digitalsamba/claude-code-video-toolkit，MIT） |
 
@@ -351,8 +363,8 @@ AgentSkillsVault/
 | `cat-game-architecture` | game-dev | GDC 2026 C.A.T 提炼成可 grep 验证的规则 |
 | `guide-from-probes` | game-dev | 断言而非像素才是 ground truth |
 | `intro-scene-until-perfect` | game-dev | 单场景打磨的 scope 纪律 |
-| `game-template` | opengame-harness | 物理态家族演化 + 稳定性指标 |
-| `game-template-engineering` | opengame-harness | KEEP/COPY hook 纪律 + 反幻觉规则 |
+| `game-template` | game-dev | 物理态家族演化 + 稳定性指标 |
+| `game-template-engineering` | game-dev | KEEP/COPY hook 纪律 + 反幻觉规则 |
 
 ### 10 分 · 专业（81 个）
 
