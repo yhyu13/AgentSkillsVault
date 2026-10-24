@@ -94,6 +94,9 @@
 | single-file-html-game | local | written — `mini-browser-games` convention + tier audit |
 | technical-design-document | repo | `github.com/Siitoo/Technical-Design-Document` |
 | three-pbr-workflow | repo | `github.com/vibe-stack/ggez` |
+| procedural-3d-scenes | repo (submodule) | `github.com/yhyu13/opus55-3d-games` @ `05966a9` — 上游 `.claude/skills/procedural-3d-scenes`（v1.0.1）：编排「白膜 → 全程序化」两条交付路径，必选其一，Clay 优先；已复制进 `game-dev/procedural-3d-scenes` |
+| three-clay-scenes | repo (submodule) | `github.com/yhyu13/opus55-3d-games` @ `05966a9` — 上游 `.claude/skills/three-clay-scenes`（v1.0.1）：白膜/单色/无贴图的第一版交付；已复制进 `game-dev/three-clay-scenes` |
+| three-procedural-scenes | repo (submodule) | `github.com/yhyu13/opus55-3d-games` @ `05966a9` — 上游 `.claude/skills/three-procedural-scenes`（v1.0.1）：代码生成几何/材质/贴图/环境的完整版本；已复制进 `game-dev/three-procedural-scenes` |
 | ue4-shader-debug | local | written (UE4 shader compile debugging) |
 | ue-renderdoc-auto-capture | local | from `~/.kilo/skills` (Kilo Code agent output; RenderDoc/rdc-cli) |
 | webapp-testing | repo | `github.com/ComposioHQ/awesome-claude-skills` |
@@ -189,7 +192,7 @@
 | opus-video-prompts | repo (submodule) | `github.com/joeseesun/opus-video-prompts` @ `7977c80` — `vendor/opus-video-prompts`（提示词库，无 SKILL.md）；已包一层装成 `video/opus-video-prompts` |
 | opus5.5-video-prompts | repo (submodule) | `github.com/Reger-c/opus5.5-video-prompts` @ `7977c80` — 与 `joeseesun/opus-video-prompts` **同一 commit**（`cases.json` 逐字节相同，镜像仓）；不重复安装 |
 | opus-video-skills | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — `vendor/opus-video-skills`，上游 `skills/kinetic-reel` + `skills/painted-animation`；已复制进 `video/` |
-| opus55-3d-games | repo (submodule) | `github.com/yhyu13/opus55-3d-games` @ `a528d4c` — 本仓自有 repo（3 个 three.js skill + 3 个游戏 + site）；其 `.claude/skills/{procedural-3d-scenes,three-clay-scenes,three-procedural-scenes}` 是 **v1.0.0**，用户级已装的是 **v1.0.1**（更新、含 `source-of-truth` 元数据）→ **不覆盖**，只 vendor |
+| opus55-3d-games | repo (submodule) | `github.com/yhyu13/opus55-3d-games` @ `05966a9` — 本仓自有 repo（3 个 three.js skill + 3 个游戏 + site）；上游 `.claude/skills/{procedural-3d-scenes,three-clay-scenes,three-procedural-scenes}` 已是 **v1.0.1**（commit `05966a9` "Harden procedural scene skill guidance"），与用户级已装内容一致 → 已按 submodule 更新指针，并把三个 skill 复制进 `game-dev/`，用户级实体随之刷新为**逐字节一致** |
 
 **anthropic 集的取舍（2026-10-24）**
 

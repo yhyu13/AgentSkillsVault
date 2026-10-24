@@ -47,6 +47,9 @@ AgentSkillsVault/
     ├── single-file-html-game/
     ├── technical-design-document/
     ├── three-pbr-workflow/
+    ├── procedural-3d-scenes/          ← 白膜 → 全程序化两条交付路径的编排（opus55-3d-games）
+    ├── three-clay-scenes/             ← 白膜 / 单色 / 无贴图的第一版交付（opus55-3d-games）
+    ├── three-procedural-scenes/       ← 代码生成几何 / 材质 / 贴图 / 环境（opus55-3d-games）
     ├── ai-3d-toolchain/              ← Tripo + Blender CLI/MCP + Unity CLI/MCP + Auto-Rig Pro 环境搭建与自检
     ├── ai-3d-scene-pipeline/         ← 概念多视角参考图 → 资产分流 → Tripo 道具 → 组装 → 多机位盲审
     ├── ai-3d-character-pipeline/     ← T-pose 四视图 → Smart Mesh P2.0 → 绑骨蒙皮 → Mixamo → IK 精调
@@ -132,10 +135,10 @@ AgentSkillsVault/
 四个 harness 的用户级 skill 目录**只有一份实体**，其余全是 Windows junction 视图：
 
 ```
-~/.claude/skills/      ← 唯一实体（canonical store，161 个 skill）
-~/.kilo/skills/        ← 161 个 junction → ~/.claude/skills/<name>
-~/.codex/skills/       ← 161 个 junction → ~/.claude/skills/<name>
-~/.agents/skills/      ← 161 个 junction → ~/.claude/skills/<name>
+~/.claude/skills/      ← 唯一实体（canonical store，210 个 skill）
+~/.kilo/skills/        ← 210 个 junction → ~/.claude/skills/<name>
+~/.codex/skills/       ← 210 个 junction → ~/.claude/skills/<name>
+~/.agents/skills/      ← 210 个 junction → ~/.claude/skills/<name>
 ```
 
 - 好处：改一处四个 harness 同步生效；磁盘从 ~113 MB 降到 ~35 MB；不再有「哪个 harness 少装了几个 skill」的漂移。
@@ -145,7 +148,8 @@ AgentSkillsVault/
 - 上游 19 个里的其余 12 个（`academy-guide` `algorithmic-art` `canvas-design` `claude-api` `discernment-nudge` `docx` `mcp-builder` `pdf` `pptx` `slack-gif-creator` `web-artifacts-builder` `xlsx`）照装，源在 `vendor/anthropics-skills/`。
 - 第二批（`vendor/` 下 8 个新 submodule）只装 4 个：`html-ppt`（design）、`kinetic-reel` / `painted-animation` / `opus-video-prompts`（video）；
   `ai-animation-skill`（科普→HTML 演示）、`generating-slides`（`frontend-slides` 的二次开发版）**只 vendor 不装**——与已装的 `frontend-slides` / `html-ppt` 重叠；
-  `opus5.5-video-prompts` 与 `opus-video-prompts` 是同一 commit 的镜像，不重复装；`opus55-3d-games` 里那 3 个 three.js skill 是 v1.0.0，比用户级已装的 v1.0.1 旧，不覆盖。
+  `opus5.5-video-prompts` 与 `opus-video-prompts` 是同一 commit 的镜像，不重复装；
+  `opus55-3d-games` 的 submodule 指针已更新到 `05966a9`，其中 3 个 three.js skill（`procedural-3d-scenes` / `three-clay-scenes` / `three-procedural-scenes`，v1.0.1）已复制进 `game-dev/` 并刷新用户级实体——三处（submodule / vault / 用户级）逐字节一致。
 
 ## Skills
 
@@ -181,6 +185,9 @@ AgentSkillsVault/
 | game-dev/single-file-html-game | game-dev | mini-browser-games style single-file HTML games + tier audit |
 | game-dev/technical-design-document | game-dev | TDD scaffold (engineering counterpart to GDD) |
 | game-dev/three-pbr-workflow | game-dev | token-friendly Three.js PBR scene scaffolding |
+| game-dev/procedural-3d-scenes | game-dev | 编排「白膜 → 全程序化」两条交付路径，必选其一、Clay 优先（opus55-3d-games） |
+| game-dev/three-clay-scenes | game-dev | 白膜 / 单色 / 无贴图的第一版 3D 交付（opus55-3d-games） |
+| game-dev/three-procedural-scenes | game-dev | 代码生成几何 / 材质 / 贴图 / 环境的完整 3D 交付（opus55-3d-games） |
 | game-dev/ai-3d-toolchain | game-dev | Tripo + Blender CLI/MCP + Unity CLI/MCP + Auto-Rig Pro 环境搭建与自检（Windows 三道墙） |
 | game-dev/ai-3d-scene-pipeline | game-dev | 概念多视角参考图 → 资产分流(Tripo vs 代码) → Tripo 道具 → Blender/Unity 组装 → 独立 Agent 多机位盲审 |
 | game-dev/ai-3d-character-pipeline | game-dev | T-pose 四视图 → Tripo Smart Mesh P2.0 四边面 → 白模检查 → Auto-Rig Pro 绑骨蒙皮 → Mixamo 重定向 → IK 道具接触精调 |
