@@ -1,0 +1,434 @@
+[
+  {
+    "category": "产品广告",
+    "title": "推理创业公司发布视频",
+    "author": "Deedy",
+    "how": "一句话提示，模型自选工具",
+    "cost": "1 分钟，约 2 美元",
+    "url": "https://x.com/deedydas/status/2102787937482252537"
+  },
+  {
+    "category": "产品广告",
+    "title": "网站改版汇成预告片",
+    "author": "trq212",
+    "how": "先迭代评审多个网站改版方案，再汇成预告片",
+    "cost": "—",
+    "url": "https://x.com/trq212/status/2102477340920152162"
+  },
+  {
+    "category": "产品广告",
+    "title": "Shotbase 产品发布视频",
+    "author": "Miguel07Code",
+    "how": "Opus 5.5 + HyperFrames",
+    "cost": "—",
+    "url": "https://x.com/Miguel07Code/status/2102441708395041170"
+  },
+  {
+    "category": "产品广告",
+    "title": "可继续编辑的 AE 发布广告",
+    "author": "SEIIIRU",
+    "how": "Claude 操作 Higgsfield 与 After Effects，工程可在 AE 内继续改",
+    "cost": "Pro 套餐 5% 用量，约 150 日元",
+    "url": "https://x.com/seiiiiiiiiiiru/status/2102636308707287201"
+  },
+  {
+    "category": "产品广告",
+    "title": "旁白驱动的 AE 广告",
+    "author": "SEIIIRU",
+    "how": "Gemini 3.8 Flash TTS 生成旁白，Claude 在 AE 中配画面、音乐、音效",
+    "cost": "—",
+    "url": "https://x.com/seiiiiiiiiiiru/status/2103227982592831846"
+  },
+  {
+    "category": "产品广告",
+    "title": "BLVCKOUT 非官方广告",
+    "author": "ystknsh",
+    "how": "MulmoCast 出片，Opus 写脚本和动画，Gemini 出图和配音，ElevenLabs 配乐",
+    "cost": "—",
+    "url": "https://x.com/ystknsh/status/2102766871007436993"
+  },
+  {
+    "category": "产品广告",
+    "title": "Mole 产品宣传片",
+    "author": "Berryxia",
+    "how": "把“输入产品，产出宣传片”封装成可复用 Skill",
+    "cost": "—",
+    "url": "https://x.com/berryxia/status/2103419787565216023"
+  },
+  {
+    "category": "产品广告",
+    "title": "App 宣传片两支",
+    "author": "Danny Stuart",
+    "how": "Remotion，先出分镜再写代码",
+    "cost": "每支约 10 分钟",
+    "url": "https://dannystuart.substack.com/p/claude-code-opus-remotion-agentic-promo-video"
+  },
+  {
+    "category": "产品广告",
+    "title": "润唇膏广告（对比 GPT-6 Astra）",
+    "author": "Higgsfield AI",
+    "how": "同一套品牌素材，在 AE 里做 20 秒卡点产品片",
+    "cost": "—",
+    "url": "https://x.com/higgsfield_ai/status/2102913101926731879"
+  },
+  {
+    "category": "产品广告",
+    "title": "30 秒企业讲解片模板",
+    "author": "Alex Prompter",
+    "how": "单 HTML，5 个场景，对话内播放后录屏",
+    "cost": "—",
+    "url": "https://x.com/alex_prompter/status/2103499977632997524"
+  },
+  {
+    "category": "动态图形",
+    "title": "15 秒动态设计作品集",
+    "author": "Stephan Livera",
+    "how": "Max effort，一句话",
+    "cost": "—",
+    "url": "https://x.com/stephanlivera/status/2103315922098470926"
+  },
+  {
+    "category": "动态图形",
+    "title": "无缝 UI 形态变换循环",
+    "author": "zero",
+    "how": "完整模板，Playwright + FFmpeg tmix 动态模糊",
+    "cost": "—",
+    "url": "https://x.com/twoclipping/status/2103273003555402193"
+  },
+  {
+    "category": "科普讲解",
+    "title": "交互式相机镜头实验室",
+    "author": "Ryan Sael",
+    "how": "一次成型的可交互镜头模拟",
+    "cost": "1 小时 26 分钟，API 费用 25.66 美元",
+    "url": "https://x.com/RyanSael/status/2102591147927654847"
+  },
+  {
+    "category": "科普讲解",
+    "title": "研究论文动画讲解",
+    "author": "Deedy",
+    "how": "Claude 自选 Manim、Kokoro-82M 和 FFmpeg，在网页对话里完成",
+    "cost": "—",
+    "url": "https://x.com/deedydas/status/2103141339651350646"
+  },
+  {
+    "category": "科普讲解",
+    "title": "AI 发展史 3 分钟短片",
+    "author": "Chubby (kimmonismus)",
+    "how": "约 7400 行 React/TS（Remotion），SVG/Canvas 绘制，开源 TTS，Python 配乐",
+    "cost": "约 1 小时，周额度 7%",
+    "url": "https://x.com/kimmonismus/status/2102844654169575547"
+  },
+  {
+    "category": "科普讲解",
+    "title": "中华五千年历史速览",
+    "author": "WY",
+    "how": "一句话，线稿 + 音乐",
+    "cost": "—",
+    "url": "https://x.com/akokoi1/status/2102583898865873225"
+  },
+  {
+    "category": "科普讲解",
+    "title": "大气环流讲解（近 5 分钟）",
+    "author": "WY",
+    "how": "线稿 + TTS 旁白 + 中英字幕",
+    "cost": "26 分钟，token 消耗很低",
+    "url": "https://x.com/akokoi1/status/2102606609574941028"
+  },
+  {
+    "category": "科普讲解",
+    "title": "物理竞赛压轴题讲解",
+    "author": "WY",
+    "how": "复用大气环流提示词，换成具体题目",
+    "cost": "—",
+    "url": "https://x.com/akokoi1/status/2102680453912449223"
+  },
+  {
+    "category": "科普讲解",
+    "title": "Negroni 鸡尾酒动态图解",
+    "author": "Rory Flynn",
+    "how": "1 张参考图，30 秒 HTML 动画",
+    "cost": "—",
+    "url": "https://x.com/Ror_Fly/status/2102853258582880547"
+  },
+  {
+    "category": "科普讲解",
+    "title": "46 秒讲特殊相对论（日文）",
+    "author": "チャエン",
+    "how": "参考推文 + 简短指令，Canvas 画 1395 帧，BGM 和音效都由 JS 生成",
+    "cost": "渲染约 2 分钟",
+    "url": "https://x.com/masahirochaen/status/2102722719502704941"
+  },
+  {
+    "category": "科普讲解",
+    "title": "奥斯特里茨战役电影",
+    "author": "Winter",
+    "how": "WebGL + Kokoro 旁白，代码开源",
+    "cost": "—",
+    "url": "https://x.com/WinterArc2125/status/2103116235009347650"
+  },
+  {
+    "category": "科普讲解",
+    "title": "口播改线稿动画讲解",
+    "author": "Axton",
+    "how": "Python 逐帧画线稿，约 30 个镜头，保留原声和字幕",
+    "cost": "28 分 53 秒，人工介入 0 次",
+    "url": "https://x.com/AxtonLiu/status/2102827887732932956"
+  },
+  {
+    "category": "科普讲解",
+    "title": "Transformer 讲解视频",
+    "author": "宝玉",
+    "how": "用 JS 做视频",
+    "cost": "—",
+    "url": "https://youmind.com/opus-5-5-prompts"
+  },
+  {
+    "category": "科普讲解",
+    "title": "从房间放大到夸克",
+    "author": "Taelin",
+    "how": "多尺度连续推镜",
+    "cost": "—",
+    "url": "https://youmind.com/opus-5-5-prompts"
+  },
+  {
+    "category": "叙事动画",
+    "title": "你热爱什么？",
+    "author": "Kevin Ngo",
+    "how": "JS 逐帧手绘风动画",
+    "cost": "—",
+    "url": "https://x.com/kevin_t_ngo/status/2102437977435893771"
+  },
+  {
+    "category": "叙事动画",
+    "title": "像素巫师",
+    "author": "Majid Manzarpour",
+    "how": "原生 JS + Canvas 2D，单 HTML",
+    "cost": "—",
+    "url": "https://x.com/majidmanzarpour/status/2102476258948927543"
+  },
+  {
+    "category": "叙事动画",
+    "title": "火星探测器短片",
+    "author": "AndrewOnXYZ",
+    "how": "代码渲染短片",
+    "cost": "—",
+    "url": "https://x.com/AndrewOnXYZ/status/2102512879258009818"
+  },
+  {
+    "category": "叙事动画",
+    "title": "Opus 的一生",
+    "author": "shfred0",
+    "how": "让 Claude 讲自己从诞生到现在的一生，JS 笔触逐帧绘制",
+    "cost": "—",
+    "url": "https://x.com/shfred0/status/2102495989194236158"
+  },
+  {
+    "category": "叙事动画",
+    "title": "想象如何解决难题",
+    "author": "chetaslua",
+    "how": "代码动画",
+    "cost": "—",
+    "url": "https://x.com/chetaslua/status/2102478640428773861"
+  },
+  {
+    "category": "叙事动画",
+    "title": "Small Print（字里行间）",
+    "author": "Vox",
+    "how": "单个 index.html，HyperFrames 渲染，Python 合成音乐，逐秒复查打磨",
+    "cost": "—",
+    "url": "https://x.com/Voxyz_ai/status/2102531681450119426"
+  },
+  {
+    "category": "叙事动画",
+    "title": "啤酒节 30 秒动画",
+    "author": "Tak",
+    "how": "角色截图 + 本地音频采样",
+    "cost": "—",
+    "url": "https://x.com/cherry_mx_reds/status/2102493303388475855"
+  },
+  {
+    "category": "叙事动画",
+    "title": "一滴雨的故事",
+    "author": "aollivier82",
+    "how": "代码动画",
+    "cost": "—",
+    "url": "https://x.com/aollivier82/status/2102498589259821559"
+  },
+  {
+    "category": "叙事动画",
+    "title": "小蝌蚪找妈妈（水墨）",
+    "author": "WY",
+    "how": "水墨风代码动画",
+    "cost": "—",
+    "url": "https://x.com/akokoi1/status/2102699703309898026"
+  },
+  {
+    "category": "叙事动画",
+    "title": "Rain Station 30 秒 2D 分镜短片",
+    "author": "Feicai",
+    "how": "2D 动画故事板预览片",
+    "cost": "—",
+    "url": "https://youmind.com/opus-5-5-prompts"
+  },
+  {
+    "category": "艺术/3D",
+    "title": "轨道中的世界",
+    "author": "devteamdrew",
+    "how": "纯 JS 动画",
+    "cost": "—",
+    "url": "https://x.com/devteamdrew/status/2102436464323661880"
+  },
+  {
+    "category": "艺术/3D",
+    "title": "安提基特拉机械海底探索",
+    "author": "edwin",
+    "how": "Three.js：2047 条鱼、2.5 万片草叶、4.7 万个粒子、30 个齿轮",
+    "cost": "—",
+    "url": "https://x.com/edwinarbus/status/2102463453176979794"
+  },
+  {
+    "category": "艺术/3D",
+    "title": "投石机草图转交互模拟",
+    "author": "poolio",
+    "how": "从草图生成物理模拟",
+    "cost": "—",
+    "url": "https://x.com/poolio/status/2102445641205248145"
+  },
+  {
+    "category": "艺术/3D",
+    "title": "彩虹路像素跑酷",
+    "author": "Rikuo",
+    "how": "超长规格型日文提示词",
+    "cost": "—",
+    "url": "https://x.com/riku720720/status/2102515055116063144"
+  },
+  {
+    "category": "艺术/3D",
+    "title": "会动的海岸画",
+    "author": "strawhatsu4",
+    "how": "代码绘画动画",
+    "cost": "—",
+    "url": "https://x.com/strawhatsu4/status/2102457111787745405"
+  },
+  {
+    "category": "艺术/3D",
+    "title": "丙烯画风新西兰游记",
+    "author": "Ann Nguyen",
+    "how": "旅行照片转丙烯画风，JS 绘制",
+    "cost": "—",
+    "url": "https://x.com/ann_nnng/status/2102573127192727704"
+  },
+  {
+    "category": "艺术/3D",
+    "title": "Blender 外骨骼 / 风车 / 眼球解剖",
+    "author": "Higgsfield AI",
+    "how": "Claude 操作 Blender 建模和做动画",
+    "cost": "—",
+    "url": "https://x.com/higgsfield_ai/status/2102449278283313303"
+  },
+  {
+    "category": "艺术/3D",
+    "title": "Blender 程序化 10 秒镜头",
+    "author": "Stefan 3D AI",
+    "how": "只用 Blender、全程序化，外加录制搭建延时",
+    "cost": "35 分钟，19.96 万输出 token，约 13.3 美元",
+    "url": "https://x.com/Stefan_3D_AI/status/2102471841046786153"
+  },
+  {
+    "category": "艺术/3D",
+    "title": "史前岛屿交互场景",
+    "author": "Vib3Coded",
+    "how": "Three.js，单 HTML",
+    "cost": "—",
+    "url": "https://x.com/vib3coded/status/2102450842070569099"
+  },
+  {
+    "category": "音乐 MV",
+    "title": "I'm Upping My P(doom)",
+    "author": "NotinReality / JohnHeibel",
+    "how": "p5.js + p5.brush，无头 Chrome 截帧，FFmpeg 合成；156.6 秒，约 3760 帧；跑了两轮",
+    "cost": "10% Max 5x 周额度",
+    "url": "https://github.com/JohnHeibel/PDoomVideo"
+  },
+  {
+    "category": "音乐 MV",
+    "title": "《Let Me Go》动画 MV",
+    "author": "Linux.do 网友",
+    "how": "上传歌词和音频，effort xhigh，p5.js 逐帧绘制，人工反馈改角色",
+    "cost": "初版 45 分钟，约 200 美元",
+    "url": "https://linux.do/t/topic/2943096"
+  },
+  {
+    "category": "音乐 MV",
+    "title": "Claude Pop 混合流程 MV",
+    "author": "donald",
+    "how": "fal 角色图 + Seedance 2.5 底片 + JS 逐帧重绘",
+    "cost": "fal 预算约 2000 美元",
+    "url": "https://x.com/donaldjewkes/status/2102801274173587569"
+  },
+  {
+    "category": "音乐 MV",
+    "title": "Suno 作曲 + Opus 作词做 MV",
+    "author": "B 站 UP 主",
+    "how": "Suno 编曲演唱，Opus 5.5 作词并制作 MV",
+    "cost": "—",
+    "url": "https://www.bilibili.com/video/BV1qihf6rE6f/"
+  },
+  {
+    "category": "音乐 MV",
+    "title": "EVA 风竖屏歌词视频",
+    "author": "kurahu",
+    "how": "歌词本身作为主角的竖屏 MV",
+    "cost": "—",
+    "url": "https://youmind.com/opus-5-5-prompts"
+  },
+  {
+    "category": "纪录/剪辑",
+    "title": "5 分钟超级智能纪录片",
+    "author": "Gavin Purcell",
+    "how": "接 Runway MCP，“面向普通人的 Netflix 风纪录片”",
+    "cost": "—",
+    "url": "https://x.com/gavinpurcell/status/2103304514329854102"
+  },
+  {
+    "category": "纪录/剪辑",
+    "title": "13 条原始素材剪成发布视频",
+    "author": "gregpr07",
+    "how": "video-use 挑片段，剪辑、调色、字幕",
+    "cost": "—",
+    "url": "https://x.com/gregpr07/status/2102984873351037161"
+  },
+  {
+    "category": "B 站合集",
+    "title": "地球 46 亿年进化史",
+    "author": "B 站 UP 主",
+    "how": "代码动画",
+    "cost": "—",
+    "url": "https://www.bilibili.com/video/BV1Vfau6iE9Q/"
+  },
+  {
+    "category": "B 站合集",
+    "title": "群论之美宣传片",
+    "author": "B 站 UP 主",
+    "how": "代码动画",
+    "cost": "—",
+    "url": "https://www.bilibili.com/video/BV12Zhm6oE6m/"
+  },
+  {
+    "category": "B 站合集",
+    "title": "“瘫坐长椅看到原子弹爆炸”动画",
+    "author": "B 站 UP 主",
+    "how": "代码动画",
+    "cost": "—",
+    "url": "https://www.bilibili.com/video/BV1jyaA6QEoH/"
+  },
+  {
+    "category": "B 站合集",
+    "title": "一句话生成的 MV",
+    "author": "B 站 UP 主",
+    "how": "一句话 MV",
+    "cost": "—",
+    "url": "https://www.bilibili.com/video/BV1EDhW6LEYU/"
+  }
+]

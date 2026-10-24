@@ -1,4 +1,4 @@
-﻿# AgentSkillsVault
+# AgentSkillsVault
 
 Personal vault of Agent skills sourced from local filesystem
 (not the hub). Skills are grouped by category; each category folder
@@ -96,12 +96,35 @@ AgentSkillsVault/
     └── web-prototype/               ← 网页原型（assets/ references/ example.html）
 ├── writing/                         ← 「换种形式让人看懂」工作流（不堆文字 / 画图 / 试出来 / 讲清楚）
 │   └── karpathy-explain-better/     ← Karpathy 4 法：简化文字(ASD-STE100) → 结构图 → 可交互网页 → 讲解视频；含判断清单与升级/降级信号
+├── video/                           ← AI 视频生产：流程 + 渲染选型 + 社区开源 skill（源自余弦 2026-09-27 博客资源盘点）
+│   ├── ai-video-production/         ← 总纲：制作流程（素材→脚本→配音→包装→提速→自验收→HANDOFF）、短片多 agent 流水线、对抗审片、提示词模板、审片清单
+│   ├── remotion-*/ (12)             ← Remotion 官方 Agent Skills（best-practices / create / render / captions / markup / multimedia / maps / interactivity / docs / saas / studio / upgrade）
+│   ├── onetake/                     ← 一镜到底产品发布片（每拍从上一拍长出来，不切幻灯片）
+│   ├── anidoodle/                   ← 手绘风插画与动画（自带故事线与配乐）
+│   ├── guizang-product-video-skill/ ← 读代码库 + 用真实组件做产品更新宣传片
+│   ├── video-use/                   ← Agent 剪真实拍摄素材
+│   ├── manim-video/                 ← 数学/公式动画
+│   ├── make-interfaces-feel-better/← UI 与动效细节打磨
+│   ├── lemo-opuscar/                ← 39 种纯代码影片风格库
+│   └── mengto/* (29)                ← MengTo 设计向 skills：3D 材质/光照/水/天空 (16) + 素材图 (2) + 视频与审查向 (11)
 └── vendor/                          ← 外部 repo 以 submodule 形式 vendored（不复制进分类目录）
     ├── anthropics-skills/           ← github.com/anthropics/skills（19 个官方 skill；pinned @ dbd4588）
     ├── tripo-skills/                ← github.com/meterlong/tripo-skills（Tripo 3D 生成 skill，装为 tripo-3d-generation）
     ├── blender-mcp/                 ← github.com/ahujasid/blender-mcp（Blender MCP server + 插件）
     ├── tripo-3d-for-blender/        ← github.com/Tripo-Developer/tripo-3d-for-blender（Tripo 官方 Blender 插件）
-    └── unity-mcp/                   ← github.com/CoplayDev/unity-mcp（MCP for Unity，MIT）
+    ├── unity-mcp/                   ← github.com/CoplayDev/unity-mcp（MCP for Unity，MIT）
+    ├── remotion-skills/             ← github.com/remotion-dev/skills（Remotion 官方 12 个 Agent Skills）
+    ├── anidoodle/                   ← github.com/alexgreensh/anidoodle（手绘风动画）
+    ├── guizang-product-video-skill/ ← github.com/op7418/guizang-product-video-skill
+    ├── video-use/                   ← github.com/browser-use/video-use（+ skills/manim-video）
+    ├── make-interfaces-feel-better/← github.com/jakubkrehel/make-interfaces-feel-better
+    ├── onetake/                     ← github.com/feitangyuan/onetake（一镜到底发布片）
+    ├── mengto-skills/               ← github.com/MengTo/Skills（设计向 Agent Skills）
+    ├── lemo-opuscar/                ← github.com/lemomo-ai/lemo-opuscar（39 种影片风格库）
+    ├── awesome-opus-5-5-videos/     ← github.com/athemeroy/awesome-opus-5-5-videos（资料索引）
+    ├── awesome-claude-video/        ← github.com/opusvideo/awesome-claude-video（资料索引）
+    ├── awesome-opus-5.5-video/      ← github.com/zhuyansen/awesome-opus-5.5-video（资料索引）
+    └── awesome-claude-video-skills/ ← github.com/zhuyansen/awesome-claude-video-skills（180 个视频 skill 索引 + 安全评级）
 ```
 
 ## User-level distribution（2026-10-24 起）
@@ -109,10 +132,10 @@ AgentSkillsVault/
 四个 harness 的用户级 skill 目录**只有一份实体**，其余全是 Windows junction 视图：
 
 ```
-~/.claude/skills/      ← 唯一实体（canonical store，157 个 skill）
-~/.kilo/skills/        ← 157 个 junction → ~/.claude/skills/<name>
-~/.codex/skills/       ← 157 个 junction → ~/.claude/skills/<name>
-~/.agents/skills/      ← 157 个 junction → ~/.claude/skills/<name>
+~/.claude/skills/      ← 唯一实体（canonical store，161 个 skill）
+~/.kilo/skills/        ← 161 个 junction → ~/.claude/skills/<name>
+~/.codex/skills/       ← 161 个 junction → ~/.claude/skills/<name>
+~/.agents/skills/      ← 161 个 junction → ~/.claude/skills/<name>
 ```
 
 - 好处：改一处四个 harness 同步生效；磁盘从 ~113 MB 降到 ~35 MB；不再有「哪个 harness 少装了几个 skill」的漂移。
@@ -120,6 +143,9 @@ AgentSkillsVault/
 - 反面教材：`robocopy /E` 合并同名 skill 会**覆盖**同名的 `SKILL.md`（例如 anthropic 的 `webapp-testing` 盖掉了 vault 版本）——先比对 hash 再覆盖。
 - 去掉 anthropic 集里与既有 skill 重叠的 6 个：`frontend-design` / `brand-guidelines` / `theme-factory` / `internal-comms` / `doc-coauthoring` / `skill-creator`；`webapp-testing` 保留 vault 版本（ComposioHQ），弃用 anthropic 版本。
 - 上游 19 个里的其余 12 个（`academy-guide` `algorithmic-art` `canvas-design` `claude-api` `discernment-nudge` `docx` `mcp-builder` `pdf` `pptx` `slack-gif-creator` `web-artifacts-builder` `xlsx`）照装，源在 `vendor/anthropics-skills/`。
+- 第二批（`vendor/` 下 8 个新 submodule）只装 4 个：`html-ppt`（design）、`kinetic-reel` / `painted-animation` / `opus-video-prompts`（video）；
+  `ai-animation-skill`（科普→HTML 演示）、`generating-slides`（`frontend-slides` 的二次开发版）**只 vendor 不装**——与已装的 `frontend-slides` / `html-ppt` 重叠；
+  `opus5.5-video-prompts` 与 `opus-video-prompts` 是同一 commit 的镜像，不重复装；`opus55-3d-games` 里那 3 个 three.js skill 是 v1.0.0，比用户级已装的 v1.0.1 旧，不覆盖。
 
 ## Skills
 
@@ -198,6 +224,16 @@ AgentSkillsVault/
 | design/taste-director | design | router 总纲：按意图分发到 7 个 taste-* 子技能 + 共享 anti-slop taste 契约 |
 | design/anatomy | design | 等距 SVG 插图器：将想法做成"真实可工作的小机器"（40–300 件精密零件，4 色调光，分屏 SVG + WebGL + 3D），含 kit/references/scripts/examples（11.7 MB，wheresryan22/anatomy，MIT） |
 | writing/karpathy-explain-better | writing | Karpathy 4 法：别再说「再解释一遍」——把答案换成简化文字 / 结构图 / 可交互网页 / 讲解视频。SKILL.md + references/modes.md（含每种形式的提示词模板、判断清单、决策树） |
+| video/ai-video-production | video | AI 视频生产总纲：技术路线选型（Remotion / HyperFrames / 纯 Canvas / Three.js / Blender）+ 长片流水线（素材→脚本→配音→包装→提速→自验收→HANDOFF）+ 短片多 agent 流水线 + 对抗审片 + 提示词模板 + 审片清单 |
+| video/remotion-* (12) | video | Remotion 官方 Agent Skills（best-practices / create / render / captions / markup / multimedia / maps / interactivity / docs / saas / studio / upgrade） |
+| video/onetake | video | 一镜到底产品发布片/功能演示：每一拍从上一拍长出来，不切成幻灯片 |
+| video/anidoodle | video | 手绘风插画与动画，自带故事线与配乐 |
+| video/guizang-product-video-skill | video | 读代码库 + 用真实组件做产品更新宣传片 |
+| video/video-use | video | Agent 剪真实拍摄素材（读字幕/挑最好一条/剪辑调色加字幕） |
+| video/manim-video | video | 数学/公式动画 |
+| video/make-interfaces-feel-better | video | UI 与动效细节打磨（做界面镜头时用） |
+| video/lemo-opuscar | video | 39 种纯代码影片风格库（每种一段可复用风格提示词 + 样片） |
+| video/mengto/* (29) | video | MengTo 设计向 skills：3D 材质/光照/水/天空 (16) + 素材图 (2) + 视频与审查向 (11) |
 | design/frontend-slides | design | HTML slide deck 生成（bold-template-pack / STYLE_PRESETS / viewport-base.css） |
 | design/html-artifacts | design | 自包含 HTML artifact 生成（reference/ + scripts/） |
 | design/html-slides | design | HTML 幻灯片生成 |
@@ -211,6 +247,10 @@ AgentSkillsVault/
 | content/hyperframes-video | content | 视频交付路径；媒体与声音走 CLI 自带命令 |
 | content/remotion-to-hyperframes | content | Remotion 项目迁移到 HyperFrames |
 | devops/mock-devops-platform | devops | 模拟 DevOps 平台（部署/流水线/告警）场景数据 |
+| design/html-ppt | design | HTML PPT Studio：theme 文件 = 外观、layout 文件 = 页面类型、animation class = 入场；token 化设计系统，纯静态可离线（lewislulu/html-ppt-skill，MIT） |
+| video/kinetic-reel | video | 纯代码动效字 reel：Canvas 2D + three.js + WebGL 后期，无头 Chrome 逐帧 + ffmpeg，Node 合成节拍对齐配乐（tuzhechen2005/opus-video-skills） |
+| video/painted-animation | video | p5.js + p5.brush 手绘水彩/墨线动画：逐帧渲染、模型表、音乐与歌词同步（tuzhechen2005/opus-video-skills） |
+| video/opus-video-prompts | video | 「用代码拍视频」提示词库：18 份提示词 + 54 个公开案例 + 技术路线与写法经验（joeseesun/opus-video-prompts；本 vault 补写指针层 SKILL.md） |
 
 ## 评分（0 / 10 / 20）
 

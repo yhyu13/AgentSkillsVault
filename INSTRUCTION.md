@@ -62,6 +62,7 @@
 | ui-mockups | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\ui-mockups` — 产品 UI 截图级 mockup（浏览器窗口 chrome / 真实品牌图标） |
 | visual-explainer | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\visual-explainer` — 可视化解释产物（commands/ kit/ mcp/ plan/ pptx/ video/ templates/ + extension.ts） |
 | web-prototype | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\web-prototype` — 网页原型（assets/ references/ example.html） |
+| html-ppt | repo (submodule) | `github.com/lewislulu/html-ppt-skill` @ `fd16290` — HTML PPT Studio：一个 theme 文件 = 一套外观、一个 layout 文件 = 一种页面、一个 animation class = 一种入场；token 化设计系统（`assets/base.css`），纯静态、可离线，MIT；已复制进 `design/html-ppt` |
 
 > Skipped 6 of the repo's 13 skills as redundant/niche: `taste-skill-v1` (superseded by v2), `gpt-tasteskill` (stricter GPT/Codex variant, subsumed by v2), `soft-skill` / `minimalist-skill` / `brutalist-skill` (fixed style presets — v2 infers the design language from the brief), `image-to-code-skill` (pipeline = imagegen-web + taste-frontend). All recoverable from the sibling clone.
 
@@ -144,6 +145,23 @@
 | skill-distill | local | 用户贴出的 skill 文本（原出处未指明，标记 local）。会后沉淀流水线：四道闸（可复用/有判断/有证据/有边界）+ 粒度 + 归属 + 三段式写法 + 防重复防膨胀 + PR 流程 + 自检清单 + 红线。规范 skill 沉淀本身。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 | perf-tracking-platform | local (imported) | 用户提供：`C:\Users\1\Downloads\perf-tracking-platform`（XD 游戏引擎侧「性能跟踪分析平台」领域知识与工作指引：OKR/进度快照、指标口径、瓶颈判定、看板与报告要求；进度以 Feishu 进度文档为准）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 
+### video/
+| skill | origin | source |
+|-------|--------|--------|
+| ai-video-production | local (distilled) | 余弦博客《用 Opus 5.5 做视频：制作流程与提示词资源记录》(2026-09-27) + 已 vendor 的开源 skill 清单；含 `references/prompts.md`（提示词模板）与 `references/resources.md`（仓库/工具清单）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
+| remotion-best-practices / -create / -render / -captions / -markup / -multimedia / -maps / -interactivity / -docs / -saas / -studio / -upgrade | repo (submodule) | `github.com/remotion-dev/skills` @ `6c67adc` — Remotion 官方 Agent Skills（12 个），上游 `skills/<name>` |
+| anidoodle | repo (submodule) | `github.com/alexgreensh/anidoodle` @ `f746cbd` — 手绘风插画与动画（自带配乐与故事线） |
+| guizang-product-video-skill | repo (submodule) | `github.com/op7418/guizang-product-video-skill` @ `18842e0` — 读代码库做产品更新宣传片 |
+| video-use | repo (submodule) | `github.com/browser-use/video-use` @ `43cfc56` — Agent 剪真实素材（上游根 SKILL.md） |
+| manim-video | repo (submodule) | `github.com/browser-use/video-use` @ `43cfc56` — 上游 `skills/manim-video` |
+| make-interfaces-feel-better | repo (submodule) | `github.com/jakubkrehel/make-interfaces-feel-better` @ `35545ea` — UI 与动效细节打磨 |
+| onetake | repo (submodule) | `github.com/feitangyuan/onetake` @ `013a61a` — 一镜到底产品发布片（PolyForm Noncommercial；样片 mp4 未复制） |
+| lemo-opuscar | repo (submodule) | `github.com/lemomo-ai/lemo-opuscar` @ `413a6bd` — 39 种纯代码影片风格库 |
+| mengto/* (29) | repo (submodule, 筛选) | `github.com/MengTo/Skills` @ `398cd41` — `3d/`(16) + `media/`(2) + `codex/`(11)；`web-design/`、`game-*/`、`illustration/` 未复制 |
+| kinetic-reel | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — 纯代码动效字 reel：Canvas 2D + three.js 生成层 + WebGL 后期，无头 Chrome 逐帧 + ffmpeg 编码，Node 按同一份 `cues.js` 合成节拍对齐配乐；上游 `skills/kinetic-reel`；已复制进 `video/kinetic-reel` |
+| painted-animation | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — p5.js + p5.brush 手绘水彩/墨线动画：逐帧渲染、模型表（emotions/views）、音乐与歌词同步；上游 `skills/painted-animation`；已复制进 `video/painted-animation` |
+| opus-video-prompts | repo (submodule, 补写指针层) | `github.com/joeseesun/opus-video-prompts` @ `7977c80` — 上游**没有 SKILL.md**（18 份提示词 + 54 案例 `cases.json` + README），本 vault 补写一层指针式 SKILL.md（说明怎么挑提示词、技术路线与边界）；上游原文逐字保留；已复制进 `video/opus-video-prompts` |
+
 ### vendor/
 | skill | origin | source |
 |-------|--------|--------|
@@ -152,6 +170,26 @@
 | blender-mcp | repo (submodule) | `github.com/ahujasid/blender-mcp` @ `febcd90` — submodule 路径 `vendor/blender-mcp`（MCP server + Blender 插件源码；安装陷阱见 `game-dev/ai-3d-toolchain`） |
 | tripo-3d-for-blender | repo (submodule) | `github.com/Tripo-Developer/tripo-3d-for-blender` @ `d65412f` — submodule 路径 `vendor/tripo-3d-for-blender`（Tripo 官方 Blender 插件，MIT） |
 | unity-mcp | repo (submodule) | `github.com/CoplayDev/unity-mcp` @ `ed4e205` — submodule 路径 `vendor/unity-mcp`（MCP for Unity，MIT；官方 Unity MCP 走 Unity 6.3 `com.unity.ai.assistant` 包） |
+| remotion-skills (12 upstream) | repo (submodule) | `github.com/remotion-dev/skills` @ `6c67adc` — submodule 路径 `vendor/remotion-skills`；上游在 `skills/<name>`，**已复制进 `video/remotion-*`**（12 个） |
+| anidoodle | repo (submodule) | `github.com/alexgreensh/anidoodle` @ `f746cbd` — `vendor/anidoodle`；已复制进 `video/anidoodle` |
+| guizang-product-video-skill | repo (submodule) | `github.com/op7418/guizang-product-video-skill` @ `18842e0` — `vendor/guizang-product-video-skill`；已复制进 `video/guizang-product-video-skill` |
+| video-use (+ manim-video) | repo (submodule) | `github.com/browser-use/video-use` @ `43cfc56` — `vendor/video-use`；已复制进 `video/video-use`（上游根 SKILL.md）与 `video/manim-video`（上游 `skills/manim-video`） |
+| make-interfaces-feel-better | repo (submodule) | `github.com/jakubkrehel/make-interfaces-feel-better` @ `35545ea` — `vendor/make-interfaces-feel-better`；已复制进 `video/make-interfaces-feel-better`（上游在 `skills/<name>`） |
+| onetake | repo (submodule) | `github.com/feitangyuan/onetake` @ `013a61a` — `vendor/onetake`；已复制进 `video/onetake`（PolyForm Noncommercial；**未复制 `cases/*.mp4` 与 `assets/*.gif`**，只保留 README 与 logo，样片看 vendor） |
+| mengto-skills | repo (submodule) | `github.com/MengTo/Skills` @ `398cd41` — `vendor/mengto-skills`；**筛选复制**进 `video/mengto/`：`3d/`(16) + `media/`(2) + `codex/`(11，视频/动画/审查相关)；`web-design/`(85MB)、`game-*/`、`illustration/` 未复制 |
+| lemo-opuscar | repo (submodule) | `github.com/lemomo-ai/lemo-opuscar` @ `413a6bd` — `vendor/lemo-opuscar`；已复制进 `video/lemo-opuscar`（上游在 `plugin/skills/lemo-opuscar`，脚本运行时会自行 clone 完整库） |
+| awesome-opus-5-5-videos | repo (submodule) | `github.com/athemeroy/awesome-opus-5-5-videos` @ `87e5cbf` — `vendor/awesome-opus-5-5-videos`（纯资料：1000+ 视频索引，不装成 skill） |
+| awesome-claude-video | repo (submodule) | `github.com/opusvideo/awesome-claude-video` @ `4b74fdb` — `vendor/awesome-claude-video`（纯资料） |
+| awesome-opus-5.5-video | repo (submodule) | `github.com/zhuyansen/awesome-opus-5.5-video` @ `a359f1c` — `vendor/awesome-opus-5.5-video`（纯资料） |
+| awesome-claude-video-skills | repo (submodule) | `github.com/zhuyansen/awesome-claude-video-skills` @ `a613dcc` — `vendor/awesome-claude-video-skills`（纯资料：180 个开源视频 skill 索引 + 安全评级） |
+| ai-animation-skill | repo (submodule) | `github.com/Unclecheng-li/AI-Animation-Skill` @ `4b107dd` — 科普文本 → 仿 PPT 轮播单页 HTML（含 14 个 Animation 模板），MIT；**只 vendor 不装**：产物是 HTML 演示，与 `frontend-slides` / `html-ppt` 重叠 |
+| frontend-slides | repo (submodule) | `github.com/zarazhangrui/frontend-slides` @ `9906a34` — 单文件零依赖 HTML 演示（bold-template-pack / STYLE_PRESETS / viewport-base.css），MIT；已由并行会话装进 `design/frontend-slides`（它的 `html-slides` router 依赖它） |
+| generating-slides | repo (submodule) | `github.com/whq217/generating-slides` @ `0e2fa3a` — 自述「基于 Zara Zhang 的 Frontend Slides 二次开发」：22 套风格预设 + 七阶段引导 + 版面率/字号/秩序三层硬约束 + 机验脚本 + P 键出 PDF；**只 vendor 不装**：与已装的 `frontend-slides` 是同一条工作流的前后版本 |
+| html-ppt-skill | repo (submodule) | `github.com/lewislulu/html-ppt-skill` @ `fd16290` — `vendor/html-ppt-skill`（上游仓库根即 skill）；MIT；已复制进 `design/html-ppt` |
+| opus-video-prompts | repo (submodule) | `github.com/joeseesun/opus-video-prompts` @ `7977c80` — `vendor/opus-video-prompts`（提示词库，无 SKILL.md）；已包一层装成 `video/opus-video-prompts` |
+| opus5.5-video-prompts | repo (submodule) | `github.com/Reger-c/opus5.5-video-prompts` @ `7977c80` — 与 `joeseesun/opus-video-prompts` **同一 commit**（`cases.json` 逐字节相同，镜像仓）；不重复安装 |
+| opus-video-skills | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — `vendor/opus-video-skills`，上游 `skills/kinetic-reel` + `skills/painted-animation`；已复制进 `video/` |
+| opus55-3d-games | repo (submodule) | `github.com/yhyu13/opus55-3d-games` @ `a528d4c` — 本仓自有 repo（3 个 three.js skill + 3 个游戏 + site）；其 `.claude/skills/{procedural-3d-scenes,three-clay-scenes,three-procedural-scenes}` 是 **v1.0.0**，用户级已装的是 **v1.0.1**（更新、含 `source-of-truth` 元数据）→ **不覆盖**，只 vendor |
 
 **anthropic 集的取舍（2026-10-24）**
 
