@@ -1,4 +1,4 @@
-﻿---
+---
 name: grafana-profilecli-insights
 license: Apache-2.0
 compatibility: Requires profilecli and pprof, or Go with go tool pprof, on PATH plus access to a Pyroscope-compatible server.

@@ -1,7 +1,9 @@
-# IFRS Standards
-
+---
 name: ifrs-standards
 description: Key IFRS standards — IFRS 9, 15, 16, IAS 36, IFRS 3
+---
+
+# IFRS Standards
 
 ## When to Activate
 

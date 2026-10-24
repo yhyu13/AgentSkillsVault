@@ -1,7 +1,9 @@
-# Pitch Book and CIM Creation
-
+---
 name: pitch-book-creation
 description: Pitch book and CIM creation for M&A and capital markets
+---
+
+# Pitch Book and CIM Creation
 
 ## When to Activate
 

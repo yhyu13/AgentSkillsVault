@@ -1,7 +1,9 @@
-# LBO Modeling
-
+---
 name: lbo-modeling
 description: LBO model construction — sources & uses, debt schedules, returns
+---
+
+# LBO Modeling
 
 ## When to Activate
 

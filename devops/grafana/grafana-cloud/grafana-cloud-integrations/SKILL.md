@@ -1,4 +1,4 @@
-﻿---
+---
 name: grafana-cloud-integrations
 license: Apache-2.0
 description:

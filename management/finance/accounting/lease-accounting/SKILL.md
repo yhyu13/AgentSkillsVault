@@ -1,7 +1,11 @@
-# Lease Accounting
-
+---
 name: lease-accounting
-description: Lease accounting — IFRS 16, ASC 842. Cover lessee model, operating vs finance, transition approaches.
+description: >
+  Lease accounting — IFRS 16, ASC 842. Cover lessee model, operating vs finance,
+  transition approaches.
+---
+
+# Lease Accounting
 
 ## When to Activate
 

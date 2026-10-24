@@ -1,4 +1,4 @@
-﻿---
+---
 name: grafana-infrastructure
 license: Apache-2.0
 description: Ship Kubernetes, host, container, and cloud-provider telemetry into Grafana Cloud — `k8s-monitoring` Helm chart for K8s clusters (metrics + logs + traces + events + cost), Alloy `prometheus.exporter.unix` for Linux hosts, cAdvisor + Docker discovery for containers, and CloudWatch / Azure Monitor / Google Cloud Monitoring datasource setup. Use when onboarding a new cluster or VM fleet to Grafana Cloud, picking the right Helm values for K8s scraping, wiring kube-state-metrics + node-exporter + cAdvisor, alerting on `PodCrashLooping` / node memory / PVC capacity, or pulling AWS / Azure / GCP cloud metrics — even when the user says "monitor my cluster", "send K8s metrics to Grafana", "scrape EC2 metrics", "cluster pod logs", or "install the monitoring helm chart" without naming `k8s-monitoring` or Alloy.

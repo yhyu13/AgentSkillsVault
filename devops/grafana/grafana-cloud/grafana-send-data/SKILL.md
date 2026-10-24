@@ -1,4 +1,4 @@
-﻿---
+---
 name: grafana-send-data
 license: Apache-2.0
 description: >

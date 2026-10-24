@@ -1,7 +1,9 @@
-# DCF Valuation
-
+---
 name: dcf-valuation
 description: DCF valuation methodology — WACC, terminal value, sensitivity
+---
+
+# DCF Valuation
 
 ## When to Activate
 

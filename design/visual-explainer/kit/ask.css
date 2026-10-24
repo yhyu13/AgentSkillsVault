@@ -1,0 +1,16 @@
+/* <ve-ask> on a kit page (inlined only when the page has one; plans have their own in plan/plan.css) */
+.ask { border: 1px solid var(--border-bright); border-radius: var(--r-1); background: var(--surface); padding: var(--s-4) var(--s-5) var(--s-5); display: grid; gap: var(--s-3); min-width: 0; max-width: 46rem; margin: var(--s-4) 0; }
+.ask legend { float: left; width: 100%; padding: 0; font: 500 var(--t-label) var(--font-mono); color: var(--text-dim); }
+.ask legend b { color: var(--text); font-weight: 600; }
+.ask-q { font-weight: 600; font-size: var(--t-lead); line-height: 1.35; }
+.ask-opts { display: grid; gap: var(--s-2); }
+.ask.row .ask-opts { grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); }
+.opt { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s-3); align-items: start; padding: var(--s-3) var(--s-4); border: 1px solid var(--border); border-radius: var(--r-1); background: var(--bg); cursor: pointer; }
+.opt:hover { border-color: var(--border-bright); }
+.opt:has(input:checked) { border-color: var(--text); background: color-mix(in srgb, var(--text) 5%, var(--surface)); }
+.opt input { margin-top: .3em; accent-color: var(--accent); width: 1rem; height: 1rem; }
+.opt-body { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s-3); min-width: 0; }
+.opt-label { font-weight: 500; }
+.sug { font: 500 var(--t-label) var(--font-mono); color: var(--text-dim); }
+.opt small { flex-basis: 100%; display: block; color: var(--text-dim); font-size: var(--t-small); }
+@media print { .ask { break-inside: avoid; } }

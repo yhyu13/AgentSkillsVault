@@ -1,0 +1,126 @@
+{
+  "selection": "Search suitable SFX first; use bundled files only for missing/unavailable matches.",
+  "assets": [
+    {
+      "id": "click-alt",
+      "file": "sfx/click-alt.wav",
+      "duration": 0.12,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "sha256": "7700032cc4caa89af1b41e407bf60e48f07e4d4f69e372ef78df0632666fb527",
+      "source": "scripts/make_sfx.py",
+      "method": "original-procedural"
+    },
+    {
+      "id": "click",
+      "file": "sfx/click.wav",
+      "duration": 0.16,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "sha256": "8cb3444a4ab4640a7417dcb539a556bd10c697b19869c17c3d4289a4c1eebc13",
+      "source": "scripts/make_sfx.py",
+      "method": "original-procedural"
+    },
+    {
+      "id": "ding-dong",
+      "file": "sfx/ding-dong.wav",
+      "duration": 1.15,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "sha256": "57e3aa7d7001b2320bcdf05eb036b4e320ede132b48703518e46db5933f18399",
+      "source": "scripts/make_sfx.py",
+      "method": "original-procedural"
+    },
+    {
+      "id": "error",
+      "file": "sfx/error.wav",
+      "duration": 0.7,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "sha256": "2790cb8b5b5283c37f65cdd6d14275dd995062a7f3302680d77d094d8d3132a8",
+      "source": "scripts/make_sfx.py",
+      "method": "original-procedural"
+    },
+    {
+      "id": "pop",
+      "file": "sfx/pop.wav",
+      "duration": 0.22,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "sha256": "ea11b896eb402c995a63f01ff298f0def88deed0ce96d37eb5f52d266b654dc9",
+      "source": "scripts/make_sfx.py",
+      "method": "original-procedural"
+    },
+    {
+      "id": "resolve",
+      "file": "sfx/resolve.wav",
+      "duration": 1.55,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "sha256": "10986e5676fd4a404c27463066253a7f0dd1176bdf2e33551430370394e11116",
+      "source": "scripts/make_sfx.py",
+      "method": "original-procedural"
+    },
+    {
+      "id": "success",
+      "file": "sfx/success.wav",
+      "duration": 0.85,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "sha256": "91522be11e71b96367384523bc578eea1f70d93485647b77a22777eb41969ccc",
+      "source": "scripts/make_sfx.py",
+      "method": "original-procedural"
+    },
+    {
+      "id": "sweep",
+      "file": "sfx/sweep.wav",
+      "duration": 0.65,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "sha256": "0314aeff52ddc02f88cdf855d66c579f2b93312709dd9c49b6ea63dc7cbb4078",
+      "source": "scripts/make_sfx.py",
+      "method": "original-procedural"
+    },
+    {
+      "id": "toggle",
+      "file": "sfx/toggle.wav",
+      "duration": 0.25,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "sha256": "509be1af88150e4acf3c273ae29ab404027876fb61d705de5f21d7a62b99d6b6",
+      "source": "scripts/make_sfx.py",
+      "method": "original-procedural"
+    },
+    {
+      "id": "typing",
+      "file": "sfx/typing.wav",
+      "duration": 0.65,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "sha256": "e0494ffecdd4a637ac582cbf7407fcbdea62320a5c67d1106c9e12e77324e9d1",
+      "source": "scripts/make_sfx.py",
+      "method": "original-procedural"
+    },
+    {
+      "id": "whoosh",
+      "file": "sfx/whoosh.wav",
+      "duration": 0.38,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "sha256": "1e7e24117c5b226510e2e9bb438055f5a84bcb7cc97ca2a5938e8f280937a193",
+      "source": "scripts/make_sfx.py",
+      "method": "original-procedural"
+    }
+  ]
+}

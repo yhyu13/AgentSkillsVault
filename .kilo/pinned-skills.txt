@@ -1,0 +1,17 @@
+# Vendor-only skills that are intentionally installed even though the vault keeps
+# them solely under vendor/ (upstream archive). Names here bypass the vendor
+# exclusion in sync-vault-skills-v2.ps1.
+algorithmic-art
+browser-automation
+canvas-design
+claude-api
+deep-research
+discernment-nudge
+docx
+investment-masters
+pdf
+pptx
+slack-gif-creator
+tripo-3d-generation
+web-artifacts-builder
+xlsx

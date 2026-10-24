@@ -1,0 +1,12 @@
+{
+ "vangogh-almond-blossom.jpg": {
+  "work": "Vincent van Gogh, Almond Blossom (1890), Van Gogh Museum, Amsterdam",
+  "title": "File:Vincent van Gogh - Almond blossom - Google Art Project.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Almond_blossom_-_Google_Art_Project.jpg",
+  "license": "Public domain (author died 1890; faithful reproduction of a 2D public-domain work)",
+  "sha256": "6f640dcd79def4223bf16569fd29ca5e37ee9d6cde2670958636e259e2a1c9d0",
+  "bytes": 1046465,
+  "usedBy": "the launch films (launch.ts, launch2.ts, launch3.ts) and typeOptions.ts show it only as the picture the user attaches in the chat; adaptAlmond.ts borrows its hand, never its pixels",
+  "note": "the one image in the repo that is not drawn by code; kept byte-identical to the download so renders stay reproducible"
+ }
+}

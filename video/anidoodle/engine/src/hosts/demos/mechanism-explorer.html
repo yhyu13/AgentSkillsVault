@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How a music box reads its tune</title>
+<meta name="description" content="An anidoodle interactive demo: an 18-note music box movement that plays, and comes apart when you hover it.">
+<style>
+  :root { --paper: #efe8dc; --ink: #2b2a33; --soft: #6c6573; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 60px; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 36px; align-items: center; }
+  h1 { font-size: clamp(34px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 16px; font-weight: 650; }
+  p { color: var(--soft); max-width: 36ch; margin: 0 0 14px; }
+  ani-doodle { display: block; width: min(100%, 56vw); margin-left: auto; outline-offset: 6px; }
+  button { font: 600 16px/1 ui-sans-serif, system-ui, sans-serif; padding: 14px 22px; border-radius: 999px; border: 2px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer; margin-top: 8px; }
+  button:focus-visible { outline: 3px solid #d0502a; outline-offset: 3px; }
+  article { max-width: 760px; margin: 0 auto; padding: 0 24px 120px; color: var(--soft); }
+  article h2 { color: var(--ink); font-size: 26px; margin: 40px 0 10px; }
+  ani-doodle:focus-visible { outline: 2px solid var(--ink); }
+  @media (max-width: 760px) { main { grid-template-columns: 1fr; } ani-doodle { margin: 0 auto; } }
+</style>
+</head>
+<body>
+<main>
+  <section>
+    <h1>The pins are the score.</h1>
+    <p>A music box stores its tune as pins on a turning drum. Each pin lifts one tuned steel tooth, and the tooth rings.</p>
+    <p>Hover the movement, or Tab to it, and it comes apart. Point at a part to see what it does.</p>
+    <button type="button" data-anidoodle="apart">Take it apart</button>
+  </section>
+  <ani-doodle piece="mechanism-explorer" tabindex="0"></ani-doodle>
+</main>
+<article>
+  <h2>Eighteen teeth, one drum</h2>
+  <p>The comb is a single steel plate cut into eighteen teeth, each filed to a pitch. The long bass teeth carry small lead weights underneath, which lower them further than length alone could.</p>
+  <p>The drum turns once in about ten seconds. Every pin is a note at a moment: where it sits along the drum picks the tooth, and how far round it sits picks the time.</p>
+  <h2>Why it keeps time</h2>
+  <p>A spring would let the drum race. The governor spins a small two-blade fan on a worm, and the air it pushes against holds the tempo steady from the first bar to the last.</p>
+</article>
+<!--anidoodle-->
+</body>
+</html>

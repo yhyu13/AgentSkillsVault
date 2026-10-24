@@ -1,7 +1,9 @@
-# Precedent Transaction Analysis
-
+---
 name: precedent-transactions
 description: Precedent transaction analysis for M&A valuation
+---
+
+# Precedent Transaction Analysis
 
 ## When to Activate
 

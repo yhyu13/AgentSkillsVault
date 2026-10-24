@@ -1,4 +1,4 @@
-﻿---
+---
 name: grafana-ml-ai
 license: Apache-2.0
 description: Turn on AI + ML features in Grafana Cloud — Grafana Assistant (NL → PromQL/LogQL/TraceQL, dashboard build, incident investigation, MCP integration), Dynamic Alerting (Prophet forecasting + DBSCAN outlier detection), Sift (8-analysis automated root-cause), Knowledge Graph + RCA Workbench, and the LLM Plugin (OpenAI / Anthropic / Azure / Ollama / vLLM / LiteLLM). Use when you want anomaly alerts without static thresholds, natural-language querying, automated incident investigation, dashboards generated from a sentence, or a managed LLM proxy for plugins — even when the user says "alert when something looks weird", "explain this PromQL", "find the root cause", "make this a dashboard", or "wire Claude into Grafana" without naming any of these products.

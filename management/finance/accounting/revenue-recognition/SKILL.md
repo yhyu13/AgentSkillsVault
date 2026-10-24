@@ -1,7 +1,9 @@
-# Revenue Recognition
-
+---
 name: revenue-recognition
 description: Revenue recognition — IFRS 15 five-step model, ASC 606
+---
+
+# Revenue Recognition
 
 ## When to Activate
 

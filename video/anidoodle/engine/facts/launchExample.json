@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "about": "The ledger of launchExample, a demo launch film for a made-up product ('Your Product'). It makes no factual claim: every line is placeholder copy written for the template, labelled generated.",
+  "claims": [
+    { "claim": "IDEA IN.", "where": "on-screen", "generated": true, "note": "demo slogan written for the template example, states no fact" },
+    { "claim": "ART OUT.", "where": "on-screen", "generated": true, "note": "demo slogan written for the template example, states no fact" },
+    { "claim": "One sentence that says what it is", "where": "on-screen", "generated": true, "note": "placeholder tagline that tells the user what to write here, states no fact" }
+  ]
+}

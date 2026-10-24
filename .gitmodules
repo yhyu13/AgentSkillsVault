@@ -175,3 +175,6 @@
 [submodule "vendor/investment-masters"]
 	path = vendor/investment-masters
 	url = https://github.com/AlphaGBM/investment-masters.git
+[submodule "vendor/mattpocock-skills"]
+	path = vendor/mattpocock-skills
+	url = https://github.com/mattpocock/skills

@@ -1,7 +1,9 @@
-# Comparable Company Analysis
-
+---
 name: comparable-analysis
 description: Comparable company analysis (trading comps)
+---
+
+# Comparable Company Analysis
 
 ## When to Activate
 

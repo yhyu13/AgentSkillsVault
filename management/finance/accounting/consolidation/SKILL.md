@@ -1,7 +1,9 @@
-# Group Consolidation
-
+---
 name: consolidation
 description: Group consolidation — IFRS 10, intercompany elimination, minority interests
+---
+
+# Group Consolidation
 
 ## When to Activate
 

@@ -140,4 +140,14 @@
 
 ---
 
+## 9. 勘误（2026-10-24 同日复核）
+
+本记录保留当日安装事实，不回改上文表格；以下为事后复核结论：
+
+- **`FDE/investment-masters` 已删除**。复核发现它是 `vendor/investment-masters`（submodule @ `b1a304f`）的**逐字节副本**（`git diff --no-index` 零内容差异），且该 skill 与 FDE 无关——内容是 AlphaGBM 的 15 位投资大师方法蒸馏（SEC 13F、Buffett/Dalio/Soros）。
+- **现只保留 `vendor/investment-masters`（vendor-only）**，不装进任何分类目录。原先把它放进 `FDE/` 的原因是选型时把「distilled masters（人物蒸馏）」与包名 `investment-masters` 混淆。
+- 受影响文档已同步：`INSTRUCTION.md`（FDE 小节 + vendor 表）、`README.md`（目录树 + skill 表）、`docs/skill-capacity-audit/2026-10-24-capacity-audit.md`（路径列）。
+
+---
+
 > 免责声明：本输出由 AI 辅助生成，仅用于信息整理与研究参考，不构成专业意见或决策依据。

@@ -1,4 +1,4 @@
-﻿---
+---
 name: grafana-prometheus-cardinality-troubleshooter
 license: Apache-2.0
 description: >

@@ -1,4 +1,4 @@
-﻿---
+---
 name: grafana-frontend-session-rca
 license: Apache-2.0
 description: >

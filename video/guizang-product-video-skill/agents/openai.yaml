@@ -1,0 +1,4 @@
+interface:
+  display_name: "归藏 product video skill"
+  short_description: "复用真实产品组件，用代码制作有配乐、有节奏、讲得清楚的软件更新宣传片"
+  default_prompt: "请使用 $guizang-product-video-skill，为这个产品最近几个版本制作一支宣传片，先确认用代码库风格还是默认风格。"

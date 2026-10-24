@@ -1,0 +1,25 @@
+{
+ "name": "almond-blossom",
+ "title": "Almond-blossom hand",
+ "plate": "engine/src/canvas-core/adaptAlmond.ts",
+ "nearest": "paintedOil",
+ "recipe": {
+  "mark": "opaque oil, a loaded bristle brush, short strokes about a finger long; the ground laid in patches of like-directed strokes that turn against each other; forms painted along their length; lights thick and ridged",
+  "edge": "hard: a broken dark blue-green contour laid last with a small round brush, heavier on the shadow side, long runs that break rarely; nothing blended across an edge",
+  "order": "the ground everywhere first (forms left as bare priming, cast shadows laid darker); forms in their mid tone; lights; the contour; the last thick whites",
+  "paper": "primed linen (#e9e6d8), weave at 0.5 under, 0.22 over",
+  "palette": ["#6aa4b2", "#79b1bb", "#88bcc1", "#97c6c6", "#a9d1cc", "#6f8f74", "#a2bb96", "#f1eedc", "#fbf8ea", "#dc5f30", "#27413c"],
+  "subject rule": "high-key flat decorative ground, one step of shadow on forms, no modelling in depth; no black anywhere: the darkest note is the blue-green contour"
+ },
+ "params": { "groundStep": 19, "groundLen": 58, "groundW": 20, "patchNoise": 0.006, "contourW": 6.5, "contourSkip": 0.05 },
+ "profile": { "summary": "analyzer's nearest (charcoalErasure, storybook) wrong by eye; nearest by eye paintedOil" },
+ "provenance": {
+  "reference": "Vincent van Gogh, Almond Blossom (1890), Wikimedia Commons, public domain (File:Vincent van Gogh - Almond blossom - Google Art Project.jpg)",
+  "sha256": "6f640dcd79def4223bf16569fd29ca5e37ee9d6cde2670958636e259e2a1c9d0",
+  "broughtBy": "Alex Greenshpun (owner), chosen for the launch film",
+  "date": "2026-09-27",
+  "embedded": false,
+  "copied": "nothing but the hand: no branch, no blossom, no composition; the subject is the launch film's own koi and pond from koi.ts"
+ },
+ "proof": ["node tools/still.mjs adaptAlmond (from engine/): the plate in this hand"]
+}

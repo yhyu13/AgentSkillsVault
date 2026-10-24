@@ -1,0 +1,26 @@
+html-artifacts — a Claude skill
+Copyright 2026 Liu Shiyu (https://github.com/liush2yuxjtu)
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+------------------------------------------------------------------------
+This product bundles, in `reference/`, twenty (20) unmodified HTML example
+files from:
+
+    "The unreasonable effectiveness of HTML — examples"
+    https://github.com/ThariqS/html-effectiveness
+    https://thariqs.github.io/html-effectiveness/
+    Copyright 2026 Anthropic PBC
+    Licensed under the Apache License, Version 2.0
+
+The reference files are redistributed verbatim. Each retains its original
+per-file copyright header:
+
+    <!-- Copyright 2026 Anthropic PBC · SPDX-License-Identifier: Apache-2.0 -->
+
+No changes were made to these files. All product names, data, and scenarios
+shown in them are fictional and used only for illustration (the placeholder
+brand "Acme" and any figures are not real), per the upstream README.
+
+The skill scaffolding (SKILL.md, scripts/, README.md) is original work by the
+copyright holder above and is likewise licensed under Apache-2.0.

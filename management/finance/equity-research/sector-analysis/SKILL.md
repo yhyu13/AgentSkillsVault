@@ -1,4 +1,4 @@
-﻿---
+---
 name: sector-analysis
 description: Sector classification, key metrics by industry, industry life cycle, competitive dynamics — frameworks for sector-level equity analysis.
 ---

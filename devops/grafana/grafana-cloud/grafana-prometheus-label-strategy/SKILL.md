@@ -1,4 +1,4 @@
-﻿---
+---
 name: grafana-prometheus-label-strategy
 license: Apache-2.0
 description: >

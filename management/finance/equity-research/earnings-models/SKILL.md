@@ -1,4 +1,4 @@
-﻿---
+---
 name: earnings-models
 description: Revenue build-up, margin analysis, EPS estimation — building bottom-up earnings models for equity research.
 ---

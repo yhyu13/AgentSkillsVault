@@ -1,0 +1,73 @@
+{
+ "title": "示例早报 · 新闻讲解视频",
+ "date": "2026-01-01",
+ "sourceNote": "示例数据，非真实新闻；正式使用时写简报来源（文档链接/文件路径）",
+ "platforms": ["X / B 站 横屏"],
+ "voice": "zh-CN-YunxiNeural",
+ "rate": "+20%",
+ "brand": {"name": "示例早报", "meta": "DAILY BRIEF · 2026.01.01"},
+ "shots": [
+  {
+   "id": "intro", "type": "title", "kind": "intro",
+   "headlineEn": "Daily Brief", "headline": "示例早报 · 1月1日",
+   "description": "2 条要闻",
+   "kick": "DAILY BRIEF · VOL. 2026.01.01",
+   "titleEn": "AI ", "titleZh": "早报",
+   "enSub": "What happened yesterday, in one minute",
+   "dateNum": "01.01", "dateZh": "1 月 1 日 · 周四",
+   "facts": [["2", "条要闻"], ["1", "份来源"]],
+   "claim": false, "source": [],
+   "narration": [
+    {"sub": "这里是 1 月 1 日的示例早报，今天两条", "tts": "这里是一月一号的示例早报，今天两条。"}
+   ]
+  },
+  {
+   "id": "n1", "type": "detail", "kind": "price",
+   "idx": "01", "cat": "EXAMPLE LAB",
+   "headlineEn": "Example Model 2 pricing", "headline": "Example Model 2\n上线，价格分两档",
+   "description": "示例：≤100K tokens 输入 $0.10、输出 $0.50；超过 100K 全部涨 5 倍。",
+   "prices": [
+    {"k": "≤100K 输入", "v": 0.1, "t": "$0.10"},
+    {"k": "≤100K 输出", "v": 0.5, "t": "$0.50"},
+    {"k": ">100K 输入", "v": 0.5, "t": "$0.50", "hot": true},
+    {"k": ">100K 输出", "v": 2.5, "t": "$2.50", "hot": true}
+   ],
+   "priceNote": "每百万 tokens · 示例数据",
+   "handles": ["@example", "示例定价页"],
+   "quote": {"handle": "@example", "time": "01/01 09:00", "text": "Introducing Example Model 2: our fastest small model."},
+   "claim": true, "source": ["https://example.com/pricing"],
+   "narration": [
+    {"sub": "第一条，示例实验室发布 Example Model 2", "tts": "第一条，示例实验室发布 Example Model 二，"},
+    {"sub": "超过 100K tokens，价格全部涨 5 倍", "tts": "但提示超过十万 tokens，价格全部涨五倍。", "mark": "price"}
+   ]
+  },
+  {
+   "id": "n2", "type": "detail", "kind": "steps",
+   "idx": "02", "cat": "HOW-TO",
+   "headlineEn": "Three steps to try it", "headline": "三步上手",
+   "description": "示例：打开设置、选模型、开始对话。",
+   "tipTitle": "上手步骤",
+   "steps": ["打开设置", "选择 Example Model 2", "开始对话"],
+   "handles": ["@example"],
+   "claim": false, "source": [],
+   "narration": [
+    {"sub": "第二条，上手只要三步", "tts": "第二条，上手只要三步。", "mark": "tip", "sfx": "pop", "action": "「上手步骤」标签弹出"},
+    {"sub": "打开设置", "tts": "打开设置，", "mark": "s0"},
+    {"sub": "选模型", "tts": "选模型，", "mark": "s1"},
+    {"sub": "开始对话", "tts": "开始对话。", "mark": "s2"}
+   ]
+  },
+  {
+   "id": "outro", "type": "end", "kind": "outro",
+   "headlineEn": "See you tomorrow", "headline": "明天见",
+   "description": "每条原始链接见文字版",
+   "kick": "DAILY BRIEF · 2026.01.01",
+   "big": "明天见", "enSub": "See you tomorrow",
+   "foot": ["每条原始链接见文字版", "示例早报"],
+   "claim": false, "source": [],
+   "narration": [
+    {"sub": "以上就是今天的示例早报，明天见", "tts": "以上就是今天的示例早报，明天见。"}
+   ]
+  }
+ ]
+}

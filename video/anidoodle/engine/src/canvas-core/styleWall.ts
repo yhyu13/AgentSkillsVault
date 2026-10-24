@@ -1,0 +1,1 @@
+export { styleWall } from "./launchGallery";

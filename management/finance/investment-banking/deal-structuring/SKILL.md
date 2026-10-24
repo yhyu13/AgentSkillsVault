@@ -1,7 +1,9 @@
-# Deal Structuring
-
+---
 name: deal-structuring
 description: M&A deal structuring — stock vs cash, earn-outs, tax considerations
+---
+
+# Deal Structuring
 
 ## When to Activate
 

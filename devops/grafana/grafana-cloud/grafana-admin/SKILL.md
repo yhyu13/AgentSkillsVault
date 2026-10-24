@@ -1,4 +1,4 @@
-﻿---
+---
 name: grafana-admin
 license: Apache-2.0
 description: Manage Grafana Cloud accounts — organizations, stacks, RBAC roles and assignments, SSO/SAML/OAuth/GitHub auth, service accounts for CI/CD, user invites, team membership, and API-driven provisioning. Creates stacks via the Cloud API, mints service-account tokens, applies role assignments, configures SSO providers, and provisions teams/folders/dashboards via Terraform. Use when managing Grafana Cloud access, configuring SSO/SAML/OAuth, setting up service accounts for Terraform/CI/CD, assigning RBAC roles, inviting users, managing multiple stacks or organizations, provisioning cloud resources via API or Terraform, or auditing admin actions — even when the user says "set up SSO", "create a stack", "make a service account", or "onboard a team" without explicitly saying "admin".

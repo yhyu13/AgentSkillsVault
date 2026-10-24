@@ -1,4 +1,4 @@
-﻿---
+---
 name: grafana-loki-label-analyzer
 license: Apache-2.0
 description: >
