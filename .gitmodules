@@ -73,3 +73,105 @@
 [submodule "vendor/lemo-opuscar"]
 	path = vendor/lemo-opuscar
 	url = https://github.com/lemomo-ai/lemo-opuscar.git
+[submodule "vendor/storyboard-claude"]
+	path = vendor/storyboard-claude
+	url = https://github.com/gRAYESS123/storyboard-claude.git
+[submodule "vendor/opendeck"]
+	path = vendor/opendeck
+	url = https://github.com/open-deck-org/opendeck.git
+[submodule "vendor/skillopt"]
+	path = vendor/skillopt
+	url = https://github.com/microsoft/SkillOpt.git
+[submodule "vendor/grafana-skills"]
+	path = vendor/grafana-skills
+	url = https://github.com/grafana/skills.git
+[submodule "vendor/brand-docs"]
+	path = vendor/brand-docs
+	url = https://github.com/ferdinandobons/brand-docs.git
+[submodule "vendor/mc-agent-toolkit"]
+	path = vendor/mc-agent-toolkit
+	url = https://github.com/monte-carlo-data/mc-agent-toolkit.git
+[submodule "vendor/everything-claude-finance"]
+	path = vendor/everything-claude-finance
+	url = https://github.com/brainbytes-dev/everything-claude-finance.git
+[submodule "vendor/video-shotcraft"]
+	path = vendor/video-shotcraft
+	url = https://github.com/Vincentwei1021/video-shotcraft.git
+[submodule "vendor/video-production-skill"]
+	path = vendor/video-production-skill
+	url = https://github.com/speechlab0210/video-production-skill.git
+[submodule "vendor/legalrabbit-docx-mcp"]
+	path = vendor/legalrabbit-docx-mcp
+	url = https://github.com/LegalRabbit-AI/legalrabbit-docx-mcp.git
+[submodule "vendor/visual-explainer"]
+	path = vendor/visual-explainer
+	url = https://github.com/nicobailon/visual-explainer.git
+[submodule "vendor/openai-edge-tts"]
+	path = vendor/openai-edge-tts
+	url = https://github.com/travisvn/openai-edge-tts.git
+[submodule "vendor/distilly"]
+	path = vendor/distilly
+	url = https://github.com/titanwings/distilly.git
+[submodule "vendor/claude-code-video-toolkit"]
+	path = vendor/claude-code-video-toolkit
+	url = https://github.com/digitalsamba/claude-code-video-toolkit.git
+[submodule "vendor/marketingskills"]
+	path = vendor/marketingskills
+	url = https://github.com/coreyhaines31/marketingskills.git
+[submodule "vendor/company-brain"]
+	path = vendor/company-brain
+	url = https://github.com/nemock/company-brain.git
+[submodule "vendor/excel-hygiene"]
+	path = vendor/excel-hygiene
+	url = https://github.com/BayramAnnakov/excel-hygiene.git
+[submodule "vendor/dynatrace-for-ai"]
+	path = vendor/dynatrace-for-ai
+	url = https://github.com/Dynatrace/dynatrace-for-ai.git
+[submodule "vendor/agentskills-spec"]
+	path = vendor/agentskills-spec
+	url = https://github.com/agentskills/agentskills.git
+[submodule "vendor/market-intel"]
+	path = vendor/market-intel
+	url = https://github.com/DaizeDong/market-intel.git
+[submodule "vendor/document-SKILLs"]
+	path = vendor/document-SKILLs
+	url = https://github.com/appautomaton/document-SKILLs.git
+[submodule "vendor/huashu-design"]
+	path = vendor/huashu-design
+	url = https://github.com/alchaincyf/huashu-design.git
+[submodule "vendor/skillspector"]
+	path = vendor/skillspector
+	url = https://github.com/NVIDIA/SkillSpector.git
+[submodule "vendor/xiaoma-studio"]
+	path = vendor/xiaoma-studio
+	url = https://github.com/crawfordxx/xiaoma-studio.git
+[submodule "vendor/planetscale-skills"]
+	path = vendor/planetscale-skills
+	url = https://github.com/planetscale/skills.git
+[submodule "vendor/visual-learner"]
+	path = vendor/visual-learner
+	url = https://github.com/huseyingayiran/visual-learner.git
+[submodule "vendor/presentation-skill"]
+	path = vendor/presentation-skill
+	url = https://github.com/siril9/presentation-skill.git
+[submodule "vendor/hands-on-deck"]
+	path = vendor/hands-on-deck
+	url = https://github.com/EveryInc/hands-on-deck.git
+[submodule "vendor/genoffice"]
+	path = vendor/genoffice
+	url = https://github.com/genspark-ai/genoffice.git
+[submodule "vendor/html-to-editable-pptx"]
+	path = vendor/html-to-editable-pptx
+	url = https://github.com/Hasasasa/html-to-editable-pptx.git
+[submodule "vendor/html-video"]
+	path = vendor/html-video
+	url = https://github.com/nexu-io/html-video.git
+[submodule "vendor/claude-skills"]
+	path = vendor/claude-skills
+	url = https://github.com/alirezarezvani/claude-skills.git
+[submodule "vendor/superpowers"]
+	path = vendor/superpowers
+	url = https://github.com/obra/superpowers.git
+[submodule "vendor/investment-masters"]
+	path = vendor/investment-masters
+	url = https://github.com/AlphaGBM/investment-masters.git

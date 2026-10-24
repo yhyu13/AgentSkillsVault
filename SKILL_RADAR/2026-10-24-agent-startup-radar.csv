@@ -1,0 +1,37 @@
+﻿1,openclaw/openclaw,392918,All-night worker,MIT,2026-10-24,Self-hosted assistant on your own devices, 20+ channels; OpenClaw Foundation 501c3
+2,obra/superpowers,304476,Skill building,MIT,2026-10-23,Agentic skills framework + SDLC methodology
+3,NousResearch/hermes-agent,256690,All-night worker + skill building,MIT,2026-10-24,Self-improving agent: creates/improves skills, cron scheduler, 6 terminal backends
+4,anthropics/skills,183423,Skill building,MIXED,2026-10-09,Reference Agent Skills library (docx/pdf/pptx/xlsx, MCP generation)
+5,addyosmani/agent-skills,110108,Skill building,MIT,2026-10-13,Production-grade engineering skills baseline
+6,paperclipai/paperclip,106770,Agent employee,MIT,2026-10-24,Company-of-agents control plane: heartbeat queue, budgets, approval gates, Skill Studio
+7,thedotmack/claude-mem,102704,Distilled masters (memory),Apache-2.0,2026-10-24,Persistent cross-session context for every agent
+8,bytedance/deer-flow,84367,All-night worker,MIT,2026-10-24,Long-horizon super-agent: once/cron/interval tasks, .skill packs, DeerMem
+9,lobehub/lobehub,83463,Agent employee,LobeHub Community License,2026-10-24,Agents as unit of work: builder, 10k+ skills, groups, schedule, white-box memory
+10,volcengine/OpenViking,40732,Distilled masters (context DB),AGPL-3.0,2026-10-24,Self-evolving context DB unifying memory + RAG + skills
+11,zeroclaw-labs/zeroclaw,33038,All-night worker,MIT OR Apache-2.0,2026-10-24,Rust autonomous assistant: supervised autonomy tiers, SOP engine, resumable runs
+12,topoteretes/cognee,32715,Distilled masters (memory),Apache-2.0,2026-10-23,Open-source AI memory platform for agents
+13,agentskills/agentskills,26552,Skill building (spec),Apache-2.0,2026-08-09,Open Agent Skills format: SKILL.md + progressive disclosure
+14,titanwings/distilly,25973,Distilled masters,MIT,2026-10-13,Person corpus -> Work Skill + Persona (cyber-immortality); corrections, rollback
+15,microsoft/SkillOpt,18657,Skill building,MIT,2026-10-23,Skill document as trainable state; validation-gated edits; nightly self-evolution
+16,wanshuiyin/Auto-claude-code-research-in-sleep,17994,All-night worker,MIT,2026-10-22,ARIS: overnight research, independent reviewer, NO-GO->GO gates, meta-optimize
+17,yusufkaraaslan/Skill_Seekers,15212,Skill building,MIT,2026-09-30,18 sources -> 22 targets; FTS5 index in skill; scheduled re-scrape
+18,lsdefine/GenericAgent,14343,All-night worker + skill building,MIT,2026-10-22,Self-evolving agent; task->skill crystallization; goal mode; persistent Chrome
+19,MervinPraison/PraisonAI,9288,Agent employee,MIT,2026-10-24,24/7 AI workforce: budget-bounded loops, cron CLI, 100+ providers
+20,stakpak/agent,1829,All-night worker,Apache-2.0,2026-07-06,Autopilot daemon 24/7, cron + catch-up, approval-only pings, Warden guardrails
+-,NVIDIA/SkillSpector,21186,Skill building (security),Apache-2.0,2026-10-23,Scanner for prompt injection / exfiltration / supply-chain in skills
+-,VoltAgent/awesome-openclaw-skills,53302,Skill catalog,MIT,2026-10-19,5,400+ curated OpenClaw skills
+-,OrchestratorInc/agent-orchestrator,13558,Agent employee (orchestration),Apache-2.0,2026-10-24,Task+agent+worktree workers, live Kanban, 30+ harnesses
+-,microsoft/Sico,282,Agent employee,MIT,2026-10-24,Digital Worker platform: Cortex/Action/Memory, Reflector->Curator playbook distillation
+-,PlumoAI/plumoai,78,Agent employee,PlumoAI Community License,2026-09-11,Pre-trained AI Employees OS (no resale)
+-,AlphaGBM/investment-masters,635,Distilled masters,MIT,2026-10-06,15 fund-manager methodologies distilled into skills with evidence boundaries
+-,nemock/company-brain,5,Distilled masters,MIT,2026-06-01,Typed markdown knowledge graph in git; derived_from provenance; confidence decay
+-,Intuition-Lab/personal-model,1328,Distilled masters,Apache-2.0,2026-10-16,Evidence-linked HUMAN.md personal model via MCP
+-,a5c-ai/babysitter,1868,Agent employee,MIT,2026-09-16,Obedience enforcement / supervision for agentic workforces
+-,jnMetaCode/agency-orchestrator,2402,Agent employee,Apache-2.0,2026-10-22,One-person company of AI experts
+-,builderz-labs/mission-control,6390,Agent employee,MIT,2026-10-23,Self-hosted control plane: dispatch, review runs, spend tracking
+-,beclab/Olares,5319,All-night worker,AGPL-3.0,2026-10-23,Personal Cloud OS for always-on agents
+-,finewood2008/centaurloop,66,Agent employee,MIT,2026-06-02,Smallest work unit for building AI employees
+-,Xiangyue-Zhang/auto-deep-researcher-24x7,1136,All-night worker,Apache-2.0,2026-06-03,Runs DL experiments 24/7 unattended
+-,supermemoryai/supermemory,31373,Distilled masters (memory),MIT,2026-10-24,Memory + context engine
+-,rexleimo/aios,61,All-night worker,MIT,2026-10-24,Local-first control plane: resumable overnight runs
+-,OpenInsightHQ/openinsight,65,Agent employee,Apache-2.0,2026-10-10,Enterprise Agent OS: AI employees that learn your business

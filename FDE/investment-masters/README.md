@@ -1,0 +1,184 @@
+<div align="center">
+
+# Investment Masters
+
+**Distill investment wisdom from the world's best fund managers.**
+
+*15 investing perspectives, built for AI agents and human investors*
+
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Masters](https://img.shields.io/badge/masters-15-green.svg)](#the-15-masters) [![13F](https://img.shields.io/badge/13F-SEC%20EDGAR-orange.svg)](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=13F)
+
+[Quick Start](#quick-start) · [The 15 Masters](#the-15-masters) · [Demo outputs](demo/README.md) · [5 Common Principles](#5-common-principles) · [AlphaGBM Skills](https://github.com/AlphaGBM/skills)
+
+</div>
+
+## Think Like Investing Legends
+
+Start with Buffett (value), Druckenmiller (macro trading), Lynch (growth) or Dalio (asset allocation). All 15 profiles are included in one Skill; the first four are discovery defaults, not a performance ranking. The bilingual [catalogue](catalog.json) also drives the AlphaGBM website's compact list.
+
+Ask naturally: “Use investment-masters to examine this company through Buffett's value-investing lens. Separate supplied evidence from facts still needing verification.”
+
+中文：像投资大师一样思考。默认展示巴菲特、德鲁肯米勒、彼得·林奇、达利欧，可展开全部15种视角。直接说：“请用 investment-masters，借鉴巴菲特的价值投资方法研究我提供的公司，区分已有证据和待核实信息。”
+
+This is a free methodology package, not investor endorsement, a live-data service or an automated 13F monitor. Current data requires an available retrieval tool or a supported [AlphaGBM Skill](https://github.com/AlphaGBM/skills) with its own access and shared-account allowance. Never paste an API key into a conversation. Missing data stays missing.
+
+The current catalogue has 15 profiles and four discovery defaults. The [demo files](demo/README.md) are synthetic examples of how an agent should separate a methodology lens, supplied evidence and questions still needing verification.
+
+## What Is This?
+
+The best "open-source code" in investing is the public record: shareholder letters, SEC filings, books, interviews, and memos. This repo distills **15 top fund managers' methodologies** into structured, actionable profiles that any AI agent or human can use.
+
+This is not "AI roleplay as Buffett." This is **methodology extraction** -- understanding *why* they buy, *how* they manage risk, and *when* they exit.
+
+### What Sets This Apart
+
+| | AI Roleplay Tools | Generic Finance Bots | **Investment Masters** |
+|--|-------------------|---------------------|----------------------|
+| Source | LLM training data | News feeds | **Primary sources: letters, 13F, books, memos** |
+| Depth | Surface-level quotes | Price alerts | **Full methodology: selection, sizing, risk, exit** |
+| Evidence | "Buffett would say..." | Varies | **Profiles list sources; verify current claims against the original material** |
+| Actionable | Entertainment | Information | **Maps to systematic investment rules** |
+| Filing research | Varies | Varies | **Public filing links, not an automatic holdings feed** |
+
+## Quick Start
+
+### For Claude Code
+
+```bash
+git clone https://github.com/AlphaGBM/investment-masters.git .claude/skills/investment-masters
+```
+
+### For Cursor
+
+```bash
+git clone https://github.com/AlphaGBM/investment-masters.git .cursor/skills/investment-masters
+```
+
+Then ask your AI:
+
+> "Distill Buffett's investment methodology"
+>
+> "Compare Dalio and Marks on risk management"
+>
+> "Read a dated Bridgewater 13F filing and list the reported holdings, filing period and source."
+>
+> "Write a research report on the 5 common principles"
+
+## See a safe result shape
+
+The [demo comparison](demo/compare-buffett-marks.md) shows the intended output: methodology first, evidence boundaries second, and no invented current holdings. The [catalogue fixture](demo/masters-preview.json) is a compact, machine-readable view of the four defaults and all 15 available profiles.
+
+## The 15 Masters
+
+| # | Master | Style | Profile |
+|---|--------|-------|---------|
+| 1 | **[Bridgewater (Dalio)](masters/bridgewater.md)** | Risk parity / All-weather | Principles, All Weather white paper |
+| 2 | **[Buffett](masters/buffett.md)** | Value / Moat | 60 years of shareholder letters |
+| 3 | **[Renaissance (Simons)](masters/renaissance.md)** | Pure quant / Statistical arbitrage | The Man Who Solved the Market |
+| 4 | **[AQR (Asness)](masters/aqr.md)** | Factor investing / Momentum | 200+ research papers |
+| 5 | **[Tepper](masters/tepper.md)** | Contrarian / Extreme opportunity | 2009 crisis bottom-fishing |
+| 6 | **[Soros](masters/soros.md)** | Macro / Reflexivity | The Alchemy of Finance |
+| 7 | **[Ackman](masters/ackman.md)** | Concentrated / Event-driven | 2020 CDS hedge |
+| 8 | **[Howard Marks](masters/howard_marks.md)** | Cycles / Second-level thinking | The Most Important Thing + memos |
+| 9 | **[Hillhouse (Zhang Lei)](masters/hillhouse.md)** | Long-termism / China | Value |
+| 10 | **[ARK (Wood)](masters/ark.md)** | Disruptive innovation | Big Ideas report |
+| 11 | **[Duan Yongping](masters/duan_yongping.md)** | Value / 本分 / Circle of competence | Xueqiu essays, Buffett lunch |
+| 12 | **[Peter Lynch](masters/lynch.md)** | GARP / Invest in what you know | *One Up on Wall Street* |
+| 13 | **[Druckenmiller](masters/druckenmiller.md)** | Macro / Concentrated asymmetric bets | Quantum Fund, Duquesne |
+| 14 | **[Liang Wenfeng (High-Flyer)](masters/liang_wenfeng.md)** | Quant / AI-driven | 幻方量化 + DeepSeek |
+| 15 | **[Linda Raschke](masters/raschke.md)** | Short-term technical / Swing | *Street Smarts*, Market Wizards |
+
+## 5 Common Principles
+
+Despite radically different styles, all 15 converge on these:
+
+1. **Systems Over Intuition** -- Dalio built All-weather. Simons built quant models. AQR built factor frameworks. The best investors don't rely on gut feeling.
+
+2. **Risk Management Over Stock Picking** -- Dalio: "Diversification is the holy grail." Marks: "Risk management is not about avoiding risk, but understanding it."
+
+3. **Clear Thesis + Willingness to Be Wrong** -- Ackman: every position has written exit criteria. Soros: exits immediately when wrong. Know why you own it.
+
+4. **Cycle Awareness** -- Marks' pendulum. Dalio's quadrants. Tepper's panic buying. Markets swing between excess optimism and excess pessimism.
+
+5. **Long-term > Short-term** -- Buffett: "My favorite holding period is forever." Exception: Renaissance profits from short-term statistical arbitrage.
+
+## Read Dated 13F Filings
+
+Public SEC EDGAR filing links are reference starting points, not a built-in data collector. Verify the reporting entity, filing period and publication date before drawing a holdings comparison:
+
+| Master | CIK | EDGAR Link |
+|--------|-----|-----------|
+| Bridgewater | 0001350694 | [13F filings](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001350694&type=13F&dateb=&owner=include&count=10) |
+| Berkshire (Buffett) | 0001067983 | [13F filings](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001067983&type=13F&dateb=&owner=include&count=10) |
+| Appaloosa (Tepper) | 0001656456 | [13F filings](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001656456&type=13F&dateb=&owner=include&count=10) |
+| Pershing Square (Ackman) | 0001336528 | [13F filings](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001336528&type=13F&dateb=&owner=include&count=10) |
+| Soros Fund | 0001029160 | [13F filings](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001029160&type=13F&dateb=&owner=include&count=10) |
+| Hillhouse | 0001510057 | [13F filings](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001510057&type=13F&dateb=&owner=include&count=10) |
+| ARK Invest | 0001803918 | [13F filings](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001803918&type=13F&dateb=&owner=include&count=10) |
+
+*Renaissance Medallion and AQR's internal funds are proprietary and not in 13F.*
+
+## Example Queries
+
+| Query | What the AI Does |
+|-------|-----------------|
+| "Distill Buffett's methodology" | Outputs principles, sizing, risk control, evidence boundaries and takeaways |
+| "Compare Dalio vs Marks on risk" | Side-by-side analysis of risk philosophies |
+| "Read a dated Ackman 13F filing" | Separates reported holdings, filing period and source |
+| "Apply Tepper's lens to these indicators" | Applies the framework to indicators supplied or retrieved by a supported tool |
+| "Write a report on master principles" | Generates structured article from the 5 common principles |
+| "Apply Soros' lens to this case" | Applies reflexivity questions to evidence supplied by the user |
+
+## Project Structure
+
+```
+investment-masters/
+├── README.md           # This file
+├── SKILL.md            # AI agent skill definition
+├── catalog.json        # Bilingual website and agent discovery catalogue
+├── demo/                # Synthetic output fixtures for documentation
+├── LICENSE             # MIT
+└── masters/            # Individual master profiles
+    ├── ackman.md
+    ├── aqr.md
+    ├── ark.md
+    ├── bridgewater.md
+    ├── buffett.md
+    ├── druckenmiller.md
+    ├── duan_yongping.md
+    ├── hillhouse.md
+    ├── howard_marks.md
+    ├── liang_wenfeng.md
+    ├── lynch.md
+    ├── raschke.md
+    ├── renaissance.md
+    ├── soros.md
+    └── tepper.md
+```
+
+## Related
+
+- **[AlphaGBM Skills](https://github.com/AlphaGBM/skills)** -- research workflows and focused tools; see the current catalogue for package counts and API availability
+- **[AlphaGBM](https://alphagbm.com)** -- Full platform: stock analysis, options scoring, strategy builder
+
+## Contributing
+
+Want to add a master or improve a profile? PRs welcome:
+
+- Add new master profiles following the template in SKILL.md
+- Update `catalog.json` and the demo fixture when adding or renaming a profile
+- Update 13F holdings after each quarterly filing
+- Add notable quotes, interviews, or new publications
+- Translations (currently EN + CN)
+
+## License
+
+MIT -- see [LICENSE](LICENSE).
+
+---
+
+<div align="center">
+
+**Built by [AlphaGBM](https://alphagbm.com). Stand on the shoulders of giants.**
+
+</div>

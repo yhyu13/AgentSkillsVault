@@ -1,0 +1,18 @@
+# Optional extras. Install only what your collectors need, or everything with:
+#   pip3 install -r requirements-optional.txt
+
+# Chinese name → slug conversion
+pypinyin>=0.48.0
+
+# Lark browser login and DingTalk message scraping (then: playwright install chromium)
+playwright>=1.40.0
+
+# Slack auto collector
+slack-sdk>=3.27.0
+
+# Word/Excel parsing (convert to PDF/CSV first if unavailable)
+python-docx>=1.1.0
+openpyxl>=3.1.0
+
+# Store collector secrets in the OS keychain instead of ~/.distilly/*.json
+keyring>=24.0.0

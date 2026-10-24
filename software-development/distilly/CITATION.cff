@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use Distilly, its /distilly creator, or COLLEAGUE.SKILL in your research or applications, please cite the technical report."
+title: "Distilly"
+authors:
+  - family-names: Zhou
+    given-names: Tianyi
+  - family-names: Liu
+    given-names: Dongrui
+  - family-names: Yuan
+    given-names: Leitao
+  - family-names: Shao
+    given-names: Jing
+  - family-names: Hu
+    given-names: Xia
+license: MIT
+repository-code: "https://github.com/titanwings/distilly"
+url: "https://github.com/titanwings/distilly"
+preferred-citation:
+  type: article
+  title: "COLLEAGUE.SKILL: Automated AI Skill Generation via Expert Knowledge Distillation"
+  authors:
+    - family-names: Zhou
+      given-names: Tianyi
+    - family-names: Liu
+      given-names: Dongrui
+    - family-names: Yuan
+      given-names: Leitao
+    - family-names: Shao
+      given-names: Jing
+    - family-names: Hu
+      given-names: Xia
+  year: 2026
+  date-released: "2026-05-29"
+  url: "https://arxiv.org/abs/2605.31264"
+  identifiers:
+    - type: other
+      value: "arXiv:2605.31264"
+      description: "The arXiv preprint of the technical report."

@@ -1,0 +1,9 @@
+# Synthetic setup checklist
+
+This generated example records no real account or host state.
+
+- Source: github-mcp
+- Selected operation: search
+- Readiness: setup
+- Missing evidence: current-session execution and content validation
+- Next step: inspect the selected host's callable tools, then run a read-only probe.

@@ -1,0 +1,67 @@
+/* deck-animation.css — REQUIRED styles for stepped reveals, step dots, and
+ * tooltips. deck-enhance.js only toggles classes; these rules give them their
+ * look. Paste this into your deck's <style> block (inside <helmet> for a DC).
+ *
+ * Colors/timing below use plain values so it works with no design system.
+ * If you HAVE a design system, swap the hard-coded values for your tokens
+ * (e.g. var(--ease-emphasized), var(--brand-accent), …).
+ * ───────────────────────────────────────────────────────────────────────── */
+
+/* ── Stepped reveals ────────────────────────────────────────────────────────
+ * Any element with data-step="N" starts hidden and fades/rises in when its
+ * step (or a later one) is reached. */
+deck-stage [data-step] {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 480ms cubic-bezier(.2,0,0,1), transform 480ms cubic-bezier(.2,0,0,1);
+  pointer-events: none;
+}
+[data-step].step-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+[data-step].step-past    { opacity: 0.92; }   /* revealed, but not the newest */
+[data-step].step-current { opacity: 1; }       /* the step just revealed */
+
+/* ── Step progress dots (auto-injected per slide that has steps) ─────────── */
+deck-stage .step-dots {
+  position: absolute; bottom: 30px; left: 64px;
+  display: none; gap: 8px; align-items: center; z-index: 4;
+}
+deck-stage .step-dots.has-steps { display: flex; }
+.step-dots .dot {
+  width: 12px; height: 2px; background: rgba(0,0,0,.22);
+  transition: background 200ms ease, width 200ms ease;
+}
+.step-dots .dot.on      { background: rgba(0,0,0,.5); }
+.step-dots .dot.current { background: #007bc0; width: 24px; }  /* accent */
+
+/* ── Optional: auto-fade the non-stepped content of a slide on entry ────────
+ * Direct children of a .frame that AREN'T data-step elements stagger in when
+ * the slide becomes active. Omit if you don't use a .frame wrapper. */
+deck-stage section .frame > *:not([data-step]) {
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+section.is-active .frame > *:not([data-step]) { opacity: 1; transform: none; }
+section.is-active .frame > *:not([data-step]):nth-child(1) { transition-delay: 60ms; }
+section.is-active .frame > *:not([data-step]):nth-child(2) { transition-delay: 160ms; }
+section.is-active .frame > *:not([data-step]):nth-child(3) { transition-delay: 260ms; }
+section.is-active .frame > *:not([data-step]):nth-child(4) { transition-delay: 340ms; }
+section.is-active .frame > *:not([data-step]):nth-child(5) { transition-delay: 400ms; }
+section.is-active .frame > *:not([data-step]):nth-child(n+6) { transition-delay: 440ms; }
+
+/* ── Hover tooltips (data-tip="…") ──────────────────────────────────────── */
+[data-tip] { cursor: help; }
+#deck-tip {
+  position: fixed; left: 0; top: 0;
+  background: #1a1a1a; color: #fff;
+  padding: 16px 20px; font-size: 22px; line-height: 1.45; font-weight: 400;
+  max-width: 520px; pointer-events: none; opacity: 0; z-index: 9999;
+  box-shadow: 0 12px 40px rgba(0,0,0,.28);
+  transition: opacity 180ms ease; --tip-arrow-x: 50%;
+}
+#deck-tip.show { opacity: 1; }
+#deck-tip::after {
+  content: ''; position: absolute; left: var(--tip-arrow-x);
+  width: 12px; height: 12px; background: #1a1a1a;
+  transform: translateX(-50%) rotate(45deg); bottom: -6px; top: auto;
+}
+#deck-tip.below::after { bottom: auto; top: -6px; }

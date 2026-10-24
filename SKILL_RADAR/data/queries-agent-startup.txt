@@ -1,0 +1,20 @@
+topic:agent-skills
+topic:claude-skills
+topic:digital-worker
+topic:ai-employee
+topic:ai-digital-worker
+topic:agent-orchestration
+topic:autonomous-agent
+topic:skill-distillation
+topic:agent-memory
+topic:ai-agent-framework
+topic:ai-workflow
+"ai employee" in:name,description
+"digital worker" in:name,description
+"company brain" in:name,description
+"always-on" agent in:name,description
+"24/7" agent in:name,description
+masters in:name skill
+"agent employee" in:name,description
+"overnight" agent in:name,description
+"autonomous" "digital worker" in:description

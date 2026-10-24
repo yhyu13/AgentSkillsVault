@@ -1,0 +1,12 @@
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "verified", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "unverifiable", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "dead", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "fallback_used", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "price_mismatch", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "barrier_found", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "coverage_gap", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "user_correction", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "transport_error", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "auth_failed", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "quota_exceeded", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}
+{"detail": "Generated synthetic ledger example.", "domain": "example-domain", "outcome": "content_invalid", "route": "①", "source": "example-source", "ts": "2031-01-02", "user_correction": null}

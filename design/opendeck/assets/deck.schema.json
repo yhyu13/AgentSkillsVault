@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-deck.org/schema/deck.schema.json",
+  "title": "deck.json",
+  "description": "Manifest at the root of a .deck package (a Zip containing this file plus the self-contained index.html; MIME type: application/x-deck). Only `entry` is strictly required; everything else has sensible defaults.",
+  "type": "object",
+  "required": ["entry"],
+  "additionalProperties": true,
+  "properties": {
+    "schema": {
+      "description": "Manifest schema version.",
+      "type": "integer",
+      "const": 1,
+      "default": 1
+    },
+    "id": {
+      "description": "Package identifier; also used as the .deck filename.",
+      "type": "string",
+      "pattern": "^[A-Za-z0-9-_]+$"
+    },
+    "title": {
+      "description": "Human-readable deck title.",
+      "type": "string"
+    },
+    "entry": {
+      "description": "Relative path to the deck's entry HTML inside the package.",
+      "type": "string",
+      "default": "index.html"
+    },
+    "orientation": {
+      "description": "Intended presentation orientation. 1920x1080 decks are landscape.",
+      "type": "string",
+      "enum": ["landscape", "portrait"],
+      "default": "landscape"
+    },
+    "author": {
+      "description": "Optional author name.",
+      "type": "string"
+    },
+    "version": {
+      "description": "Optional deck version string.",
+      "type": "string"
+    },
+    "thumbnail": {
+      "description": "Optional relative path, inside the package, to a preview image (e.g. \"thumbnail.png\"). Player apps may display it in their library. Use PNG, JPEG, WebP, or SVG.",
+      "type": "string"
+    }
+  }
+}

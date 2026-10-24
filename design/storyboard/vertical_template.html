@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}}</title>
+  <!-- Fonts: Anton (display) + Inter (body) + JetBrains Mono. Every stack has system fallbacks,
+       so an offline render still looks right (Impact / system sans). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
+  <style>
+    /* ============================================================
+       VERTICAL 1080x1920 (9:16) — Reels / TikTok / Shorts
+       Driven by storyboard-engine.js (v0.8): slides stack in place and
+       transition on the audio clock; every frame is a pure function of t.
+
+       PLATFORM SAFE ZONES (1080x1920). Keep critical text out of:
+         top 220px (status bar, app header) · bottom 420px (caption /
+         description rail) · right 140px (like / comment / share rail).
+         Captions own the band just above the bottom rail (lower third).
+       Content goes inside .v-safe, which already honours all of that
+       (+ a 28px gutter so holds / springs never touch a rail).
+       Authoring guides: press G (or open the deck with #guides).
+
+       Rules of thumb: titles >= 120px, <= ~18 words on screen per beat,
+       one focal element per slide, the VO carries the detail.
+    ============================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ============================================================
+       THEME TOKENS — the engine, fun pack, captions and style kits
+       (kits/<style>.css, linked after this block) all read these.
+    ============================================================ */
+    :root {
+      --bg:      #0B0B12;
+      --fg:      #F7F5EF;
+      --muted:   #A3A1B4;
+      --accent:  #FF3D6E;
+      --accent2: #3DF5B0;              /* positive: checkDraw, success */
+      --accent3: #FF8A3D;              /* alert: crossDraw */
+      --gold:    #FFC940;
+      --surface: #181829;              /* raised panels on --bg */
+      --highlight: var(--gold);        /* engine: highlight preset */
+      --font-display: 'Anton', Impact, Haettenschweiler, 'Arial Narrow Bold', 'Arial Black', sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      /* captions (burned in for muted autoplay) */
+      --caption-font: var(--font-body);
+      --caption-size: 76px;
+      --caption-fg: #FFFFFF;
+      --caption-bg: rgba(10, 10, 18, 0.78);
+      --caption-hi: var(--gold);
+      /* safe zones */
+      --safe-top: 220px;
+      --safe-right: 140px;
+      --safe-bottom: 420px;
+      --safe-left: 72px;
+      --caption-band: 230px;
+      --gutter: 28px;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+    .stage {
+      width: 100vw; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .deck {
+      flex: none;                       /* never shrink: meta() reads 1080x1920 from here */
+      width: 1080px; height: 1920px;
+      position: relative; overflow: hidden;
+      transform-origin: center;
+      background: var(--bg);
+    }
+
+    /* ============================================================
+       SLIDE BASE — stacked in place; the engine owns opacity /
+       visibility / transform / filter / clip-path / z-index.
+    ============================================================ */
+    .slide {
+      position: absolute; top: 0; left: 0;
+      width: 1080px; height: 1920px;
+      overflow: hidden;
+      background: var(--bg); color: var(--fg);
+      --pad-bottom: var(--safe-bottom);
+    }
+    body.v-has-captions .slide { --pad-bottom: calc(var(--safe-bottom) + var(--caption-band)); }
+    .slide.light  { background: var(--fg); color: var(--bg); }
+    .slide.accent { background: var(--accent); color: var(--bg); }
+
+    /* The safe content box (critical text lives in here) */
+    .v-safe {
+      position: absolute; z-index: 2;
+      top:    calc(var(--safe-top) + var(--gutter));
+      left:   calc(var(--safe-left) + var(--gutter));
+      right:  calc(var(--safe-right) + var(--gutter));
+      bottom: calc(var(--pad-bottom) + var(--gutter));
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .v-safe.to-bottom { justify-content: flex-end; }
+
+    /* Full-bleed background layers (may run under the rails) */
+    .v-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+    /* Engine: .anim is hidden until its entrance runs */
+    .anim { opacity: 0; }
+    .anim.anim-played { opacity: 1; }
+
+    /* ============================================================
+       TYPE SYSTEM
+    ============================================================ */
+    /* Anton ships one weight: ask for 800 with synthesis off, so Anton renders as drawn and a
+       fallback face (offline render) still comes out heavy. */
+    .v-display, .v-list-num, .v-col-val, .v-quote-mark, .v-diagram-svg text {
+      font-weight: 800; font-synthesis: none;
+    }
+    .v-display {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      line-height: 0.94; letter-spacing: 0.005em;
+    }
+    .v-display em { font-style: normal; color: var(--accent); }
+    .v-title   { font-size: 124px; }
+    .v-body {
+      font: 500 46px/1.3 var(--font-body);
+      color: var(--muted);
+    }
+    .slide.light .v-body, .slide.accent .v-body { color: inherit; opacity: 0.82; }
+    .v-kicker {
+      align-self: flex-start;
+      font: 800 32px/1 var(--font-body);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--bg); background: var(--gold);
+      padding: 16px 26px 15px; border-radius: 999px;
+    }
+    .v-eyebrow {
+      font: 800 32px/1.1 var(--font-body);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .v-grad {
+      background: linear-gradient(100deg, var(--accent) 0%, var(--gold) 55%, var(--accent3) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+
+    /* ============================================================
+       v-hero — the HOOK. Motion inside 0.3s, headline by 1.0s.
+    ============================================================ */
+    .v-hero { background:
+      radial-gradient(70% 45% at 85% 78%, rgba(255, 61, 110, 0.22), transparent 70%),
+      radial-gradient(60% 40% at 10% 95%, rgba(61, 245, 176, 0.16), transparent 70%), var(--bg); }
+    .v-hero .v-aurora-wrap { opacity: 0.45; }
+    .v-hero .v-aurora { position: absolute; inset: -10%; }
+    .v-hero-title { font-size: 176px; margin-top: 44px; }
+    .v-hero-bar {
+      height: 22px; width: 100%; margin-top: 40px;
+      background: var(--accent); border-radius: 11px;
+    }
+    .v-hero-sub { margin-top: 40px; max-width: 760px; }
+
+    /* ============================================================
+       v-cine — full-bleed photo, text on the lower safe edge
+    ============================================================ */
+    .v-cine { background: linear-gradient(160deg, #26263f 0%, #0B0B12 70%); }
+    .v-cine-img {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform-origin: 50% 40%;
+    }
+    .v-cine-veil {
+      background: linear-gradient(180deg,
+        rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 38%,
+        rgba(0,0,0,0.72) 68%, rgba(0,0,0,0.9) 100%);
+    }
+    .v-cine .v-grade { z-index: 1 !important; }   /* grade the photo, not the type above it */
+    .v-cine-tag {
+      align-self: flex-start;
+      font: 800 30px/1 var(--font-body);
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--bg); background: var(--accent2);
+      padding: 14px 24px 13px; border-radius: 999px;
+    }
+    .v-cine-headline { margin-top: 32px; color: #fff; }
+    .v-cine-body { margin-top: 28px; color: rgba(255,255,255,0.86); }
+
+    /* ============================================================
+       v-stat — one monumental number (accent slide)
+    ============================================================ */
+    .v-stat .v-safe { align-items: center; text-align: center; }
+    .v-stat .v-eyebrow { color: var(--bg); opacity: 0.75; }
+    .v-stat-num {
+      --stat-size: 300px;               /* <= 5 characters incl. the suffix at this size */
+      font-size: var(--stat-size); line-height: 0.9;
+      margin-top: 36px;
+      font-variant-numeric: tabular-nums;
+    }
+    .v-stat-rule {
+      width: 280px; height: 18px; margin-top: 40px;
+      background: var(--bg); border-radius: 9px;
+    }
+    .v-stat-label {
+      margin-top: 44px; max-width: 760px;
+      font: 800 54px/1.2 var(--font-body);
+    }
+
+    /* ============================================================
+       v-list — thumb-friendly stack (3 items)
+    ============================================================ */
+    .v-list-items { list-style: none; margin-top: 64px; display: flex; flex-direction: column; gap: 40px; }
+    .v-list-items li { display: flex; align-items: center; gap: 34px; font: 700 54px/1.18 var(--font-body); }
+    .v-list-num {
+      flex: none; width: 104px; height: 104px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 56px; line-height: 1;
+      color: var(--bg); background: var(--accent);
+    }
+    .v-list-items li:nth-child(2) .v-list-num { background: var(--accent2); }
+    .v-list-items li:nth-child(3) .v-list-num { background: var(--accent3); }
+
+    /* ============================================================
+       v-split — stacked two-part compare (before / after)
+    ============================================================ */
+    .v-split .v-safe { gap: 0; }
+    .v-split-panel {
+      position: relative;
+      border-radius: 40px; padding: 44px 48px 52px;
+      background: var(--surface);
+    }
+    .v-split-panel.is-after { background: var(--accent); color: var(--bg); --accent2: var(--bg); }
+    .v-split-label {
+      display: flex; align-items: center; gap: 18px;
+      font: 800 32px/1 var(--font-body); letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .v-split-panel.is-before .v-split-label { color: var(--muted); }
+    .v-split-icon { width: 64px; height: 64px; flex: none; }
+    .v-split-text { font-size: 120px; margin-top: 26px; }
+    .v-split-panel.is-before .v-split-text { color: var(--muted); }
+    .v-split-arrow {
+      align-self: center; z-index: 3;
+      width: 116px; height: 116px; margin: -30px 0; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--fg); color: var(--bg);
+      box-shadow: 0 0 0 14px var(--bg);
+    }
+    .v-split-arrow svg { width: 56px; height: 56px; }
+
+    /* ============================================================
+       v-chart — animated bar chart (barGrow + counters)
+    ============================================================ */
+    .v-plot {
+      margin-top: 56px; height: 520px;
+      display: flex; align-items: stretch; gap: 36px;
+      border-bottom: 6px solid var(--muted);
+    }
+    .v-col { flex: 1; position: relative; }
+    .v-col-bar {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      height: calc(var(--v) * 1%);
+      border-radius: 20px 20px 0 0;
+      background: color-mix(in srgb, var(--fg) 20%, var(--bg));
+    }
+    .v-col.is-hero .v-col-bar { background: var(--accent); }
+    .v-col-val {
+      position: absolute; left: -12px; right: -12px; text-align: center;
+      bottom: calc(var(--v) * 1% + 14px);
+      font-family: var(--font-display); font-size: 64px; line-height: 1;
+    }
+    .v-col.is-hero .v-col-val { color: var(--accent); }
+    .v-col-labels { display: flex; gap: 36px; margin-top: 22px; }
+    .v-col-labels span {
+      flex: 1; text-align: center;
+      font: 700 34px/1.1 var(--font-body); color: var(--muted);
+    }
+    .v-col-labels span.is-hero { color: var(--fg); }
+
+    /* ============================================================
+       v-diagram — path draws, a pulse travels it, nodes pop on
+    ============================================================ */
+    .v-diagram-svg { width: 100%; height: auto; margin-top: 40px; overflow: visible; }
+    .v-diagram-svg .v-path { fill: none; stroke: var(--accent2); stroke-width: 10; stroke-linecap: round; }
+    .v-diagram-svg .v-path-ghost { fill: none; stroke: var(--surface); stroke-width: 10; stroke-linecap: round; }
+    .v-diagram-svg .v-node { transform-box: fill-box; transform-origin: center; }
+    .v-diagram-svg .v-node circle { fill: var(--surface); stroke: var(--accent2); stroke-width: 8; }
+    .v-diagram-svg .v-node.is-hero circle { fill: var(--accent); stroke: var(--accent); }
+    .v-diagram-svg .v-node text {
+      font-family: var(--font-display); font-size: 44px; fill: var(--fg); text-anchor: middle;
+    }
+    .v-diagram-svg .v-label {
+      font-family: var(--font-display); font-size: 64px; fill: var(--fg);
+      text-transform: uppercase;
+    }
+    .v-diagram-svg .v-dot { fill: var(--gold); }
+    .v-diagram-svg .v-label.is-hero { fill: var(--accent); }
+
+    /* ============================================================
+       v-lottie — Lottie illustration + headline
+       (needs lottie-web on the page; otherwise the owned fallback shows)
+    ============================================================ */
+    .v-lottie-stage {
+      position: relative; align-self: center;
+      width: 600px; height: 600px; margin: 44px 0 36px;
+    }
+    .v-lottie-player, .v-lottie-fallback { position: absolute; inset: 0; }
+    .v-lottie-disc {
+      position: absolute; inset: 70px; border-radius: 50%;
+      background: radial-gradient(circle at 38% 32%, var(--surface), #0f0f1c 72%);
+      box-shadow: inset 0 0 0 6px rgba(255,255,255,0.06);
+    }
+    .v-lottie-rings { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+    .v-lottie-icon { position: absolute; left: 50%; top: 50%; width: 260px; height: 260px; margin: -130px 0 0 -130px; }
+    .v-lottie .v-body { text-align: center; align-self: center; max-width: 720px; }
+    .v-lottie .v-title { text-align: center; }
+
+    /* ============================================================
+       v-quote — the breath (light slide)
+    ============================================================ */
+    .v-quote-mark {
+      font-family: var(--font-display); font-size: 300px; line-height: 0.8;
+      color: var(--accent); height: 170px;
+    }
+    .v-quote-text {
+      font: 800 76px/1.16 var(--font-body);
+      letter-spacing: -0.02em; margin-top: 12px;
+    }
+    .v-quote-attr {
+      margin-top: 48px;
+      font: 700 34px/1.2 var(--font-body); letter-spacing: 0.08em; text-transform: uppercase;
+      opacity: 0.62;
+    }
+
+    /* ============================================================
+       v-cta — the payoff
+    ============================================================ */
+    .v-cta .v-safe { align-items: center; text-align: center; }
+    .v-cta .v-aurora-wrap { opacity: 0.35; }
+    .v-cta .v-aurora { position: absolute; inset: -10%; }
+    .v-cta .v-kicker { align-self: center; }
+    .v-cta-title { font-size: 150px; margin-top: 44px; }
+    .v-cta-body { margin-top: 36px; max-width: 760px; }
+    .v-cta-action { position: relative; margin-top: 64px; }
+    .v-cta-burst { position: absolute; left: 50%; top: 50%; width: 0; height: 0; z-index: 0; }
+    .v-cta-pill {
+      position: relative; z-index: 1; display: inline-block;
+      padding: 34px 58px 32px; border-radius: 999px;
+      font: 800 50px/1 var(--font-body);
+      color: var(--bg); background: var(--accent3);
+    }
+    .v-cta-url {
+      margin-top: 36px;
+      font: 700 38px/1.2 var(--font-mono); color: var(--fg); opacity: 0.8;
+    }
+
+    /* ============================================================
+       DECK-WIDE LAYERS — transition overlay, film grain, captions
+    ============================================================ */
+    .transition-overlay {
+      position: absolute; inset: 0; z-index: 40;
+      pointer-events: none; opacity: 0;
+    }
+    .v-grain { position: absolute; inset: 0; z-index: 41; pointer-events: none; }
+
+    .v-captions {
+      position: absolute; z-index: 50; pointer-events: none;
+      left: calc(var(--safe-left) + 8px); right: calc(var(--safe-right) + 8px);
+      bottom: calc(var(--safe-bottom) + 18px);
+      height: calc(var(--caption-band) - 18px);
+      display: flex; align-items: flex-end; justify-content: center;
+      visibility: hidden;
+    }
+    .v-captions[data-position="bottom"] { bottom: calc(var(--safe-bottom) + 4px); }
+    .v-cap-line {
+      max-width: 100%; text-align: center;
+      font-family: var(--caption-font); font-weight: 900;
+      font-size: calc(var(--caption-size) * 0.74); line-height: 1.12;
+      color: var(--caption-fg); background: var(--caption-bg);
+      padding: 12px 26px 14px; border-radius: 22px;
+      transform-origin: 50% 100%;
+    }
+    .v-captions[data-mode="pop"] .v-cap-line {
+      font-size: var(--caption-size); line-height: 1.04;
+      text-transform: uppercase; background: none; padding: 0;
+      -webkit-text-stroke: 12px rgba(0,0,0,0.92); paint-order: stroke fill;
+      text-shadow: 0 6px 18px rgba(0,0,0,0.55);
+    }
+    .v-cap-w { display: inline-block; transform-origin: 50% 70%; }
+    .v-cap-w.is-on { color: var(--caption-hi); }
+
+    /* Safe-zone guides (authoring only; G toggles, or open with #guides) */
+    .v-guides { display: none; position: absolute; inset: 0; z-index: 60; pointer-events: none; }
+    html.sb-guides .v-guides { display: block; }
+    .v-guides i { position: absolute; background: rgba(255, 40, 90, 0.28); outline: 2px dashed rgba(255,255,255,0.7); outline-offset: -2px; }
+    .v-guides .g-top    { left: 0; right: 0; top: 0; height: var(--safe-top); }
+    .v-guides .g-bottom { left: 0; right: 0; bottom: 0; height: var(--safe-bottom); }
+    .v-guides .g-right  { right: 0; top: var(--safe-top); bottom: var(--safe-bottom); width: var(--safe-right); }
+    .v-guides .g-caps   { left: var(--safe-left); right: var(--safe-right); bottom: var(--safe-bottom); height: var(--caption-band); background: rgba(56, 217, 255, 0.22); }
+
+    /* ============================================================
+       PLAY CONTROLS — pinned to the viewport, hidden in renders
+    ============================================================ */
+    .play-controls {
+      position: fixed; top: 12px; right: 12px;
+      display: flex; gap: 8px; z-index: 9999; opacity: 0.42;
+    }
+    .play-controls button {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(12, 18, 32, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      cursor: pointer; padding: 0; color: rgba(255, 255, 255, 0.95);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .play-controls button svg { width: 14px; height: 14px; fill: currentColor; }
+    .play-controls .icon-pause { display: none; }
+    .play-controls.is-playing .icon-play { display: none; }
+    .play-controls.is-playing .icon-pause { display: block; }
+    .play-progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; background: var(--accent);
+      z-index: 9998; width: 0%; opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .play-progress.is-active { opacity: 0.75; }
+    .jump-menu {
+      position: fixed; top: 56px; right: 12px;
+      width: 320px; max-height: calc(100vh - 80px); overflow-y: auto;
+      background: rgba(12, 18, 32, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 10px; padding: 6px; z-index: 9999;
+      opacity: 0; pointer-events: none; transform: translateY(-8px);
+      transition: opacity 0.2s, transform 0.2s; backdrop-filter: blur(8px);
+    }
+    .jump-menu.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .jump-menu button {
+      display: flex; align-items: baseline; gap: 10px;
+      width: 100%; padding: 7px 12px;
+      background: transparent; border: none; border-radius: 6px;
+      color: rgba(255, 255, 255, 0.85);
+      font: 12.5px/1.35 system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      text-align: left; cursor: pointer;
+    }
+    .jump-menu button .jm-num {
+      font-weight: 700; color: var(--accent);
+      font-variant-numeric: tabular-nums; min-width: 22px;
+      font-size: 11px; letter-spacing: 0.06em;
+    }
+    .jump-menu button .jm-title { flex: 1; }
+    .jump-menu button.is-active { background: rgba(255, 61, 110, 0.22); color: #fff; }
+    .jump-menu button.is-active .jm-num { color: #fff; }
+  </style>
+</head>
+<body data-captions="pop" data-captions-position="lower-third">
+
+  <div class="stage">
+    <div class="deck" id="deck">
+
+      <!-- SLIDE 1 — v-hero: THE HOOK. The bar sweeps at 0s, the kicker springs at 0.05s,
+           the headline rises line by line and is fully up by 1.0s.
+           HERO_TITLE: 2-5 words, one <br> per line; wrap the payoff word in <em> for the accent. -->
+      <section class="slide v-hero" data-slide="1" data-transition-in="cut">
+        <div class="v-bg v-aurora-wrap" aria-hidden="true">
+          <div class="v-aurora anim" data-anim="aurora" data-t-rel="0" data-dur="0.3"></div>
+        </div>
+        <div class="v-safe">
+          <p class="v-kicker anim" data-anim="spring" data-t-rel="0.05" data-dur="0.7" data-spring="260,14">{{EYEBROW}}</p>
+          <h1 class="v-display v-hero-title anim" data-anim="lineReveal" data-t-rel="0.2" data-dur="0.8" data-hold="breathe">{{HERO_TITLE}}</h1>
+          <div class="v-hero-bar anim" data-anim="reveal" data-t-rel="0" data-dur="0.55" data-ease="outQuint" aria-hidden="true"></div>
+          <p class="v-body v-hero-sub anim" data-anim="fadeUp" data-t-rel="1.2" data-dur="0.8">{{HERO_SUBTITLE}}</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — v-cine: full-bleed image (slow ken-burns) + film grade, text on the lower safe edge.
+           SLIDE2_IMAGE: a local file next to the deck (e.g. img/scene.jpg), portrait crop. -->
+      <section class="slide v-cine" data-slide="2" data-transition-in="pushUp">
+        <div class="v-cine-img anim" data-anim="kenburns" data-t-rel="0" data-dur="7" data-zoom="0.12" data-dx="0" data-dy="-1.5"
+             style="background-image:url('{{SLIDE2_IMAGE}}');" aria-hidden="true"></div>
+        <div class="v-bg v-cine-veil" aria-hidden="true"></div>
+        <div class="v-grade anim" data-anim="cinematicGrade" data-t-rel="0" data-dur="1" aria-hidden="true"></div>
+        <div class="v-safe to-bottom">
+          <span class="v-cine-tag anim" data-anim="fadeIn" data-t-rel="0.3" data-dur="0.5">{{SLIDE2_TAG}}</span>
+          <h2 class="v-display v-title v-cine-headline anim" data-anim="rackFocus" data-t-rel="0.6" data-dur="1.1" data-hold="float">{{SLIDE2_HEADLINE}}</h2>
+          <p class="v-body v-cine-body anim" data-anim="wordReveal" data-t-rel="1.8" data-dur="2.0">{{SLIDE2_BODY}}</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 — v-stat: one monumental number on the accent colour.
+           STAT_NUMBER: digits only (counter target); STAT_SUFFIX: %, x, k, + ...
+           (<= 5 characters total at the default size — lower --stat-size for longer). -->
+      <section class="slide v-stat accent" data-slide="3" data-transition-in="zoomIn">
+        <div class="v-safe">
+          <p class="v-eyebrow anim" data-anim="fadeIn" data-t-rel="0.2" data-dur="0.5">{{STAT_EYEBROW}}</p>
+          <div class="anim" data-anim="spring" data-t-rel="0.45" data-dur="1.2" data-spring="200,13" data-hold="breathe">
+            <div class="v-display v-stat-num anim" data-anim="counter" data-t-rel="0.45" data-dur="1.5"
+                 data-to="{{STAT_NUMBER}}" data-suffix="{{STAT_SUFFIX}}">0</div>
+          </div>
+          <div class="v-stat-rule anim" data-anim="reveal" data-t-rel="1.4" data-dur="0.6" aria-hidden="true"></div>
+          <p class="v-stat-label anim" data-anim="fadeUp" data-t-rel="2.0" data-dur="0.8">{{STAT_CAPTION}}</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 — v-list: title + 3 items that land one by one (time data-stagger to the VO).
+           Items: <= 5 words each. -->
+      <section class="slide v-list" data-slide="4" data-transition-in="pushUp">
+        <div class="v-safe">
+          <h2 class="v-display v-title anim" data-anim="lineReveal" data-t-rel="0.2" data-dur="0.8">{{LIST_TITLE}}</h2>
+          <ul class="v-list-items anim-group" data-anim="slideInLeft" data-stagger="0.6" data-t-rel="1.0" data-dur="0.8" data-ease="outQuint">
+            <li><span class="v-list-num">1</span><span>{{LIST_ITEM_1}}</span></li>
+            <li><span class="v-list-num">2</span><span>{{LIST_ITEM_2}}</span></li>
+            <li><span class="v-list-num">3</span><span>{{LIST_ITEM_3}}</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 — v-split: stacked two-part compare (before / after, myth / fact, old / new).
+           SPLIT_*_TEXT: 1-3 words each. -->
+      <section class="slide v-split" data-slide="5" data-transition-in="barWipeUp">
+        <div class="v-safe">
+          <div class="v-split-panel is-before anim" data-anim="slideInLeft" data-t-rel="0.2" data-dur="0.8" data-ease="outQuint">
+            <p class="v-split-label"><span class="v-split-icon anim" data-anim="crossDraw" data-t-rel="0.9" data-dur="0.6" aria-hidden="true"></span>{{SPLIT_A_LABEL}}</p>
+            <h2 class="v-display v-split-text">{{SPLIT_A_TEXT}}</h2>
+          </div>
+          <div class="v-split-arrow anim" data-anim="spring" data-t-rel="1.7" data-dur="0.9" data-spring="260,12" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3v15M5 12l7 7 7-7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="v-split-panel is-after anim" data-anim="slideInRight" data-t-rel="2.1" data-dur="0.8" data-ease="outQuint" data-hold="breathe">
+            <p class="v-split-label"><span class="v-split-icon anim" data-anim="checkDraw" data-t-rel="2.9" data-dur="0.8" aria-hidden="true"></span>{{SPLIT_B_LABEL}}</p>
+            <h2 class="v-display v-split-text">{{SPLIT_B_TEXT}}</h2>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 — v-chart: bars grow from the baseline, values count up on top.
+           BAR_n_VALUE: 0-100 (bar height in % of the plot AND the counted number);
+           CHART_SUFFIX: unit after each value (%, k, x or empty). Column 4 is the hero. -->
+      <section class="slide v-chart" data-slide="6" data-transition-in="pushUp">
+        <div class="v-safe">
+          <h2 class="v-display v-title anim" data-anim="lineReveal" data-t-rel="0.2" data-dur="0.8">{{CHART_TITLE}}</h2>
+          <div class="v-plot">
+            <div class="v-col" style="--v: {{BAR_1_VALUE}}">
+              <div class="v-col-bar anim" data-anim="barGrow" data-t-rel="0.9" data-dur="0.9"></div>
+              <div class="v-col-val anim" data-anim="counter" data-t-rel="0.9" data-dur="0.9" data-to="{{BAR_1_VALUE}}" data-suffix="{{CHART_SUFFIX}}">0</div>
+            </div>
+            <div class="v-col" style="--v: {{BAR_2_VALUE}}">
+              <div class="v-col-bar anim" data-anim="barGrow" data-t-rel="1.15" data-dur="0.9"></div>
+              <div class="v-col-val anim" data-anim="counter" data-t-rel="1.15" data-dur="0.9" data-to="{{BAR_2_VALUE}}" data-suffix="{{CHART_SUFFIX}}">0</div>
+            </div>
+            <div class="v-col" style="--v: {{BAR_3_VALUE}}">
+              <div class="v-col-bar anim" data-anim="barGrow" data-t-rel="1.4" data-dur="0.9"></div>
+              <div class="v-col-val anim" data-anim="counter" data-t-rel="1.4" data-dur="0.9" data-to="{{BAR_3_VALUE}}" data-suffix="{{CHART_SUFFIX}}">0</div>
+            </div>
+            <div class="v-col is-hero" style="--v: {{BAR_4_VALUE}}">
+              <div class="v-col-bar anim" data-anim="barGrow" data-t-rel="1.8" data-dur="1.2" data-ease="outBack"></div>
+              <div class="v-col-val anim" data-anim="counter" data-t-rel="1.8" data-dur="1.2" data-to="{{BAR_4_VALUE}}" data-suffix="{{CHART_SUFFIX}}" data-then="pulse@1.3">0</div>
+            </div>
+          </div>
+          <div class="v-col-labels anim" data-anim="fadeIn" data-t-rel="0.7" data-dur="0.5">
+            <span>{{BAR_1_LABEL}}</span><span>{{BAR_2_LABEL}}</span><span>{{BAR_3_LABEL}}</span><span class="is-hero">{{BAR_4_LABEL}}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 — v-diagram: the path draws (pathdraw), a pulse travels it (motionPath),
+           each step pops on as the line reaches it. NODE_n: 1-2 words (<= 9 letters). -->
+      <section class="slide v-diagram" data-slide="7" data-transition-in="crossDissolve">
+        <div class="v-safe">
+          <h2 class="v-display v-title anim" data-anim="lineReveal" data-t-rel="0.2" data-dur="0.8">{{DIAGRAM_TITLE}}</h2>
+          <svg class="v-diagram-svg" viewBox="0 0 800 680" aria-hidden="true">
+            <path class="v-path-ghost" d="M 110 90 C 250 170, -30 260, 110 340 C 250 420, -30 510, 110 590"/>
+            <path id="vDiagPath" class="v-path anim" data-anim="pathdraw" data-t-rel="0.8" data-dur="2.0"
+                  d="M 110 90 C 250 170, -30 260, 110 340 C 250 420, -30 510, 110 590"/>
+            <g class="v-node anim" data-anim="scaleIn" data-t-rel="0.7" data-dur="0.5"><circle cx="110" cy="90" r="62"/><text x="110" y="106">1</text></g>
+            <g class="v-node anim" data-anim="scaleIn" data-t-rel="1.8" data-dur="0.5"><circle cx="110" cy="340" r="62"/><text x="110" y="356">2</text></g>
+            <g class="v-node is-hero anim" data-anim="spring" data-t-rel="2.7" data-dur="0.8"><circle cx="110" cy="590" r="62"/><text x="110" y="606">3</text></g>
+            <text class="v-label anim" data-anim="slideInRight" data-t-rel="0.9" data-dur="0.6" x="230" y="113">{{NODE_1}}</text>
+            <text class="v-label anim" data-anim="slideInRight" data-t-rel="2.0" data-dur="0.6" x="230" y="363">{{NODE_2}}</text>
+            <text class="v-label is-hero anim" data-anim="slideInRight" data-t-rel="2.9" data-dur="0.6" x="230" y="613">{{NODE_3}}</text>
+            <circle class="v-dot anim" data-anim="motionPath" data-path="#vDiagPath" data-t-rel="3.0" data-dur="1.6" r="16" cx="110" cy="90"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 — v-lottie: an illustrated Lottie + headline.
+           LOTTIE_SRC: a local JSON (python lottie_fetch.py fetch ... --out .). The player needs
+           lottie-web before storyboard-engine.js (new_project.py --with-lottie adds it). Without
+           lottie-web or a filled LOTTIE_SRC the page drops the player and shows the owned
+           fallback art (.v-lottie-fallback) instead. -->
+      <section class="slide v-lottie" data-slide="8" data-transition-in="pushUp">
+        <div class="v-safe">
+          <h2 class="v-display v-title anim" data-anim="lineReveal" data-t-rel="0.2" data-dur="0.8">{{LOTTIE_TITLE}}</h2>
+          <div class="v-lottie-stage">
+            <div class="v-lottie-fallback" aria-hidden="true">
+              <div class="v-lottie-disc anim" data-anim="scaleIn" data-t-rel="0.5" data-dur="0.7"></div>
+              <div class="v-lottie-rings anim" data-anim="pulseRings" data-t-rel="0.9" data-dur="1"></div>
+              <div class="v-lottie-icon anim" data-anim="lightbulb" data-t-rel="0.9" data-dur="1.4" data-hold="float"></div>
+            </div>
+            <div class="v-lottie-player anim" data-anim="lottie" data-src="{{LOTTIE_SRC}}" data-t-rel="0.5" data-dur="3.0"></div>
+          </div>
+          <p class="v-body anim" data-anim="fadeUp" data-t-rel="1.6" data-dur="0.8">{{LOTTIE_BODY}}</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 — v-quote: the breath. One quiet reveal paced to the VO, nothing loud.
+           QUOTE_TEXT: <= 14 words. -->
+      <section class="slide v-quote light" data-slide="9" data-transition-in="crossDissolve">
+        <div class="v-safe">
+          <div class="v-quote-mark anim" data-anim="scaleIn" data-t-rel="0.2" data-dur="0.7" data-hold="breathe" aria-hidden="true">&ldquo;</div>
+          <p class="v-quote-text anim" data-anim="wordReveal" data-t-rel="0.6" data-dur="2.6">{{QUOTE_TEXT}}</p>
+          <p class="v-quote-attr anim" data-anim="fadeIn" data-t-rel="3.4" data-dur="0.6">&mdash; {{QUOTE_ATTR}}</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 — v-cta: the payoff. Signature spring on the title, one celebration on the pill.
+           CTA_TITLE: 2-4 words; CTA_PILL: the action (<= 3 words); CTA_URL: handle or short URL. -->
+      <section class="slide v-cta" data-slide="10" data-transition-in="irisOpen">
+        <div class="v-bg v-aurora-wrap" aria-hidden="true">
+          <div class="v-aurora anim" data-anim="aurora" data-t-rel="0" data-dur="0.3"></div>
+        </div>
+        <div class="v-safe">
+          <p class="v-kicker anim" data-anim="fadeIn" data-t-rel="0.2" data-dur="0.5">{{CTA_EYEBROW}}</p>
+          <h2 class="v-display v-cta-title v-grad anim" data-anim="spring" data-t-rel="0.5" data-dur="1.2" data-spring="220,12" data-hold="breathe">{{CTA_TITLE}}</h2>
+          <p class="v-body v-cta-body anim" data-anim="fadeUp" data-t-rel="1.4" data-dur="0.8">{{CTA_BODY}}</p>
+          <div class="v-cta-action">
+            <div class="v-cta-burst anim" data-anim="confettiBurst" data-t-rel="2.3" data-dur="1.8" aria-hidden="true"></div>
+            <span class="v-cta-pill anim" data-anim="scaleIn" data-t-rel="2.1" data-dur="0.6" data-ease="outBack" data-then="shimmerSweep@0.9" data-loop="pulse" data-loop-amp="3">{{CTA_PILL}}</span>
+          </div>
+          <p class="v-cta-url anim" data-anim="typewriter" data-t-rel="3.0" data-dur="1.0">{{CTA_URL}}</p>
+        </div>
+      </section>
+
+      <!-- Deck-wide layers (outside every slide): transition flashes, grain, captions, guides -->
+      <div class="transition-overlay" id="transitionOverlay"></div>
+      <div class="v-grain anim" data-anim="filmGrain" data-t-rel="0" data-dur="1" data-grain-opacity="0.05" aria-hidden="true"></div>
+      <div class="v-captions" id="vCaptions" aria-hidden="true"><div class="v-cap-line"></div></div>
+      <div class="v-guides" aria-hidden="true"><i class="g-top"></i><i class="g-right"></i><i class="g-caps"></i><i class="g-bottom"></i></div>
+
+    </div>
+  </div>
+
+  <div class="play-controls" id="playControls">
+    <button id="jumpBtn" aria-label="Jump to slide" title="Jump (J)">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+    </button>
+    <button id="resetBtn" aria-label="Reset" title="Reset (R)">
+      <svg viewBox="0 0 24 24"><path d="M12 5V2L7 6.5 12 11V8a5 5 0 11-5 5H5a7 7 0 107-7z"/></svg>
+    </button>
+    <button id="playBtn" aria-label="Play / Pause" title="Play / Pause (Space)">
+      <svg class="icon-play" viewBox="0 0 24 24"><path d="M7 4l13 8L7 20z"/></svg>
+      <svg class="icon-pause" viewBox="0 0 24 24"><path d="M7 4h4v16H7zM13 4h4v16h-4z"/></svg>
+    </button>
+  </div>
+  <div class="play-progress" id="playProgress"></div>
+  <div class="jump-menu" id="jumpMenu" role="menu" aria-label="Jump to slide"></div>
+
+  <!-- Narration. {{AUDIO_SRC}} = voiceover.mp3 (new_project.py fills it; the voice tools write it). -->
+  <audio id="voAudio" src="{{AUDIO_SRC}}" preload="auto"></audio>
+
+  <!-- The engine: copy storyboard-engine.js next to this file (vendor libraries such as
+       lottie_svg.min.js go BEFORE it). The consts below are rewritten in place by the tools
+       (tts_free.py / elevenlabs_generate.py / aaf_to_timings.py / compress_anim_timings.py). -->
+  <script src="storyboard-engine.js"></script>
+  <script>
+  const TIMINGS = [
+    { time:  0.0, slide:  1 },
+    { time:  5.0, slide:  2 },
+    { time: 11.0, slide:  3 },
+    { time: 16.5, slide:  4 },
+    { time: 23.0, slide:  5 },
+    { time: 29.5, slide:  6 },
+    { time: 36.0, slide:  7 },
+    { time: 42.5, slide:  8 },
+    { time: 48.5, slide:  9 },
+    { time: 54.5, slide: 10 }
+  ];
+  const SLIDE_LABELS = [
+    '{{LABEL_1}}', '{{LABEL_2}}', '{{LABEL_3}}', '{{LABEL_4}}', '{{LABEL_5}}',
+    '{{LABEL_6}}', '{{LABEL_7}}', '{{LABEL_8}}', '{{LABEL_9}}', '{{LABEL_10}}'
+  ];
+  // Per-word visual hits from the word timestamps: {time, sel, hit}
+  const WORD_HITS = [];
+  // Per-word narration timestamps {text, start, end} — drive the captions (filled by the voice tools)
+  const WORDS = [];
+
+  // v-lottie: keep the Lottie player only when lottie-web is loaded and it has a real source;
+  // otherwise remove it (it would stay invisible and stall ready()) and show the fallback art.
+  document.querySelectorAll('.v-lottie-stage').forEach(function (stage) {
+    var player = stage.querySelector('[data-anim="lottie"]'), fallback = stage.querySelector('.v-lottie-fallback');
+    if (!player) return;
+    var src = player.getAttribute('data-src') || '', key = player.getAttribute('data-key');
+    var ok = !!window.lottie && ((src !== '' && src.indexOf('{{') < 0) || !!(key && window.SB_LOTTIE && window.SB_LOTTIE[key]));
+    if (ok) { if (fallback) fallback.remove(); return; }
+    player.remove();
+    if (!window.lottie) console.info('[vertical] lottie-web is not on the page: v-lottie shows its fallback art (new_project.py --with-lottie adds the player)');
+  });
+
+  // Reserve the caption band before the first frame (re-checked against the engine below).
+  document.body.classList.add('v-has-captions');
+
+  Storyboard.init({
+    timings: TIMINGS, labels: SLIDE_LABELS, wordHits: WORD_HITS, words: WORDS,
+    captions: { mode: 'pop', position: 'lower-third' },
+    fallbackDuration: 62
+  });
+
+  /* =============================================================
+     CAPTIONS — burned in from WORDS for muted autoplay viewing.
+     Modes (body data-captions / the captions option): pop = 1-3 words, each pops as it is
+     spoken; karaoke = a line, the spoken word lit; line = a plain line. Phrases break at
+     pauses, punctuation and slide cues. Drawn from an onFrame hook as a pure function of t,
+     so live playback, seek() and offline renderAt(t) show the same captions. If the engine
+     draws captions itself (or window.SB_TEMPLATE_CAPTIONS === false) this layer steps aside.
+  ============================================================= */
+  (function () {
+    var SB = window.Storyboard, layer = document.getElementById('vCaptions');
+    if (!SB || !layer) return;
+    var cfg = SB.captions || null;
+    document.body.classList.toggle('v-has-captions', !!cfg);
+    function engineDraws() {
+      for (var k in SB) { if (/caption/i.test(k) && typeof SB[k] === 'function') return true; }
+      return !!document.querySelector('[data-sb-captions], .sb-captions, .sb-caption, #sb-captions, #sbCaptions');
+    }
+    if (!cfg || window.SB_TEMPLATE_CAPTIONS === false || engineDraws()) { layer.remove(); return; }
+    var mode = cfg.mode, lim = mode === 'pop' ? [3, 16] : mode === 'line' ? [7, 34] : [6, 30];
+    var brkRe = mode === 'pop' ? /[.,!?;:…]["'”’)\]]*$/ : /[.!?…]["'”’)\]]*$/;
+    var cueTimes = (SB.cues || []).map(function (c) { return c.time; });
+    var phrases = [], cur = null;
+    (SB.words || []).forEach(function (w) {
+      var txt = String(w.text == null ? '' : w.text).trim();
+      if (!txt) return;
+      var prev = cur && cur.words[cur.words.length - 1];
+      if (!cur || cur.words.length >= lim[0] || cur.chars + txt.length > lim[1] || w.start - prev.end > 0.6 ||
+          brkRe.test(prev.text) || cueTimes.some(function (c) { return c > prev.start + 1e-6 && c <= w.start + 1e-6; })) {
+        cur = { words: [], chars: 0 }; phrases.push(cur);
+      }
+      cur.words.push({ text: txt, start: w.start, end: w.end }); cur.chars += txt.length + 1;
+    });
+    phrases.forEach(function (p, i) {
+      var a = p.words[0], z = p.words[p.words.length - 1], nx = phrases[i + 1];
+      p.t0 = a.start;
+      p.t1 = Math.max(z.end, z.start + 0.3) + 0.45;
+      if (nx) p.t1 = Math.min(p.t1, nx.words[0].start);
+      if (p.t1 <= p.t0) p.t1 = p.t0 + 0.05;
+    });
+    layer.dataset.mode = mode; layer.dataset.position = cfg.position;
+    var line = layer.querySelector('.v-cap-line'), shown = -1, spans = [];
+    var clamp01 = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+    var f4 = function (v) { return Math.round(v * 1e4) / 1e4; };
+    var outBack = function (p) { var c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); };
+    var outCubic = function (p) { return 1 - Math.pow(1 - p, 3); };
+    function setS(el, k, v) { if (el.style[k] !== v) el.style[k] = v; }
+    function render(t) {
+      if (engineDraws()) { off(); layer.remove(); return; }
+      var idx = -1;
+      for (var i = 0; i < phrases.length && phrases[i].t0 <= t; i++) { if (t < phrases[i].t1) { idx = i; break; } }
+      if (idx !== shown) {                              // phrase DOM depends on the phrase index only
+        shown = idx; spans = []; line.textContent = '';
+        if (idx >= 0) phrases[idx].words.forEach(function (w, j) {
+          if (j) line.appendChild(document.createTextNode(' '));
+          var s = document.createElement('span'); s.className = 'v-cap-w'; s.textContent = w.text;
+          line.appendChild(s); spans.push(s);
+        });
+      }
+      setS(layer, 'visibility', idx >= 0 ? 'visible' : 'hidden');
+      if (idx < 0) return;
+      var p = phrases[idx], e = clamp01((t - p.t0) / 0.16);
+      setS(line, 'opacity', String(f4(clamp01(e * 2))));
+      setS(line, 'transform', 'scale(' + f4(0.86 + 0.14 * outBack(e)) + ')');
+      p.words.forEach(function (w, j) {
+        var s = spans[j], nxt = j + 1 < p.words.length ? p.words[j + 1].start : Infinity;
+        var said = t >= w.start, on = said && t < nxt && mode !== 'line';
+        if (s.classList.contains('is-on') !== on) s.classList.toggle('is-on', on);
+        if (mode === 'pop') {
+          setS(s, 'visibility', said ? 'visible' : 'hidden');
+          setS(s, 'transform', said ? 'scale(' + f4(1.22 - 0.22 * outCubic(clamp01((t - w.start) / 0.14))) + ')' : 'none');
+        } else if (mode === 'karaoke') {
+          setS(s, 'opacity', said ? '1' : '0.45');
+        }
+      });
+    }
+    var off = SB.onFrame(function (t) { render(t); });
+    render(SB.time ? SB.time() : 0);
+  })();
+
+  // Safe-zone guides: G toggles (authoring aid; never visible unless asked for).
+  if (/(^|[#&])guides\b/.test(location.hash.slice(1))) document.documentElement.classList.add('sb-guides');
+  document.addEventListener('keydown', function (e) {
+    if (e.code === 'KeyG' && !(e.target && e.target.matches && e.target.matches('input,textarea,[contenteditable]'))) document.documentElement.classList.toggle('sb-guides');
+  });
+  </script>
+
+</body>
+</html>

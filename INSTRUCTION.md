@@ -43,6 +43,11 @@
 | hyperframes-video | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-video` — 视频交付路径；`/media-use`、`/figma` 两个 skill 未安装，原因与替代见本 skill 内文 |
 | remotion-to-hyperframes | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\remotion-to-hyperframes` — Remotion 项目迁移到 HyperFrames（assets/ references/ scripts/） |
 | progress-doc-style | local (imported) | 用户提供：`C:\Users\1\Downloads\progress-doc-style`（源自《性能跟踪分析平台进度》，纯写作风格与结构范式，不绑定具体项目）。进度/OKR 跟踪文档：OKR 简述表 + 分目标章节 + 行动项七列表 + 状态三符号 + 备注一句话 + 附背景。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
+| genoffice | repo (submodule) | `github.com/genspark-ai/genoffice` @ `28cee5c` (Apache-2.0) — 上游 `skills/genoffice`：本地创建/转换/读写 Office 文档（docx/xlsx/pptx/pdf）。vendor 仓 71 MB，只装 skill 目录 |
+| okr-planner | repo (submodule) | `github.com/genspark-ai/genoffice` @ `28cee5c` — 上游 `skills/recommended/okr-planner`；**注意**：与 vault 自有 `software-development/perf-tracking-platform` + `content/progress-doc-style` 同属 OKR 一片地，后续应合并，避免三份并存 |
+| legalrabbit-docx | repo (submodule) | `github.com/LegalRabbit-AI/legalrabbit-docx-mcp` @ `a1c9be8` (MIT) — 上游 `plugins/docx/skills/legalrabbit-docx`。雷达结论要求「先做 token 基准再采纳」，本批**只装未测** |
+| excel-hygiene | repo (submodule) | `github.com/BayramAnnakov/excel-hygiene` @ `bca5a74` (Apache-2.0) — `.xlsx` 确定性体检（仓库根即 skill） |
+| market-intel | repo (submodule) | `github.com/DaizeDong/market-intel` @ `1046cd8` (MIT) — 上游 `skills/market-intel`：商用数据（X/Twitter/电商/金融/SEO）取数与研判 |
 
 ### design/
 | skill | origin | source |
@@ -63,6 +68,16 @@
 | visual-explainer | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\visual-explainer` — 可视化解释产物（commands/ kit/ mcp/ plan/ pptx/ video/ templates/ + extension.ts） |
 | web-prototype | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\web-prototype` — 网页原型（assets/ references/ example.html） |
 | html-ppt | repo (submodule) | `github.com/lewislulu/html-ppt-skill` @ `fd16290` — HTML PPT Studio：一个 theme 文件 = 一套外观、一个 layout 文件 = 一种页面、一个 animation class = 一种入场；token 化设计系统（`assets/base.css`），纯静态、可离线，MIT；已复制进 `design/html-ppt` |
+| hands-on-deck | repo (submodule) | `github.com/EveryInc/hands-on-deck` @ `a24b996` (MIT) — 上游 `skills/hands-on-deck`：任何 `.pptx` 相关的活（改现有 deck 而非新生成） |
+| presentation-skill | repo (submodule) | `github.com/siril9/presentation-skill` @ `efd899c` (MIT) — 上游根即 skill（另带 `plugins/` 内同一 skill 的第二份拷贝，vault 副本已删除该重复目录）；裁剪掉 `decks/ examples/ tests/` 等演示物料 |
+| html-to-pptx | repo (submodule) | `github.com/Hasasasa/html-to-editable-pptx` @ `17c1dbb` (MIT) — 上游根即 skill，`name: html-to-pptx`，目录按 frontmatter 改名 |
+| brand-docx / brand-pptx / brand-xlsx | repo (submodule) | `github.com/ferdinandobons/brand-docs` @ `97a6e38` (MIT) — 上游 `skills/brand-*`：Word/PPT/Excel 的「参考模板 + 样式继承」机制 |
+| huashu-design | repo (submodule) | `github.com/alchaincyf/huashu-design` @ `4fc7bfd` (MIT) — HTML 高保真原型/幻灯片/动画 + 专家评审；裁剪掉 `demos/`（保留 `assets/ scripts/ references/`） |
+| xiaoma-studio | repo (submodule) | `github.com/crawfordxx/xiaoma-studio` @ `2907bd6` (MIT) — 代码做动效视频 / HTML 幻灯片；裁剪掉 `examples/`（31 MB） |
+| visual-learner | repo (submodule) | `github.com/huseyingayiran/visual-learner` @ `e3c6497` (MIT) — 上游 `skills/visual-learner`：把主题/文档/会议纪要变成讲解产物，含 TTS 四档降级链 |
+| opendeck | repo (submodule) | `github.com/open-deck-org/opendeck` @ `d0dbe02` (MIT) — 上游 `skills/opendeck`：动画 + 朗读的 HTML 演示 deck，音频只烘进 HTML（离线单文件） |
+| storyboard | repo (submodule) | `github.com/gRAYESS123/storyboard-claude` @ `e6b1597` (MIT) — 上游 `skill/`，`name: storyboard`，目录按 frontmatter 改名；网页/文档 → 分镜 → 视频；裁剪掉 `examples/ media/ downloads/` |
+| video-production | repo (submodule) | `github.com/speechlab0210/video-production-skill` @ `8c46c40` (MIT) — 上游根即 skill，`name: video-production`；含 **ASR 回译校验（TTS 合成后 Whisper 反识别，相似度 ≥0.85 才放行）** |
 
 > Skipped 6 of the repo's 13 skills as redundant/niche: `taste-skill-v1` (superseded by v2), `gpt-tasteskill` (stricter GPT/Codex variant, subsumed by v2), `soft-skill` / `minimalist-skill` / `brutalist-skill` (fixed style presets — v2 infers the design language from the brief), `image-to-code-skill` (pipeline = imagegen-web + taste-frontend). All recoverable from the sibling clone.
 
@@ -73,12 +88,17 @@
 | kanban-cron-overseer | local (mirrored) | Hermes agent — `~/AppData/Local/hermes/skills/devops/` |
 | cron-pipeline-state-machine | local | reference pattern doc (no upstream) |
 | mock-devops-platform | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\mock-devops-platform` — 模拟 DevOps 平台（部署/流水线/告警）场景数据 |
+| grafana/* (36) | repo (submodule) | `github.com/grafana/skills` @ `3b653d9` (Apache-2.0) — 上游 `skills/grafana-core` `grafana-lgtm` `grafana-cloud` `grafana-datasources`；**目录与 frontmatter `name:` 统一加 `grafana-` 前缀**（上游名如 `admin` `testing` `infrastructure` 会污染平铺的用户级命名空间） |
+| monte-carlo/* (9) | repo (submodule) | `github.com/monte-carlo-data/mc-agent-toolkit` @ `d3915f3` (Apache-2.0) — 监控即代码（根因分析/事故响应/成本/主动监控）；只装 9 个，generic 名的 12 个（`prevent` `onboarding` `manage-mac` 等）留 vendor |
+| planetscale/* (15) | repo (submodule) | `github.com/planetscale/skills` @ `999045c` (MIT) — 变更门禁 / 只读盘点 / Vitess 安全评审 / schema 建议循环 |
+| dynatrace/* (11) | repo (submodule) | `github.com/Dynatrace/dynatrace-for-ai` @ `4f9aa71` (Apache-2.0) — DQL / 日志 / 链路 / 服务 / 成本 / 安全洞察；只装 11 个，平台专属的（aws/azure/gcp/mobile…）留 vendor |
 
 ### FDE/
 | skill | origin | source |
 |-------|--------|--------|
 | book-chapter-to-vault | local | distilled from an FDE book (ch2–4) |
 | analysis-to-vault | local | distilled from a deep-analysis FDE article |
+| investment-masters | repo (submodule) | `github.com/AlphaGBM/investment-masters` @ `b1a304f` (MIT) — 上游根即 skill（`masters/` 目录 + `catalog.json`）：投研大师方法蒸馏，含证据边界规则 |
 
 ### game-dev/
 | skill | origin | source |
@@ -147,6 +167,10 @@
 | prompt-pro | local | 用户本地 skill：`C:\Users\yuhang\.minimax\skills\prompt-pro`。把粗请求补成可执行提纲（目标/验收/范围/约束/输出 五槽位），先 grounding 再落笔，提纲不单独成篇。先看真实系统再下笔的纪律 + 缺信息则问。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 | skill-distill | local | 用户贴出的 skill 文本（原出处未指明，标记 local）。会后沉淀流水线：四道闸（可复用/有判断/有证据/有边界）+ 粒度 + 归属 + 三段式写法 + 防重复防膨胀 + PR 流程 + 自检清单 + 红线。规范 skill 沉淀本身。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 | perf-tracking-platform | local (imported) | 用户提供：`C:\Users\1\Downloads\perf-tracking-platform`（XD 游戏引擎侧「性能跟踪分析平台」领域知识与工作指引：OKR/进度快照、指标口径、瓶颈判定、看板与报告要求；进度以 Feishu 进度文档为准）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
+| brainstorming / systematic-debugging / writing-plans / writing-skills / verification-before-completion / using-git-worktrees / receiving-code-review / requesting-code-review | repo (submodule) | `github.com/obra/superpowers` @ `2ce8aa1` (MIT) — 上游 `skills/<name>`；只装 8 个方法论 skill，`executing-plans` `finishing-a-development-branch` `subagent-driven-development` `using-superpowers` `diagnosing-superpowers` `dispatching-parallel-agents` 与 vault 自有 `software-dev-loop` / `tdd` / `diagnosing-bugs` 重叠，留 vendor |
+| skill-inspector | repo (submodule) | `github.com/NVIDIA/SkillSpector` @ `d7338f5` (Apache-2.0) — 上游 `skills/skill-inspector`：装第三方 skill 前的注入/外泄/供应链扫描（**建议作为以后装任何第三方 pack 的前置闸**） |
+| skillopt-sleep | repo (submodule) | `github.com/microsoft/SkillOpt` @ `84b36cd` (MIT) — 上游 `plugins/claude-code/skills/skillopt-sleep`：让 agent 自我优化 skill（配套 prompt 模板在 `skillopt/prompts/`，未装） |
+| distilly | repo (submodule) | `github.com/titanwings/distilly` @ `0afc45c` (MIT) — 上游根即 skill（分支 `dot-skill`）：Work + Persona 分离的蒸馏流程；裁剪掉 `tests/` `.github/` |
 
 ### video/
 | skill | origin | source |
@@ -164,6 +188,8 @@
 | kinetic-reel | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — 纯代码动效字 reel：Canvas 2D + three.js 生成层 + WebGL 后期，无头 Chrome 逐帧 + ffmpeg 编码，Node 按同一份 `cues.js` 合成节拍对齐配乐；上游 `skills/kinetic-reel`；已复制进 `video/kinetic-reel` |
 | painted-animation | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — p5.js + p5.brush 手绘水彩/墨线动画：逐帧渲染、模型表（emotions/views）、音乐与歌词同步；上游 `skills/painted-animation`；已复制进 `video/painted-animation` |
 | opus-video-prompts | repo (submodule, 补写指针层) | `github.com/joeseesun/opus-video-prompts` @ `7977c80` — 上游**没有 SKILL.md**（18 份提示词 + 54 案例 `cases.json` + README），本 vault 补写一层指针式 SKILL.md（说明怎么挑提示词、技术路线与边界）；上游原文逐字保留；已复制进 `video/opus-video-prompts` |
+| video-shotcraft | repo (submodule) | `github.com/Vincentwei1021/video-shotcraft` @ `43bd349` (Apache-2.0) — 上游根即 skill（152 张 shot recipe 卡片 + 209 段 motion preview）；裁剪掉 `assets/ demos/ gallery/ videos/ workbench/ publish/`（保留 `references/ shot-polish/ template/`） |
+| ffmpeg / moviepy / elevenlabs / playwright-recording / qwen-edit / ideogram4 / ltx2 / acestep / runpod / synthetic-ui-demo / video_toolkit | repo (submodule) | `github.com/digitalsamba/claude-code-video-toolkit` @ `da3f474` (MIT) — 上游 `.claude/skills/<name>`（11 个）+ `skills/openclaw-video-toolkit`；`video_toolkit` 的 frontmatter 名是 `video_toolkit`，目录按其改名；`remotion` / `remotion-official` / `frontend-design` 未装（与 vault 既有 remotion 系列 / taste-frontend 重叠） |
 
 ### vendor/
 | skill | origin | source |
@@ -193,6 +219,47 @@
 | opus5.5-video-prompts | repo (submodule) | `github.com/Reger-c/opus5.5-video-prompts` @ `7977c80` — 与 `joeseesun/opus-video-prompts` **同一 commit**（`cases.json` 逐字节相同，镜像仓）；不重复安装 |
 | opus-video-skills | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — `vendor/opus-video-skills`，上游 `skills/kinetic-reel` + `skills/painted-animation`；已复制进 `video/` |
 | opus55-3d-games | repo (submodule) | `github.com/yhyu13/opus55-3d-games` @ `05966a9` — 本仓自有 repo（3 个 three.js skill + 3 个游戏 + site）；上游 `.claude/skills/{procedural-3d-scenes,three-clay-scenes,three-procedural-scenes}` 已是 **v1.0.1**（commit `05966a9` "Harden procedural scene skill guidance"），与用户级已装内容一致 → 已按 submodule 更新指针，并把三个 skill 复制进 `game-dev/`，用户级实体随之刷新为**逐字节一致** |
+
+### 雷达采纳批次（2026-10-24，34 个新 submodule）
+
+浅 clone（`git clone --depth 1` 后手工注册 gitlink），指针见 `git submodule status`；完整清单与「装/不装」理由见 `SKILL_RADAR/2026-10-24-radar-adoption-install-record.md`。
+
+| vendor 路径 | upstream | commit | license | 处置 |
+|---|---|---|---|---|
+| `vendor/genoffice` | genspark-ai/genoffice | 28cee5c | Apache-2.0 | 装 content/genoffice + content/okr-planner |
+| `vendor/legalrabbit-docx-mcp` | LegalRabbit-AI/legalrabbit-docx-mcp | a1c9be8 | MIT | 装 content/legalrabbit-docx |
+| `vendor/excel-hygiene` | BayramAnnakov/excel-hygiene | bca5a74 | Apache-2.0 | 装 content/excel-hygiene |
+| `vendor/document-SKILLs` | appautomaton/document-SKILLs | dfb5685 | MIT | **只 vendor**：docx/pdf/pptx/xlsx 与 anthropic 集同名 |
+| `vendor/market-intel` | DaizeDong/market-intel | 1046cd8 | MIT | 装 content/market-intel |
+| `vendor/hands-on-deck` | EveryInc/hands-on-deck | a24b996 | MIT | 装 design/hands-on-deck |
+| `vendor/presentation-skill` | siril9/presentation-skill | efd899c | MIT | 装 design/presentation-skill |
+| `vendor/html-to-editable-pptx` | Hasasasa/html-to-editable-pptx | 17c1dbb | MIT | 装 design/html-to-pptx（目录改名） |
+| `vendor/brand-docs` | ferdinandobons/brand-docs | 97a6e38 | MIT | 装 design/brand-docx + brand-pptx + brand-xlsx |
+| `vendor/huashu-design` | alchaincyf/huashu-design | 4fc7bfd | MIT | 装 design/huashu-design |
+| `vendor/xiaoma-studio` | crawfordxx/xiaoma-studio | 2907bd6 | MIT | 装 design/xiaoma-studio |
+| `vendor/visual-learner` | huseyingayiran/visual-learner | e3c6497 | MIT | 装 design/visual-learner |
+| `vendor/opendeck` | open-deck-org/opendeck | d0dbe02 | MIT | 装 design/opendeck |
+| `vendor/storyboard-claude` | gRAYESS123/storyboard-claude | e6b1597 | MIT | 装 design/storyboard（目录改名） |
+| `vendor/video-production-skill` | speechlab0210/video-production-skill | 8c46c40 | MIT | 装 design/video-production（目录改名） |
+| `vendor/visual-explainer` | nicobailon/visual-explainer | 5f37886 | MIT | **只 vendor**：与 vault 既有 design/visual-explainer 同名 |
+| `vendor/claude-skills` | alirezarezvani/claude-skills | 6d2f02e | MIT | 装 management/prd 等 7 个 |
+| `vendor/everything-claude-finance` | brainbytes-dev/everything-claude-finance | 71f43fc | MIT | 装 management/finance/**（15） |
+| `vendor/marketingskills` | coreyhaines31/marketingskills | e85f3cb | MIT | 装 management/marketing/**（3） |
+| `vendor/grafana-skills` | grafana/skills | 3b653d9 | Apache-2.0 | 装 devops/grafana/**（36，`grafana-` 前缀） |
+| `vendor/mc-agent-toolkit` | monte-carlo-data/mc-agent-toolkit | d3915f3 | Apache-2.0 | 装 devops/monte-carlo/**（9） |
+| `vendor/planetscale-skills` | planetscale/skills | 999045c | MIT | 装 devops/planetscale/**（15） |
+| `vendor/dynatrace-for-ai` | Dynatrace/dynatrace-for-ai | 4f9aa71 | Apache-2.0 | 装 devops/dynatrace/**（11） |
+| `vendor/superpowers` | obra/superpowers | 2ce8aa1 | MIT | 装 software-development/ 8 个 |
+| `vendor/skillspector` | NVIDIA/SkillSpector | d7338f5 | Apache-2.0 | 装 software-development/skill-inspector |
+| `vendor/skillopt` | microsoft/SkillOpt | 84b36cd | MIT | 装 software-development/skillopt-sleep |
+| `vendor/distilly` | titanwings/distilly | 0afc45c | MIT | 装 software-development/distilly |
+| `vendor/agentskills-spec` | agentskills/agentskills | 69ef37e | Apache-2.0 | **只 vendor**：skill 格式规范，无 SKILL.md |
+| `vendor/investment-masters` | AlphaGBM/investment-masters | b1a304f | MIT | 装 FDE/investment-masters |
+| `vendor/company-brain` | nemock/company-brain | c82e2de | MIT | **只 vendor**：`derived_from` 边 + 置信度半衰期是设计模式 |
+| `vendor/claude-code-video-toolkit` | digitalsamba/claude-code-video-toolkit | da3f474 | MIT | 装 video/ 11 个 |
+| `vendor/video-shotcraft` | Vincentwei1021/video-shotcraft | 43bd349 | Apache-2.0 | 装 video/video-shotcraft |
+| `vendor/html-video` | nexu-io/html-video | c414ecc | Apache-2.0 | **只 vendor**：BGM/TTS 混音契约参数来源 |
+| `vendor/openai-edge-tts` | travisvn/openai-edge-tts | edaed2a | GPL-3.0 | **只 vendor**：本地 TTS 兜底服务，无 SKILL.md |
 
 **anthropic 集的取舍（2026-10-24）**
 
@@ -279,6 +346,7 @@ any other skill:
 
 ## Add-a-new-skill checklist
 
+0. **（第三方来源必做）先过安全扫描**：`software-development/skill-inspector`（NVIDIA SkillSpector）检查注入 / 数据外泄 / 供应链风险，再决定装不装。
 1. Determine origin type: `repo` / `sibling` / `local`.
 2. Copy the **whole** skill dir (SKILL.md + `references/` `scripts/` `templates/` `assets/` `examples/`).
    Copying only SKILL.md breaks relative links and helper scripts.

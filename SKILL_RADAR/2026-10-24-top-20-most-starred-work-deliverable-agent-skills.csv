@@ -1,0 +1,56 @@
+rank,repo,stars,lane,license,last_push,created,forks,evidence,vault_overlap,in_top20
+1,anthropics/skills,183424,docx/pptx/xlsx/pdf,None,2026-10-09T18:45:52Z,2025-09-22T15:53:31Z,21720,GET /repos (verified 2026-10-24),IN vault: vendor/anthropics-skills (docx/pptx/xlsx/pdf),yes
+2,nexu-io/open-design,103697,slides+export,Apache-2.0,2026-10-24T13:51:33Z,2026-04-28T04:25:20Z,11867,GET /repos (verified 2026-10-24),no,yes
+3,tt-a1i/archify,88567,diagram/one-pager,MIT,2026-10-24T03:55:12Z,2026-04-15T05:27:37Z,5979,GET /repos (verified 2026-10-24),no,yes
+4,ComposioHQ/awesome-claude-skills,77807,catalog,None,2026-09-18T07:16:11Z,2025-10-17T07:15:01Z,9310,GET /repos (verified 2026-10-24),no,yes
+5,coreyhaines31/marketingskills,56325,copy/collateral,MIT,2026-10-22T16:57:46Z,2026-01-15T19:45:23Z,8323,GET /repos (verified 2026-10-24),no,yes
+6,anthropics/knowledge-work-plugins,32515,docs/slides/sheets,Apache-2.0,2026-10-24T07:31:47Z,2026-01-23T20:11:54Z,3591,GET /repos (verified 2026-10-24),no,yes
+7,zarazhangrui/frontend-slides,31191,slides(HTML),MIT,2026-06-23T20:08:19Z,2026-01-28T00:42:34Z,2404,GET /repos (verified 2026-10-24),IN vault: design/frontend-slides (vendored),yes
+8,alirezarezvani/claude-skills,28629,business-ops/docs,MIT,2026-10-23T11:30:28Z,2025-10-19T04:04:05Z,3977,GET /repos (verified 2026-10-24),partial (business-ops overlap with management/*),yes
+9,JimLiu/baoyu-skills,26924,slides/writing/xlsx,MIT,2026-09-10T15:13:43Z,2026-01-13T03:04:56Z,2950,GET /repos (verified 2026-10-24),no,yes
+10,alchaincyf/huashu-design,26064,slides(PPTX),MIT,2026-10-23T15:32:08Z,2026-04-19T14:42:06Z,2911,GET /repos (verified 2026-10-24),no,yes
+11,genspark-ai/genoffice,10708,docx+xlsx+pptx+pdf,Apache-2.0,2026-10-24T07:21:51Z,2026-07-31T09:40:58Z,1438,GET /repos (verified 2026-10-24),no,yes
+12,chuspeeism/dashi-ppt-skill,9895,slides,AGPL-3.0,2026-09-12T14:13:08Z,2026-06-10T07:46:43Z,846,GET /repos (verified 2026-10-24),no,yes
+13,nexu-io/html-anything,9232,deck/data-report,Apache-2.0,2026-10-13T02:33:42Z,2026-05-11T09:40:38Z,881,GET /repos (verified 2026-10-24),no,yes
+14,anbeime/skill,8597,doc-processing-shop,None,2026-10-24T06:56:24Z,2026-02-02T09:12:57Z,764,GET /repos (verified 2026-10-24),no,yes
+15,deanpeters/Product-Manager-Skills,7639,PRD/OKR/roadmap,NOASSERTION,2026-10-16T01:51:12Z,2026-02-05T02:16:46Z,916,GET /repos (verified 2026-10-24),partial (OKR lane with management/quarterly-review),yes
+16,ningzimu/codex-ppt-skill,7257,slides(image-first),MIT,2026-10-13T13:04:15Z,2026-04-26T07:34:32Z,338,GET /repos (verified 2026-10-24),no,yes
+17,carnot-tech/jinba-consulting-pptx-skill,1425,slides(consulting),MIT,2026-10-23T00:51:04Z,2026-09-02T11:53:05Z,126,GET /repos (verified 2026-10-24),no,yes
+18,JuneYaooo/gpt-image2-ppt-skills,1387,slides(clone),Apache-2.0,2026-08-22T23:07:51Z,2026-04-19T04:25:35Z,78,GET /repos (verified 2026-10-24),no,yes
+19,first-fluke/oh-my-agent,1354,plans/slides/research,MIT,2026-10-24T01:10:25Z,2026-01-30T11:29:46Z,150,GET /repos (verified 2026-10-24),no,yes
+20,Gabberflast/academic-pptx-skill,1325,slides(academic),MIT,2026-07-14T23:54:54Z,2026-02-28T23:59:36Z,131,GET /repos (verified 2026-10-24),no,yes
+,sunbigfly/ppt-agent-skills,916,slides,NOASSERTION,2026-06-08T07:41:34Z,2026-03-20T18:56:08Z,92,GET /repos (verified 2026-10-24),no,no
+,tfriedel/claude-office-skills,840,pptx+docx+xlsx+pdf,None,2026-04-01T11:49:29Z,2025-10-04T14:24:13Z,119,GET /repos (verified 2026-10-24),no,no
+,addsumtech/slides_maker,618,slides,MIT,2026-10-23T19:20:21Z,2026-06-14T08:48:32Z,55,GET /repos (verified 2026-10-24),no,no
+,sunchaokun/PPT-Design-Skill,350,slides,MIT,2026-09-16T10:10:01Z,2026-07-09T04:03:02Z,17,GET /repos (verified 2026-10-24),no,no
+,likaku/Mck-ppt-design-skill,312,slides(consulting-design),Apache-2.0,2026-05-10T14:36:15Z,2026-03-03T05:48:13Z,41,GET /repos (verified 2026-10-24),no,no
+,ferdinandobons/brand-docs,281,docx+pptx+xlsx,MIT,2026-07-10T09:16:35Z,2026-06-05T09:55:35Z,35,GET /repos (verified 2026-10-24),no,no
+,zouchenzhen/thesis-defense-pptx-skill,275,docx->pptx,Apache-2.0,2026-06-05T05:51:03Z,2026-04-30T11:20:25Z,19,GET /repos (verified 2026-10-24),no,no
+,EveryInc/hands-on-deck,221,pptx-editing,MIT,2026-08-04T10:08:06Z,2026-06-09T18:17:03Z,18,GET /repos (verified 2026-10-24),no,no
+,SkyworkAI/Skywork-Skills,205,ppt+doc+excel,MIT,2026-04-02T03:08:45Z,2026-03-16T11:48:02Z,31,GET /repos (verified 2026-10-24),no,no
+,ToseaAI/awesome-html-slide-skills,177,slides-index,NOASSERTION,2026-06-23T15:46:05Z,2026-05-13T02:45:29Z,10,GET /repos (verified 2026-10-24),no,no
+,appautomaton/document-SKILLs,174,pptx+docx+xlsx+pdf,MIT,2026-10-15T15:04:58Z,2026-01-24T00:06:34Z,11,GET /repos (verified 2026-10-24),no,no
+,siril9/presentation-skill,84,slides,MIT,2026-10-08T08:21:55Z,2026-04-13T20:55:07Z,21,GET /repos (verified 2026-10-24),no,no
+,zouchenzhen/docx-template-translator-skill,79,docx,Apache-2.0,2026-06-05T16:24:03Z,2026-05-04T15:50:37Z,5,GET /repos (verified 2026-10-24),no,no
+,fivetaku/claude-office-skills,72,xlsx(finance),None,2026-04-08T08:51:53Z,,,GET /repos (verified 2026-10-24),no,no
+,gmickel/sheets-cli,71,sheets,None,2026-02-11T11:07:49Z,2025-12-16T12:44:58Z,6,GET /repos (verified 2026-10-24),no,no
+,appautomaton/presentation,64,slides(consulting),None,2026-09-13T16:01:21Z,2026-03-25T21:43:24Z,6,GET /repos (verified 2026-10-24),no,no
+,wzbwan/gongwen-format-skill,59,docx,None,2026-02-01T08:38:09Z,2026-01-30T15:28:08Z,5,GET /repos (verified 2026-10-24),no,no
+,LegalRabbit-AI/legalrabbit-docx-mcp,56,docx,MIT,2026-09-01T06:50:11Z,2026-04-30T04:30:39Z,6,GET /repos (verified 2026-10-24),no,no
+,surendranb/writing-skills,50,writing-style,MIT,2026-09-02T07:17:43Z,2026-08-14T03:18:22Z,3,GET /repos (verified 2026-10-24),no,no
+,jeremylongshore/excel-analyst-pro-skill-md,60,xlsx(finance),NOASSERTION,2026-10-14T04:48:10Z,,,GET /repos (verified 2026-10-24),no,no
+,l4ci/latticework,5,okr/frameworks,MIT,2026-08-23T11:19:01Z,2026-06-18T19:54:41Z,1,GET /repos (verified 2026-10-24),no,no
+,yehonathanlitman/create-okrs,4,okr,None,2026-04-30T08:04:48Z,2026-04-30T07:59:18Z,0,GET /repos (verified 2026-10-24),no,no
+,captainbook/okr-os,3,okr,None,2026-03-29T09:49:28Z,2026-03-28T15:18:40Z,0,GET /repos (verified 2026-10-24),no,no
+,BeMoreDifferent/okr-master,2,okr,MIT,2026-04-08T08:29:03Z,2026-03-03T14:08:59Z,0,GET /repos (verified 2026-10-24),no,no
+,amrekansky/headless-pm,11,PM/okr,NOASSERTION,2026-10-20T06:27:14Z,2026-04-25T07:34:32Z,2,GET /repos (verified 2026-10-24),no,no
+,BayramAnnakov/excel-hygiene,17,xlsx(QA),,,,,GET /search only (dagger: not re-verified),no,no
+,cabbage2000-lab/data-analysis-skills,21,tables->report,,,,,GET /search only (dagger: not re-verified),no,no
+,Dangooy/trade-pipeline-skill,35,xlsx+docx,,,,,GET /search only (dagger: not re-verified),no,no
+,brycewang-stanford/many-ppt-skills,65,slides-index,,,,,GET /search only (dagger: not re-verified),no,no
+,Achuan-2/pandoc_docx_template,1099,docx,,,,,GET /search only (dagger: not re-verified),no,no
+,yeap531/word-format-skill,204,docx,,,,,GET /search only (dagger: not re-verified),no,no
+,Hasasasa/html-to-editable-pptx,94,html->pptx,,,,,GET /search only (dagger: not re-verified),no,no
+,NyxTides/ppt-image-first,1227,slides(image-first),,,,,GET /search only (dagger: not re-verified),no,no
+,nghiahsgs/skills-slides,33,slides(HTML),,,,,GET /search only (dagger: not re-verified),no,no
+,Phlegonlabs/Powerpoint-fancy-design,36,slides,,,,,GET /search only (dagger: not re-verified),no,no

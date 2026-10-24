@@ -1,0 +1,49 @@
+{
+  "name": "@titanwings/distilly",
+  "version": "1.0.0",
+  "description": "Distill source material into reusable Person Profiles for AI agents.",
+  "type": "module",
+  "bin": {
+    "distilly": "bin/distilly.mjs"
+  },
+  "files": [
+    "bin/",
+    "SKILL.md",
+    "prompts/",
+    "tools/",
+    "requirements.txt",
+    "requirements-optional.txt",
+    "INSTALL.md",
+    "INSTALL_EN.md",
+    "LICENSE",
+    "CITATION.cff"
+  ],
+  "scripts": {
+    "prepack": "node bin/distilly.mjs --check-package"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "agent-skill",
+    "codex",
+    "distillation",
+    "person-profile",
+    "persona"
+  ],
+  "author": "titanwings",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titanwings/distilly.git"
+  },
+  "homepage": "https://github.com/titanwings/distilly#readme",
+  "bugs": {
+    "url": "https://github.com/titanwings/distilly/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

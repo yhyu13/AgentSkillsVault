@@ -1,0 +1,31 @@
+rank,repo,stars,forks,license,language,last_push,render_mode,audio_stack,agent_entry,notes
+1,harry0703/MoneyPrinterTurbo,134739,21327,MIT,Python,2026-10-24,stock-clip assembly,TTS x18 / whisper x14 / ElevenLabs x2 / Audio x5,scripted pipeline,highest stars but not code-rendered
+2,nexu-io/open-design,103688,11866,Apache-2.0,TypeScript,2026-10-24,design workspace + HyperFrames,audio x6 / TTS x1 / ElevenLabs x1 / Suno v5 / Lyria 2,local-first agent workspace BYOK,embeds HyperFrames as first-class citizen
+3,calesthio/OpenMontage,71373,9241,AGPL-3.0,Python,2026-10-24,12 production pipelines / 100+ tools,music x18 / audio x17 / TTS x11 / voice x9 / soundtrack x4 / ElevenLabs x4 / dub x3,700+ agent skill files,richest audio stack in the list; AGPL
+4,heygen-com/hyperframes,71156,6426,Apache-2.0,TypeScript,2026-10-24,HTML+CSS+GSAP -> headless Chrome -> MP4,audio x5 / music x4 / voice x1 / producer does audio mix,agent-native by design,already installed locally as skills
+5,remotion-dev/remotion,66950,5393,Remotion License (non-OSI),TypeScript,2026-10-24,React components -> frames,audio via separate @remotion/media package,biggest ecosystem (skills/templates/MCP),license: company license required above size threshold
+6,ManimCommunity/manim,41819,3224,MIT,Python,2026-10-24,python math animation engine,no audio in README (3rd-party addon),pure code - agent friendly,strong for explainer/diagram motion
+7,hypit-ai/hypit,25272,2879,NOASSERTION,TypeScript,2026-10-23,templated short-form variants,music x3 / Whisper x3 / voice x1,one command ships 100 variants,focus is cloning viral structure
+8,motion-canvas/motion-canvas,19455,857,MIT,TypeScript,2026-07-02,TypeScript animation engine,voice x1 (voice-over sync),pure code,last push 2026-07 - upstream stalled ~3 months
+9,HBAI-Ltd/Toonflow-app,19208,3442,MIT,TypeScript,2026-10-20,short-drama storyboard->assets,no audio keywords in README,infinite canvas + AI Agent + MCP,Chinese short-drama focused
+10,waooAI/waoowaoo,14669,3194,NOASSERTION,TypeScript,2026-09-21,film-grade full pipeline,Music x1 / voice x1,industrial agent platform,license terms not verified
+11,krillinai/OpenCreator,13891,1529,Apache-2.0,TypeScript,2026-10-24,download->translate->dub->edit->publish,voice x13 / dub x11 / Whisper x15 / Speech x7 / TTS x5,Codex-powered creator workspace,strong dubbing/lip-sync coverage
+12,Vincentwei1021/video-shotcraft,13346,1214,Apache-2.0,TypeScript,2026-10-17,Remotion cinematic product video,BGM x6 / audio x8 / music x3 / voice x2,Claude Code & Codex skill,152 shot recipes + 209 motion previews
+13,dramaclaw/dramaclaw,6429,894,NOASSERTION,Python,2026-10-24,script->finished film pipeline,audio x7 / voice x9 / speech x2 / TTS x1,general AIGC video engine,license terms not verified
+14,ArcReel/ArcReel,5699,1130,AGPL-3.0,Python,2026-10-24,novel/script->assets->storyboard->video->Jianying draft,TTS x2,self-hosted agent video workspace,exports Jianying (CapCut CN) draft
+15,nexu-io/html-video,4747,573,Apache-2.0,HTML,2026-06-21,HTML -> animated frames -> local MP4 (pluggable engine),soundtrack x11 / music x6 / TTS x1 / MiniMax BGM+narration w/ ffmpeg ducking,Claude Code / Codex / Cursor / OpenCode,best documented audio contract; engine swappable for Remotion
+16,darkzOGx/youtube-automation-agent,4572,1468,MIT,JavaScript,2026-10-20,topic->script->narration->visuals->SEO->publish,ElevenLabs x10 / Voice x6 / tts x5,self-hosted YouTube agent with human approval,closed loop incl. analytics feedback
+17,FireRedTeam/FireRed-OpenStoryline,3558,412,Apache-2.0,Python,2026-07-31,intention-driven editing agent,no audio keywords in README,LLM planning + tool orchestration,human-in-the-loop; last push 2026-07
+18,Vincentwei1021/anything2explainer,2725,359,NOASSERTION,TypeScript,2026-09-18,topic->motion-graphics explainer (Remotion),TTS x25 / voice x27 / audio x5,Claude Code / Codex skill,zh/en bilingual; every frame drawn in code
+19,0xsline/OpenChatCut,2651,402,AGPL-3.0,TypeScript,2026-10-21,conversational editor w/ Remotion rendering,audio x13 / music x7 / soundtrack x1,Agent Skills + MCP,multi-track timeline
+20,digitalsamba/claude-code-video-toolkit,2326,394,MIT,Python,2026-10-21,AI-native video production toolkit,voice x45 / music x27 / TTS x11 / audio x13 / dub x7 / ElevenLabs x5,Claude Code native,heaviest audio keyword profile
+X1,Vincentwei1021/video-talkcraft,1738,177,NOASSERTION,HTML,2026-10-12,voiceover-driven explainer,word-level voiceover sync / audio x13 / tts x4,agent skill,109 motion recipes + anti-slideshow camera system
+X2,gyoridavid/short-video-maker,1428,441,MIT,TypeScript,2025-06-21,TikTok/Reels/Shorts shorts,music x11 / TTS x3 / Whisper x16,MCP + REST API,last push 2025-06 - stale
+X3,iart-ai/motion-skills,984,83,MIT,HTML,2026-10-14,50 motion skill packs,music x1,agent skill packs,kinetic type / dataviz / WebGL / Manim
+X4,zhuyansen/awesome-claude-video-skills,872,91,NOASSERTION,,2026-10-23,index of 180 repos,n/a,index,security-graded catalog zh/en
+X5,haidrrrry/claude-remotion-skill,610,78,MIT,TypeScript,2026-08-12,Remotion motion graphics,music x1 / audio x2,Claude agent skill,AI editing / B-roll / captions / sound design
+X6,trustfuture/simon-skills,473,88,MIT,JavaScript,2026-10-13,faceless video channel skill,voice+dubbing+captions (zh),agent skill set,whiteboard explainer format
+X7,wshuyi/remotion-video-skill,430,74,,Python,2026-01-25,Remotion programmatic video,n/a,Claude Code skill,older but focused
+X8,actionow-ai/vvv,303,86,MIT,Python,2026-10-23,reusable editable Remotion templates,n/a,Agent Skill for Claude Code / Codex / 25+ agents,build template once reuse across agents
+X9,norahe0304-art/30x-video,64,,NOASSERTION,TypeScript,2026-07-09,URL -> agency-grade launch video,n/a,Claude Code skill (Remotion+React),16-law taste codex
+X10,ali-abassi/remotion-templates,42,,NOASSERTION,TypeScript,2026-08-23,Remotion template set,n/a,agent templates,captions / visualizers / effects / transitions

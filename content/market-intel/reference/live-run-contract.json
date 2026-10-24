@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "documentation_verification_scope": "tool_documentation",
+  "outcomes": {
+    "verified": "The explicitly named capability or documentation scope was verified with evidence.",
+    "unverifiable": "Legacy: evidence could not be confirmed; request review without asserting source death.",
+    "dead": "Source is unavailable with evidence; force recheck before any deletion.",
+    "fallback_used": "Legacy: intended route was replaced; review the original coverage gap.",
+    "price_mismatch": "Observed pricing differs from the documented claim.",
+    "barrier_found": "Legacy access or pricing barrier; review with its original detail preserved.",
+    "coverage_gap": "The source did not cover a required question or content type.",
+    "user_correction": "A user correction requiring priority review.",
+    "transport_error": "Transport or protocol failure; not a successful empty search.",
+    "auth_failed": "Authentication or authorization failed for this capability.",
+    "quota_exceeded": "Usage or rate allowance prevented this call.",
+    "content_invalid": "A call returned content that failed the task's validity checks."
+  },
+  "review_outcomes": ["unverifiable", "fallback_used", "coverage_gap", "transport_error", "auth_failed", "quota_exceeded", "content_invalid"],
+  "required_record_fields": ["ts", "domain", "source", "outcome"],
+  "evidence_fields": ["capability", "client", "verification_scope", "evidence_ref", "published_at", "updated_at", "fetched_at", "date_basis"],
+  "notes": [
+    "Keep legacy outcomes verbatim; their meanings are not interchangeable.",
+    "Unknown outcomes remain visible and trigger review rather than disappearing.",
+    "Only tool_documentation with a nonempty evidence_ref may advance a whole tool document date.",
+    "Real records live in private companion DATA. This public file is only the contract."
+  ]
+}

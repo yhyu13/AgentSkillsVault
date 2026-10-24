@@ -1,0 +1,10 @@
+﻿openclaw/openclaw
+obra/superpowers
+NousResearch/hermes-agent
+anthropics/skills
+addyosmani/agent-skills
+paperclipai/paperclip
+thedotmack/claude-mem
+bytedance/deer-flow
+lobehub/lobehub
+volcengine/OpenViking

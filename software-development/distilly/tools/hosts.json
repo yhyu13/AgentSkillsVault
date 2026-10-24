@@ -1,0 +1,20 @@
+{
+  "_comment": "Single source of host install paths, read by bin/distilly.mjs and tools/hosts.py. skills_dir is relative to the home directory. When home_env is set in the environment, it replaces the first segment of skills_dir. generated_skills_dir overrides skills_dir for generated person skills.",
+  "hosts": {
+    "claude-code": { "skills_dir": [".claude", "skills"], "aliases": ["claude"] },
+    "openclaw": { "skills_dir": [".openclaw", "workspace", "skills"] },
+    "hermes": {
+      "skills_dir": [".hermes", "skills", "openclaw-imports"],
+      "generated_skills_dir": [".hermes", "skills", "distilly-generated"]
+    },
+    "codex": { "skills_dir": [".agents", "skills"] },
+    "deepseek-harness": {
+      "skills_dir": [".dsh", "skills"],
+      "home_env": "DSH_HOME",
+      "aliases": ["deepseek"]
+    },
+    "pi": { "skills_dir": [".pi", "agent", "skills"] },
+    "grok-build": { "skills_dir": [".grok", "skills"], "aliases": ["grok"] },
+    "opencode": { "skills_dir": [".config", "opencode", "skills"] }
+  }
+}

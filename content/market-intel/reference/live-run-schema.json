@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "detail": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "outcome": {
+      "enum": [
+        "verified",
+        "unverifiable",
+        "dead",
+        "fallback_used",
+        "price_mismatch",
+        "barrier_found",
+        "coverage_gap",
+        "user_correction",
+        "transport_error",
+        "auth_failed",
+        "quota_exceeded",
+        "content_invalid"
+      ]
+    },
+    "route": {
+      "enum": [
+        "\u2460",
+        "\u2461",
+        "\u2462",
+        "\u2463"
+      ]
+    },
+    "source": {
+      "type": "string"
+    },
+    "ts": {
+      "type": "string"
+    },
+    "user_correction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "ts",
+    "domain",
+    "source",
+    "route",
+    "outcome",
+    "detail",
+    "user_correction"
+  ],
+  "title": "Market-intel private live-run ledger row",
+  "type": "object"
+}

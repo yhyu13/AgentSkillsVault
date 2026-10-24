@@ -1,0 +1,5 @@
+interface:
+  display_name: "PlanetScale safe assessment"
+  short_description: "Full PlanetScale best-practices assessment"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,30 @@
+rank,repo,stars,pushed_at,license,skill_form,output,tts,autoplay,evidence
+1,alchaincyf/huashu-design,26060,2026-10-23,NOTASSERTED,skill (npx skills add),HTML deck + PPTX + MP4,"YES (doubao TTS, optional cloud)",yes (MP4 timeline),""核心链路（设计→渲染→MP4/PDF/PPTX导出）100%本地运行…云能力（豆包TTS配音、AI看片评审）全部隔离在 scripts/cloud/""
+2,nicobailon/visual-explainer,10614,2026-10-20,NOTASSERTED,skill (slash /generate-video),HTML page/deck -> narrated MP4,YES (voice clips),yes (1080p record),""/generate-video | Generate a narrated MP4 explainer""
+3,arcsin1/oh-my-ppt,2171,2026-10-23,NOTASSERTED,skill (local-first),single-file HTML + local editor,NO,yes (element animation autoplay),""调整自动播放或点击触发、动画时长和进入方向""
+4,glebis/claude-skills#present,400,2026-10-23,MIT,skill package (92 skills),single index.html + audio dir,YES (ElevenLabs),yes (auto advance),""slide_duration = max(audio_duration + 2s, read_time)""
+5,hiyeshu/codeck,199,2026-08-08,MIT,skill room (outline/design/review/speech/export),self-contained HTML,UNVERIFIED (speech channel script only),no,""Each codeck skill enters that room as a channel: outline, design, review, speech, and export""
+6,Sven-LI-sankyuu/presentation-skills,176,2026-07-29,NOTASSERTED,skill collection (Codex CLI),editable PPT + narrated web demo video,YES (segmented voiceover + subtitles),yes (timeline),""web-demo-video-synthesis produces narrated, subtitled, publishable videos""
+7,speechlab0210/video-production-skill,105,2026-07-03,MIT,skill (Claude/Codex/Gemini CLI),gpt-image-2 or HTML slides -> MP4 + subs,YES (ElevenLabs + Whisper ASR >=0.85),yes (ffmpeg),""字幕用原稿文字 + Whisper 詞級時間戳對齊""
+8,isomoes-video/md2video,33,2026-10-20,NOTASSERTED,agent workflow (HyperFrames),scene JSON + narration -> video,YES (one MP3 per slide),yes,"""prompts/tts-prompt.md: generate one narration MP3 per slide from script.json"""
+9,jinnyjiinlee/presenter-mode,22,2026-07-20,MIT,single-file component,HTML presenter view,NO,yes,"""PowerPoint-grade presenter view for HTML slide decks"""
+10,crawfordxx/xiaoma-studio,17,2026-10-23,MIT,skill (motion/video/slides),HTML slides + motion video,YES (doubao/Fish/ElevenLabs/Gemini/MiniMax),yes (deterministic render),""配音：豆包 TTS（中文，支持逐字时间戳）、Fish Audio、ElevenLabs、Gemini TTS、MiniMax""
+11,amirfish1/video-claw,17,2026-10-15,MIT,CLI,HTML + slide list -> narrated video,YES (ElevenLabs > Deepgram > free macOS TTS),yes (burned captions),""if you have a key, else Deepgram, else free macOS local TTS""
+12,imjasonh/marptalk,8,2026-01-05,MIT,node CLI,Marp -> self-playing HTML,YES (Google Cloud TTS + SpeechSynthesis fallback),yes (Start button),""the browser will synthesize speech from the speaker notes""
+13,hawkymisc/daida-ai,7,2026-04-21,NOTASSERTED,claude code plugin,PPTX + embedded audio,YES (edge-tts / voicevox),yes (PowerPoint only),""Auto-advance…only works in PowerPoint""
+14,shaharsha/claude-skills,5,2026-10-20,NOTASSERTED,skill 3-stage orchestration,PPTX + audio + autoplay,YES (ElevenLabs, human approval first),yes (PowerPoint),""deck (pptx) → narration (audio + autoplay pptx) → video (mp4)""
+15,apppplepie/barevid,5,2026-08-31,NOTASSERTED,self-hosted pipeline,animated slides / share URL / MP4,YES (voiceover + subtitles),yes (timed playback),""文稿 → 分镜 → 配音 → 动画 → 字幕 → MP4""
+16,decklight/decklight,5,2026-10-24,Apache-2.0,skill + npm CLI + SPEC.md,single HTML (bundleable),YES (TTS w/ ElevenLabs v4 tags),yes (auto-advance + captions),""Text-to-speech reads your notes in sync with the builds""
+17,open-deck-org/opendeck,3,2026-10-11,MIT,SKILL.md standard,single HTML (baked audio) + .deck,YES (ElevenLabs in-browser),yes (auto-play hands-free),""Auto-play — Hands-free: reveal a step, play its clip, advance when it ends.""
+18,huseyingayiran/visual-learner,1,2026-07-16,MIT,claude skill,single HTML (2 voices + captions),YES (Kokoro/edge-tts/Piper/silent clock),yes (virtual clock),""auto-detects a free TTS engine, best first""
+19,MediaPlural/rendermill,0,2026-10-23,MIT,CLI (MIT fork of video-claw),HTML slides + TTS -> MP4,YES (ElevenLabs),yes (hook gates),""HTML slides + TTS narration → MP4, with hook gates, captions, clip cuts""
+20,gRAYESS123/storyboard-claude,0,2026-10-05,NOTASSERTED,skill (/storyboard chain),self-contained 1920x1080 HTML,YES (ElevenLabs optional; word timestamps),yes (audio clock),""Animations sync to your voice-over by audio clock, not by counting frames""
+near-miss,DotIN13/beatsdeck,0,2026-08-25,NOTASSERTED,skill (beat protocol),HTML + beats -> mp4,YES (vLLM-Omni),yes (beat advance),output is video not self-playing HTML
+near-miss,grapeot/presentation_skill,4,2026-10-17,NOTASSERTED,skill,HTML animated canvas,NO,NO (animation only),no TTS in README
+near-miss,noskillish/slides,72,2026-06-28,MIT,skill + AGENTS.md,single HTML deck,NO,NO,no TTS in README
+near-miss,zhaodongyu/speaker-slides,0,2026-06-18,NOTASSERTED,skill (zh-CN),single HTML 16:9 + presenter mode,NO,NO,no TTS in README
+near-miss,carlosfrodrigues/silkscreen,21,NOTASSERTED,NOTASSERTED,skill,single HTML fullscreen,NO,NO,no TTS in README
+near-miss,humantonylee/future-slide,150,2026-06-02,Apache-2.0,skill,image slides or live HTML,NO (narrat hit = narrative arc),NO,moved out of main list
+near-miss,rsarver/stella-decks,69,2026-04-09,MIT,skill,HTML deck + PDF,NO (narrat hit = narrative-review),NO,moved out of main list
+near-miss,kaisersong/slide-creator,53,2026-10-13,NOTASSERTED,skill,single HTML deck,NO (narrat hit = planning depth),NO,moved out of main list
+near-miss,prodigeproject/pradaslides,16,2026-07-30,MIT,skill,PPTX / HTML slides / PDF,NO (narrat hit = narrative flow),NO,moved out of main list

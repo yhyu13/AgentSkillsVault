@@ -18,7 +18,11 @@ AgentSkillsVault/
 │   ├── kanban-orchestrator/
 │   ├── kanban-cron-overseer/
 │   ├── cron-pipeline-state-machine/
-│   └── mock-devops-platform/        ← 模拟 DevOps 平台（部署/流水线/告警）场景数据
+│   ├── mock-devops-platform/        ← 模拟 DevOps 平台（部署/流水线/告警）场景数据
+│   ├── grafana/* (36)               ← Grafana 官方 skills（core/lgtm/cloud/datasources；`grafana-` 前缀）
+│   ├── monte-carlo/* (9)            ← Monte Carlo 监控即代码（根因分析/事故响应/成本）
+│   ├── planetscale/* (15)           ← PlanetScale 数据库变更门禁与安全评审
+│   └── dynatrace/* (11)             ← Dynatrace DQL / 日志 / 链路 / 成本 / 安全洞察
 ├── software-development/            ← code review, self-review, research analysis
 │   ├── aisides-ai-self-review/
 │   ├── debugger-persona/            ← debug diagnosis + Chinese doc writing + code discipline persona
@@ -30,10 +34,16 @@ AgentSkillsVault/
 │   ├── skill-distill/               ← 会后沉淀流水线：四道闸 + 粒度 + 归属 + 三段式写法 + 防重复防膨胀 + PR 流程
 │   ├── perf-tracking-platform/      ← XD 性能跟踪分析平台领域知识：OKR 进度 + 指标口径 + 瓶颈判定 + 看板/报告
 │   ├── governance-doc-design/       ← author governance/rule/design docs (buckets + 状态 + 事实来源 + decision log)
+│   ├── brainstorming/ systematic-debugging/ writing-plans/ writing-skills/  ← obra/superpowers 的 8 个方法论 skill
+│   ├── verification-before-completion/ using-git-worktrees/ receiving-code-review/ requesting-code-review/
+│   ├── skill-inspector/             ← NVIDIA SkillSpector：装第三方 skill 前的注入/外泄扫描闸
+│   ├── skillopt-sleep/              ← Microsoft SkillOpt：让 agent 自我优化 skill
+│   ├── distilly/                    ← Work + Persona 分离的蒸馏流程
 │   └── journey/                     ← two-column ME/YOU project history + vibe-coding lessons
 ├── FDE/                             ← Forward Deployed Engineer / personal knowledge workflows
 │   ├── book-chapter-to-vault/       ← .docx book chapter → learning notes + cheatsheet + kanban + mindmap
-│   └── analysis-to-vault/           ← long-form analytical article → thesis + argument map + cheatsheet + day-job notes
+│   ├── analysis-to-vault/           ← long-form analytical article → thesis + argument map + cheatsheet + day-job notes
+│   └── investment-masters/          ← 投研大师方法蒸馏（含证据边界规则）
 ├── game-dev/                        ← game design + 3D/web game tooling
     ├── game-dev-loop/               ← orchestrator: classify → GDD/TDD → scaffold → implement → test/debug → quality → guide → memory
     ├── cat-game-architecture/
@@ -60,7 +70,10 @@ AgentSkillsVault/
     ├── management-loop/             ← router: classify → report/advice/knowledge/methodology → apply → verify → memory
     ├── manage-up-core/ + 9 汇报技能 (weekly-report, project-update, style-report 等)
     ├── mgmt-discipline/ mgmt-individual/ mgmt-org/  (方法论知识库)
-    └── bezos-advisor/ god-leader-advisor/ renzhengfei-advisor/ zhangyiming-advisor/  (角色顾问)
+    ├── bezos-advisor/ god-leader-advisor/ renzhengfei-advisor/ zhangyiming-advisor/  (角色顾问)
+    ├── prd/ cs-financial-analyst/ cs-product-strategist/ competitive-matrix/ finance-lead/ cs-growth-strategist/ product-strategist/  ← alirezarezvani/claude-skills
+    ├── finance/** (15)               ← DCF / LBO / 可比交易 / 财报模型 / 会计准则（everything-claude-finance）
+    └── marketing/** (3)              ← customer-research / competitor-profiling / marketing-council（marketingskills）
 └── content/                         ← 博客/长文 → 社媒内容再利用 (Content Repurposing)
     ├── blog-to-twitter-post/
     ├── blog-to-linkedin-post/
@@ -75,6 +88,10 @@ AgentSkillsVault/
     ├── agent-browser/               ← agent-browser CLI 浏览器自动化（social-push 依赖）
     ├── yu-hang-writing-style/       ← 俞航工程笔记文风（技术规划/排查笔记/进展周报/使用手册/测试说明，去 AI 味）
     ├── progress-doc-style/          ← 进度/OKR 跟踪文档文风（OKR 简述表 + 行动项七列表 + 状态三符号 + 备注一句话）
+    ├── genoffice/                   ← 本地创建/转换/读写 Office 文档（docx/xlsx/pptx/pdf）
+    ├── okr-planner/                 ← 目标 → 可度量 KR（与 vault 自有 OKR 件并存，待合并）
+    ├── legalrabbit-docx/ excel-hygiene/  ← docx 加工 + .xlsx 体检
+    ├── market-intel/                ← 商用数据（X/Twitter/电商/金融/SEO）取数与研判
     ├── hyperframes/                 ← HTML 渲染成视频（渲染契约 / 工作流 / assets/frame-presets）
     ├── hyperframes-cli/             ← `npx hyperframes` CLI（check / init / capture / usage）
     ├── hyperframes-registry/        ← 450+ 现成 block / component 目录（查完再手写特效）
@@ -96,6 +113,10 @@ AgentSkillsVault/
     ├── slideshow/                   ← 幻灯片编排
     ├── ui-mockups/                  ← 产品 UI 截图级 mockup（浏览器窗口 chrome / 真实品牌图标）
     ├── visual-explainer/            ← 可视化解释产物（commands/ kit/ mcp/ plan/ pptx/ video/ templates/）
+    ├── hands-on-deck/ presentation-skill/ html-to-pptx/  ← deck 编辑 / 演示构建 / HTML→可编辑 PPTX
+    ├── brand-docx/ brand-pptx/ brand-xlsx/   ← 参考模板 + 样式继承机制
+    ├── huashu-design/ xiaoma-studio/         ← HTML 高保真原型与幻灯片 / 代码做动效与幻灯片
+    ├── visual-learner/ opendeck/ storyboard/ video-production/  ← 讲解产物 / 朗读 deck / 分镜 / TTS 质量闸（ASR 回译）
     └── web-prototype/               ← 网页原型（assets/ references/ example.html）
 ├── writing/                         ← 「换种形式让人看懂」工作流（不堆文字 / 画图 / 试出来 / 讲清楚）
 │   └── karpathy-explain-better/     ← Karpathy 4 法：简化文字(ASD-STE100) → 结构图 → 可交互网页 → 讲解视频；含判断清单与升级/降级信号
@@ -109,7 +130,9 @@ AgentSkillsVault/
 │   ├── manim-video/                 ← 数学/公式动画
 │   ├── make-interfaces-feel-better/← UI 与动效细节打磨
 │   ├── lemo-opuscar/                ← 39 种纯代码影片风格库
-│   └── mengto/* (29)                ← MengTo 设计向 skills：3D 材质/光照/水/天空 (16) + 素材图 (2) + 视频与审查向 (11)
+│   ├── mengto/* (29)                ← MengTo 设计向 skills：3D 材质/光照/水/天空 (16) + 素材图 (2) + 视频与审查向 (11)
+│   ├── video-shotcraft/             ← 152 张 shot recipe 卡片（构图/运镜/节奏）
+│   └── ffmpeg/ moviepy/ elevenlabs/ acestep/ ltx2/ ideogram4/ qwen-edit/ runpod/ playwright-recording/ synthetic-ui-demo/ video_toolkit/  ← 素材生成与加工（claude-code-video-toolkit）
 └── vendor/                          ← 外部 repo 以 submodule 形式 vendored（不复制进分类目录）
     ├── anthropics-skills/           ← github.com/anthropics/skills（19 个官方 skill；pinned @ dbd4588）
     ├── tripo-skills/                ← github.com/meterlong/tripo-skills（Tripo 3D 生成 skill，装为 tripo-3d-generation）
@@ -128,6 +151,14 @@ AgentSkillsVault/
     ├── awesome-claude-video/        ← github.com/opusvideo/awesome-claude-video（资料索引）
     ├── awesome-opus-5.5-video/      ← github.com/zhuyansen/awesome-opus-5.5-video（资料索引）
     └── awesome-claude-video-skills/ ← github.com/zhuyansen/awesome-claude-video-skills（180 个视频 skill 索引 + 安全评级）
+    ├── genoffice/ legalrabbit-docx-mcp/ excel-hygiene/ document-SKILLs/ market-intel/   ← Office 文档 + 商用数据
+    ├── hands-on-deck/ presentation-skill/ html-to-editable-pptx/ brand-docs/            ← deck / 演示 / 模板继承
+    ├── huashu-design/ xiaoma-studio/ visual-learner/ opendeck/ storyboard-claude/ video-production-skill/ visual-explainer/  ← HTML 幻灯片与朗读层
+    ├── claude-skills/ everything-claude-finance/ marketingskills/                      ← MBA 方法层（PRD / 估值 / 营销）
+    ├── grafana-skills/ mc-agent-toolkit/ planetscale-skills/ dynatrace-for-ai/         ← 可观测性观察面
+    ├── superpowers/ skillspector/ skillopt/ distilly/ agentskills-spec/               ← 方法论 / 安全 / 优化 / 格式规范
+    ├── investment-masters/ company-brain/                                             ← 蒸馏层参考
+    └── claude-code-video-toolkit/ video-shotcraft/ html-video/ openai-edge-tts/       ← 视频素材与 shot 卡片
 ```
 
 ## User-level distribution（2026-10-24 起）
@@ -135,10 +166,10 @@ AgentSkillsVault/
 四个 harness 的用户级 skill 目录**只有一份实体**，其余全是 Windows junction 视图：
 
 ```
-~/.claude/skills/      ← 唯一实体（canonical store，210 个 skill）
-~/.kilo/skills/        ← 210 个 junction → ~/.claude/skills/<name>
-~/.codex/skills/       ← 210 个 junction → ~/.claude/skills/<name>
-~/.agents/skills/      ← 210 个 junction → ~/.claude/skills/<name>
+~/.claude/skills/      ← 唯一实体（canonical store，347 个 skill）
+~/.kilo/skills/        ← 347 个 junction → ~/.claude/skills/<name>
+~/.codex/skills/       ← 347 个 junction → ~/.claude/skills/<name>
+~/.agents/skills/      ← 347 个 junction → ~/.claude/skills/<name>
 ```
 
 - 好处：改一处四个 harness 同步生效；磁盘从 ~113 MB 降到 ~35 MB；不再有「哪个 harness 少装了几个 skill」的漂移。
@@ -150,6 +181,16 @@ AgentSkillsVault/
   `ai-animation-skill`（科普→HTML 演示）、`generating-slides`（`frontend-slides` 的二次开发版）**只 vendor 不装**——与已装的 `frontend-slides` / `html-ppt` 重叠；
   `opus5.5-video-prompts` 与 `opus-video-prompts` 是同一 commit 的镜像，不重复装；
   `opus55-3d-games` 的 submodule 指针已更新到 `05966a9`，其中 3 个 three.js skill（`procedural-3d-scenes` / `three-clay-scenes` / `three-procedural-scenes`，v1.0.1）已复制进 `game-dev/` 并刷新用户级实体——三处（submodule / vault / 用户级）逐字节一致。
+
+## 雷达采纳批次（2026-10-24）
+
+`SKILL_RADAR/` 里 6 篇雷达笔记各自结尾的「采纳清单」已落地：**34 个 repo 成为 `vendor/` submodule，137 个 skill 装进分类目录并分发到用户级**。
+
+- 记录全文：`SKILL_RADAR/2026-10-24-radar-adoption-install-record.md`（含每个 repo 的 commit / license / 装或不装的理由）。
+- 选型依据是「文件里有没有方法」，不是星标：本批次 ★ 从 0 到 304,484，但 6★ 的 `everything-claude-finance`（DCF/LBO）比 163k★ 的 agent 名单更值钱。
+- **只 vendor 不装**：无 SKILL.md 的 app / 索引（`awesome-mcp-servers`、`decklight`）、许可证缺失或 `NOASSERTION`（`hermes-startup-architect`、`structflow`、`beatsdeck`、`video-talkcraft`、`zavora-ai/*`）、与 vault 同名冲突（`document-SKILLs`、`visual-explainer`）。
+- **刻意适配**（非上游原样）：`grafana-*` 前缀、目录名对齐 frontmatter、两个无 frontmatter 的 skill 补了 `name:`/`description:`。
+- 未实跑：这些是第三方 skill，首次使用前先看它的 README 与依赖（多数要 API key 或 MCP server）；装任何新 pack 前先过 `software-development/skill-inspector`。
 
 ## Skills
 
@@ -258,6 +299,35 @@ AgentSkillsVault/
 | video/kinetic-reel | video | 纯代码动效字 reel：Canvas 2D + three.js + WebGL 后期，无头 Chrome 逐帧 + ffmpeg，Node 合成节拍对齐配乐（tuzhechen2005/opus-video-skills） |
 | video/painted-animation | video | p5.js + p5.brush 手绘水彩/墨线动画：逐帧渲染、模型表、音乐与歌词同步（tuzhechen2005/opus-video-skills） |
 | video/opus-video-prompts | video | 「用代码拍视频」提示词库：18 份提示词 + 54 个公开案例 + 技术路线与写法经验（joeseesun/opus-video-prompts；本 vault 补写指针层 SKILL.md） |
+| content/genoffice | content | 本地创建/转换/读写 Office 文档（docx/xlsx/pptx/pdf），一条链路覆盖四种格式（genspark-ai/genoffice，Apache-2.0） |
+| content/okr-planner | content | 目标 → 可度量 KR 的拆解（genoffice 推荐集；与 vault 自有 OKR 件并存，待合并） |
+| content/legalrabbit-docx | content | docx 加工（legalrabbit-docx-mcp，MIT；token 优势待实测） |
+| content/excel-hygiene | content | .xlsx 确定性体检（scripts/ + examples/） |
+| content/market-intel | content | 商用数据（X/Twitter/电商/金融/SEO）取数与研判（DaizeDong/market-intel，MIT） |
+| design/hands-on-deck | design | 拿到一个 .pptx 之后的编辑/改写（EveryInc/hands-on-deck，MIT） |
+| design/presentation-skill | design | 内容驱动的 deck 构建/编辑/渲染/校验（siril9/presentation-skill，MIT） |
+| design/html-to-pptx | design | HTML 幻灯片 → 可编辑 .pptx（Hasasasa/html-to-editable-pptx，MIT） |
+| design/brand-docx / brand-pptx / brand-xlsx | design | 参考模板 + 样式继承机制（ferdinandobons/brand-docs，MIT） |
+| design/huashu-design | design | HTML 高保真原型/幻灯片/动画 + 专家评审（alchaincyf/huashu-design，MIT） |
+| design/xiaoma-studio | design | 用代码做动效视频 / HTML 幻灯片 / 大屏页（crawfordxx/xiaoma-studio，MIT） |
+| design/visual-learner | design | 主题/文档 → 讲解产物，含 TTS 四档降级链（huseyingayiran/visual-learner，MIT） |
+| design/opendeck | design | 动画 + 朗读的 HTML deck，音频只烘进 HTML（open-deck-org/opendeck，MIT） |
+| design/storyboard | design | 网页/文档 → 分镜 → 视频（gRAYESS123/storyboard-claude，MIT） |
+| design/video-production | design | AI 教学视频流水线，含 **ASR 回译质量闸**（speechlab0210/video-production-skill，MIT） |
+| management/prd / cs-financial-analyst / cs-product-strategist / competitive-matrix / finance-lead / cs-growth-strategist / product-strategist | management | 商业方法层：PRD、财务分析、竞品矩阵、增长与产品策略（alirezarezvani/claude-skills，MIT） |
+| management/finance/** (15) | management | DCF / LBO / 可比交易 / 财报模型 / GAAP-IFRS-HGB 准则（everything-claude-finance，MIT，★6 但方法密度最高） |
+| management/marketing/** (3) | management | customer-research / competitor-profiling / marketing-council（coreyhaines31/marketingskills，MIT） |
+| devops/grafana/* (36) | devops | Grafana 官方 skills：PromQL / LGTM 栈 / Cloud 成本与可观测性（grafana/skills，Apache-2.0） |
+| devops/monte-carlo/* (9) | devops | 监控即代码：根因分析、事故响应、存储成本、主动监控（mc-agent-toolkit，Apache-2.0） |
+| devops/planetscale/* (15) | devops | 数据库变更门禁、只读盘点、Vitess 安全评审（planetscale/skills，MIT） |
+| devops/dynatrace/* (11) | devops | DQL / 日志 / 链路 / 服务 / 成本 / 安全洞察（dynatrace-for-ai，Apache-2.0） |
+| software-development/brainstorming / systematic-debugging / writing-plans / writing-skills / verification-before-completion / using-git-worktrees / receiving-code-review / requesting-code-review | software-development | obra/superpowers 的方法论 skill（MIT） |
+| software-development/skill-inspector | software-development | 装第三方 skill 前的注入/外泄/供应链扫描闸（NVIDIA SkillSpector，Apache-2.0） |
+| software-development/skillopt-sleep | software-development | 让 agent 自我优化 skill（Microsoft SkillOpt，MIT） |
+| software-development/distilly | software-development | Work + Persona 分离的蒸馏流程（titanwings/distilly，MIT） |
+| FDE/investment-masters | FDE | 投研大师方法蒸馏，含证据边界规则（AlphaGBM/investment-masters，MIT） |
+| video/video-shotcraft | video | 152 张 shot recipe 卡片（构图/运镜/节奏）（Vincentwei1021/video-shotcraft，Apache-2.0） |
+| video/ffmpeg / moviepy / elevenlabs / acestep / ltx2 / ideogram4 / qwen-edit / runpod / playwright-recording / synthetic-ui-demo / video_toolkit | video | 素材生成与加工全链路（digitalsamba/claude-code-video-toolkit，MIT） |
 
 ## 评分（0 / 10 / 20）
 

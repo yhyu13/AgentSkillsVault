@@ -1,0 +1,100 @@
+{
+  "whoosh": {
+    "file": "whoosh.wav",
+    "duration": 0.8,
+    "gain_db": -14.4,
+    "use": "Showy slide transitions (push, slide, zoom, whip, morph) and big camera moves; the default transition whoosh, pans left to right.",
+    "peak_time": 0.455
+  },
+  "whoosh-soft": {
+    "file": "whoosh-soft.wav",
+    "duration": 0.55,
+    "gain_db": -17.9,
+    "use": "Gentle transitions and secondary camera drifts; darker, shorter and quieter than whoosh.",
+    "peak_time": 0.316
+  },
+  "swipe": {
+    "file": "swipe.wav",
+    "duration": 0.26,
+    "gain_db": -14.6,
+    "use": "Fast directional moves: swipe/wipe transitions, cards sliding in, carousel steps, quick zooms.",
+    "peak_time": 0.106
+  },
+  "pop": {
+    "file": "pop.wav",
+    "duration": 0.13,
+    "gain_db": -8.7,
+    "use": "Playful element pops: popIn/bounce entrances, badges, emoji, bubbles, counters landing.",
+    "peak_time": 0.004
+  },
+  "pop-soft": {
+    "file": "pop-soft.wav",
+    "duration": 0.15,
+    "gain_db": -13.5,
+    "use": "Default for emphasis entrances (spring, scaleIn, overshoot, letterSpring); subtle enough to repeat.",
+    "peak_time": 0.006
+  },
+  "tick": {
+    "file": "tick.wav",
+    "duration": 0.05,
+    "gain_db": -4.8,
+    "use": "Word hits (WORD_HITS), bullet reveals, counter steps, timeline markers.",
+    "peak_time": 0.003
+  },
+  "click": {
+    "file": "click.wav",
+    "duration": 0.07,
+    "gain_db": -3.7,
+    "use": "UI interactions: cursor clicks, button presses, toggles, tab switches in product demos.",
+    "peak_time": 0.003
+  },
+  "sparkle": {
+    "file": "sparkle.wav",
+    "duration": 0.85,
+    "gain_db": -17.7,
+    "use": "Magic/highlight moments: glow, shine, starPop, sparkle effects, revealing a key insight.",
+    "peak_time": 0.333
+  },
+  "riser": {
+    "file": "riser.wav",
+    "duration": 1.6,
+    "gain_db": -13.6,
+    "use": "Build-up into a big reveal or the final CTA; place it so it ends on the reveal (pairs with impact).",
+    "peak_time": 1.479
+  },
+  "impact": {
+    "file": "impact.wav",
+    "duration": 1.0,
+    "gain_db": -10.6,
+    "use": "Hero moments: title slams, big stat reveals, logo hits, the drop after a riser. Use sparingly.",
+    "peak_time": 0.003
+  },
+  "chime": {
+    "file": "chime.wav",
+    "duration": 1.6,
+    "gain_db": -15.7,
+    "use": "Notifications, 'aha' moments, checkmarks appearing, gentle positive confirmations.",
+    "peak_time": 0.012
+  },
+  "typing": {
+    "file": "typing.wav",
+    "duration": 1.0,
+    "gain_db": -4.0,
+    "use": "On-screen typing: typewriter, code, terminal and search-box animations (loop or trim to length).",
+    "peak_time": 0.168
+  },
+  "confetti": {
+    "file": "confetti.wav",
+    "duration": 1.25,
+    "gain_db": -12.7,
+    "use": "Celebrations: confettiBurst, partyPopper, confettiRain, fireworks, milestones.",
+    "peak_time": 0.093
+  },
+  "success": {
+    "file": "success.wav",
+    "duration": 1.1,
+    "gain_db": -14.4,
+    "use": "Completion / win: checkDraw, badgeUnlock, trophyShine, goal reached, 'done' states.",
+    "peak_time": 0.19
+  }
+}

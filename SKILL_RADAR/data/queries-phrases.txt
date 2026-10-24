@@ -1,0 +1,10 @@
+﻿"ai employee" in:name,description
+"digital worker" in:name,description
+"company brain" in:name,description
+"always-on" agent in:name,description
+"agent employee" in:name,description
+"overnight" agent in:name,description
+"digital worker" agent in:description
+"AI employee" in:name,description
+"agent workforce" in:name,description
+"autonomous agent" "24/7" in:description

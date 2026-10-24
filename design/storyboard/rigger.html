@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Storyboard — Character Rigger</title>
+<style>
+:root{--accent:#7C5CFF;--accent2:#19E3B1;--accent3:#FF5C8A;--gold:#FFD166;--ink:#1c2030;--panel:#fff;--bg:#eef0f6}
+*{margin:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 'Space Grotesk',system-ui,Segoe UI,sans-serif}
+h1{font-size:22px;font-weight:700}.mono{font-family:ui-monospace,'JetBrains Mono',monospace}
+header{display:flex;align-items:baseline;gap:14px;padding:16px 24px;background:#fff;border-bottom:1px solid #e2e5ee}
+header .sub{color:#7a8094;font-size:14px}
+.wrap{display:grid;grid-template-columns:1fr 380px;gap:20px;padding:20px 24px;max-width:1300px;margin:0 auto}
+.card{background:var(--panel);border:1px solid #e2e5ee;border-radius:14px;padding:18px}
+.stage{position:relative;height:560px;display:flex;align-items:center;justify-content:center;background:
+  linear-gradient(#f6f7fb,#eef0f6);border-radius:12px;overflow:hidden}
+#rig{position:absolute}
+.handle{position:absolute;width:26px;height:26px;border-radius:50%;border:2.5px solid #fff;
+  box-shadow:0 2px 8px rgba(0,0,0,.3);cursor:grab;transform:translate(-50%,-50%);z-index:20;display:flex;
+  align-items:center;justify-content:center;font-size:13px;touch-action:none;user-select:none}
+.handle:active{cursor:grabbing}
+.handle.eye{background:var(--accent)}.handle.mouth{background:var(--accent3)}.handle.look{background:var(--gold);width:30px;height:30px}
+.handle.arm{background:var(--accent2);width:22px;height:22px}
+.handle .lbl{position:absolute;top:-20px;font-size:11px;font-weight:700;color:#555;white-space:nowrap}
+.row{display:flex;align-items:center;gap:10px;margin:10px 0}
+.row label{width:96px;font-size:13px;color:#5a6072}
+input[type=range]{flex:1}
+input[type=text]{flex:1;font:inherit;font-size:13px;border:1px solid #d4d8e4;border-radius:9px;padding:7px 10px}
+button{font:inherit;font-weight:600;border:1px solid #d4d8e4;background:#fff;color:var(--ink);
+  border-radius:9px;padding:8px 12px;cursor:pointer}
+button:hover{border-color:var(--accent);color:var(--accent)}
+button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px}
+textarea{width:100%;height:120px;font-family:ui-monospace,monospace;font-size:12px;border:1px solid #d4d8e4;
+  border-radius:9px;padding:10px;resize:vertical}
+.out{width:100%;height:150px;font-family:ui-monospace,monospace;font-size:11px;border:1px solid #d4d8e4;
+  border-radius:9px;padding:10px;background:#0f1320;color:#cdd6f5;white-space:pre;overflow:auto;resize:vertical}
+.hint{font-size:12.5px;color:#7a8094;margin:6px 0}.hint .mono{overflow-wrap:anywhere}
+.notes{font-size:12px;color:#8a5a00;background:#fff7e0;border:1px solid #f1dca0;border-radius:9px;padding:8px 10px;margin-top:8px;display:none}
+.notes li{margin-left:16px}
+h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#8a90a4;margin:18px 0 8px;font-weight:700}
+h3:first-child{margin-top:0}
+</style>
+</head>
+<body>
+<header>
+  <h1>Character Rigger</h1>
+  <span class="sub">Drop in your art · drag the eyes &amp; mouth · test · copy the code</span>
+</header>
+<div class="wrap">
+  <!-- LEFT: stage -->
+  <div class="card">
+    <div class="stage" id="stage">
+      <div id="rig" data-anim="character" data-char="custom" data-talk="1"></div>
+      <!-- handles injected by JS -->
+    </div>
+    <div class="btnrow" style="margin-top:14px">
+      <button data-mood="idle" class="on">Idle</button>
+      <button data-mood="happy">Happy</button>
+      <button data-mood="sad">Sad</button>
+      <button data-mood="surprised">Surprised</button>
+      <button data-mood="think">Think</button>
+      <button data-mood="wink">Wink</button>
+      <button id="talkBtn" class="on">🗣 Talk</button>
+      <button id="lookBtn">👀 Look-at (drag the gold dot)</button>
+    </div>
+    <div class="btnrow" style="margin-top:8px">
+      <button data-gesture="wave">👋 Wave</button>
+      <button data-gesture="nod">Nod</button>
+      <button data-gesture="jump">Jump</button>
+      <button data-gesture="shrug">Shrug</button>
+      <button id="previewBtn" title="Render the exported JSON definition through Storyboard.defineCharacter">Preview: SVG art</button>
+    </div>
+    <p class="hint">The engine draws its animated eyes &amp; mouth where you place the handles, on top of your art. Use <b>faceless</b> art (the engine supplies the face), or tag your own parts with <span class="mono">data-sbc="eyeL|eyeR|pupilL|pupilR|mouth|armL|armR|brL|brR|cheekL|cheekR"</span>. Tagged arms get green shoulder-pivot handles; test them with Wave/Shrug. Drag the gold dot to test gaze.</p>
+  </div>
+
+  <!-- RIGHT: controls -->
+  <div class="card">
+    <h3>Your art (SVG)</h3>
+    <textarea id="svgIn" spellcheck="false"></textarea>
+    <div class="row"><button id="loadBtn" style="flex:1">Load / re-render</button></div>
+
+    <h3>Eyes &amp; mouth</h3>
+    <div class="row"><label>Eye size</label><input type="range" id="erx" min="10" max="44" step="1"></div>
+    <div class="row"><label>Eye height</label><input type="range" id="ery" min="12" max="50" step="1"></div>
+    <div class="row"><label>Pupil</label><input type="range" id="pupil" min="4" max="18" step="1"></div>
+    <div class="row"><label>Mouth width</label><input type="range" id="mw" min="8" max="40" step="1"></div>
+
+    <h3>Export</h3>
+    <div class="row"><label>Name</label><input type="text" id="charName" value="my-character" spellcheck="false"></div>
+    <div class="btnrow" style="margin-bottom:10px">
+      <button id="copyHtml" style="flex:1">Copy inline HTML</button>
+      <button id="copyJson" style="flex:1">Copy JSON definition</button>
+      <button id="dlJson" title="Download the JSON definition">⬇ .json</button>
+    </div>
+    <textarea class="out" id="out" readonly spellcheck="false"></textarea>
+    <ul class="notes" id="notes"></ul>
+    <p class="hint">Paste the inline HTML straight into a deck, or save the JSON and load it with <span class="mono">data-char-src</span> / <span class="mono">SB_CHARACTERS</span>. The JSON export keeps groups and rig tags (also parts you draw hidden with <span class="mono">opacity="0"</span>, such as the open mouth, cheeks and brows: the engine shows those itself), bakes transforms into the coordinates and turns gradients into <span class="mono">defs</span>. The engine does not draw <span class="mono">defs</span> yet, so each gradient fill carries a fallback: the gradient's average color, transparency included. Validate it with <span class="mono">python ~/.claude/skills/storyboard/validate_character.py my-character.json</span>.</p>
+  </div>
+</div>
+
+<div style="position:absolute;left:-9999px"><span id="lookTargetHost"></span></div>
+<script src="storyboard-engine.js"></script>
+<script>
+/* ---- sample faceless creature ---- */
+const SAMPLE = `<svg viewBox="0 0 240 280">
+  <ellipse cx="120" cy="274" rx="70" ry="12" fill="rgba(0,0,0,.16)"/>
+  <path d="M70,72 L58,26 L106,62 Z" fill="#7C5CFF"/>
+  <path d="M170,72 L182,26 L134,62 Z" fill="#7C5CFF"/>
+  <ellipse cx="120" cy="122" rx="92" ry="96" fill="#7C5CFF"/>
+  <rect x="74" y="210" width="92" height="60" rx="30" fill="#6a4ee0"/>
+</svg>`;
+
+let rig = document.getElementById('rig');
+const stage = document.getElementById('stage');
+const out = document.getElementById('out');
+const notesEl = document.getElementById('notes');
+const svgIn = document.getElementById('svgIn');
+const SVGNS = 'http://www.w3.org/2000/svg', XLINK = 'http://www.w3.org/1999/xlink';
+const RIG_KEYS = new Set(['armL','armR','eyeL','eyeR','pupilL','pupilR','pupil','smile','mouth','open','mouthOpen','brL','brR','cheekL','cheekR','body']);
+
+let state = {
+  svg: SAMPLE, vb:[240,280], minxy:[0,0],
+  desc:{ eyeL:[98,112], eyeR:[142,112], erx:22, ery:26, pupil:10, mouthX:120, mouthY:150, mouthW:18, armL:null, armR:null },
+  look:[200,90], mood:'idle', talk:true, lookOn:false, preview:'svg', acts:''
+};
+const HANDLES = {}; // id -> el
+
+/* ---- SVG parsing (HTML parser: works with or without xmlns, scripts stay inert) ---- */
+function parseSvgDoc(markup){
+  const doc = new DOMParser().parseFromString('<!DOCTYPE html><body>'+String(markup||''), 'text/html');
+  const svg = doc.querySelector('svg');
+  return svg && svg.namespaceURI===SVGNS ? svg : null;
+}
+// url(...) that is not a local #id reference (fill="url(https://...)", style="...", <style>):
+// the preview would fetch it. Replaced by "none" so pasted art never phones home.
+const EXT_URL=/url\(\s*(?!['"]?\s*#)[^)]*\)/gi;
+function sanitizeSvg(svg){
+  svg.querySelectorAll('script,foreignObject,iframe,object,embed').forEach(n=>n.remove());
+  svg.querySelectorAll('style').forEach(s=>{ const t=s.textContent, c=t.replace(/@import[^;]*;?/gi,'').replace(EXT_URL,'none'); if(c!==t) s.textContent=c; });
+  [svg, ...svg.querySelectorAll('*')].forEach(n=>{
+    for(const a of Array.from(n.attributes)){
+      const nm=a.name.toLowerCase(), v=String(a.value).trim().toLowerCase();
+      if(nm.startsWith('on')) n.removeAttribute(a.name);
+      else if((nm==='href'||nm==='xlink:href') && !v.startsWith('#')) n.removeAttribute(a.name);
+      else if(v.indexOf('javascript:')>=0) n.removeAttribute(a.name);
+      else if(v.indexOf('url(')>=0 || v.indexOf('\\')>=0){ const c=String(a.value).replace(/\\/g,'').replace(EXT_URL,'none'); if(c!==a.value) n.setAttribute(a.name,c); }
+    }
+  });
+  return svg;
+}
+function parseSvg(markup){
+  const svg=parseSvgDoc(markup); if(!svg) return null;
+  const vb=(svg.getAttribute('viewBox')||'').split(/[\s,]+/).map(Number);
+  const ok=vb.length>=4 && vb.every(isFinite) && vb[2]>0 && vb[3]>0;
+  const w=ok?vb[2]:(parseFloat(svg.getAttribute('width'))||240), h=ok?vb[3]:(parseFloat(svg.getAttribute('height'))||280);
+  return { svg, vb:[w,h], minxy: ok?[vb[0],vb[1]]:[0,0] };
+}
+/* art markup for the live (adopt-mode) preview: sanitized, viewBox origin moved to 0 0 */
+function previewMarkup(){
+  const svg=parseSvgDoc(state.svg); if(!svg) return '';
+  sanitizeSvg(svg);
+  const [mx,my]=state.minxy;
+  if(mx||my){ const g=svg.ownerDocument.createElementNS(SVGNS,'g'); g.setAttribute('transform','translate('+(-mx)+' '+(-my)+')');
+    while(svg.firstChild) g.appendChild(svg.firstChild); svg.appendChild(g); svg.setAttribute('viewBox','0 0 '+state.vb[0]+' '+state.vb[1]); }
+  return svg.outerHTML;
+}
+
+function r1(n){ return Math.round(n); }
+function faceJSON(){ // what Storyboard.defineCharacter / data-face read
+  const d=state.desc, eyeY=r1((d.eyeL[1]+d.eyeR[1])/2);
+  return { eyes:{L:[r1(d.eyeL[0]),r1(d.eyeL[1])], R:[r1(d.eyeR[0]),r1(d.eyeR[1])], rx:d.erx, ry:d.ery, pupil:d.pupil},
+    mouth:{x:r1(d.mouthX), y:r1(d.mouthY), w:d.mouthW},
+    brows:{y:r1(eyeY-d.ery-3)},
+    cheeks:{L:[r1(d.eyeL[0]-d.erx*0.8), r1(eyeY+d.ery*1.6)], R:[r1(d.eyeR[0]+d.erx*0.8), r1(eyeY+d.ery*1.6)]} };
+}
+function armsJSON(){ // the engine only uses arm pivots when BOTH L and R are given: mirror a lone arm
+  const d=state.desc, W=state.vb[0]; let L=d.armL, R=d.armR;
+  if(!L&&!R) return null;
+  if(!L) L=[W-R[0], R[1]]; if(!R) R=[W-L[0], L[1]];
+  return {L:[r1(L[0]),r1(L[1])], R:[r1(R[0]),r1(R[1])]}; }
+function originJSON(){ return [state.vb[0]/2, Math.round(state.vb[1]*0.86)]; }
+function descJSON(){ // data-face descriptor for the inline (rig-your-own-SVG) mode
+  const f=faceJSON(); f.origin=originJSON(); const a=armsJSON(); if(a) f.arms=a; return f;
+}
+
+/* ---- (re)build the engine character ---- */
+function freshRig(){
+  // a brand-new element each time: no reliance on the engine's private per-element state
+  const n=document.createElement('div'); n.id='rig'; n.setAttribute('data-anim','character');
+  rig.replaceWith(n); rig=n; return n;
+}
+function render(){
+  const el=freshRig();
+  el.setAttribute('data-mood', state.mood);
+  if(state.talk) el.setAttribute('data-talk','1');
+  if(state.lookOn) el.setAttribute('data-look','#lookTargetHost');
+  if(state.acts) el.setAttribute('data-acts', state.acts);
+  const dispW=420, dispH=Math.round(dispW*state.vb[1]/state.vb[0]);
+  el.style.width=dispW+'px'; el.style.height=dispH+'px';
+  el.style.left='50%'; el.style.top='50%'; el.style.transform='translate(-50%,-50%)';
+  if(state.preview==='json' && window.Storyboard && Storyboard.defineCharacter){
+    const r=exportDefinition(); const def=r.def?JSON.parse(JSON.stringify(r.def)):null;
+    if(def){ def.name='__rigger_preview__'; Storyboard.defineCharacter(def); el.setAttribute('data-char','__rigger_preview__'); }
+  } else {
+    el.setAttribute('data-char','custom');
+    el.setAttribute('data-face', JSON.stringify(descJSON()));
+    el.setAttribute('data-viewbox', state.vb[0]+' '+state.vb[1]);
+    el.innerHTML = previewMarkup();
+  }
+  requestAnimationFrame(()=>{ positionLookTarget(); placeHandles(); });
+  buildExports();
+}
+
+function scale(){ return rig.getBoundingClientRect().width / state.vb[0]; }
+function vbToStage(x,y){ const r=rig.getBoundingClientRect(), s=stage.getBoundingClientRect(), k=scale();
+  return [ r.left-s.left + x*k, r.top-s.top + y*k ]; }
+function stageToVb(px,py){ const r=rig.getBoundingClientRect(), s=stage.getBoundingClientRect(), k=scale();
+  return [ (px-(r.left-s.left))/k, (py-(r.top-s.top))/k ]; }
+
+function placeHandles(){
+  const d=state.desc;
+  setH('eyeL','eye','L', d.eyeL); setH('eyeR','eye','R', d.eyeR);
+  setH('mouth','mouth','◡', [d.mouthX,d.mouthY]);
+  if(d.armL) setH('armL','arm','', d.armL); else removeH('armL');
+  if(d.armR) setH('armR','arm','', d.armR); else removeH('armR');
+  if(state.lookOn) setH('look','look','◉', state.look); else removeH('look');
+}
+function setH(id,cls,txt,coord){
+  let h=HANDLES[id];
+  if(!h){ h=document.createElement('div'); h.className='handle '+cls; h.dataset.id=id;
+    h.innerHTML='<span class="lbl"></span>'+txt; stage.appendChild(h); HANDLES[id]=h; bindDrag(h); }
+  h.querySelector('.lbl').textContent={eyeL:'left eye',eyeR:'right eye',mouth:'mouth',look:'look-at',armL:'L shoulder',armR:'R shoulder'}[id]||'';
+  const p=vbToStage(coord[0],coord[1]); h.style.left=p[0]+'px'; h.style.top=p[1]+'px';
+}
+function removeH(id){ if(HANDLES[id]){ HANDLES[id].remove(); delete HANDLES[id]; } }
+
+function bindDrag(h){
+  h.addEventListener('pointerdown',e=>{ e.preventDefault(); h.setPointerCapture(e.pointerId);
+    const move=ev=>{ const s=stage.getBoundingClientRect(); const vb=stageToVb(ev.clientX-s.left, ev.clientY-s.top);
+      const id=h.dataset.id, d=state.desc;
+      if(id==='eyeL') d.eyeL=vb; else if(id==='eyeR') d.eyeR=vb; else if(id==='mouth'){ d.mouthX=vb[0]; d.mouthY=vb[1]; }
+      else if(id==='armL') d.armL=vb; else if(id==='armR') d.armR=vb;
+      else if(id==='look'){ state.look=vb; positionLookTarget(); }
+      h.style.left=(ev.clientX-s.left)+'px'; h.style.top=(ev.clientY-s.top)+'px';
+      throttleRender();
+    };
+    const up=ev=>{ h.releasePointerCapture(e.pointerId); window.removeEventListener('pointermove',move); window.removeEventListener('pointerup',up); render(); };
+    window.addEventListener('pointermove',move); window.addEventListener('pointerup',up);
+  });
+}
+let _raf=0; function throttleRender(){ if(_raf) return; _raf=requestAnimationFrame(()=>{ _raf=0; softRender(); }); }
+function softRender(){ render(); }
+
+/* ---- look-at target: a real element positioned over the gold handle so gaze works ---- */
+const lookHost=document.getElementById('lookTargetHost');
+function positionLookTarget(){ if(!state.lookOn) return; const p=vbToStage(state.look[0],state.look[1]); const s=stage.getBoundingClientRect();
+  lookHost.style.position='fixed'; lookHost.style.left=(s.left+p[0])+'px'; lookHost.style.top=(s.top+p[1])+'px'; lookHost.style.width='4px'; lookHost.style.height='4px'; }
+
+/* =========================================================================
+   JSON EXPORT — SVG art -> Character Definition (Storyboard.defineCharacter)
+   - groups (<g>, <a>, <use>/<symbol>) are kept as {shape:'g', parts}
+   - data-sbc rig tags are kept as part.rig (arms, eyes, pupils, mouth, brows, cheeks)
+   - transforms are BAKED into the coordinates (the engine's schema has no transform,
+     and its gestures set CSS transforms on rig parts, which would override an SVG
+     transform attribute) -> everything is in root viewBox units, so the arms pivots work
+   - computed styles (CSS classes, style="", inheritance) become explicit fill/stroke/sw/opacity
+   - gradients become defs [{type, id, units, coords, transform, stops}], referenced as
+     fill "url(#id) <fallback>" — the fallback (the gradient's area-weighted mean color,
+     alpha included, e.g. rgba(255,255,255,0.2) for a white->transparent glow) is what
+     shows while the engine doesn't render defs
+========================================================================= */
+const I6=[1,0,0,1,0,0];
+function mmul(A,B){ return [A[0]*B[0]+A[2]*B[1], A[1]*B[0]+A[3]*B[1], A[0]*B[2]+A[2]*B[3], A[1]*B[2]+A[3]*B[3], A[0]*B[4]+A[2]*B[5]+A[4], A[1]*B[4]+A[3]*B[5]+A[5]]; }
+function mapp(M,x,y){ return [M[0]*x+M[2]*y+M[4], M[1]*x+M[3]*y+M[5]]; }
+function isIdent(M){ return Math.abs(M[0]-1)<1e-9&&Math.abs(M[1])<1e-9&&Math.abs(M[2])<1e-9&&Math.abs(M[3]-1)<1e-9&&Math.abs(M[4])<1e-9&&Math.abs(M[5])<1e-9; }
+function isAxis(M){ return Math.abs(M[1])<1e-9 && Math.abs(M[2])<1e-9; }
+function isSimilar(M){ return Math.abs(M[0]-M[3])<1e-6 && Math.abs(M[1]+M[2])<1e-6; } // rotation + uniform scale (no mirror/skew)
+function mdet(M){ return M[0]*M[3]-M[1]*M[2]; }
+function fnum(n,p){ const k=Math.pow(10,p==null?2:p); const v=Math.round(n*k)/k; return Object.is(v,-0)?0:v; }
+function fstr(n,p){ return String(fnum(n,p)); }
+function matOf(el, cs){
+  let M=I6;
+  try{ const bv=el.transform&&el.transform.baseVal; if(bv&&bv.numberOfItems){ const m=bv.consolidate().matrix; M=[m.a,m.b,m.c,m.d,m.e,m.f]; } }catch(e){}
+  if(cs && cs.transform && cs.transform!=='none' && el.style && el.style.transform){ // CSS transform wins over the attribute
+    const mm=cs.transform.match(/matrix\(([^)]+)\)/); if(mm){ const v=mm[1].split(',').map(Number); if(v.length===6&&v.every(isFinite)) M=v; } }
+  return M;
+}
+
+/* --- path data: parse -> absolute M/L/C/Q/Z (arcs become cubics), transform, serialize --- */
+function parsePathData(d){
+  const s=String(d||''); let i=0; const n=s.length; const segs=[];
+  const skip=()=>{ while(i<n && /[\s,]/.test(s[i])) i++; };
+  const numRe=/[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/y;
+  const num=()=>{ skip(); numRe.lastIndex=i; const m=numRe.exec(s); if(!m) throw 0; i=numRe.lastIndex; return parseFloat(m[0]); };
+  const flag=()=>{ skip(); const c=s[i]; if(c!=='0'&&c!=='1') throw 0; i++; return c==='1'; };
+  const peekNum=()=>{ skip(); return i<n && /[+\-.\d]/.test(s[i]); };
+  let cx=0,cy=0,sx=0,sy=0,lc=null,lq=null,cmd='';
+  try{
+    while(true){
+      skip(); if(i>=n) break;
+      if(/[a-zA-Z]/.test(s[i])) cmd=s[i++]; else if(!cmd || cmd==='z' || cmd==='Z') break;
+      const rel=cmd===cmd.toLowerCase(), C=cmd.toUpperCase();
+      do{
+        if(C==='M'){ let x=num(),y=num(); if(rel){x+=cx;y+=cy;} segs.push(['M',x,y]); cx=sx=x; cy=sy=y; lc=lq=null; cmd=rel?'l':'L'; if(peekNum()){ const L=rel; do{ let x2=num(),y2=num(); if(L){x2+=cx;y2+=cy;} segs.push(['L',x2,y2]); cx=x2; cy=y2; }while(peekNum()); } break; }
+        else if(C==='L'){ let x=num(),y=num(); if(rel){x+=cx;y+=cy;} segs.push(['L',x,y]); cx=x; cy=y; lc=lq=null; }
+        else if(C==='H'){ let x=num(); if(rel)x+=cx; segs.push(['L',x,cy]); cx=x; lc=lq=null; }
+        else if(C==='V'){ let y=num(); if(rel)y+=cy; segs.push(['L',cx,y]); cy=y; lc=lq=null; }
+        else if(C==='C'){ const a=[num(),num(),num(),num(),num(),num()]; if(rel) for(let k=0;k<6;k+=2){a[k]+=cx;a[k+1]+=cy;} segs.push(['C',...a]); lc=[a[2],a[3]]; lq=null; cx=a[4]; cy=a[5]; }
+        else if(C==='S'){ const a=[num(),num(),num(),num()]; if(rel) for(let k=0;k<4;k+=2){a[k]+=cx;a[k+1]+=cy;} const x1=lc?2*cx-lc[0]:cx, y1=lc?2*cy-lc[1]:cy; segs.push(['C',x1,y1,a[0],a[1],a[2],a[3]]); lc=[a[0],a[1]]; lq=null; cx=a[2]; cy=a[3]; }
+        else if(C==='Q'){ const a=[num(),num(),num(),num()]; if(rel) for(let k=0;k<4;k+=2){a[k]+=cx;a[k+1]+=cy;} segs.push(['Q',...a]); lq=[a[0],a[1]]; lc=null; cx=a[2]; cy=a[3]; }
+        else if(C==='T'){ let x=num(),y=num(); if(rel){x+=cx;y+=cy;} const q=lq?[2*cx-lq[0],2*cy-lq[1]]:[cx,cy]; segs.push(['Q',q[0],q[1],x,y]); lq=q; lc=null; cx=x; cy=y; }
+        else if(C==='A'){ const rx=num(),ry=num(),rot=num(),fa=flag(),fs=flag(); let x=num(),y=num(); if(rel){x+=cx;y+=cy;} arcToCubics(cx,cy,rx,ry,rot,fa,fs,x,y).forEach(c=>segs.push(['C',...c])); lc=lq=null; cx=x; cy=y; }
+        else if(C==='Z'){ segs.push(['Z']); cx=sx; cy=sy; lc=lq=null; break; }
+        else throw 0;
+      }while(peekNum());
+    }
+  }catch(e){ /* render up to the first error, like browsers do */ }
+  return segs;
+}
+function arcToCubics(x1,y1,rx,ry,phiDeg,fa,fs,x2,y2){
+  if(x1===x2&&y1===y2) return [];
+  rx=Math.abs(rx); ry=Math.abs(ry);
+  if(!rx||!ry) return [[x1,y1,x2,y2,x2,y2]];
+  const phi=phiDeg*Math.PI/180, co=Math.cos(phi), si=Math.sin(phi);
+  const dx=(x1-x2)/2, dy=(y1-y2)/2, x1p=co*dx+si*dy, y1p=-si*dx+co*dy;
+  const lam=(x1p*x1p)/(rx*rx)+(y1p*y1p)/(ry*ry); if(lam>1){ const k=Math.sqrt(lam); rx*=k; ry*=k; }
+  const rx2=rx*rx, ry2=ry*ry; let nume=rx2*ry2-rx2*y1p*y1p-ry2*x1p*x1p; if(nume<0) nume=0;
+  const den=rx2*y1p*y1p+ry2*x1p*x1p; let coef=den?Math.sqrt(nume/den):0; if(fa===fs) coef=-coef;
+  const cxp=coef*rx*y1p/ry, cyp=-coef*ry*x1p/rx;
+  const cx=co*cxp-si*cyp+(x1+x2)/2, cy=si*cxp+co*cyp+(y1+y2)/2;
+  const ang=(ux,uy,vx,vy)=>Math.atan2(ux*vy-uy*vx, ux*vx+uy*vy);
+  const th1=ang(1,0,(x1p-cxp)/rx,(y1p-cyp)/ry);
+  let dth=ang((x1p-cxp)/rx,(y1p-cyp)/ry,(-x1p-cxp)/rx,(-y1p-cyp)/ry);
+  if(!fs&&dth>0) dth-=2*Math.PI; else if(fs&&dth<0) dth+=2*Math.PI;
+  const nseg=Math.max(1,Math.ceil(Math.abs(dth)/(Math.PI/2)-1e-9)), d=dth/nseg, k=4/3*Math.tan(d/4);
+  const map=(u,v)=>[cx+rx*u*co-ry*v*si, cy+rx*u*si+ry*v*co];
+  const outS=[]; let t=th1;
+  for(let j=0;j<nseg;j++){ const c1=Math.cos(t),s1=Math.sin(t),c2=Math.cos(t+d),s2=Math.sin(t+d);
+    const a=map(c1-k*s1,s1+k*c1), b=map(c2+k*s2,s2-k*c2), e=map(c2,s2); outS.push([a[0],a[1],b[0],b[1],e[0],e[1]]); t+=d; }
+  outS[outS.length-1][4]=x2; outS[outS.length-1][5]=y2;
+  return outS;
+}
+function xformSegs(segs,M){ return segs.map(sg=>{ if(sg[0]==='Z') return sg; const o=[sg[0]]; for(let k=1;k<sg.length;k+=2){ const p=mapp(M,sg[k],sg[k+1]); o.push(p[0],p[1]); } return o; }); }
+function segsToD(segs,p){ return segs.map(sg=>sg[0]==='Z'?'Z':sg[0]+sg.slice(1).map(v=>fstr(v,p)).join(' ')).join(' '); }
+function segsBBox(segs){ let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity; segs.forEach(sg=>{ for(let k=1;k<sg.length;k+=2){ x0=Math.min(x0,sg[k]); x1=Math.max(x1,sg[k]); y0=Math.min(y0,sg[k+1]); y1=Math.max(y1,sg[k+1]); } }); return isFinite(x0)?{x:x0,y:y0,w:x1-x0,h:y1-y0}:null; }
+function ellipseSegs(cx,cy,rx,ry){ return [['M',cx+rx,cy], ...arcToCubics(cx+rx,cy,rx,ry,0,false,true,cx-rx,cy).map(c=>['C',...c]), ...arcToCubics(cx-rx,cy,rx,ry,0,false,true,cx+rx,cy).map(c=>['C',...c]), ['Z']]; }
+function rectSegs(x,y,w,h,rx,ry){
+  if(!(rx>0&&ry>0)) return [['M',x,y],['L',x+w,y],['L',x+w,y+h],['L',x,y+h],['Z']];
+  const A=(x0,y0,x1,y1)=>arcToCubics(x0,y0,rx,ry,0,false,true,x1,y1).map(c=>['C',...c]);
+  return [['M',x+rx,y],['L',x+w-rx,y],...A(x+w-rx,y,x+w,y+ry),['L',x+w,y+h-ry],...A(x+w,y+h-ry,x+w-rx,y+h),
+          ['L',x+rx,y+h],...A(x+rx,y+h,x,y+h-ry),['L',x,y+ry],...A(x,y+ry,x+rx,y),['Z']];
+}
+function pointsOf(str){ const v=(String(str||'').match(/[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/g)||[]).map(Number); const pts=[]; for(let k=0;k+1<v.length;k+=2) pts.push([v[k],v[k+1]]); return pts; }
+
+/* --- geometry of one leaf element in root viewBox units --- */
+function leafGeometry(el, tag, M, ctx){
+  const L=(n)=>{ try{ return el[n].baseVal.value; }catch(e){ return parseFloat(el.getAttribute(n))||0; } };
+  const PATH_OK=/^[\sMLHVCSQTAZmlhvcsqtaz0-9eE,.\- ]+$/;
+  const asPath=(segs)=>{ let d=segsToD(segs,2); if(d.length>4000) d=segsToD(segs,1);
+    if(d.length>4000) ctx.notes.push('A path is '+d.length+' chars after export; the engine drops paths over 4000 — simplify or split it.');
+    return {shape:'path', d}; };
+  if(tag==='rect'){
+    const x=L('x'), y=L('y'), w=L('width'), h=L('height'); if(!(w>0&&h>0)) return null;
+    const hasRx=el.hasAttribute('rx'), hasRy=el.hasAttribute('ry');
+    let rx=hasRx?L('rx'):(hasRy?L('ry'):0), ry=hasRy?L('ry'):rx; rx=Math.min(Math.max(rx,0),w/2); ry=Math.min(Math.max(ry,0),h/2);
+    if(isAxis(M)){ const p=mapp(M,x,y), q=mapp(M,x+w,y+h), sx=Math.abs(M[0]), sy=Math.abs(M[3]);
+      const R=[rx*sx, ry*sy];
+      if(Math.abs(R[0]-R[1])<0.01){ const o={shape:'rect', x:fnum(Math.min(p[0],q[0])), y:fnum(Math.min(p[1],q[1])), w:fnum(Math.abs(q[0]-p[0])), h:fnum(Math.abs(q[1]-p[1]))}; if(R[0]>0) o.r=fnum(R[0]); return o; } }
+    if(!(rx>0&&ry>0)){ const c=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]].map(pt=>mapp(M,pt[0],pt[1])); return {shape:'polygon', points:c.map(pt=>fstr(pt[0])+','+fstr(pt[1])).join(' ')}; }
+    return asPath(xformSegs(rectSegs(x,y,w,h,rx,ry),M));
+  }
+  if(tag==='circle' || tag==='ellipse'){
+    const cx=L('cx'), cy=L('cy'); let rx, ry; if(tag==='circle'){ rx=ry=L('r'); } else { const hx=el.hasAttribute('rx'), hy=el.hasAttribute('ry'); rx=hx?L('rx'):L('ry'); ry=hy?L('ry'):rx; }
+    if(!(rx>0&&ry>0)) return null;
+    const c=mapp(M,cx,cy);
+    if(isAxis(M)){ const ex=rx*Math.abs(M[0]), ey=ry*Math.abs(M[3]);
+      if(Math.abs(ex-ey)<0.01) return {shape:'circle', cx:fnum(c[0]), cy:fnum(c[1]), r:fnum(ex)};
+      return {shape:'ellipse', cx:fnum(c[0]), cy:fnum(c[1]), rx:fnum(ex), ry:fnum(ey)}; }
+    if(rx===ry && isSimilar(M)) return {shape:'circle', cx:fnum(c[0]), cy:fnum(c[1]), r:fnum(rx*Math.sqrt(Math.abs(mdet(M))))};
+    return asPath(xformSegs(ellipseSegs(cx,cy,rx,ry),M));
+  }
+  if(tag==='line'){ const a=mapp(M,L('x1'),L('y1')), b=mapp(M,L('x2'),L('y2')); return {shape:'line', x1:fnum(a[0]), y1:fnum(a[1]), x2:fnum(b[0]), y2:fnum(b[1])}; }
+  if(tag==='polygon' || tag==='polyline'){
+    const pts=pointsOf(el.getAttribute('points')).map(pt=>mapp(M,pt[0],pt[1])); if(pts.length<2) return null;
+    if(tag==='polygon') return {shape:'polygon', points:pts.map(pt=>fstr(pt[0])+','+fstr(pt[1])).join(' ')};
+    return asPath([['M',...pts[0]], ...pts.slice(1).map(pt=>['L',...pt])]);
+  }
+  if(tag==='path'){
+    const raw=el.getAttribute('d')||''; if(!raw.trim()) return null;
+    if(isIdent(M) && PATH_OK.test(raw) && raw.length<=4000) return {shape:'path', d:raw.trim().replace(/\s+/g,' ')};
+    const segs=parsePathData(raw); if(!segs.length) return null;
+    return asPath(xformSegs(segs,M));
+  }
+  return null;
+}
+
+/* --- colors / paint --- */
+function rgbaParts(c){ const m=String(c||'').match(/rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:\s*[,/]\s*([\d.]+%?))?\s*\)/); if(!m) return null;
+  const a=m[4]==null?1:(m[4].endsWith('%')?parseFloat(m[4])/100:parseFloat(m[4])); return {r:+m[1],g:+m[2],b:+m[3],a}; }
+function hexOf(p){ return '#'+[p.r,p.g,p.b].map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,'0')).join(''); }
+function colorOut(p, alpha){ const a=p.a*(alpha==null?1:alpha); if(a>=0.999) return hexOf(p);
+  return 'rgba('+[p.r,p.g,p.b].map(v=>Math.round(v)).join(',')+','+fnum(a,3)+')'; }
+function gradientChain(g, root){ const chain=[g]; let cur=g;
+  for(let k=0;k<10;k++){ const h=cur.getAttribute('href')||cur.getAttributeNS(XLINK,'href'); if(!h||h[0]!=='#') break;
+    const nx=root.querySelector('#'+CSS.escape(h.slice(1))); if(!nx||chain.includes(nx)||!/Gradient$/.test(nx.localName)) break; chain.push(nx); cur=nx; }
+  return chain; }
+function gradientDef(gEl, el, M, ctx, paintAlpha){
+  const chain=gradientChain(gEl, ctx.svg);
+  const at=(n)=>{ for(const g of chain){ if(g.hasAttribute(n)) return {g, v:g.getAttribute(n)}; } return null; };
+  const type=gEl.localName==='radialGradient'?'radialGradient':'linearGradient';
+  const bboxUnits=!(at('gradientUnits')&&at('gradientUnits').v==='userSpaceOnUse');
+  let GT=I6; const ta=at('gradientTransform');
+  if(ta){ try{ const bv=ta.g.gradientTransform.baseVal; if(bv.numberOfItems){ const m=bv.consolidate().matrix; GT=[m.a,m.b,m.c,m.d,m.e,m.f]; } }catch(e){} }
+  const sp=at('spreadMethod'); const spread=sp&&/^(reflect|repeat)$/.test(sp.v)?sp.v:null;
+  const stopHost=chain.find(g=>g.querySelector('stop'));
+  const stops=[], raw=[]; let lastOff=0;
+  if(stopHost) stopHost.querySelectorAll(':scope > stop').forEach(s=>{
+    let off=0; try{ off=s.offset.baseVal; }catch(e){ off=parseFloat(s.getAttribute('offset'))||0; }
+    off=Math.max(lastOff, Math.min(1, Math.max(0, off))); lastOff=off;
+    const cs=getComputedStyle(s); const p=rgbaParts(cs.stopColor)||{r:0,g:0,b:0,a:1};
+    const so=parseFloat(cs.stopOpacity); let op=p.a*(isFinite(so)?so:1)*paintAlpha; if(!isFinite(op)) op=1;
+    raw.push({off, r:p.r, g:p.g, b:p.b, a:Math.max(0,Math.min(1,op))});
+    const st={offset:fnum(off,4), color:hexOf(p)}; const opv=fnum(op,3); if(opv<1) st.opacity=opv; stops.push(st); });
+  if(!stops.length) return null;
+  const vbw=state.vb[0], vbh=state.vb[1], diag=Math.sqrt((vbw*vbw+vbh*vbh)/2);
+  const len=(n,def,axis)=>{ const a=at(n); if(!a) return def; const s=String(a.v).trim(); const f=parseFloat(s); if(!isFinite(f)) return def;
+    if(s.endsWith('%')) return bboxUnits? f/100 : f/100*(axis==='x'?vbw:axis==='y'?vbh:diag); return f; };
+  const g={type};
+  if(type==='linearGradient'){ Object.assign(g,{x1:len('x1',0,'x'), y1:len('y1',0,'y'), x2:len('x2',bboxUnits?1:vbw,'x'), y2:len('y2',0,'y')}); }
+  else { const cx=len('cx',bboxUnits?0.5:vbw/2,'x'), cy=len('cy',bboxUnits?0.5:vbh/2,'y');
+    Object.assign(g,{cx, cy, r:len('r',bboxUnits?0.5:diag/2,'d'), fx:len('fx',cx,'x'), fy:len('fy',cy,'y')}); const fr=len('fr',0,'d'); if(fr) g.fr=fr; }
+  let T;
+  if(bboxUnits){
+    let bb=null; try{ bb=el.getBBox(); }catch(e){}
+    if(!bb||!(bb.width>0)||!(bb.height>0)) return null;
+    if(isIdent(M)){ g.units='objectBoundingBox'; T=GT; }
+    else { g.units='userSpaceOnUse'; T=mmul(mmul(M,[bb.width,0,0,bb.height,bb.x,bb.y]),GT); }
+  } else { g.units='userSpaceOnUse'; T=mmul(M,GT); }
+  ['x1','y1','x2','y2','cx','cy','r','fx','fy','fr'].forEach(k=>{ if(k in g) g[k]=fnum(g[k],4); });
+  if(!isIdent(T)) g.transform=T.map(v=>fnum(v,4));
+  if(spread) g.spread=spread;
+  g.stops=stops;
+  const key=JSON.stringify(g); let id=ctx.gradKeys.get(key);
+  if(!id){ id=ctx.gslug+'-g'+ctx.grads.length; ctx.gradKeys.set(key,id); ctx.grads.push(Object.assign({type:g.type,id},g)); }
+  // the engine does not render defs: the fallback is what shows, so it is the gradient's
+  // mean color INCLUDING its transparency (a white->transparent glow stays a soft glow)
+  return {id, fallback:colorOut(gradientMean(raw, type==='radialGradient'))};
+}
+/* area-weighted, premultiplied mean of a gradient's stops (pad spread): the solid color
+   that best stands in for it. Radial rings are weighted by their area (2t dt). */
+function gradientMean(raw, radial){
+  const last=raw[raw.length-1];
+  const at=(t)=>{ if(t<=raw[0].off) return raw[0]; if(t>=last.off) return last;
+    for(let k=1;k<raw.length;k++){ const s1=raw[k]; if(t<=s1.off){ const s0=raw[k-1], d=s1.off-s0.off, u=d>0?(t-s0.off)/d:1;
+      return {r:s0.r+(s1.r-s0.r)*u, g:s0.g+(s1.g-s0.g)*u, b:s0.b+(s1.b-s0.b)*u, a:s0.a+(s1.a-s0.a)*u}; } }
+    return last; };
+  const N=64; let W=0, A=0, R=0, G=0, B=0;
+  for(let i=0;i<N;i++){ const t=(i+0.5)/N, w=radial?t:1, c=at(t); W+=w; A+=c.a*w; R+=c.r*c.a*w; G+=c.g*c.a*w; B+=c.b*c.a*w; }
+  if(A<=1e-9) return {r:raw[0].r, g:raw[0].g, b:raw[0].b, a:0};
+  return {r:R/A, g:G/A, b:B/A, a:A/W};
+}
+function paintValue(v, el, M, ctx, alpha){
+  v=String(v||'').trim(); if(!v||v==='none') return 'none';
+  const um=v.match(/^url\(\s*["']?([^"')]*)["']?\s*\)\s*(.*)$/);
+  if(um){ const ref=um[1], id=ref.slice(ref.lastIndexOf('#')+1); const fbRaw=um[2]&&rgbaParts(um[2]);
+    const target=id?ctx.svg.querySelector('#'+CSS.escape(id)):null;
+    if(target && /^(linear|radial)Gradient$/.test(target.localName)){
+      const r=gradientDef(target, el, M, ctx, alpha);
+      if(r){ const fb=fbRaw? colorOut(fbRaw,alpha) : r.fallback, s='url(#'+r.id+') '+fb;
+        if(s.length<=64) return s;   // the engine drops longer color strings
+        ctx.notesOnce('A gradient reference is longer than the engine accepts (64 chars); its fallback color is exported instead.');
+        return fb; } }
+    else if(target) ctx.notes.push('<'+target.localName+'> paint servers are not exported (used as a solid fallback).');
+    return fbRaw? colorOut(fbRaw,alpha) : 'none'; }
+  const p=rgbaParts(v); return p? colorOut(p,alpha) : 'none';
+}
+
+function rigOf(el){ const k=el.getAttribute&&el.getAttribute('data-sbc'); return (k&&RIG_KEYS.has(k))?k:null; }
+/* rig parts whose visibility the engine drives itself (style.opacity, every frame / mood):
+   the open mouth, the smile, cheeks and brows. Their own authored opacity (often 0 = "hidden
+   until needed") is not baked into the export - the engine overrides it anyway, and baking a
+   group's 0 into its children would hide them for good. */
+const ENGINE_VIS=new Set(['open','mouthOpen','smile','mouth','cheekL','cheekR','brL','brR']);
+function rigsIn(el){ const s=new Set(); const k=rigOf(el); if(k) s.add(k);
+  if(el.querySelectorAll) el.querySelectorAll('[data-sbc]').forEach(n=>{ const r=rigOf(n); if(r) s.add(r); });
+  return [...s].map(r=>'"'+r+'"').join(', '); }
+const SKIP=new Set(['defs','style','title','desc','metadata','script','linearGradient','radialGradient','clipPath','mask','pattern','filter','symbol','marker','foreignObject','stop']);
+const LEAF=new Set(['rect','circle','ellipse','line','polygon','polyline','path']);
+function walkKids(parent, M, op, ctx, keep){ const res=[]; for(const ch of Array.from(parent.children)){ const r=walkNode(ch,M,op,ctx,keep); if(r) res.push(r); } return res; }
+/* the engine drives the FIRST .sbc-open with setAttribute('rx'/'ry') and the first .sbc-smile
+   with setAttribute('d'): keep those parts an <ellipse> / a <path> whatever the art used
+   (a round open mouth would otherwise export as a circle, a tilted one as a path) */
+function rigShape(el, tag, M, part, rig, ctx){
+  if(rig==='open'||rig==='mouthOpen'){
+    if(part.shape==='ellipse') return part;
+    let cx, cy, ex, ey;
+    if(tag==='circle'||tag==='ellipse'){
+      const L=(n)=>{ try{ return el[n].baseVal.value; }catch(e){ return parseFloat(el.getAttribute(n))||0; } };
+      let rx, ry; if(tag==='circle'){ rx=ry=L('r'); } else { const hx=el.hasAttribute('rx'), hy=el.hasAttribute('ry'); rx=hx?L('rx'):L('ry'); ry=hy?L('ry'):rx; }
+      const c=mapp(M,L('cx'),L('cy')); cx=c[0]; cy=c[1];
+      ex=Math.hypot(M[0]*rx, M[2]*ry); ey=Math.hypot(M[1]*rx, M[3]*ry);   // axis-aligned extents of the transformed ellipse
+    } else {
+      let bb=null; try{ bb=el.getBBox(); }catch(e){} if(!bb) return part;
+      const pts=[[bb.x,bb.y],[bb.x+bb.width,bb.y],[bb.x,bb.y+bb.height],[bb.x+bb.width,bb.y+bb.height]].map(p=>mapp(M,p[0],p[1]));
+      const xs=pts.map(p=>p[0]), ys=pts.map(p=>p[1]);
+      cx=(Math.min(...xs)+Math.max(...xs))/2; cy=(Math.min(...ys)+Math.max(...ys))/2;
+      ex=(Math.max(...xs)-Math.min(...xs))/2; ey=(Math.max(...ys)-Math.min(...ys))/2;
+      ctx.notesOnce('Rig part "'+rig+'" is a <'+tag+'>: the engine animates the open mouth by setting rx/ry, which only an <ellipse> has, so it is exported as an ellipse fitted to its box.');
+    }
+    return {shape:'ellipse', cx:fnum(cx), cy:fnum(cy), rx:fnum(Math.max(ex,0.5)), ry:fnum(Math.max(ey,0.5))};
+  }
+  if(rig==='smile'||rig==='mouth'){
+    if(part.shape==='path') return part;
+    const L=(n)=>{ try{ return el[n].baseVal.value; }catch(e){ return parseFloat(el.getAttribute(n))||0; } };
+    let segs=null;
+    if(part.shape==='circle') segs=ellipseSegs(part.cx,part.cy,part.r,part.r);
+    else if(part.shape==='ellipse') segs=ellipseSegs(part.cx,part.cy,part.rx,part.ry);
+    else if(part.shape==='rect'){ const r=part.r||0; segs=rectSegs(part.x,part.y,part.w,part.h,r,r); }
+    else if(part.shape==='line') segs=[['M',part.x1,part.y1],['L',part.x2,part.y2]];
+    else if(part.shape==='polygon'){ const pts=pointsOf(part.points); if(pts.length) segs=[['M',...pts[0]], ...pts.slice(1).map(p=>['L',...p]), ['Z']]; }
+    if(!segs) return part;
+    ctx.notesOnce('Rig part "'+rig+'" is a <'+tag+'>: the engine draws expressions by rewriting a <path> (its own smile curve at face.mouth, in this part\'s colors), so it is exported as a path.');
+    const o=Object.assign({}, part); ['x','y','w','h','r','cx','cy','rx','ry','x1','y1','x2','y2','points'].forEach(k=>delete o[k]);
+    o.shape='path'; o.d=segsToD(segs,2); return o;
+  }
+  return part;
+}
+function walkNode(el, Mp, opP, ctx, keep){
+  const tag=el.localName; if(el.namespaceURI!==SVGNS || SKIP.has(tag)) return null;
+  const cs=getComputedStyle(el);
+  if(cs.display==='none'){ const rs=rigsIn(el);
+    if(rs) ctx.notesOnce('Rig part(s) '+rs+' are display:none, which the engine never undoes, so they are not exported: hide them with opacity="0" instead (the engine shows the open mouth, cheeks and brows itself).');
+    return null; }
+  const rig=rigOf(el), engineVis=!!rig&&ENGINE_VIS.has(rig);
+  const own=isFinite(parseFloat(cs.opacity))?parseFloat(cs.opacity):1;
+  const op=engineVis? opP : opP*own;
+  // a rig part (and everything inside it) is kept even when drawn fully transparent:
+  // dropping it would drop the rig (no lip-sync / blush / brows / arm pivots)
+  keep=keep||!!rig;
+  if(op<=0.001 && !keep){ const rs=rigsIn(el);
+    if(rs) ctx.notesOnce('Rig part(s) '+rs+' sit inside a fully transparent element (opacity 0) and are not exported.');
+    return null; }
+  if(rig && !engineVis && own<=0.001) ctx.notesOnce('Rig part "'+rig+'" is fully transparent (opacity 0): it is exported hidden, as drawn (the engine never changes its opacity).');
+  if(cs.clipPath&&cs.clipPath!=='none' || cs.mask&&cs.mask!=='none') ctx.notesOnce('clip-path/mask are not exported (the art is exported unclipped).');
+  if(cs.filter&&cs.filter!=='none') ctx.notesOnce('SVG filters (blur/shadow) are not exported.');
+  if(tag==='g' || tag==='a' || tag==='switch' || tag==='svg'){
+    let M=mmul(Mp, matOf(el,cs));
+    if(tag==='svg'){ M=mmul(Mp,[1,0,0,1,parseFloat(el.getAttribute('x'))||0,parseFloat(el.getAttribute('y'))||0]); if(el.getAttribute('viewBox')) ctx.notesOnce('A nested <svg viewBox> scale is not exported.'); }
+    const kids=walkKids(el,M,op,ctx,keep); if(!kids.length) return null;
+    const g={shape:'g'}; if(rig) g.rig=rig; g.parts=kids;
+    if(rig==='open'||rig==='mouthOpen') ctx.notesOnce('Rig part "'+rig+'" is a group: the engine shows/hides it while talking but only moves an <ellipse> (it sets rx/ry) - tag the ellipse itself for lip-sync.');
+    if(rig==='smile'||rig==='mouth') ctx.notesOnce('Rig part "'+rig+'" is a group: the engine only shows/hides it; for expressions (happy/sad/think) tag a single <path> (the engine rewrites its d).');
+    return g;
+  }
+  if(tag==='use'){
+    const h=el.getAttribute('href')||el.getAttributeNS(XLINK,'href'); const tgt=h&&h[0]==='#'?ctx.svg.querySelector('#'+CSS.escape(h.slice(1))):null;
+    if(!tgt || ctx.depth>8) return null;
+    const M=mmul(mmul(Mp, matOf(el,cs)), [1,0,0,1,parseFloat(el.getAttribute('x'))||0,parseFloat(el.getAttribute('y'))||0]);
+    ctx.depth++; let kids;
+    try{ kids = tgt.localName==='symbol' ? walkKids(tgt,M,op,ctx,keep) : [walkNodeForce(tgt,M,op,ctx,keep)].filter(Boolean); } finally { ctx.depth--; }
+    if(!kids.length) return null; ctx.notesOnce('<use> is exported as a copy; styles set on <use> itself are not inherited by the copy.');
+    const g={shape:'g'}; if(rig) g.rig=rig; g.parts=kids; return g;
+  }
+  if(!LEAF.has(tag)){ if(tag==='text'||tag==='image') ctx.notesOnce('<'+tag+'> elements are not exported (convert text to paths / use vector art).'); return null; }
+  if(cs.visibility==='hidden'||cs.visibility==='collapse'){
+    if(rig) ctx.notesOnce('Rig part "'+rig+'" is visibility:hidden, which the engine never undoes, so it is not exported: use opacity="0" instead.');
+    return null; }
+  const M=mmul(Mp, matOf(el,cs));
+  let part=leafGeometry(el, tag, M, ctx); if(!part) return null;
+  if(rig){ part=rigShape(el, tag, M, part, rig, ctx); part.rig=rig; }
+  const fo=parseFloat(cs.fillOpacity), so=parseFloat(cs.strokeOpacity);
+  if(tag!=='line') part.fill=paintValue(cs.fill, el, M, ctx, isFinite(fo)?fo:1); else part.fill='none';
+  const sw=parseFloat(cs.strokeWidth);
+  if(cs.stroke && cs.stroke!=='none' && sw>0){ const st=paintValue(cs.stroke, el, M, ctx, isFinite(so)?so:1);
+    if(st!=='none'){ part.stroke=st; part.sw=fnum(sw*Math.sqrt(Math.abs(mdet(M)))||0);
+      if(cs.strokeLinecap==='round'||cs.strokeLinecap==='square') part.lc=cs.strokeLinecap;
+      if(cs.strokeLinejoin==='round') part.lj='round'; } }
+  if(cs.fillRule==='evenodd' && part.shape==='path') ctx.notesOnce('fill-rule="evenodd" is not supported by the engine (nonzero is used) — holes in compound paths may fill in.');
+  if(op<0.999) part.opacity=fnum(op,3);
+  return part;
+}
+function walkNodeForce(el,M,op,ctx,keep){ // for <use> targets that live inside <defs>
+  if(SKIP.has(el.localName) && el.localName!=='symbol'){ const t=el.localName; if(t==='defs') return null; }
+  return walkNode(el,M,op,ctx,keep);
+}
+function slugOf(s){ const v=String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,24); return /^[a-z]/.test(v)?v:('c-'+v).replace(/-$/,''); }
+
+function measureArt(){
+  const svg0=parseSvgDoc(state.svg); if(!svg0) return null;
+  sanitizeSvg(svg0);
+  const host=document.createElement('div');
+  host.style.cssText='position:absolute;left:-20000px;top:0;width:'+state.vb[0]+'px;height:'+state.vb[1]+'px;opacity:0;pointer-events:none;overflow:hidden';
+  const svg=document.importNode(svg0,true);
+  svg.setAttribute('width',state.vb[0]); svg.setAttribute('height',state.vb[1]);
+  host.appendChild(svg); document.body.appendChild(host);
+  return {host, svg};
+}
+
+/* Build {def, notes}. def is a Character Definition for Storyboard.defineCharacter / data-char-src. */
+function exportDefinition(){
+  const notes=[]; const m=measureArt(); if(!m) return {def:null, notes:['Could not parse the SVG (it must contain an <svg> element).']};
+  const name=(document.getElementById('charName').value||'my-character').trim()||'my-character';
+  const slug=slugOf(name);
+  const ctx={notes, svg:m.svg, grads:[], gradKeys:new Map(), slug, gslug:slug.slice(0,16).replace(/-+$/,''), depth:0,
+    notesOnce(msg){ if(!notes.includes(msg)) notes.push(msg); }};
+  let parts=[];
+  try{ parts=walkKids(m.svg, [1,0,0,1,-state.minxy[0],-state.minxy[1]], 1, ctx); }
+  finally{ m.host.remove(); }
+  const rigs=new Set(); (function scan(ps){ ps.forEach(p=>{ if(p.rig) rigs.add(p.rig); if(p.parts) scan(p.parts); }); })(parts);
+  const face=faceJSON();
+  if(rigs.has('eyeL')||rigs.has('eyeR')){ face.render=false; // your own rigged eyes -> no engine face (same as inline mode)
+    if(!['mouth','smile','open','mouthOpen'].some(k=>rigs.has(k))) notes.push(OWN_EYES_NO_MOUTH); }
+  const def={ name, viewBox:[state.vb[0],state.vb[1]], origin:originJSON(),
+    shadow:[state.vb[0]/2, state.vb[1]-12, 0, 0],   // no engine drop-shadow (matches the inline preview); delete to get one
+    face };
+  const arms=armsJSON(); if(arms && (rigs.has('armL')||rigs.has('armR'))) def.arms=arms;
+  if((rigs.has('armL')||rigs.has('armR')) && !def.arms) notes.push('Arms are tagged but have no shoulder pivots — drag the green handles.');
+  if(ctx.grads.length) def.defs=ctx.grads;
+  def.parts=parts;
+  return {def, notes};
+}
+
+/* bounding boxes (root viewBox units) of the first part carrying each rig tag - the
+   same element the engine drives (it picks the first match too) */
+function rigBoxes(keys){
+  const res={}; const m=measureArt(); if(!m) return res;
+  try{
+    const root=[1,0,0,1,-state.minxy[0],-state.minxy[1]];
+    keys.forEach(k=>{ const el=m.svg.querySelector('[data-sbc="'+k+'"]'); if(!el) return;
+      let M=root; const chain=[]; for(let n=el; n && n!==m.svg; n=n.parentNode) chain.unshift(n);
+      chain.forEach(n=>{ M=mmul(M, matOf(n,getComputedStyle(n))); });
+      let bb=null; try{ bb=el.getBBox(); }catch(e){} if(!bb||!(bb.width||bb.height)) return;
+      const c=[[bb.x,bb.y],[bb.x+bb.width,bb.y],[bb.x,bb.y+bb.height],[bb.x+bb.width,bb.y+bb.height]].map(p=>mapp(M,p[0],p[1]));
+      const xs=c.map(p=>p[0]), ys=c.map(p=>p[1]);
+      res[k]={x0:Math.min(...xs), x1:Math.max(...xs), y0:Math.min(...ys), y1:Math.max(...ys)}; });
+  } finally { m.host.remove(); }
+  return res;
+}
+/* defaults taken from the tagged parts of the art:
+   - shoulder pivots = top-centre of each tagged arm
+   - face.eyes = centres / half-sizes of tagged eyes (blink + brow pivots)
+   - face.mouth = top-centre / half-width of a tagged mouth (the engine redraws its smile there)
+   Untagged features keep their current handle positions. */
+function rigDefaults(){
+  const B=rigBoxes(['armL','armR','eyeL','eyeR','pupilL','pupil','pupilR','mouth','smile']), d=state.desc;
+  const shoulder=b=>{ const w=b.x1-b.x0; return [b.x0+w/2, b.y0+Math.min(w/2,(b.y1-b.y0)/4)]; };
+  d.armL=B.armL?shoulder(B.armL):null; d.armR=B.armR?shoulder(B.armR):null;
+  const eyes=['eyeL','eyeR'].filter(k=>B[k]), avg=a=>a.reduce((s,v)=>s+v,0)/a.length;
+  eyes.forEach(k=>{ const b=B[k]; d[k]=[(b.x0+b.x1)/2,(b.y0+b.y1)/2]; });
+  if(eyes.length){ d.erx=Math.max(1,Math.round(avg(eyes.map(k=>(B[k].x1-B[k].x0)/2))));
+    d.ery=Math.max(1,Math.round(avg(eyes.map(k=>(B[k].y1-B[k].y0)/2)))); }
+  const pu=B.pupilL||B.pupil||B.pupilR; if(pu) d.pupil=Math.max(1,Math.round(Math.max(pu.x1-pu.x0,pu.y1-pu.y0)/2));
+  const mo=B.mouth||B.smile; if(mo){ d.mouthX=(mo.x0+mo.x1)/2; d.mouthY=mo.y0; d.mouthW=Math.max(1,Math.round((mo.x1-mo.x0)/2)); }
+}
+const OWN_EYES_NO_MOUTH='Your art tags its own eyes, so the engine face is off (face.render=false) and draws no mouth: tag one with data-sbc="mouth" (plus data-sbc="open" for lip-sync), or the character cannot talk.';
+
+/* ---- exports ---- */
+function showNotes(list){ notesEl.innerHTML=''; (list||[]).forEach(t=>{ const li=document.createElement('li'); li.textContent=t; notesEl.appendChild(li); }); notesEl.style.display=(list&&list.length)?'block':'none'; }
+function buildExports(){ if(out.dataset.kind==='json') out.value=exportJSON(); else { out.value=exportHTML(); showNotes(inlineNotes()); } }
+function inlineNotes(){ const n=[]; const svg=parseSvgDoc(state.svg); if(!svg) return n;
+  svg.querySelectorAll('[data-sbc]').forEach(el=>{ let t=el; while(t&&t!==svg){ if(t.getAttribute('transform')){ n.push('Rig part "'+el.getAttribute('data-sbc')+'" sits under an SVG transform: in inline mode the engine’s gesture transforms replace it. Prefer the JSON export (transforms baked) or remove the transform.'); break; } t=t.parentNode; } });
+  if((state.minxy[0]||state.minxy[1]) && svg.querySelector('[data-sbc]')) n.push('Your viewBox does not start at 0 0: the inline export wraps the art in a translate, so rig pivots (arms, blinking eyes) can be offset. Prefer the JSON export, or re-save the art with viewBox="0 0 W H".');
+  const one=['armL','armR'].filter(k=>svg.querySelector('[data-sbc="'+k+'"]'));
+  if(one.length===1) n.push('Only '+one[0]+' is tagged: the exports mirror its shoulder pivot for the other arm, because the engine needs both.');
+  const has=k=>svg.querySelector('[data-sbc="'+k+'"]');
+  if((has('eyeL')||has('eyeR')) && !['mouth','smile','open','mouthOpen'].some(has)) n.push(OWN_EYES_NO_MOUTH);
+  // the engine drives the FIRST open / smile part: setAttribute rx/ry resp. d
+  const first=sel=>svg.querySelector(sel);
+  const op=first('[data-sbc="open"],[data-sbc="mouthOpen"]');
+  if(op && op.localName!=='ellipse') n.push('Rig part "'+op.getAttribute('data-sbc')+'" is a <'+op.localName+'>: in inline mode the engine can only show/hide it - it animates an open mouth by setting rx/ry, which only an <ellipse> has. Use an <ellipse> (the JSON export converts it).');
+  const sm=first('[data-sbc="smile"],[data-sbc="mouth"]');
+  if(sm && sm.localName!=='path') n.push('Rig part "'+sm.getAttribute('data-sbc')+'" is a <'+sm.localName+'>: in inline mode the engine can only show/hide it - it draws expressions by rewriting a <path>\'s d. Use a <path> (the JSON export converts a single shape).');
+  svg.querySelectorAll('[data-sbc]').forEach(el=>{ const st=(el.getAttribute('style')||'').replace(/\s+/g,'').toLowerCase();
+    if(el.getAttribute('display')==='none' || st.indexOf('display:none')>=0 || el.getAttribute('visibility')==='hidden' || st.indexOf('visibility:hidden')>=0)
+      n.push('Rig part "'+el.getAttribute('data-sbc')+'" is display:none / visibility:hidden, which the engine never undoes: hide it with opacity="0" instead.'); });
+  return n; }
+function exportHTML(){
+  // same art the live preview adopts: sanitized, viewBox origin moved to 0 0 (the engine's
+  // rig-your-own-SVG mode only reads the viewBox width/height), so handles line up.
+  const face=JSON.stringify(descJSON()).replace(/'/g,'&#39;');
+  const art=previewMarkup()||state.svg;
+  return '<div data-anim="character" data-char="custom"\n     data-talk="1" data-acts="0.6:happy; 2:say=Hi!"\n     data-face=\''+face+'\'>\n'
+    + art.replace(/^/gm,'  ') + '\n</div>';
+}
+function exportJSON(){ const r=exportDefinition(); showNotes(r.notes); return r.def?JSON.stringify(r.def,null,2):'// '+r.notes.join(' '); }
+
+/* ---- wiring ---- */
+function copy(text,btn){
+  const done=()=>{ const o=btn.textContent; btn.textContent='Copied!'; btn.classList.add('on'); setTimeout(()=>{btn.textContent=o;btn.classList.remove('on');},1100); };
+  const fallback=()=>{ out.focus(); out.select(); try{ document.execCommand('copy'); done(); }catch(e){} };
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+}
+document.getElementById('copyHtml').onclick=e=>{ out.dataset.kind='html'; out.value=exportHTML(); showNotes(inlineNotes()); copy(out.value,e.target); };
+document.getElementById('copyJson').onclick=e=>{ out.dataset.kind='json'; out.value=exportJSON(); copy(out.value,e.target); };
+document.getElementById('dlJson').onclick=()=>{ out.dataset.kind='json'; out.value=exportJSON();
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([out.value],{type:'application/json'}));
+  a.download=slugOf(document.getElementById('charName').value)+'.json'; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },500); };
+document.getElementById('charName').oninput=()=>buildExports();
+function loadArt(markup){
+  const p=parseSvg(markup); if(!p) return false;
+  state.svg=String(markup).trim(); state.vb=p.vb; state.minxy=p.minxy;
+  rigDefaults(); syncSliders();
+  return true;
+}
+document.getElementById('loadBtn').onclick=()=>{ if(!loadArt(svgIn.value)){ alert('Could not parse that SVG. Make sure it contains <svg viewBox="...">…</svg>'); return; } render(); };
+document.querySelectorAll('[data-mood]').forEach(b=>b.onclick=()=>{ document.querySelectorAll('[data-mood]').forEach(x=>x.classList.remove('on')); b.classList.add('on'); state.mood=b.dataset.mood; render(); });
+document.querySelectorAll('[data-gesture]').forEach(b=>b.onclick=()=>{ state.acts=(_t+0.1).toFixed(2)+':'+b.dataset.gesture; render(); });
+document.getElementById('talkBtn').onclick=e=>{ state.talk=!state.talk; e.target.classList.toggle('on',state.talk); render(); };
+document.getElementById('lookBtn').onclick=e=>{ state.lookOn=!state.lookOn; e.target.classList.toggle('on',state.lookOn); render(); };
+document.getElementById('previewBtn').onclick=e=>{ state.preview=state.preview==='json'?'svg':'json'; e.target.textContent='Preview: '+(state.preview==='json'?'JSON definition':'SVG art'); e.target.classList.toggle('on',state.preview==='json'); render(); };
+['erx','ery','pupil','mw'].forEach(id=>{ const el=document.getElementById(id);
+  el.oninput=()=>{ const v=+el.value; if(id==='mw') state.desc.mouthW=v; else state.desc[id]=v; softRender(); placeHandles(); }; });
+
+function syncSliders(){ document.getElementById('erx').value=state.desc.erx; document.getElementById('ery').value=state.desc.ery;
+  document.getElementById('pupil').value=state.desc.pupil; document.getElementById('mw').value=state.desc.mouthW; }
+
+/* ---- boot ---- */
+svgIn.value=SAMPLE; loadArt(SAMPLE); syncSliders();
+render();
+// Drive the engine's character preset directly each frame — no deck needed.
+const CHAR = window.Storyboard && Storyboard.PRESETS && Storyboard.PRESETS.character;
+if(!CHAR) showNotes(['storyboard-engine.js did not load (open rigger.html from the skill folder, over http://).']);
+let _t=0,_last=0;
+function tick(ts){ if(!_last)_last=ts; _t+=Math.min(0.05,(ts-_last)/1000); _last=ts;
+  try{ if(CHAR) CHAR.apply(rig, 1, {time:_t}); }catch(e){ if(!tick.err){ tick.err=1; console.error('[rigger] the engine character preset failed:', e); } }
+  requestAnimationFrame(tick); }
+requestAnimationFrame(tick);
+window.addEventListener('resize',()=>{ placeHandles(); positionLookTarget(); });
+window.Rigger={ exportDefinition, exportHTML, inlineNotes, loadArt, render, state, parsePathData };
+</script>
+</body>
+</html>
