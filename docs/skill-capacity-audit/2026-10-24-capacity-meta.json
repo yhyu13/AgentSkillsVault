@@ -1,13 +1,13 @@
 {
   "date": "2026-10-24",
   "root": "C:\\Users\\24717\\.claude\\skills",
-  "skills": 347,
-  "avg": 6.52,
-  "median": 6.45,
+  "skills": 346,
+  "avg": 6.53,
+  "median": 6.5,
   "min": 2.0,
   "max": 10.0,
   "dup_groups": 0,
-  "broken_ref_skills": 70,
+  "broken_ref_skills": 69,
   "no_frontmatter": 52,
   "name_mismatch": 52
 }

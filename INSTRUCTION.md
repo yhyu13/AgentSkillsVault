@@ -1,5 +1,13 @@
 # INSTRUCTION — Skill Provenance & Update Workflow
 
+> **Retired skills (2026-10-25).** 67 skills were removed from the vault and from
+> every harness store after the defect audit flagged them as *never usable*,
+> carrying *error references*, *low quality*, or *not standalone*. The origin rows
+> below are kept for provenance and are tagged `(retired)`, but those skills are no
+> longer installed. See `REMOVED-SKILLS.md` for the reason per skill and the
+> upstream `vendor/` copy kept for re-adding; `.kilo/removed-skills.txt` stops the
+> sync script from reinstalling them.
+
 > **Rule:** every skill in this vault is a **copy of** (or a **distillation from**) a source.
 > Record that source so a skill can be re-synced when upstream changes. **Never add a
 > skill without recording its origin here.** This file is the authoritative origin record;
@@ -35,24 +43,24 @@
 | notes-on-writing | sibling (wrapped) | `D:\GitRepo-AI\notes-on-writing` — Michael Nielsen's "Notes on Writing Well"; SKILL.md = YAML frontmatter + pointer to `references/notes_on_writing.md` (full essay relocated there); no LICENSE in source |
 | content-craft | local (distilled) | 提炼自本目录 6 个内容 skill 的共同方法（gracker-writing / shuorenhua / blog-to-* / long-blog / tech-design-to-zhihu + social-push 发布红线） |
 | style-cn-tech-deep-dive | local (distilled) | iTech @ cnblogs.com/p/23085057 — ZCode 争议 + 开源复盘长文；提炼 10 个指纹（戏剧钩子 / 第 N 层 / 平心而论反转 / 逆向数字 / N 条死线 / 冒号双行标题 / 立场标 / 收尾三段 / 圈层黑话 / 信息差诚实声明）+ 6 节级结构模板 + 句式库。原文全文存 `content/style-cn-tech-deep-dive/references/source-zcode-article.md`（95 行）作为风格 ground truth |
-| lieflat-charts | repo (vendored) | `github.com/larashero3-dotcom/lieflat-charts` — cloned into `content/lieflat-charts`; vendored payload = SKILL.md + catalog.md + report-catalog.md + mono-tokens.js + color-presets.js + templates/ + scripts/ + examples/ + LICENSE. **跳过 `docs/assets/`**（38M README 预览图，可从源码仓库恢复）；PolyForm Noncommercial License. Skill 为「图表品味法典」：数据契约先行选图 + 一张图一个结论 + Lupi/Glance 双阅读速度 + Mono 视觉语法 + 彩色系统 + 12 套中英报告模板 |
+| lieflat-charts (retired) | repo (vendored) | `github.com/larashero3-dotcom/lieflat-charts` — cloned into `content/lieflat-charts`; vendored payload = SKILL.md + catalog.md + report-catalog.md + mono-tokens.js + color-presets.js + templates/ + scripts/ + examples/ + LICENSE. **跳过 `docs/assets/`**（38M README 预览图，可从源码仓库恢复）；PolyForm Noncommercial License. Skill 为「图表品味法典」：数据契约先行选图 + 一张图一个结论 + Lupi/Glance 双阅读速度 + Mono 视觉语法 + 彩色系统 + 12 套中英报告模板 |
 | yu-hang-writing-style | local | 俞航本人工程笔记文风（技术规划 / 排查笔记 / 进展周报 / 使用手册 / 测试说明；去 AI 味 + AI 爱用词替换表）。原始副本维护在 `~/.agents/skills/yu-hang-writing-style`，同步复制到 vault |
 | hyperframes | sibling (+ upstream assets) | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes` — HTML 渲染成视频（渲染契约 / 工作流）。vault 副本 = FDE 版本 ∪ 用户级已装的 `assets/frame-presets/*`（48 文件），故为超集，不会被 `/MIR` 删掉 |
-| hyperframes-cli | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-cli` — `npx hyperframes` 命令行（check / init / capture / usage） |
-| hyperframes-registry | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-registry` — 450+ 现成 block / component 目录（examples/ references/） |
+| hyperframes-cli (retired) | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-cli` — `npx hyperframes` 命令行（check / init / capture / usage） |
+| hyperframes-registry (retired) | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-registry` — 450+ 现成 block / component 目录（examples/ references/） |
 | hyperframes-video | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-video` — 视频交付路径；`/media-use`、`/figma` 两个 skill 未安装，原因与替代见本 skill 内文 |
-| remotion-to-hyperframes | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\remotion-to-hyperframes` — Remotion 项目迁移到 HyperFrames（assets/ references/ scripts/） |
+| remotion-to-hyperframes (retired) | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\remotion-to-hyperframes` — Remotion 项目迁移到 HyperFrames（assets/ references/ scripts/） |
 | progress-doc-style | local (imported) | 用户提供：`C:\Users\1\Downloads\progress-doc-style`（源自《性能跟踪分析平台进度》，纯写作风格与结构范式，不绑定具体项目）。进度/OKR 跟踪文档：OKR 简述表 + 分目标章节 + 行动项七列表 + 状态三符号 + 备注一句话 + 附背景。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
-| genoffice | repo (submodule) | `github.com/genspark-ai/genoffice` @ `28cee5c` (Apache-2.0) — 上游 `skills/genoffice`：本地创建/转换/读写 Office 文档（docx/xlsx/pptx/pdf）。vendor 仓 71 MB，只装 skill 目录 |
+| genoffice (retired) | repo (submodule) | `github.com/genspark-ai/genoffice` @ `28cee5c` (Apache-2.0) — 上游 `skills/genoffice`：本地创建/转换/读写 Office 文档（docx/xlsx/pptx/pdf）。vendor 仓 71 MB，只装 skill 目录 |
 | okr-planner | repo (submodule) | `github.com/genspark-ai/genoffice` @ `28cee5c` — 上游 `skills/recommended/okr-planner`；**注意**：与 vault 自有 `software-development/perf-tracking-platform` + `content/progress-doc-style` 同属 OKR 一片地，后续应合并，避免三份并存 |
 | legalrabbit-docx | repo (submodule) | `github.com/LegalRabbit-AI/legalrabbit-docx-mcp` @ `a1c9be8` (MIT) — 上游 `plugins/docx/skills/legalrabbit-docx`。雷达结论要求「先做 token 基准再采纳」，本批**只装未测** |
 | excel-hygiene | repo (submodule) | `github.com/BayramAnnakov/excel-hygiene` @ `bca5a74` (Apache-2.0) — `.xlsx` 确定性体检（仓库根即 skill） |
-| market-intel | repo (submodule) | `github.com/DaizeDong/market-intel` @ `1046cd8` (MIT) — 上游 `skills/market-intel`：商用数据（X/Twitter/电商/金融/SEO）取数与研判 |
+| market-intel (retired) | repo (submodule) | `github.com/DaizeDong/market-intel` @ `1046cd8` (MIT) — 上游 `skills/market-intel`：商用数据（X/Twitter/电商/金融/SEO）取数与研判 |
 
 ### design/
 | skill | origin | source |
 |-------|--------|--------|
-| taste-frontend | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\taste-skill` (GitHub: Leonxlnx/taste-skill) — v2 default; original install name `design-taste-frontend` |
+| taste-frontend (retired) | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\taste-skill` (GitHub: Leonxlnx/taste-skill) — v2 default; original install name `design-taste-frontend` |
 | taste-redesign | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\redesign-skill` (GitHub: Leonxlnx/taste-skill) — original install name `redesign-existing-projects` |
 | taste-output | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\output-skill` (GitHub: Leonxlnx/taste-skill) — original install name `full-output-enforcement` |
 | taste-imagegen-web | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\imagegen-frontend-web` (GitHub: Leonxlnx/taste-skill) |
@@ -60,9 +68,9 @@
 | taste-brandkit | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\brandkit` (GitHub: Leonxlnx/taste-skill) |
 | taste-stitch | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\stitch-skill` (GitHub: Leonxlnx/taste-skill) — original install name `stitch-design-taste` |
 | taste-director | local (distilled) | written — router/composer over the 7 taste-* skills (dispatch by intent + shared taste contract) |
-| frontend-slides | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\frontend-slides` — slide-deck HTML（bold-template-pack / STYLE_PRESETS / viewport-base.css） |
+| frontend-slides (retired) | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\frontend-slides` — slide-deck HTML（bold-template-pack / STYLE_PRESETS / viewport-base.css） |
 | html-artifacts | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\html-artifacts` — 自包含 HTML artifact（reference/ + scripts/，Apache-2.0） |
-| html-slides | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\html-slides` |
+| html-slides (retired) | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\html-slides` |
 | slideshow | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\slideshow` |
 | ui-mockups | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\ui-mockups` — 产品 UI 截图级 mockup（浏览器窗口 chrome / 真实品牌图标） |
 | visual-explainer | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\visual-explainer` — 可视化解释产物（commands/ kit/ mcp/ plan/ pptx/ video/ templates/ + extension.ts） |
@@ -70,13 +78,13 @@
 | html-ppt | repo (submodule) | `github.com/lewislulu/html-ppt-skill` @ `fd16290` — HTML PPT Studio：一个 theme 文件 = 一套外观、一个 layout 文件 = 一种页面、一个 animation class = 一种入场；token 化设计系统（`assets/base.css`），纯静态、可离线，MIT；已复制进 `design/html-ppt` |
 | hands-on-deck | repo (submodule) | `github.com/EveryInc/hands-on-deck` @ `a24b996` (MIT) — 上游 `skills/hands-on-deck`：任何 `.pptx` 相关的活（改现有 deck 而非新生成） |
 | presentation-skill | repo (submodule) | `github.com/siril9/presentation-skill` @ `efd899c` (MIT) — 上游根即 skill（另带 `plugins/` 内同一 skill 的第二份拷贝，vault 副本已删除该重复目录）；裁剪掉 `decks/ examples/ tests/` 等演示物料 |
-| html-to-pptx | repo (submodule) | `github.com/Hasasasa/html-to-editable-pptx` @ `17c1dbb` (MIT) — 上游根即 skill，`name: html-to-pptx`，目录按 frontmatter 改名 |
+| html-to-pptx (retired) | repo (submodule) | `github.com/Hasasasa/html-to-editable-pptx` @ `17c1dbb` (MIT) — 上游根即 skill，`name: html-to-pptx`，目录按 frontmatter 改名 |
 | brand-docx / brand-pptx / brand-xlsx | repo (submodule) | `github.com/ferdinandobons/brand-docs` @ `97a6e38` (MIT) — 上游 `skills/brand-*`：Word/PPT/Excel 的「参考模板 + 样式继承」机制 |
 | huashu-design | repo (submodule) | `github.com/alchaincyf/huashu-design` @ `4fc7bfd` (MIT) — HTML 高保真原型/幻灯片/动画 + 专家评审；裁剪掉 `demos/`（保留 `assets/ scripts/ references/`） |
 | xiaoma-studio | repo (submodule) | `github.com/crawfordxx/xiaoma-studio` @ `2907bd6` (MIT) — 代码做动效视频 / HTML 幻灯片；裁剪掉 `examples/`（31 MB） |
 | visual-learner | repo (submodule) | `github.com/huseyingayiran/visual-learner` @ `e3c6497` (MIT) — 上游 `skills/visual-learner`：把主题/文档/会议纪要变成讲解产物，含 TTS 四档降级链 |
 | opendeck | repo (submodule) | `github.com/open-deck-org/opendeck` @ `d0dbe02` (MIT) — 上游 `skills/opendeck`：动画 + 朗读的 HTML 演示 deck，音频只烘进 HTML（离线单文件） |
-| storyboard | repo (submodule) | `github.com/gRAYESS123/storyboard-claude` @ `e6b1597` (MIT) — 上游 `skill/`，`name: storyboard`，目录按 frontmatter 改名；网页/文档 → 分镜 → 视频；裁剪掉 `examples/ media/ downloads/` |
+| storyboard (retired) | repo (submodule) | `github.com/gRAYESS123/storyboard-claude` @ `e6b1597` (MIT) — 上游 `skill/`，`name: storyboard`，目录按 frontmatter 改名；网页/文档 → 分镜 → 视频；裁剪掉 `examples/ media/ downloads/` |
 | video-production | repo (submodule) | `github.com/speechlab0210/video-production-skill` @ `8c46c40` (MIT) — 上游根即 skill，`name: video-production`；含 **ASR 回译校验（TTS 合成后 Whisper 反识别，相似度 ≥0.85 才放行）** |
 
 > Skipped 6 of the repo's 13 skills as redundant/niche: `taste-skill-v1` (superseded by v2), `gpt-tasteskill` (stricter GPT/Codex variant, subsumed by v2), `soft-skill` / `minimalist-skill` / `brutalist-skill` (fixed style presets — v2 infers the design language from the brief), `image-to-code-skill` (pipeline = imagegen-web + taste-frontend). All recoverable from the sibling clone.
@@ -106,15 +114,15 @@
 |-------|--------|--------|
 | cat-game-architecture | local | distilled from GDC 2026 talk (Hao Yang, Tencent Photon) |
 | gdd-markdown-template | repo | `github.com/TheLazyHatGuy/GDDMarkdownTemplate` |
-| guide-from-probes | local | from a VibeGames project `.claude/skills/` |
-| intro-scene-until-perfect | local | from `VibeGames/7_hotlineShanghai/.claude/skills/` (see `metadata.sources`) |
-| kimi3-game-gen | local | distilled from KIMI3 research + a VibeGames case |
+| guide-from-probes (retired) | local | from a VibeGames project `.claude/skills/` |
+| intro-scene-until-perfect (retired) | local | from `VibeGames/7_hotlineShanghai/.claude/skills/` (see `metadata.sources`) |
+| kimi3-game-gen (retired) | local | distilled from KIMI3 research + a VibeGames case |
 | phaser-gamedev | local | written (Phaser 3 best practice) |
-| playwright-testing | local | written (Playwright / Vitest / Jest) |
-| render-quality-loop | local | from a VibeGames project `.claude/skills/` |
+| playwright-testing (retired) | local | written (Playwright / Vitest / Jest) |
+| render-quality-loop (retired) | local | from a VibeGames project `.claude/skills/` |
 | single-file-html-game | local | written — `mini-browser-games` convention + tier audit |
 | technical-design-document | repo | `github.com/Siitoo/Technical-Design-Document` |
-| three-pbr-workflow | repo | `github.com/vibe-stack/ggez` |
+| three-pbr-workflow (retired) | repo | `github.com/vibe-stack/ggez` |
 | procedural-3d-scenes | repo (submodule) | `github.com/yhyu13/opus55-3d-games` @ `05966a9` — 上游 `.claude/skills/procedural-3d-scenes`（v1.0.1）：编排「白膜 → 全程序化」两条交付路径，必选其一，Clay 优先；已复制进 `game-dev/procedural-3d-scenes` |
 | three-clay-scenes | repo (submodule) | `github.com/yhyu13/opus55-3d-games` @ `05966a9` — 上游 `.claude/skills/three-clay-scenes`（v1.0.1）：白膜/单色/无贴图的第一版交付；已复制进 `game-dev/three-clay-scenes` |
 | three-procedural-scenes | repo (submodule) | `github.com/yhyu13/opus55-3d-games` @ `05966a9` — 上游 `.claude/skills/three-procedural-scenes`（v1.0.1）：代码生成几何/材质/贴图/环境的完整版本；已复制进 `game-dev/three-procedural-scenes` |
@@ -122,7 +130,7 @@
 | ue-renderdoc-auto-capture | local | from `~/.kilo/skills` (Kilo Code agent output; RenderDoc/rdc-cli) |
 | webapp-testing | repo | `github.com/ComposioHQ/awesome-claude-skills` |
 | game-dev-loop | local | written — orchestrator over the 14 game-dev skills (classify → GDD/TDD → scaffold → implement → test/debug → quality → guide → memory) |
-| ai-3d-toolchain | local (distilled) | 提炼自 `ooo.run/post/how-to-use-ai-build-3d-games.html`（作者 @Saccc_c）+ 本机 Blender 5.2.2 / blender_mcp 实测：Tripo + Blender CLI/MCP + Unity CLI/MCP + Auto-Rig Pro 组件清单与验收门槛；**Windows 三道墙**（`curl \| sh` 只支持 macOS/Linux、GBK 崩在 emoji 且副作用已发生、Blender 5.x legacy 插件注册姿势） |
+| ai-3d-toolchain (retired) | local (distilled) | 提炼自 `ooo.run/post/how-to-use-ai-build-3d-games.html`（作者 @Saccc_c）+ 本机 Blender 5.2.2 / blender_mcp 实测：Tripo + Blender CLI/MCP + Unity CLI/MCP + Auto-Rig Pro 组件清单与验收门槛；**Windows 三道墙**（`curl \| sh` 只支持 macOS/Linux、GBK 崩在 emoji 且副作用已发生、Blender 5.x legacy 插件注册姿势） |
 | ai-3d-scene-pipeline | local (distilled) | 同上文章的场景段：概念多视角参考图 → 资产分流（Tripo 生成 vs Blender 代码搭建，判据"能否参数化"）→ Tripo 高精度道具 → Blender/Unity 组装 → **独立审查 Agent 多机位盲审**迭代。原文提示词存 `references/prompts.md`，机位表与差异清单格式存 `references/review-loop.md` |
 | ai-3d-character-pipeline | local (distilled) | 同上文章的角色段：T-pose 四视图 → Tripo Smart Mesh P2.0（四边面 + 最高精度）→ 白模检查（Texture / Edit Mesh 分支）→ Auto-Rig Pro 绑骨蒙皮 + 三项动作测试 → Mixamo 动作获取与重定向 → IK 手部/道具接触精调。原文提示词存 `references/prompts.md` |
 | game-archetype-classifier | local (distilled) | OpenGame TS monorepo — 物理态优先的 2D 原型分类（不按题材名分类） |
@@ -157,7 +165,7 @@
 | mgmt-discipline | sibling | `D:\GitRepo-AI\mgmt-skill\mgmt-skills\discipline` (+ router SKILL.md) |
 | mgmt-individual | sibling | `D:\GitRepo-AI\mgmt-skill\mgmt-skills\individual` (+ router SKILL.md) |
 | mgmt-org | sibling | `D:\GitRepo-AI\mgmt-skill\mgmt-skills\org` (+ router SKILL.md) |
-| bezos-advisor / god-leader-advisor / renzhengfei-advisor / zhangyiming-advisor | sibling | `D:\GitRepo-AI\mgmt-skill\advisor-skills\<name>.md` |
+| bezos-advisor / god-leader-advisor (retired) / renzhengfei-advisor / zhangyiming-advisor | sibling | `D:\GitRepo-AI\mgmt-skill\advisor-skills\<name>.md` |
 | qiushi-methodology (11: 矛盾分析/实践论/群众路线/集中力量/调查研究/批评自我批评/统筹兼顾/持久战/星星之火/武装思想/workflows) | local | distilled from Mao 求是 methodology (原著依据 in `original-texts.md`) |
 | torchcookpackopt-weekly-report | local | written for the torchcookpackopt project — moved to `archived/` (project-specific, not active) |
 | management-loop | local | written — router/orchestrator over the management skills (report / advice / knowledge / methodology clusters) |
@@ -167,10 +175,10 @@
 |-------|--------|--------|
 | rigorous-proof | local | written from scratch |
 
-### MattSkills/
+### software-development/mattpocock/（原 MattSkills/，2026-10-24 迁移）
 | skill | origin | source |
 |-------|--------|--------|
-| 19 kept (engineering 17 + productivity grilling/handoff) | repo | matt-pocock skills collection — 16 trimmed (in-progress/ + misc/ + productivity aliases/non-dev + grill-with-docs)，recoverable via `npx skills add matt-pocock` |
+| 19 kept (engineering 17 + productivity grilling/handoff) | repo (submodule) + local fork | upstream `github.com/mattpocock/skills` (MIT) 已挂为 `vendor/mattpocock-skills` submodule @ `5beb35b`（2026-10-19）；本目录是**裁剪过的 fork**：base ≈ `e38b908`（2026-08-19），裁掉 16 个（in-progress/ + misc/ + productivity aliases/non-dev + grill-with-docs），recoverable via submodule or `npx skills add matt-pocock`。**本地 delta（勿被 upstream 覆盖）**：`tdd/SKILL.md` +25 行 DoD laws（vault commit `f9d9280`）；`resolving-merge-conflicts` 保留为 skill（upstream 已从 skills/ 移除）；`~/.kilo/skills` 内 19 个安装副本与本目录 byte-identical，更新 upstream 后需手动 re-apply delta 再镜像 |
 
 ### software-development/
 | skill | origin | source |
@@ -187,7 +195,7 @@
 | prompt-pro | local | 用户本地 skill：`C:\Users\yuhang\.minimax\skills\prompt-pro`。把粗请求补成可执行提纲（目标/验收/范围/约束/输出 五槽位），先 grounding 再落笔，提纲不单独成篇。先看真实系统再下笔的纪律 + 缺信息则问。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 | skill-distill | local | 用户贴出的 skill 文本（原出处未指明，标记 local）。会后沉淀流水线：四道闸（可复用/有判断/有证据/有边界）+ 粒度 + 归属 + 三段式写法 + 防重复防膨胀 + PR 流程 + 自检清单 + 红线。规范 skill 沉淀本身。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 | perf-tracking-platform | local (imported) | 用户提供：`C:\Users\1\Downloads\perf-tracking-platform`（XD 游戏引擎侧「性能跟踪分析平台」领域知识与工作指引：OKR/进度快照、指标口径、瓶颈判定、看板与报告要求；进度以 Feishu 进度文档为准）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
-| brainstorming / systematic-debugging / writing-plans / writing-skills / verification-before-completion / using-git-worktrees / receiving-code-review / requesting-code-review | repo (submodule) | `github.com/obra/superpowers` @ `2ce8aa1` (MIT) — 上游 `skills/<name>`；只装 8 个方法论 skill，`executing-plans` `finishing-a-development-branch` `subagent-driven-development` `using-superpowers` `diagnosing-superpowers` `dispatching-parallel-agents` 与 vault 自有 `software-dev-loop` / `tdd` / `diagnosing-bugs` 重叠，留 vendor |
+| brainstorming / systematic-debugging / writing-plans (retired) / writing-skills (retired) / verification-before-completion / using-git-worktrees / receiving-code-review / requesting-code-review (retired) | repo (submodule) | `github.com/obra/superpowers` @ `2ce8aa1` (MIT) — 上游 `skills/<name>`；只装 8 个方法论 skill，`executing-plans` `finishing-a-development-branch` `subagent-driven-development` `using-superpowers` `diagnosing-superpowers` `dispatching-parallel-agents` 与 vault 自有 `software-dev-loop` / `tdd` / `diagnosing-bugs` 重叠，留 vendor |
 | skill-inspector | repo (submodule) | `github.com/NVIDIA/SkillSpector` @ `d7338f5` (Apache-2.0) — 上游 `skills/skill-inspector`：装第三方 skill 前的注入/外泄/供应链扫描（**建议作为以后装任何第三方 pack 的前置闸**） |
 | skillopt-sleep | repo (submodule) | `github.com/microsoft/SkillOpt` @ `84b36cd` (MIT) — 上游 `plugins/claude-code/skills/skillopt-sleep`：让 agent 自我优化 skill（配套 prompt 模板在 `skillopt/prompts/`，未装） |
 | distilly | repo (submodule) | `github.com/titanwings/distilly` @ `0afc45c` (MIT) — 上游根即 skill（分支 `dot-skill`）：Work + Persona 分离的蒸馏流程；裁剪掉 `tests/` `.github/` |
@@ -196,7 +204,7 @@
 | skill | origin | source |
 |-------|--------|--------|
 | ai-video-production | local (distilled) | 余弦博客《用 Opus 5.5 做视频：制作流程与提示词资源记录》(2026-09-27) + 已 vendor 的开源 skill 清单；含 `references/prompts.md`（提示词模板）与 `references/resources.md`（仓库/工具清单）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
-| remotion-best-practices / -create / -render / -captions / -markup / -multimedia / -maps / -interactivity / -docs / -saas / -studio / -upgrade | repo (submodule) | `github.com/remotion-dev/skills` @ `6c67adc` — Remotion 官方 Agent Skills（12 个），上游 `skills/<name>` |
+| remotion-best-practices (retired) / -create / -render / -captions / -markup / -multimedia / -maps / -interactivity / -docs / -saas / -studio / -upgrade | repo (submodule) | `github.com/remotion-dev/skills` @ `6c67adc` — Remotion 官方 Agent Skills（12 个），上游 `skills/<name>` |
 | anidoodle | repo (submodule) | `github.com/alexgreensh/anidoodle` @ `f746cbd` — 手绘风插画与动画（自带配乐与故事线） |
 | guizang-product-video-skill | repo (submodule) | `github.com/op7418/guizang-product-video-skill` @ `18842e0` — 读代码库做产品更新宣传片 |
 | video-use | repo (submodule) | `github.com/browser-use/video-use` @ `43cfc56` — Agent 剪真实素材（上游根 SKILL.md） |
@@ -205,11 +213,11 @@
 | onetake | repo (submodule) | `github.com/feitangyuan/onetake` @ `013a61a` — 一镜到底产品发布片（PolyForm Noncommercial；样片 mp4 未复制） |
 | lemo-opuscar | repo (submodule) | `github.com/lemomo-ai/lemo-opuscar` @ `413a6bd` — 39 种纯代码影片风格库 |
 | mengto/* (29) | repo (submodule, 筛选) | `github.com/MengTo/Skills` @ `398cd41` — `3d/`(16) + `media/`(2) + `codex/`(11)；`web-design/`、`game-*/`、`illustration/` 未复制 |
-| kinetic-reel | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — 纯代码动效字 reel：Canvas 2D + three.js 生成层 + WebGL 后期，无头 Chrome 逐帧 + ffmpeg 编码，Node 按同一份 `cues.js` 合成节拍对齐配乐；上游 `skills/kinetic-reel`；已复制进 `video/kinetic-reel` |
-| painted-animation | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — p5.js + p5.brush 手绘水彩/墨线动画：逐帧渲染、模型表（emotions/views）、音乐与歌词同步；上游 `skills/painted-animation`；已复制进 `video/painted-animation` |
+| kinetic-reel (retired) | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — 纯代码动效字 reel：Canvas 2D + three.js 生成层 + WebGL 后期，无头 Chrome 逐帧 + ffmpeg 编码，Node 按同一份 `cues.js` 合成节拍对齐配乐；上游 `skills/kinetic-reel`；已复制进 `video/kinetic-reel` |
+| painted-animation (retired) | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — p5.js + p5.brush 手绘水彩/墨线动画：逐帧渲染、模型表（emotions/views）、音乐与歌词同步；上游 `skills/painted-animation`；已复制进 `video/painted-animation` |
 | opus-video-prompts | repo (submodule, 补写指针层) | `github.com/joeseesun/opus-video-prompts` @ `7977c80` — 上游**没有 SKILL.md**（18 份提示词 + 54 案例 `cases.json` + README），本 vault 补写一层指针式 SKILL.md（说明怎么挑提示词、技术路线与边界）；上游原文逐字保留；已复制进 `video/opus-video-prompts` |
-| video-shotcraft | repo (submodule) | `github.com/Vincentwei1021/video-shotcraft` @ `43bd349` (Apache-2.0) — 上游根即 skill（152 张 shot recipe 卡片 + 209 段 motion preview）；裁剪掉 `assets/ demos/ gallery/ videos/ workbench/ publish/`（保留 `references/ shot-polish/ template/`） |
-| ffmpeg / moviepy / elevenlabs / playwright-recording / qwen-edit / ideogram4 / ltx2 / acestep / runpod / synthetic-ui-demo / video_toolkit | repo (submodule) | `github.com/digitalsamba/claude-code-video-toolkit` @ `da3f474` (MIT) — 上游 `.claude/skills/<name>`（11 个）+ `skills/openclaw-video-toolkit`；`video_toolkit` 的 frontmatter 名是 `video_toolkit`，目录按其改名；`remotion` / `remotion-official` / `frontend-design` 未装（与 vault 既有 remotion 系列 / taste-frontend 重叠） |
+| video-shotcraft (retired) | repo (submodule) | `github.com/Vincentwei1021/video-shotcraft` @ `43bd349` (Apache-2.0) — 上游根即 skill（152 张 shot recipe 卡片 + 209 段 motion preview）；裁剪掉 `assets/ demos/ gallery/ videos/ workbench/ publish/`（保留 `references/ shot-polish/ template/`） |
+| ffmpeg / moviepy (retired) / elevenlabs (retired) / playwright-recording (retired) / qwen-edit (retired) / ideogram4 / ltx2 / acestep / runpod / synthetic-ui-demo (retired) / video_toolkit (retired) | repo (submodule) | `github.com/digitalsamba/claude-code-video-toolkit` @ `da3f474` (MIT) — 上游 `.claude/skills/<name>`（11 个）+ `skills/openclaw-video-toolkit`；`video_toolkit` 的 frontmatter 名是 `video_toolkit`，目录按其改名；`remotion` / `remotion-official` / `frontend-design` 未装（与 vault 既有 remotion 系列 / taste-frontend 重叠） |
 
 ### vendor/
 | skill | origin | source |
@@ -232,7 +240,7 @@
 | awesome-opus-5.5-video | repo (submodule) | `github.com/zhuyansen/awesome-opus-5.5-video` @ `a359f1c` — `vendor/awesome-opus-5.5-video`（纯资料） |
 | awesome-claude-video-skills | repo (submodule) | `github.com/zhuyansen/awesome-claude-video-skills` @ `a613dcc` — `vendor/awesome-claude-video-skills`（纯资料：180 个开源视频 skill 索引 + 安全评级） |
 | ai-animation-skill | repo (submodule) | `github.com/Unclecheng-li/AI-Animation-Skill` @ `4b107dd` — 科普文本 → 仿 PPT 轮播单页 HTML（含 14 个 Animation 模板），MIT；**只 vendor 不装**：产物是 HTML 演示，与 `frontend-slides` / `html-ppt` 重叠 |
-| frontend-slides | repo (submodule) | `github.com/zarazhangrui/frontend-slides` @ `9906a34` — 单文件零依赖 HTML 演示（bold-template-pack / STYLE_PRESETS / viewport-base.css），MIT；已由并行会话装进 `design/frontend-slides`（它的 `html-slides` router 依赖它） |
+| frontend-slides (retired) | repo (submodule) | `github.com/zarazhangrui/frontend-slides` @ `9906a34` — 单文件零依赖 HTML 演示（bold-template-pack / STYLE_PRESETS / viewport-base.css），MIT；已由并行会话装进 `design/frontend-slides`（它的 `html-slides` router 依赖它） |
 | generating-slides | repo (submodule) | `github.com/whq217/generating-slides` @ `0e2fa3a` — 自述「基于 Zara Zhang 的 Frontend Slides 二次开发」：22 套风格预设 + 七阶段引导 + 版面率/字号/秩序三层硬约束 + 机验脚本 + P 键出 PDF；**只 vendor 不装**：与已装的 `frontend-slides` 是同一条工作流的前后版本 |
 | html-ppt-skill | repo (submodule) | `github.com/lewislulu/html-ppt-skill` @ `fd16290` — `vendor/html-ppt-skill`（上游仓库根即 skill）；MIT；已复制进 `design/html-ppt` |
 | opus-video-prompts | repo (submodule) | `github.com/joeseesun/opus-video-prompts` @ `7977c80` — `vendor/opus-video-prompts`（提示词库，无 SKILL.md）；已包一层装成 `video/opus-video-prompts` |
@@ -246,11 +254,11 @@
 
 | vendor 路径 | upstream | commit | license | 处置 |
 |---|---|---|---|---|
-| `vendor/genoffice` | genspark-ai/genoffice | 28cee5c | Apache-2.0 | 装 content/genoffice + content/okr-planner |
+| `vendor/genoffice (retired)` | genspark-ai/genoffice | 28cee5c | Apache-2.0 | 装 content/genoffice + content/okr-planner |
 | `vendor/legalrabbit-docx-mcp` | LegalRabbit-AI/legalrabbit-docx-mcp | a1c9be8 | MIT | 装 content/legalrabbit-docx |
 | `vendor/excel-hygiene` | BayramAnnakov/excel-hygiene | bca5a74 | Apache-2.0 | 装 content/excel-hygiene |
 | `vendor/document-SKILLs` | appautomaton/document-SKILLs | dfb5685 | MIT | **只 vendor**：docx/pdf/pptx/xlsx 与 anthropic 集同名 |
-| `vendor/market-intel` | DaizeDong/market-intel | 1046cd8 | MIT | 装 content/market-intel |
+| `vendor/market-intel (retired)` | DaizeDong/market-intel | 1046cd8 | MIT | 装 content/market-intel |
 | `vendor/hands-on-deck` | EveryInc/hands-on-deck | a24b996 | MIT | 装 design/hands-on-deck |
 | `vendor/presentation-skill` | siril9/presentation-skill | efd899c | MIT | 装 design/presentation-skill |
 | `vendor/html-to-editable-pptx` | Hasasasa/html-to-editable-pptx | 17c1dbb | MIT | 装 design/html-to-pptx（目录改名） |
@@ -277,7 +285,7 @@
 | `vendor/investment-masters` | AlphaGBM/investment-masters | b1a304f | MIT | **只 vendor**（投研主题，与 FDE 无关；不再复制进分类目录） |
 | `vendor/company-brain` | nemock/company-brain | c82e2de | MIT | **只 vendor**：`derived_from` 边 + 置信度半衰期是设计模式 |
 | `vendor/claude-code-video-toolkit` | digitalsamba/claude-code-video-toolkit | da3f474 | MIT | 装 video/ 11 个 |
-| `vendor/video-shotcraft` | Vincentwei1021/video-shotcraft | 43bd349 | Apache-2.0 | 装 video/video-shotcraft |
+| `vendor/video-shotcraft (retired)` | Vincentwei1021/video-shotcraft | 43bd349 | Apache-2.0 | 装 video/video-shotcraft |
 | `vendor/html-video` | nexu-io/html-video | c414ecc | Apache-2.0 | **只 vendor**：BGM/TTS 混音契约参数来源 |
 | `vendor/openai-edge-tts` | travisvn/openai-edge-tts | edaed2a | GPL-3.0 | **只 vendor**：本地 TTS 兜底服务，无 SKILL.md |
 
@@ -285,7 +293,7 @@
 
 | 上游 skill | 处置 | 理由 / 吸收方 |
 |------------|------|---------------|
-| `academy-guide` `algorithmic-art` `canvas-design` `claude-api` `discernment-nudge` `docx` `mcp-builder` `pdf` `pptx` `slack-gif-creator` `web-artifacts-builder` `xlsx` | **装** | vault 内无同类，能力不重复 |
+| `academy-guide (retired)` `algorithmic-art` `canvas-design` `claude-api` `discernment-nudge` `docx` `mcp-builder (retired)` `pdf` `pptx` `slack-gif-creator` `web-artifacts-builder` `xlsx` | **装** | vault 内无同类，能力不重复 |
 | `frontend-design` | 弃 | 与 `taste-frontend` / `taste-redesign` 重叠（同一套「别像 AI 默认」的审美判据） |
 | `brand-guidelines` | 弃 | 只讲 Anthropic 品牌色/字体，与 `taste-brandkit` / `taste-stitch` 重叠 |
 | `theme-factory` | 弃 | 主题配色/字体，与 `taste-brandkit` / `taste-stitch` / `lieflat-charts` 色彩预设重叠 |

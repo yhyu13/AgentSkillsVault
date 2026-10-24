@@ -1,0 +1,608 @@
+{
+  "academy-guide": {
+    "defects": "S",
+    "repo_delete": [],
+    "vendor_keep": [
+      "vendor/anthropics-skills/skills/academy-guide"
+    ],
+    "installed": true
+  },
+  "ai-3d-toolchain": {
+    "defects": "ES",
+    "repo_delete": [
+      "game-dev/ai-3d-toolchain"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "automated-triage": {
+    "defects": "US",
+    "repo_delete": [
+      "devops/monte-carlo/automated-triage"
+    ],
+    "vendor_keep": [
+      "vendor/mc-agent-toolkit/skills/automated-triage"
+    ],
+    "installed": true
+  },
+  "browser-video-recording": {
+    "defects": "S",
+    "repo_delete": [
+      "video/mengto/browser-video-recording"
+    ],
+    "vendor_keep": [
+      "vendor/mengto-skills/agent-skills/codex/browser-video-recording"
+    ],
+    "installed": true
+  },
+  "competitor-profiling": {
+    "defects": "E",
+    "repo_delete": [
+      "management/marketing/competitor-profiling"
+    ],
+    "vendor_keep": [
+      "vendor/marketingskills/skills/competitor-profiling"
+    ],
+    "installed": true
+  },
+  "customer-research": {
+    "defects": "E",
+    "repo_delete": [
+      "management/marketing/customer-research"
+    ],
+    "vendor_keep": [
+      "vendor/marketingskills/skills/customer-research"
+    ],
+    "installed": true
+  },
+  "deferred-taxes": {
+    "defects": "S",
+    "repo_delete": [
+      "management/finance/accounting/deferred-taxes"
+    ],
+    "vendor_keep": [
+      "vendor/everything-claude-finance/skills/accounting/deferred-taxes"
+    ],
+    "installed": true
+  },
+  "elevenlabs": {
+    "defects": "S",
+    "repo_delete": [
+      "video/elevenlabs"
+    ],
+    "vendor_keep": [
+      "vendor/claude-code-video-toolkit/.claude/skills/elevenlabs"
+    ],
+    "installed": true
+  },
+  "frontend-slides": {
+    "defects": "ES",
+    "repo_delete": [
+      "design/frontend-slides"
+    ],
+    "vendor_keep": [
+      "vendor/frontend-slides",
+      "vendor/frontend-slides/plugins/frontend-slides/skills/frontend-slides"
+    ],
+    "installed": true
+  },
+  "gaap-standards": {
+    "defects": "S",
+    "repo_delete": [
+      "management/finance/accounting/gaap-standards"
+    ],
+    "vendor_keep": [
+      "vendor/everything-claude-finance/skills/accounting/gaap-standards"
+    ],
+    "installed": true
+  },
+  "genoffice": {
+    "defects": "S",
+    "repo_delete": [
+      "content/genoffice"
+    ],
+    "vendor_keep": [
+      "vendor/genoffice/skills/genoffice"
+    ],
+    "installed": true
+  },
+  "god-leader-advisor": {
+    "defects": "S",
+    "repo_delete": [
+      "management/god-leader-advisor"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "grafana-assistant-mcp": {
+    "defects": "S",
+    "repo_delete": [
+      "devops/grafana/grafana-cloud/grafana-assistant-mcp"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "grafana-datasources-provisioning": {
+    "defects": "S",
+    "repo_delete": [
+      "devops/grafana/grafana-datasources/grafana-datasources-provisioning"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "grafana-loki": {
+    "defects": "ES",
+    "repo_delete": [
+      "devops/grafana/grafana-lgtm/grafana-loki"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "grafana-synthetic-monitoring-checks": {
+    "defects": "S",
+    "repo_delete": [
+      "devops/grafana/grafana-cloud/grafana-synthetic-monitoring-checks"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "grafana-testing": {
+    "defects": "S",
+    "repo_delete": [
+      "devops/grafana/grafana-cloud/grafana-testing"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "guide-from-probes": {
+    "defects": "ES",
+    "repo_delete": [
+      "game-dev/guide-from-probes"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "html-slides": {
+    "defects": "ES",
+    "repo_delete": [
+      "design/html-slides"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "html-to-pptx": {
+    "defects": "E",
+    "repo_delete": [
+      "design/html-to-pptx"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "hyperframes-cli": {
+    "defects": "S",
+    "repo_delete": [
+      "content/hyperframes-cli"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "hyperframes-registry": {
+    "defects": "S",
+    "repo_delete": [
+      "content/hyperframes-registry"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "intro-scene-until-perfect": {
+    "defects": "ES",
+    "repo_delete": [
+      "game-dev/intro-scene-until-perfect"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "kimi3-game-gen": {
+    "defects": "S",
+    "repo_delete": [
+      "game-dev/kimi3-game-gen"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "kinetic-reel": {
+    "defects": "E",
+    "repo_delete": [
+      "video/kinetic-reel"
+    ],
+    "vendor_keep": [
+      "vendor/opus-video-skills/skills/kinetic-reel"
+    ],
+    "installed": true
+  },
+  "lieflat-charts": {
+    "defects": "E",
+    "repo_delete": [
+      "content/lieflat-charts"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "market-intel": {
+    "defects": "ES",
+    "repo_delete": [
+      "content/market-intel"
+    ],
+    "vendor_keep": [
+      "vendor/market-intel/skills/market-intel"
+    ],
+    "installed": true
+  },
+  "marketing-council": {
+    "defects": "E",
+    "repo_delete": [
+      "management/marketing/marketing-council"
+    ],
+    "vendor_keep": [
+      "vendor/marketingskills/skills/marketing-council"
+    ],
+    "installed": true
+  },
+  "mcp-builder": {
+    "defects": "S",
+    "repo_delete": [],
+    "vendor_keep": [
+      "vendor/anthropics-skills/skills/mcp-builder"
+    ],
+    "installed": true
+  },
+  "media-use": {
+    "defects": "S",
+    "repo_delete": [],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "monte-carlo-analyze-root-cause": {
+    "defects": "US",
+    "repo_delete": [
+      "devops/monte-carlo/monte-carlo-analyze-root-cause"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "monte-carlo-incident-response": {
+    "defects": "U",
+    "repo_delete": [
+      "devops/monte-carlo/monte-carlo-incident-response"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "monte-carlo-monitoring-advisor": {
+    "defects": "US",
+    "repo_delete": [
+      "devops/monte-carlo/monte-carlo-monitoring-advisor"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "monte-carlo-performance-diagnosis": {
+    "defects": "US",
+    "repo_delete": [
+      "devops/monte-carlo/monte-carlo-performance-diagnosis"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "monte-carlo-remediation": {
+    "defects": "US",
+    "repo_delete": [
+      "devops/monte-carlo/monte-carlo-remediation"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "monte-carlo-storage-cost-analysis": {
+    "defects": "US",
+    "repo_delete": [
+      "devops/monte-carlo/monte-carlo-storage-cost-analysis"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "monte-carlo-troubleshoot-agent-traces": {
+    "defects": "US",
+    "repo_delete": [
+      "devops/monte-carlo/monte-carlo-troubleshoot-agent-traces"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "moviepy": {
+    "defects": "ES",
+    "repo_delete": [
+      "video/moviepy"
+    ],
+    "vendor_keep": [
+      "vendor/claude-code-video-toolkit/.claude/skills/moviepy"
+    ],
+    "installed": true
+  },
+  "painted-animation": {
+    "defects": "E",
+    "repo_delete": [
+      "video/painted-animation"
+    ],
+    "vendor_keep": [
+      "vendor/opus-video-skills/skills/painted-animation"
+    ],
+    "installed": true
+  },
+  "planetscale-mcp-agent-operating-model": {
+    "defects": "S",
+    "repo_delete": [
+      "devops/planetscale/planetscale-mcp-agent-operating-model"
+    ],
+    "vendor_keep": [
+      "vendor/planetscale-skills/planetscale-mcp-agent-operating-model"
+    ],
+    "installed": true
+  },
+  "playwright-recording": {
+    "defects": "ES",
+    "repo_delete": [
+      "video/playwright-recording"
+    ],
+    "vendor_keep": [
+      "vendor/claude-code-video-toolkit/.claude/skills/playwright-recording"
+    ],
+    "installed": true
+  },
+  "playwright-testing": {
+    "defects": "U",
+    "repo_delete": [
+      "game-dev/playwright-testing"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "product-strategist": {
+    "defects": "ES",
+    "repo_delete": [
+      "management/product-strategist"
+    ],
+    "vendor_keep": [
+      "vendor/claude-skills/product-team/skills/product-strategist"
+    ],
+    "installed": true
+  },
+  "qwen-edit": {
+    "defects": "ES",
+    "repo_delete": [
+      "video/qwen-edit"
+    ],
+    "vendor_keep": [
+      "vendor/claude-code-video-toolkit/.claude/skills/qwen-edit"
+    ],
+    "installed": true
+  },
+  "remotion-best-practices": {
+    "defects": "EL",
+    "repo_delete": [
+      "video/remotion-best-practices"
+    ],
+    "vendor_keep": [
+      "vendor/remotion-skills/skills/remotion-best-practices"
+    ],
+    "installed": true
+  },
+  "remotion-create": {
+    "defects": "L",
+    "repo_delete": [
+      "video/remotion-create"
+    ],
+    "vendor_keep": [
+      "vendor/remotion-skills/skills/remotion-create"
+    ],
+    "installed": true
+  },
+  "remotion-docs": {
+    "defects": "L",
+    "repo_delete": [
+      "video/remotion-docs"
+    ],
+    "vendor_keep": [
+      "vendor/remotion-skills/skills/remotion-docs"
+    ],
+    "installed": true
+  },
+  "remotion-maps": {
+    "defects": "L",
+    "repo_delete": [
+      "video/remotion-maps"
+    ],
+    "vendor_keep": [
+      "vendor/remotion-skills/skills/remotion-maps"
+    ],
+    "installed": true
+  },
+  "remotion-multimedia": {
+    "defects": "L",
+    "repo_delete": [
+      "video/remotion-multimedia"
+    ],
+    "vendor_keep": [
+      "vendor/remotion-skills/skills/remotion-multimedia"
+    ],
+    "installed": true
+  },
+  "remotion-render": {
+    "defects": "L",
+    "repo_delete": [
+      "video/remotion-render"
+    ],
+    "vendor_keep": [
+      "vendor/remotion-skills/skills/remotion-render"
+    ],
+    "installed": true
+  },
+  "remotion-saas": {
+    "defects": "L",
+    "repo_delete": [
+      "video/remotion-saas"
+    ],
+    "vendor_keep": [
+      "vendor/remotion-skills/skills/remotion-saas"
+    ],
+    "installed": true
+  },
+  "remotion-studio": {
+    "defects": "L",
+    "repo_delete": [
+      "video/remotion-studio"
+    ],
+    "vendor_keep": [
+      "vendor/remotion-skills/skills/remotion-studio"
+    ],
+    "installed": true
+  },
+  "remotion-to-hyperframes": {
+    "defects": "E",
+    "repo_delete": [
+      "content/remotion-to-hyperframes"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "remotion-upgrade": {
+    "defects": "L",
+    "repo_delete": [
+      "video/remotion-upgrade"
+    ],
+    "vendor_keep": [
+      "vendor/remotion-skills/skills/remotion-upgrade"
+    ],
+    "installed": true
+  },
+  "render-quality-loop": {
+    "defects": "ES",
+    "repo_delete": [
+      "game-dev/render-quality-loop"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "requesting-code-review": {
+    "defects": "ES",
+    "repo_delete": [
+      "software-development/requesting-code-review"
+    ],
+    "vendor_keep": [
+      "vendor/superpowers/skills/requesting-code-review"
+    ],
+    "installed": true
+  },
+  "research": {
+    "defects": "L",
+    "repo_delete": [
+      "software-development/mattpocock/skills/engineering/research"
+    ],
+    "vendor_keep": [
+      "vendor/claude-skills/research/research/skills/research",
+      "vendor/mattpocock-skills/skills/engineering/research"
+    ],
+    "installed": true
+  },
+  "setup-matt-pocock-skills": {
+    "defects": "E",
+    "repo_delete": [
+      "software-development/mattpocock/skills/engineering/setup-matt-pocock-skills"
+    ],
+    "vendor_keep": [
+      "vendor/mattpocock-skills/skills/engineering/setup-matt-pocock-skills"
+    ],
+    "installed": true
+  },
+  "stitched-full-page-capture": {
+    "defects": "E",
+    "repo_delete": [
+      "video/mengto/stitched-full-page-capture"
+    ],
+    "vendor_keep": [
+      "vendor/mengto-skills/agent-skills/codex/stitched-full-page-capture"
+    ],
+    "installed": true
+  },
+  "storyboard": {
+    "defects": "UES",
+    "repo_delete": [
+      "design/storyboard"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "synthetic-ui-demo": {
+    "defects": "S",
+    "repo_delete": [
+      "video/synthetic-ui-demo"
+    ],
+    "vendor_keep": [
+      "vendor/claude-code-video-toolkit/.claude/skills/synthetic-ui-demo"
+    ],
+    "installed": true
+  },
+  "taste-frontend": {
+    "defects": "L",
+    "repo_delete": [
+      "design/taste-frontend"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "three-pbr-workflow": {
+    "defects": "E",
+    "repo_delete": [
+      "game-dev/three-pbr-workflow"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "video-shotcraft": {
+    "defects": "E",
+    "repo_delete": [
+      "video/video-shotcraft"
+    ],
+    "vendor_keep": [
+      "vendor/video-shotcraft"
+    ],
+    "installed": true
+  },
+  "video_toolkit": {
+    "defects": "ES",
+    "repo_delete": [
+      "video/video_toolkit"
+    ],
+    "vendor_keep": [],
+    "installed": true
+  },
+  "writing-plans": {
+    "defects": "S",
+    "repo_delete": [
+      "software-development/writing-plans"
+    ],
+    "vendor_keep": [
+      "vendor/superpowers/skills/writing-plans"
+    ],
+    "installed": true
+  },
+  "writing-skills": {
+    "defects": "ES",
+    "repo_delete": [
+      "software-development/writing-skills"
+    ],
+    "vendor_keep": [
+      "vendor/superpowers/skills/writing-skills"
+    ],
+    "installed": true
+  }
+}

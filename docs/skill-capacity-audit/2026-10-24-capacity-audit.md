@@ -528,7 +528,7 @@ python docs/skill-capacity-audit/score_skills.py --root $env:USERPROFILE\.claude
 | `dt-setup-oneagent` | 7.5 | 2.5 | 2.0 | 1.0 | 2.0 | 0.0 | 0 | `devops\dynatrace\dt-setup-oneagent` |
 | `elevenlabs-tts` | 7.5 | 2.5 | 1.0 | 1.0 | 2.0 | 1.0 | 0 | `video\mengto\elevenlabs-tts` |
 | `game-dev-loop` | 7.5 | 3.0 | 2.0 | 0.0 | 2.0 | 0.5 | 0 | `game-dev\game-dev-loop` |
-| `investment-masters` | 7.5 | 2.5 | 2.0 | 0.5 | 2.0 | 0.5 | 0 | `FDE\investment-masters` |
+| `investment-masters` | 7.5 | 2.5 | 2.0 | 0.5 | 2.0 | 0.5 | 0 | `vendor\investment-masters` |
 | `management-loop` | 7.5 | 3.0 | 2.0 | 0.0 | 2.0 | 0.5 | 0 | `management\management-loop` |
 | `remotion-interactivity` | 7.5 | 2.25 | 2.0 | 0.75 | 2.0 | 0.5 | 0 | `video\remotion-interactivity` |
 | `slack-gif-creator` | 7.5 | 2.5 | 2.0 | 0.5 | 2.0 | 0.5 | 0 | `—` |

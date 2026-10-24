@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-25",
+  "installed_skills": 335,
+  "not_in_vault": [
+    "academy-guide",
+    "mcp-builder",
+    "media-use",
+    "algorithmic-art",
+    "browser-automation",
+    "canvas-design",
+    "claude-api",
+    "deep-research",
+    "discernment-nudge",
+    "docx",
+    "goal-persistence",
+    "investment-masters",
+    "orchestrate",
+    "pdf",
+    "pptx",
+    "slack-gif-creator",
+    "tripo-3d-generation",
+    "web-artifacts-builder",
+    "xlsx"
+  ],
+  "U_never_usable": 10,
+  "E_error_refs": 29,
+  "L_low_quality": 11,
+  "S_not_standalone": 42,
+  "clean": 268,
+  "multi_defect": [
+    "storyboard"
+  ]
+}
