@@ -75,7 +75,7 @@
 | ui-mockups | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\ui-mockups` — 产品 UI 截图级 mockup（浏览器窗口 chrome / 真实品牌图标） |
 | visual-explainer | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\visual-explainer` — 可视化解释产物（commands/ kit/ mcp/ plan/ pptx/ video/ templates/ + extension.ts） |
 | web-prototype | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\web-prototype` — 网页原型（assets/ references/ example.html） |
-| html-ppt | repo (submodule) | `github.com/lewislulu/html-ppt-skill` @ `fd16290` — HTML PPT Studio：一个 theme 文件 = 一套外观、一个 layout 文件 = 一种页面、一个 animation class = 一种入场；token 化设计系统（`assets/base.css`），纯静态、可离线，MIT；已复制进 `design/html-ppt` |
+| html-ppt | repo (submodule) | `github.com/lewislulu/html-ppt-skill` @ `fd16290` — HTML PPT Studio：一个 theme 文件 = 一套外观、一个 layout 文件 = 一种页面、一个 animation class = 一种入场；token 化设计系统（`assets/base.css`），纯静态、可离线，MIT；已复制进 `SKILL/design/html-ppt`（2026-10-25 从 `vendor/html-ppt-skill` 重新复制：目录重构时该副本被删除，用户机器上只剩一个 1 文件的残桩和一份缺 13 个文件的旧拷贝） |
 | hands-on-deck | repo (submodule) | `github.com/EveryInc/hands-on-deck` @ `a24b996` (MIT) — 上游 `skills/hands-on-deck`：任何 `.pptx` 相关的活（改现有 deck 而非新生成） |
 | presentation-skill | repo (submodule) | `github.com/siril9/presentation-skill` @ `efd899c` (MIT) — 上游根即 skill（另带 `plugins/` 内同一 skill 的第二份拷贝，vault 副本已删除该重复目录）；裁剪掉 `decks/ examples/ tests/` 等演示物料 |
 | html-to-pptx (retired) | repo (submodule) | `github.com/Hasasasa/html-to-editable-pptx` @ `17c1dbb` (MIT) — 上游根即 skill，`name: html-to-pptx`，目录按 frontmatter 改名 |
