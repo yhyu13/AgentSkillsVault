@@ -1,0 +1,332 @@
+{
+  "generated_for": "skill library pressure analysis",
+  "stores": {
+    "claude": "C:\\Users\\yuhang\\.claude\\skills",
+    "kilo": "C:\\Users\\yuhang\\.kilo\\skills",
+    "codex": "C:\\Users\\yuhang\\.codex\\skills",
+    "agents": "C:\\Users\\yuhang\\.agents\\skills",
+    "config-kilo": "C:\\Users\\yuhang\\.config\\kilo\\skills"
+  },
+  "unique_skills": 336,
+  "directories": 1345,
+  "per_store_visible": {
+    "claude": 300,
+    "kilo": 283,
+    "codex": 299,
+    "agents": 300,
+    "config-kilo": 163
+  },
+  "per_store_directories": {
+    "claude": 300,
+    "kilo": 283,
+    "codex": 299,
+    "agents": 300,
+    "config-kilo": 163
+  },
+  "per_store_symlinks": {
+    "claude": 1,
+    "kilo": 269,
+    "codex": 269,
+    "agents": 298,
+    "config-kilo": 82
+  },
+  "listing": {
+    "description_chars": 123141,
+    "name_chars": 5893,
+    "listing_chars": 129034,
+    "listing_tokens_est": 35843,
+    "avg_description_chars": 366.5,
+    "avg_entry_cost_chars": 384.0,
+    "max_description_chars": 1260,
+    "chars_per_token_assumed": 3.6
+  },
+  "budgets": {
+    "claude_code_1pct_of_200k": {
+      "tokens": 2000,
+      "chars": 7200,
+      "listing_over_budget_x": 17.9
+    },
+    "codex_fallback_8000_chars": {
+      "chars": 8000,
+      "listing_over_budget_x": 16.1
+    },
+    "codex_max_context_tokens_cap": {
+      "tokens": 10000,
+      "chars": 36000,
+      "listing_over_budget_x": 3.6
+    },
+    "scenarios": [
+      {
+        "label": "Claude Code 1% @ 200K ctx",
+        "context_window_tokens": 200000,
+        "fraction": 0.01,
+        "budget_tokens": 2000,
+        "budget_chars": 7200,
+        "skills_that_fit_at_avg_entry_cost": 18,
+        "listing_over_budget_x": 17.9
+      },
+      {
+        "label": "Codex 2% @ 200K ctx",
+        "context_window_tokens": 200000,
+        "fraction": 0.02,
+        "budget_tokens": 4000,
+        "budget_chars": 14400,
+        "skills_that_fit_at_avg_entry_cost": 37,
+        "listing_over_budget_x": 9.0
+      },
+      {
+        "label": "Claude Code 1% @ 1M ctx",
+        "context_window_tokens": 1000000,
+        "fraction": 0.01,
+        "budget_tokens": 10000,
+        "budget_chars": 36000,
+        "skills_that_fit_at_avg_entry_cost": 93,
+        "listing_over_budget_x": 3.6
+      },
+      {
+        "label": "Codex 2% @ 1M ctx",
+        "context_window_tokens": 1000000,
+        "fraction": 0.02,
+        "budget_tokens": 20000,
+        "budget_chars": 72000,
+        "skills_that_fit_at_avg_entry_cost": 187,
+        "listing_over_budget_x": 1.8
+      }
+    ]
+  },
+  "ambiguity": {
+    "threshold": 0.3,
+    "shadowing_pairs": 16,
+    "skills_in_at_least_one_shadowing_pair": 23,
+    "share_of_library_pct": 6.8,
+    "top_pairs": [
+      {
+        "jaccard": 0.714,
+        "a": "brand-pptx",
+        "b": "brand-xlsx"
+      },
+      {
+        "jaccard": 0.69,
+        "a": "brand-docx",
+        "b": "brand-pptx"
+      },
+      {
+        "jaccard": 0.659,
+        "a": "brand-docx",
+        "b": "brand-xlsx"
+      },
+      {
+        "jaccard": 0.556,
+        "a": "grill-me",
+        "b": "grill-with-docs"
+      },
+      {
+        "jaccard": 0.548,
+        "a": "blog-to-linkedin-post",
+        "b": "blog-to-twitter-post"
+      },
+      {
+        "jaccard": 0.429,
+        "a": "project-update",
+        "b": "weekly-report"
+      },
+      {
+        "jaccard": 0.419,
+        "a": "aura-asset-images",
+        "b": "unsplash-asset-images"
+      },
+      {
+        "jaccard": 0.377,
+        "a": "grafana-loki-label-analyzer",
+        "b": "grafana-prometheus-label-strategy"
+      },
+      {
+        "jaccard": 0.375,
+        "a": "game-dev-loop",
+        "b": "software-dev-loop"
+      },
+      {
+        "jaccard": 0.362,
+        "a": "hands-on-deck",
+        "b": "pptx"
+      },
+      {
+        "jaccard": 0.333,
+        "a": "style-bytedance",
+        "b": "style-tencent"
+      },
+      {
+        "jaccard": 0.333,
+        "a": "style-bytedance",
+        "b": "style-google"
+      },
+      {
+        "jaccard": 0.333,
+        "a": "style-alibaba",
+        "b": "style-tencent"
+      },
+      {
+        "jaccard": 0.333,
+        "a": "style-alibaba",
+        "b": "style-bytedance"
+      },
+      {
+        "jaccard": 0.316,
+        "a": "style-google",
+        "b": "style-microsoft"
+      },
+      {
+        "jaccard": 0.3,
+        "a": "style-google",
+        "b": "style-report"
+      },
+      {
+        "jaccard": 0.286,
+        "a": "three-clay-scenes",
+        "b": "three-procedural-scenes"
+      },
+      {
+        "jaccard": 0.267,
+        "a": "writing-beats",
+        "b": "writing-shape"
+      },
+      {
+        "jaccard": 0.263,
+        "a": "grafana-alerting-irm",
+        "b": "grafana-oncall-irm"
+      },
+      {
+        "jaccard": 0.261,
+        "a": "planetscale-vitess-safety-review",
+        "b": "planetscale-webhook-automation-recommendations"
+      },
+      {
+        "jaccard": 0.25,
+        "a": "style-google",
+        "b": "style-tencent"
+      },
+      {
+        "jaccard": 0.25,
+        "a": "style-alibaba",
+        "b": "style-google"
+      },
+      {
+        "jaccard": 0.25,
+        "a": "renzhengfei-advisor",
+        "b": "zhangyiming-advisor"
+      },
+      {
+        "jaccard": 0.25,
+        "a": "project-update",
+        "b": "quarterly-review"
+      },
+      {
+        "jaccard": 0.25,
+        "a": "mgmt-discipline",
+        "b": "mgmt-individual"
+      }
+    ],
+    "most_shadowed": [
+      [
+        "style-bytedance",
+        3
+      ],
+      [
+        "style-google",
+        3
+      ],
+      [
+        "brand-pptx",
+        2
+      ],
+      [
+        "brand-xlsx",
+        2
+      ],
+      [
+        "brand-docx",
+        2
+      ],
+      [
+        "style-tencent",
+        2
+      ],
+      [
+        "style-alibaba",
+        2
+      ],
+      [
+        "grill-me",
+        1
+      ],
+      [
+        "grill-with-docs",
+        1
+      ],
+      [
+        "blog-to-linkedin-post",
+        1
+      ],
+      [
+        "blog-to-twitter-post",
+        1
+      ],
+      [
+        "project-update",
+        1
+      ],
+      [
+        "weekly-report",
+        1
+      ],
+      [
+        "aura-asset-images",
+        1
+      ],
+      [
+        "unsplash-asset-images",
+        1
+      ]
+    ]
+  },
+  "integrity": {
+    "duplicate_frontmatter_names": [],
+    "cross_store_name_collisions": [],
+    "divergence_config_store_vs_vault": {
+      "compared": 106,
+      "identical_after_crlf_normalisation": 106,
+      "different_after_crlf_normalisation": 0,
+      "different_raw_bytes": 6,
+      "raw_only_names": [
+        "analysis-to-vault",
+        "cat-game-architecture",
+        "gdd-markdown-template",
+        "single-file-html-game",
+        "technical-design-document",
+        "ue-renderdoc-auto-capture"
+      ],
+      "detail": []
+    }
+  },
+  "tiers": {},
+  "categories": {
+    "agents": 1,
+    "content": 18,
+    "design": 24,
+    "devops": 57,
+    "game-dev": 26,
+    "hand-installed": 15,
+    "knowledge-vault": 2,
+    "management": 43,
+    "software-development": 39,
+    "video": 43,
+    "writing": 1
+  },
+  "provenance": {
+    "curated": 255,
+    "vendor": 14,
+    "host": 0,
+    "hand-installed": 67
+  },
+  "vault_manifest_entries": 269
+}
