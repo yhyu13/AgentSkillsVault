@@ -28,7 +28,7 @@ $ok = 0; $bad = 0; $missing = 0
 foreach ($line in Get-Content -LiteralPath $Manifest -Encoding UTF8) {
   $line = $line.Trim()
   if (-not $line -or $line.StartsWith('#')) { continue }
-  $parts = $line -split '\|', 2
+  $parts = $line -split '\|', 3
   if ($parts.Count -lt 2) { continue }
   $name = $parts[0].Trim()
   $src = $parts[1].Trim()

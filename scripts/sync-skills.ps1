@@ -15,7 +15,9 @@
 
 param(
   [string]$Manifest = (Join-Path (Split-Path -Parent $PSScriptRoot) 'scripts\install-manifest.txt'),
-  [switch]$Prune    # remove installed skills that are not in the manifest
+  [switch]$Prune,        # remove installed skills that are not in the manifest
+  [string]$Profile = 'all',  # 'all' installs tiers A+B; 'core' installs tier A only
+  [switch]$PruneToProfile  # with -Profile core, also REMOVE tier B skills from the canonical store
 )
 
 $ErrorActionPreference = 'Continue'
@@ -67,17 +69,51 @@ New-Item -ItemType Directory -Force -Path $ClaudePath | Out-Null
 foreach ($v in $Views) { New-Item -ItemType Directory -Force -Path $v | Out-Null }
 
 $entries = New-Object System.Collections.Generic.List[object]
+$skipped = New-Object System.Collections.Generic.List[string]
 foreach ($line in Get-Content -LiteralPath $Manifest -Encoding UTF8) {
   $line = $line.Trim()
   if (-not $line -or $line.StartsWith('#')) { continue }
-  $parts = $line -split '\|', 2
+  # 3 fields: name | path | tier. Older 2-field manifests still parse.
+  $parts = $line -split '\|', 3
   if ($parts.Count -lt 2) { continue }
-  $entries.Add([pscustomobject]@{ Name = $parts[0].Trim(); Source = $parts[1].Trim() })
+  $tier = if ($parts.Count -ge 3 -and $parts[2].Trim()) { $parts[2].Trim().ToUpper() } else { 'A' }
+  $entries.Add([pscustomobject]@{ Name = $parts[0].Trim(); Source = $parts[1].Trim(); Tier = $tier })
 }
 Write-Host ("Manifest entries: {0}" -f $entries.Count)
 
+# -Profile core -PruneToProfile shrinks the always-visible listing for harnesses
+# that have no "hide a skill" mechanism (Kilo has none): tier B skills are
+# removed from the canonical store, and the three junction views follow because
+# they point at it. The vault keeps every skill, so re-running with the default
+# profile restores them.
+if ($PruneToProfile) {
+  if ($Profile -eq 'all') { Write-Error '-PruneToProfile requires -Profile core.'; exit 1 }
+  $keep = @{}
+  foreach ($e in $entries) { if ($e.Tier -eq 'A') { $keep[$e.Name] = $true } }
+  $removed = 0
+  foreach ($d in (Get-ChildItem -LiteralPath $Real -Directory -Force -ErrorAction SilentlyContinue)) {
+    if ($keep.ContainsKey($d.Name)) { continue }
+    if (-not (Test-Path -LiteralPath (Join-Path $d.FullName 'SKILL.md'))) { continue }
+    Remove-Item -LiteralPath $d.FullName -Recurse -Force
+    $removed++
+  }
+  Write-Host ("prune-to-profile: removed {0} non-tier-A skill(s) from the canonical store" -f $removed)
+}
+
 $report = New-Object System.Collections.Generic.List[object]
 foreach ($e in $entries) {
+  # Tier C is vault-only. Under -Profile core only tier A is installed, so the
+  # always-visible listing of harnesses without a hide mechanism stays small.
+  if ($e.Tier -eq 'C') {
+    $report.Add([pscustomobject]@{ Skill = $e.Name; Action = 'tier-C-skipped' }) | Out-Null
+    $skipped.Add($e.Name)
+    continue
+  }
+  if ($Profile -eq 'core' -and $e.Tier -ne 'A') {
+    $report.Add([pscustomobject]@{ Skill = $e.Name; Action = 'tier-skipped-core-profile' }) | Out-Null
+    $skipped.Add($e.Name)
+    continue
+  }
   if ($e.Source -eq 'HOST') {
     # Host-local skills are not tracked in this vault, but they still follow the layout rule:
     # the real copy lives in ~/.claude/skills and the other stores are junction views.
@@ -105,6 +141,12 @@ foreach ($e in $entries) {
   }
   $srcPath = Join-Path $Vault ($e.Source -replace '/', '\')
   if (-not (Test-Path -LiteralPath $srcPath)) {
+    $report.Add([pscustomobject]@{ Skill = $e.Name; Action = 'SOURCE-MISSING' }) | Out-Null
+    continue
+  }
+  # A failed submodule clone leaves an empty source dir behind. Installing it would
+  # create a skill dir with no SKILL.md - a skill that can never load. Treat it as missing.
+  if (-not (Test-Path -LiteralPath (Join-Path $srcPath 'SKILL.md'))) {
     $report.Add([pscustomobject]@{ Skill = $e.Name; Action = 'SOURCE-MISSING' }) | Out-Null
     continue
   }
@@ -150,8 +192,11 @@ if ($Prune) {
   }
 }
 
-$counts = $report | Where-Object { $_.Action -notin @('unchanged','host-skip') } | Group-Object Action
+$counts = $report | Where-Object { $_.Action -notin @('unchanged','host-skip','tier-C-skipped','tier-skipped-core-profile') } | Group-Object Action
 foreach ($c in $counts) { Write-Host ("{0}={1}" -f $c.Name, $c.Count) }
+if ($skipped.Count -gt 0) {
+  Write-Host ("tier-skipped={0} (profile '{1}': tier C is vault-only; tier B is installed only under profile 'all')" -f $skipped.Count, $Profile)
+}
 $problems = $report | Where-Object { $_.Action -eq 'SOURCE-MISSING' -or $_.ViewAction -like 'LINK-FAILED*' }
 if ($problems) {
   Write-Host "`n--- Problems ---"
