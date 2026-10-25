@@ -16,6 +16,26 @@ param(
 
 $ErrorActionPreference = 'Continue'
 
+# Tier assignment: which skills stay in the harness's always-visible listing.
+# scripts/skill-tiers.txt is the hand-edited source of truth; this file is
+# regenerated from it, so never hand-edit install-manifest.txt.
+$TierFile = Join-Path $Vault 'scripts\skill-tiers.txt'
+$tiers = @{}
+if (Test-Path -LiteralPath $TierFile) {
+  foreach ($line in (Get-Content -LiteralPath $TierFile -Encoding UTF8)) {
+    $l = $line.Trim()
+    if (-not $l -or $l.StartsWith('#') -or $l -notmatch '\|') { continue }
+    $p = $l -split '\|', 2
+    $tiers[$p[0].Trim()] = $p[1].Trim().ToUpper()
+  }
+}
+$untiered = New-Object System.Collections.Generic.List[string]
+function Get-Tier([string]$name) {
+  if ($tiers.ContainsKey($name)) { return $tiers[$name] }
+  $untiered.Add($name)
+  return 'A'   # unlisted skills default to visible; verify-capacity.ps1 flags them
+}
+
 # Vendor-sourced skills to install, as "<name>|<relative-vendor-path>".
 # Skills retired by the 2026-10-25 defect audit are NOT here any more; their
 # upstream copy stays under vendor/ and REMOVED-SKILLS.md records why.
@@ -81,10 +101,14 @@ $out = Join-Path $Vault 'scripts\install-manifest.txt'
 $lines = New-Object System.Collections.Generic.List[string]
 $lines.Add('# Install manifest — the authoritative list of user-level skills and their vault source.')
 $lines.Add('#')
-$lines.Add('# Format:  <skill-name>|<relative-path-in-vault>')
-$lines.Add('#          <skill-name>|HOST          -> installed outside the vault; sync leaves it alone')
+$lines.Add('# Format:  <skill-name>|<relative-path-in-vault>|<tier>')
+$lines.Add('#          <skill-name>|HOST|<tier>   -> installed outside this vault; sync leaves it alone')
 $lines.Add('# Lines starting with ''#'' and blank lines are ignored.')
 $lines.Add('#')
+$lines.Add('# Tier comes from scripts/skill-tiers.txt: A = always model-invocable,')
+$lines.Add('# B = installed but hidden from auto-selection, C = not installed.')
+$lines.Add('#')
+$lines.Add('# THIS FILE IS GENERATED - edit scripts/skill-tiers.txt, not this file.')
 $lines.Add('# Rules (see AGENTS.md):')
 $lines.Add('#   * ~/.claude/skills/<name>   is the ONE real copy (canonical store)')
 $lines.Add('#   * ~/.kilo/skills, ~/.codex/skills, ~/.agents/skills are junction views onto it')
@@ -105,10 +129,13 @@ foreach ($group in @('curated','vendor','host')) {
   }
   $lines.Add("# --- $label ---")
   foreach ($r in ($winner.Values | Where-Object { $_.Kind -eq $group } | Sort-Object Name)) {
-    $lines.Add(('{0}|{1}' -f $r.Name, $r.Source))
+    $lines.Add(('{0}|{1}|{2}' -f $r.Name, $r.Source, (Get-Tier $r.Name)))
   }
   $lines.Add('')
 }
 
 [System.IO.File]::WriteAllLines($out, $lines, (New-Object System.Text.UTF8Encoding($false)))
 Write-Host ("manifest written: {0} skills ({1})" -f $winner.Count, $out)
+if ($untiered.Count -gt 0) {
+  Write-Warning ("{0} skill(s) have no row in scripts/skill-tiers.txt and defaulted to tier A: {1}" -f $untiered.Count, ($untiered -join ', '))
+}
