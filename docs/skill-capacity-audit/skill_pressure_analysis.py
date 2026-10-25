@@ -385,20 +385,31 @@ def main() -> int:
     # ---- tiered view ---------------------------------------------------------
     tier_view = {}
     if tiers:
-        tier_a = [r for r in recs if tiers.get(r["name"], "A") == "A"]
-        tier_b = [r for r in recs if tiers.get(r["name"], "A") == "B"]
-        tier_c = [r for r in recs if tiers.get(r["name"], "A") == "C"]
-        a_chars = sum(r["desc_chars"] + len(r["name"]) for r in tier_a)
+        def tier_of(name: str) -> str:
+            # a skill that is not in the manifest is not tiered at all - it lives
+            # in the machine's own store and is always visible
+            return tiers.get(name, "A" if name not in manifest else "A")
+
+        manifest_a = [r for r in recs if manifest.get(r["name"], {}).get("tier") == "A"]
+        manifest_b = [r for r in recs if manifest.get(r["name"], {}).get("tier") == "B"]
+        manifest_c = [r for r in recs if manifest.get(r["name"], {}).get("tier") == "C"]
+        untiered = [r for r in recs if r["name"] not in manifest]
+        a_chars = sum(r["desc_chars"] + len(r["name"]) for r in manifest_a)
+        untiered_chars = sum(r["desc_chars"] + len(r["name"]) for r in untiered)
         tier_view = {
             "tier_file_entries": len(tiers),
-            "tier_A": len(tier_a),
-            "tier_B": len(tier_b),
-            "tier_C": len(tier_c),
-            "tier_A_listing_chars": a_chars,
-            "tier_A_listing_tokens_est": round(a_chars / CHARS_PER_TOKEN),
-            "tier_A_over_1M_claude_budget_x": round(a_chars / (36_000), 2),
-            "tier_A_over_200k_claude_budget_x": round(a_chars / 7_200, 2),
-            "tier_A_over_codex_cap_x": round(a_chars / codex_cap_chars, 2),
+            "manifest_tier_A": len(manifest_a),
+            "manifest_tier_B": len(manifest_b),
+            "manifest_tier_C": len(manifest_c),
+            "not_in_manifest_always_visible": len(untiered),
+            "manifest_tier_A_listing_chars": a_chars,
+            "manifest_tier_A_listing_tokens_est": round(a_chars / CHARS_PER_TOKEN),
+            "manifest_tier_A_over_1M_claude_budget_x": round(a_chars / 36_000, 2),
+            "manifest_tier_A_over_200k_claude_budget_x": round(a_chars / 7_200, 2),
+            "manifest_tier_A_over_codex_cap_x": round(a_chars / codex_cap_chars, 2),
+            "effective_visible_listing_chars": a_chars + untiered_chars,
+            "effective_visible_listing_tokens_est": round((a_chars + untiered_chars) / CHARS_PER_TOKEN),
+            "effective_visible_over_1M_claude_budget_x": round((a_chars + untiered_chars) / 36_000, 2),
         }
 
     result = {

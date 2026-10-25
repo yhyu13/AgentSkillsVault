@@ -308,7 +308,21 @@
       "detail": []
     }
   },
-  "tiers": {},
+  "tiers": {
+    "tier_file_entries": 269,
+    "manifest_tier_A": 58,
+    "manifest_tier_B": 211,
+    "manifest_tier_C": 0,
+    "not_in_manifest_always_visible": 67,
+    "manifest_tier_A_listing_chars": 24249,
+    "manifest_tier_A_listing_tokens_est": 6736,
+    "manifest_tier_A_over_1M_claude_budget_x": 0.67,
+    "manifest_tier_A_over_200k_claude_budget_x": 3.37,
+    "manifest_tier_A_over_codex_cap_x": 0.67,
+    "effective_visible_listing_chars": 42560,
+    "effective_visible_listing_tokens_est": 11822,
+    "effective_visible_over_1M_claude_budget_x": 1.18
+  },
   "categories": {
     "agents": 1,
     "content": 18,
