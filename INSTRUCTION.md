@@ -8,6 +8,12 @@
 > upstream `vendor/` copy kept for re-adding; `.kilo/removed-skills.txt` stops the
 > sync script from reinstalling them.
 
+> **Retired skills (2026-10-26).** 49 more skills were retired after two independent
+> audits on this machine agreed they were unusable here or redundant, plus the
+> PlanetScale, Dynatrace and Grafana Cloud-only families (need accounts this machine
+> does not have). Their rows below are tagged `(retired)`; reasons and upstream copies
+> are in the second section of `REMOVED-SKILLS.md`.
+
 > **Rule:** every skill in this vault is a **copy of** (or a **distillation from**) a source.
 > Record that source so a skill can be re-synced when upstream changes. **Never add a
 > skill without recording its origin here.** This file is the authoritative origin record;
@@ -66,7 +72,7 @@
 |-------|--------|--------|
 | taste-frontend (retired) | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\taste-skill` (GitHub: Leonxlnx/taste-skill) — v2 default; original install name `design-taste-frontend` |
 | taste-redesign | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\redesign-skill` (GitHub: Leonxlnx/taste-skill) — original install name `redesign-existing-projects` |
-| taste-output | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\output-skill` (GitHub: Leonxlnx/taste-skill) — original install name `full-output-enforcement` |
+| taste-output (retired) | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\output-skill` (GitHub: Leonxlnx/taste-skill) — original install name `full-output-enforcement` |
 | taste-imagegen-web | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\imagegen-frontend-web` (GitHub: Leonxlnx/taste-skill) |
 | taste-imagegen-mobile | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\imagegen-frontend-mobile` (GitHub: Leonxlnx/taste-skill) |
 | taste-brandkit | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\brandkit` (GitHub: Leonxlnx/taste-skill) |
@@ -100,10 +106,10 @@
 | kanban-cron-overseer | local (mirrored) | Hermes agent — `~/AppData/Local/hermes/skills/devops/` |
 | cron-pipeline-state-machine | local | reference pattern doc (no upstream) |
 | mock-devops-platform | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\mock-devops-platform` — 模拟 DevOps 平台（部署/流水线/告警）场景数据 |
-| grafana/* (36) | repo (submodule) | `github.com/grafana/skills` @ `3b653d9` (Apache-2.0) — 上游 `skills/grafana-core` `grafana-lgtm` `grafana-cloud` `grafana-datasources`；**目录与 frontmatter `name:` 统一加 `grafana-` 前缀**（上游名如 `admin` `testing` `infrastructure` 会污染平铺的用户级命名空间） |
-| monte-carlo/* (9) | repo (submodule) | `github.com/monte-carlo-data/mc-agent-toolkit` @ `d3915f3` (Apache-2.0) — 监控即代码（根因分析/事故响应/成本/主动监控）；只装 9 个，generic 名的 12 个（`prevent` `onboarding` `manage-mac` 等）留 vendor |
-| planetscale/* (15) | repo (submodule) | `github.com/planetscale/skills` @ `999045c` (MIT) — 变更门禁 / 只读盘点 / Vitess 安全评审 / schema 建议循环 |
-| dynatrace/* (11) | repo (submodule) | `github.com/Dynatrace/dynatrace-for-ai` @ `4f9aa71` (Apache-2.0) — DQL / 日志 / 链路 / 服务 / 成本 / 安全洞察；只装 11 个，平台专属的（aws/azure/gcp/mobile…）留 vendor |
+| grafana/* (36) | repo (submodule) | `github.com/grafana/skills` @ `3b653d9` (Apache-2.0) — 上游 `skills/grafana-core` `grafana-lgtm` `grafana-cloud` `grafana-datasources`；**目录与 frontmatter `name:` 统一加 `grafana-` 前缀**（上游名如 `admin` `testing` `infrastructure` 会污染平铺的用户级命名空间）；2026-10-26 退役 15 个 Grafana Cloud-only skill（见 `REMOVED-SKILLS.md`），装 16 个 |
+| monte-carlo/* (9) (retired 2026-10-26) | repo (submodule) | `github.com/monte-carlo-data/mc-agent-toolkit` @ `d3915f3` (Apache-2.0) — 监控即代码（根因分析/事故响应/成本/主动监控）；只装 9 个，generic 名的 12 个（`prevent` `onboarding` `manage-mac` 等）留 vendor |
+| planetscale/* (15) (retired 2026-10-26) | repo (submodule) | `github.com/planetscale/skills` @ `999045c` (MIT) — 变更门禁 / 只读盘点 / Vitess 安全评审 / schema 建议循环 |
+| dynatrace/* (11) (retired 2026-10-26) | repo (submodule) | `github.com/Dynatrace/dynatrace-for-ai` @ `4f9aa71` (Apache-2.0) — DQL / 日志 / 链路 / 服务 / 成本 / 安全洞察；只装 11 个，平台专属的（aws/azure/gcp/mobile…）留 vendor |
 
 ### FDE/ — 个人学习库（learning-vault 流程）+ FDE 领域语料
 | skill | origin | source |
@@ -196,12 +202,12 @@
 | skill | origin | source |
 |-------|--------|--------|
 | aisides-ai-self-review | local | written for the AISides project |
-| debugger-persona | local | written — debug diagnosis + Chinese doc writing + code discipline persona |
+| debugger-persona (retired) | local | written — debug diagnosis + Chinese doc writing + code discipline persona |
 | journey | local | written (two-column ME/YOU history) |
 | software-dev-loop | local | written — composes goal / docs / test / memory into one dev loop ；2026-10-25 本地 fork：description 首行判别化（消除 shadowing），v1.3.1 |
 | llm-friendly-dsl-verification | local (distilled) | distilled from gdsl project — `D:\GitRepo-My\godot` (Godot GDExtension recipe-DSL methodology: compile→run→semantic-golden→fix-feedback→scene closed loop) |
 | technical-research-analysis-doc | local | written — TorchLight 调研分析 format |
-| skill-auto-improve-mirror | local | written by agent (Hermes) — skill improvement + version-aware cross-harness mirror (scripts/mirror_agent_skills.py) |
+| skill-auto-improve-mirror (retired) | local | written by agent (Hermes) — skill improvement + version-aware cross-harness mirror (scripts/mirror_agent_skills.py) |
 | governance-doc-design | local (distilled) | distilled from `F:\XD\git-repo\cindy\docs` conventions (product/design/dev/legal rule buckets, 状态+读取时机+事实来源 skeleton, append-only decision log) |
 | truth-seeking-research | local | 用户系统提示词蒸馏：求真优先、0–4 级可信度、检索边界、脚本计算、固定输出格式（英文改写 → 结论先行 → `[判断与建议]` → 免责声明）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图）+ `%LOCALAPPDATA%\hermes\skills\software-development\`（副本） |
 | prompt-pro | local | 用户本地 skill：`C:\Users\yuhang\.minimax\skills\prompt-pro`。把粗请求补成可执行提纲（目标/验收/范围/约束/输出 五槽位），先 grounding 再落笔，提纲不单独成篇。先看真实系统再下笔的纪律 + 缺信息则问。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
@@ -229,13 +235,13 @@
 | painted-animation (retired) | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — p5.js + p5.brush 手绘水彩/墨线动画：逐帧渲染、模型表（emotions/views）、音乐与歌词同步；上游 `skills/painted-animation`；已复制进 `video/painted-animation` |
 | opus-video-prompts | repo (submodule, 补写指针层) | `github.com/joeseesun/opus-video-prompts` @ `7977c80` — 上游**没有 SKILL.md**（18 份提示词 + 54 案例 `cases.json` + README），本 vault 补写一层指针式 SKILL.md（说明怎么挑提示词、技术路线与边界）；上游原文逐字保留；已复制进 `video/opus-video-prompts` |
 | video-shotcraft (retired) | repo (submodule) | `github.com/Vincentwei1021/video-shotcraft` @ `43bd349` (Apache-2.0) — 上游根即 skill（152 张 shot recipe 卡片 + 209 段 motion preview）；裁剪掉 `assets/ demos/ gallery/ videos/ workbench/ publish/`（保留 `references/ shot-polish/ template/`） |
-| ffmpeg / moviepy (retired) / elevenlabs (retired) / playwright-recording (retired) / qwen-edit (retired) / ideogram4 / ltx2 / acestep / runpod / synthetic-ui-demo (retired) / video_toolkit (retired) | repo (submodule) | `github.com/digitalsamba/claude-code-video-toolkit` @ `da3f474` (MIT) — 上游 `.claude/skills/<name>`（11 个）+ `skills/openclaw-video-toolkit`；`video_toolkit` 的 frontmatter 名是 `video_toolkit`，目录按其改名；`remotion` / `remotion-official` / `frontend-design` 未装（与 vault 既有 remotion 系列 / taste-frontend 重叠） |
+| ffmpeg / moviepy (retired) / elevenlabs (retired) / playwright-recording (retired) / qwen-edit (retired) / ideogram4 (retired) / ltx2 (retired) / acestep (retired) / runpod (retired) / synthetic-ui-demo (retired) / video_toolkit (retired) | repo (submodule) | `github.com/digitalsamba/claude-code-video-toolkit` @ `da3f474` (MIT) — 上游 `.claude/skills/<name>`（11 个）+ `skills/openclaw-video-toolkit`；`video_toolkit` 的 frontmatter 名是 `video_toolkit`，目录按其改名；`remotion` / `remotion-official` / `frontend-design` 未装（与 vault 既有 remotion 系列 / taste-frontend 重叠） |
 
 ### vendor/
 | skill | origin | source |
 |-------|--------|--------|
 | anthropics-skills (19 upstream) | repo (submodule) | `github.com/anthropics/skills` pinned @ `dbd4588f9e1033efb41dad4bef2f7947c8993d44` — submodule 路径 `vendor/anthropics-skills`，**不复制进分类目录**；用户级分发时从 `vendor/anthropics-skills/skills/<name>` 取 |
-| tripo-skills (`tripo-3d-generation`) | repo (submodule) | `github.com/meterlong/tripo-skills` @ `ce707a6` — submodule 路径 `vendor/tripo-skills`；上游 SKILL.md 在仓库根，用户级实体装到 `~/.claude/skills/tripo-3d-generation`（**不复制进 game-dev/**，分发时从 `vendor/tripo-skills` 取） |
+| tripo-skills (`tripo-3d-generation (retired)`) | repo (submodule) | `github.com/meterlong/tripo-skills` @ `ce707a6` — submodule 路径 `vendor/tripo-skills`；上游 SKILL.md 在仓库根，用户级实体装到 `~/.claude/skills/tripo-3d-generation`（**不复制进 game-dev/**，分发时从 `vendor/tripo-skills` 取） |
 | blender-mcp | repo (submodule) | `github.com/ahujasid/blender-mcp` @ `febcd90` — submodule 路径 `vendor/blender-mcp`（MCP server + Blender 插件源码；安装陷阱见 `game-dev/ai-3d-toolchain`） |
 | tripo-3d-for-blender | repo (submodule) | `github.com/Tripo-Developer/tripo-3d-for-blender` @ `d65412f` — submodule 路径 `vendor/tripo-3d-for-blender`（Tripo 官方 Blender 插件，MIT） |
 | unity-mcp | repo (submodule) | `github.com/CoplayDev/unity-mcp` @ `ed4e205` — submodule 路径 `vendor/unity-mcp`（MCP for Unity，MIT；官方 Unity MCP 走 Unity 6.3 `com.unity.ai.assistant` 包） |
@@ -285,10 +291,10 @@
 | `vendor/claude-skills` | alirezarezvani/claude-skills | 6d2f02e | MIT | 装 management/prd 等 7 个 |
 | `vendor/everything-claude-finance` | brainbytes-dev/everything-claude-finance | 71f43fc | MIT | 装 management/finance/**（15） |
 | `vendor/marketingskills` | coreyhaines31/marketingskills | e85f3cb | MIT | 装 management/marketing/**（3） |
-| `vendor/grafana-skills` | grafana/skills | 3b653d9 | Apache-2.0 | 装 devops/grafana/**（36，`grafana-` 前缀） |
-| `vendor/mc-agent-toolkit` | monte-carlo-data/mc-agent-toolkit | d3915f3 | Apache-2.0 | 装 devops/monte-carlo/**（9） |
-| `vendor/planetscale-skills` | planetscale/skills | 999045c | MIT | 装 devops/planetscale/**（15） |
-| `vendor/dynatrace-for-ai` | Dynatrace/dynatrace-for-ai | 4f9aa71 | Apache-2.0 | 装 devops/dynatrace/**（11） |
+| `vendor/grafana-skills` | grafana/skills | 3b653d9 | Apache-2.0 | 装 devops/grafana/**（36，`grafana-` 前缀）；2026-10-26 退役 15 个 Cloud-only，现装 16 个 |
+| `vendor/mc-agent-toolkit` | monte-carlo-data/mc-agent-toolkit | d3915f3 | Apache-2.0 | 装 devops/monte-carlo/**（9）；2026-10-26 全部退役，submodule 留作上游 |
+| `vendor/planetscale-skills` | planetscale/skills | 999045c | MIT | 装 devops/planetscale/**（15）；2026-10-26 全部退役，submodule 留作上游 |
+| `vendor/dynatrace-for-ai` | Dynatrace/dynatrace-for-ai | 4f9aa71 | Apache-2.0 | 装 devops/dynatrace/**（11）；2026-10-26 全部退役，submodule 留作上游 |
 | `vendor/superpowers` | obra/superpowers | 2ce8aa1 | MIT | 装 software-development/ 8 个 |
 | `vendor/skillspector` | NVIDIA/SkillSpector | d7338f5 | Apache-2.0 | 装 software-development/skill-inspector |
 | `vendor/skillopt` | microsoft/SkillOpt | 84b36cd | MIT | 装 software-development/skillopt-sleep |

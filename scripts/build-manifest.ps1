@@ -49,8 +49,7 @@ $VendorSkills = @(
   'xlsx|vendor/anthropics-skills/skills/xlsx',
   'browser-automation|vendor/claude-skills/engineering/skills/browser-automation',
   'deep-research|vendor/claude-skills/research/deep-research/skills/deep-research',
-  'investment-masters|vendor/investment-masters',
-  'tripo-3d-generation|vendor/tripo-skills'
+  'investment-masters|vendor/investment-masters'
 )
 # docx, pdf and pptx were promoted to curated copies under SKILL/content on
 # 2026-10-25: a vendored file must not be edited in place (it is lost on

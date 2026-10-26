@@ -1,4 +1,4 @@
-# Install manifest 鈥?the authoritative list of user-level skills and their vault source.
+# Install manifest — the authoritative list of user-level skills and their vault source.
 #
 # Format:  <skill-name>|<relative-path-in-vault>|<tier>
 #          <skill-name>|HOST|<tier>   -> installed outside this vault; sync leaves it alone
@@ -36,7 +36,6 @@
 3d-virtual-tour|SKILL/video/mengto/3d-virtual-tour|B
 3d-wood-lighting-scorecard|SKILL/video/mengto/3d-wood-lighting-scorecard|B
 3d-wood-material|SKILL/video/mengto/3d-wood-material|B
-acestep|SKILL/video/acestep|B
 agent-browser|SKILL/content/agent-browser|A
 ai-3d-character-pipeline|SKILL/game-dev/ai-3d-character-pipeline|B
 ai-3d-scene-pipeline|SKILL/game-dev/ai-3d-scene-pipeline|B
@@ -56,13 +55,13 @@ blog-to-linkedin-post|SKILL/content/blog-to-linkedin-post|A
 blog-to-twitter-post|SKILL/content/blog-to-twitter-post|A
 book-chapter-to-vault|SKILL/knowledge-vault/book-chapter-to-vault|A
 booth-kiosk-deck|SKILL/content/booth-kiosk-deck|B
-brainstorming|SKILL/software-development/brainstorming|A
+brainstorming|SKILL/software-development/brainstorming|B
 brand-docx|SKILL/design/brand-docx|A
 brand-pptx|SKILL/design/brand-pptx|A
 brand-xlsx|SKILL/design/brand-xlsx|A
 cat-game-architecture|SKILL/game-dev/cat-game-architecture|B
 codebase-design|SKILL/software-development/mattpocock/skills/engineering/codebase-design|B
-code-review|SKILL/software-development/mattpocock/skills/engineering/code-review|A
+code-review|SKILL/software-development/mattpocock/skills/engineering/code-review|B
 comparable-analysis|SKILL/management/finance/investment-banking/comparable-analysis|B
 concentrate-forces|SKILL/management/qiushi-methodology/concentrate-forces|B
 consolidation|SKILL/management/finance/accounting/consolidation|B
@@ -71,22 +70,10 @@ contradiction-analysis|SKILL/management/qiushi-methodology/contradiction-analysi
 criticism-self-criticism|SKILL/management/qiushi-methodology/criticism-self-criticism|A
 dcf-valuation|SKILL/management/finance/investment-banking/dcf-valuation|B
 deal-structuring|SKILL/management/finance/investment-banking/deal-structuring|B
-debugger-persona|SKILL/software-development/debugger-persona|B
 diagnosing-bugs|SKILL/software-development/mattpocock/skills/engineering/diagnosing-bugs|A
 distilly|SKILL/software-development/distilly|B
 docx|SKILL/content/docx|A
 domain-modeling|SKILL/software-development/mattpocock/skills/engineering/domain-modeling|B
-dt-alerting|SKILL/devops/dynatrace/dt-alerting|B
-dt-app-dashboards|SKILL/devops/dynatrace/dt-app-dashboards|B
-dt-dql-essentials|SKILL/devops/dynatrace/dt-dql-essentials|B
-dt-obs-analytics|SKILL/devops/dynatrace/dt-obs-analytics|B
-dt-obs-logs|SKILL/devops/dynatrace/dt-obs-logs|B
-dt-obs-problems|SKILL/devops/dynatrace/dt-obs-problems|B
-dt-obs-services|SKILL/devops/dynatrace/dt-obs-services|B
-dt-obs-tracing|SKILL/devops/dynatrace/dt-obs-tracing|B
-dt-platform-costs|SKILL/devops/dynatrace/dt-platform-costs|B
-dt-sec-insights|SKILL/devops/dynatrace/dt-sec-insights|B
-dt-setup-oneagent|SKILL/devops/dynatrace/dt-setup-oneagent|B
 earnings-models|SKILL/management/finance/equity-research/earnings-models|B
 elevenlabs-tts|SKILL/video/mengto/elevenlabs-tts|B
 excel-hygiene|SKILL/content/excel-hygiene|B
@@ -96,7 +83,7 @@ game-archetype-classifier|SKILL/game-dev/game-archetype-classifier|B
 game-asset-art-direction|SKILL/game-dev/game-asset-art-direction|B
 game-build-verification|SKILL/game-dev/game-build-verification|B
 game-debug|SKILL/game-dev/game-debug|B
-game-dev-loop|SKILL/game-dev/game-dev-loop|A
+game-dev-loop|SKILL/game-dev/game-dev-loop|B
 game-gdd-writing|SKILL/game-dev/game-gdd-writing|B
 game-grid-logic|SKILL/game-dev/game-grid-logic|B
 game-platformer|SKILL/game-dev/game-platformer|B
@@ -109,40 +96,25 @@ gdd-markdown-template|SKILL/game-dev/gdd-markdown-template|B
 goal-persistence|SKILL/agents/goal-persistence|B
 governance-doc-design|SKILL/software-development/governance-doc-design|B
 gracker-writing|SKILL/content/gracker-writing|A
-grafana-adaptive-metrics|SKILL/devops/grafana/grafana-cloud/grafana-adaptive-metrics|B
-grafana-admin|SKILL/devops/grafana/grafana-cloud/grafana-admin|B
 grafana-alerting-irm|SKILL/devops/grafana/grafana-core/grafana-alerting-irm|B
 grafana-alloy|SKILL/devops/grafana/grafana-core/grafana-alloy|B
-grafana-app-observability|SKILL/devops/grafana/grafana-cloud/grafana-app-observability|B
 grafana-beyla|SKILL/devops/grafana/grafana-core/grafana-beyla|B
-grafana-cloud-integrations|SKILL/devops/grafana/grafana-cloud/grafana-cloud-integrations|B
-grafana-cost-management|SKILL/devops/grafana/grafana-cloud/grafana-cost-management|B
 grafana-dashboarding|SKILL/devops/grafana/grafana-core/grafana-dashboarding|B
-grafana-database-observability|SKILL/devops/grafana/grafana-cloud/grafana-database-observability|B
-grafana-dpm-finder|SKILL/devops/grafana/grafana-cloud/grafana-dpm-finder|B
-grafana-fleet-management|SKILL/devops/grafana/grafana-cloud/grafana-fleet-management|B
-grafana-frontend-session-rca|SKILL/devops/grafana/grafana-cloud/grafana-frontend-session-rca|B
-grafana-infrastructure|SKILL/devops/grafana/grafana-cloud/grafana-infrastructure|B
 grafana-loki-label-analyzer|SKILL/devops/grafana/grafana-cloud/grafana-loki-label-analyzer|B
 grafana-mimir|SKILL/devops/grafana/grafana-lgtm/grafana-mimir|B
-grafana-ml-ai|SKILL/devops/grafana/grafana-cloud/grafana-ml-ai|B
-grafana-oncall-irm|SKILL/devops/grafana/grafana-cloud/grafana-oncall-irm|B
 grafana-opentelemetry|SKILL/devops/grafana/grafana-core/grafana-opentelemetry|B
 grafana-oss|SKILL/devops/grafana/grafana-core/grafana-oss|B
-grafana-performance-rca|SKILL/devops/grafana/grafana-lgtm/grafana-performance-rca|B
-grafana-private-connectivity|SKILL/devops/grafana/grafana-cloud/grafana-private-connectivity|B
 grafana-profilecli-insights|SKILL/devops/grafana/grafana-lgtm/grafana-profilecli-insights|B
 grafana-prometheus|SKILL/devops/grafana/grafana-lgtm/grafana-prometheus|B
 grafana-prometheus-cardinality-troubleshooter|SKILL/devops/grafana/grafana-cloud/grafana-prometheus-cardinality-troubleshooter|B
 grafana-prometheus-label-strategy|SKILL/devops/grafana/grafana-cloud/grafana-prometheus-label-strategy|B
 grafana-promql|SKILL/devops/grafana/grafana-core/grafana-promql|B
 grafana-pyroscope|SKILL/devops/grafana/grafana-lgtm/grafana-pyroscope|B
-grafana-send-data|SKILL/devops/grafana/grafana-cloud/grafana-send-data|B
 grafana-skill-authoring|SKILL/devops/grafana/grafana-core/grafana-skill-authoring|B
 grafana-tempo|SKILL/devops/grafana/grafana-lgtm/grafana-tempo|B
 grilling|SKILL/software-development/mattpocock/skills/productivity/grilling|B
-grill-me|SKILL/software-development/mattpocock/skills/productivity/grill-me|A
-grill-with-docs|SKILL/software-development/mattpocock/skills/productivity/grill-with-docs|A
+grill-me|SKILL/software-development/mattpocock/skills/productivity/grill-me|B
+grill-with-docs|SKILL/software-development/mattpocock/skills/productivity/grill-with-docs|B
 guizang-product-video-skill|SKILL/video/guizang-product-video-skill|B
 handoff|SKILL/software-development/mattpocock/skills/productivity/handoff|B
 hands-on-deck|SKILL/design/hands-on-deck|A
@@ -152,9 +124,8 @@ html-ppt|SKILL/design/html-ppt|A
 html-to-interaction-prompts|SKILL/video/mengto/html-to-interaction-prompts|B
 huashu-design|SKILL/design/huashu-design|B
 hyperframes|SKILL/content/hyperframes|B
-ideogram4|SKILL/video/ideogram4|B
 ifrs-standards|SKILL/management/finance/accounting/ifrs-standards|B
-implement|SKILL/software-development/mattpocock/skills/engineering/implement|A
+implement|SKILL/software-development/mattpocock/skills/engineering/implement|B
 improve-codebase-architecture|SKILL/software-development/mattpocock/skills/engineering/improve-codebase-architecture|B
 investigation-first|SKILL/management/qiushi-methodology/investigation-first|A
 iterate-until-verified|SKILL/video/mengto/iterate-until-verified|B
@@ -165,7 +136,6 @@ lease-accounting|SKILL/management/finance/accounting/lease-accounting|B
 lemo-opuscar|SKILL/video/lemo-opuscar|A
 llm-friendly-dsl-verification|SKILL/software-development/llm-friendly-dsl-verification|B
 long-blog-to-viral-social-posts|SKILL/content/long-blog-to-viral-social-posts|B
-ltx2|SKILL/video/ltx2|B
 make-interfaces-feel-better|SKILL/video/make-interfaces-feel-better|B
 management-loop|SKILL/management/management-loop|B
 manage-up-core|SKILL/management/manage-up-core|A
@@ -175,7 +145,6 @@ meeting-summary|SKILL/management/meeting-summary|A
 mgmt-discipline|SKILL/management/mgmt-discipline|B
 mgmt-individual|SKILL/management/mgmt-individual|B
 mgmt-org|SKILL/management/mgmt-org|B
-monte-carlo-proactive-monitoring|SKILL/devops/monte-carlo/monte-carlo-proactive-monitoring|B
 notes-on-writing|SKILL/content/notes-on-writing|B
 okr-planner|SKILL/content/okr-planner|B
 one-on-one-prep|SKILL/management/one-on-one-prep|A
@@ -188,20 +157,6 @@ pdf|SKILL/content/pdf|A
 performance-review|SKILL/management/performance-review|B
 phaser-gamedev|SKILL/game-dev/phaser-gamedev|B
 pitch-book-creation|SKILL/management/finance/investment-banking/pitch-book-creation|B
-planetscale-autonomous-execution-mode|SKILL/devops/planetscale/planetscale-autonomous-execution-mode|B
-planetscale-best-practices-matrix|SKILL/devops/planetscale/planetscale-best-practices-matrix|B
-planetscale-change-gates-and-approval-contract|SKILL/devops/planetscale/planetscale-change-gates-and-approval-contract|B
-planetscale-codebase-sqlcommenter-instrumentation|SKILL/devops/planetscale/planetscale-codebase-sqlcommenter-instrumentation|B
-planetscale-customer-report-template|SKILL/devops/planetscale/planetscale-customer-report-template|B
-planetscale-postgres-safety-review|SKILL/devops/planetscale/planetscale-postgres-safety-review|B
-planetscale-pscale-cli-automation|SKILL/devops/planetscale/planetscale-pscale-cli-automation|B
-planetscale-query-insights-and-tags|SKILL/devops/planetscale/planetscale-query-insights-and-tags|B
-planetscale-readonly-inventory|SKILL/devops/planetscale/planetscale-readonly-inventory|B
-planetscale-safe-orchestrator|SKILL/devops/planetscale/planetscale-safe-orchestrator|B
-planetscale-schema-recommendations-agent-loop|SKILL/devops/planetscale/planetscale-schema-recommendations-agent-loop|B
-planetscale-traffic-control-recommendations|SKILL/devops/planetscale/planetscale-traffic-control-recommendations|B
-planetscale-vitess-safety-review|SKILL/devops/planetscale/planetscale-vitess-safety-review|B
-planetscale-webhook-automation-recommendations|SKILL/devops/planetscale/planetscale-webhook-automation-recommendations|B
 plugin-capability-brief|SKILL/software-development/plugin-capability-brief|B
 pptx|SKILL/content/pptx|A
 practice-cognition|SKILL/management/qiushi-methodology/practice-cognition|B
@@ -224,13 +179,11 @@ renzhengfei-advisor|SKILL/management/renzhengfei-advisor|B
 resolving-merge-conflicts|SKILL/software-development/mattpocock/skills/engineering/resolving-merge-conflicts|B
 revenue-recognition|SKILL/management/finance/accounting/revenue-recognition|B
 rigorous-proof|SKILL/rigorous-proof|B
-runpod|SKILL/video/runpod|B
 sector-analysis|SKILL/management/finance/equity-research/sector-analysis|B
 self-improvement|SKILL/software-development/self-improvement|B
 shuorenhua|SKILL/content/shuorenhua|A
 single-file-html-game|SKILL/game-dev/single-file-html-game|A
-skill-auto-improve-mirror|SKILL/software-development/skill-auto-improve-mirror|A
-skill-distill|SKILL/software-development/skill-distill|A
+skill-distill|SKILL/software-development/skill-distill|B
 skill-inspector|SKILL/software-development/skill-inspector|A
 skillopt-sleep|SKILL/software-development/skillopt-sleep|B
 slideshow|SKILL/design/slideshow|A
@@ -252,7 +205,6 @@ taste-brandkit|SKILL/design/taste-brandkit|B
 taste-director|SKILL/design/taste-director|B
 taste-imagegen-mobile|SKILL/design/taste-imagegen-mobile|B
 taste-imagegen-web|SKILL/design/taste-imagegen-web|B
-taste-output|SKILL/design/taste-output|B
 taste-redesign|SKILL/design/taste-redesign|B
 taste-stitch|SKILL/design/taste-stitch|B
 tdd|SKILL/software-development/mattpocock/skills/engineering/tdd|A
@@ -297,7 +249,6 @@ deep-research|vendor/claude-skills/research/deep-research/skills/deep-research|B
 discernment-nudge|vendor/anthropics-skills/skills/discernment-nudge|B
 investment-masters|vendor/investment-masters|B
 slack-gif-creator|vendor/anthropics-skills/skills/slack-gif-creator|B
-tripo-3d-generation|vendor/tripo-skills|B
 web-artifacts-builder|vendor/anthropics-skills/skills/web-artifacts-builder|B
 xlsx|vendor/anthropics-skills/skills/xlsx|A
 
