@@ -74,6 +74,7 @@ deal-structuring|SKILL/management/finance/investment-banking/deal-structuring|B
 debugger-persona|SKILL/software-development/debugger-persona|B
 diagnosing-bugs|SKILL/software-development/mattpocock/skills/engineering/diagnosing-bugs|A
 distilly|SKILL/software-development/distilly|B
+docx|SKILL/content/docx|A
 domain-modeling|SKILL/software-development/mattpocock/skills/engineering/domain-modeling|B
 dt-alerting|SKILL/devops/dynatrace/dt-alerting|B
 dt-app-dashboards|SKILL/devops/dynatrace/dt-app-dashboards|B
@@ -183,6 +184,7 @@ opendeck|SKILL/design/opendeck|A
 optimize-web-animations|SKILL/video/mengto/optimize-web-animations|B
 opus-video-prompts|SKILL/video/opus-video-prompts|B
 overall-planning|SKILL/management/qiushi-methodology/overall-planning|B
+pdf|SKILL/content/pdf|A
 performance-review|SKILL/management/performance-review|B
 phaser-gamedev|SKILL/game-dev/phaser-gamedev|B
 pitch-book-creation|SKILL/management/finance/investment-banking/pitch-book-creation|B
@@ -236,15 +238,15 @@ social-push|SKILL/content/social-push|B
 software-dev-loop|SKILL/software-development/software-dev-loop|A
 source-anchored-design|SKILL/software-development/source-anchored-design|A
 spark-prairie-fire|SKILL/management/qiushi-methodology/spark-prairie-fire|B
-style-alibaba|SKILL/management/style-alibaba/style-alibaba|A
-style-amazon|SKILL/management/style-amazon/style-amazon|A
-style-bytedance|SKILL/management/style-bytedance/style-bytedance|A
+style-alibaba|SKILL/management/style-alibaba|A
+style-amazon|SKILL/management/style-amazon|A
+style-bytedance|SKILL/management/style-bytedance|A
 style-cn-platform-tutorial|SKILL/content/style-cn-platform-tutorial|B
 style-cn-tech-deep-dive|SKILL/content/style-cn-tech-deep-dive|B
-style-google|SKILL/management/style-google/style-google|A
-style-microsoft|SKILL/management/style-microsoft/style-microsoft|A
+style-google|SKILL/management/style-google|A
+style-microsoft|SKILL/management/style-microsoft|A
 style-report|SKILL/management/style-report|B
-style-tencent|SKILL/management/style-tencent/style-tencent|A
+style-tencent|SKILL/management/style-tencent|A
 systematic-debugging|SKILL/software-development/systematic-debugging|A
 taste-brandkit|SKILL/design/taste-brandkit|B
 taste-director|SKILL/design/taste-director|B
@@ -293,9 +295,7 @@ canvas-design|vendor/anthropics-skills/skills/canvas-design|A
 claude-api|vendor/anthropics-skills/skills/claude-api|B
 deep-research|vendor/claude-skills/research/deep-research/skills/deep-research|B
 discernment-nudge|vendor/anthropics-skills/skills/discernment-nudge|B
-docx|vendor/anthropics-skills/skills/docx|A
 investment-masters|vendor/investment-masters|B
-pdf|vendor/anthropics-skills/skills/pdf|A
 slack-gif-creator|vendor/anthropics-skills/skills/slack-gif-creator|B
 tripo-3d-generation|vendor/tripo-skills|B
 web-artifacts-builder|vendor/anthropics-skills/skills/web-artifacts-builder|B

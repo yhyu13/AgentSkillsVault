@@ -32,6 +32,8 @@
 ### content/
 | skill | origin | source |
 |-------|--------|--------|
+| docx | repo (submodule) + local fork | `github.com/anthropics/skills` 的 `skills/docx`（2026-10-25 由 `vendor/` 提升为 curated 副本——vendored 文件不手改）；description 首行判别化（Word 文档，不含 PDF），v1.0.0 |
+| pdf | repo (submodule) + local fork | `github.com/anthropics/skills` 的 `skills/pdf`（2026-10-25 由 `vendor/` 提升为 curated 副本）；description 首行判别化（PDF 文件，不含 Word），v1.0.0 |
 | blog-to-twitter-post | sibling | `D:\GitRepo-AI\content-repurposing-skills\blog-to-twitter-post` ；2026-10-25 本地 fork：description 首行判别化（消除 shadowing），v1.0.0 |
 | blog-to-linkedin-post | sibling | `D:\GitRepo-AI\content-repurposing-skills\blog-to-linkedin-post` ；2026-10-25 本地 fork：description 首行判别化（消除 shadowing），v1.0.0 |
 | long-blog-to-viral-social-posts | sibling | `D:\GitRepo-AI\content-repurposing-skills\long-blog-to-viral-social-posts` |
