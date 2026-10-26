@@ -44,9 +44,6 @@ $VendorSkills = @(
   'canvas-design|vendor/anthropics-skills/skills/canvas-design',
   'claude-api|vendor/anthropics-skills/skills/claude-api',
   'discernment-nudge|vendor/anthropics-skills/skills/discernment-nudge',
-  'docx|vendor/anthropics-skills/skills/docx',
-  'pdf|vendor/anthropics-skills/skills/pdf',
-  'pptx|vendor/anthropics-skills/skills/pptx',
   'slack-gif-creator|vendor/anthropics-skills/skills/slack-gif-creator',
   'web-artifacts-builder|vendor/anthropics-skills/skills/web-artifacts-builder',
   'xlsx|vendor/anthropics-skills/skills/xlsx',
@@ -55,6 +52,11 @@ $VendorSkills = @(
   'investment-masters|vendor/investment-masters',
   'tripo-3d-generation|vendor/tripo-skills'
 )
+# docx, pdf and pptx were promoted to curated copies under SKILL/content on
+# 2026-10-25: a vendored file must not be edited in place (it is lost on
+# `git submodule update`), and the description had to be rewritten so the
+# document skills stop shadowing each other. The vendor copies stay as the
+# upstream record.
 
 # Host-local skills: installed by hand from outside this vault. Never overwritten.
 # Currently none: `goal-persistence` moved into the vault (agents/goal-persistence),
@@ -69,6 +71,10 @@ $curated = @{}
 Get-ChildItem -LiteralPath $Vault -Recurse -Directory -ErrorAction SilentlyContinue |
   Where-Object { $_.FullName -notmatch $skipDirs } |
   Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName 'SKILL.md') } |
+  # Shortest path first: the curated set is keyed by leaf directory name, so
+  # when a skill directory contains a nested copy of itself the shallow one
+  # must win. Without this the manifest path depends on enumeration order.
+  Sort-Object { $_.FullName.Length } |
   ForEach-Object {
     $rel = $_.FullName.Substring($Vault.Length).TrimStart('\','/').Replace('\','/')
     $curated[$_.Name] = $rel

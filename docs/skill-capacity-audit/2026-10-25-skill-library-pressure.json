@@ -31,12 +31,12 @@
     "config-kilo": 83
   },
   "listing": {
-    "description_chars": 125348,
+    "description_chars": 126073,
     "name_chars": 5909,
-    "listing_chars": 131257,
-    "listing_tokens_est": 36460,
-    "avg_description_chars": 372.0,
-    "avg_entry_cost_chars": 389.5,
+    "listing_chars": 131982,
+    "listing_tokens_est": 36662,
+    "avg_description_chars": 374.1,
+    "avg_entry_cost_chars": 391.6,
     "max_description_chars": 1260,
     "chars_per_token_assumed": 3.6
   },
@@ -44,16 +44,16 @@
     "claude_code_1pct_of_200k": {
       "tokens": 2000,
       "chars": 7200,
-      "listing_over_budget_x": 18.2
+      "listing_over_budget_x": 18.3
     },
     "codex_fallback_8000_chars": {
       "chars": 8000,
-      "listing_over_budget_x": 16.4
+      "listing_over_budget_x": 16.5
     },
     "codex_max_context_tokens_cap": {
       "tokens": 10000,
       "chars": 36000,
-      "listing_over_budget_x": 3.6
+      "listing_over_budget_x": 3.7
     },
     "scenarios": [
       {
@@ -63,7 +63,7 @@
         "budget_tokens": 2000,
         "budget_chars": 7200,
         "skills_that_fit_at_avg_entry_cost": 18,
-        "listing_over_budget_x": 18.2
+        "listing_over_budget_x": 18.3
       },
       {
         "label": "Codex 2% @ 200K ctx",
@@ -72,7 +72,7 @@
         "budget_tokens": 4000,
         "budget_chars": 14400,
         "skills_that_fit_at_avg_entry_cost": 36,
-        "listing_over_budget_x": 9.1
+        "listing_over_budget_x": 9.2
       },
       {
         "label": "Claude Code 1% @ 1M ctx",
@@ -80,8 +80,8 @@
         "fraction": 0.01,
         "budget_tokens": 10000,
         "budget_chars": 36000,
-        "skills_that_fit_at_avg_entry_cost": 92,
-        "listing_over_budget_x": 3.6
+        "skills_that_fit_at_avg_entry_cost": 91,
+        "listing_over_budget_x": 3.7
       },
       {
         "label": "Codex 2% @ 1M ctx",
@@ -89,16 +89,16 @@
         "fraction": 0.02,
         "budget_tokens": 20000,
         "budget_chars": 72000,
-        "skills_that_fit_at_avg_entry_cost": 184,
+        "skills_that_fit_at_avg_entry_cost": 183,
         "listing_over_budget_x": 1.8
       }
     ]
   },
   "ambiguity": {
     "threshold": 0.3,
-    "shadowing_pairs": 15,
-    "skills_in_at_least_one_shadowing_pair": 22,
-    "share_of_library_pct": 6.5,
+    "shadowing_pairs": 25,
+    "skills_in_at_least_one_shadowing_pair": 23,
+    "share_of_library_pct": 6.8,
     "top_pairs": [
       {
         "jaccard": 0.745,
@@ -131,9 +131,64 @@
         "b": "blog-to-twitter-post"
       },
       {
+        "jaccard": 0.529,
+        "a": "style-microsoft",
+        "b": "style-tencent"
+      },
+      {
+        "jaccard": 0.529,
+        "a": "style-alibaba",
+        "b": "style-tencent"
+      },
+      {
+        "jaccard": 0.5,
+        "a": "style-google",
+        "b": "style-tencent"
+      },
+      {
+        "jaccard": 0.5,
+        "a": "style-amazon",
+        "b": "style-tencent"
+      },
+      {
+        "jaccard": 0.474,
+        "a": "style-alibaba",
+        "b": "style-microsoft"
+      },
+      {
+        "jaccard": 0.45,
+        "a": "style-google",
+        "b": "style-microsoft"
+      },
+      {
+        "jaccard": 0.45,
+        "a": "style-bytedance",
+        "b": "style-google"
+      },
+      {
+        "jaccard": 0.45,
+        "a": "style-amazon",
+        "b": "style-microsoft"
+      },
+      {
+        "jaccard": 0.45,
+        "a": "style-alibaba",
+        "b": "style-google"
+      },
+      {
+        "jaccard": 0.45,
+        "a": "style-alibaba",
+        "b": "style-amazon"
+      },
+      {
         "jaccard": 0.447,
         "a": "aura-asset-images",
         "b": "unsplash-asset-images"
+      },
+      {
+        "jaccard": 0.444,
+        "a": "style-bytedance",
+        "b": "style-tencent"
       },
       {
         "jaccard": 0.438,
@@ -141,95 +196,60 @@
         "b": "software-dev-loop"
       },
       {
+        "jaccard": 0.429,
+        "a": "style-amazon",
+        "b": "style-google"
+      },
+      {
         "jaccard": 0.406,
         "a": "grafana-loki-label-analyzer",
         "b": "grafana-prometheus-label-strategy"
       },
       {
-        "jaccard": 0.37,
-        "a": "hands-on-deck",
-        "b": "pptx"
-      },
-      {
-        "jaccard": 0.333,
+        "jaccard": 0.4,
         "a": "style-bytedance",
-        "b": "style-tencent"
+        "b": "style-microsoft"
       },
       {
-        "jaccard": 0.333,
-        "a": "style-bytedance",
-        "b": "style-google"
-      },
-      {
-        "jaccard": 0.333,
-        "a": "style-alibaba",
-        "b": "style-tencent"
-      },
-      {
-        "jaccard": 0.333,
+        "jaccard": 0.4,
         "a": "style-alibaba",
         "b": "style-bytedance"
       },
       {
-        "jaccard": 0.316,
-        "a": "style-google",
-        "b": "style-microsoft"
+        "jaccard": 0.381,
+        "a": "style-amazon",
+        "b": "style-bytedance"
       },
       {
-        "jaccard": 0.286,
-        "a": "three-clay-scenes",
-        "b": "three-procedural-scenes"
-      },
-      {
-        "jaccard": 0.267,
-        "a": "writing-beats",
-        "b": "writing-shape"
-      },
-      {
-        "jaccard": 0.263,
-        "a": "grafana-alerting-irm",
-        "b": "grafana-oncall-irm"
-      },
-      {
-        "jaccard": 0.261,
-        "a": "planetscale-vitess-safety-review",
-        "b": "planetscale-webhook-automation-recommendations"
-      },
-      {
-        "jaccard": 0.25,
-        "a": "style-google",
-        "b": "style-tencent"
-      },
-      {
-        "jaccard": 0.25,
-        "a": "style-alibaba",
-        "b": "style-google"
-      },
-      {
-        "jaccard": 0.25,
-        "a": "renzhengfei-advisor",
-        "b": "zhangyiming-advisor"
-      },
-      {
-        "jaccard": 0.25,
-        "a": "mgmt-discipline",
-        "b": "mgmt-individual"
-      },
-      {
-        "jaccard": 0.247,
-        "a": "grafana-adaptive-metrics",
-        "b": "grafana-cost-management"
-      },
-      {
-        "jaccard": 0.244,
-        "a": "algorithmic-art",
-        "b": "canvas-design"
+        "jaccard": 0.37,
+        "a": "hands-on-deck",
+        "b": "pptx"
       }
     ],
     "most_shadowed": [
       [
+        "style-microsoft",
+        5
+      ],
+      [
+        "style-tencent",
+        5
+      ],
+      [
+        "style-alibaba",
+        5
+      ],
+      [
+        "style-google",
+        5
+      ],
+      [
+        "style-amazon",
+        5
+      ],
+      [
         "style-bytedance",
-        3
+        5
       ],
       [
         "brand-pptx",
@@ -241,18 +261,6 @@
       ],
       [
         "brand-docx",
-        2
-      ],
-      [
-        "style-tencent",
-        2
-      ],
-      [
-        "style-google",
-        2
-      ],
-      [
-        "style-alibaba",
         2
       ],
       [
@@ -278,22 +286,14 @@
       [
         "blog-to-twitter-post",
         1
-      ],
-      [
-        "aura-asset-images",
-        1
-      ],
-      [
-        "unsplash-asset-images",
-        1
       ]
     ],
     "prefix": {
       "chars": 120,
       "note": "Jaccard over the first N chars only - the part a budget-truncated listing still shows",
-      "shadowing_pairs": 17,
-      "skills_in_at_least_one_shadowing_pair": 26,
-      "share_of_library_pct": 7.7,
+      "shadowing_pairs": 16,
+      "skills_in_at_least_one_shadowing_pair": 24,
+      "share_of_library_pct": 7.1,
       "top_pairs": [
         {
           "jaccard": 0.667,
@@ -337,18 +337,23 @@
         },
         {
           "jaccard": 0.357,
+          "a": "style-google",
+          "b": "style-tencent"
+        },
+        {
+          "jaccard": 0.357,
+          "a": "style-alibaba",
+          "b": "style-tencent"
+        },
+        {
+          "jaccard": 0.357,
           "a": "hands-on-deck",
           "b": "pptx"
         },
         {
           "jaccard": 0.333,
-          "a": "style-google",
-          "b": "style-microsoft"
-        },
-        {
-          "jaccard": 0.333,
           "a": "style-alibaba",
-          "b": "style-bytedance"
+          "b": "style-google"
         },
         {
           "jaccard": 0.333,
@@ -371,24 +376,9 @@
           "b": "dt-sec-insights"
         },
         {
-          "jaccard": 0.308,
-          "a": "style-bytedance",
-          "b": "style-tencent"
-        },
-        {
-          "jaccard": 0.308,
-          "a": "style-alibaba",
-          "b": "style-tencent"
-        },
-        {
           "jaccard": 0.294,
           "a": "grafana-cloud-integrations",
           "b": "grafana-private-connectivity"
-        },
-        {
-          "jaccard": 0.286,
-          "a": "style-bytedance",
-          "b": "style-google"
         },
         {
           "jaccard": 0.286,
@@ -419,6 +409,16 @@
           "jaccard": 0.263,
           "a": "grafana-prometheus",
           "b": "grafana-promql"
+        },
+        {
+          "jaccard": 0.25,
+          "a": "mass-line",
+          "b": "truth-seeking-research"
+        },
+        {
+          "jaccard": 0.25,
+          "a": "mass-line",
+          "b": "protracted-strategy"
         }
       ],
       "most_shadowed": [
@@ -439,15 +439,15 @@
           2
         ],
         [
-          "style-alibaba",
-          2
-        ],
-        [
-          "style-bytedance",
+          "style-google",
           2
         ],
         [
           "style-tencent",
+          2
+        ],
+        [
+          "style-alibaba",
           2
         ],
         [
@@ -488,10 +488,10 @@
       "note": "characters a reader must consume before two descriptions differ - the acceptance metric for the 2026-10-25 description rewrites",
       "late_pairs": [
         {
-          "divergence_chars": 42,
-          "a": "docx",
-          "b": "pdf",
-          "jaccard": 0.128
+          "divergence_chars": 29,
+          "a": "brand-docx",
+          "b": "docx",
+          "jaccard": 0.085
         },
         {
           "divergence_chars": 19,
@@ -590,18 +590,6 @@
           "jaccard": 0.053
         },
         {
-          "divergence_chars": 15,
-          "a": "docx",
-          "b": "xlsx",
-          "jaccard": 0.125
-        },
-        {
-          "divergence_chars": 15,
-          "a": "pdf",
-          "b": "xlsx",
-          "jaccard": 0.057
-        },
-        {
           "divergence_chars": 14,
           "a": "writing-fragments",
           "b": "writing-shape",
@@ -636,10 +624,22 @@
           "a": "game-dev-agent-workflow",
           "b": "game-skill",
           "jaccard": 0.065
+        },
+        {
+          "divergence_chars": 11,
+          "a": "grafana-prometheus",
+          "b": "grafana-prometheus-label-strategy",
+          "jaccard": 0.051
+        },
+        {
+          "divergence_chars": 11,
+          "a": "dbt",
+          "b": "dbt-migration",
+          "jaccard": 0.042
         }
       ],
-      "pairs_diverging_within_40_chars": 20102,
-      "pairs_total": 20103
+      "pairs_diverging_within_40_chars": 20253,
+      "pairs_total": 20253
     }
   },
   "integrity": {
@@ -667,22 +667,22 @@
     "manifest_tier_B": 212,
     "manifest_tier_C": 0,
     "not_in_manifest_always_visible": 59,
-    "manifest_tier_A_listing_chars": 26984,
-    "manifest_tier_A_listing_tokens_est": 7496,
-    "manifest_tier_A_over_1M_claude_budget_x": 0.75,
-    "manifest_tier_A_over_200k_claude_budget_x": 3.75,
-    "manifest_tier_A_over_codex_cap_x": 0.75,
-    "effective_visible_listing_chars": 43779,
-    "effective_visible_listing_tokens_est": 12161,
-    "effective_visible_over_1M_claude_budget_x": 1.22
+    "manifest_tier_A_listing_chars": 27709,
+    "manifest_tier_A_listing_tokens_est": 7697,
+    "manifest_tier_A_over_1M_claude_budget_x": 0.77,
+    "manifest_tier_A_over_200k_claude_budget_x": 3.85,
+    "manifest_tier_A_over_codex_cap_x": 0.77,
+    "effective_visible_listing_chars": 44504,
+    "effective_visible_listing_tokens_est": 12362,
+    "effective_visible_over_1M_claude_budget_x": 1.24
   },
   "categories": {
     "agents": 1,
-    "content": 20,
+    "content": 22,
     "design": 24,
     "devops": 57,
     "game-dev": 26,
-    "hand-installed": 14,
+    "hand-installed": 12,
     "knowledge-vault": 2,
     "management": 49,
     "software-development": 41,
@@ -690,8 +690,8 @@
     "writing": 1
   },
   "provenance": {
-    "curated": 265,
-    "vendor": 13,
+    "curated": 267,
+    "vendor": 11,
     "host": 0,
     "hand-installed": 59
   },
