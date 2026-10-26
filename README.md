@@ -19,16 +19,11 @@ AgentSkillsVault/
 �?  ├── kanban-cron-overseer/
 �?  ├── cron-pipeline-state-machine/
 �?  ├── mock-devops-platform/        �?模拟 DevOps 平台（部�?流水�?告警）场景数�?
-�?  ├── grafana/* (36)               �?Grafana 官方 skills（core/lgtm/cloud/datasources；`grafana-` 前缀�?
-�?  ├── monte-carlo/* (9)            �?Monte Carlo 监控即代码（根因分析/事故响应/成本�?
-�?  ├── planetscale/* (15)           �?PlanetScale 数据库变更门禁与安全评审
-�?  └── dynatrace/* (11)             �?Dynatrace DQL / 日志 / 链路 / 成本 / 安全洞察
+�?  └── grafana/* (16)               �?Grafana 官方 skills（core/lgtm/cloud/datasources；`grafana-` 前缀�?
 ├── software-development/            �?code review, self-review,  analysis
 �?  ├── aisides-ai-self-review/
-�?  ├── debugger-persona/            �?debug diagnosis + Chinese doc writing + code discipline persona
 �?  ├── software-dev-loop/           �?goal �?docs �?test �?memory dev loop
 �?  ├── technical-research-analysis-doc/  �?TorchLight 调研分析文档格式 (背景→结论先行→影响链条→mermaid→方案对�?
-�?  ├── skill-auto-improve-mirror/   �?improve + version + mirror skills to cross-harness ~/.agents/skills/
 �?  ├── truth-seeking-research/      �?求真优先 + 0�? 级可信度引用 + 结论先行输出格式
 �?  ├── prompt-pro/                  �?把粗请求改写成可执行提纲�? 槽位�? grounding 后再执行
 �?  ├── skill-distill/               �?会后沉淀流水线：四道�?+ 粒度 + 归属 + 三段式写�?+ 防重复防膨胀 + PR 流程
@@ -113,7 +108,6 @@ AgentSkillsVault/
     ├── taste-director/              �?路由总纲：按意图分发到下�?7 �?+ 共享 taste 契约
     ├──               �?旗舰 v2：读 brief �?推断设计语言 �?出不像模板的界面
     ├── taste-redesign/              �?现有项目：先审计 UI �?再修布局/间距/层级/样式
-    ├── taste-output/                �?反截断：强制完整输出，禁占位注释
     ├── taste-imagegen-web/          �?网页 comps 图（�?section 一张横向图�?
     ├── taste-imagegen-mobile/       �?移动�?screen/flow �?
     ├── taste-brandkit/              �?品牌 kit 板（logo/配色/字体/身份应用�?
@@ -144,10 +138,10 @@ AgentSkillsVault/
 �?  ├── lemo-opuscar/                �?39 种纯代码影片风格�?
 �?  ├── mengto/* (29)                �?MengTo 设计�?skills�?D 材质/光照/�?天空 (16) + 素材�?(2) + 视频与审查向 (11)
 �?  ├──              �?152 �?shot recipe 卡片（构�?运镜/节奏�?
-�?  └── ffmpeg/   acestep/ ltx2/ ideogram4/  runpod/     �?素材生成与加工（claude-code-video-toolkit�?
+�?  └── ffmpeg/                                         �?素材生成与加工（claude-code-video-toolkit�?
 └── vendor/                          �?外部 repo �?submodule 形式 vendored（不复制进分类目录）
     ├── anthropics-skills/           �?github.com/anthropics/skills�?9 个官�?skill；pinned @ dbd4588�?
-    ├── tripo-skills/                �?github.com/meterlong/tripo-skills（Tripo 3D 生成 skill，装�?tripo-3d-generation�?
+    ├── tripo-skills/                �?github.com/meterlong/tripo-skills（Tripo 3D 生成 skill，装�?tripo-3d-generation, retired 2026-10-26�?
     ├── blender-mcp/                 �?github.com/ahujasid/blender-mcp（Blender MCP server + 插件�?
     ├── tripo-3d-for-blender/        �?github.com/Tripo-Developer/tripo-3d-for-blender（Tripo 官方 Blender 插件�?
     ├── unity-mcp/                   �?github.com/CoplayDev/unity-mcp（MCP for Unity，MIT�?
@@ -213,11 +207,9 @@ AgentSkillsVault/
 | devops/kanban-cron-overseer | devops | AgentMOD overseer |
 | devops/cron-pipeline-state-machine | devops | (reference pattern) |
 | software-development/aisides-ai-self-review | software-development | AISides caretaker |
-| software-development/debugger-persona | software-development | debug diagnosis + Chinese doc writing + code discipline persona |
 | software-development/software-dev-loop | software-development | goal �?plan doc �?implement �?test �?journey �?memory dev loop (holy grail) |
 | software-development/technical-research-analysis-doc | software-development | UE pak/打包/热更/渲染 调研 �?TorchLight 格式分析文档（背景→结论先行→影响链条→mermaid→方案对比） |
 | software-development/journey | software-development | two-column ME/YOU project history + vibe-coding lessons |
-| software-development/skill-auto-improve-mirror | software-development | improve-in-place + version + mirror skills to cross-harness ~/.agents/skills/ (Kilo Code, Cursor, Claude Code) |
 | software-development/llm-friendly-dsl-verification | software-development | prove an LLM-friendly DSL end-to-end (compile→run→semantic-golden→fix-feedback→scene) with real evidence |
 | software-development/governance-doc-design | software-development | author governance/rule/design docs: product/design/dev/legal buckets, 状�?读取时机+事实来源 skeleton, append-only decision log |
 | software-development/truth-seeking-research | software-development | 事实/研究/数据问题：求真优先�?�? 级引用、脚本计算、英文改�?+ 结论先行 + 免责声明 |
@@ -267,7 +259,6 @@ AgentSkillsVault/
 | content/yu-hang-writing-style | content | 俞航本人的工程笔记文风：判断开�?+ 数字/命令/路径原样 + 原因到结论显式带逻辑�?+ 没定论留 TODO；含 AI 爱用词替换表。适用技术规�?排查笔记/周报/手册/测试说明 |
 | content/progress-doc-style | content | 进度/OKR 跟踪文档写作风格：标题带更新日期 + OKR 简述表 + 分目标章�?+ 行动项七列表（对应KR/行动/状�?优先�?时间/交付�?备注�? 状态三符号 + 备注一句话 + 附背景保留原�?|
 | design/taste-redesign | design | 现有项目升级：审�?UI �?识别 generic AI 模式 �?高级设计标准（不破坏功能�?|
-| design/taste-output | design | 反截断：完整代码输出、禁占位注释、token 拆分处理 |
 | design/taste-imagegen-web | design | 网页 comps 参考图（每 section 单独一张横向图，供编码模型复刻�?|
 | design/taste-imagegen-mobile | design | 移动�?screen/flow 参考图（iOS/Android/跨平台） |
 | design/taste-brandkit | design | 品牌 kit 板：logo 方向/配色/字体/身份应用 |
@@ -309,16 +300,13 @@ AgentSkillsVault/
 | management/prd / cs-financial-analyst / cs-product-strategist / competitive-matrix / finance-lead / cs-growth-strategist /  | management | 商业方法层：PRD、财务分析、竞品矩阵、增长与产品策略（alirezarezvani/claude-skills，MIT�?|
 | management/finance/** (15) | management | DCF / LBO / 可比交易 / 财报模型 / GAAP-IFRS-HGB 准则（everything-claude-finance，MIT，★6 但方法密度最高） |
 | management/marketing/ | management | RETIRED 2026-10-25 (customer-research, competitor-profiling, marketing-council)（coreyhaines31/marketingskills，MIT�?|
-| devops/grafana/* (36) | devops | Grafana 官方 skills：PromQL / LGTM �?/ Cloud 成本与可观测性（grafana/skills，Apache-2.0�?|
-| devops/monte-carlo/* (9) | devops | 监控即代码：根因分析、事故响应、存储成本、主动监控（mc-agent-toolkit，Apache-2.0�?|
-| devops/planetscale/* (15) | devops | 数据库变更门禁、只读盘点、Vitess 安全评审（planetscale/skills，MIT�?|
-| devops/dynatrace/* (11) | devops | DQL / 日志 / 链路 / 服务 / 成本 / 安全洞察（dynatrace-for-ai，Apache-2.0�?|
+| devops/grafana/* (16) | devops | Grafana 官方 skills：PromQL / LGTM �?/ Cloud 成本与可观测性（grafana/skills，Apache-2.0�?|
 | software-development/brainstorming / systematic-debugging /  /  / verification-before-completion / using-git-worktrees / receiving-code-review /  | software-development | obra/superpowers 的方法论 skill（MIT�?|
 | software-development/skill-inspector | software-development | 装第三方 skill 前的注入/外泄/供应链扫描闸（NVIDIA SkillSpector，Apache-2.0�?|
 | software-development/skillopt-sleep | software-development | �?agent 自我优化 skill（Microsoft SkillOpt，MIT�?|
 | software-development/distilly | software-development | Work + Persona 分离的蒸馏流程（titanwings/distilly，MIT�?|
 | vendor/investment-masters | vendor | 投研大师方法蒸馏，含证据边界规则（AlphaGBM/investment-masters，MIT）�?投研主题，与 FDE 无关�?*�?vendor，不装进分类目录** |
-| video/ffmpeg /  /  / acestep / ltx2 / ideogram4 /  / runpod /  /  /  | video | 素材生成与加工全链路（digitalsamba/claude-code-video-toolkit，MIT�?|
+| video/ffmpeg | video | 素材生成与加工全链路（digitalsamba/claude-code-video-toolkit，MIT�?|
 
 ## 评分�? / 10 / 20�?
 
@@ -574,3 +562,9 @@ never usable, carrying error references, low quality, or not standalone.
 See `REMOVED-SKILLS.md` for the list, the reason for each, and the upstream
 `vendor/` copy kept for re-adding. `.kilo/removed-skills.txt` stops the sync
 script from reinstalling them.
+
+49 more skills were retired on 2026-10-26 after two independent audits agreed
+they were unusable or redundant here (payload scripts not shipped, routers to
+retired skills, duplicates), plus the PlanetScale, Dynatrace and Grafana
+Cloud-only families, which need accounts this machine does not have. Same
+record: `REMOVED-SKILLS.md` (second section) and `.kilo/removed-skills.txt`.

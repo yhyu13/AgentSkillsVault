@@ -70,7 +70,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\verify-install.ps1 -
 ## Retired skills
 
 68 skills were retired on 2026-10-25 by the defect audit (unusable / broken payload
-references / low quality / not standalone). They are:
+references / low quality / not standalone), and 49 more on 2026-10-26 by a cross-review
+of two independent audits (payload scripts not shipped, routers to retired skills,
+duplicates, plus the PlanetScale / Dynatrace / Grafana Cloud-only families that need
+accounts this machine lacks; `retire_2026_10_26.py`). They are:
 
 - removed from `SKILL/` and from every user store,
 - absent from the manifest (so sync cannot resurrect them),

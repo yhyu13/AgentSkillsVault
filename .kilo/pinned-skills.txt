@@ -12,6 +12,5 @@ investment-masters
 pdf
 pptx
 slack-gif-creator
-tripo-3d-generation
 web-artifacts-builder
 xlsx

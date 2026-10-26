@@ -1,6 +1,6 @@
 # Retired skills - 2026-10-25 defect audit
 
-68 skills were removed from the vault and from every harness store
+68 skills were removed on 2026-10-25 and 49 more on 2026-10-26 from the vault and from every harness store
 (`~/.claude/skills`, `~/.kilo/skills`, `~/.codex/skills`, `~/.agents/skills`).
 
 Reason: each skill was flagged by at least one of the four audit classes -
@@ -87,3 +87,75 @@ the install list by `scripts/install-manifest.txt` (regenerate with
 | `video_toolkit` | E (error references) S (not standalone) | `video/video_toolkit/` | _(no vendor copy - removed outright)_ |
 | `writing-plans` | S (not standalone) | `software-development/writing-plans/` | `vendor/superpowers/skills/writing-plans/` |
 | `writing-skills` | E (error references) S (not standalone) | `software-development/writing-skills/` | `vendor/superpowers/skills/writing-skills/` |
+
+## Retired skills - 2026-10-26 cross-review
+
+Two agents audited the installed library independently on this machine
+(packaging score + whether it runs here + whether it stands alone + overlap).
+Retired: everything both reports flagged as broken or redundant, plus the
+service-account families the owner chose to drop (PlanetScale, Dynatrace,
+and the Grafana Cloud-only skills; the self-hostable Grafana skills stay).
+
+| class | meaning |
+|---|---|
+| U | never usable here (payload scripts not shipped, or the host app is absent) |
+| S | not standalone (only routes to skills that no longer exist) |
+| D | redundant (duplicates another installed skill, or has no subject) |
+| X | needs an external account this machine does not have |
+
+Also on 2026-10-26, without retiring: `implement`, `grill-me`, `grill-with-docs`,
+`code-review`, `brainstorming`, `game-dev-loop` and `skill-distill` moved from
+tier A to tier B (still installed, no longer in the always-visible listing).
+Fixes for the skills that stay are queued in `SKILL_CANDIDATES.md`.
+
+| skill | class | reason | promoted copy removed | upstream kept in vendor |
+|---|---|---|---|---|
+| `acestep` | U (never usable here) | runs `tools/music_gen.py`/`tools/sfx.py`, not shipped; needs a Modal or RunPod endpoint | `video/acestep/` | `vendor/claude-code-video-toolkit/` (with the `tools/` it needs) |
+| `debugger-persona` | D (redundant) | subset of `systematic-debugging` + `diagnosing-bugs` + `shuorenhua` | `software-development/debugger-persona/` | _(local skill - git history only)_ |
+| `dt-alerting` | X (needs external account) | needs a Dynatrace tenant + token; `dtctl` not installed | `devops/dynatrace/dt-alerting/` | `vendor/dynatrace-for-ai/` |
+| `dt-app-dashboards` | X (needs external account) | needs a Dynatrace tenant + token; `dtctl` not installed | `devops/dynatrace/dt-app-dashboards/` | `vendor/dynatrace-for-ai/` |
+| `dt-dql-essentials` | X (needs external account) | needs a Dynatrace tenant + token; `dtctl` not installed | `devops/dynatrace/dt-dql-essentials/` | `vendor/dynatrace-for-ai/` |
+| `dt-obs-analytics` | X (needs external account) | needs a Dynatrace tenant + token; `dtctl` not installed | `devops/dynatrace/dt-obs-analytics/` | `vendor/dynatrace-for-ai/` |
+| `dt-obs-logs` | X (needs external account) | needs a Dynatrace tenant + token; `dtctl` not installed | `devops/dynatrace/dt-obs-logs/` | `vendor/dynatrace-for-ai/` |
+| `dt-obs-problems` | X (needs external account) | needs a Dynatrace tenant + token; `dtctl` not installed | `devops/dynatrace/dt-obs-problems/` | `vendor/dynatrace-for-ai/` |
+| `dt-obs-services` | X (needs external account) | needs a Dynatrace tenant + token; `dtctl` not installed | `devops/dynatrace/dt-obs-services/` | `vendor/dynatrace-for-ai/` |
+| `dt-obs-tracing` | X (needs external account) | needs a Dynatrace tenant + token; `dtctl` not installed | `devops/dynatrace/dt-obs-tracing/` | `vendor/dynatrace-for-ai/` |
+| `dt-platform-costs` | X (needs external account) | needs a Dynatrace tenant + token; `dtctl` not installed | `devops/dynatrace/dt-platform-costs/` | `vendor/dynatrace-for-ai/` |
+| `dt-sec-insights` | X (needs external account) | needs a Dynatrace tenant + token; `dtctl` not installed | `devops/dynatrace/dt-sec-insights/` | `vendor/dynatrace-for-ai/` |
+| `dt-setup-oneagent` | X (needs external account) | needs a Dynatrace tenant + token; `dtctl` not installed | `devops/dynatrace/dt-setup-oneagent/` | `vendor/dynatrace-for-ai/` |
+| `grafana-adaptive-metrics` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-adaptive-metrics/` | `vendor/grafana-skills/` |
+| `grafana-admin` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-admin/` | `vendor/grafana-skills/` |
+| `grafana-app-observability` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-app-observability/` | `vendor/grafana-skills/` |
+| `grafana-cloud-integrations` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-cloud-integrations/` | `vendor/grafana-skills/` |
+| `grafana-cost-management` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-cost-management/` | `vendor/grafana-skills/` |
+| `grafana-database-observability` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-database-observability/` | `vendor/grafana-skills/` |
+| `grafana-dpm-finder` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-dpm-finder/` | `vendor/grafana-skills/` |
+| `grafana-fleet-management` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-fleet-management/` | `vendor/grafana-skills/` |
+| `grafana-frontend-session-rca` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-frontend-session-rca/` | `vendor/grafana-skills/` |
+| `grafana-infrastructure` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-infrastructure/` | `vendor/grafana-skills/` |
+| `grafana-ml-ai` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-ml-ai/` | `vendor/grafana-skills/` |
+| `grafana-oncall-irm` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-oncall-irm/` | `vendor/grafana-skills/` |
+| `grafana-performance-rca` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-lgtm/grafana-performance-rca/` | `vendor/grafana-skills/` |
+| `grafana-private-connectivity` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-private-connectivity/` | `vendor/grafana-skills/` |
+| `grafana-send-data` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-send-data/` | `vendor/grafana-skills/` |
+| `ideogram4` | U (never usable here) | runs `tools/ideogram4.py`/`tools/flux2.py`, not shipped; needs an Ideogram API key | `video/ideogram4/` | `vendor/claude-code-video-toolkit/` (with the `tools/` it needs) |
+| `ltx2` | U (never usable here) | runs `tools/ltx2.py` and cites `docs/ltx2.md`, neither shipped; needs a Modal A100 endpoint | `video/ltx2/` | `vendor/claude-code-video-toolkit/` (with the `tools/` it needs) |
+| `monte-carlo-proactive-monitoring` | S (not standalone) | pure router: every step loads `monitoring-advisor`/`prevent`, both retired 2026-10-25; no logic of its own | `devops/monte-carlo/monte-carlo-proactive-monitoring/` | `vendor/mc-agent-toolkit/` |
+| `planetscale-autonomous-execution-mode` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-autonomous-execution-mode/` | `vendor/planetscale-skills/` |
+| `planetscale-best-practices-matrix` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-best-practices-matrix/` | `vendor/planetscale-skills/` |
+| `planetscale-change-gates-and-approval-contract` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-change-gates-and-approval-contract/` | `vendor/planetscale-skills/` |
+| `planetscale-codebase-sqlcommenter-instrumentation` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-codebase-sqlcommenter-instrumentation/` | `vendor/planetscale-skills/` |
+| `planetscale-customer-report-template` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-customer-report-template/` | `vendor/planetscale-skills/` |
+| `planetscale-postgres-safety-review` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-postgres-safety-review/` | `vendor/planetscale-skills/` |
+| `planetscale-pscale-cli-automation` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-pscale-cli-automation/` | `vendor/planetscale-skills/` |
+| `planetscale-query-insights-and-tags` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-query-insights-and-tags/` | `vendor/planetscale-skills/` |
+| `planetscale-readonly-inventory` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-readonly-inventory/` | `vendor/planetscale-skills/` |
+| `planetscale-safe-orchestrator` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-safe-orchestrator/` | `vendor/planetscale-skills/` |
+| `planetscale-schema-recommendations-agent-loop` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-schema-recommendations-agent-loop/` | `vendor/planetscale-skills/` |
+| `planetscale-traffic-control-recommendations` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-traffic-control-recommendations/` | `vendor/planetscale-skills/` |
+| `planetscale-vitess-safety-review` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-vitess-safety-review/` | `vendor/planetscale-skills/` |
+| `planetscale-webhook-automation-recommendations` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-webhook-automation-recommendations/` | `vendor/planetscale-skills/` |
+| `runpod` | U (never usable here) | runs 5 `tools/*.py` scripts that are not shipped; needs a RunPod account | `video/runpod/` | `vendor/claude-code-video-toolkit/` (with the `tools/` it needs) |
+| `skill-auto-improve-mirror` | U (never usable here) | written for Hermes (`skill_view`, `~/.hermes`); no Hermes install on this machine; was tier A | `software-development/skill-auto-improve-mirror/` | _(local skill - git history only)_ |
+| `taste-output` | D (redundant) | generic "never truncate" override with no subject; harness default behaviour | `design/taste-output/` | _(sibling repo `taste-skill`, `output-skill`)_ |
+| `tripo-3d-generation` | X (needs external account) | calls an unofficial proxy `tripo-proxy.darknessporo.workers.dev` (trust risk) for a paid API | _(vendor-only; not copied into SKILL/)_ | `vendor/tripo-skills/` |
