@@ -1,7 +1,8 @@
 ---
 name: style-report
-description: "将报告适配六大公司汇报风格：阿里巴巴双轨制（KPI+价值观）、Amazon 叙事/LP、字节 OKR、Google OKR+GRAD、Microsoft Connects/Model-Coach-Care、腾讯产品指标。继承 manage-up-core 五大原则。Use when writing reports in a specific company style — 阿里/亚马逊/字节/谷歌/微软/腾讯风格周报、述职、绩效、Connects。"
-version: 1.0.0
+description: "Router for six named company report styles - use it only when the user asks to adapt a report to one of Alibaba, Amazon, ByteDance, Google, Microsoft or Tencent; for a single named company use that company's own style skill. 将报告适配六大公司汇报风格：阿里巴巴双轨制（KPI+价值观）、Amazon 叙事/LP、字节 OKR、Google OKR+GRAD、Microsoft Connects/Model-Coach-Care、腾讯产品指标。继承 manage-up-core 五大原则。Use when writing reports in a specific company style — 阿里/亚马逊/字节/谷歌/微软/腾讯风格周报、述职、绩效、Connects。 Not for a single named company style - use style-alibaba, style-amazon, style-bytedance, style-google, style-microsoft or style-tencent for those."
+
+version: 1.0.1
 metadata:
   category: management
   created_by: agent
