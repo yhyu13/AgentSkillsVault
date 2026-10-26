@@ -26,6 +26,8 @@
 # --- tier B: installed, hidden from auto-selection ---
 
 # --- tier assignments (one row per manifest skill) ---
+
+# --- tier assignments (one row per manifest skill) ---
 3d-cloth-material|B
 3d-falling-leaves|B
 3d-four-seasons|B
@@ -62,6 +64,7 @@ bezos-advisor|B
 blog-to-linkedin-post|A
 blog-to-twitter-post|A
 book-chapter-to-vault|A
+booth-kiosk-deck|B
 brainstorming|A
 brand-docx|A
 brand-pptx|A
