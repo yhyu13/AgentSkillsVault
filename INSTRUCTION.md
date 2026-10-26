@@ -49,6 +49,7 @@
 | hyperframes-cli (retired) | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-cli` — `npx hyperframes` 命令行（check / init / capture / usage） |
 | hyperframes-registry (retired) | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-registry` — 450+ 现成 block / component 目录（examples/ references/） |
 | hyperframes-video | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\hyperframes-video` — 视频交付路径；`/media-use`、`/figma` 两个 skill 未安装，原因与替代见本 skill 内文 |
+| booth-kiosk-deck | sibling (+ reference impl) | `D:\GitRepo-AI\FDE20261023\.kilo\skills\booth-kiosk-deck` — 展位/评审全自动循环口播演示（HTML kiosk deck + HyperFrames MP4，15 分钟流水线）。源 skill 原缺参考实现，已按 SKILL.md 内引用路径把 `assets/day1025/booth/booth_1/`（build.py 单源 + tts/ + video/ + renders/ 样片 mp4，35 文件 10.75 MB）一并并入 skill 目录 |
 | remotion-to-hyperframes (retired) | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\remotion-to-hyperframes` — Remotion 项目迁移到 HyperFrames（assets/ references/ scripts/） |
 | progress-doc-style | local (imported) | 用户提供：`C:\Users\1\Downloads\progress-doc-style`（源自《性能跟踪分析平台进度》，纯写作风格与结构范式，不绑定具体项目）。进度/OKR 跟踪文档：OKR 简述表 + 分目标章节 + 行动项七列表 + 状态三符号 + 备注一句话 + 附背景。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 | genoffice (retired) | repo (submodule) | `github.com/genspark-ai/genoffice` @ `28cee5c` (Apache-2.0) — 上游 `skills/genoffice`：本地创建/转换/读写 Office 文档（docx/xlsx/pptx/pdf）。vendor 仓 71 MB，只装 skill 目录 |
