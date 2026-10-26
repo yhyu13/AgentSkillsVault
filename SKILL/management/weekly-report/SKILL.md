@@ -1,6 +1,7 @@
 ---
 name: weekly-report
-description: "生成数据驱动的周报/月报，结论先行、禁止空话。Use when writing weekly reports, monthly reports, or periodic status updates. Triggers on: '写周报', '周报', '月报', 'weekly report', 'monthly report', 'status report', 'weekly update', '写一下这周的汇报', '帮我写周报', '本周总结'."
+description: "Recurring weekly or monthly report. 生成数据驱动的周报/月报，结论先行、禁止空话。Use when writing weekly reports, monthly reports, or periodic status updates. Triggers on: '写周报', '周报', '月报', 'weekly report', 'monthly report', 'status report', 'weekly update', '写一下这周的汇报', '帮我写周报', '本周总结'. Not for a one-off project status review - use project-update."
+version: 1.0.0
 ---
 
 # 周报 / 月报 (Weekly / Monthly Report)
