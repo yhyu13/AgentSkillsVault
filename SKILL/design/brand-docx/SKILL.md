@@ -1,12 +1,7 @@
 ---
 name: brand-docx
-description: >-
-  Brand-aware Word engine. Use to (1) EXTRACT a company's brand from a Word template into a
-  reusable "Brand Profile", (2) COMPREHEND the template with the model (optional), (3) VERIFY it,
-  (4) GENERATE new on-brand .docx documents FROM a saved profile. Trigger on "extract our brand",
-  "learn/match this template", "use our brand kit", "generate a branded report from our profile",
-  or when a ./brand-kit exists. For one-off Word edits with NO saved brand profile, use the docx
-  skill instead. NOT for .pptx (brand-pptx), .xlsx (brand-xlsx), or PDFs.
+description: "Word documents (.docx) only. Brand-aware Word engine. Use to (1) EXTRACT a company's brand from a Word template into a reusable \"Brand Profile\", (2) COMPREHEND the template with the model (optional), (3) VERIFY it, (4) GENERATE new on-brand .docx documents FROM a saved profile. Trigger on \"extract our brand\", \"learn/match this template\", \"use our brand kit\", \"generate a branded report from our profile\", or when a ./brand-kit exists. For one-off Word edits with NO saved brand profile, use the docx skill instead. NOT for .pptx (brand-pptx), .xlsx (brand-xlsx), or PDFs. Not for PowerPoint or Excel files - use brand-pptx or brand-xlsx."
+version: 1.0.0
 ---
 
 # brand-docx
