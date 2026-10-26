@@ -55,6 +55,7 @@ bezos-advisor|SKILL/management/bezos-advisor|B
 blog-to-linkedin-post|SKILL/content/blog-to-linkedin-post|A
 blog-to-twitter-post|SKILL/content/blog-to-twitter-post|A
 book-chapter-to-vault|SKILL/knowledge-vault/book-chapter-to-vault|A
+booth-kiosk-deck|SKILL/content/booth-kiosk-deck|B
 brainstorming|SKILL/software-development/brainstorming|A
 brand-docx|SKILL/design/brand-docx|A
 brand-pptx|SKILL/design/brand-pptx|A

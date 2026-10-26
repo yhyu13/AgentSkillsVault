@@ -1,0 +1,2365 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 5,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "timeline_track_too_dense",
+        "severity": "warning",
+        "message": "Track 1 has 4 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "D:\\GitRepo-AI\\FDE20261023\\assets\\day1025\\booth\\booth_1\\video\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move coherent scene groups into separate .html files under compositions/ and mount them from the parent with data-composition-src so the timeline stays easier to inspect, revise, and validate."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s1\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s1",
+        "dataAttributes": {},
+        "sourceFile": "D:\\GitRepo-AI\\FDE20261023\\assets\\day1025\\booth\\booth_1\\video\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s1\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s2\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s2",
+        "dataAttributes": {},
+        "sourceFile": "D:\\GitRepo-AI\\FDE20261023\\assets\\day1025\\booth\\booth_1\\video\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s2\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s3\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s3",
+        "dataAttributes": {},
+        "sourceFile": "D:\\GitRepo-AI\\FDE20261023\\assets\\day1025\\booth\\booth_1\\video\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s3\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s4\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s4",
+        "dataAttributes": {},
+        "sourceFile": "D:\\GitRepo-AI\\FDE20261023\\assets\\day1025\\booth\\booth_1\\video\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s4\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 3,
+    "findings": [
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 52.248,
+        "selector": "#s3 > div:nth-of-type(7) > div:nth-of-type(2)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 1441,
+          "top": 641,
+          "right": 1839,
+          "bottom": 818.38,
+          "width": 398,
+          "height": 177.38
+        },
+        "containerSelector": "#s3 > div:nth-of-type(7)",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 1440,
+          "top": 574,
+          "right": 1840,
+          "bottom": 814,
+          "width": 400,
+          "height": 240
+        },
+        "overflow": {
+          "bottom": 4.38
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 1441,
+          "y": 641,
+          "width": 398,
+          "height": 177.38
+        },
+        "firstSeen": 52.248,
+        "lastSeen": 75.469,
+        "occurrences": 3,
+        "heldMs": 0,
+        "times": [
+          52.248,
+          63.859,
+          75.469
+        ]
+      },
+      {
+        "code": "content_overlap",
+        "severity": "info",
+        "time": 70.637,
+        "selector": "#rv0",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 753,
+          "top": 565.5,
+          "right": 1059,
+          "bottom": 587.5,
+          "width": 306,
+          "height": 22
+        },
+        "containerSelector": "#rv1",
+        "text": "华东、华南、澳洲、东南亚、拉美、中东",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply.",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 753,
+          "y": 565.5,
+          "width": 306,
+          "height": 22
+        },
+        "firstSeen": 70.637,
+        "lastSeen": 70.637,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          70.637
+        ]
+      },
+      {
+        "code": "content_overlap",
+        "severity": "info",
+        "time": 70.637,
+        "selector": "#rh0",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 1350,
+          "top": 565.5,
+          "right": 1401,
+          "bottom": 587.5,
+          "width": 51,
+          "height": 22
+        },
+        "containerSelector": "#rh1",
+        "text": "1,860",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply.",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 1350,
+          "y": 565.5,
+          "width": 51,
+          "height": 22
+        },
+        "firstSeen": 70.637,
+        "lastSeen": 70.637,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          70.637
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 75.469,
+        "selector": "#rr-2 > span:nth-of-type(2) > span:nth-of-type(1)",
+        "message": "Nowrap text is wider than its container.",
+        "rect": {
+          "left": 753,
+          "top": 409.5,
+          "right": 1310.33,
+          "bottom": 431.5,
+          "width": 557.33,
+          "height": 22
+        },
+        "containerSelector": "#rr-2 > span:nth-of-type(2)",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 753,
+          "top": 409.5,
+          "right": 1297,
+          "bottom": 435.5,
+          "width": 544,
+          "height": 26
+        },
+        "overflow": {
+          "right": 13.33
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 753,
+          "y": 409.5,
+          "width": 557.33,
+          "height": 22
+        },
+        "firstSeen": 75.469,
+        "lastSeen": 75.469,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          75.469
+        ]
+      }
+    ],
+    "duration": 104.496,
+    "samples": [
+      5.805,
+      17.416,
+      29.027,
+      40.637,
+      52.248,
+      63.859,
+      75.469,
+      87.08,
+      98.691
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 4,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 1.16:1; WCAG AA requires 3:1.",
+        "text": "这是北美十四校二组，为申沃客车做的全域获客模型。",
+        "fg": "rgb(255,255,255)",
+        "bg": "rgb(235,238,241)",
+        "ratio": 1.16,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(137,137,137)",
+        "large": true,
+        "selector": "div > div:nth-of-type(6) > div:nth-of-type(1) > span",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 524,
+          "y": 950,
+          "width": 872,
+          "height": 64.1875
+        },
+        "time": 5.805,
+        "times": [
+          5.805
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      5.805,
+      29.027,
+      52.248,
+      75.469,
+      98.691
+    ],
+    "checked": 269,
+    "passed": 268
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 13,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 221 text elements stay under it for 0.5 s or more, the smallest \"LC\" at 15 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "LC",
+        "selector": "#s1 > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 91,
+          "y": 58,
+          "width": 18,
+          "height": 20
+        },
+        "time": 0,
+        "times": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.349,
+          6.106,
+          6.106,
+          6.106,
+          6.106,
+          16.224,
+          16.224,
+          18.317,
+          18.317,
+          21.806,
+          21.806,
+          21.806,
+          21.806,
+          21.806,
+          21.806,
+          21.806,
+          21.806,
+          21.981,
+          21.981,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.33,
+          22.504,
+          22.504,
+          22.504,
+          22.504,
+          22.504,
+          22.504,
+          22.504,
+          22.504,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          27.563,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          29.831,
+          38.728,
+          38.728,
+          38.728,
+          38.728,
+          38.728,
+          38.728,
+          38.728,
+          38.728,
+          51.637,
+          51.637,
+          51.637,
+          51.637,
+          51.637,
+          51.637,
+          51.637,
+          51.637,
+          51.637,
+          51.637,
+          51.637,
+          51.637,
+          51.637,
+          51.812,
+          51.812,
+          51.986,
+          51.986,
+          51.986,
+          51.986,
+          51.986,
+          51.986,
+          51.986,
+          51.986,
+          51.986,
+          51.986,
+          51.986,
+          51.986,
+          52.161,
+          52.161,
+          52.161,
+          52.161,
+          52.161,
+          52.161,
+          52.161,
+          52.161,
+          64.023,
+          64.023,
+          64.372,
+          64.372,
+          64.372,
+          64.372,
+          64.372,
+          64.372,
+          64.547,
+          64.547,
+          64.547,
+          64.721,
+          64.721,
+          64.721,
+          64.721,
+          64.721,
+          64.721,
+          64.896,
+          64.896,
+          64.896,
+          65.07,
+          65.07,
+          65.07,
+          65.07,
+          65.07,
+          65.07,
+          65.245,
+          65.245,
+          65.245,
+          65.419,
+          65.419,
+          65.419,
+          68.385,
+          68.734,
+          70.827,
+          70.827,
+          71.525,
+          83.387,
+          83.387,
+          83.387,
+          83.387,
+          83.387,
+          83.387,
+          83.387,
+          83.736,
+          83.736,
+          83.736,
+          83.911,
+          83.911,
+          83.911,
+          88.447,
+          88.447,
+          88.447,
+          88.795,
+          88.795,
+          88.795,
+          89.144,
+          89.144,
+          89.144,
+          89.493,
+          89.493,
+          89.493,
+          94.029,
+          96.82
+        ],
+        "fontPx": 15,
+        "floorPx": 28,
+        "seconds": 21.806,
+        "elements": [
+          {
+            "selector": "#s1 > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1)",
+            "text": "LC",
+            "fontPx": 15,
+            "time": 0,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#s2 > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1)",
+            "text": "LC",
+            "fontPx": 15,
+            "time": 21.806,
+            "seconds": 29.831
+          },
+          {
+            "selector": "#cq-8 > span:nth-of-type(4) > span:nth-of-type(1)",
+            "text": "S11",
+            "fontPx": 15,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#ev-8",
+            "text": "有可用事实",
+            "fontPx": 15,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-9 > span:nth-of-type(4) > span:nth-of-type(1)",
+            "text": "S11",
+            "fontPx": 15,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#ev-9",
+            "text": "边界待确认",
+            "fontPx": 15,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-10 > span:nth-of-type(4) > span:nth-of-type(1)",
+            "text": "S01",
+            "fontPx": 15,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-10 > span:nth-of-type(4) > span:nth-of-type(2)",
+            "text": "S07",
+            "fontPx": 15,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#ev-10",
+            "text": "有可用事实",
+            "fontPx": 15,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-11 > span:nth-of-type(4) > span:nth-of-type(1)",
+            "text": "S06",
+            "fontPx": 15,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-11 > span:nth-of-type(4) > span:nth-of-type(2)",
+            "text": "S11",
+            "fontPx": 15,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#ev-11",
+            "text": "有可用事实",
+            "fontPx": 15,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-0 > span:nth-of-type(4) > span:nth-of-type(1)",
+            "text": "S06",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#ev-0",
+            "text": "有可用事实",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-1 > span:nth-of-type(4) > span:nth-of-type(1)",
+            "text": "官网13型号",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#ev-1",
+            "text": "边界待确认",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-2 > span:nth-of-type(4) > span:nth-of-type(1)",
+            "text": "S01",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-2 > span:nth-of-type(4) > span:nth-of-type(2)",
+            "text": "S07",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#ev-2",
+            "text": "有可用事实",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-3 > span:nth-of-type(5) > span:nth-of-type(1)",
+            "text": "无",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#ev-3",
+            "text": "无依据",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-4 > span:nth-of-type(4) > span:nth-of-type(1)",
+            "text": "S10",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#ev-4",
+            "text": "有可用事实",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-5 > span:nth-of-type(4) > span:nth-of-type(1)",
+            "text": "S08",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#ev-5",
+            "text": "有可用事实",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-6 > span:nth-of-type(4) > span:nth-of-type(1)",
+            "text": "S08",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#ev-6",
+            "text": "边界待确认",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-7 > span:nth-of-type(4) > span:nth-of-type(1)",
+            "text": "S09",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#ev-7",
+            "text": "有可用事实",
+            "fontPx": 15,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#s2-cq04 > div:nth-of-type(2)",
+            "text": "可用事实",
+            "fontPx": 15,
+            "time": 38.728,
+            "seconds": 12.909
+          },
+          {
+            "selector": "#s2-cq04 > div:nth-of-type(4)",
+            "text": "对外边界",
+            "fontPx": 15,
+            "time": 38.728,
+            "seconds": 12.909
+          },
+          {
+            "selector": "#s2-cq04 > div:nth-of-type(6)",
+            "text": "证据闸门",
+            "fontPx": 15,
+            "time": 38.728,
+            "seconds": 12.909
+          },
+          {
+            "selector": "#s3 > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1)",
+            "text": "LC",
+            "fontPx": 15,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s4 > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1)",
+            "text": "LC",
+            "fontPx": 15,
+            "time": 83.387,
+            "seconds": 21.109
+          },
+          {
+            "selector": "#s1 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "开场",
+            "fontPx": 16,
+            "time": 0,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#s1 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "能力 01",
+            "fontPx": 16,
+            "time": 0,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#s1 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(3)",
+            "text": "能力 02",
+            "fontPx": 16,
+            "time": 0,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#s1 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(4)",
+            "text": "收尾",
+            "fontPx": 16,
+            "time": 0,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#foot > span:nth-of-type(1)",
+            "text": "事实来自客户调研 · 企业数为模拟数据",
+            "fontPx": 16,
+            "time": 0,
+            "seconds": 104.496
+          },
+          {
+            "selector": "#foot > span:nth-of-type(2)",
+            "text": "北美十四校二组 · GPS 2026 FDE 训练营",
+            "fontPx": 16,
+            "time": 0,
+            "seconds": 104.496
+          },
+          {
+            "selector": "#s2 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "开场",
+            "fontPx": 16,
+            "time": 21.806,
+            "seconds": 29.831
+          },
+          {
+            "selector": "#s2 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "能力 01",
+            "fontPx": 16,
+            "time": 21.806,
+            "seconds": 29.831
+          },
+          {
+            "selector": "#s2 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(3)",
+            "text": "能力 02",
+            "fontPx": 16,
+            "time": 21.806,
+            "seconds": 29.831
+          },
+          {
+            "selector": "#s2 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(4)",
+            "text": "收尾",
+            "fontPx": 16,
+            "time": 21.806,
+            "seconds": 29.831
+          },
+          {
+            "selector": "#s2 > div:nth-of-type(3)",
+            "text": "来源：客户调研 · 资料卡 S01–S11 · 审核 REV01–05",
+            "fontPx": 16,
+            "time": 21.806,
+            "seconds": 29.831
+          },
+          {
+            "selector": "#s2-chips > span:nth-of-type(1)",
+            "text": "客群",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "#chip-0",
+            "text": "全部",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "#chip-1",
+            "text": "公交运营商",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "#chip-2",
+            "text": "海外客户",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "#chip-3",
+            "text": "行业伙伴",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "#s2-chips > span:nth-of-type(6)",
+            "text": "证据",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "#s2-chips > span:nth-of-type(7)",
+            "text": "全部",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "#s2-chips > span:nth-of-type(8)",
+            "text": "有可用事实",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "#s2-chips > span:nth-of-type(9)",
+            "text": "边界待确认",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "#s2-chips > span:nth-of-type(10)",
+            "text": "无依据",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "div.tr.th > span:nth-of-type(1)",
+            "text": "编号",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "div.tr.th > span:nth-of-type(2)",
+            "text": "客群",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "div.tr.th > span:nth-of-type(3)",
+            "text": "客户问题",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "div.tr.th > span:nth-of-type(4)",
+            "text": "可用事实",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "div.tr.th > span:nth-of-type(5)",
+            "text": "证据状态",
+            "fontPx": 16,
+            "time": 22.33,
+            "seconds": 29.307
+          },
+          {
+            "selector": "#s3 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "开场",
+            "fontPx": 16,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s3 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "能力 01",
+            "fontPx": 16,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s3 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(3)",
+            "text": "能力 02",
+            "fontPx": 16,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s3 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(4)",
+            "text": "收尾",
+            "fontPx": 16,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s3 > div:nth-of-type(3)",
+            "text": "企业数为演示用模拟数据",
+            "fontPx": 16,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s3-in > div:nth-of-type(1) > span:nth-of-type(1)",
+            "text": "录入即改",
+            "fontPx": 16,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "#s3-fields > div:nth-of-type(1) > label:nth-of-type(1)",
+            "text": "产品品类（官网实测 13 型号）",
+            "fontPx": 16,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "#s3-fields > div:nth-of-type(2) > label:nth-of-type(1)",
+            "text": "典型应用场景",
+            "fontPx": 16,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "#s3-fields > div:nth-of-type(3) > label:nth-of-type(1)",
+            "text": "目标区域",
+            "fontPx": 16,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "#s3-fields > div:nth-of-type(4) > label:nth-of-type(1)",
+            "text": "排除对象",
+            "fontPx": 16,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "#s3-d0",
+            "text": "规则交集后 · 去重",
+            "fontPx": 16,
+            "time": 52.161,
+            "seconds": 19.363
+          },
+          {
+            "selector": "#s3-bars > div:nth-of-type(1) > span:nth-of-type(1)",
+            "text": "高匹配 ≥85",
+            "fontPx": 16,
+            "time": 52.161,
+            "seconds": 31.226
+          },
+          {
+            "selector": "#s3-bars > div:nth-of-type(1) > span:nth-of-type(3)",
+            "text": "1,436",
+            "fontPx": 16,
+            "time": 52.161,
+            "seconds": 31.226
+          },
+          {
+            "selector": "#s3-bars > div:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "中匹配 70–84",
+            "fontPx": 16,
+            "time": 52.161,
+            "seconds": 31.226
+          },
+          {
+            "selector": "#s3-bars > div:nth-of-type(2) > span:nth-of-type(3)",
+            "text": "2,309",
+            "fontPx": 16,
+            "time": 52.161,
+            "seconds": 31.226
+          },
+          {
+            "selector": "#s3-bars > div:nth-of-type(3) > span:nth-of-type(1)",
+            "text": "低匹配 <70",
+            "fontPx": 16,
+            "time": 52.161,
+            "seconds": 31.226
+          },
+          {
+            "selector": "#s3-bars > div:nth-of-type(3) > span:nth-of-type(3)",
+            "text": "1,385",
+            "fontPx": 16,
+            "time": 52.161,
+            "seconds": 31.226
+          },
+          {
+            "selector": "#s3-rules > div:nth-of-type(1) > span:nth-of-type(1)",
+            "text": "10 条生效规则",
+            "fontPx": 16,
+            "time": 64.023,
+            "seconds": 19.364
+          },
+          {
+            "selector": "#s3-d1",
+            "text": "较上一版 +310 家 · 规则交集后去重",
+            "fontPx": 16,
+            "time": 71.525,
+            "seconds": 11.862
+          },
+          {
+            "selector": "#s4 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "开场",
+            "fontPx": 16,
+            "time": 83.387,
+            "seconds": 21.109
+          },
+          {
+            "selector": "#s4 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "能力 01",
+            "fontPx": 16,
+            "time": 83.387,
+            "seconds": 21.109
+          },
+          {
+            "selector": "#s4 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(3)",
+            "text": "能力 02",
+            "fontPx": 16,
+            "time": 83.387,
+            "seconds": 21.109
+          },
+          {
+            "selector": "#s4 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(4)",
+            "text": "收尾",
+            "fontPx": 16,
+            "time": 83.387,
+            "seconds": 21.109
+          },
+          {
+            "selector": "#s3-run",
+            "text": "重新生成模型",
+            "fontPx": 16.93,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "span.k",
+            "text": "客户调研结论",
+            "fontPx": 17,
+            "time": 6.106,
+            "seconds": 15.7
+          },
+          {
+            "selector": "span.s",
+            "text": "8 条有事实 · 3 条要说清边界 · 1 条无依据",
+            "fontPx": 17,
+            "time": 6.106,
+            "seconds": 15.7
+          },
+          {
+            "selector": "#s2-legend > div:nth-of-type(2) > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "有可用事实 · 8 条",
+            "fontPx": 17,
+            "time": 22.504,
+            "seconds": 16.224
+          },
+          {
+            "selector": "#s2-legend > div:nth-of-type(2) > span:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "可回链到资料卡 S 编号，连同边界一起写",
+            "fontPx": 17,
+            "time": 22.504,
+            "seconds": 16.224
+          },
+          {
+            "selector": "#s2-legend > div:nth-of-type(3) > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "边界待确认 · 3 条",
+            "fontPx": 17,
+            "time": 22.504,
+            "seconds": 16.224
+          },
+          {
+            "selector": "#s2-legend > div:nth-of-type(3) > span:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "要说清「还没到哪一步」，进 Day1 确认单",
+            "fontPx": 17,
+            "time": 22.504,
+            "seconds": 16.224
+          },
+          {
+            "selector": "#s2-legend > div:nth-of-type(4) > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "无依据 · 1 条",
+            "fontPx": 17,
+            "time": 22.504,
+            "seconds": 16.224
+          },
+          {
+            "selector": "#s2-legend > div:nth-of-type(4) > span:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "没有编号 = 没依据，不许进稿",
+            "fontPx": 17,
+            "time": 22.504,
+            "seconds": 16.224
+          },
+          {
+            "selector": "#cq04-gate > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "无依据 · REV05 已判「待补依据」",
+            "fontPx": 17,
+            "time": 38.728,
+            "seconds": 12.909
+          },
+          {
+            "selector": "#cq04-gate > span:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "拟用渠道：销售推介",
+            "fontPx": 17,
+            "time": 38.728,
+            "seconds": 12.909
+          },
+          {
+            "selector": "#s3 > div:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(1) > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "产品词族 = 官网 13 型号",
+            "fontPx": 17,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s3 > div:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(1) > span:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "10-25 实测，不让模型自编",
+            "fontPx": 17,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s3-gap > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "G1 车型智能化清单缺",
+            "fontPx": 17,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s3-gap > span:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "⚠️ 待 Day1 现场确认",
+            "fontPx": 17,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s3-fields > div:nth-of-type(1) > div:nth-of-type(1)",
+            "text": "7–10 米纯电城市、10.5 米燃料电池、12 米混动、双源无轨、18 米 BRT、旅游车、iEV7",
+            "fontPx": 17,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "#s3-fields > div:nth-of-type(2) > div:nth-of-type(1)",
+            "text": "大客流骨干线路、普通接驳线、BRT 走廊、通勤班车",
+            "fontPx": 17,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "#s3-fields > div:nth-of-type(3) > div:nth-of-type(1)",
+            "text": "华东、华南、澳洲、东南亚、拉美、中东",
+            "fontPx": 17,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "#s3-fields > div:nth-of-type(4) > div:nth-of-type(1)",
+            "text": "个人购车、二手车商、非营运改装厂、已明确无采购计划",
+            "fontPx": 17,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "div.l",
+            "text": "预计目标企业",
+            "fontPx": 17,
+            "time": 52.161,
+            "seconds": 31.226
+          },
+          {
+            "selector": "#rr-0 > span:nth-of-type(1)",
+            "text": "行业分类",
+            "fontPx": 17,
+            "time": 64.372,
+            "seconds": 19.015
+          },
+          {
+            "selector": "#rr-0 > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "公交运营商 / 城际客运 / 客车制造商 / 经销商 / 服务商 / 行业伙伴",
+            "fontPx": 17,
+            "time": 64.372,
+            "seconds": 19.015
+          },
+          {
+            "selector": "#rr-0 > span:nth-of-type(3) > span:nth-of-type(1)",
+            "text": "2,860",
+            "fontPx": 17,
+            "time": 64.372,
+            "seconds": 19.015
+          },
+          {
+            "selector": "#rr-1 > span:nth-of-type(1)",
+            "text": "规模区间",
+            "fontPx": 17,
+            "time": 64.372,
+            "seconds": 19.015
+          },
+          {
+            "selector": "#rr-1 > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "车辆 ≥ 300 辆（公交）｜≥ 50 辆（客运）｜年采购 ≥ 20 台",
+            "fontPx": 17,
+            "time": 64.372,
+            "seconds": 19.015
+          },
+          {
+            "selector": "#rr-1 > span:nth-of-type(3) > span:nth-of-type(1)",
+            "text": "1,940",
+            "fontPx": 17,
+            "time": 64.372,
+            "seconds": 19.015
+          },
+          {
+            "selector": "#rr-2 > span:nth-of-type(1)",
+            "text": "关键词族 A",
+            "fontPx": 17,
+            "time": 64.547,
+            "seconds": 18.84
+          },
+          {
+            "selector": "#rr-2 > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "官网 13 型号：纯电城市 / 燃料电池 / 混动 / 双源无轨 / BRT / 旅游 / iEV7",
+            "fontPx": 17,
+            "time": 64.547,
+            "seconds": 18.84
+          },
+          {
+            "selector": "#rr-2 > span:nth-of-type(3) > span:nth-of-type(1)",
+            "text": "3,120",
+            "fontPx": 17,
+            "time": 64.547,
+            "seconds": 18.84
+          },
+          {
+            "selector": "#rr-3 > span:nth-of-type(1)",
+            "text": "关键词族 B",
+            "fontPx": 17,
+            "time": 64.721,
+            "seconds": 18.666
+          },
+          {
+            "selector": "#rr-3 > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "大客流骨干线路、普通接驳线、BRT 走廊、通勤班车",
+            "fontPx": 17,
+            "time": 64.721,
+            "seconds": 18.666
+          },
+          {
+            "selector": "#rr-3 > span:nth-of-type(3) > span:nth-of-type(1)",
+            "text": "2,640",
+            "fontPx": 17,
+            "time": 64.721,
+            "seconds": 18.666
+          },
+          {
+            "selector": "#rr-4 > span:nth-of-type(1)",
+            "text": "关键词族 C",
+            "fontPx": 17,
+            "time": 64.721,
+            "seconds": 18.666
+          },
+          {
+            "selector": "#rr-4 > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "公交集团、公共交通、城市客运、旅游客运、班车",
+            "fontPx": 17,
+            "time": 64.721,
+            "seconds": 18.666
+          },
+          {
+            "selector": "#rr-4 > span:nth-of-type(3) > span:nth-of-type(1)",
+            "text": "2,210",
+            "fontPx": 17,
+            "time": 64.721,
+            "seconds": 18.666
+          },
+          {
+            "selector": "#rr-5 > span:nth-of-type(2)",
+            "text": "区域过滤",
+            "fontPx": 17,
+            "time": 64.896,
+            "seconds": 18.491
+          },
+          {
+            "selector": "#rv0",
+            "text": "华东、华南、澳洲、东南亚、拉美、中东",
+            "fontPx": 17,
+            "time": 64.896,
+            "seconds": 5.931
+          },
+          {
+            "selector": "#rh0",
+            "text": "1,860",
+            "fontPx": 17,
+            "time": 64.896,
+            "seconds": 5.931
+          },
+          {
+            "selector": "#rr-6 > span:nth-of-type(1)",
+            "text": "排除规则",
+            "fontPx": 17,
+            "time": 65.07,
+            "seconds": 18.317
+          },
+          {
+            "selector": "#rr-6 > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "个人购车、二手车商、非营运改装厂、已明确无采购计划",
+            "fontPx": 17,
+            "time": 65.07,
+            "seconds": 18.317
+          },
+          {
+            "selector": "#rr-6 > span:nth-of-type(3) > span:nth-of-type(1)",
+            "text": "− 1,180",
+            "fontPx": 17,
+            "time": 65.07,
+            "seconds": 18.317
+          },
+          {
+            "selector": "#rr-7 > span:nth-of-type(1)",
+            "text": "决策链角色",
+            "fontPx": 17,
+            "time": 65.07,
+            "seconds": 18.317
+          },
+          {
+            "selector": "#rr-7 > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "采购总监 / 运营总监 / 技术负责人 / 董事会 / 维保主管",
+            "fontPx": 17,
+            "time": 65.07,
+            "seconds": 18.317
+          },
+          {
+            "selector": "#rr-7 > span:nth-of-type(3) > span:nth-of-type(1)",
+            "text": "3,260",
+            "fontPx": 17,
+            "time": 65.07,
+            "seconds": 18.317
+          },
+          {
+            "selector": "#rr-8 > span:nth-of-type(1)",
+            "text": "时效规则",
+            "fontPx": 17,
+            "time": 65.245,
+            "seconds": 18.142
+          },
+          {
+            "selector": "#rr-8 > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "近 24 个月有采购、招标或新车交付记录",
+            "fontPx": 17,
+            "time": 65.245,
+            "seconds": 18.142
+          },
+          {
+            "selector": "#rr-8 > span:nth-of-type(3) > span:nth-of-type(1)",
+            "text": "1,720",
+            "fontPx": 17,
+            "time": 65.245,
+            "seconds": 18.142
+          },
+          {
+            "selector": "#rr-9 > span:nth-of-type(1)",
+            "text": "关联信号",
+            "fontPx": 17,
+            "time": 65.419,
+            "seconds": 17.968
+          },
+          {
+            "selector": "#rr-9 > span:nth-of-type(2) > span:nth-of-type(1)",
+            "text": "与已知 86 家成交客户存在采购 / 运营 / 维保弱关联",
+            "fontPx": 17,
+            "time": 65.419,
+            "seconds": 17.968
+          },
+          {
+            "selector": "#rr-9 > span:nth-of-type(3) > span:nth-of-type(1)",
+            "text": "960",
+            "fontPx": 17,
+            "time": 65.419,
+            "seconds": 17.968
+          },
+          {
+            "selector": "#ty-1",
+            "text": "非",
+            "fontPx": 17,
+            "time": 68.385,
+            "seconds": 15.002
+          },
+          {
+            "selector": "#ty-2",
+            "text": "洲",
+            "fontPx": 17,
+            "time": 68.734,
+            "seconds": 14.653
+          },
+          {
+            "selector": "#rv1",
+            "text": "华东、华南、澳洲、东南亚、拉美、中东、非洲",
+            "fontPx": 17,
+            "time": 70.827,
+            "seconds": 12.56
+          },
+          {
+            "selector": "#rh1",
+            "text": "2,200",
+            "fontPx": 17,
+            "time": 70.827,
+            "seconds": 12.56
+          },
+          {
+            "selector": "#st-0 > div:nth-of-type(1)",
+            "text": "01 · 本次演示",
+            "fontPx": 17,
+            "time": 83.736,
+            "seconds": 20.76
+          },
+          {
+            "selector": "#st-0 > div:nth-of-type(3)",
+            "text": "12 条 CQ · 3 类客群",
+            "fontPx": 17,
+            "time": 83.736,
+            "seconds": 20.76
+          },
+          {
+            "selector": "#st-1 > div:nth-of-type(1)",
+            "text": "02 · 本次演示",
+            "fontPx": 17,
+            "time": 83.911,
+            "seconds": 20.585
+          },
+          {
+            "selector": "#st-1 > div:nth-of-type(3)",
+            "text": "10 条规则 · 企业池",
+            "fontPx": 17,
+            "time": 83.911,
+            "seconds": 20.585
+          },
+          {
+            "selector": "#st-2 > div:nth-of-type(1)",
+            "text": "03",
+            "fontPx": 17,
+            "time": 88.447,
+            "seconds": 16.049
+          },
+          {
+            "selector": "#st-2 > div:nth-of-type(3)",
+            "text": "按判定反馈迭代",
+            "fontPx": 17,
+            "time": 88.447,
+            "seconds": 16.049
+          },
+          {
+            "selector": "#st-3 > div:nth-of-type(1)",
+            "text": "04",
+            "fontPx": 17,
+            "time": 88.795,
+            "seconds": 15.701
+          },
+          {
+            "selector": "#st-3 > div:nth-of-type(3)",
+            "text": "千企千面",
+            "fontPx": 17,
+            "time": 88.795,
+            "seconds": 15.701
+          },
+          {
+            "selector": "#st-4 > div:nth-of-type(1)",
+            "text": "05",
+            "fontPx": 17,
+            "time": 89.144,
+            "seconds": 15.352
+          },
+          {
+            "selector": "#st-4 > div:nth-of-type(3)",
+            "text": "6 大数据源",
+            "fontPx": 17,
+            "time": 89.144,
+            "seconds": 15.352
+          },
+          {
+            "selector": "#st-5 > div:nth-of-type(1)",
+            "text": "06",
+            "fontPx": 17,
+            "time": 89.493,
+            "seconds": 15.003
+          },
+          {
+            "selector": "#st-5 > div:nth-of-type(3)",
+            "text": "反馈回流模型",
+            "fontPx": 17,
+            "time": 89.493,
+            "seconds": 15.003
+          },
+          {
+            "selector": "#s1 > div:nth-of-type(1) > div:nth-of-type(1) > small:nth-of-type(1)",
+            "text": "/ 申沃客车项目 · 展位短版",
+            "fontPx": 18,
+            "time": 0,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#s2 > div:nth-of-type(1) > div:nth-of-type(1) > small:nth-of-type(1)",
+            "text": "/ 申沃客车项目",
+            "fontPx": 18,
+            "time": 21.806,
+            "seconds": 29.831
+          },
+          {
+            "selector": "#s2-legend > div:nth-of-type(1)",
+            "text": "申沃的客户是「信任客户」：12 问里 1/3 在问边界。每条先过证据闸门，再决定能不能写进对外内容。",
+            "fontPx": 18,
+            "time": 22.504,
+            "seconds": 16.224
+          },
+          {
+            "selector": "#cq-8 > span:nth-of-type(1)",
+            "text": "CQ09",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-8 > span:nth-of-type(2)",
+            "text": "行业伙伴",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-8 > span:nth-of-type(3)",
+            "text": "与享道的合作涉及哪些方向？",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-9 > span:nth-of-type(1)",
+            "text": "CQ10",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-9 > span:nth-of-type(2)",
+            "text": "行业伙伴",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-9 > span:nth-of-type(3)",
+            "text": "RoboBus 是否已量产并商业运营？",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-10 > span:nth-of-type(1)",
+            "text": "CQ11",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-10 > span:nth-of-type(2)",
+            "text": "行业伙伴",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-10 > span:nth-of-type(3)",
+            "text": "车联网、车辆、维保怎么形成协同选题？",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-11 > span:nth-of-type(1)",
+            "text": "CQ12",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-11 > span:nth-of-type(2)",
+            "text": "行业伙伴",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-11 > span:nth-of-type(3)",
+            "text": "驾驶辅助 vs 自动驾驶合作怎么区分？",
+            "fontPx": 18,
+            "time": 27.563,
+            "seconds": 24.074
+          },
+          {
+            "selector": "#cq-0 > span:nth-of-type(1)",
+            "text": "CQ01",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-0 > span:nth-of-type(2)",
+            "text": "公交运营商",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-0 > span:nth-of-type(3)",
+            "text": "现有驾驶辅助能帮助司机看清哪些盲区？",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-1 > span:nth-of-type(1)",
+            "text": "CQ02",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-1 > span:nth-of-type(2)",
+            "text": "公交运营商",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-1 > span:nth-of-type(3)",
+            "text": "骨干线与接驳线怎么选车型？",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-2 > span:nth-of-type(1)",
+            "text": "CQ03",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-2 > span:nth-of-type(2)",
+            "text": "公交运营商",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-2 > span:nth-of-type(3)",
+            "text": "维保与故障响应有公开案例吗？",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-3 > span:nth-of-type(2)",
+            "text": "CQ04",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-3 > span:nth-of-type(3)",
+            "text": "公交运营商",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-3 > span:nth-of-type(4)",
+            "text": "有数据证明运营成本降 30% 吗？",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-4 > span:nth-of-type(1)",
+            "text": "CQ05",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-4 > span:nth-of-type(2)",
+            "text": "海外客户",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-4 > span:nth-of-type(3)",
+            "text": "城市公交 vs 城间客运分别面向什么场景？",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-5 > span:nth-of-type(1)",
+            "text": "CQ06",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-5 > span:nth-of-type(2)",
+            "text": "海外客户",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-5 > span:nth-of-type(3)",
+            "text": "澳洲右舵、沿海气候适配的公开依据？",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-6 > span:nth-of-type(1)",
+            "text": "CQ07",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-6 > span:nth-of-type(2)",
+            "text": "海外客户",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-6 > span:nth-of-type(3)",
+            "text": "当地服务网络是否全部建好？",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-7 > span:nth-of-type(1)",
+            "text": "CQ08",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-7 > span:nth-of-type(2)",
+            "text": "海外客户",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#cq-7 > span:nth-of-type(3)",
+            "text": "美洲来访是否意味着已有商业订单？",
+            "fontPx": 18,
+            "time": 29.831,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#s2-cq04 > div:nth-of-type(3)",
+            "text": "无任何可用事实；FB04 客户仍在追问，仍无测算材料。",
+            "fontPx": 18,
+            "time": 38.728,
+            "seconds": 12.909
+          },
+          {
+            "selector": "#s2-cq04 > div:nth-of-type(5)",
+            "text": "必须删具体降幅，列为待核实；只能写「资料征集」（G3）。",
+            "fontPx": 18,
+            "time": 38.728,
+            "seconds": 12.909
+          },
+          {
+            "selector": "#s3 > div:nth-of-type(1) > div:nth-of-type(1) > small:nth-of-type(1)",
+            "text": "/ 申沃客车项目",
+            "fontPx": 18,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "div.btns > div:nth-of-type(1)",
+            "text": "重置",
+            "fontPx": 18,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "#s4 > div:nth-of-type(1) > div:nth-of-type(1) > small:nth-of-type(1)",
+            "text": "/ 申沃客车项目",
+            "fontPx": 18,
+            "time": 83.387,
+            "seconds": 21.109
+          },
+          {
+            "selector": "#s4-note",
+            "text": "客户问题、事实编号 S01–S11、审核 REV01–05、缺口 G1–G8 来自客户调研；官网型号 2026-10-25 实测。企业数、命中量、匹配分布为演示用模拟数据。申沃客车为服务对象，不代表其官方背书。北美十四校二组 · GPS 2026 FDE 训练营 · 2026-10 · 上海",
+            "fontPx": 18,
+            "time": 96.82,
+            "seconds": 7.676
+          },
+          {
+            "selector": "#s1-eye",
+            "text": "北美十四校二组 · GPS 2026 FDE 训练营",
+            "fontPx": 20,
+            "time": 0.349,
+            "seconds": 21.457
+          },
+          {
+            "selector": "#s1-ab1 > div:nth-of-type(2)",
+            "text": "能力 01",
+            "fontPx": 20,
+            "time": 16.224,
+            "seconds": 5.582
+          },
+          {
+            "selector": "#s1-ab2 > div:nth-of-type(2)",
+            "text": "能力 02",
+            "fontPx": 20,
+            "time": 18.317,
+            "seconds": 3.489
+          },
+          {
+            "selector": "#s2-ttl > h2:nth-of-type(1) > span:nth-of-type(1)",
+            "text": "01",
+            "fontPx": 20,
+            "time": 21.981,
+            "seconds": 29.656
+          },
+          {
+            "selector": "#s2-dt1",
+            "text": "证据状态 · 三档闸门",
+            "fontPx": 20,
+            "time": 22.504,
+            "seconds": 29.133
+          },
+          {
+            "selector": "#s3 > div:nth-of-type(7) > div:nth-of-type(1)",
+            "text": "模型评估",
+            "fontPx": 20,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s3-ttl > h2:nth-of-type(1) > span:nth-of-type(1)",
+            "text": "02",
+            "fontPx": 20,
+            "time": 51.812,
+            "seconds": 31.575
+          },
+          {
+            "selector": "#s3-in > div:nth-of-type(1)",
+            "text": "产品与客户输入",
+            "fontPx": 20,
+            "time": 51.986,
+            "seconds": 31.401
+          },
+          {
+            "selector": "#s3-rules > div:nth-of-type(1)",
+            "text": "生成的筛选规则集",
+            "fontPx": 20,
+            "time": 64.023,
+            "seconds": 19.364
+          },
+          {
+            "selector": "#s1 > div:nth-of-type(1) > div:nth-of-type(1)",
+            "text": "LinkChip 获客引擎",
+            "fontPx": 22,
+            "time": 0,
+            "seconds": 21.806
+          },
+          {
+            "selector": "#s2 > div:nth-of-type(1) > div:nth-of-type(1)",
+            "text": "LinkChip 获客引擎",
+            "fontPx": 22,
+            "time": 21.806,
+            "seconds": 29.831
+          },
+          {
+            "selector": "#s2-ttl > div:nth-of-type(1)",
+            "text": "3 类客群 × 12 个真实提问 × 可对外的边界",
+            "fontPx": 22,
+            "time": 21.981,
+            "seconds": 29.656
+          },
+          {
+            "selector": "div.qbox",
+            "text": "有没有数据证明运营成本下降 30%？",
+            "fontPx": 22,
+            "time": 38.728,
+            "seconds": 12.909
+          },
+          {
+            "selector": "#s3 > div:nth-of-type(1) > div:nth-of-type(1)",
+            "text": "LinkChip 获客引擎",
+            "fontPx": 22,
+            "time": 51.637,
+            "seconds": 31.75
+          },
+          {
+            "selector": "#s3-ttl > div:nth-of-type(1)",
+            "text": "分析产品与典型客户 → 生成「找客户模型」筛选规则集",
+            "fontPx": 22,
+            "time": 51.812,
+            "seconds": 31.575
+          },
+          {
+            "selector": "#s4 > div:nth-of-type(1) > div:nth-of-type(1)",
+            "text": "LinkChip 获客引擎",
+            "fontPx": 22,
+            "time": 83.387,
+            "seconds": 21.109
+          },
+          {
+            "selector": "span.sub",
+            "text": "完整九模块演示台就在展位屏上 · 扫码投票",
+            "fontPx": 22,
+            "time": 94.029,
+            "seconds": 10.467
+          },
+          {
+            "selector": "#s1-ab1 > div:nth-of-type(4)",
+            "text": "先弄清客户在问什么：3 类客群 × 12 个真实提问，每条对到资料卡编号与对外边界",
+            "fontPx": 23,
+            "time": 16.224,
+            "seconds": 5.582
+          },
+          {
+            "selector": "#s1-ab2 > div:nth-of-type(4)",
+            "text": "再据此把客户找出来：官网 13 个在售型号 + 场景 / 区域 / 排除 → 10 条筛选规则",
+            "fontPx": 23,
+            "time": 18.317,
+            "seconds": 3.489
+          },
+          {
+            "selector": "#s1-trust",
+            "text": "三类客群问的不是「火不火」，而是",
+            "fontPx": 25,
+            "time": 6.106,
+            "seconds": 15.7
+          },
+          {
+            "selector": "#s1-trust > b:nth-of-type(1)",
+            "text": "「我能不能信你」",
+            "fontPx": 25,
+            "time": 6.106,
+            "seconds": 15.7
+          },
+          {
+            "selector": "#st-0 > div:nth-of-type(2)",
+            "text": "行业问题库",
+            "fontPx": 27,
+            "time": 83.736,
+            "seconds": 20.76
+          },
+          {
+            "selector": "#st-1 > div:nth-of-type(2)",
+            "text": "找客户模型",
+            "fontPx": 27,
+            "time": 83.911,
+            "seconds": 20.585
+          },
+          {
+            "selector": "#st-2 > div:nth-of-type(2)",
+            "text": "客户画像",
+            "fontPx": 27,
+            "time": 88.447,
+            "seconds": 16.049
+          },
+          {
+            "selector": "#st-3 > div:nth-of-type(2)",
+            "text": "营销内容",
+            "fontPx": 27,
+            "time": 88.795,
+            "seconds": 15.701
+          },
+          {
+            "selector": "#st-4 > div:nth-of-type(2)",
+            "text": "全渠道获客",
+            "fontPx": 27,
+            "time": 89.144,
+            "seconds": 15.352
+          },
+          {
+            "selector": "#st-5 > div:nth-of-type(2)",
+            "text": "自动化 + 学习",
+            "fontPx": 27,
+            "time": 89.493,
+            "seconds": 15.003
+          }
+        ]
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 4.54 s (1.05–5.58 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 1.047,
+        "seconds": 4.535,
+        "floorSeconds": 3,
+        "until": 5.582
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 3.84 s (9.42–13.26 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 9.42,
+        "seconds": 3.838,
+        "floorSeconds": 3,
+        "until": 13.258
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"先弄清客户在问什么：3 类客群 × 12 个真实提问，每条对到资料卡编号与对外边界\" (24 words) is on screen 5.70 s (±0.01 s), under its 5.77 s floor: hold it about 0.5 s + 0.3 s a word (7.70 s here) before it leaves or changes; see references/motion.md.",
+        "text": "先弄清客户在问什么：3 类客群 × 12 个真实提问，每条对到资料卡编号与对外边界",
+        "selector": "#s1-ab1 > div:nth-of-type(4)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 115,
+          "y": 659.76,
+          "width": 636.75,
+          "height": 65.63999999999999
+        },
+        "time": 16.071,
+        "words": 24,
+        "seconds": 5.703,
+        "floorSeconds": 5.775
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"再据此把客户找出来：官网 13 个在售型号 + 场景 / 区域 / 排除 → 10 条筛选规则\" (20 words) is on screen 3.57 s (±0.01 s), under its 4.88 s floor: hold it about 0.5 s + 0.3 s a word (6.50 s here) before it leaves or changes; see references/motion.md.",
+        "text": "再据此把客户找出来：官网 13 个在售型号 + 场景 / 区域 / 排除 → 10 条筛选规则",
+        "selector": "#s1-ab2 > div:nth-of-type(4)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 859,
+          "y": 660.61,
+          "width": 624.1399999999999,
+          "height": 65.63999999999999
+        },
+        "time": 18.208,
+        "words": 20,
+        "seconds": 3.565,
+        "floorSeconds": 4.875
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 3.66 s (34.72–38.38 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 34.716,
+        "seconds": 3.663,
+        "floorSeconds": 3,
+        "until": 38.379
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 4.54 s (38.90–43.44 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 38.903,
+        "seconds": 4.535,
+        "floorSeconds": 3,
+        "until": 43.438
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 3.49 s (43.96–47.45 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 43.962,
+        "seconds": 3.489,
+        "floorSeconds": 3,
+        "until": 47.451
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 3.32 s (55.13–58.44 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 55.126,
+        "seconds": 3.315,
+        "floorSeconds": 3,
+        "until": 58.441
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"不让模型自己编\" (5 words) is on screen 1.44 s (±0.01 s), under its 1.50 s floor: hold it about 0.5 s + 0.3 s a word (2.00 s here) before it leaves or changes; see references/motion.md.",
+        "text": "不让模型自己编",
+        "selector": "#cap-s3-2",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 841,
+          "y": 959,
+          "width": 238,
+          "height": 45
+        },
+        "time": 58.735,
+        "words": 5,
+        "seconds": 1.44,
+        "floorSeconds": 1.5
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 3.14 s (60.53–63.67 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 60.534,
+        "seconds": 3.141,
+        "floorSeconds": 3,
+        "until": 63.675
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"都从这两步接出去。\" (7 words) is on screen 1.73 s (±0.01 s), under its 1.95 s floor: hold it about 0.5 s + 0.3 s a word (2.60 s here) before it leaves or changes; see references/motion.md.",
+        "text": "都从这两步接出去。",
+        "selector": "#cap-s4-2",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 807,
+          "y": 959,
+          "width": 306,
+          "height": 45
+        },
+        "time": 92.034,
+        "words": 7,
+        "seconds": 1.734,
+        "floorSeconds": 1.95
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"客户问题、事实编号 S01–S11、审核 REV01–05、缺口 G1–G8 来自客户调研；官网型号 2026-1...\" (59 words) is on screen 7.72 s (±0.01 s), under the 13.65 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "客户问题、事实编号 S01–S11、审核 REV01–05、缺口 G1–G8 来自客户调研；官网型号 2026-10-25 实测。企业数、命中量、匹配分布为演示用模拟数据。申沃客车为服务对象，不代表其官方背书。北美十四校二组 · GPS 2026 FDE 训练营 · 2026-10 · 上海",
+        "selector": "#s4-note",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 730.55,
+          "width": 870.08,
+          "height": 85.18000000000006
+        },
+        "time": 96.777,
+        "words": 59,
+        "seconds": 7.725,
+        "floorSeconds": 13.65
+      }
+    ],
+    "enabled": true,
+    "step": 0.1740000000000066,
+    "samples": 599
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

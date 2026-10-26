@@ -110,6 +110,7 @@ ask-matt|B
 audit-verify-explain-grade-5|B
 aura-asset-images|B
 bezos-advisor|B
+booth-kiosk-deck|B
 browser-automation|B
 cat-game-architecture|B
 claude-api|B
