@@ -1,15 +1,11 @@
 ---
 name: blog-to-linkedin-post
-description: >-
-  Convert a long-form blog article into LinkedIn-ready professional posts with a
-  clear point of view, source-grounded golden quote, last-30-day trend
-  adaptation, current LinkedIn rule checks, and a primary visual concept or
-  generated image. Use when the user asks for blog to LinkedIn, LinkedIn post,
-  LinkedIn copywriting, blog repurposing for LinkedIn, professional thought
-  leadership, or blog content repurposing for LinkedIn.
+description: "LinkedIn posts only. Convert a long-form blog article into LinkedIn-ready professional posts with a clear point of view, source-grounded golden quote, last-30-day trend adaptation, current LinkedIn rule checks, and a primary visual concept or generated image. Use when the user asks for blog to LinkedIn, LinkedIn post, LinkedIn copywriting, blog repurposing for LinkedIn, professional thought leadership, or blog content repurposing for LinkedIn. Not for Twitter/X - use blog-to-twitter-post."
+
 metadata:
   author: Jeff
   version: "1.1"
+version: 1.0.0
 ---
 
 # blog-to-linkedin-post
