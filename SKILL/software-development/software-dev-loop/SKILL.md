@@ -1,7 +1,8 @@
 ---
 name: software-dev-loop
-description: The complete software-development loop — persist the goal → write a plan doc and harden it with the source-anchored-design critic loop → implement and critic-harden → red-green test + benchmark → dump JOURNEY in between → write durable long-term memory. Use when starting or running a real software build, when a task needs goal, docs, testing, and memory chained in order, or when the user asks for the "holy grail" dev workflow.
-version: 1.3.0
+description: "General software development only (no game engine, no game design). The complete software-development loop — persist the goal → write a plan doc and harden it with the source-anchored-design critic loop → implement and critic-harden → red-green test + benchmark → dump JOURNEY in between → write durable long-term memory. Use when starting or running a real software build, when a task needs goal, docs, testing, and memory chained in order, or when the user asks for the \"holy grail\" dev workflow. Not for games - use game-dev-loop."
+
+version: 1.3.1
 metadata:
   category: software-development
   created_by: agent
