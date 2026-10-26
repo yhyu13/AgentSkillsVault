@@ -1,12 +1,7 @@
 ---
 name: brand-xlsx
-description: >-
-  Brand-aware Excel engine. Use to (1) EXTRACT a company's brand from a .xlsx template into a
-  reusable "Brand Profile", (2) COMPREHEND the template with the model (optional), (3) VERIFY it,
-  (4) GENERATE a new on-brand .xlsx from a GridDocument fill manifest. Trigger on "extract our
-  brand", "use our workbook template", "generate a branded workbook from our profile", or when a
-  ./brand-kit exists. For one-off spreadsheet edits with no saved brand profile, use the normal
-  xlsx skill instead. NOT for .docx (brand-docx), .pptx (brand-pptx), or PDFs.
+description: "Excel workbooks (.xlsx) only. Brand-aware Excel engine. Use to (1) EXTRACT a company's brand from a .xlsx template into a reusable \"Brand Profile\", (2) COMPREHEND the template with the model (optional), (3) VERIFY it, (4) GENERATE a new on-brand .xlsx from a GridDocument fill manifest. Trigger on \"extract our brand\", \"use our workbook template\", \"generate a branded workbook from our profile\", or when a ./brand-kit exists. For one-off spreadsheet edits with no saved brand profile, use the normal xlsx skill instead. NOT for .docx (brand-docx), .pptx (brand-pptx), or PDFs. Not for Word or PowerPoint files - use brand-docx or brand-pptx."
+version: 1.0.0
 ---
 
 # brand-xlsx
