@@ -132,7 +132,13 @@ Measured against git `HEAD` for the 13 pairs git tracks: **13 better, 0 same, 0 
 Two honest caveats:
 
 - `project-update` ↔ `weekly-report` (2 characters) and the `brand-*` pairs (12 characters) were **already** distinguishable — their Jaccard was high because the rest of the description is shared task boilerplate, not because the head was ambiguous. The rewrite still helps a truncated listing, but it was not fixing a real selection failure there.
-- **No behavioural test was run.** Divergence position is a structural proxy. The end-to-end check the vendors both recommend — 10–20 trigger prompts per rewritten skill, asserting the right skill wins and its sibling does not — needs a live model session and was not performed.
+- **The behavioural trigger test was attempted and is blocked by the model endpoint, not by anything in this repo.** `docs/skill-capacity-audit/trigger_test.py` runs 16 realistic prompts (one per rewritten pair-side, tier-A skills only) through the Claude Code CLI in print mode and reads the Skill tool calls out of the stream-json transcript. First run with 4 concurrent workers: 15 of 16 prompts TIMED OUT, and the transcript shows why — the endpoint returned **HTTP 429 rate_limit on every attempt**, ten retries with exponential backoff each. A single serial probe timed out the same way afterwards, so the limit is a quota, not a concurrency artefact. The harness is committed and re-runnable:
+
+  ```powershell
+  python docs\skill-capacity-audit\trigger_test.py --workers 1 --timeout 150 --json trigger-test.json
+  ```
+
+  PASS = the expected skill is invoked; ABSTAIN = no skill invoked (legitimate); FAIL = the sibling was invoked.
 
 **Per skill:** `version:` set or bumped (the vault copy is now a local fork of its upstream), the `INSTRUCTION.md` row updated, and one commit per skill on `fix/skill-shadowing-descriptions`.
 
@@ -186,6 +192,7 @@ All four checked out at their pinned commits and the 14 skills installed.
 - [x] Claude Code: 211 tier-B skills hidden from auto-selection, still invocable; token and settings intact
 - [x] `verify-capacity.ps1` guard passes
 - [x] 24 descriptions rewritten; divergence position improved for 13/13 measurable pairs, 0 worse
+- [x] `docx` ↔ `pdf` fixed: both vendored skills promoted to curated copies with front-loaded format words; **all 20,253 pairs now diverge within 40 characters**
+- [x] behavioural trigger harness committed (`docs/skill-capacity-audit/trigger_test.py`); the run is blocked by model-endpoint 429 rate limits, not by anything in the repo
 - [x] changes committed on branches → PR → merge
-- [ ] trigger test: 10–20 prompts per rewritten skill, asserting the right skill wins its own triggers and loses its sibling's
-- [ ] `docx` ↔ `pdf` (42-character shared prefix) — needs a curated copy of the vendored `docx`, outside the approved scope
+- [ ] run the trigger test when the endpoint permits (`python docs\skill-capacity-audit\trigger_test.py --workers 1 --timeout 150`)

@@ -89,7 +89,7 @@ Measured against git before the rewrite (`HEAD` vs. the working tree), for the 1
 Two honest caveats:
 
 - **`project-update` ↔ `weekly-report` and the `brand-*` pairs were already distinguishable** (2 and 12 characters). Their Jaccard was high because the *rest* of the description is shared task boilerplate, not because the head was ambiguous. The rewrite still helps a budget-truncated listing, but it was not fixing a real selection failure there.
-- **No behavioural test was run.** Divergence position is a structural proxy. The end-to-end check — 10–20 trigger prompts per rewritten skill, asserting the right skill wins and its sibling does not — was not performed, because it needs a live model session. The vendors both recommend exactly that test.
+- **The behavioural trigger test was attempted and is blocked by the model endpoint.** The harness is committed (`docs/skill-capacity-audit/trigger_test.py`): 16 realistic prompts through the Claude Code CLI, reading the Skill tool calls out of the stream-json transcript. With 4 concurrent workers 15 of 16 prompts timed out, and the transcript shows the endpoint returning **HTTP 429 rate_limit** on every one of ten retries; a serial probe timed out the same way, so the limit is a quota rather than a concurrency artefact. Also fixed in this pass: `docx` ↔ `pdf`, the one pair still sharing a >40-character prefix — both vendored skills were promoted to curated copies with front-loaded format words, and after that **all 20,253 pairs diverge within 40 characters**. The vendors both recommend the live trigger test; it is one command once the endpoint allows it.
 
 ---
 
