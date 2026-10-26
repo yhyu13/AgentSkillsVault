@@ -1,6 +1,7 @@
 ---
 name: hands-on-deck
-description: "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes reading, analyzing, or extracting content from presentations; editing text, images, styles, or layout of existing decks; creating new slides, shapes, tables, or pictures; reordering, duplicating, or merging slides across decks; and verifying decks visually. Trigger whenever the user mentions a deck, slides, a presentation, or a .pptx filename."
+description: "Modify an EXISTING .pptx. Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes reading, analyzing, or extracting content from presentations; editing text, images, styles, or layout of existing decks; creating new slides, shapes, tables, or pictures; reordering, duplicating, or merging slides across decks; and verifying decks visually. Trigger whenever the user mentions a deck, slides, a presentation, or a .pptx filename. Not for creating a new deck from scratch - use pptx."
+version: 1.0.0
 ---
 
 # hands-on-deck — agent-native PPTX manipulation
