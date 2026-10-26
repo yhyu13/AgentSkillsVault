@@ -16,7 +16,7 @@ Three critic subagents reviewed the v1 plan (tooling feasibility, evidence audit
 | 1 — correctness fixes | ✅ done | duplicate names 1 → **0**, cross-store collisions 4 → **0**, divergence 6 → **0** (see §1) |
 | 2 — measure usage → choose tiers | ⚠ **corrected** | no usage telemetry exists on this machine; tier A was derived from deliberate installation instead (§2) |
 | 3 — implement tiering | ✅ done | manifest gained a tier column; `apply-tiers.ps1` hides 211 skills from Claude Code's auto-selection (§3) |
-| 4 — fix the confusable skills | ⏸ **queued for user review** | 23 candidate rows written with proposed first lines; **not applied** — AGENTS.md requires a batch review first (§4) |
+| 4 — fix the confusable skills | ✅ done | 24 descriptions rewritten (9 skills promoted into the vault first); divergence position 13/13 pairs improved, 0 worse. The Jaccard acceptance metric was wrong and was replaced — see §4 |
 | 5 — regression guard | ✅ done | `scripts/verify-capacity.ps1` passes (§5) |
 | 6 — install the 14 vendor skills | ✅ done | github is reachable **through the proxy** — do not set `NO_PROXY=*` (§6) |
 
@@ -115,28 +115,26 @@ For Claude Code, tier B skills are now **hidden from auto-selection**. If you re
 
 ---
 
-## 4. Phase 4 — the 23 confusable skills (queued for review)
+## 4. Phase 4 — the confusable skills (done)
 
-**Not applied.** AGENTS.md: *"Skills are changed only after the user batch-reviews the queue."* The 23 skills and the proposed first lines are in `SKILL_CANDIDATES.md` (rows #27+), so the review is a single read.
+Applied after the user's batch review of `SKILL_CANDIDATES.md` rows #27–36. Each description's **first words** now name the skill's subject and state what it is *not* for, because a budget-truncated listing shows only the head.
 
-Measured pairs at Jaccard ≥ 0.30 (16 pairs, 23 skills):
+**Nine skills had to be promoted into the vault first** — they were not vault-owned, so there was nothing to commit a change to:
 
-| pair | Jaccard | fix |
-|---|---|---|
-| `brand-pptx` / `brand-xlsx` | 0.714 | first line names the format |
-| `brand-docx` / `brand-pptx` | 0.690 | as above |
-| `brand-docx` / `brand-xlsx` | 0.659 | as above |
-| `grill-me` / `grill-with-docs` | 0.556 | differentiate on the output |
-| `blog-to-linkedin-post` / `blog-to-twitter-post` | 0.548 | name the platform in the first words |
-| `project-update` / `weekly-report` | 0.429 | the trigger is the cadence |
-| `aura-asset-images` / `unsplash-asset-images` | 0.419 | name the source in the first words |
-| `grafana-loki-label-analyzer` / `grafana-prometheus-label-strategy` | 0.377 | name the backend first |
-| `game-dev-loop` / `software-dev-loop` | 0.375 | put the domain in the first words |
-| `hands-on-deck` / `pptx` | 0.362 | "edit an existing .pptx" vs "create a deck" |
-| `style-*` × 6 | 0.300–0.333 | each first line names the company |
-| `style-report` / `style-google` | 0.300 | router says "only when the user names a company style" |
+- the six company-style skills (`style-alibaba`, `style-amazon`, `style-bytedance`, `style-google`, `style-microsoft`, `style-tencent`) lived only in the user's own store; they now live in `SKILL/management/` with provenance rows, and the config-store copies are junctions to the canonical copy;
+- `grill-me` and `grill-with-docs` likewise, into the mattpocock productivity family;
+- `pptx` was **vendored** — a vendored file is lost on `git submodule update` and must not be edited in place, so it was promoted to a curated copy at `SKILL/content/pptx` and the vendor manifest row dropped.
 
-**Acceptance:** `skills_in_at_least_one_shadowing_pair` drops from 23 → ≤ 5, and each rewritten skill wins its own triggers while losing its sibling's. Per skill: bump `version:`, update the `INSTRUCTION.md` row, then build → sync → verify.
+**The acceptance metric was wrong, and the failure was informative.** Whole-description Jaccard *rose* (e.g. `brand-pptx` ↔ `brand-xlsx`, 0.714 → 0.745) because correct disambiguation adds shared vocabulary: every rewritten description now contains "only", "Not for", "use", and the sibling's name. A lexical-overlap score structurally punishes the fix it is meant to measure. Two better instruments were added to the analysis script — **prefix overlap** (Jaccard over the first 120 characters, the part a truncated listing still shows) and **divergence position** (how many characters a reader must consume before two descriptions differ).
+
+Measured against git `HEAD` for the 13 pairs git tracks: **13 better, 0 same, 0 worse** — every pair's divergence position fell to 0–1 characters. Across the whole library 20,071 of 20,072 pairs now diverge within 40 characters; the one that does not is `docx` ↔ `pdf` (42 characters), a new finding outside the approved scope (both are vendored Anthropic skills, so a curated copy would be needed).
+
+Two honest caveats:
+
+- `project-update` ↔ `weekly-report` (2 characters) and the `brand-*` pairs (12 characters) were **already** distinguishable — their Jaccard was high because the rest of the description is shared task boilerplate, not because the head was ambiguous. The rewrite still helps a truncated listing, but it was not fixing a real selection failure there.
+- **No behavioural test was run.** Divergence position is a structural proxy. The end-to-end check the vendors both recommend — 10–20 trigger prompts per rewritten skill, asserting the right skill wins and its sibling does not — needs a live model session and was not performed.
+
+**Per skill:** `version:` set or bumped (the vault copy is now a local fork of its upstream), the `INSTRUCTION.md` row updated, and one commit per skill on `fix/skill-shadowing-descriptions`.
 
 ---
 
@@ -170,22 +168,24 @@ All four checked out at their pinned commits and the 14 skills installed.
 | action | why not |
 |---|---|
 | deleting skills to shrink the listing | skill bodies load lazily; the cost is the *listing*. Deleting destroys capability for no measured gain |
-| `sync-skills.ps1 -Prune` | would delete the 68 hand-installed skills that live outside this vault — collateral damage, not cleanup |
-| `-Profile core -PruneToProfile` | removes 211 skills from the user's environment; it is the right lever for Kilo but it is the user's call (§3.3) |
+| `sync-skills.ps1 -Prune` | would delete the 59 hand-installed skills that live outside this vault — collateral damage, not cleanup |
+| `-Profile core -PruneToProfile` | the user chose to keep everything installed; the lever is built and documented, and runs in one command if that changes |
 | Codex `[[skills.config]]` entries | the Codex CLI is not installed here; the entries would be inert and unverifiable |
 | `agents/openai.yaml` per skill | it writes into the skill dir, which the next `robocopy /MIR` would delete, and it breaks the byte-identical install check |
 | editing skill frontmatter to add `disable-model-invocation` | same reason — the vault copy and the installed copy must stay byte-identical for `verify-install.ps1` to mean anything |
 | raising the listing budget as the fix | it moves the symptom. The budget is the constraint, not the cause |
-| applying the 23 description rewrites | AGENTS.md requires a user batch review first (§4) |
+| using whole-description Jaccard as the Phase 4 acceptance metric | it punishes correct disambiguation; replaced by prefix overlap + divergence position (§4) |
+| a behavioural trigger test for the rewritten skills | needs a live model session; not performed — the structural proxy is what was measured |
 
 ## 8. Definition of done
 
-- [x] all 269 manifest skills installed and byte-identical (`match=269 mismatch=0 missing=0`)
+- [x] all 277 manifest skills installed and byte-identical (`match=277 mismatch=0 missing=0`)
 - [x] 0 duplicate frontmatter names, 0 cross-store collisions, 0 divergence
 - [x] `html-ppt` restored into the vault from its pinned submodule
 - [x] tier file with one explicit row per manifest skill; manifest carries the tier
 - [x] Claude Code: 211 tier-B skills hidden from auto-selection, still invocable; token and settings intact
 - [x] `verify-capacity.ps1` guard passes
+- [x] 24 descriptions rewritten; divergence position improved for 13/13 measurable pairs, 0 worse
 - [x] changes committed on branches → PR → merge
-- [ ] 23 shadowing fixes applied (after the batch review of `SKILL_CANDIDATES.md` rows #27+)
-- [ ] decision on whether Kilo should run `-Profile core -PruneToProfile`
+- [ ] trigger test: 10–20 prompts per rewritten skill, asserting the right skill wins its own triggers and loses its sibling's
+- [ ] `docx` ↔ `pdf` (42-character shared prefix) — needs a curated copy of the vendored `docx`, outside the approved scope
