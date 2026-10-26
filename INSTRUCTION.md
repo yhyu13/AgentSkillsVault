@@ -32,8 +32,8 @@
 ### content/
 | skill | origin | source |
 |-------|--------|--------|
-| blog-to-twitter-post | sibling | `D:\GitRepo-AI\content-repurposing-skills\blog-to-twitter-post` |
-| blog-to-linkedin-post | sibling | `D:\GitRepo-AI\content-repurposing-skills\blog-to-linkedin-post` |
+| blog-to-twitter-post | sibling | `D:\GitRepo-AI\content-repurposing-skills\blog-to-twitter-post` ；2026-10-25 本地 fork：description 首行判别化（消除 shadowing），v1.0.0 |
+| blog-to-linkedin-post | sibling | `D:\GitRepo-AI\content-repurposing-skills\blog-to-linkedin-post` ；2026-10-25 本地 fork：description 首行判别化（消除 shadowing），v1.0.0 |
 | long-blog-to-viral-social-posts | sibling | `D:\GitRepo-AI\content-repurposing-skills\long-blog-to-viral-social-posts` |
 | tech-design-to-zhihu | local | written by agent (`metadata.created_by: agent`) |
 | gracker-writing | sibling | `D:\GitRepo-AI\gracker-writing` (GitHub: Gracker/gracker-writing) |
@@ -56,6 +56,7 @@
 | legalrabbit-docx | repo (submodule) | `github.com/LegalRabbit-AI/legalrabbit-docx-mcp` @ `a1c9be8` (MIT) — 上游 `plugins/docx/skills/legalrabbit-docx`。雷达结论要求「先做 token 基准再采纳」，本批**只装未测** |
 | excel-hygiene | repo (submodule) | `github.com/BayramAnnakov/excel-hygiene` @ `bca5a74` (Apache-2.0) — `.xlsx` 确定性体检（仓库根即 skill） |
 | market-intel (retired) | repo (submodule) | `github.com/DaizeDong/market-intel` @ `1046cd8` (MIT) — 上游 `skills/market-intel`：商用数据（X/Twitter/电商/金融/SEO）取数与研判 |
+| pptx | repo (submodule) + local fork | `github.com/anthropics/skills` 的 `skills/pptx`（2026-10-25 由 `vendor/` 提升为 curated 副本——vendored 文件不手改）；description 首行判别化（新建 pptx，不含改已有 deck），v1.0.0 |
 
 ### design/
 | skill | origin | source |
@@ -76,7 +77,7 @@
 | visual-explainer | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\visual-explainer` — 可视化解释产物（commands/ kit/ mcp/ plan/ pptx/ video/ templates/ + extension.ts） |
 | web-prototype | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\web-prototype` — 网页原型（assets/ references/ example.html） |
 | html-ppt | repo (submodule) | `github.com/lewislulu/html-ppt-skill` @ `fd16290` — HTML PPT Studio：一个 theme 文件 = 一套外观、一个 layout 文件 = 一种页面、一个 animation class = 一种入场；token 化设计系统（`assets/base.css`），纯静态、可离线，MIT；已复制进 `SKILL/design/html-ppt`（2026-10-25 从 `vendor/html-ppt-skill` 重新复制：目录重构时该副本被删除，用户机器上只剩一个 1 文件的残桩和一份缺 13 个文件的旧拷贝） |
-| hands-on-deck | repo (submodule) | `github.com/EveryInc/hands-on-deck` @ `a24b996` (MIT) — 上游 `skills/hands-on-deck`：任何 `.pptx` 相关的活（改现有 deck 而非新生成） |
+| hands-on-deck | repo (submodule) | `github.com/EveryInc/hands-on-deck` @ `a24b996` (MIT) — 上游 `skills/hands-on-deck`：任何 `.pptx` 相关的活（改现有 deck 而非新生成） ；2026-10-25 本地 fork：description 首行判别化（消除 shadowing），v1.0.0 |
 | presentation-skill | repo (submodule) | `github.com/siril9/presentation-skill` @ `efd899c` (MIT) — 上游根即 skill（另带 `plugins/` 内同一 skill 的第二份拷贝，vault 副本已删除该重复目录）；裁剪掉 `decks/ examples/ tests/` 等演示物料 |
 | html-to-pptx (retired) | repo (submodule) | `github.com/Hasasasa/html-to-editable-pptx` @ `17c1dbb` (MIT) — 上游根即 skill，`name: html-to-pptx`，目录按 frontmatter 改名 |
 | brand-docx / brand-pptx / brand-xlsx | repo (submodule) | `github.com/ferdinandobons/brand-docs` @ `97a6e38` (MIT) — 上游 `skills/brand-*`：Word/PPT/Excel 的「参考模板 + 样式继承」机制 |
@@ -129,7 +130,7 @@
 | ue4-shader-debug | local | written (UE4 shader compile debugging) |
 | ue-renderdoc-auto-capture | local | from `~/.kilo/skills` (Kilo Code agent output; RenderDoc/rdc-cli) |
 | webapp-testing | repo | `github.com/ComposioHQ/awesome-claude-skills` |
-| game-dev-loop | local | written — orchestrator over the 14 game-dev skills (classify → GDD/TDD → scaffold → implement → test/debug → quality → guide → memory) |
+| game-dev-loop | local | written — orchestrator over the 14 game-dev skills (classify → GDD/TDD → scaffold → implement → test/debug → quality → guide → memory) ；2026-10-25 本地 fork：description 首行判别化（消除 shadowing），v1.1.1 |
 | ai-3d-toolchain (retired) | local (distilled) | 提炼自 `ooo.run/post/how-to-use-ai-build-3d-games.html`（作者 @Saccc_c）+ 本机 Blender 5.2.2 / blender_mcp 实测：Tripo + Blender CLI/MCP + Unity CLI/MCP + Auto-Rig Pro 组件清单与验收门槛；**Windows 三道墙**（`curl \| sh` 只支持 macOS/Linux、GBK 崩在 emoji 且副作用已发生、Blender 5.x legacy 插件注册姿势） |
 | ai-3d-scene-pipeline | local (distilled) | 同上文章的场景段：概念多视角参考图 → 资产分流（Tripo 生成 vs Blender 代码搭建，判据"能否参数化"）→ Tripo 高精度道具 → Blender/Unity 组装 → **独立审查 Agent 多机位盲审**迭代。原文提示词存 `references/prompts.md`，机位表与差异清单格式存 `references/review-loop.md` |
 | ai-3d-character-pipeline | local (distilled) | 同上文章的角色段：T-pose 四视图 → Tripo Smart Mesh P2.0（四边面 + 最高精度）→ 白模检查（Texture / Edit Mesh 分支）→ Auto-Rig Pro 绑骨蒙皮 + 三项动作测试 → Mixamo 动作获取与重定向 → IK 手部/道具接触精调。原文提示词存 `references/prompts.md` |
@@ -169,6 +170,12 @@
 | qiushi-methodology (11: 矛盾分析/实践论/群众路线/集中力量/调查研究/批评自我批评/统筹兼顾/持久战/星星之火/武装思想/workflows) | local | distilled from Mao 求是 methodology (原著依据 in `original-texts.md`) |
 | torchcookpackopt-weekly-report | local | written for the torchcookpackopt project — moved to `archived/` (project-specific, not active) |
 | management-loop | local | written — router/orchestrator over the management skills (report / advice / knowledge / methodology clusters) |
+| style-alibaba | local (from user's own store) | `~/.claude/skills/style-alibaba` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的阿里双轨制内容同源；2026-10-25 description 首行判别化，v1.0.0 |
+| style-amazon | local (from user's own store) | `~/.claude/skills/style-amazon` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的 Amazon 叙事内容同源；2026-10-25 description 首行判别化，v1.0.0 |
+| style-bytedance | local (from user's own store) | `~/.claude/skills/style-bytedance` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的字节 OKR 内容同源；2026-10-25 description 首行判别化，v1.0.0 |
+| style-google | local (from user's own store) | `~/.claude/skills/style-google` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的 Google OKR/GRAD 内容同源；2026-10-25 description 首行判别化，v1.0.0 |
+| style-microsoft | local (from user's own store) | `~/.claude/skills/style-microsoft` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的 Microsoft Connects 内容同源；2026-10-25 description 首行判别化，v1.0.0 |
+| style-tencent | local (from user's own store) | `~/.claude/skills/style-tencent` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的腾讯产品指标内容同源；2026-10-25 description 首行判别化，v1.0.0 |
 
 ### math/
 | skill | origin | source |
@@ -179,6 +186,8 @@
 | skill | origin | source |
 |-------|--------|--------|
 | 19 kept (engineering 17 + productivity grilling/handoff) | repo (submodule) + local fork | upstream `github.com/mattpocock/skills` (MIT) 已挂为 `vendor/mattpocock-skills` submodule @ `5beb35b`（2026-10-19）；本目录是**裁剪过的 fork**：base ≈ `e38b908`（2026-08-19），裁掉 16 个（in-progress/ + misc/ + productivity aliases/non-dev + grill-with-docs），recoverable via submodule or `npx skills add matt-pocock`。**本地 delta（勿被 upstream 覆盖）**：`tdd/SKILL.md` +25 行 DoD laws（vault commit `f9d9280`）；`resolving-merge-conflicts` 保留为 skill（upstream 已从 skills/ 移除）；`~/.kilo/skills` 内 19 个安装副本与本目录 byte-identical，更新 upstream 后需手动 re-apply delta 再镜像 |
+| grill-me | repo (submodule) + local fork | `github.com/mattpocock/skills` (MIT) 的 productivity 家族（vault 内 19 个已保留）；本 skill 2026-10-25 从用户 store 提升进 vault，description 首行判别化（只追问、不产出文档），v1.0.0 |
+| grill-with-docs | repo (submodule) + local fork | `github.com/mattpocock/skills` (MIT) 的 productivity 家族；本 skill 2026-10-25 从用户 store 提升进 vault，description 首行判别化（追问 + ADR/术语表），v1.0.0 |
 
 ### software-development/
 | skill | origin | source |
@@ -186,7 +195,7 @@
 | aisides-ai-self-review | local | written for the AISides project |
 | debugger-persona | local | written — debug diagnosis + Chinese doc writing + code discipline persona |
 | journey | local | written (two-column ME/YOU history) |
-| software-dev-loop | local | written — composes goal / docs / test / memory into one dev loop |
+| software-dev-loop | local | written — composes goal / docs / test / memory into one dev loop ；2026-10-25 本地 fork：description 首行判别化（消除 shadowing），v1.3.1 |
 | llm-friendly-dsl-verification | local (distilled) | distilled from gdsl project — `D:\GitRepo-My\godot` (Godot GDExtension recipe-DSL methodology: compile→run→semantic-golden→fix-feedback→scene closed loop) |
 | technical-research-analysis-doc | local | written — TorchLight 调研分析 format |
 | skill-auto-improve-mirror | local | written by agent (Hermes) — skill improvement + version-aware cross-harness mirror (scripts/mirror_agent_skills.py) |
@@ -412,3 +421,25 @@ so the origin is known before the copy happens:
 - 同一 skill 一次只允许一个会话改；改完立刻提交并推送，别留未提交改动过夜。
 - 改完要分发：**唯一实体写 `~/.claude/skills/<name>`**，另外三个目录只放 **junction**：`cmd /c mklink /J <link> <target>`（junction 不需要管理员权限；MSYS `ln -s` 在 Windows 上要 `MSYS=winsymlinks:nativestrict`，否则静默变成复制——所以统一用 `mklink /J`）。删 junction 用 `cmd /c rmdir <link>`（只删链接，不要 `Remove-Item -Recurse`）。
 - 分发后用 `diff -rq <vault>/<cat>/<skill> <home>/<skill>` 验证**逐字节一致**。
+
+### 2026-10-25 本地 fork（description 判别化）
+
+这些 skill 的 INSTRUCTION.md 行是**合并行**（多个 skill 共一行），单独列在这里。
+fork 原因：harness 预算不够时先砍 description 尾巴，首行必须自带判别词，否则兄弟 skill 会互相遮蔽
+（证据：`docs/skill-capacity-audit/2026-10-25-skill-library-pressure.md`；候选单 `SKILL_CANDIDATES.md` #27-36）。
+
+| skill | 版本 | description 首行改动 |
+|---|---|---|
+| brand-docx | v1.0.0 | "Word documents (.docx) only." + 不适用于 PowerPoint/Excel |
+| brand-pptx | v1.0.0 | "PowerPoint decks (.pptx) only." + 不适用于 Word/Excel |
+| brand-xlsx | v1.0.0 | "Excel workbooks (.xlsx) only." + 不适用于 Word/PowerPoint |
+| style-report | v1.0.1 | "Router for six named company report styles ..." — 只在点名公司时用 |
+| project-update | v1.0.0 | "One-off project status report, not a recurring cadence." + 不适用于 weekly-report |
+| weekly-report | v1.0.0 | "Recurring weekly or monthly report." + 不适用于 project-update |
+| aura-asset-images | v1.0.0 | "Aura Assets (aura.build) imagery only." + 不适用于 unsplash-asset-images |
+| unsplash-asset-images | v1.0.0 | "Unsplash imagery only." + 不适用于 aura-asset-images |
+| grafana-loki-label-analyzer | v1.0.0 | "Grafana Loki label schemas only." + 不适用于 Prometheus |
+| grafana-prometheus-label-strategy | v1.0.0 | "Prometheus label schemas on Grafana Cloud only." + 不适用于 Loki |
+| blog-to-linkedin-post / blog-to-twitter-post | v1.0.0 | 各自首行点名平台，并互相排除 |
+| game-dev-loop / software-dev-loop | v1.1.1 / v1.3.1 | 首行点名领域，并互相排除 |
+| hands-on-deck | v1.0.0 | 'Modify an EXISTING .pptx.' + 排除 pptx |
