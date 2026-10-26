@@ -1,16 +1,8 @@
 ---
 name: grafana-prometheus-label-strategy
 license: Apache-2.0
-description: >
-  Expert evaluator for Prometheus label strategy on Grafana Cloud. Audits, designs, and
-  improves label schemas using cardinality scoring, access-pattern alignment, static vs.
-  dynamic label rules, histogram bucket discipline, and instrumentation hygiene. Prevents
-  high cardinality at the source — in application code and scrape target labels — without
-  dropping labels that make series unique (which breaks the data). For reducing the cost of
-  series already in Grafana Cloud, routes to the adaptive-metrics skill. Use when the user
-  asks to evaluate, audit, design, or improve Prometheus labels — or asks how to prevent
-  high cardinality at the source. For "why is my Prometheus slow / expensive right now"
-  triage, see prometheus-cardinality-troubleshooter.
+description: "Prometheus label schemas on Grafana Cloud only. Expert evaluator for Prometheus label strategy on Grafana Cloud. Audits, designs, and improves label schemas using cardinality scoring, access-pattern alignment, static vs. dynamic label rules, histogram bucket discipline, and instrumentation hygiene. Prevents high cardinality at the source — in application code and scrape target labels — without dropping labels that make series unique (which breaks the data). For reducing the cost of series already in Grafana Cloud, routes to the adaptive-metrics skill. Use when the user asks to evaluate, audit, design, or improve Prometheus labels — or asks how to prevent high cardinality at the source. For \"why is my Prometheus slow / expensive right now\" triage, see prometheus-cardinality-troubleshooter. Not for Loki - use grafana-loki-label-analyzer."
+version: 1.0.0
 ---
 
 # Prometheus Label Strategy Evaluator

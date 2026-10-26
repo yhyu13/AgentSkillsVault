@@ -1,7 +1,8 @@
 ---
 name: game-dev-loop
-description: The complete game-development loop — persist the goal → classify the game idea → write GDD + TDD → pick an engine and scaffold → implement → test and debug → render-quality + playthrough guide → polish → write durable memory. Use when starting or running a real game build, when a task needs design, docs, code, testing, and polish chained in order, or when the user asks for a game "from idea to playable".
-version: 1.1.0
+description: "Game development only (game design, engine, playtest). The complete game-development loop — persist the goal → classify the game idea → write GDD + TDD → pick an engine and scaffold → implement → test and debug → render-quality + playthrough guide → polish → write durable memory. Use when starting or running a real game build, when a task needs design, docs, code, testing, and polish chained in order, or when the user asks for a game \"from idea to playable\". Not for general software work - use software-dev-loop."
+
+version: 1.1.1
 metadata:
   category: game-dev
   created_by: agent

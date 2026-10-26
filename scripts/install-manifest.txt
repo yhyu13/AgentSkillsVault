@@ -140,6 +140,8 @@ grafana-send-data|SKILL/devops/grafana/grafana-cloud/grafana-send-data|B
 grafana-skill-authoring|SKILL/devops/grafana/grafana-core/grafana-skill-authoring|B
 grafana-tempo|SKILL/devops/grafana/grafana-lgtm/grafana-tempo|B
 grilling|SKILL/software-development/mattpocock/skills/productivity/grilling|B
+grill-me|SKILL/software-development/mattpocock/skills/productivity/grill-me|A
+grill-with-docs|SKILL/software-development/mattpocock/skills/productivity/grill-with-docs|A
 guizang-product-video-skill|SKILL/video/guizang-product-video-skill|B
 handoff|SKILL/software-development/mattpocock/skills/productivity/handoff|B
 hands-on-deck|SKILL/design/hands-on-deck|A
@@ -199,6 +201,7 @@ planetscale-traffic-control-recommendations|SKILL/devops/planetscale/planetscale
 planetscale-vitess-safety-review|SKILL/devops/planetscale/planetscale-vitess-safety-review|B
 planetscale-webhook-automation-recommendations|SKILL/devops/planetscale/planetscale-webhook-automation-recommendations|B
 plugin-capability-brief|SKILL/software-development/plugin-capability-brief|B
+pptx|SKILL/content/pptx|A
 practice-cognition|SKILL/management/qiushi-methodology/practice-cognition|B
 prd|SKILL/management/prd|B
 precedent-transactions|SKILL/management/finance/investment-banking/precedent-transactions|B
@@ -233,9 +236,15 @@ social-push|SKILL/content/social-push|B
 software-dev-loop|SKILL/software-development/software-dev-loop|A
 source-anchored-design|SKILL/software-development/source-anchored-design|A
 spark-prairie-fire|SKILL/management/qiushi-methodology/spark-prairie-fire|B
+style-alibaba|SKILL/management/style-alibaba/style-alibaba|A
+style-amazon|SKILL/management/style-amazon/style-amazon|A
+style-bytedance|SKILL/management/style-bytedance/style-bytedance|A
 style-cn-platform-tutorial|SKILL/content/style-cn-platform-tutorial|B
 style-cn-tech-deep-dive|SKILL/content/style-cn-tech-deep-dive|B
+style-google|SKILL/management/style-google/style-google|A
+style-microsoft|SKILL/management/style-microsoft/style-microsoft|A
 style-report|SKILL/management/style-report|B
+style-tencent|SKILL/management/style-tencent/style-tencent|A
 systematic-debugging|SKILL/software-development/systematic-debugging|A
 taste-brandkit|SKILL/design/taste-brandkit|B
 taste-director|SKILL/design/taste-director|B
@@ -287,7 +296,6 @@ discernment-nudge|vendor/anthropics-skills/skills/discernment-nudge|B
 docx|vendor/anthropics-skills/skills/docx|A
 investment-masters|vendor/investment-masters|B
 pdf|vendor/anthropics-skills/skills/pdf|A
-pptx|vendor/anthropics-skills/skills/pptx|A
 slack-gif-creator|vendor/anthropics-skills/skills/slack-gif-creator|B
 tripo-3d-generation|vendor/tripo-skills|B
 web-artifacts-builder|vendor/anthropics-skills/skills/web-artifacts-builder|B

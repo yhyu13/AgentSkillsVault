@@ -1,6 +1,7 @@
 ---
 name: unsplash-asset-images
-description: Use when you need to pick high-quality Unsplash images for product/design assets (avatars, headshots, portraits, large website backgrounds, and abstract wallpapers) and output real Unsplash URLs plus practical instructions for producing the right resolutions and aspect ratios (1:1, 4:5, 3:4, 16:9, 9:16).
+description: "Unsplash imagery only. Use when you need to pick high-quality Unsplash images for product/design assets (avatars, headshots, portraits, large website backgrounds, and abstract wallpapers) and output real Unsplash URLs plus practical instructions for producing the right resolutions and aspect ratios (1:1, 4:5, 3:4, 16:9, 9:16). Not for Aura Assets - use aura-asset-images."
+version: 1.0.0
 ---
 
 # Unsplash Asset Images (Avatars, Portraits, Backgrounds, Wallpapers)

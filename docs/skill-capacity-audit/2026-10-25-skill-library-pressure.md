@@ -22,14 +22,15 @@ The v1 numbers below were measured **before** the vendor submodules were checked
 
 | metric | v1 (wrong / superseded) | v2 (current, from the script) |
 |---|---|---|
-| unique skills visible | 325 | **336** (254 curated + 14 vendor + 68 hand-installed) |
-| listing size | 121,806 chars | **129,034 chars ≈ 35,843 tokens** |
-| average entry cost (name + description) | 362 (description only) | **384 chars** |
+| unique skills visible | 325 | **336** (264 curated + 13 vendor + 59 hand-installed) |
+| listing size | 121,806 chars | **130,967 chars ≈ 36,380 tokens** |
+| average entry cost (name + description) | 362 (description only) | **390 chars** |
 | longest description | — | 1,260 chars (still under the 1,536-char per-entry cap) |
-| confusable skills (Jaccard ≥ 0.30) | 21 | **23** (16 pairs) |
+| manifest skills | 268 | **277** (269 + 8 promoted + 1 vendor copy promoted) |
 | "genuinely divergent" skill copies | 6 | **2** — see §0.3 |
 | duplicate frontmatter names | 1 (`html-ppt`) | **0** |
 | cross-store content collisions | 4 | **0** |
+| pairs whose descriptions still share a >40-character prefix | not measured | **1 of 20,072** (`docx` ↔ `pdf`) |
 
 ### 0.3 The v1 "6 divergent skills" claim was wrong
 
@@ -48,9 +49,47 @@ v1 reported six skills whose config-store copy differed from the vault copy, inc
 
 ### 0.5 What the remediation actually achieved
 
-- All **269** manifest skills are installed and byte-identical to their source (`verify-install.ps1`: match=269, mismatch=0, missing=0) — the 14 vendor skills that were missing for the whole session are now present.
-- The always-visible surface is tiered: 58 tier-A skills (24,508 chars ≈ 0.68× of the 1M-context listing budget) stay auto-matchable; 211 tier-B skills are installed and manually invocable but hidden from auto-selection.
+- All **277** manifest skills are installed and byte-identical to their source (`verify-install.ps1`: match=277, mismatch=0, missing=0) — the 14 vendor skills that were missing for the whole session are now present.
+- The always-visible surface is tiered: 66 tier-A skills (26,984 chars ≈ 0.75× of the 1M-context listing budget) stay auto-matchable; 211 tier-B skills are installed and manually invocable but hidden from auto-selection.
 - A standing guard (`scripts/verify-capacity.ps1`) now fails the build on retired skills present, duplicate names, cross-store divergence, untiered skills, or a tier-A listing over budget.
+
+### 0.6 Phase 4 executed — and the acceptance metric was wrong
+
+The 23 confusable skills were rewritten so that each description's **first words** name the skill's subject and state what it is *not* for, because a budget-truncated listing shows only the head. Nine skills had to be promoted into the vault first: the six company-style skills and the two `grill-*` skills lived only in the user's own store, and `pptx` was vendored — a vendored file is lost on `git submodule update`, so it was promoted to a curated copy rather than edited in place.
+
+**The first acceptance metric failed, and the metric was at fault.** Whole-description Jaccard *rose* (for example `brand-pptx` ↔ `brand-xlsx`, 0.714 → 0.745) because correct disambiguation *adds* shared vocabulary: every rewritten description now contains "only", "Not for", "use", and the sibling's name. A lexical-overlap score structurally punishes the fix it is supposed to measure.
+
+Two better instruments were added to the analysis script:
+
+| metric | what it measures | why |
+|---|---|---|
+| **prefix overlap** | Jaccard over the first 120 characters only | that is the part a budget-truncated listing still shows |
+| **divergence position** | how many characters a reader must consume before two descriptions differ | the question the fix actually asks: can the model tell them apart from the head alone? |
+
+Measured against git before the rewrite (`HEAD` vs. the working tree), for the 13 pairs that git tracks:
+
+| pair | divergence before | divergence now |
+|---|---|---|
+| `brand-docx` ↔ `brand-pptx` | 12 | **0** |
+| `brand-pptx` ↔ `brand-xlsx` | 12 | **0** |
+| `brand-xlsx` ↔ `brand-docx` | 12 | **0** |
+| `blog-to-linkedin-post` ↔ `blog-to-twitter-post` | 38 | **0** |
+| `blog-to-twitter-post` ↔ `blog-to-linkedin-post` | 38 | **0** |
+| `project-update` ↔ `weekly-report` | 2 | **0** |
+| `weekly-report` ↔ `project-update` | 2 | **0** |
+| `aura-asset-images` ↔ `unsplash-asset-images` | 18 | **0** |
+| `unsplash-asset-images` ↔ `aura-asset-images` | 18 | **0** |
+| `grafana-loki-label-analyzer` ↔ `grafana-prometheus-label-strategy` | 21 | **0** |
+| `grafana-prometheus-label-strategy` ↔ `grafana-loki-label-analyzer` | 21 | **0** |
+| `game-dev-loop` ↔ `software-dev-loop` | 13 | **1** |
+| `software-dev-loop` ↔ `game-dev-loop` | 13 | **1** |
+
+**13 better, 0 same, 0 worse.** Across the whole library, 20,071 of 20,072 pairs now diverge within 40 characters; the one that does not is `docx` ↔ `pdf` (42 characters), which is a new finding rather than a regression — both are vendored Anthropic document skills, so the fix needs a curated copy, and it is not in the approved scope.
+
+Two honest caveats:
+
+- **`project-update` ↔ `weekly-report` and the `brand-*` pairs were already distinguishable** (2 and 12 characters). Their Jaccard was high because the *rest* of the description is shared task boilerplate, not because the head was ambiguous. The rewrite still helps a budget-truncated listing, but it was not fixing a real selection failure there.
+- **No behavioural test was run.** Divergence position is a structural proxy. The end-to-end check — 10–20 trigger prompts per rewritten skill, asserting the right skill wins and its sibling does not — was not performed, because it needs a live model session. The vendors both recommend exactly that test.
 
 ---
 

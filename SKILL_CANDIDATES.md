@@ -36,16 +36,16 @@
 | 24 | **蒸馏产物要带来源边与置信度半衰期**：`derived_from` 边 + 置信度随时间衰减 | 2026-10-24：`vendor/company-brain`（MIT，仅 vendor）的图结构设计 | 沉淀进 `software-development/skill-distill`（工作产物模板加来源边字段） | 待审 |
 | 25 | **战略框架层缺口**：26 个 canonical 战略/咨询框架（波特五力、OKR、BLM…）目前 vault 只有 `mgmt-discipline`/`mgmt-individual`/`mgmt-org`，缺「框架方法」这一层 | 2026-10-24 MBA 雷达：`M-MMahmood/business-frameworks-agent-skills` 无 license → 只能**按框架名重写**，不能复制 | 新 skill `management/mgmt-strategy`（按 mgmt-* 三件套的结构写） | 待审 |
 | 26 | **装第三方 skill 之前先过安全扫描**（注入 / 外泄 / 供应链） | 2026-10-24：本批装入 137 个第三方 skill，此前只有 `vendor/skillspector`（NVIDIA SkillSpector）可用，现已装成 `software-development/skill-inspector` | 写进 `INSTRUCTION.md` 的「Add-a-new-skill checklist」，作为硬性第 0 步 | 待审 |
-| 27 | **兄弟 skill 的 description 第一行必须能互相区分**：先写「是哪个格式 / 平台 / 后端 / 领域」，再写「不适用于谁」——因为预算不够时 harness 会先砍 description，只剩名字 | 2026-10-25：`skill_pressure_analysis.py` 实测 16 对 Jaccard ≥ 0.30（`brand-docx/pptx/xlsx` 0.659–0.714 最高），arXiv:2605.24050 实测 skill shadowing 是 202 规模下 pass-rate 掉 21% 的主因 | 改 `design/brand-docx` `design/brand-pptx` `design/brand-xlsx` 的 frontmatter 首行（各写清 Word 文档 / PowerPoint 演示 / Excel 工作簿 + 「不适用于 X」） | 待审 |
-| 28 | **router 型 skill 的 description 不能包含兄弟的触发词**：`style-report` 只在用户点名「某公司风格」时用 | 同上实测 `style-report`↔`style-google` 0.300、`style-*` 互配 0.316–0.333 | 改 `management/style-report` 首行：加「仅当用户点名公司风格时用；其他情况不要用」 | 待审 |
-| 29 | **公司风格类 skill 首行直接写公司名** | 同上实测 6 个 `style-*` 互配 0.316–0.333 | 改 `management/style-alibaba` `style-bytedance` `style-google` `style-microsoft` `style-tencent` 首行（阿里/字节/Google/微软/腾讯双轨制） | 待审 |
-| 30 | **平台类 skill 首行写平台名**（LinkedIn / Twitter） | 同上实测 `blog-to-linkedin-post`↔`blog-to-twitter-post` 0.548 | 改 `content/blog-to-linkedin-post` `content/blog-to-twitter-post` 首行 | 待审 |
-| 31 | **周期类 skill 用「节奏」当触发词**：一次性的状态报告 vs 每周固定 vs 季度复盘 | 同上实测 `project-update`↔`weekly-report` 0.429 | 改 `management/project-update`（一次性项目状态汇报）、`management/weekly-report`（每周固定节奏）首行 | 待审 |
-| 32 | **素材源类 skill 首行点名来源**：Aura Assets vs Unsplash | 同上实测 `aura-asset-images`↔`unsplash-asset-images` 0.419 | 改 `content/aura-asset-images` `content/unsplash-asset-images` 首行 | 待审 |
-| 33 | **后端类 skill 首行点名后端**（Loki vs Prometheus） | 同上实测 `grafana-loki-label-analyzer`↔`grafana-prometheus-label-strategy` 0.377 | 改 `devops/grafana-loki-label-analyzer` `devops/grafana-prometheus-label-strategy` 首行 | 待审 |
-| 34 | **同名领域循环的 skill 首行写领域**：game-dev-loop vs software-dev-loop | 同上实测 0.375 | 改 `game-dev/game-dev-loop` `software-development/software-dev-loop` 首行（游戏 / 通用软件） | 待审 |
-| 35 | **同族 skill 用「产出物」区分**：grill-me 只出追问，grill-with-docs 追问 + ADR/术语表 | 同上实测 `grill-me`↔`grill-with-docs` 0.556 | 改 `software-development/grill-me` `software-development/grill-with-docs` 首行 | 待审 |
-| 36 | **「改现有」与「新建」要分开**：`hands-on-deck` 改 pptx，`pptx` 新建 | 同上实测 `hands-on-deck`↔`pptx` 0.362 | 改 `content/hands-on-deck`（修改已有 .pptx）、`vendor/anthropics-skills/skills/pptx`（新建）首行；vendor 副本不手改，改为在 vault 内建 curated 副本 | 待审 |
+| 27 | **兄弟 skill 的 description 第一行必须能互相区分**：先写「是哪个格式 / 平台 / 后端 / 领域」，再写「不适用于谁」——因为预算不够时 harness 会先砍 description，只剩名字 | 2026-10-25：`skill_pressure_analysis.py` 实测 16 对 Jaccard ≥ 0.30（`brand-docx/pptx/xlsx` 0.659–0.714 最高），arXiv:2605.24050 实测 skill shadowing 是 202 规模下 pass-rate 掉 21% 的主因 | 改 `design/brand-docx` `design/brand-pptx` `design/brand-xlsx` 的 frontmatter 首行（各写清 Word 文档 / PowerPoint 演示 / Excel 工作簿 + 「不适用于 X」） | 已落地 |
+| 28 | **router 型 skill 的 description 不能包含兄弟的触发词**：`style-report` 只在用户点名「某公司风格」时用 | 同上实测 `style-report`↔`style-google` 0.300、`style-*` 互配 0.316–0.333 | 改 `management/style-report` 首行：加「仅当用户点名公司风格时用；其他情况不要用」 | 已落地 |
+| 29 | **公司风格类 skill 首行直接写公司名** | 同上实测 6 个 `style-*` 互配 0.316–0.333 | 改 `management/style-alibaba` `style-bytedance` `style-google` `style-microsoft` `style-tencent` 首行（阿里/字节/Google/微软/腾讯双轨制） | 已落地 |
+| 30 | **平台类 skill 首行写平台名**（LinkedIn / Twitter） | 同上实测 `blog-to-linkedin-post`↔`blog-to-twitter-post` 0.548 | 改 `content/blog-to-linkedin-post` `content/blog-to-twitter-post` 首行 | 已落地 |
+| 31 | **周期类 skill 用「节奏」当触发词**：一次性的状态报告 vs 每周固定 vs 季度复盘 | 同上实测 `project-update`↔`weekly-report` 0.429 | 改 `management/project-update`（一次性项目状态汇报）、`management/weekly-report`（每周固定节奏）首行 | 已落地 |
+| 32 | **素材源类 skill 首行点名来源**：Aura Assets vs Unsplash | 同上实测 `aura-asset-images`↔`unsplash-asset-images` 0.419 | 改 `content/aura-asset-images` `content/unsplash-asset-images` 首行 | 已落地 |
+| 33 | **后端类 skill 首行点名后端**（Loki vs Prometheus） | 同上实测 `grafana-loki-label-analyzer`↔`grafana-prometheus-label-strategy` 0.377 | 改 `devops/grafana-loki-label-analyzer` `devops/grafana-prometheus-label-strategy` 首行 | 已落地 |
+| 34 | **同名领域循环的 skill 首行写领域**：game-dev-loop vs software-dev-loop | 同上实测 0.375 | 改 `game-dev/game-dev-loop` `software-development/software-dev-loop` 首行（游戏 / 通用软件） | 已落地 |
+| 35 | **同族 skill 用「产出物」区分**：grill-me 只出追问，grill-with-docs 追问 + ADR/术语表 | 同上实测 `grill-me`↔`grill-with-docs` 0.556 | 改 `software-development/grill-me` `software-development/grill-with-docs` 首行 | 已落地 |
+| 36 | **「改现有」与「新建」要分开**：`hands-on-deck` 改 pptx，`pptx` 新建 | 同上实测 `hands-on-deck`↔`pptx` 0.362 | 改 `content/hands-on-deck`（修改已有 .pptx）、`vendor/anthropics-skills/skills/pptx`（新建）首行；vendor 副本不手改，改为在 vault 内建 curated 副本 | 已落地 |
 
 ## 已采纳并落地的（供追溯）
 

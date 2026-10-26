@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Measure the always-on pressure that the installed skill library puts on an agent.
 
 Answers four questions with numbers, not opinion:
@@ -50,6 +50,7 @@ CLAUDE_CODE_BUDGET_FRACTION = 0.01  # of the model context window
 CODEX_BUDGET_FRACTION = 0.02  # of the model context window
 CODEX_FALLBACK_CHARS = 8_000  # when the context window is unknown
 CODEX_MAX_CONTEXT_TOKENS = 10_000  # cap on skills.max_context_tokens
+PREFIX_CHARS = 120  # how much of a description survives a truncated listing
 CONTEXT_WINDOW = 200_000  # tokens, the common baseline
 CHARS_PER_TOKEN = 3.6  # mixed English/code description text, measured proxy
 
@@ -313,6 +314,22 @@ def divergence_check(vault: Path, manifest: dict[str, dict]) -> dict:
     }
 
 
+def divergence_position(a: str, b: str) -> int:
+    """How many characters a reader must consume before two descriptions differ.
+
+    This is the honest acceptance metric for shadowing. Word-overlap
+    (Jaccard) punishes correct disambiguation, because "not for X, use Y
+    instead" adds the sibling's name and shared scaffolding words to the text.
+    What actually decides a match is how early the two descriptions split, so
+    that is what gets measured.
+    """
+    n = min(len(a), len(b))
+    i = 0
+    while i < n and a[i] == b[i]:
+        i += 1
+    return i
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", default=None, help="write full results as JSON")
@@ -344,18 +361,49 @@ def main() -> int:
     }
 
     # ---- selection ambiguity -------------------------------------------------
+    # Two metrics, because they answer different questions.
+    #
+    #   whole   - Jaccard over the description's content words. Detects skills
+    #             whose descriptions are near-duplicates overall. Penalises
+    #             CORRECT disambiguation, because a "not for X, use Y instead"
+    #             clause adds the sibling's name to the text.
+    #   prefix  - the same, over the first PREFIX_CHARS characters only. This is
+    #             the part the model actually sees: a harness that runs short of
+    #             listing budget truncates descriptions from the tail, so what
+    #             decides a match is the head. This is the metric that tracks
+    #             the real shadowing risk, and it is what the 2026-10-25
+    #             description rewrites were aimed at.
     words = {r["name"]: content_words(r["description"]) for r in recs}
-    pairs = []
-    for a, b in combinations(sorted(skills), 2):
-        score = len(words[a] & words[b]) / len(words[a] | words[b]) if (words[a] or words[b]) else 0.0
-        if score > 0:
-            pairs.append((score, a, b))
-    pairs.sort(reverse=True)
+    prefix_words = {
+        r["name"]: content_words(r["description"][:PREFIX_CHARS]) for r in recs
+    }
+
+    def jaccard(a: set[str], b: set[str]) -> float:
+        if not a or not b:
+            return 0.0
+        return len(a & b) / len(a | b)
+
+    def find_pairs(word_map: dict[str, set[str]]) -> list[tuple[float, str, str]]:
+        out = []
+        for a, b in combinations(sorted(word_map), 2):
+            score = jaccard(word_map[a], word_map[b])
+            if score > 0:
+                out.append((score, a, b))
+        out.sort(reverse=True)
+        return out
+
+    pairs = find_pairs(words)
+    prefix_pairs = find_pairs(prefix_words)
     shadow_pairs = [p for p in pairs if p[0] >= args.threshold]
+    prefix_shadow = [p for p in prefix_pairs if p[0] >= args.threshold]
     at_risk = Counter()
     for score, a, b in shadow_pairs:
         at_risk[a] += 1
         at_risk[b] += 1
+    prefix_at_risk = Counter()
+    for score, a, b in prefix_shadow:
+        prefix_at_risk[a] += 1
+        prefix_at_risk[b] += 1
 
     # ---- budgets -------------------------------------------------------------
     def fits(budget_chars: float, per_entry: float) -> int:
@@ -458,6 +506,43 @@ def main() -> int:
                 {"jaccard": round(s, 3), "a": a, "b": b} for s, a, b in pairs[: args.pairs]
             ],
             "most_shadowed": at_risk.most_common(15),
+            "prefix": {
+                "chars": PREFIX_CHARS,
+                "note": "Jaccard over the first N chars only - the part a budget-truncated listing still shows",
+                "shadowing_pairs": len(prefix_shadow),
+                "skills_in_at_least_one_shadowing_pair": len(prefix_at_risk),
+                "share_of_library_pct": round(100 * len(prefix_at_risk) / n, 1) if n else 0,
+                "top_pairs": [
+                    {"jaccard": round(s, 3), "a": a, "b": b}
+                    for s, a, b in prefix_pairs[: args.pairs]
+                ],
+                "most_shadowed": prefix_at_risk.most_common(15),
+            },
+            "divergence": {
+                "note": (
+                    "characters a reader must consume before two descriptions differ - "
+                    "the acceptance metric for the 2026-10-25 description rewrites"
+                ),
+                "late_pairs": [
+                    {
+                        "divergence_chars": divergence_position(
+                            skills[a]["description"], skills[b]["description"]
+                        ),
+                        "a": a,
+                        "b": b,
+                        "jaccard": round(s, 3),
+                    }
+                    for s, a, b in sorted(pairs, key=lambda t: -divergence_position(
+                        skills[t[1]]["description"], skills[t[2]]["description"]
+                    ))[: args.pairs]
+                ],
+                "pairs_diverging_within_40_chars": sum(
+                    1
+                    for _, a, b in pairs
+                    if divergence_position(skills[a]["description"], skills[b]["description"]) <= 40
+                ),
+                "pairs_total": len(pairs),
+            },
         },
         "integrity": {
             "duplicate_frontmatter_names": duplicate_names(dirs),

@@ -1,6 +1,7 @@
 ---
 name: project-update
-description: "生成结构化的项目进展汇报，含红绿灯状态、里程碑追踪和风险矩阵。Use when writing project status reports, milestone updates, or project reviews. Triggers on: '项目汇报', '项目进展', '项目状态', 'project update', 'project status', 'milestone update', 'project review', '项目报告', '进展汇报'."
+description: "One-off project status report, not a recurring cadence. 生成结构化的项目进展汇报，含红绿灯状态、里程碑追踪和风险矩阵。Use when writing project status reports, milestone updates, or project reviews. Triggers on: '项目汇报', '项目进展', '项目状态', 'project update', 'project status', 'milestone update', 'project review', '项目报告', '进展汇报'. Not for a recurring weekly or monthly report - use weekly-report."
+version: 1.0.0
 ---
 
 # 项目进展汇报 (Project Status Report)

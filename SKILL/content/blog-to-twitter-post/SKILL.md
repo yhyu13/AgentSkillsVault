@@ -1,15 +1,11 @@
 ---
 name: blog-to-twitter-post
-description: >-
-  Convert a long-form blog article into Twitter/X-ready posts with a sharp
-  content angle, source-grounded golden quote, trend adaptation from the last 30
-  days, current X platform-rule checks, and a primary visual concept or generated
-  image. Use when the user asks for blog to Twitter, blog to X post, Twitter/X
-  content repurposing, X copywriting, blog repurposing for X, or social post
-  exposure from a blog.
+description: "Twitter/X posts only. Convert a long-form blog article into Twitter/X-ready posts with a sharp content angle, source-grounded golden quote, trend adaptation from the last 30 days, current X platform-rule checks, and a primary visual concept or generated image. Use when the user asks for blog to Twitter, blog to X post, Twitter/X content repurposing, X copywriting, blog repurposing for X, or social post exposure from a blog. Not for LinkedIn - use blog-to-linkedin-post."
+
 metadata:
   author: Jeff
   version: "1.1"
+version: 1.0.0
 ---
 
 # blog-to-twitter-post

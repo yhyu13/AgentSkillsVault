@@ -1,12 +1,7 @@
 ---
 name: brand-pptx
-description: >-
-  Brand-aware PowerPoint engine. Use to (1) EXTRACT a company's brand from a .pptx template into a
-  reusable "Brand Profile", (2) COMPREHEND the template with the model (optional), (3) VERIFY it,
-  (4) GENERATE a new on-brand .pptx from an IntermediateDocument. Trigger on "extract our brand",
-  "use our deck template", "generate a branded deck from our profile", or when a ./brand-kit
-  exists. For one-off slide edits with no saved brand profile, use the normal pptx skill instead.
-  NOT for .docx (brand-docx), .xlsx (brand-xlsx), or PDFs.
+description: "PowerPoint decks (.pptx) only. Brand-aware PowerPoint engine. Use to (1) EXTRACT a company's brand from a .pptx template into a reusable \"Brand Profile\", (2) COMPREHEND the template with the model (optional), (3) VERIFY it, (4) GENERATE a new on-brand .pptx from an IntermediateDocument. Trigger on \"extract our brand\", \"use our deck template\", \"generate a branded deck from our profile\", or when a ./brand-kit exists. For one-off slide edits with no saved brand profile, use the normal pptx skill instead. NOT for .docx (brand-docx), .xlsx (brand-xlsx), or PDFs. Not for Word or Excel files - use brand-docx or brand-xlsx."
+version: 1.0.0
 ---
 
 # brand-pptx
