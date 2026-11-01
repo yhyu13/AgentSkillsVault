@@ -10,6 +10,7 @@ description: |
   Do NOT use it for: pure Q&A with no state change, single trivial actions ("打开这个文件",
   "跑一下这条命令"), or when the user already supplied a precise spec with checkable
   acceptance criteria — rewriting those wastes tokens and can drop detail they cared about.
+version: 1.1.0
 descriptions:
   zh-Hans: "把用户的粗略请求改写成可执行提纲，再照提纲执行。任务开头就加载。"
 displayNames:
@@ -60,6 +61,15 @@ displayNames:
 - 然后是真正的交付物。
 - 提纲**不单独成篇**。用户要的是结果，不是我的写作练习。
 - 提纲和实际做法不一致时，说明为什么改了。
+- **结尾不用反问，用 ROI 对照表**（标签固定 `我n` / `你n`）：
+
+  | 选项 | 代价 | 影响 | ROI |
+  |---|---|---|---|
+  | 我1：<方案> | <时间/人力/钱，带单位> | <影响范围、风险> | <收益÷投入，或高/中/低 + 依据> |
+  | 你1：<用户可走的路> | … | … | … |
+
+  表格前加一行 `表格总结：`；四列不许留空。
+- 关键结论粗体，重要数字加下划线并带单位：`<u>**¥38,000**</u>`。禁止裸数字。
 
 ## Failure handling
 

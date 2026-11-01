@@ -257,3 +257,4 @@ xiaoma-studio|A
 xlsx|A
 yu-hang-writing-style|A
 zhangyiming-advisor|B
+search-fallback|B
