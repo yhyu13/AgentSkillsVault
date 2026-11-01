@@ -64,7 +64,9 @@ $VendorSkills = @(
 $HostSkills = @()
 
 # docs/ holds reference material and retired-skill archives, not installable skills.
-$skipDirs = '[\\/](\.git|\.github|\.changeset|\.claude-plugin|\.out-of-scope|node_modules|archived|vendor|docs)[\\/]'
+# TEMPLATE is a submodule reference repo (Agent_Template_Repo_Setup1); its
+# embedded .claude/skills/ copies must never enter the curated install list.
+$skipDirs = '[\\/](\.git|\.github|\.changeset|\.claude-plugin|\.out-of-scope|node_modules|archived|vendor|docs|TEMPLATE)[\\/]'
 
 $curated = @{}
 Get-ChildItem -LiteralPath $Vault -Recurse -Directory -ErrorAction SilentlyContinue |
