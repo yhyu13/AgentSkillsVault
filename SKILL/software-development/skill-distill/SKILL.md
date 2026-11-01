@@ -1,6 +1,7 @@
 ---
 name: skill-distill
 description: 把一轮活儿里学到的东西自动沉淀成仓库 skill（.claude/skills/<name>/SKILL.md）。在"做完一段、准备交付或收工"时先跑这个：判定哪些值得沉淀、写成什么粒度、放哪个 skill、防重复与防膨胀，最后走 PR 合入。也负责定期体检已有 skill 是否过时。
+version: 1.1.0
 ---
 
 # skill-distill · 会后沉淀流水线
@@ -123,6 +124,7 @@ PR 正文要写清**沉淀了哪几条、每条来自什么证据**，让 review
 - [ ] 没有复述 AGENTS.md 已有内容（最多留一句指针）
 - [ ] ≤150 行；超了考虑拆
 - [ ] PR 已合，且 `Refs #<issue>`
+- [ ] 收尾汇报用 ROI 对照表（`我n` / `你n`：代价 / 影响 / ROI），不是「你要 A 还是 B」的反问
 
 ## 八、红线（来自 AGENTS.md）
 
