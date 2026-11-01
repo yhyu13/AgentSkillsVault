@@ -1,4 +1,4 @@
-# Install manifest — the authoritative list of user-level skills and their vault source.
+# Install manifest 鈥?the authoritative list of user-level skills and their vault source.
 #
 # Format:  <skill-name>|<relative-path-in-vault>|<tier>
 #          <skill-name>|HOST|<tier>   -> installed outside this vault; sync leaves it alone
@@ -179,6 +179,7 @@ renzhengfei-advisor|SKILL/management/renzhengfei-advisor|B
 resolving-merge-conflicts|SKILL/software-development/mattpocock/skills/engineering/resolving-merge-conflicts|B
 revenue-recognition|SKILL/management/finance/accounting/revenue-recognition|B
 rigorous-proof|SKILL/rigorous-proof|B
+search-fallback|SKILL/agents/search-fallback|B
 sector-analysis|SKILL/management/finance/equity-research/sector-analysis|B
 self-improvement|SKILL/software-development/self-improvement|B
 shuorenhua|SKILL/content/shuorenhua|A

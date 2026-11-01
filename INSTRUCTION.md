@@ -34,6 +34,7 @@
 | skill | origin | source |
 |-------|--------|--------|
 | goal-persistence | sibling (distilled) | `D:\GitRepo-AI\codex` — goal feature (`codex-rs/ext/goal/`) |
+| search-fallback | local (adopted 2026-11-01) | adopted from `~/.agents/skills/search-fallback` (previously installed only in the `.agents` store, never vault-tracked); scripts reviewed inline (search ladder: DDG Lite → Baidu via browser → Bing RSS; no exfiltration/injection) |
 
 ### content/
 | skill | origin | source |
@@ -209,9 +210,9 @@
 | technical-research-analysis-doc | local | written — TorchLight 调研分析 format |
 | skill-auto-improve-mirror (retired) | local | written by agent (Hermes) — skill improvement + version-aware cross-harness mirror (scripts/mirror_agent_skills.py) |
 | governance-doc-design | local (distilled) | distilled from `F:\XD\git-repo\cindy\docs` conventions (product/design/dev/legal rule buckets, 状态+读取时机+事实来源 skeleton, append-only decision log) |
-| truth-seeking-research | local | 用户系统提示词蒸馏：求真优先、0–4 级可信度、检索边界、脚本计算、固定输出格式（英文改写 → 结论先行 → `[判断与建议]` → 免责声明）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图）+ `%LOCALAPPDATA%\hermes\skills\software-development\`（副本） |
-| prompt-pro | local | 用户本地 skill：`C:\Users\yuhang\.minimax\skills\prompt-pro`。把粗请求补成可执行提纲（目标/验收/范围/约束/输出 五槽位），先 grounding 再落笔，提纲不单独成篇。先看真实系统再下笔的纪律 + 缺信息则问。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
-| skill-distill | local | 用户贴出的 skill 文本（原出处未指明，标记 local）。会后沉淀流水线：四道闸（可复用/有判断/有证据/有边界）+ 粒度 + 归属 + 三段式写法 + 防重复防膨胀 + PR 流程 + 自检清单 + 红线。规范 skill 沉淀本身。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
+| truth-seeking-research | local | 用户系统提示词蒸馏：求真优先、0–4 级可信度、检索边界、脚本计算、固定输出格式（英文改写 → 结论先行 → `[判断与建议]` → 免责声明）。**2026-11-01 v1.1.0**：输出格式改为「结论粗体/标题 + 数字带口径加下划线 + 结尾 ROI 对照表（我n/你n × 代价/影响/ROI）+ 必答 ROI」，检查清单加 2 条；改动源头为 `~/.claude/skills` 实体副本。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图）+ `%LOCALAPPDATA%\hermes\skills\software-development\`（副本） |
+| prompt-pro | local | 用户本地 skill：`C:\Users\yuhang\.minimax\skills\prompt-pro`。把粗请求补成可执行提纲（目标/验收/范围/约束/输出 五槽位），先 grounding 再落笔，提纲不单独成篇。先看真实系统再下笔的纪律 + 缺信息则问。**2026-11-01 v1.1.0**：Output contract 增加「结尾 ROI 对照表（我n/你n）+ 结论加粗/标题 + 数字带单位下划线」，与全局输出规则对齐。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
+| skill-distill | local | 用户贴出的 skill 文本（原出处未指明，标记 local）。会后沉淀流水线：四道闸（可复用/有判断/有证据/有边界）+ 粒度 + 归属 + 三段式写法 + 防重复防膨胀 + PR 流程 + 自检清单 + 红线。规范 skill 沉淀本身。**2026-11-01 v1.1.0**：自检清单加「收尾汇报用 ROI 对照表，不用反问」，与全局输出规则对齐。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 | perf-tracking-platform | local (imported) | 用户提供：`C:\Users\1\Downloads\perf-tracking-platform`（XD 游戏引擎侧「性能跟踪分析平台」领域知识与工作指引：OKR/进度快照、指标口径、瓶颈判定、看板与报告要求；进度以 Feishu 进度文档为准）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 | brainstorming / systematic-debugging / writing-plans (retired) / writing-skills (retired) / verification-before-completion / using-git-worktrees / receiving-code-review / requesting-code-review (retired) | repo (submodule) | `github.com/obra/superpowers` @ `2ce8aa1` (MIT) — 上游 `skills/<name>`；只装 8 个方法论 skill，`executing-plans` `finishing-a-development-branch` `subagent-driven-development` `using-superpowers` `diagnosing-superpowers` `dispatching-parallel-agents` 与 vault 自有 `software-dev-loop` / `tdd` / `diagnosing-bugs` 重叠，留 vendor |
 | skill-inspector | repo (submodule) | `github.com/NVIDIA/SkillSpector` @ `d7338f5` (Apache-2.0) — 上游 `skills/skill-inspector`：装第三方 skill 前的注入/外泄/供应链扫描（**建议作为以后装任何第三方 pack 的前置闸**） |

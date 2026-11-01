@@ -1,0 +1,14 @@
+{
+  "_note": "Pass as cindy_browser.call_tool {name:'browser', args:{action:'navigate', url:'https://www.baidu.com/s?rtt=1&bsst=1&cl=2&tn=news&word=<encoded>', targetId:'search'}} then call extract with the payload below.",
+  "action": "extract",
+  "extract": {
+    "from": "#content_left .result, #content_left .result-op",
+    "multiple": true,
+    "limit": 10,
+    "fields": {
+      "title": { "selector": "h3", "type": "text" },
+      "url": { "selector": "h3 a", "type": "href" },
+      "snippet": { "selector": ".c-abstract, .c-span-last, .c-color-text", "type": "text" }
+    }
+  }
+}
