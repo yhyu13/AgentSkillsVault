@@ -178,3 +178,6 @@
 [submodule "vendor/mattpocock-skills"]
 	path = vendor/mattpocock-skills
 	url = https://github.com/mattpocock/skills
+[submodule "TEMPLATE"]
+	path = TEMPLATE
+	url = https://github.com/yhyu13/Agent_Template_Repo_Setup1
