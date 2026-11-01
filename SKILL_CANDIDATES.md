@@ -55,6 +55,27 @@
 | 43 | **Kilo 没有隐藏机制，tier B 在 Kilo 里不生效**；Claude Code 侧也要跑 `scripts/apply-tiers.ps1` 才写 `skillOverrides`（本机 `~/.claude/settings.json` 无此键）；mattpocock 的 `disable-model-invocation: true` 又会把 tier A 的 `grill-me`/`implement` 从模型视野里拿掉 | 两份报告的可见性测量不同（281 全可见 vs 270 可见、54 带描述）；`Select-String skillOverrides ~/.claude/settings.json` = 0 | `AGENTS.md` 加一节「tier 在各 harness 的真实效果」；新机器上跑 `apply-tiers.ps1` | 待审 |
 | 44 | **`learn` / `cindy-skill-creator` 是 Cindy 宿主装的系统 skill**（`~/.agents/skills/*` → junction 到 `%APPDATA%\Cindy\shared-system-skills\.active\`），vault 不该删也不该收录，但审计脚本会把它们算进来 | `Get-Item ~/.agents/skills/learn` = ReparsePoint → Cindy；两份报告都把 `learn` 评为最低分 | `defect_audit.py` / `score_skills.py` 跳过 target 不在 `~/.claude/skills` 的 junction；`INSTRUCTION.md` 加一行「宿主自带，不归 vault 管」 | 待审 |
 
+| 45 | **「看起来像 3D」≠「能进数据驱动的 PCG 管线」** —— 一座岛的生成**不消费**「一件物品的表面质感」层与「一个镜头的效果」层
+2026-11-01 对 219 个 skill 做关键词粗筛（59）→ 人工评分池（28）→ 逐个读原文打 R/A/E 分：`mengto` 的 19 个 3D skill 里 **9 个**只解决「表面质感 / 单个镜头」层（wood / metal / cloth / paper material、sky-rays、underwater-god-rays、orbit-inspect、ai-3d-character）⇒ A 分 ≤ 1；真正能进的是 `procedural-3d-scenes` / `three-procedural-scenes` / `three-clay-scenes`（10/10/9）
+评分口径固化：**R 相关性 0–4 / A 可迁用性 0–3 / E 证据强度 0–3，每分必须带原文锚点**；落地写进 `AI_Tutor-LearnerTown` 的 `AGENTS.md` §23.1b | 待审 |
+| 46 | **3D 主线 skill 的元数据指向 vault 里不存在的路径**（`source-of-truth: .claude/skills/<name>`）
+2026-11-01 实测：本 vault 的真实布局是 `SKILL/<分类>/<名>/SKILL.md`，而 `game-dev/procedural-3d-scenes` / `three-procedural-scenes` / `three-clay-scenes` 的 frontmatter `source-of-truth` 仍写 `.claude/skills/<name>` ⇒ 按它去找一定找不到
+三个 3D 主线 skill 的 frontmatter `source-of-truth` 改成 `SKILL/<分类>/<名>` | 待审 |
+| 47 | **断链引用：3D skill 指向 vault 里根本不存在的 skill** ⇒ 拿它们当先例是错的
+2026-11-01 实测：`game-dev/ai-3d-scene-pipeline` 引用 `tripo-3d-generation` 与 `three-pbr-workflow`（两者在 vault 里**不存在**，其中 `tripo-3d-generation` 已于 2026-10-26 退役）；`game-dev/game-dev-loop` 指向的 7 个 skill 全部缺失
+删掉这些指针，或换成现存的 `three-procedural-scenes` / `webapp-testing` / `3d-wood-lighting-scorecard` | 待审 |
+| 48 | **与「自包含单 HTML / 零外部资源 / 不装依赖」三条工程红线正面冲突的 3D skill 段**
+2026-11-01 实测：`video/mengto/3d-high-resolution-textures` 写 "Keep assets external and cacheable"；三个 material skill 的 `PROMPT.md` 要求从 unpkg 用 import map 装 three + 引 Google Fonts；`video/mengto/3d-wood-lighting-scorecard` 要求 `npm i playwright-core`
+在这三个 skill 里加一节「**本仓变体**」：外部资产改成离线烘焙；依赖改成用已有的无头浏览器 | 待审 |
+| 49 | **写死坐标 / 硬编码参考实现** —— 与「自由文本不得驱动世界」直接冲突
+2026-11-01 实测：`3d-metal-material` 写死亮卡位置与辐射度；`3d-falling-leaves` 自述参考实现用 "hardcoded roof rectangles"
+两个 skill 各加一条「**参数化替代表**」：把写死值改成从场景描述读 | 待审 |
+| 50 | **判据不可执行：验收标准里没有阈值** ⇒ 「过了」和「看着对」长得一模一样
+2026-11-01 实测：`three-clay-scenes` 的 Definition of done 是 "recognizably complete"（无阈值）；`3d-wood-lighting-scorecard` 自己写明 "Scoring a different scene means writing that function, not changing the metrics" ⇒ **换岛必须重写，不是改参数**
+两个 skill 的验收表各补一条「**可执行判据**」（带具体数字 + 退出码） | 待审 |
+| 51 | ★ **skill 自己写明的负面结论，最该记住**：`procedural-3d-scenes` 的 Clay 部分是**新建的目标工作流**，不是已验证的既有能力
+2026-11-01 读原文：`game-dev/procedural-3d-scenes/references/project-evidence.md` 写 "Critical negative finding: the repository has **no general clay/white-model/no-surface-texture mode**"，且审计注明 "did **not** rerun builds, browser tests, benchmarks"
+引用该 skill 时**必须带上这句负面结论** —— 不得当成「已跑通的先例」；可在它的 `SKILL.md` 顶部加一条引用者须知 | 待审 |
 ## 已采纳并落地的（供追溯）
 
 | 经验 | 落位 | 证据 |
