@@ -1,7 +1,7 @@
 ---
 name: karpathy-explain-better
 description: 当用户说"看不懂""再说一遍""简单点",或当前解释又长又抽象仍讲不清时,引导 Agent 换形式交付(简化文字 / 结构图 / 3 页海报 / 讲解视频),并且每个产物都要"一屏一个大数字、零 AI 废话、背景在动"。也用于要求"做一页看懂的海报""做个带字幕的讲解视频"。
-version: 2.0.0
+version: 2.0.1
 metadata:
   category: writing
   created_by: agent
@@ -104,6 +104,9 @@ python references/scripts/webvideo.py scene.html --work work/ --out out.mp4
 - **hero 数字不能是形容词**:`效率提升显著` 是废话,`6 个 5×5 卷积核` 才是事实。
 - **动画不等于动效**:文字到处飞是噪音;背景缓慢流动 + 一个元素淡入才是节奏。
 - **视频默认静音 / 默认带字幕 / 默认小声,都是交付缺陷**:字幕要能开关且默认开,音量要拉到平台上限。
+- **场景目录里的 `timing.js` 会覆盖注入的 `window.TIMING`**:场景里的 `<script src>` 在注入之后执行,目录里留一份旧的就是整片错拍,而且零报错。渲染前必须**重写**它(`webvideo.py` 已做)。
+- **字幕一句一 cue 会太长**:24 个汉字在 1080p 勉强、竖屏直接糊。在时间轴脚本里按标点折行,别留到渲染端。
+- **揭示动画比句子慢**:逐字公式写到 `p*1.4` 就是“句子说完了还没打完”,取 `p*3.0`,让它在 p≤0.4 就位。
 - **逐帧渲染别用 `-vf zoompan`**:整数裁剪会"冻一帧跳一格",改逐帧亚像素。
 - **先存旧版再改**:成片 + md5 + 症状清单,否则无法对比 before/after。
 - **Skill 工具报 unknown skill**:Cindy 从 `~/.claude/skills/` 加载,新 skill 必须落到那里。

@@ -79,6 +79,11 @@ def main() -> int:
     total = timing["total"]
     n_frames = int(round(total * fps))
 
+    # timing.js 必须和 scene.html 同目录：场景里的 <script src="timing.js">
+    # 会在注入之后执行并覆盖 window.TIMING —— 目录里留一份旧的就会静默错拍。
+    (scene.parent / "timing.js").write_text(
+        "window.TIMING = " + json.dumps(timing, ensure_ascii=False) + ";", encoding="utf-8")
+
     frames = work / "frames"
     frames.mkdir(parents=True, exist_ok=True)
 

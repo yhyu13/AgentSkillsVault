@@ -95,6 +95,11 @@ def check_html(path: Path) -> None:
     ext = re.findall(r'(?:src|href)="(https?://[^"]+)"', raw)
     (bad if ext else ok)(f"外链 {len(ext)} 个" + (f":{ext[:3]}" if ext else "(单文件)"))
 
+    # 视频场景文件(实现 window.renderAt)不是海报,不该被 3 页/hero 的规则判错
+    if "window.renderAt" in raw:
+        ok("视频场景(renderAt 纯函数)— 跳过海报规则")
+        return
+
     pages = re.findall(r'data-page="(\d+)"', raw)
     if not pages:
         bad("未找到 data-page 分页标记")

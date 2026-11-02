@@ -40,6 +40,22 @@ def dur(path: pathlib.Path) -> float:
     return int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3))
 
 
+def wrap(text: str, limit: int = 18) -> str:
+    """字幕单行不超过 limit 个字符,超了在标点处折成两行。
+
+    16 字的规矩来自手机竖屏,1080p 横屏放宽到 18。折行放在这里而不是渲染端,
+    是为了 srt 单独拿去用时也是对的。
+    """
+    if len(text) <= limit:
+        return text
+    best = None
+    for i, ch in enumerate(text):
+        if ch in "，。；：,.;:" and 6 <= i <= len(text) - 4:
+            best = i + 1
+    cut = best if best else len(text) // 2
+    return text[:cut].rstrip() + "\n" + text[cut:].lstrip()
+
+
 def ts(sec: float) -> str:
     h = int(sec // 3600); m = int(sec % 3600 // 60); s = sec % 60
     return f"{h:02d}:{m:02d}:{s:06.3f}".replace(".", ",")
@@ -104,7 +120,7 @@ async def main() -> int:
                                    encoding="utf-8")
     with open(out / "subtitles.srt", "w", encoding="utf-8") as f:
         for k, s in enumerate(segs, 1):
-            f.write(f"{k}\n{ts(s['start'])} --> {ts(s['end'])}\n{s['text']}\n\n")
+            f.write(f"{k}\n{ts(s['start'])} --> {ts(s['end'])}\n{wrap(s['text'])}\n\n")
 
     print(f"total {total:.2f}s / {len(segs)} 句  →  {out}")
     return 0
