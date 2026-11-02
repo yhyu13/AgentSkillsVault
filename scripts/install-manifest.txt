@@ -62,6 +62,7 @@ brand-xlsx|SKILL/design/brand-xlsx|A
 cat-game-architecture|SKILL/game-dev/cat-game-architecture|B
 codebase-design|SKILL/software-development/mattpocock/skills/engineering/codebase-design|B
 code-review|SKILL/software-development/mattpocock/skills/engineering/code-review|B
+colleague-yuhang|SKILL/agents/colleague-yuhang|A
 comparable-analysis|SKILL/management/finance/investment-banking/comparable-analysis|B
 concentrate-forces|SKILL/management/qiushi-methodology/concentrate-forces|B
 consolidation|SKILL/management/finance/accounting/consolidation|B
