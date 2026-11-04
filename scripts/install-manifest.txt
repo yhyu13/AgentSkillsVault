@@ -51,6 +51,7 @@ ask-matt|SKILL/software-development/mattpocock/skills/engineering/ask-matt|B
 audit-verify-explain-grade-5|SKILL/video/mengto/audit-verify-explain-grade-5|B
 aura-asset-images|SKILL/video/mengto/aura-asset-images|B
 bezos-advisor|SKILL/management/bezos-advisor|B
+blender-game-assets-v2|SKILL/game-dev/blender-game-assets-v2|A
 blog-to-linkedin-post|SKILL/content/blog-to-linkedin-post|A
 blog-to-twitter-post|SKILL/content/blog-to-twitter-post|A
 book-chapter-to-vault|SKILL/knowledge-vault/book-chapter-to-vault|A
@@ -77,6 +78,7 @@ docx|SKILL/content/docx|A
 domain-modeling|SKILL/software-development/mattpocock/skills/engineering/domain-modeling|B
 earnings-models|SKILL/management/finance/equity-research/earnings-models|B
 elevenlabs-tts|SKILL/video/mengto/elevenlabs-tts|B
+engine-project-agent-v2|SKILL/game-dev/engine-project-agent-v2|A
 excel-hygiene|SKILL/content/excel-hygiene|B
 ffmpeg|SKILL/video/ffmpeg|B
 finance-lead|SKILL/management/finance-lead|B
@@ -87,7 +89,9 @@ game-debug|SKILL/game-dev/game-debug|B
 game-dev-loop|SKILL/game-dev/game-dev-loop|B
 game-gdd-writing|SKILL/game-dev/game-gdd-writing|B
 game-grid-logic|SKILL/game-dev/game-grid-logic|B
+game-liveops-assist-v2|SKILL/game-dev/game-liveops-assist-v2|A
 game-platformer|SKILL/game-dev/game-platformer|B
+game-proto-validation-v2|SKILL/game-dev/game-proto-validation-v2|A
 game-template|SKILL/game-dev/game-template|B
 game-template-engineering|SKILL/game-dev/game-template-engineering|B
 game-top-down-action|SKILL/game-dev/game-top-down-action|B
@@ -255,4 +259,8 @@ web-artifacts-builder|vendor/anthropics-skills/skills/web-artifacts-builder|B
 xlsx|vendor/anthropics-skills/skills/xlsx|A
 
 # --- host-local (installed outside this vault; sync leaves them untouched) ---
+blender-game-assets|HOST|HOST
+engine-project-agent|HOST|HOST
+game-liveops-assist|HOST|HOST
+game-proto-validation|HOST|HOST
 

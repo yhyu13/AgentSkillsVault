@@ -259,3 +259,11 @@ xlsx|A
 yu-hang-writing-style|A
 zhangyiming-advisor|B
 search-fallback|B
+game-proto-validation-v2|A
+blender-game-assets-v2|A
+engine-project-agent-v2|A
+game-liveops-assist-v2|A
+game-proto-validation|HOST
+blender-game-assets|HOST
+engine-project-agent|HOST
+game-liveops-assist|HOST

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Engine Project Agent V2"
+  short_description: "引擎工程开发 v2：复现优先、读图路线、四级验证阶梯、改动日志"
