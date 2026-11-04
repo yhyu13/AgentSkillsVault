@@ -1,0 +1,3 @@
+interface:
+  display_name: "Game Proto Validation V2"
+  short_description: "玩法原型验证 v2：可判问题模板、砍单顺序、三遍自检协议"

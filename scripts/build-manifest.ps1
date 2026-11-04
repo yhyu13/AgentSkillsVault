@@ -58,10 +58,15 @@ $VendorSkills = @(
 # upstream record.
 
 # Host-local skills: installed by hand from outside this vault. Never overwritten.
-# Currently none: `goal-persistence` moved into the vault (agents/goal-persistence),
-# `media-use` was retired 2026-10-25, and `orchestrate` was an empty orphan dir
-# with no SKILL.md (never loadable) and was removed.
-$HostSkills = @()
+# The four Kimi v1 game skills live only in the user stores (~/.agents) and are
+# superseded in the vault by their -v2 versions; HOST entries stop sync-skills.ps1
+# from pruning them while the user compares both versions.
+$HostSkills = @(
+  'game-proto-validation',
+  'blender-game-assets',
+  'engine-project-agent',
+  'game-liveops-assist'
+)
 
 # docs/ holds reference material and retired-skill archives, not installable skills.
 # TEMPLATE is a submodule reference repo (Agent_Template_Repo_Setup1); its
