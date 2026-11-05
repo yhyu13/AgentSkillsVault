@@ -51,6 +51,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\build-manifest.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\sync-skills.ps1
 # 3. prove the stores match the vault byte-for-byte
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\verify-install.ps1 -Manifest scripts\install-manifest.txt
+# 4. one real copy + three junction views for skills that live OUTSIDE the vault
+#    (dry run by default; -Apply moves the real dir into ~/.claude/skills and links the rest)
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\normalize-external-skills.ps1 [-Apply]
 ```
 
 - `scripts/install-manifest.txt` is **the** install list: `<name>|<vault-relative-path>`,
