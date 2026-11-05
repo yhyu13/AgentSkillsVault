@@ -76,6 +76,10 @@
 | 51 | ★ **skill 自己写明的负面结论，最该记住**：`procedural-3d-scenes` 的 Clay 部分是**新建的目标工作流**，不是已验证的既有能力
 2026-11-01 读原文：`game-dev/procedural-3d-scenes/references/project-evidence.md` 写 "Critical negative finding: the repository has **no general clay/white-model/no-surface-texture mode**"，且审计注明 "did **not** rerun builds, browser tests, benchmarks"
 引用该 skill 时**必须带上这句负面结论** —— 不得当成「已跑通的先例」；可在它的 `SKILL.md` 顶部加一条引用者须知 | 待审 |
+| 52 | **h3-seedance-prompt-library 的片段计数三处不一致**：frontmatter `fragments: 271`、`library/index.md` 头部写 637、实际 `### PREFIX-NN ·` 标题共 603 条 | 2026-11-05 导入时用 `Select-String '^### [A-Z]{2,4}-\d{2} ·'` 逐文件统计，22 个维度文件求和 603 | 该 skill 的 `SKILL.md` frontmatter 与 `library/index.md` 头部改成同一数字，或在两处都删掉具体数量 | 待审 |
+| 53 | **h3-seedance-prompt-library 的可执行路径写死在别人的机器上**：`scripts/update.sh` 的同步目标默认 `C:/Users/Intel/.claude/skills`；`agents/h3-seedance-translator.md` 回写源库指向 `D:\AI训练\AI导演技能库-src\...` | 2026-11-05 `Test-Path` 实测两者均为 `False` | `update.sh` 默认改 `$HOME/.claude/skills`（`CINDY_SKILLS_DIR` 覆盖机制已存在）；translator 的回写路径改为相对库根 | 待审 |
+| 54 | **h3-seedance-prompt-library 的引用层有死链**：`SKILL.md` 目录树漏列实际存在的 5 个库文件（`h3-syntax.md` / `color-grading.md` / `coverage-editing.md` / `shot-sequencing.md` / `vfx-design.md`）；「与其它 skill 的关系」点名的 `DirectorSKILL`、`cinematic-video-prompt-engineer`、`zy-cinematic-realism`、`seedance-prompts`、`visual-skills` 本机一个都没有 | 2026-11-05 目录清点 + 三个 skill store 逐个 `Get-ChildItem -Filter`，命中数均为 0 | 补全目录树；「与其它 skill 的关系」改成「可选：装有这些 skill 时如何配合」，不写成依赖 | 待审 |
+
 ## 已采纳并落地的（供追溯）
 
 | 经验 | 落位 | 证据 |

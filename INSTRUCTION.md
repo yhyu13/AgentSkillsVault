@@ -228,6 +228,7 @@
 | skill | origin | source |
 |-------|--------|--------|
 | ai-video-production | local (distilled) | 余弦博客《用 Opus 5.5 做视频：制作流程与提示词资源记录》(2026-09-27) + 已 vendor 的开源 skill 清单；含 `references/prompts.md`（提示词模板）与 `references/resources.md`（仓库/工具清单）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
+| h3-seedance-prompt-library | local (HOST import) | 用户本机已装 skill：`C:\Users\XINDONG\.claude\skills\h3-seedance-prompt-library`（canonical；`~/.agents/skills` 为 junction view）。无上游 git 仓库，`NOTICE.md` 声明自有内容 MIT、官方原件不随包分发。MiniMax H3（海螺 03）三字段 + Seedance 2.5 七段提示词库：22 个维度共 603 条可拼装片段、`agents/h3-seedance-translator.md` 翻译 Agent、`library/intel/` 官方原件差异清单。**导入时未改动内容**（与源树哈希 `1788110e…` 一致）；已知缺陷见 `SKILL_CANDIDATES.md` #52–#54 |
 | remotion-best-practices (retired) / -create / -render / -captions / -markup / -multimedia / -maps / -interactivity / -docs / -saas / -studio / -upgrade | repo (submodule) | `github.com/remotion-dev/skills` @ `6c67adc` — Remotion 官方 Agent Skills（12 个），上游 `skills/<name>` |
 | anidoodle | repo (submodule) | `github.com/alexgreensh/anidoodle` @ `f746cbd` — 手绘风插画与动画（自带配乐与故事线） |
 | guizang-product-video-skill | repo (submodule) | `github.com/op7418/guizang-product-video-skill` @ `18842e0` — 读代码库做产品更新宣传片 |
