@@ -1,0 +1,77 @@
+{
+  "_comment": "翻译 Agent 的模型路由表。主模型挂了按 fallbacks 顺序降级。跑 `bash scripts/doctor.sh` 可自动探测并刷新本文件。",
+  "_updated": "2026-10-27",
+
+  "primary": {
+    "name": "MiniMax-M3.1-Flash",
+    "provider": "minimax",
+    "kind": "cloud",
+    "note": "与主会话同模型，走 Cindy 已连接的 MiniMax 供应商"
+  },
+
+  "fallbacks": [
+    {
+      "name": "llama.cpp:arex-2",
+      "kind": "local",
+      "endpoint": "http://127.0.0.1:8080/v1",
+      "model": "arex-2",
+      "priority": 1,
+      "latency_s": 1,
+      "note": "llama.cpp server。实测最快，支持 enable_thinking=false 干净出字。改模型：llama-server 启动参数换 -m，再跑 doctor.sh --refresh"
+    },
+    {
+      "name": "ollama:qwen2.5:14b",
+      "kind": "local",
+      "endpoint": "http://127.0.0.1:11434/v1",
+      "model": "qwen2.5:14b",
+      "priority": 2,
+      "latency_s": 11,
+      "note": "14.8B，速度与质量平衡档，中文提示词翻译可用"
+    },
+    {
+      "name": "ollama:qwen3:8b",
+      "kind": "local",
+      "endpoint": "http://127.0.0.1:11434/v1",
+      "model": "qwen3:8b",
+      "priority": 3,
+      "latency_s": 8,
+      "note": "8.2B 思考型，需 max_tokens≥1024 否则思考吃光预算。只适合精简模式单镜提示词"
+    },
+    {
+      "name": "ollama:qwen38-27b-q3km",
+      "kind": "local",
+      "endpoint": "http://127.0.0.1:11434/v1",
+      "model": "qwen38-27b-q3km-local:latest",
+      "priority": 4,
+      "latency_s": 20,
+      "note": "27.3B Q3_K_M，本地池里质量最强的可用档"
+    },
+    {
+      "name": "ollama:qwen3.5:27b",
+      "kind": "local",
+      "endpoint": "http://127.0.0.1:11434/v1",
+      "model": "qwen3.5:27b",
+      "priority": 5,
+      "latency_s": 69,
+      "note": "27.8B Q4_K_M，质量高但首次加载慢，质量优先时选它"
+    },
+    {
+      "name": "ollama:qwen2.5vl:7b",
+      "kind": "local",
+      "endpoint": "http://127.0.0.1:11434/v1",
+      "model": "qwen2.5vl:7b",
+      "priority": 6,
+      "latency_s": 7,
+      "note": "带视觉。用于「给了参考图要我描述它」的场景"
+    }
+  ],
+
+  "policy": {
+    "retry_per_level": 1,
+    "timeout_seconds": 120,
+    "context_budget": "本地模型上下文有限：降级时只喂与本次需求相关的 2~4 个库文件的相关片段，不要整库塞进去",
+    "degrade_output_mode": "精简模式",
+    "disclose": "降级产出必须显式标注「本次由本地模型 X 生成，未经主模型复核」",
+    "never": "本地模型不可用时，如实报告失败并说明已尝试的链路，不要静默降级为低质量猜测"
+  }
+}

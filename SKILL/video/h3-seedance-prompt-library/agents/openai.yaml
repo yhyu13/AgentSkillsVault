@@ -1,0 +1,7 @@
+interface:
+  display_name: "H3 / Seedance 提示词翻译官"
+  short_description: "把你的大白话翻译成 MiniMax H3 与 Seedance 2.5 的成品提示词。"
+  default_prompt: "Use $h3-seedance-prompt-library to translate my plain-language description into a MiniMax H3 and Seedance 2.5 prompt."
+
+policy:
+  allow_implicit_invocation: true

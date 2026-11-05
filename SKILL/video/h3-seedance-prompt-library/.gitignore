@@ -1,0 +1,18 @@
+# 常见忽略项
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+*.zip
+node_modules/
+__pycache__/
+
+# 情报快照：官方原件的历史副本，可由 scripts/update.sh 随时重新拉取，无需入库
+library/intel/snapshots/
+library/intel/*.diff
+
+# 本地调用日志
+*.local.log
+
+# 临时抓取目录
+tmp/

@@ -121,6 +121,7 @@ grilling|SKILL/software-development/mattpocock/skills/productivity/grilling|B
 grill-me|SKILL/software-development/mattpocock/skills/productivity/grill-me|B
 grill-with-docs|SKILL/software-development/mattpocock/skills/productivity/grill-with-docs|B
 guizang-product-video-skill|SKILL/video/guizang-product-video-skill|B
+h3-seedance-prompt-library|SKILL/video/h3-seedance-prompt-library|B
 handoff|SKILL/software-development/mattpocock/skills/productivity/handoff|B
 hands-on-deck|SKILL/design/hands-on-deck|A
 hgb-standards|SKILL/management/finance/accounting/hgb-standards|B
