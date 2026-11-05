@@ -79,6 +79,9 @@
 | 52 | **h3-seedance-prompt-library 的片段计数三处不一致**：frontmatter `fragments: 271`、`library/index.md` 头部写 637、实际 `### PREFIX-NN ·` 标题共 603 条 | 2026-11-05 导入时用 `Select-String '^### [A-Z]{2,4}-\d{2} ·'` 逐文件统计，22 个维度文件求和 603 | 该 skill 的 `SKILL.md` frontmatter 与 `library/index.md` 头部改成同一数字，或在两处都删掉具体数量 | 待审 |
 | 53 | **h3-seedance-prompt-library 的可执行路径写死在别人的机器上**：`scripts/update.sh` 的同步目标默认 `C:/Users/Intel/.claude/skills`；`agents/h3-seedance-translator.md` 回写源库指向 `D:\AI训练\AI导演技能库-src\...` | 2026-11-05 `Test-Path` 实测两者均为 `False` | `update.sh` 默认改 `$HOME/.claude/skills`（`CINDY_SKILLS_DIR` 覆盖机制已存在）；translator 的回写路径改为相对库根 | 待审 |
 | 54 | **h3-seedance-prompt-library 的引用层有死链**：`SKILL.md` 目录树漏列实际存在的 5 个库文件（`h3-syntax.md` / `color-grading.md` / `coverage-editing.md` / `shot-sequencing.md` / `vfx-design.md`）；「与其它 skill 的关系」点名的 `DirectorSKILL`、`cinematic-video-prompt-engineer`、`zy-cinematic-realism`、`seedance-prompts`、`visual-skills` 本机一个都没有 | 2026-11-05 目录清点 + 三个 skill store 逐个 `Get-ChildItem -Filter`，命中数均为 0 | 补全目录树；「与其它 skill 的关系」改成「可选：装有这些 skill 时如何配合」，不写成依赖 | 待审 |
+| 55 | ★ **把「给 DSH 派活」从 GUI 打字升级成文件握手**：Cindy 往 `.dsh-listen/inbox/<hash>.md` 写任务，DSH 往 `.dsh-listen/receipts/<hash>.json` 写回执（含 hash + 版本号 + 证据路径），监听轮询回执目录。稳态不需要抢前台焦点，也不受「DSH 窗口是否开着」约束 | 2026-11-04 已实测 GUI 半段（剪贴板 + `Ctrl+V` 中文无损；`type_text` 单次只吃 400 字符；`Enter` 回执 `no_change` 是假阴性）；文件握手半段**未实现** | `dispatch-to-dsh` 的「通道阶梯」新增第 0 档 | 待审 |
+
+> 注：`dispatch-to-dsh` skill 是 2026-11-04 依用户明确要求（「应该把它内化成一个 skill」）**直接创建**的，未走本队列审核；如需回退或改写，改 `C:\Users\yuhang\.claude\skills\dispatch-to-dsh\SKILL.md`（2026-11-06 起四个 store 的唯一真身；`.kilo` / `.codex` / `.agents` 均为指向它的 junction）。
 
 ## 已采纳并落地的（供追溯）
 
