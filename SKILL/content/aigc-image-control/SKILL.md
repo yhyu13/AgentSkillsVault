@@ -1,6 +1,10 @@
 ---
 name: aigc-image-control
-description: AI 生图可控工作流。把"参考图"变成可复用的产线：参考海报→同系列新海报（风格迁移）、参考图→可复用提示词、人物/品牌 IP 角色资产一致性、二维场景→可探索 3D。核心纪律是「定·拆·探·锁·收」：找参考、拆规则、探变量、锁不变量、验收结果；并把观察与推断分开，不猜艺术家/seed/模型参数。Use when 用户说"参考这张图做一张…"、要用同一视觉系统批量出系列海报、要把参考图反推成提示词、要保持角色/品牌 IP 多图一致、要把插画或场景图转成 3D，或吐槽"AI 生图风格漂移 / 换发型像换个人 / 文字全是乱码 / 只会照搬配色"。Triggers: 参考图, 风格迁移, 系列海报, 图生提示词, 反推 prompt, 角色一致性, 角色设定表, IP 资产, 多角度设定, 2D 转 3D, Marble, image-to-prompt, poster-style-transfer. 不适用：AI 视频生成（用 aigc-video-creation）、界面/网页视觉方向（用 taste-imagegen-web / taste-redesign）、代码绘制海报或插画（用 canvas-design / anatomy）。
+description: >-
+  AI 生图可控工作流。把"参考图"变成可复用的产线：参考海报→同系列新海报（风格迁移）、参考图→可复用提示词、人物/品牌 IP 角色资产一致性、二维场景→可探索 3D。核心纪律是「定·拆·探·锁·收」：找参考、拆规则、探变量、锁不变量、验收结果；并把观察与推断分开，不猜艺术家/seed/模型参数。
+  Use when 用户说"参考这张图做一张…"、要用同一视觉系统批量出系列海报、要把参考图反推成提示词、要保持角色/品牌 IP 多图一致、要把插画或场景图转成 3D，或吐槽"AI 生图风格漂移 / 换发型像换个人 / 文字全是乱码 / 只会照搬配色"。
+  Triggers: 参考图, 风格迁移, 系列海报, 图生提示词, 反推 prompt, 角色一致性, 角色设定表, IP 资产, 多角度设定, 2D 转 3D, Marble, image-to-prompt, poster-style-transfer.
+  不适用：AI 视频生成（用 aigc-video-creation）、界面/网页视觉方向（用 taste-imagegen-web / taste-redesign）、代码绘制海报或插画（用 canvas-design / anatomy）。
 metadata:
   category: content
   created_by: agent
