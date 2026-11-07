@@ -10,7 +10,7 @@ description: >-
 metadata:
   category: content
   created_by: agent
-  version: 1.2.1
+  version: 1.2.2
   origin: local (distilled from Aholo hackathon, 2026-11)
 ---
 
@@ -108,8 +108,8 @@ issue 评论**，PR 的 review 区是空的，所以这里直接给出评论链�
 做成一张四列对照表：形态 / 代价 / 判据 / 用户角色。
 最后压出一句话核心价值，这句话要能直接当答辩第一句。
 
-**证据**：竞品形式对比与「我们欠缺清单」（`docs/competitor-review/README.md` + `team-gap.md`，
-对照表列头是「维度 / 我们 / 他们 / 判断」）给同类产品坐标；三案例横评
+**证据**：竞品形式对比与「我们欠缺清单」（`docs/competitor-review/README.md` +
+`docs/competitor-review/team-gap.md`，对照表列头是「维度 / 我们 / 他们 / 判断」）给同类产品坐标；三案例横评
 （`docs/video-ref/design/04-cross-case-comparison.md`）是三支 B 站设计类视频
 （王封矿 / 浦东水泥厂 / 西安六村堡）的论证骨架与驱动类型横评，给同题材参考件坐标，两者并列才成立。
 
