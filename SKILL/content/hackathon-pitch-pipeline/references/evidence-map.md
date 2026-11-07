@@ -1,4 +1,4 @@
-# 证据映射：六个手法 ↔ 可查证据
+# 证据映射：八个手法 ↔ 可查证据
 
 来源项目：Aholo 黑客松仓 `yhyu13/Hackthon_Aholo_20261107`（2026-11）。
 路径相对该仓根目录。本文件的作用：让 skill 的每条主张都能被当场核对，而不是"据说"。
@@ -51,8 +51,8 @@
 
 | 证据 | 位置 | 作用 |
 |---|---|---|
-| 竞品形式对比与欠缺清单 | `docs/competitor-review/README.md`、`docs/competitor-review/team-gap.md` | 同类产品：形态 / 代价 / 判据 / 用户角色 |
-| 三案例横向对照 | `docs/video-ref/design/04-cross-case-comparison.md` | 同题材参考件：往届作品 / 方案论证片 / 行业案例 |
+| 竞品形式对比与欠缺清单 | `docs/competitor-review/README.md`、`docs/competitor-review/team-gap.md` | 同类产品：对照表列头为「维度 / 我们 / 他们 / 判断」 |
+| 三案例横向对照 | `docs/video-ref/design/04-cross-case-comparison.md` | 同题材参考件：三支 B 站设计类视频（王封矿 / 浦东水泥厂 / 西安六村堡）的论证骨架与驱动类型横评（4 级证据） |
 
 缺任一类，"我们新在哪"就说不清。
 
@@ -61,7 +61,21 @@
 | 证据 | 位置 | 说明 |
 |---|---|---|
 | 版本演进节 | `docs/pitch/decisions.md` 第二节 | 大纲 v1 → v5 的演进被逐版留档，可追溯每次改动的原因 |
-| PRD 版本 | `docs/prd/product-prd.md`（当前 v1.2） | v1.1 **未另存文件**，只存在于 git 历史（PR #47 / #61）；对比要回 git 历史查 |
+| PRD 版本 | `docs/prd/product-prd.md`（v1.2，已被 `docs/prd/product-prd-v2.1.md` 取代） | v1.1 **未另存文件**，只存在于 git 历史（PR #47 / #61）；对比要回 git 历史查 |
+
+## 手法 7 · 核心机制必须是动词链
+
+| 证据 | 位置 | 抓到了什么 |
+|---|---|---|
+| 机制的两种写法 | `docs/pitch/topic-body-v7.md`、`docs/pitch/topic-outline-v5.html` | 写成形容词版（「提供沉浸式体验」「赋能文化传承」）时机制无法自证、答辩也无从验收；改成动词链（「做选择 → 看代价 → 对比现实 → 理解判断」）后，四步分别对得上结果页的一个区块，缺哪块一眼看得出 |
+| 落点自检 | `demo-v3/`（`index.html` + `qa/run_qa.mjs`） | 每一步能不能在屏幕上指到一个 UI 落点，指不出来的那一步就是没做——所以机制链的每一步都要有对应区块与断言 |
+
+## 手法 8 · 承诺降级
+
+| 证据 | 位置 | 抓到了什么 |
+|---|---|---|
+| 五问 → 三问 | `docs/pitch/topic-body-v7.md` | 原本列五问，其中「钱谁出」「改完谁被挤走」两行在时限内排不进结果页，降为三问 |
+| 降级留痕 | `docs/pitch/decisions.md` | 「关键决策与被否决的方案」一节保存了降级理由，不偷偷删，避免下一届重新讨论同一个问题 |
 
 ## 反面清单（本项目真实踩过的）
 

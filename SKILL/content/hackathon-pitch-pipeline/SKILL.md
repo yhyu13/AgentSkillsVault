@@ -10,7 +10,7 @@ description: >-
 metadata:
   category: content
   created_by: agent
-  version: 1.2.0
+  version: 1.2.1
   origin: local (distilled from Aholo hackathon, 2026-11)
 ---
 
@@ -52,8 +52,10 @@ issue 评论**，PR 的 review 区是空的，所以这里直接给出评论链�
 **为什么这条最值钱**：它可以被机器查。状态标记不是靠人眼盯，而是写成**反例断言**——
 把违规措辞当反例喂给验收器，验收器必须拒绝它。
 
-**证据**：这一条在本项目里抓出 10 处「未验证写成完成时」，其中 1 处是致命的自相矛盾——
-同一份文档 2.2 节写「管线还在验证」，5.1 节写「管线能跑通」。
+**证据**：本项目出现过同一件事在两份正本里口径相反——`docs/pitch/topic-body-v7.md` §2.2 写
+「Lux3D 管线还在验证」，而 `docs/pitch/topic-outline-v5.html` 的「5 总结与展望」写
+「证明了：约束是真的、Lux3D 管线能跑通、代价可以被看见」。正文改了状态、大纲没跟着改，
+就变成「未验证写成已完成」。这类问题肉眼最容易放过，所以要用验收器拦。
 本仓把它落成了可执行断言：PRD 语义验收器（`specs/005-hackathon-prd/validate_prd.py`）
 把「已解除 / 已满足 / 已完成」直接列为 U-10 未决项的违规措辞并拒绝，
 同时禁止「把旧 QA 当新证据」、禁止在提交时间未核对时写死日期。
@@ -106,8 +108,10 @@ issue 评论**，PR 的 review 区是空的，所以这里直接给出评论链�
 做成一张四列对照表：形态 / 代价 / 判据 / 用户角色。
 最后压出一句话核心价值，这句话要能直接当答辩第一句。
 
-**证据**：竞品形式对比与「我们欠缺清单」（`docs/competitor-review/`）给同类产品坐标，
-三案例横评（`docs/video-ref/design/04-cross-case-comparison.md`）给同题材参考件坐标，两者并列才成立。
+**证据**：竞品形式对比与「我们欠缺清单」（`docs/competitor-review/README.md` + `team-gap.md`，
+对照表列头是「维度 / 我们 / 他们 / 判断」）给同类产品坐标；三案例横评
+（`docs/video-ref/design/04-cross-case-comparison.md`）是三支 B 站设计类视频
+（王封矿 / 浦东水泥厂 / 西安六村堡）的论证骨架与驱动类型横评，给同题材参考件坐标，两者并列才成立。
 
 ### 6 版本留档，永不覆盖
 
@@ -115,7 +119,8 @@ issue 评论**，PR 的 review 区是空的，所以这里直接给出评论链�
 不覆盖的理由不是洁癖：评审回路需要对比，事故复盘需要追溯，换人接手需要看到演进。
 
 **证据**：`docs/pitch/decisions.md` 第二节逐版留档大纲 v1 → v5 的演进与每次改动的原因；
-PRD v1.1 → v1.2 同样旧版原样留着。
+PRD v1.1 未另存文件，只存在于 git 历史（PR #47 / #61）；当前版本是 v2.1
+（`docs/prd/product-prd-v2.1.md`），旧版要对比得回 git 历史查。
 
 ### 7 核心机制必须是动词链
 
@@ -181,7 +186,7 @@ PRD v1.1 → v1.2 同样旧版原样留着。
 | 决策记录（八节正本） | `docs/pitch/decisions.md` |
 | 选题大纲（单文件 HTML，23 页，左右翻页） | `docs/pitch/topic-outline-v5.html` |
 | 路演 deck 与逐字稿 | `docs/pitch/roadshow/` |
-| PRD 正文 | `docs/prd/product-prd.md` |
+| PRD 正文（v1.2，已被 v2.1 取代） | `docs/prd/product-prd.md` |
 | PRD 语义验收器（反例断言） | `specs/005-hackathon-prd/validate_prd.py` |
 | 评审对账 + 48h Go/No-Go 闸门 | `docs/review-gate/README.md` |
 | 讲师四张卡（空间 / 问题 / Lux3D / 项目）→ 价值映射 | `docs/onboard-value/README.md` |
