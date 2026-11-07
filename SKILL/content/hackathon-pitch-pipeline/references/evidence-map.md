@@ -7,7 +7,7 @@
 
 | 证据 | 位置 | 抓到了什么 |
 |---|---|---|
-| PRD 语义验收器 | `specs/005-hackathon-prd/validate_prd.py` | `has_blocking_u10()` 拒绝「非阻断 / 已解除 / 已满足 / 已完成」四类措辞用在 U-10 上；`check("Lux3D evidence status honest")` 禁止出现「已满足 Lux3D」；「不得把旧 QA 当作新证据」；提交时间未核对时写死日期即失败 |
+| PRD 语义验收器 | `specs/005-hackathon-prd/validate_prd.py` | `has_blocking_u10()` 拒绝「非阻断 / 不阻断 / 已解除 / 已满足 / 已完成」五类措辞用在 U-10 上；`check("Lux3D evidence status honest")` 禁止出现「已满足 Lux3D」；「不得把旧 QA 当作新证据」；提交时间未核对时写死日期即失败 |
 | 未决项编号 | `specs/005-hackathon-prd/tasks.md`、`docs/prd/product-prd.md` 的 `U-01`~`U-11` | U 编号三处对齐（正文 / spec / tasks）由脚本比对，归属与状态不一致即失败 |
 
 要点：状态标记不是"写作规范"，是**可执行断言**。写法决定了它能不能被机器查。
@@ -27,16 +27,22 @@
 | 证据 | 位置 | 抓到了什么 |
 |---|---|---|
 | 48 小时 Go/No-Go 闸门 | `docs/review-gate/README.md` | 闸门对象唯一化：U-10（Lux3D 能否出可用资产）；三步最小验证、总耗时 ≤48 小时、明确"不写产品代码"；含"判定与降级"与三条闸门纪律 |
-| 评分对齐 | `docs/review-gate/README.md`、`docs/onboard-value/README.md` | 讲师三张卡（空间卡 / 问题卡 / Lux3D 卡 / 项目卡）逐条映射到"做没做 / 证据在哪 / 还缺什么" |
+| 评分对齐 | `docs/review-gate/README.md`、`docs/onboard-value/README.md` | 讲师四张卡（空间卡 / 问题卡 / Lux3D 卡 / 项目卡）逐条映射到"做没做 / 证据在哪 / 还缺什么" |
 
 关键差别：闸门对象只有一个。列三个闸门等于没有闸门。
 
 ## 手法 4 · 独立上下文评审
 
-| 轮次 | 评审方 | 结论 | 抓到的具体问题 |
-|---|---|---|---|
-| 第 1 轮（`prd-review-spec`，PR #47） | fresh-context reviewer | `REQUEST_CHANGES` | 非法 FR 编号可 false-green；带空白的远程资源属性可 false-green；装饰列表被误判不存在；评分单位冲突 |
-| 第 2 轮（`prd-direction-v12` / `pitch-roadshow-v1`，PR #76 / #77） | DSH 只读沙箱（`dsh headless`） | `changes_requested` | 1 critical + 4 major + 4 minor；critical = 评审期间 worktree 脏（评审对象本身不干净） |
+| 轮次 | 评审方 | 结论 | 抓到的具体问题 | 记录位置 |
+|---|---|---|---|---|
+| 第 1 轮（`prd-review-spec`，PR #47） | fresh-context reviewer | `REQUEST_CHANGES` | 非法 FR 编号可 false-green；带空白的远程资源属性可 false-green；装饰列表被误判不存在；评分单位冲突 | issue #25 评论 [2026-11-06T17:15:25Z](https://github.com/yhyu13/Hackthon_Aholo_20261107/issues/25#issuecomment-6690836308) |
+| 第 2 轮（`prd-direction-v12` / `pitch-roadshow-v1`，PR #76 / #77） | DSH 只读沙箱（`dsh headless`） | `changes_requested` | 1 critical + 4 major + 4 minor；critical = 评审期间 worktree 脏（评审对象本身不干净） | issue #25 评论 [2026-11-07T10:56:03Z](https://github.com/yhyu13/Hackthon_Aholo_20261107/issues/25#issuecomment-6705899522) |
+
+> **别去 PR 的 review 区找**：这两轮评审的原始结论只写在 issue 评论里，PR #47 / #76 / #77 的
+> review 区与评论区都是空的。引用时给评论链接，不要写「PR #47 的评审」这种指不到位置的说法。
+> 第 1 轮四项里的三项另有仓内锚点（`specs/005-hackathon-prd/validate_prd.py` 的 `self_test()`
+> 用例 + `specs/005-hackathon-prd/tasks.md:62`「评审回归：非法命名空间、001 装饰列表、
+> 远程资源变体与普通外链」）；「评分单位冲突」目前只有上面那条 issue 评论一处记录。
 
 可复用的评审契约：给评审者**可检查的标准**（"AC-13 必须是真实表格行"），不给"好不好"。
 另附一条：评审前先确认工作树干净，否则评审意见本身不可信。
@@ -55,7 +61,7 @@
 | 证据 | 位置 | 说明 |
 |---|---|---|
 | 版本演进节 | `docs/pitch/decisions.md` 第二节 | 大纲 v1 → v5 的演进被逐版留档，可追溯每次改动的原因 |
-| PRD 版本 | `docs/prd/product-prd.md`（v1.1 → v1.2） | 旧版原样留着；评审回路要对比，事故复盘要追溯 |
+| PRD 版本 | `docs/prd/product-prd.md`（当前 v1.2） | v1.1 **未另存文件**，只存在于 git 历史（PR #47 / #61）；对比要回 git 历史查 |
 
 ## 反面清单（本项目真实踩过的）
 
