@@ -181,3 +181,6 @@
 [submodule "TEMPLATE"]
 	path = TEMPLATE
 	url = https://github.com/yhyu13/Agent_Template_Repo_Setup1
+[submodule "vendor/garden-skills"]
+	path = vendor/garden-skills
+	url = https://github.com/ConardLi/garden-skills.git

@@ -85,6 +85,8 @@
 | 58 | **「Blender MCP addon 独占 9876」不是硬约束：三处端口都可改** | DSH addon `bpy.types.Scene.dshbb_port = IntProperty(default=9876)`（`addon/dsh_blender_bridge.py:5936`）；后端 `dsh-blender.config.json` 有 `addonHost/addonPort/httpPort`；上游有 `BLENDER_PORT` 环境变量与 `--port` 参数（README 环境变量表） | 新 skill `blender-mcp`（与 #57 合并成一节更合适） | 待审 |
 | 59 | **代理 / GitHub 可达性是时段性的，历史结论不能固化：判定必须现场双测** | 2026-10-24 候选 #19 记「代理对 GitHub 返回 403」；2026-11-07 本轮实测 `api.github.com` / `raw.githubusercontent.com` / `github.com` 三个域名「带代理 = <u>200</u>、直连 = <u>200</u>」，而同一小时更早时 `raw.githubusercontent.com` 直连曾 <u>30 秒</u>超时 ⇒ 同机同小时内直连时好时坏 | `software-development/windows-agent-toolchain`（候选 #8/#11/#19 同坑簇）——把 #19 的结论从「清代理」改成「每次现场测两条路径（带代理 × 直连 × ≥2 个域名）」 | 待审 |
 
+| 60 | **会自带 npm 依赖的 skill 会破坏「vault ↔ store 逐字节一致」这条不变量**：`motion-showreel/scripts/setup.sh` 优先把 `node_modules/`（playwright + tone）装进 skill 自身目录，而 `sync-skills.ps1` / `verify-install.ps1` / `compare-skill.ps1` 都没有排除 `node_modules` ⇒ 首次渲染后会多出几百 MB 的「多出文件」，`verify-install` 报 MISMATCH | 2026-11-07 装 `video/motion-showreel` 时读 `scripts/setup.sh` 第 14–20 行判定分支（`[ -w "$HERE" ]` → 装进 `$HERE`）；三个脚本 `grep -i node_modules` 全部零命中 | `scripts/*.ps1` 统一加排除（`node_modules` / `.cache` / `out/`）；或给 manifest 加「运行时目录」列，这类路径不进哈希 | 待审 |
+
 > 注：`dispatch-to-dsh` skill 是 2026-11-04 依用户明确要求（「应该把它内化成一个 skill」）**直接创建**的，未走本队列审核；如需回退或改写，改 `C:\Users\yuhang\.claude\skills\dispatch-to-dsh\SKILL.md`（2026-11-06 起四个 store 的唯一真身；`.kilo` / `.codex` / `.agents` 均为指向它的 junction）。
 
 ## 已采纳并落地的（供追溯）

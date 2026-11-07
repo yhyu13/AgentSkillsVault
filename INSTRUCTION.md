@@ -238,6 +238,7 @@
 | make-interfaces-feel-better | repo (submodule) | `github.com/jakubkrehel/make-interfaces-feel-better` @ `35545ea` — UI 与动效细节打磨 |
 | onetake | repo (submodule) | `github.com/feitangyuan/onetake` @ `013a61a` — 一镜到底产品发布片（PolyForm Noncommercial；样片 mp4 未复制） |
 | lemo-opuscar | repo (submodule) | `github.com/lemomo-ai/lemo-opuscar` @ `413a6bd` — 39 种纯代码影片风格库 |
+| motion-showreel | repo (submodule) | `github.com/ConardLi/garden-skills` @ `2b9a893` (MIT) — `vendor/garden-skills`；已复制进 `video/motion-showreel`（上游 `skills/motion-showreel`，整目录含 `references/styles/` 40 风格、`scripts/` 渲染与质检工具、`assets/` starter+editor）。代码渲染动效视频：页面暴露确定性 `render(t)` → Playwright 逐帧截图 → ffmpeg 合成 MP4，画面/口播/配乐共用 `timeline.js`，最长 20 分钟；先预览后导出。安装前经 skill-inspector 静态人工审查（无注入/外传；仅调用本机 ffmpeg/python 与用户自备 key 的 Gemini/MiniMax TTS）。仓库另含 beautiful-article / gpt-image-2 / kb-retriever / web-design-engineer / web-video-presentation 未安装 |
 | mengto/* (29) | repo (submodule, 筛选) | `github.com/MengTo/Skills` @ `398cd41` — `3d/`(16) + `media/`(2) + `codex/`(11)；`web-design/`、`game-*/`、`illustration/` 未复制 |
 | kinetic-reel (retired) | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — 纯代码动效字 reel：Canvas 2D + three.js 生成层 + WebGL 后期，无头 Chrome 逐帧 + ffmpeg 编码，Node 按同一份 `cues.js` 合成节拍对齐配乐；上游 `skills/kinetic-reel`；已复制进 `video/kinetic-reel` |
 | painted-animation (retired) | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — p5.js + p5.brush 手绘水彩/墨线动画：逐帧渲染、模型表（emotions/views）、音乐与歌词同步；上游 `skills/painted-animation`；已复制进 `video/painted-animation` |
