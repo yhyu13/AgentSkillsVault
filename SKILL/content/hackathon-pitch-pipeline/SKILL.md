@@ -10,7 +10,7 @@ description: >-
 metadata:
   category: content
   created_by: agent
-  version: 1.2.2
+  version: 1.2.3
   origin: local (distilled from Aholo hackathon, 2026-11)
 ---
 
