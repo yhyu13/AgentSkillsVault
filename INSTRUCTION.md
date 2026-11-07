@@ -332,18 +332,34 @@
 ### 用户级分发（2026-10-24 定：单实体 + junction 视图）
 
 ```
-~/.claude/skills/   ← 唯一实体（canonical store）
-~/.kilo/skills/     ← junction 视图 → ~/.claude/skills/<name>
-~/.codex/skills/    ← junction 视图
-~/.agents/skills/   ← junction 视图
+~/.claude/skills/     ← 唯一实体（canonical store）
+~/.kilo/skills/       ← junction 视图 → ~/.claude/skills/<name>
+~/.codex/skills/      ← junction 视图
+~/.agents/skills/     ← junction 视图
+~/.workbuddy/skills/  ← junction 视图
+~/.hub/skills/        ← junction 视图
+~/.mavis/skills/      ← junction 视图
+~/.minimax/skills/    ← junction 视图
+~/.cursor/skills/     ← junction 视图
+~/.copilot/skills/    ← junction 视图
+~/.kiro/skills/       ← junction 视图
+~/.lingma/skills/     ← junction 视图
+~/.qoder-cn/skills/   ← junction 视图
+~/.codebuddy/skills/  ← junction 视图
 ```
+
+2026-11-08 起视图从 3 个扩到 13 个（用户要求「安装给其他 agent 包括 workbuddy」）。
+`.cc-switch/skills` 不含 skill（配置目录），故意排除。6 个 hyperframes 店
+（cursor/copilot/kiro/lingma/qoder-cn/codebuddy）另有安装器放的
+`hyperframes-cli` / `hyperframes-registry` / `media-use` 真身目录——它们在 retired 表里，
+但**不是 vault 装的，不清**；sync 只删自己建的 junction。
 
 规则：
 
-1. **只往 `~/.claude/skills` 写实体**，另外三个目录只放 junction（`cmd /c mklink /J <link> <target>`，junction 不需要管理员权限）。
+1. **只往 `~/.claude/skills` 写实体**，另外 13 个视图目录只放 junction（`cmd /c mklink /J <link> <target>`，junction 不需要管理员权限）。
 2. 删 junction 用 `cmd /c rmdir <link>`（只删链接）；`Remove-Item -Recurse` 对 junction 在 PS 5.1 上有误删目标内容的风险。
 3. 覆盖前先比 hash：`robocopy /E` 会覆盖同名 `SKILL.md`（实测 anthropic `webapp-testing` 盖掉 vault 版本）。
-4. 加新 skill：实体复制进 `~/.claude/skills/<name>`，再给另外三个目录补 junction（`mklink /J`）。
+4. 加新 skill：实体复制进 `~/.claude/skills/<name>`，再给另外 13 个视图目录补 junction（`mklink /J`）。
 5. 改完用 `Get-ChildItem <dir> -Directory | Where-Object { $_.Attributes -band [IO.FileAttributes]::ReparsePoint }` 验证视图是 junction 而不是实体副本。
 
 ### writing/
@@ -437,7 +453,7 @@ so the origin is known before the copy happens:
 
 - **改前先 `git pull`**：本 vault 可能同时有多个 Agent / 机器在改（2026-10-07 实测两个会话同改一个 skill，靠提交时撞在一起合并）。
 - 同一 skill 一次只允许一个会话改；改完立刻提交并推送，别留未提交改动过夜。
-- 改完要分发：**唯一实体写 `~/.claude/skills/<name>`**，另外三个目录只放 **junction**：`cmd /c mklink /J <link> <target>`（junction 不需要管理员权限；MSYS `ln -s` 在 Windows 上要 `MSYS=winsymlinks:nativestrict`，否则静默变成复制——所以统一用 `mklink /J`）。删 junction 用 `cmd /c rmdir <link>`（只删链接，不要 `Remove-Item -Recurse`）。
+- 改完要分发：**唯一实体写 `~/.claude/skills/<name>`**，另外 13 个视图目录只放 **junction**：`cmd /c mklink /J <link> <target>`（junction 不需要管理员权限；MSYS `ln -s` 在 Windows 上要 `MSYS=winsymlinks:nativestrict`，否则静默变成复制——所以统一用 `mklink /J`）。删 junction 用 `cmd /c rmdir <link>`（只删链接，不要 `Remove-Item -Recurse`）。
 - 分发后用 `diff -rq <vault>/<cat>/<skill> <home>/<skill>` 验证**逐字节一致**。
 
 ### 2026-10-25 本地 fork（description 判别化）

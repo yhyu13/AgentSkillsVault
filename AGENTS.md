@@ -29,12 +29,30 @@ scripts/                            manifest build / sync / verify tooling
 ## Install / distribution model (single real copy + junction views)
 
 ```
-~/.claude/skills/<name>    the ONE real copy (canonical store)
-~/.kilo/skills/<name>      junction view  \
-~/.codex/skills/<name>     junction view   } -> ~/.claude/skills/<name>
-~/.agents/skills/<name>    junction view  /
+~/.claude/skills/<name>      the ONE real copy (canonical store)
+~/.kilo/skills/<name>        junction view  \
+~/.codex/skills/<name>       junction view   |
+~/.agents/skills/<name>      junction view   |
+~/.workbuddy/skills/<name>   junction view   |
+~/.hub/skills/<name>         junction view   |
+~/.mavis/skills/<name>       junction view   } -> ~/.claude/skills/<name>
+~/.minimax/skills/<name>     junction view   |
+~/.cursor/skills/<name>      junction view   |
+~/.copilot/skills/<name>     junction view   |
+~/.kiro/skills/<name>        junction view   |
+~/.lingma/skills/<name>      junction view   |
+~/.qoder-cn/skills/<name>    junction view   |
+~/.codebuddy/skills/<name>   junction view  /
 ```
 
+- The store list lives in `$ViewNames` (`sync-skills.ps1`) and must be mirrored in
+  `verify-install.ps1`. `.cc-switch/skills` is deliberately excluded — it holds no
+  skills (config dir only).
+- Some stores also hold **foreign real directories** from other installers:
+  `.cursor` / `.copilot` / `.kiro` / `.lingma` / `.qoder-cn` / `.codebuddy` carry
+  `hyperframes-cli`, `hyperframes-registry`, `media-use`; `.hub`, `.mavis`,
+  `.minimax` and `.workbuddy` carry their own curated sets. Those are not vault-owned
+  and are never pruned — the vault only ever deletes its own junctions.
 - Create a view: `cmd /c mklink /J <link> <target>` (junction needs no admin; `ln -s`
   under MSYS silently degrades to a copy unless `MSYS=winsymlinks:nativestrict`).
 - Delete a view: `cmd /c rmdir <link>` — **only** the link. `Remove-Item -Recurse` on a
@@ -47,7 +65,7 @@ scripts/                            manifest build / sync / verify tooling
 ```powershell
 # 1. regenerate the authoritative install list from the tree
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\build-manifest.ps1
-# 2. install / refresh every listed skill into the four user stores
+# 2. install / refresh every listed skill into all 14 stores (canonical + 13 views)
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\sync-skills.ps1
 # 3. prove the stores match the vault byte-for-byte
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\verify-install.ps1 -Manifest scripts\install-manifest.txt

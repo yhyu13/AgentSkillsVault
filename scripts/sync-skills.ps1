@@ -3,9 +3,11 @@
 #
 # Layout rule (see AGENTS.md):
 #   ~/.claude/skills/<name>   -> the ONE real copy (canonical store)
-#   ~/.kilo/skills/<name>     -> junction view onto the canonical copy
-#   ~/.codex/skills/<name>    -> junction view
-#   ~/.agents/skills/<name>   -> junction view
+#   every other <store>/skills/<name> -> junction view onto the canonical copy
+#     views: .kilo .codex .agents .workbuddy .hub .mavis .minimax
+#            .cursor .copilot .kiro .lingma .qoder-cn .codebuddy
+# Retired skills (.kilo/removed-skills.txt) are pruned from every store on each
+# run, but only when the entry is a vault-created junction.
 #
 # HOST entries in the manifest are left untouched (installed outside this vault).
 # A skill absent from the manifest is never installed.
@@ -23,11 +25,15 @@ param(
 $ErrorActionPreference = 'Continue'
 $Vault = Split-Path -Parent $PSScriptRoot
 $ClaudePath = Join-Path $HOME '.claude\skills'
-$Views = @(
-  (Join-Path $HOME '.kilo\skills'),
-  (Join-Path $HOME '.codex\skills'),
-  (Join-Path $HOME '.agents\skills')
+# Every harness store that receives a junction view onto the canonical copy.
+# `.cc-switch\skills` is deliberately absent: it holds no skills (it is a
+# config dir), so linking 240 entries into it would only be noise.
+$ViewNames = @(
+  '.kilo', '.codex', '.agents',        # original three
+  '.workbuddy', '.hub', '.mavis', '.minimax',   # harnesses with their own curated sets
+  '.cursor', '.copilot', '.kiro', '.lingma', '.qoder-cn', '.codebuddy'  # hyperframes stores
 )
+$Views = @($ViewNames | ForEach-Object { Join-Path $HOME (Join-Path $_ 'skills') })
 
 function Get-TreeHash {
   param([string]$Path)
@@ -65,6 +71,32 @@ function Ensure-Junction {
   return 'LINK-FAILED'
 }
 
+# A view path is <home>\.<store>\skills, so the store name is the grandparent.
+function Get-StoreName {
+  param([string]$ViewPath)
+  return (Split-Path (Split-Path $ViewPath -Parent) -Leaf)
+}
+
+# Link every view to an already-installed canonical copy. Used when the vault
+# source is unavailable so the skill cannot be re-synced, but the installed copy
+# is still the one real copy and every store must see it.
+function Sync-ViewsFromCanonical {
+  param([string]$Name)
+  $real = Join-Path $ClaudePath $Name
+  if (-not (Test-Path -LiteralPath $real)) { return 'SOURCE-MISSING' }
+  if (-not (Test-Path -LiteralPath (Join-Path $real 'SKILL.md'))) { return 'SOURCE-MISSING' }
+  $failed = 0
+  foreach ($v in $Views) {
+    $link = Join-Path $v $Name
+    $existing = if (Test-Path -LiteralPath $link) { Get-Item -LiteralPath $link -Force } else { $null }
+    if ($existing -and -not $existing.LinkType) { continue }   # foreign real dir, not ours
+    $r = Ensure-Junction -Link $link -Target $real
+    if ($r -eq 'LINK-FAILED') { $failed++ }
+  }
+  if ($failed -gt 0) { return 'SOURCE-MISSING-LINK-FAILED' }
+  return 'source-missing-viewed'
+}
+
 New-Item -ItemType Directory -Force -Path $ClaudePath | Out-Null
 foreach ($v in $Views) { New-Item -ItemType Directory -Force -Path $v | Out-Null }
 
@@ -91,7 +123,7 @@ if ($PruneToProfile) {
   $keep = @{}
   foreach ($e in $entries) { if ($e.Tier -eq 'A') { $keep[$e.Name] = $true } }
   $removed = 0
-  foreach ($d in (Get-ChildItem -LiteralPath $Real -Directory -Force -ErrorAction SilentlyContinue)) {
+  foreach ($d in (Get-ChildItem -LiteralPath $ClaudePath -Directory -Force -ErrorAction SilentlyContinue)) {
     if ($keep.ContainsKey($d.Name)) { continue }
     if (-not (Test-Path -LiteralPath (Join-Path $d.FullName 'SKILL.md'))) { continue }
     Remove-Item -LiteralPath $d.FullName -Recurse -Force
@@ -118,36 +150,68 @@ foreach ($e in $entries) {
     # Host-local skills are not tracked in this vault, but they still follow the layout rule:
     # the real copy lives in ~/.claude/skills and the other stores are junction views.
     # Some were installed the other way round (real dir in ~/.agents); normalize that here.
+    #
+    # SAFETY (2026-11-08): a HOST skill whose real dir sat in ~/.agents used to be
+    # "normalized" by Ensure-Junction, which deletes a non-junction dir first - that
+    # destroyed four Kimi v1 game skills on 2026-11-05, leaving .claude and .agents
+    # pointing at each other. So: never delete a real directory here, and never link
+    # into a cycle. If the real copy is missing and no view holds a REAL dir, report
+    # it and leave every store alone.
     $real = Join-Path $ClaudePath $e.Name
-    if (-not (Test-Path -LiteralPath $real)) {
+    $realItem = if (Test-Path -LiteralPath $real) { Get-Item -LiteralPath $real -Force } else { $null }
+    $realIsLink = $realItem -and $realItem.LinkType
+
+    if (-not $realItem -or $realIsLink) {
+      # Look for a REAL directory (the actual content) in any view.
+      $donor = $null
       foreach ($v in $Views) {
         $candidate = Join-Path $v $e.Name
-        if (Test-Path -LiteralPath $candidate) {
-          $item = Get-Item -LiteralPath $candidate -Force
-          if (-not $item.LinkType) {
-            Copy-Item -LiteralPath $candidate -Destination $real -Recurse -Force
-            Remove-Item -LiteralPath $candidate -Recurse -Force
-            break
-          }
-        }
+        if (-not (Test-Path -LiteralPath $candidate)) { continue }
+        $item = Get-Item -LiteralPath $candidate -Force
+        if (-not $item.LinkType) { $donor = $candidate; break }
+      }
+      if ($donor) {
+        if ($realIsLink) { cmd /c rmdir "$real" 2>&1 | Out-Null }
+        New-Item -ItemType Directory -Force -Path $real | Out-Null
+        robocopy $donor $real /MIR /NFL /NDL /NJH /NJS /NP /NC /NS | Out-Null
+        cmd /c rmdir "$donor" 2>&1 | Out-Null
+        $report.Add([pscustomobject]@{ Skill = $e.Name; Action = 'host-materialized'; ViewAction = '' }) | Out-Null
+      }
+      else {
+        # Either every view points back at $real (a cycle) or nothing holds content.
+        $selfRef = $realIsLink -and (@($realItem.Target) -match [regex]::Escape((Join-Path $ClaudePath '')))
+        $action = if ($realItem -or $selfRef) { 'host-dangling-cycle' } else { 'host-content-missing' }
+        $report.Add([pscustomobject]@{ Skill = $e.Name; Action = $action }) | Out-Null
+        continue
       }
     }
+
     foreach ($v in $Views) {
-      $r = Ensure-Junction -Link (Join-Path $v $e.Name) -Target $real
-      $report.Add([pscustomobject]@{ Skill = $e.Name; Action = 'host'; View = (Split-Path $v -Leaf); ViewAction = $r }) | Out-Null
+      $link = Join-Path $v $e.Name
+      $existing = if (Test-Path -LiteralPath $link) { Get-Item -LiteralPath $link -Force } else { $null }
+      if ($existing -and -not $existing.LinkType) {
+        # A real dir here is content the vault does not own; leave it and say so.
+        $report.Add([pscustomobject]@{ Skill = $e.Name; Action = 'host'; View = (Get-StoreName $v); ViewAction = 'FOREIGN-REAL-KEPT' }) | Out-Null
+        continue
+      }
+      $r = Ensure-Junction -Link $link -Target $real
+      $report.Add([pscustomobject]@{ Skill = $e.Name; Action = 'host'; View = (Get-StoreName $v); ViewAction = $r }) | Out-Null
     }
     $report.Add([pscustomobject]@{ Skill = $e.Name; Action = 'host-skip' }) | Out-Null
     continue
   }
   $srcPath = Join-Path $Vault ($e.Source -replace '/', '\')
   if (-not (Test-Path -LiteralPath $srcPath)) {
-    $report.Add([pscustomobject]@{ Skill = $e.Name; Action = 'SOURCE-MISSING' }) | Out-Null
+    # The vault source is gone (usually an uninitialized submodule in this
+    # worktree) but the canonical copy is still installed and valid. Views must
+    # still exist, otherwise adding a store silently drops every such skill.
+    $report.Add([pscustomobject]@{ Skill = $e.Name; Action = (Sync-ViewsFromCanonical -Name $e.Name) }) | Out-Null
     continue
   }
   # A failed submodule clone leaves an empty source dir behind. Installing it would
   # create a skill dir with no SKILL.md - a skill that can never load. Treat it as missing.
   if (-not (Test-Path -LiteralPath (Join-Path $srcPath 'SKILL.md'))) {
-    $report.Add([pscustomobject]@{ Skill = $e.Name; Action = 'SOURCE-MISSING' }) | Out-Null
+    $report.Add([pscustomobject]@{ Skill = $e.Name; Action = (Sync-ViewsFromCanonical -Name $e.Name) }) | Out-Null
     continue
   }
   $real = Join-Path $ClaudePath $e.Name
@@ -166,27 +230,67 @@ foreach ($e in $entries) {
   }
   foreach ($v in $Views) {
     $r = Ensure-Junction -Link (Join-Path $v $e.Name) -Target $real
-    $report.Add([pscustomobject]@{ Skill = $e.Name; Action = $action; View = (Split-Path $v -Leaf); ViewAction = $r }) | Out-Null
+    $report.Add([pscustomobject]@{ Skill = $e.Name; Action = $action; View = (Get-StoreName $v); ViewAction = $r }) | Out-Null
   }
   $report.Add([pscustomobject]@{ Skill = $e.Name; Action = $action }) | Out-Null
 }
 
+$manifestNames = @{}
+foreach ($e in $entries) { $manifestNames[$e.Name] = $true }
+
+# Retired skills must not survive in ANY store (AGENTS.md: "removed from SKILL/
+# and from every user store"). This runs unconditionally because it enforces an
+# invariant, not a preference.
+#
+# Ownership rule: the vault only ever creates JUNCTIONS in a view store, so a
+# junction is vault-owned and safe to delete. A real directory belongs to
+# whatever installer put it there - `hyperframes-cli`, `hyperframes-registry`
+# and `media-use` are on the retired list and are also real dirs in the six
+# hyperframes stores, installed by the hyperframes installer. Deleting those
+# would break another toolchain, so they are kept and reported.
+$RetiredFile = Join-Path $Vault '.kilo\removed-skills.txt'
+$retired = @{}
+if (Test-Path -LiteralPath $RetiredFile) {
+  foreach ($l in Get-Content -LiteralPath $RetiredFile -Encoding UTF8) {
+    $l = $l.Trim()
+    if ($l -and -not $l.StartsWith('#')) { $retired[$l] = $true }
+  }
+}
+$retiredRemoved = 0
+$retiredKept = New-Object System.Collections.Generic.List[string]
+if ($retired.Count -gt 0) {
+  # Canonical store: a real dir here is vault-installed unless the manifest says
+  # it is a HOST skill, so those are the only ones left alone.
+  foreach ($d in (Get-ChildItem -LiteralPath $ClaudePath -Directory -Force -ErrorAction SilentlyContinue)) {
+    if (-not $retired.ContainsKey($d.Name)) { continue }
+    if ($manifestNames.ContainsKey($d.Name)) { continue }
+    Remove-LinkOrDir -Path $d.FullName
+    $retiredRemoved++
+  }
+  foreach ($v in $Views) {
+    foreach ($d in (Get-ChildItem -LiteralPath $v -Directory -Force -ErrorAction SilentlyContinue)) {
+      if (-not $retired.ContainsKey($d.Name)) { continue }
+      if ($d.LinkType) {
+        cmd /c rmdir "$($d.FullName)" 2>&1 | Out-Null
+        $retiredRemoved++
+      }
+      else { $retiredKept.Add(('{0}/{1}' -f (Get-StoreName $v), $d.Name)) }
+    }
+  }
+}
+Write-Host ("retired-pruned={0}" -f $retiredRemoved)
+if ($retiredKept.Count -gt 0) {
+  Write-Host ("retired kept (foreign real dirs, not vault-owned): {0}" -f (($retiredKept | Sort-Object -Unique) -join ', '))
+}
+
 if ($Prune) {
-  $manifestNames = $entries | ForEach-Object { $_.Name }
-  # $Views holds plain paths, so build the store list explicitly - a mixed
-  # array of hashtables and strings made $store.P null for the view stores
-  # and left dangling junctions behind.
-  $pruneStores = @(
-    @{ N = 'claude'; P = $ClaudePath },
-    @{ N = 'kilo';   P = (Join-Path $HOME '.kilo\skills') },
-    @{ N = 'codex';  P = (Join-Path $HOME '.codex\skills') },
-    @{ N = 'agents'; P = (Join-Path $HOME '.agents\skills') }
-  )
-  foreach ($store in $pruneStores) {
-    foreach ($d in (Get-ChildItem -LiteralPath $store.P -Directory -ErrorAction SilentlyContinue)) {
-      if ($manifestNames -notcontains $d.Name) {
-        Remove-LinkOrDir -Path $d.FullName
-        Write-Host ("PRUNED {0} :: {1}" -f $d.Name, $store.N)
+  # Only junction views are pruned: a real dir in a foreign store is someone
+  # else's install (custom skills, another installer) and is never deleted here.
+  foreach ($v in $Views) {
+    foreach ($d in (Get-ChildItem -LiteralPath $v -Directory -Force -ErrorAction SilentlyContinue)) {
+      if (-not $manifestNames.ContainsKey($d.Name) -and $d.LinkType) {
+        cmd /c rmdir "$($d.FullName)" 2>&1 | Out-Null
+        Write-Host ("PRUNED {0} :: {1}" -f $d.Name, (Get-StoreName $v))
       }
     }
   }

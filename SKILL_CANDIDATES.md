@@ -87,6 +87,8 @@
 
 | 60 | **会自带 npm 依赖的 skill 会破坏「vault ↔ store 逐字节一致」这条不变量**：`motion-showreel/scripts/setup.sh` 优先把 `node_modules/`（playwright + tone）装进 skill 自身目录，而 `sync-skills.ps1` / `verify-install.ps1` / `compare-skill.ps1` 都没有排除 `node_modules` ⇒ 首次渲染后会多出几百 MB 的「多出文件」，`verify-install` 报 MISMATCH | 2026-11-07 装 `video/motion-showreel` 时读 `scripts/setup.sh` 第 14–20 行判定分支（`[ -w "$HERE" ]` → 装进 `$HERE`）；三个脚本 `grep -i node_modules` 全部零命中 | `scripts/*.ps1` 统一加排除（`node_modules` / `.cache` / `out/`）；或给 manifest 加「运行时目录」列，这类路径不进哈希 | 待审 |
 
+| 61 | **`removed-skills.txt` 里的名字不等于「可以无脑删」**：`hyperframes-cli` / `hyperframes-registry` / `media-use` 在 retired 表里，同时又以**真身目录**存在于 6 个 hyperframes 店（cursor/copilot/kiro/lingma/qoder-cn/codebuddy），是 hyperframes 安装器装的，不归 vault | 2026-11-08 铺开 10 个 store 前逐店比对 retired 表，命中 18 处，全部是 `LinkType` 为空的真身目录 | retired 清理只删 vault 自己建的 junction；外来真身保留并在 sync 输出里点名（已写进 `sync-skills.ps1` 的 ownership rule） | **已落地** |
+
 > 注：`dispatch-to-dsh` skill 是 2026-11-04 依用户明确要求（「应该把它内化成一个 skill」）**直接创建**的，未走本队列审核；如需回退或改写，改 `C:\Users\yuhang\.claude\skills\dispatch-to-dsh\SKILL.md`（2026-11-06 起四个 store 的唯一真身；`.kilo` / `.codex` / `.agents` 均为指向它的 junction）。
 
 ## 已采纳并落地的（供追溯）

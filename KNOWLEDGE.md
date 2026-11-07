@@ -101,6 +101,32 @@ delegation:
 - PostgreSQL 17.10 on 127.0.0.1:5432
 - Claude Code CLI v2.1.114 (not used by workers)
 
+## Skill store incident — 4 Kimi v1 game skills lost (2026-11-05, found 2026-11-08)
+
+While extending the junction layout to 10 more harness stores, four HOST skills
+(`blender-game-assets`, `engine-project-agent`, `game-liveops-assist`,
+`game-proto-validation`) were found as **self-referential junction cycles**:
+
+```
+~/.claude/skills/<name>  -> ~/.agents/skills/<name>    (since 2026-11-03)
+~/.agents/skills/<name>  -> ~/.claude/skills/<name>    (since 2026-11-05 06:59)
+```
+
+- Both ends are junctions; no real directory exists anywhere on disk (searched
+  `C:\Users\yuhang` and `D:\GitRepo-AI`, max depth 7). The content is gone.
+- Cause: the old HOST branch in `sync-skills.ps1` called `Ensure-Junction`, which
+  deletes a non-junction directory before creating the link. The real dir lived in
+  `~/.agents`, so it was deleted and replaced with a link back to `~/.claude`,
+  which already pointed at `~/.agents`.
+- Impact is low: the vault's `-v2` successors (`blender-game-assets-v2`,
+  `engine-project-agent-v2`, `game-liveops-assist-v2`, `game-proto-validation-v2`)
+  are installed and working.
+- Fixed in `sync-skills.ps1`: HOST entries never delete a real directory, never
+  link into a cycle, and report `host-dangling-cycle` / `host-content-missing`
+  instead. `vssadmin` could not check shadow copies (needs admin).
+- The four dead cycles were left in place pending a decision — see the retiring
+  question in `build-manifest.ps1` `$HostSkills`.
+
 ## Worker Profiles
 
 Five worker profiles under `~/.hermes/profiles/`:
