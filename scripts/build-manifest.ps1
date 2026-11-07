@@ -73,19 +73,23 @@ $HostSkills = @()
 # docs/ holds reference material and retired-skill archives, not installable skills.
 # TEMPLATE is a submodule reference repo (Agent_Template_Repo_Setup1); its
 # embedded .claude/skills/ copies must never enter the curated install list.
-$skipDirs = '[\\/](\.git|\.github|\.changeset|\.claude-plugin|\.out-of-scope|node_modules|archived|vendor|docs|TEMPLATE)[\\/]'
+# Worktrees inside the repo (.cindy-worktrees/, .worktrees/) are full copies of
+# this same tree — scanning them made the manifest point at throwaway copies.
+$skipDirs = '[\\/](\.git|\.github|\.changeset|\.claude-plugin|\.out-of-scope|\.cindy-worktrees|\.worktrees|node_modules|archived|vendor|docs|TEMPLATE)[\\/]'
 
 $curated = @{}
 Get-ChildItem -LiteralPath $Vault -Recurse -Directory -ErrorAction SilentlyContinue |
   Where-Object { $_.FullName -notmatch $skipDirs } |
   Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName 'SKILL.md') } |
-  # Shortest path first: the curated set is keyed by leaf directory name, so
+  # Longest path first: the curated set is keyed by leaf directory name, so
   # when a skill directory contains a nested copy of itself the shallow one
-  # must win. Without this the manifest path depends on enumeration order.
-  Sort-Object { $_.FullName.Length } |
+  # must win. The map is written below, so the FIRST assignment wins —
+  # hence descending sort. (Ascending sort let the deepest copy overwrite
+  # the shallow one and pointed the manifest at worktree copies.)
+  Sort-Object { $_.FullName.Length } -Descending |
   ForEach-Object {
     $rel = $_.FullName.Substring($Vault.Length).TrimStart('\','/').Replace('\','/')
-    $curated[$_.Name] = $rel
+    if (-not $curated.ContainsKey($_.Name)) { $curated[$_.Name] = $rel }
   }
 
 $rows = New-Object System.Collections.Generic.List[object]
