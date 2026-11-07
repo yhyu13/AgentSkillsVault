@@ -10,7 +10,7 @@ description: >-
 metadata:
   category: content
   created_by: agent
-  version: 1.1.0
+  version: 1.2.0
   origin: local (distilled from Aholo hackathon, 2026-11)
 ---
 
@@ -187,9 +187,13 @@ PRD v1.1 → v1.2 同样旧版原样留着。
 | 讲师四张卡（空间 / 问题 / Lux3D / 项目）→ 价值映射 | `docs/onboard-value/README.md` |
 | 竞品形式对比与欠缺清单 | `docs/competitor-review/README.md` |
 | 案例横评（坐标用） | `docs/video-ref/design/04-cross-case-comparison.md` |
+| 选题正文长文 | `docs/pitch/topic-body-v7.md` |
+| PRD v2.1 | `docs/prd/product-prd-v2.1.md` |
+| 夜班交接 | `NIGHT-SHIFT.md`（+ 同名单文件 `NIGHT-SHIFT.html`） |
 
-> 只在其它切片里存在、尚未合入 main 的产物（夜班交接、选题正文长文）不列此表，
-> 避免 skill 指向不存在的文件。
+> 表内路径均已在 Aholo 仓 `main` 上存在（选题正文 v7 / PRD v2.1 / 夜班交接 于 2026-11-07 合入）。
+> 若某条路径在别的仓里不存在，说明该产物还没落地——**不要把未合入的产物写进本表**，
+> skill 指向不存在的文件比少列一条更糟。
 
 ## 参考
 
