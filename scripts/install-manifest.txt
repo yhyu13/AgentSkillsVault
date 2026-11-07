@@ -39,6 +39,7 @@
 agent-browser|SKILL/content/agent-browser|A
 ai-3d-character-pipeline|SKILL/game-dev/ai-3d-character-pipeline|B
 ai-3d-scene-pipeline|SKILL/game-dev/ai-3d-scene-pipeline|B
+aigc-image-control|SKILL/content/aigc-image-control|A
 aigc-video-creation|SKILL/content/aigc-video-creation|B
 ai-video-production|SKILL/video/ai-video-production|A
 analysis-to-vault|SKILL/knowledge-vault/analysis-to-vault|A

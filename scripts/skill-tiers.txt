@@ -48,6 +48,7 @@ agent-browser|A
 ai-3d-character-pipeline|B
 ai-3d-scene-pipeline|B
 ai-video-production|A
+aigc-image-control|A
 aigc-video-creation|B
 algorithmic-art|B
 analysis-to-vault|A
