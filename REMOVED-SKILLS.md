@@ -159,3 +159,26 @@ Fixes for the skills that stay are queued in `SKILL_CANDIDATES.md`.
 | `skill-auto-improve-mirror` | U (never usable here) | written for Hermes (`skill_view`, `~/.hermes`); no Hermes install on this machine; was tier A | `software-development/skill-auto-improve-mirror/` | _(local skill - git history only)_ |
 | `taste-output` | D (redundant) | generic "never truncate" override with no subject; harness default behaviour | `design/taste-output/` | _(sibling repo `taste-skill`, `output-skill`)_ |
 | `tripo-3d-generation` | X (needs external account) | calls an unofficial proxy `tripo-proxy.darknessporo.workers.dev` (trust risk) for a paid API | _(vendor-only; not copied into SKILL/)_ | `vendor/tripo-skills/` |
+
+## Retired 2026-11-08 - four Kimi v1 game skills (data loss, not quality)
+
+`blender-game-assets`, `engine-project-agent`, `game-liveops-assist`,
+`game-proto-validation` were never in the vault's `SKILL/` tree; they lived only as real
+directories in `~/.agents/skills` and were tracked as `HOST` rows in the manifest.
+
+They are gone from disk. On 2026-11-05 06:59 the old `HOST` branch of `sync-skills.ps1`
+called `Ensure-Junction`, which deletes a non-junction directory before creating the
+link - it deleted the real directories and pointed `~/.agents/skills/<name>` back at
+`~/.claude/skills/<name>`, which had pointed at `~/.agents` since 2026-11-03. Both ends
+ended up as junctions in a cycle, and no content survives anywhere under `C:\Users\yuhang`
+or `D:\GitRepo-AI`. `vssadmin` could not check shadow copies (needs admin).
+
+- Impact: low. The vault's `-v2` successors ship the same skills and are installed
+  (`blender-game-assets-v2`, `engine-project-agent-v2`, `game-liveops-assist-v2`,
+  `game-proto-validation-v2`).
+- Action taken: the 16 dead links were removed with `cmd /c rmdir` (link only), the
+  names went into `.kilo/removed-skills.txt`, and `$HostSkills` in
+  `scripts/build-manifest.ps1` was emptied.
+- Root cause fixed: the `HOST` branch now never deletes a real directory and never
+  links into a cycle; it reports `host-dangling-cycle` / `host-content-missing` /
+  `FOREIGN-REAL-KEPT` instead.

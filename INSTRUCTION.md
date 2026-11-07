@@ -146,10 +146,10 @@
 | ai-3d-toolchain (retired) | local (distilled) | 提炼自 `ooo.run/post/how-to-use-ai-build-3d-games.html`（作者 @Saccc_c）+ 本机 Blender 5.2.2 / blender_mcp 实测：Tripo + Blender CLI/MCP + Unity CLI/MCP + Auto-Rig Pro 组件清单与验收门槛；**Windows 三道墙**（`curl \| sh` 只支持 macOS/Linux、GBK 崩在 emoji 且副作用已发生、Blender 5.x legacy 插件注册姿势） |
 | ai-3d-scene-pipeline | local (distilled) | 同上文章的场景段：概念多视角参考图 → 资产分流（Tripo 生成 vs Blender 代码搭建，判据"能否参数化"）→ Tripo 高精度道具 → Blender/Unity 组装 → **独立审查 Agent 多机位盲审**迭代。原文提示词存 `references/prompts.md`，机位表与差异清单格式存 `references/review-loop.md` |
 | ai-3d-character-pipeline | local (distilled) | 同上文章的角色段：T-pose 四视图 → Tripo Smart Mesh P2.0（四边面 + 最高精度）→ 白模检查（Texture / Edit Mesh 分支）→ Auto-Rig Pro 绑骨蒙皮 + 三项动作测试 → Mixamo 动作获取与重定向 → IK 手部/道具接触精调。原文提示词存 `references/prompts.md` |
-| game-proto-validation-v2 | local (distilled 2026-11-03) | 提炼自 Kimi「游戏开发与创意工作解决方案」（`mp.weixin.qq.com/s/qSwHJXAuAyrjeYXGC3XnFA`，2026-11-02）原型验证段 + 对初版（仅存于 `~/.agents/skills/game-proto-validation`，未入 vault）的自评改进：可判问题模板、砍单顺序、三遍自检协议、固定交付结构、失败出口 |
-| blender-game-assets-v2 | local (distilled 2026-11-03) | 同上文章美术段 + 初版自评改进：五视图/EEVEE 定死、引擎侧坑（Apply Scale、quad-vs-tri、命名前缀）、超预算四步决策、附带 `scripts/bpy_checks.py` 规格快检脚本 |
-| engine-project-agent-v2 | local (distilled 2026-11-03) | 同上文章工程段 + 初版自评改进：复现优先与复现失败路径、Unity/UE 30 分钟读图路线、VCS 纪律（生成目录黑名单）、四级验证阶梯、固定格式改动日志 |
-| game-liveops-assist-v2 | local (distilled 2026-11-03) | 同上文章发行运营段 + 初版自评改进：五类任务拆成 `references/` 按需加载（feedback-triage / localization / moderation / ua-creative / in-game-assistant），各类带固定输出格式与高危上抛规则 |
+| game-proto-validation-v2 | local (distilled 2026-11-03) | 提炼自 Kimi「游戏开发与创意工作解决方案」（`mp.weixin.qq.com/s/qSwHJXAuAyrjeYXGC3XnFA`，2026-11-02）原型验证段 + 对初版（仅存于 `~/.agents/skills/game-proto-validation`，未入 vault）的自评改进：可判问题模板、砍单顺序、三遍自检协议、固定交付结构、失败出口 。⚠ **v1 已于 2026-11-08 退休**：真身在 2026-11-05 被旧 sync 脚本删除，盘上已无内容；本条只描述 v2 的来源 |
+| blender-game-assets-v2 | local (distilled 2026-11-03) | 同上文章美术段 + 初版自评改进：五视图/EEVEE 定死、引擎侧坑（Apply Scale、quad-vs-tri、命名前缀）、超预算四步决策、附带 `scripts/bpy_checks.py` 规格快检脚本 。⚠ **v1 已于 2026-11-08 退休**：真身在 2026-11-05 被旧 sync 脚本删除，盘上已无内容；本条只描述 v2 的来源 |
+| engine-project-agent-v2 | local (distilled 2026-11-03) | 同上文章工程段 + 初版自评改进：复现优先与复现失败路径、Unity/UE 30 分钟读图路线、VCS 纪律（生成目录黑名单）、四级验证阶梯、固定格式改动日志 。⚠ **v1 已于 2026-11-08 退休**：真身在 2026-11-05 被旧 sync 脚本删除，盘上已无内容；本条只描述 v2 的来源 |
+| game-liveops-assist-v2 | local (distilled 2026-11-03) | 同上文章发行运营段 + 初版自评改进：五类任务拆成 `references/` 按需加载（feedback-triage / localization / moderation / ua-creative / in-game-assistant），各类带固定输出格式与高危上抛规则 。⚠ **v1 已于 2026-11-08 退休**：真身在 2026-11-05 被旧 sync 脚本删除，盘上已无内容；本条只描述 v2 的来源 |
 | game-archetype-classifier | local (distilled) | OpenGame TS monorepo — 物理态优先的 2D 原型分类（不按题材名分类） |
 | game-asset-art-direction | local (distilled) | OpenGame TS monorepo — 2D 资产/动画/音频提示词与跨文件 key 一致性 |
 | game-build-verification | local (distilled) | OpenGame TS monorepo — 发版前静态检查 + build→test→visual 顺序 + 禁止操作表 |

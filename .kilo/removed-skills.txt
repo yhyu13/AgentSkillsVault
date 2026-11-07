@@ -119,3 +119,10 @@ runpod
 skill-auto-improve-mirror
 taste-output
 tripo-3d-generation
+
+# Retired 2026-11-08: Kimi v1 game skills. Real dirs destroyed 2026-11-05 by the
+# old HOST branch of sync-skills.ps1; superseded by the vault's -v2 versions.
+blender-game-assets
+engine-project-agent
+game-liveops-assist
+game-proto-validation

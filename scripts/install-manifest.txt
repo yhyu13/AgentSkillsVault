@@ -262,8 +262,4 @@ web-artifacts-builder|vendor/anthropics-skills/skills/web-artifacts-builder|B
 xlsx|vendor/anthropics-skills/skills/xlsx|A
 
 # --- host-local (installed outside this vault; sync leaves them untouched) ---
-blender-game-assets|HOST|HOST
-engine-project-agent|HOST|HOST
-game-liveops-assist|HOST|HOST
-game-proto-validation|HOST|HOST
 

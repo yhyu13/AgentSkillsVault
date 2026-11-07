@@ -58,15 +58,17 @@ $VendorSkills = @(
 # upstream record.
 
 # Host-local skills: installed by hand from outside this vault. Never overwritten.
-# The four Kimi v1 game skills live only in the user stores (~/.agents) and are
-# superseded in the vault by their -v2 versions; HOST entries stop sync-skills.ps1
-# from pruning them while the user compares both versions.
-$HostSkills = @(
-  'game-proto-validation',
-  'blender-game-assets',
-  'engine-project-agent',
-  'game-liveops-assist'
-)
+#
+# RETIRED 2026-11-08: the four Kimi v1 game skills (game-proto-validation,
+# blender-game-assets, engine-project-agent, game-liveops-assist) used to be
+# listed here. Their real directories lived in ~/.agents and were destroyed on
+# 2026-11-05 by the old HOST branch of sync-skills.ps1, which deleted a
+# non-junction dir before linking - leaving ~/.claude and ~/.agents pointing at
+# each other. Nothing is left on disk (searched C:\Users\yuhang and D:\GitRepo-AI),
+# and the vault's -v2 successors ship the same skills. The dead links were
+# removed and the names are blocked by .kilo/removed-skills.txt.
+# See KNOWLEDGE.md "Skill store incident".
+$HostSkills = @()
 
 # docs/ holds reference material and retired-skill archives, not installable skills.
 # TEMPLATE is a submodule reference repo (Agent_Template_Repo_Setup1); its

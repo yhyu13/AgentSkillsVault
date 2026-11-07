@@ -124,8 +124,10 @@ While extending the junction layout to 10 more harness stores, four HOST skills
 - Fixed in `sync-skills.ps1`: HOST entries never delete a real directory, never
   link into a cycle, and report `host-dangling-cycle` / `host-content-missing`
   instead. `vssadmin` could not check shadow copies (needs admin).
-- The four dead cycles were left in place pending a decision — see the retiring
-  question in `build-manifest.ps1` `$HostSkills`.
+- Resolved 2026-11-08 (user decision): the 16 dead links were removed with
+  `cmd /c rmdir` (link only), the four names went into `.kilo/removed-skills.txt`,
+  `$HostSkills` in `scripts/build-manifest.ps1` was emptied, and the incident is
+  recorded in `REMOVED-SKILLS.md`.
 
 ## Worker Profiles
 
