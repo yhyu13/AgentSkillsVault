@@ -36,6 +36,7 @@
 | goal-persistence | sibling (distilled) | `D:\GitRepo-AI\codex` — goal feature (`codex-rs/ext/goal/`) |
 | search-fallback | local (adopted 2026-11-01) | adopted from `~/.agents/skills/search-fallback` (previously installed only in the `.agents` store, never vault-tracked); scripts reviewed inline (search ladder: DDG Lite → Baidu via browser → Bing RSS; no exfiltration/injection) |
 | colleague-yuhang | local (distilled 2026-11-02) | 俞航本人的行为 skill：从其 788 条会话原话（Cindy `messages` 表 733 条 + pi sessions 142 条去重后 55 条）+ 3 项当面确认蒸馏出工作能力与人格两层。生成器 = distilly（`tools/skill_writer.py`，character=colleague）；生成中间件在 `~/.distilly/skills/colleague/yuhang/`（含 work.md / persona.md / meta.json / versions），vault 只保留自包含的 `SKILL.md`（中间件含私人语料，不入库）。蒸馏方法与证据见 `docs/yuhang-distillation-2026-11-02.md` |
+| colleague-ue-app-specialist / -engine-architect / -prod-team-lead / -tech-planner (4) | local (imported 2026-11-08) | 源：`E:\XD\P4V\tl_yuhang_preUGS\frontend\trunk\我的SKILL\UE专家团\<name>\`（每目录 SKILL.md + persona/work/meta，`versions/v1..v4` 未入库，只取顶层版本）。原蒸馏自 WorkBuddy experts 插件 `ue-prod-team`：`C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-*.md`（该路径不在包内，SKILL.md 正文引用它 → 链接分被扣，见评分表 D 列）；目录名按 frontmatter `name:` 统一为 `colleague-ue-*` |
 
 ### content/
 | skill | origin | source |
@@ -123,6 +124,11 @@
 
 > 本目录不再放 `investment-masters`：它与 FDE 无关（AlphaGBM 投研大师包），已移出，源在 `vendor/investment-masters`（submodule @ `b1a304f`）。
 
+### knowledge-vault/
+| skill | origin | source |
+|-------|--------|--------|
+| family-edu-gamified-skills | sibling (imported 2026-11-08) | `D:\GitRepo-AI\AIGameMaker\family-edu-gamified-skills`（整目录复制：SKILL.md + references/ + assets/，20 个文件）；小学 1–6 年级预习/复习/作业/拓展/兴趣/习惯/家长激励的闯关流程，七角色技能说明 + 协作接口 + 输出模板 |
+
 ### game-dev/
 | skill | origin | source |
 |-------|--------|--------|
@@ -164,6 +170,7 @@
 | game-top-down-action | local (distilled) | OpenGame TS monorepo — 俯视动作游戏的 tilemap/arena 子模式与 8 向移动 |
 | game-tower-defense | local (distilled) | OpenGame TS monorepo — 塔防核心循环、路径/波次/经济设计 |
 | game-ui-heavy-narrative | local (distilled) | OpenGame TS monorepo — UI 驱动型游戏（视觉小说/卡牌/问答）的场景流模式 |
+| game-studio-lead / game-design-strategist / game-engineering-lead / game-art-director / game-audio-director / game-quality-lead / game-release-ops-lead (7) | sibling (imported 2026-11-08) | 打包源 `D:\GitRepo-AI\AIGameMaker\documents\skills\dist\<name>.zip`（每个 = SKILL.md + references/{workflow,deliverables,source-map}.md；`game-studio-lead` 另有 handoff-template / role-boundaries）。作者源 = `D:\GitRepo-AI\AIGameMaker\docs\game-dev-studio-skills\roles\0*.md`（角色能力文档，本身无 SKILL.md，不单独安装；`game-development-studio-skills.zip` 是含 `_authoring/` 的聚合包，内容与 7 个单包重复，未整包入库）。SKILL.md 里引用的 `docs/architecture/*.md` 指项目侧文档，不在包内 → 评分 D 列有扣分 |
 
 > **合并记录（2026-10-24）：** 原 `opengame-harness/` 分类（14 个 skill）已并入 `game-dev/`。
 > 该分类本身不是 skill、也不构成任何运行时依赖——13 个 skill 均为自包含方法论文档，可单独安装使用。
@@ -247,6 +254,7 @@
 | opus-video-prompts | repo (submodule, 补写指针层) | `github.com/joeseesun/opus-video-prompts` @ `7977c80` — 上游**没有 SKILL.md**（18 份提示词 + 54 案例 `cases.json` + README），本 vault 补写一层指针式 SKILL.md（说明怎么挑提示词、技术路线与边界）；上游原文逐字保留；已复制进 `video/opus-video-prompts` |
 | video-shotcraft (retired) | repo (submodule) | `github.com/Vincentwei1021/video-shotcraft` @ `43bd349` (Apache-2.0) — 上游根即 skill（152 张 shot recipe 卡片 + 209 段 motion preview）；裁剪掉 `assets/ demos/ gallery/ videos/ workbench/ publish/`（保留 `references/ shot-polish/ template/`） |
 | ffmpeg / moviepy (retired) / elevenlabs (retired) / playwright-recording (retired) / qwen-edit (retired) / ideogram4 (retired) / ltx2 (retired) / acestep (retired) / runpod (retired) / synthetic-ui-demo (retired) / video_toolkit (retired) | repo (submodule) | `github.com/digitalsamba/claude-code-video-toolkit` @ `da3f474` (MIT) — 上游 `.claude/skills/<name>`（11 个）+ `skills/openclaw-video-toolkit`；`video_toolkit` 的 frontmatter 名是 `video_toolkit`，目录按其改名；`remotion` / `remotion-official` / `frontend-design` 未装（与 vault 既有 remotion 系列 / taste-frontend 重叠） |
+| remotion-video-engineering-distilled | local (imported 2026-11-08) | 源：`E:\XD\P4V\tl_yuhang_preUGS\frontend\trunk\Remotion视频工程技能蒸馏\remotion-video-engineering-distilled\`（SKILL.md + 11 份 `references/0*.md` + `scripts/`，共 13 个文件；同目录的 zip 是同一内容的打包副本）。Remotion 工程知识蒸馏：架构 / core composition / 渲染管线 / Studio 与 devtools / 云端规模化 / Player 嵌入 / 生态特效 / 资产与字幕 / AI 集成 / 质量验收 / 用法配方 / 源索引 |
 
 ### vendor/
 | skill | origin | source |
