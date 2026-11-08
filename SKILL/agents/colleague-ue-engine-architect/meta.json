@@ -1,0 +1,198 @@
+{
+  "display_name": "UE 工程架构与性能｜高见筑",
+  "character": "colleague",
+  "classification": {
+    "language": "zh-CN",
+    "tags": [
+      "UE",
+      "架构",
+      "C++与蓝图",
+      "性能分析",
+      "多平台打包",
+      "角色工作方法"
+    ],
+    "gallery_category": "Colleague"
+  },
+  "knowledge_sources": [
+    {
+      "evidence_type": "role_definition",
+      "line_count": 55,
+      "path": "C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-engine-architect.md",
+      "relative_path": "agents/ue-engine-architect.md",
+      "sha256": "400c6593cc10c3b4b44fab550b6f19d4ccafa995d9cd10097e76f38516a562ba",
+      "source_id": "architect-role"
+    },
+    {
+      "evidence_type": "team_role_definition",
+      "line_count": 103,
+      "path": "C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-prod-team-lead.md",
+      "relative_path": "agents/ue-prod-team-lead.md",
+      "sha256": "59df5ba19dc274414bb805e23c6b1635bbc9f91d1cf0ba8f2b842bff8f2b98cb",
+      "source_id": "lead-role"
+    },
+    {
+      "source_id": "ue-engine-architect-distillation",
+      "evidence_type": "current_session_contribution",
+      "contributor": "ue-engine-architect",
+      "contribution": "本轮独立工作能力提炼；来源事实与可执行化建议分开标记。",
+      "content_file": "work_skill.md",
+      "sha256": "e08130b4d841c822bda064bf52a12e0f4e7f8b9cae74b9449b43e48c08dacbb6",
+      "source_line_count": 192,
+      "checksum_encoding": "对实际交付 work_skill.md 的 UTF-8 无 BOM 文件字节计算；换行遵循本机写入结果。",
+      "original_confirmed_work_sha256": "da277673b1f2f4b19c744ca7c0a3b5d4b089eee319483a915ae737074e7f346e"
+    }
+  ],
+  "name": "ue-engine-architect",
+  "profile": {
+    "identity": "当前专家团架构师角色",
+    "role": "UE 架构师",
+    "specialty": "模块与职责边界、Gameplay、性能预算、平台与构建链路"
+  },
+  "source_context": {
+    "domain": "work",
+    "is_fictional": true,
+    "is_public_figure": false,
+    "is_real_person": false,
+    "relationship_to_user": "coworker"
+  },
+  "source_role": "ue-engine-architect",
+  "summary": "明确 UE 工程分层与依赖，以测量和验收约束性能及多平台落地。",
+  "tags": [
+    "UE",
+    "架构",
+    "性能",
+    "打包"
+  ],
+  "usage_boundaries": [
+    "工作方法提炼，不改变当前助手身份。",
+    "没有采样与目标平台证据不宣称性能或构建通过。",
+    "不补造版本支持、阈值、代码约定或热更机制。",
+    "没有导入私人记忆、内部权限配置或项目经验案例。"
+  ],
+  "delivery_scope": {
+    "purpose": "项目内可复用工作技能文档，不自动安装。",
+    "source_knowledge": "四份角色定义与本轮对应提炼；未导入项目热更资料作为知识来源。",
+    "validation_limit": "文档检查不等于 UE 工程实测。"
+  },
+  "distilly_resources_root": "C:\\Users\\XINDONG\\.workbuddy\\skills\\distilly",
+  "research_profile": "standard",
+  "type": "colleague",
+  "lifecycle": {
+    "status": "active",
+    "created_at": "2026-11-08T14:44:44.658008+00:00",
+    "updated_at": "2026-11-08T14:52:33.282212+00:00",
+    "version": "v5"
+  },
+  "generation": {
+    "engine": "distilly",
+    "character": "colleague",
+    "research_profile": "standard",
+    "preset": "distilly.colleague.v1",
+    "prompt_bundle": {
+      "preset": "distilly.colleague.v1",
+      "intake": "prompts/colleague/intake.md",
+      "work_analyzer": "prompts/shared/work_analyzer.md",
+      "persona_analyzer": "prompts/colleague/persona_analyzer.md",
+      "work_builder": "prompts/shared/work_builder.md",
+      "persona_builder": "prompts/colleague/persona_builder.md",
+      "merger": "prompts/colleague/merger.md",
+      "correction_handler": "prompts/shared/correction_handler.md"
+    },
+    "research_profile_bundle": {},
+    "research_profile_references": [],
+    "merge_strategy": "compact",
+    "quality_profile": "budget-friendly",
+    "knowledge_dirs": [
+      "docs",
+      "messages",
+      "emails"
+    ],
+    "storage_root": "skills/colleague",
+    "created_from": [
+      {
+        "evidence_type": "role_definition",
+        "line_count": 55,
+        "path": "C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-engine-architect.md",
+        "relative_path": "agents/ue-engine-architect.md",
+        "sha256": "400c6593cc10c3b4b44fab550b6f19d4ccafa995d9cd10097e76f38516a562ba",
+        "source_id": "architect-role"
+      },
+      {
+        "evidence_type": "team_role_definition",
+        "line_count": 103,
+        "path": "C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-prod-team-lead.md",
+        "relative_path": "agents/ue-prod-team-lead.md",
+        "sha256": "59df5ba19dc274414bb805e23c6b1635bbc9f91d1cf0ba8f2b842bff8f2b98cb",
+        "source_id": "lead-role"
+      },
+      {
+        "source_id": "ue-engine-architect-distillation",
+        "evidence_type": "current_session_contribution",
+        "contributor": "ue-engine-architect",
+        "contribution": "本轮独立工作能力提炼；来源事实与可执行化建议分开标记。",
+        "content_file": "work_skill.md",
+        "sha256": "e08130b4d841c822bda064bf52a12e0f4e7f8b9cae74b9449b43e48c08dacbb6",
+        "source_line_count": 192,
+        "checksum_encoding": "对实际交付 work_skill.md 的 UTF-8 无 BOM 文件字节计算；换行遵循本机写入结果。",
+        "original_confirmed_work_sha256": "da277673b1f2f4b19c744ca7c0a3b5d4b089eee319483a915ae737074e7f346e"
+      }
+    ],
+    "corrections_count": 0
+  },
+  "engine": {
+    "name": "distilly",
+    "kind": "meta-skill",
+    "character": "colleague",
+    "research_profile": "standard",
+    "preset": "distilly.colleague.v1",
+    "prompt_bundle": {
+      "preset": "distilly.colleague.v1",
+      "intake": "prompts/colleague/intake.md",
+      "work_analyzer": "prompts/shared/work_analyzer.md",
+      "persona_analyzer": "prompts/colleague/persona_analyzer.md",
+      "work_builder": "prompts/shared/work_builder.md",
+      "persona_builder": "prompts/colleague/persona_builder.md",
+      "merger": "prompts/colleague/merger.md",
+      "correction_handler": "prompts/shared/correction_handler.md"
+    },
+    "research_profile_bundle": {},
+    "research_profile_references": [],
+    "merge_strategy": "compact",
+    "quality_profile": "budget-friendly",
+    "knowledge_dirs": [
+      "docs",
+      "messages",
+      "emails"
+    ],
+    "storage_root": "skills/colleague"
+  },
+  "schema_version": "3",
+  "slug": "ue-engine-architect",
+  "kind": "meta-skill",
+  "subtype": null,
+  "preset": "distilly.colleague.v1",
+  "id": "meta-skill.colleague.ue-engine-architect",
+  "artifacts": {
+    "combined_skill": "SKILL.md",
+    "work_skill": "work_skill.md",
+    "persona_skill": "persona_skill.md",
+    "work_doc": "work.md",
+    "persona_doc": "persona.md",
+    "manifest": "manifest.json",
+    "combined_name": "colleague-ue-engine-architect",
+    "work_name": "colleague-ue-engine-architect-work",
+    "persona_name": "colleague-ue-engine-architect-persona",
+    "combined_command": "colleague-ue-engine-architect",
+    "work_command": "colleague-ue-engine-architect-work",
+    "persona_command": "colleague-ue-engine-architect-persona"
+  },
+  "compat": {
+    "legacy_command": "/create-colleague",
+    "legacy_storage_root": "colleagues",
+    "legacy_type": "colleague"
+  },
+  "created_at": "2026-11-08T14:44:44.658008+00:00",
+  "updated_at": "2026-11-08T14:52:33.282212+00:00",
+  "version": "v5",
+  "corrections_count": 0
+}

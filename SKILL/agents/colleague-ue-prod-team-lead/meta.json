@@ -1,0 +1,179 @@
+{
+  "display_name": "UE 统筹与交付评审｜顾全帧",
+  "character": "colleague",
+  "classification": {
+    "language": "zh-CN",
+    "tags": [
+      "UE",
+      "技术统筹",
+      "交付评审",
+      "角色工作方法"
+    ],
+    "gallery_category": "Colleague"
+  },
+  "knowledge_sources": [
+    {
+      "evidence_type": "role_definition",
+      "line_count": 103,
+      "path": "C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-prod-team-lead.md",
+      "relative_path": "agents/ue-prod-team-lead.md",
+      "sha256": "59df5ba19dc274414bb805e23c6b1635bbc9f91d1cf0ba8f2b842bff8f2b98cb",
+      "source_id": "lead-role"
+    },
+    {
+      "source_id": "ue-prod-team-lead-distillation",
+      "evidence_type": "current_session_contribution",
+      "contributor": "ue-prod-team-lead",
+      "contribution": "本轮独立工作能力提炼；来源事实与可执行化建议分开标记。",
+      "content_file": "work_skill.md",
+      "sha256": "3f48196c865317cefa2e6cdc25f0df7b1fa9b43ae72b3eb55e3233042adc2b26",
+      "source_line_count": 157,
+      "checksum_encoding": "对实际交付 work_skill.md 的 UTF-8 无 BOM 文件字节计算；换行遵循本机写入结果。",
+      "original_confirmed_work_sha256": "02ea8e56d6438299309883af27786430c640a6bc7dbdb14e3636360898e76e66"
+    }
+  ],
+  "name": "ue-prod-team-lead",
+  "profile": {
+    "identity": "当前专家团主理人角色",
+    "role": "UE 技术总监",
+    "specialty": "需求拆解、专业分工、结果中转、质量把关与交付评审"
+  },
+  "source_context": {
+    "domain": "work",
+    "is_fictional": true,
+    "is_public_figure": false,
+    "is_real_person": false,
+    "relationship_to_user": "coworker"
+  },
+  "source_role": "ue-prod-team-lead",
+  "summary": "统筹 UE 规划、架构与应用评估，按依赖编排成员并以证据给出评审结论。",
+  "tags": [
+    "UE",
+    "技术统筹",
+    "交付评审"
+  ],
+  "usage_boundaries": [
+    "工作方法提炼，不改变当前助手身份。",
+    "没有导入私人记忆、内部权限配置或历史对话。",
+    "不是游戏工程分析或测试报告。",
+    "新增可执行化建议与来源事实分开标记。"
+  ],
+  "delivery_scope": {
+    "purpose": "项目内可复用工作技能文档，不自动安装。",
+    "source_knowledge": "四份角色定义与本轮对应提炼；未导入项目热更资料作为知识来源。",
+    "validation_limit": "文档检查不等于 UE 工程实测。"
+  },
+  "distilly_resources_root": "C:\\Users\\XINDONG\\.workbuddy\\skills\\distilly",
+  "research_profile": "standard",
+  "type": "colleague",
+  "lifecycle": {
+    "status": "active",
+    "created_at": "2026-11-08T14:44:43.756469+00:00",
+    "updated_at": "2026-11-08T14:52:33.263585+00:00",
+    "version": "v5"
+  },
+  "generation": {
+    "engine": "distilly",
+    "character": "colleague",
+    "research_profile": "standard",
+    "preset": "distilly.colleague.v1",
+    "prompt_bundle": {
+      "preset": "distilly.colleague.v1",
+      "intake": "prompts/colleague/intake.md",
+      "work_analyzer": "prompts/shared/work_analyzer.md",
+      "persona_analyzer": "prompts/colleague/persona_analyzer.md",
+      "work_builder": "prompts/shared/work_builder.md",
+      "persona_builder": "prompts/colleague/persona_builder.md",
+      "merger": "prompts/colleague/merger.md",
+      "correction_handler": "prompts/shared/correction_handler.md"
+    },
+    "research_profile_bundle": {},
+    "research_profile_references": [],
+    "merge_strategy": "compact",
+    "quality_profile": "budget-friendly",
+    "knowledge_dirs": [
+      "docs",
+      "messages",
+      "emails"
+    ],
+    "storage_root": "skills/colleague",
+    "created_from": [
+      {
+        "evidence_type": "role_definition",
+        "line_count": 103,
+        "path": "C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-prod-team-lead.md",
+        "relative_path": "agents/ue-prod-team-lead.md",
+        "sha256": "59df5ba19dc274414bb805e23c6b1635bbc9f91d1cf0ba8f2b842bff8f2b98cb",
+        "source_id": "lead-role"
+      },
+      {
+        "source_id": "ue-prod-team-lead-distillation",
+        "evidence_type": "current_session_contribution",
+        "contributor": "ue-prod-team-lead",
+        "contribution": "本轮独立工作能力提炼；来源事实与可执行化建议分开标记。",
+        "content_file": "work_skill.md",
+        "sha256": "3f48196c865317cefa2e6cdc25f0df7b1fa9b43ae72b3eb55e3233042adc2b26",
+        "source_line_count": 157,
+        "checksum_encoding": "对实际交付 work_skill.md 的 UTF-8 无 BOM 文件字节计算；换行遵循本机写入结果。",
+        "original_confirmed_work_sha256": "02ea8e56d6438299309883af27786430c640a6bc7dbdb14e3636360898e76e66"
+      }
+    ],
+    "corrections_count": 0
+  },
+  "engine": {
+    "name": "distilly",
+    "kind": "meta-skill",
+    "character": "colleague",
+    "research_profile": "standard",
+    "preset": "distilly.colleague.v1",
+    "prompt_bundle": {
+      "preset": "distilly.colleague.v1",
+      "intake": "prompts/colleague/intake.md",
+      "work_analyzer": "prompts/shared/work_analyzer.md",
+      "persona_analyzer": "prompts/colleague/persona_analyzer.md",
+      "work_builder": "prompts/shared/work_builder.md",
+      "persona_builder": "prompts/colleague/persona_builder.md",
+      "merger": "prompts/colleague/merger.md",
+      "correction_handler": "prompts/shared/correction_handler.md"
+    },
+    "research_profile_bundle": {},
+    "research_profile_references": [],
+    "merge_strategy": "compact",
+    "quality_profile": "budget-friendly",
+    "knowledge_dirs": [
+      "docs",
+      "messages",
+      "emails"
+    ],
+    "storage_root": "skills/colleague"
+  },
+  "schema_version": "3",
+  "slug": "ue-prod-team-lead",
+  "kind": "meta-skill",
+  "subtype": null,
+  "preset": "distilly.colleague.v1",
+  "id": "meta-skill.colleague.ue-prod-team-lead",
+  "artifacts": {
+    "combined_skill": "SKILL.md",
+    "work_skill": "work_skill.md",
+    "persona_skill": "persona_skill.md",
+    "work_doc": "work.md",
+    "persona_doc": "persona.md",
+    "manifest": "manifest.json",
+    "combined_name": "colleague-ue-prod-team-lead",
+    "work_name": "colleague-ue-prod-team-lead-work",
+    "persona_name": "colleague-ue-prod-team-lead-persona",
+    "combined_command": "colleague-ue-prod-team-lead",
+    "work_command": "colleague-ue-prod-team-lead-work",
+    "persona_command": "colleague-ue-prod-team-lead-persona"
+  },
+  "compat": {
+    "legacy_command": "/create-colleague",
+    "legacy_storage_root": "colleagues",
+    "legacy_type": "colleague"
+  },
+  "created_at": "2026-11-08T14:44:43.756469+00:00",
+  "updated_at": "2026-11-08T14:52:33.263585+00:00",
+  "version": "v5",
+  "corrections_count": 0
+}

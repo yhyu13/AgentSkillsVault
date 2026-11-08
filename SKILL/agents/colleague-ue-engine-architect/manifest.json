@@ -1,0 +1,98 @@
+{
+  "manifest_version": "1",
+  "id": "meta-skill.colleague.ue-engine-architect",
+  "kind": "meta-skill",
+  "character": "colleague",
+  "research_profile": "standard",
+  "preset": "distilly.colleague.v1",
+  "display_name": "UE 工程架构与性能｜高见筑",
+  "entrypoints": {
+    "default": "SKILL.md",
+    "work": "work_skill.md",
+    "persona": "persona_skill.md"
+  },
+  "artifacts": [
+    "SKILL.md",
+    "work.md",
+    "persona.md",
+    "meta.json",
+    "manifest.json"
+  ],
+  "capabilities": [
+    "persona",
+    "work"
+  ],
+  "engine": {
+    "name": "distilly",
+    "kind": "meta-skill",
+    "character": "colleague",
+    "research_profile": "standard",
+    "preset": "distilly.colleague.v1",
+    "prompt_bundle": {
+      "preset": "distilly.colleague.v1",
+      "intake": "prompts/colleague/intake.md",
+      "work_analyzer": "prompts/shared/work_analyzer.md",
+      "persona_analyzer": "prompts/colleague/persona_analyzer.md",
+      "work_builder": "prompts/shared/work_builder.md",
+      "persona_builder": "prompts/colleague/persona_builder.md",
+      "merger": "prompts/colleague/merger.md",
+      "correction_handler": "prompts/shared/correction_handler.md"
+    },
+    "research_profile_bundle": {},
+    "research_profile_references": [],
+    "merge_strategy": "compact",
+    "quality_profile": "budget-friendly",
+    "knowledge_dirs": [
+      "docs",
+      "messages",
+      "emails"
+    ],
+    "storage_root": "skills/colleague"
+  },
+  "toolchain": {
+    "prompt_bundle": {
+      "preset": "distilly.colleague.v1",
+      "intake": "prompts/colleague/intake.md",
+      "work_analyzer": "prompts/shared/work_analyzer.md",
+      "persona_analyzer": "prompts/colleague/persona_analyzer.md",
+      "work_builder": "prompts/shared/work_builder.md",
+      "persona_builder": "prompts/colleague/persona_builder.md",
+      "merger": "prompts/colleague/merger.md",
+      "correction_handler": "prompts/shared/correction_handler.md"
+    },
+    "research_profile": "standard",
+    "research_profile_bundle": {},
+    "research_profile_references": [],
+    "merge_strategy": "compact",
+    "quality_profile": "budget-friendly",
+    "research_tools": {},
+    "knowledge_dirs": [
+      "docs",
+      "messages",
+      "emails"
+    ]
+  },
+  "install": {
+    "compatible_runtimes": [
+      "claude-code",
+      "openclaw",
+      "hermes",
+      "codex",
+      "deepseek-harness",
+      "grok-build",
+      "pi",
+      "opencode"
+    ],
+    "min_schema_version": "3",
+    "installers": {
+      "claude-code": "tools/install_claude_generated_skill.py",
+      "openclaw": "tools/install_generated_skill.py --host openclaw",
+      "codex": "tools/install_generated_skill.py --host codex"
+    },
+    "slash_commands": {
+      "default": "colleague-ue-engine-architect",
+      "work": "colleague-ue-engine-architect-work",
+      "persona": "colleague-ue-engine-architect-persona"
+    }
+  }
+}

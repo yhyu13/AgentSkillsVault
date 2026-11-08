@@ -272,3 +272,18 @@ game-proto-validation|HOST
 blender-game-assets|HOST
 engine-project-agent|HOST
 game-liveops-assist|HOST
+
+# 2026-11-08 imported batch (AIGameMaker studio packs / UE expert team / Remotion distillation)
+game-studio-lead|B
+game-design-strategist|B
+game-engineering-lead|B
+game-art-director|B
+game-audio-director|B
+game-quality-lead|B
+game-release-ops-lead|B
+remotion-video-engineering-distilled|B
+family-edu-gamified-skills|A
+colleague-ue-app-specialist|A
+colleague-ue-engine-architect|A
+colleague-ue-prod-team-lead|A
+colleague-ue-tech-planner|A
