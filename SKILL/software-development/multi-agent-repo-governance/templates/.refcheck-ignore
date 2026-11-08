@@ -1,0 +1,53 @@
+# check-refs 的忽略清单：确认属于「外部仓路径」或「已登记为待产出的物料」的引用。
+# 一行一条前缀；# 开头为注释。改这里之前先确认该路径确实不需要可达。
+
+# Spec Kit 框架的可选扩展占位（本仓未启用该扩展）
+.specify/extensions.yml
+
+# AGENTS.md §3 记录的既有例外：wt/dir-a 是历史 worktree 名
+wt/dir-a
+
+# 已登记为「待产出」的物料（清单见 docs/promo/MISSING-MATERIALS-TODO.md）
+assets/embed/
+assets/raw/
+assets/attempts/
+assets/plan/
+assets/models/patient-brick.glb
+assets/manifest.json
+poster/out/
+deck/out/
+video/out/
+deliverables/
+qianmian-fpv/out/
+demo-qianmian/assets/
+smoke-tmp-out/
+
+# 工作树目录型引用：工作树合并后其内容已在仓内，逐文件路径已改写；目录型引用无法机械替换
+wt/
+
+# Spec Kit 运行时生成的文件
+.specify/feature.json
+
+# 其它已登记为「待产出 / 计划中」的引用
+tests/screenshots/
+tests/fixtures/
+tests/repro-run.mjs
+data/options.js
+data/memories.js
+data/recap.js
+demo-v3/ASSETS.md
+specs/003-user-auth
+
+# 外部工具仓（agent skill vault 的 html-ppt skill）里的脚本
+scripts/office/validate.py
+
+# 计划中、尚未产出的文件（对应 spec 的任务条目）
+specs/001-lingang-heritage-sim/data.json
+specs/001-lingang-heritage-sim/tests/e2e
+specs/002-heritage-onboarding/promo/assets/dome-before.png
+reports/repro-3run-report.md
+reports/repro-run-1.log
+specs/001-lingang-heritage-sim/dom-contract.md
+./data.json
+tests/e2e
+assets/dome-before.png

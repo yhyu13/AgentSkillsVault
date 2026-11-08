@@ -1,0 +1,61 @@
+# dev-sync.yml — main 合并后自动同步稳定分支（dev）
+#
+# 定位：dev 是 main 的**下游同步分支**，不是 gitflow 开发分支。
+#   - main 合并（含热修）后自动同步 dev
+#   - 能快进就快进；分叉则开 sync PR 走人工评审（不要强推 main）
+#   - 特性分支的 PR base 默认仍是 main
+#
+# 若仓库不需要 dev 分支，删掉这个文件即可；其它闸门不依赖它。
+name: dev-sync
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: dev-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: sync-dev（create / ff / pr）
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 同步 dev
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code origin refs/heads/dev >/dev/null 2>&1; then
+            git fetch origin dev
+            if git merge-base --is-ancestor origin/dev origin/main; then
+              echo "dev 可快进 → 直接推"
+              git push origin origin/main:refs/heads/dev
+            else
+              echo "dev 已分叉 → 开 sync PR（不强推 main）"
+              SHA=$(git rev-parse --short origin/main)
+              BR="chore/sync-dev-$SHA"
+              git checkout -b "$BR" origin/main
+              git push origin "$BR"
+              gh pr create --base dev --head "$BR" \
+                --title "chore(sync-dev): 同步 main（$SHA）" \
+                --body "main 与 dev 已分叉，需人工确认后合并。Refs: #<治理 issue>" || true
+            fi
+          else
+            echo "dev 不存在 → 创建"
+            git push origin origin/main:refs/heads/dev
+          fi
+      - name: 结果摘要
+        if: always()
+        run: |
+          echo "main=$(git rev-parse origin/main 2>/dev/null || echo '?')"
+          echo "dev=$(git ls-remote origin refs/heads/dev | awk '{print $1}' || echo '<不存在>')"
