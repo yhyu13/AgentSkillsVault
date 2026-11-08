@@ -18,8 +18,9 @@ REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || printf '%s' "$(pwd)")"
 # 项目相关项全部抽到 .agent-gate.conf，换项目只改那个文件
 # shellcheck source=/dev/null
 [ -f "$REPO_ROOT/.agent-gate.conf" ] && . "$REPO_ROOT/.agent-gate.conf"
-GOV_PATHS_RE="${GOV_PATHS_RE:-^(AGENTS\.md|scripts/pre-merge-check\.sh|scripts/new-slice\.sh|\.github/.*)$}"
-DEFAULT_ISSUE="${DEFAULT_ISSUE:-1}"
+# .agent-gate.conf 能覆盖 GOV_PATHS_RE，所以它自己必须同属治理面（自保护）
+GOV_PATHS_RE="${GOV_PATHS_RE:-^(AGENTS\.md|scripts/pre-merge-check\.sh|scripts/new-slice\.sh|\.github/.*|\.agent-gate\.conf)$}"
+DEFAULT_ISSUE="${DEFAULT_ISSUE:-34}"
 BRANCH_PREFIX="${BRANCH_PREFIX:-feat}"
 WORKTREE_DIR="${WORKTREE_DIR:-wt}"
 # 注：D2「契约漂移」维度目前由**独立 reviewer 人工承担**（见 references/governance-model.md）。
