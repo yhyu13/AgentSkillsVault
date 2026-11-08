@@ -29,6 +29,7 @@
 #   - md 目标的 #锚点 → 校验目标文件里确实有该标题
 
 import argparse
+import difflib
 import json
 import os
 import re
@@ -135,6 +136,8 @@ def clean_token(tok):
         return None
     if tok.startswith('#') or tok.startswith('/'):
         return None
+    if tok.startswith('[') or tok.startswith('{') or tok.startswith('<'):
+        return None  # 列表/字典字面量，不是路径
     return tok
 
 
@@ -159,9 +162,17 @@ def tokens_in_span(span):
     return out
 
 
+HTML_COMMENT_RE = re.compile(r'<!--.*?-->', re.S)
+CSS_COMMENT_RE = re.compile(r'/\*.*?\*/', re.S)
+
+
 def collect_tokens(path, text):
     """返回 [(行号, 原始引用, 是否 markdown 链接)]"""
     out = []
+    # HTML 注释里的路径是「来源标注」（例如内联 CSS 的出处），不是运行时链接
+    text = HTML_COMMENT_RE.sub(lambda m: '\n' * m.group(0).count('\n'), text)
+    # 内联 CSS/JS 的来源标注（/* inlined: assets/base.css */）同样是注释，不是活链接
+    text = CSS_COMMENT_RE.sub(lambda m: '\n' * m.group(0).count('\n'), text)
     for i, line in enumerate(text.split('\n'), 1):
         for m in MD_LINK_RE.finditer(line):
             out.append((i, m.group(1), True))
@@ -205,8 +216,13 @@ def resolve(ref, src_path, root, entries):
         return ('skip', None, None, None)
 
     if ref.startswith('./') or ref.startswith('../'):
-        cand = os.path.normpath(os.path.join(os.path.dirname(src_path), ref))
-        return ('ok', cand, anchor, lineno)
+        # 按「文件在仓内的相对路径」上溯，而不是文件系统绝对路径——
+        # 否则同一份内容在 CI（浅 checkout）与本地 worktree（深 checkout）会得出相反结论。
+        rel_src = os.path.relpath(src_path, root)
+        cand_rel = os.path.normpath(os.path.join(os.path.dirname(rel_src), ref))
+        if cand_rel.startswith('..' + os.sep) or cand_rel == '..':
+            return ('out', None, anchor, lineno)   # 越出仓根 → 不可达
+        return ('ok', os.path.join(root, cand_rel), anchor, lineno)
 
     # wt/<slice>/… 是工作树内路径：工作树活着就按它解析；否则视为「仓库内已合并后的对应文件」，
     # 交由上层给替换建议。
@@ -228,16 +244,29 @@ def resolve(ref, src_path, root, entries):
                 return ('ok', cand, anchor, lineno)
         return ('ok', os.path.normpath(os.path.join(root, ref)), anchor, lineno)
 
-    # 裸文件名 / 多级相对路径：在祖先链与仓根里找
-    for base in list(ancestors(os.path.dirname(src_path), root)) + [root]:
-        cand = os.path.normpath(os.path.join(base, ref))
-        if os.path.exists(cand):
-            return ('ok', cand, anchor, lineno)
-
+    # 裸文件名（带已知扩展名）：同级目录 → 祖先链 → 仓内唯一同名文件。
+    # 都找不到就跳过——裸名大量出现在「待创建的模板」语境里，报出来全是噪声。
     if '/' not in ref:
+        if not EXT_RE.search(ref):
+            return ('skip', None, None, None)
+        for base in list(ancestors(os.path.dirname(src_path), root)) + [root]:
+            cand = os.path.normpath(os.path.join(base, ref))
+            if os.path.exists(cand):
+                return ('ok', cand, anchor, lineno)
+        hits = [q for q in index_files(root) if os.path.basename(q) == ref]
+        if len(hits) == 1:
+            return ('ok', os.path.join(root, hits[0]), anchor, lineno)
         return ('skip', None, None, None)
 
-    # 首段不是仓根条目 → 外部仓路径（如另一个仓的 SKILL/…），跳过
+    # 首段不是仓根条目：可能是拼错（最常见的死链形态），也可能是外部仓路径。
+    # 拼错 → 报；外部仓 → 跳过，但前提是登记在 .refcheck-ignore。
+    close = None
+    if EXT_RE.search(ref):
+        # 只对「像文件」的 token 做拼写检测：分支名形态（feat/x、workbuddy/x）不是路径
+        close = [c for c in difflib.get_close_matches(first, sorted(entries), n=2, cutoff=0.72)
+                 if abs(len(c) - len(first)) <= 2][:1]
+    if close:
+        return ('typo', close[0], anchor, lineno)
     return ('skip', None, None, None)
 
 
@@ -258,14 +287,26 @@ def check_file(path, root, entries, pats, out, index=None):
         tok = clean_token(raw)
         if not tok:
             continue
-        if ignored(tok, pats):
-            continue
         key = (lineno, tok)
         if key in seen:
             continue
         seen.add(key)
         kind, resolved, anchor, refline = resolve(tok, path, root, entries)
         if kind == 'skip':
+            continue
+        # ignore 在 resolve 之后判定：这样 wt/ 的既有例外能被登记豁免，
+        # 而「拼错首段」这类问题仍会被报出来。
+        if ignored(tok, pats):
+            continue
+        if kind == 'out':
+            out.append({'file': os.path.relpath(path, root).replace(os.sep, '/'),
+                        'line': lineno, 'ref': tok,
+                        'reason': '相对路径越出仓根（层级写多了 ..）'})
+            continue
+        if kind == 'typo':
+            out.append({'file': os.path.relpath(path, root).replace(os.sep, '/'),
+                        'line': lineno, 'ref': tok,
+                        'reason': '首段疑似拼错：%s → 仓根里是 %s' % (tok.split('/')[0], resolved)})
             continue
         if kind == 'wt':
             # 工作树已不在：给「仓库内同名文件」的替换建议
@@ -307,6 +348,16 @@ def check_file(path, root, entries, pats, out, index=None):
                             'reason': '锚点 #%s 在目标文件里不存在' % anchor})
 
 
+def index_files(root):
+    """仓内所有跟踪文件（相对路径），用于裸文件名的唯一同名查找。"""
+    try:
+        out = subprocess.run(['git', '-C', root, '-c', 'core.quotepath=false', 'ls-files'],
+                             capture_output=True, text=True, timeout=120).stdout
+    except Exception:
+        return []
+    return [l.strip() for l in out.splitlines() if l.strip()]
+
+
 def suggest_repo_file(rest, index):
     """在仓内找路径以 rest 结尾的文件（工作树路径消失后的对应物）。"""
     if not rest:
@@ -337,17 +388,26 @@ def auto_fix(ref, root, index):
 
 
 def files_from_pr(pr, root):
+    """取 PR diff 触及的文件。gh 不可用/失败必须响亮失败——静默返回空列表会让闸门变成永真。"""
     try:
-        out = subprocess.run(['gh', 'pr', 'diff', str(pr), '--name-only'],
-                             capture_output=True, text=True, timeout=120).stdout
-    except Exception:
-        return []
-    return [l.strip() for l in out.split('\n') if l.strip()]
+        r = subprocess.run(['gh', 'pr', 'diff', str(pr), '--name-only'],
+                           capture_output=True, text=True, timeout=120)
+    except FileNotFoundError:
+        sys.stderr.write('check-refs: 找不到 gh，无法取 PR #%s 的文件列表\n' % pr)
+        sys.exit(2)
+    except Exception as e:
+        sys.stderr.write('check-refs: 取 PR #%s 文件列表失败: %s\n' % (pr, e))
+        sys.exit(2)
+    if r.returncode != 0:
+        sys.stderr.write('check-refs: gh pr diff #%s 失败: %s\n' % (pr, r.stderr.strip()[:200]))
+        sys.exit(2)
+    return [l.strip() for l in r.stdout.split('\n') if l.strip()]
 
 
 def tracked_files(root):
     try:
-        out = subprocess.run(['git', '-C', root, 'ls-files', '*.md', '*.markdown', '*.html'],
+        out = subprocess.run(['git', '-C', root, '-c', 'core.quotepath=false',
+                              'ls-files', '*.md', '*.markdown', '*.html'],
                              capture_output=True, text=True, timeout=120).stdout
     except Exception:
         return []

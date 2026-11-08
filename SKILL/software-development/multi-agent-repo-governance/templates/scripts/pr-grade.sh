@@ -19,10 +19,11 @@ REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || printf '%s' "$(pwd)")"
 # shellcheck source=/dev/null
 [ -f "$REPO_ROOT/.agent-gate.conf" ] && . "$REPO_ROOT/.agent-gate.conf"
 GOV_PATHS_RE="${GOV_PATHS_RE:-^(AGENTS\.md|scripts/pre-merge-check\.sh|scripts/new-slice\.sh|\.github/.*)$}"
-SHARED_ORIGIN_RE="${SHARED_ORIGIN_RE:-^(docs/research/|specs/0.*)$}"
 DEFAULT_ISSUE="${DEFAULT_ISSUE:-1}"
 BRANCH_PREFIX="${BRANCH_PREFIX:-feat}"
 WORKTREE_DIR="${WORKTREE_DIR:-wt}"
+# 注：D2「契约漂移」维度目前由**独立 reviewer 人工承担**（见 references/governance-model.md）。
+# 这里刻意不留一个定义了却从不参与计算的变量——那会让「漂移 0 处」变成「没算」而不是「算了是 0」。
 BINARY_RE='\.(png|jpg|jpeg|gif|webp|glb|gltf|fbx|bin|mp4|mov|zip|7z|rar|exe|dll|so|dylib|psd|blend)$'
 SECRET_RE='(AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{22,}|sk-[A-Za-z0-9]{20}|xox[baprs]-[A-Za-z0-9-]{10})'
 DEP_RE='^(package\.json|package-lock\.json|yarn\.lock|pnpm-lock\.yaml|requirements\.txt|Pipfile|go\.mod|Cargo\.toml)$'
@@ -213,6 +214,32 @@ check_syntax() {
   done
   [ "$bad" = 0 ] && { printf 'check-syntax: PASS\n'; exit 0; }; exit 1
 }
+pick_python() {
+  # Windows 上的 python3 可能是 Microsoft Store 的空壳存根（打印空、退出 1），
+  # 所以要用「真能 import」来判定，而不是 command -v。
+  local c
+  for c in python3 python py; do
+    command -v "$c" >/dev/null 2>&1 || continue
+    "$c" -c 'import sys' >/dev/null 2>&1 || continue
+    printf '%s' "$c"; return 0
+  done
+  return 1
+}
+
+check_refs() { # $1=PR号：文档引用可达性（会真跑命令，不从正文里 grep 结论）
+  local pr="$1" out py
+  py="$(pick_python)" || { printf 'check-refs: 找不到可用的 python 解释器
+' >&2; exit 1; }
+  out="$("$py" "$REPO_ROOT/scripts/check-refs.py" --pr "$pr" 2>&1)" || {
+    printf '%s
+' "$out" >&2; exit 1;
+  }
+  printf '%s
+' "$out"
+  printf 'check-refs: PASS（引用全部可达）
+'
+}
+
 check_template() {
   local pr="$1" body s ok=1
   body="$(pr_field "$pr" body)"
@@ -246,6 +273,7 @@ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
     --check-ownership) [ $# -ge 2 ] || usage; check_ownership "$2" ;;
     --check-syntax)   [ $# -ge 2 ] || usage; check_syntax "$2" ;;
     --check-template) [ $# -ge 2 ] || usage; check_template "$2" ;;
+    --check-refs)    [ $# -ge 2 ] || usage; check_refs "$2" ;;
     --selftest)       selftest ;;
     *) usage ;;
   esac
