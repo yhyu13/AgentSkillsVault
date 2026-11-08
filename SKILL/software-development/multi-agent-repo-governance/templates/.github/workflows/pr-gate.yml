@@ -1,0 +1,76 @@
+# pr-gate.yml — 每个 PR 的 5 道机器闸门
+#
+# 设计要点（别改坏）：
+#   1. 判据单一来源：5 个 job 都调 scripts/pr-grade.sh 的子检查，不要在 workflow 里另写判据。
+#   2. 每个 job 都必须**真跑命令**，不要从 PR 正文里 grep 结论——正文可以骗人，命令不会。
+#      （历史教训：test_fail 是从正文 grep「失败 N 个」来的，引用死链一路放行。）
+#   3. 失败后果由规格定义：任一 required check 失败 → 该 PR 失去绿级资格，按黄级起步（需 user 批准）。
+#   4. CI 全绿 ≠ 可以合并：本地 R1（scripts/pre-merge-check.sh）仍必须跑，CI 看不见未提交改动。
+name: pr-gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: read
+
+concurrency:
+  group: pr-gate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  commit-lint:
+    name: commit-lint（格式 / Refs / 禁 Closes）
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PR: ${{ github.event.pull_request.number }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/pr-grade.sh --check-commit "$PR"
+
+  ownership-check:
+    name: ownership-check（切片独占目录越界 = 0）
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PR: ${{ github.event.pull_request.number }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/pr-grade.sh --check-ownership "$PR"
+
+  syntax:
+    name: syntax（改动的 *.sh 过 bash -n）
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PR: ${{ github.event.pull_request.number }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/pr-grade.sh --check-syntax "$PR"
+
+  template-check:
+    name: template-check（PR 模板小节 + pre-merge 三件套）
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PR: ${{ github.event.pull_request.number }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/pr-grade.sh --check-template "$PR"
+
+  refs-check:
+    name: refs-check（文档引用可达：路径 / 锚点 / 行号）
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PR: ${{ github.event.pull_request.number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: bash scripts/pr-grade.sh --check-refs "$PR"

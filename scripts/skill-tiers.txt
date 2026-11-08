@@ -165,6 +165,7 @@ mgmt-discipline|B
 mgmt-individual|B
 mgmt-org|B
 motion-showreel|A
+multi-agent-repo-governance|A
 notes-on-writing|B
 okr-planner|B
 one-on-one-prep|A

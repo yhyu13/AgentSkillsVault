@@ -154,6 +154,7 @@ mgmt-discipline|SKILL/management/mgmt-discipline|B
 mgmt-individual|SKILL/management/mgmt-individual|B
 mgmt-org|SKILL/management/mgmt-org|B
 motion-showreel|SKILL/video/motion-showreel|A
+multi-agent-repo-governance|SKILL/software-development/multi-agent-repo-governance|A
 notes-on-writing|SKILL/content/notes-on-writing|B
 okr-planner|SKILL/content/okr-planner|B
 one-on-one-prep|SKILL/management/one-on-one-prep|A
