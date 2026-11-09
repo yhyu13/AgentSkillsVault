@@ -11,7 +11,7 @@ description: >-
 metadata:
   category: software-development
   created_by: agent
-  version: 1.0.0
+  version: 1.1.1
   origin: local (distilled from the Aholo hackathon repo's R1~R5 governance, 2026-11)
 ---
 
