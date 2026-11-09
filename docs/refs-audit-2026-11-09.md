@@ -88,3 +88,16 @@ py -3 docs\skill-capacity-audit\check_refs.py --root SKILL --jobs 12 --self-chec
 # 评分（含并行正确性自检）
 py -3 docs\skill-capacity-audit\score_skills.py --root SKILL --out docs\skill-capacity-audit --date 2026-11-09 --jobs 12 --self-check
 ```
+
+## 7. 与 multi-agent-repo-governance 自带 check-refs 的分工
+
+上游 `multi-agent-repo-governance` 的 `templates/scripts/check-refs.py` 也会查引用可达性，两者不冲突、边界不同：
+
+| | 本文的 `check_refs.py` | `multi-agent-repo-governance/templates/scripts/check-refs.py` |
+|---|---|---|
+| 作用对象 | 本 vault 的 `SKILL/**` | 任意项目仓库（治理模板落地后） |
+| 豁免方式 | `refs-allow.txt`（skill + fnmatch + 理由） | `.refcheck-ignore` 文件 / 文件头 `refcheck:skip-file` |
+| 并行与正确性 | 默认并发 + `--self-check` 串并行逐条比对 | 串行 |
+| 用在 | 入库前对本仓库做门禁 | PR 评审（`pr-grade.sh --check-refs`） |
+
+本次已实测其模板自检：`scan 2 files, 0 unreachable`。两者都保留，不合并——把 vault 的豁免清单塞进通用模板会污染模板。
