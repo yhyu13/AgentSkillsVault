@@ -28,6 +28,16 @@
 | `sibling` | a repo under `D:\GitRepo-AI\` (parent-path subfolder) | `Copy-Item -Recurse -Force` from the sibling into the vault |
 | `local` | locally invented / distilled (no upstream repo) | edit in place; no sync — bump `version:` when materially changed |
 
+## 模板仓（GitHub template，可直接 Use this template）
+
+| 模板 | 用途 | 备注 |
+|---|---|---|
+| `yhyu13/Agent_Template_Repo_Setup1` | 基础 agent 工作流模板：issue → 分支 → worktree → 独立 review → 证据合并 | 以 submodule `TEMPLATE/` 接入 |
+| `yhyu13/Agent_Template_Repo_Governance` | 上者 + 多 agent 并行治理：R1~R5 五条硬规则、5 道机器闸门（含文档引用可达性 refs-check）、绿黄红分级授权、`.agent-gate.conf` 配置化治理面 | 以 submodule `TEMPLATE-GOVERNANCE/` 接入；内容与本 skill 的 `templates/` 同源 |
+
+> 模板仓里的 `.claude/skills/` 是随模板分发的副本，**不是** vault 的 curated 技能；
+> `scripts/build-manifest.ps1` 跳过 `TEMPLATE*` 目录，避免同名技能被扫成重复副本。
+
 ## Provenance table
 
 ### agents/

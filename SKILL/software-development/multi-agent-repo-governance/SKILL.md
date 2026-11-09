@@ -58,9 +58,19 @@ multi-agent-repo-governance/
     └── docs/README.md              ← 文档目录骨架与写法要求
 ```
 
+## 现成可拷的仓
+
+整套骨架已经做成一个 GitHub 模板仓，可直接 "Use this template" 或 clone 后改名：
+
+- **https://github.com/yhyu13/Agent_Template_Repo_Governance** —— 本 skill 的 `templates/` 已落成
+  一个完整仓（R1~R5 规则 + 5 道机器闸门 + 引用可达性检查 + 4 个常驻 skill + `.agent-gate.conf`）。
+  模板仓的 `.claude/skills/` 是随模板分发的副本，不是 vault 的 curated 技能——vault 的
+  `build-manifest.ps1` 会跳过 `TEMPLATE*` 目录，避免同名技能被扫成重复副本。
+
 ## 落地步骤
 
-1. 把 `templates/` 整个拷进目标仓根（`.github/`、`scripts/`、`docs/README.md` 都要）。
+1. 把 `templates/` 整个拷进目标仓根（`.github/`、`scripts/`、`docs/README.md` 都要），
+   或直接用上面那个模板仓。
 2. 改 `templates/.agent-gate.conf` → 仓根 `.agent-gate.conf`：
    - `GOV_PATHS_RE`：治理面文件（改了就必须 admin 批准）。默认含 `AGENTS.md`、`scripts/pre-merge-check.sh`、`scripts/new-slice.sh`、`.github/**`
    - `SHARED_ORIGIN_RE`：共享正本目录（默认只读，要写必须登记为切片独占）
