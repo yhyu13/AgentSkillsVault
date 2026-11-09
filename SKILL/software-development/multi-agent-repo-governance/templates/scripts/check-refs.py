@@ -138,6 +138,8 @@ def clean_token(tok):
         return None
     if tok.startswith('[') or tok.startswith('{') or tok.startswith('<'):
         return None  # 列表/字典字面量，不是路径
+    if re.fullmatch(r'(?:\.\.?/)+', tok):
+        return None  # 只是 '..' / '../' 的示意写法（文档举例说明上溯），不是文件引用
     return tok
 
 
