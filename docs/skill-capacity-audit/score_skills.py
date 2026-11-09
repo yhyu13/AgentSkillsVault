@@ -25,6 +25,7 @@ import os
 import re
 import sys
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 FRONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n", re.S)
@@ -38,10 +39,10 @@ PLACEHOLDER_RE = re.compile(
 MD_LINK_RE = re.compile(r"\]\(([^)\s]+)")
 CODE_PATH_RE = re.compile(
     r"`((?:references|scripts|templates|assets|examples|docs|commands|kit|"
-    r"workflows|agents)/[A-Za-z0-9_.\-/]+)`")
+    r"workflows|agents)/[A-Za-z0-9_.\-\u4e00-\u9fff/]+)`")
 BARE_PATH_RE = re.compile(
     r"(?<![\w/])((?:references|scripts|templates|assets|examples|docs|"
-    r"commands|kit|workflows|agents)/[A-Za-z0-9_.\-]+(?:/[A-Za-z0-9_.\-]+)*)")
+    r"commands|kit|workflows|agents)/[A-Za-z0-9_.\-\u4e00-\u9fff]+(?:/[A-Za-z0-9_.\-\u4e00-\u9fff]+)*)")
 SCRIPT_EXT = (".py", ".sh", ".bash", ".mjs", ".js", ".ts", ".ps1", ".rb")
 
 
@@ -208,6 +209,11 @@ def main():
     ap.add_argument("--vault", default="", help="vault dir (to map vault paths)")
     ap.add_argument("--out", required=True)
     ap.add_argument("--date", default="2026-01-01")
+    ap.add_argument("--jobs", type=int, default=min(16, os.cpu_count() or 4),
+                    help="parallel workers (1 = serial)")
+    ap.add_argument("--serial", action="store_true", help="force one worker")
+    ap.add_argument("--self-check", action="store_true",
+                    help="prove parallel == serial, exit 1 on drift")
     args = ap.parse_args()
 
     root = Path(args.root)
@@ -226,7 +232,23 @@ def main():
             if ".git" in sm.parts or "vendor" in sm.parts:
                 continue
             vmap.setdefault(sm.parent.name, sm.parent.relative_to(vault))
-    rows = [audit(p, vault, vmap.get(p.name)) for p in skills]
+
+    def audit_all(jobs):
+        if jobs <= 1:
+            return [audit(p, vault, vmap.get(p.name)) for p in skills]
+        with ThreadPoolExecutor(max_workers=jobs) as ex:
+            return list(ex.map(lambda p: audit(p, vault, vmap.get(p.name)), skills))
+
+    jobs = 1 if args.serial else max(1, args.jobs)
+    rows = audit_all(jobs)
+
+    if args.self_check:
+        oracle = audit_all(1)
+        if oracle != rows:
+            print("SELF-CHECK FAILED: parallel != serial", file=sys.stderr)
+            return 1
+        print("SELF-CHECK PASS: %d skills, serial == parallel(jobs=%d)"
+              % (len(oracle), jobs))
     for r in rows:
         r["vault_path"] = str(vmap.get(r["skill"], ""))
 

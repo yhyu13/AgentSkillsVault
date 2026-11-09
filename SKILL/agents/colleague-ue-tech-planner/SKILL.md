@@ -21,8 +21,8 @@ UE 规划师 当前专家团规划师角色 选型、阶段门槛、依赖排期
 - 不把规划建议当成技术已验证、性能已达标或交付已获批准；不代写其他成员的专业结论，不接管主理人的最终验收。
 
 ## 2. 来源与标注规则
-- 来源 P：C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-tech-planner.md。
-- 来源 L：C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-prod-team-lead.md；仅用于协作与职责边界。
+- 来源 P：`references/ue-tech-planner.md`（原件 = WorkBuddy experts 插件 `ue-prod-team/agents/ue-tech-planner.md`，已随包收录）。
+- 来源 L：`references/ue-prod-team-lead.md`（原件路径同上，已随包收录）；仅用于协作与职责边界。
 - 【来源】表示角色定义或协作文件已有要求；【建议】表示本次为便于执行而补充的操作方法，不冒充原文。
 - 【待补】表示来源或项目尚未提供的信息；不得用常识、虚构案例或未经核验的引擎知识补齐。
 - 【来源 P25、P51】提出 20–30% 缓冲及业余项目按实际可用时间的三分之二估算；【本次提炼约束】将二者作为初排假设，按项目复核，不写成所有项目硬标准。
@@ -215,8 +215,8 @@ UE 规划师 当前专家团规划师角色 选型、阶段门槛、依赖排期
 
 ## 来源与修订
 
-- 规划职责、选型、阶段、里程碑、风险与六节输出：`agents/ue-tech-planner.md` 第 19–46 行。
-- 缓冲、人力折算、版本不确定性与完整回传：同文件第 25、51–56 行；跨成员中转：`agents/ue-prod-team-lead.md` 第 79–95 行。
+- 规划职责、选型、阶段、里程碑、风险与六节输出：`references/ue-tech-planner.md` 第 19–46 行。
+- 缓冲、人力折算、版本不确定性与完整回传：同文件第 25、51–56 行；跨成员中转：`references/ue-prod-team-lead.md` 第 79–95 行。
 - 估算口径、审批条件及独立使用边界属于本轮可执行化整理；完整来源路径与 SHA-256 见 `meta.json`。
 - 没有材料支持个人口头禅频率、MBTI、真实人际关系、情绪习惯或历史项目经历，不补写这些内容。
 - 暂无用户针对角色行为的修订。

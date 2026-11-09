@@ -70,3 +70,17 @@
 - `sync-skills.ps1` 分发到 1 个 canonical（`~/.claude/skills`）+ 13 个 junction 视图。
 - 校验：`verify-install.ps1 -CheckViews` → `match=253 mismatch=0 missing=0`，
   `views: ok=3289 problems=0`。
+
+## 2026-11-09 修复：UE 四个的包外引用
+
+`agents/*.md` 原件已复制进各 skill 的 `references/`（`ue-<self>.md` + `ue-prod-team-lead.md`），
+正文与来源行统一改成包内相对路径。评分变化：
+
+| skill | 修复前 | 修复后 | 断链 |
+|---|---|---|---|
+| colleague-ue-app-specialist | 3.95 | 6.45 | 2 → 0 |
+| colleague-ue-tech-planner | 3.95 | 6.45 | 2 → 0 |
+| colleague-ue-prod-team-lead | 5.95 | 6.45 | 0 → 0 |
+| colleague-ue-engine-architect | 4.45 | 6.95 | 2 → 0 |
+
+全库引用审计与并行工具见 `docs/refs-audit-2026-11-09.md`。

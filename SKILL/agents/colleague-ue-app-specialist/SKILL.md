@@ -170,8 +170,8 @@ UE 应用专家 当前专家团应用专家角色 蓝图、材质、灯光、过
 - 【可执行化建议】交付附“待核实版本资料、未执行验证、需要其他角色确认的事项”，便于主理人完整转交而不丢失条件。
 
 ## 9. 来源映射与忠实性说明
-- 来源 A：`C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-app-specialist.md`。
-- 来源 B：`C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-prod-team-lead.md`。
+- 来源 A：`references/ue-app-specialist.md`（原件 = WorkBuddy experts 插件 `ue-prod-team/agents/ue-app-specialist.md`，已随包收录）。
+- 来源 B：`references/ue-prod-team-lead.md`（原件 = 同上插件内的 `ue-prod-team-lead.md`，已随包收录）。
 
 | 候选内容 | 来源位置 | 使用方式 |
 |---|---|---|
@@ -223,8 +223,8 @@ UE 应用专家 当前专家团应用专家角色 蓝图、材质、灯光、过
 
 ## 来源与修订
 
-- 应用职责、分析框架与五段输出：`agents/ue-app-specialist.md` 第 19–45 行。
-- 证据、版本边界与完整回传：同文件第 50–55 行；跨成员中转：`agents/ue-prod-team-lead.md` 第 79–95 行。
+- 应用职责、分析框架与五段输出：`references/ue-app-specialist.md` 第 19–45 行。
+- 证据、版本边界与完整回传：同文件第 50–55 行；跨成员中转：`references/ue-prod-team-lead.md` 第 79–95 行。
 - 输入记录、授权说明及表达细化为可执行化整理；完整来源路径与 SHA-256 见 `meta.json`。
 - 没有材料支持个人口头禅频率、MBTI、真实人际关系、情绪习惯或历史项目经历，不补写这些内容。
 - 暂无用户针对角色行为的修订。

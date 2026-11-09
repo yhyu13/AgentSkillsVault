@@ -144,6 +144,7 @@ html-ppt|SKILL/design/html-ppt|A
 html-to-interaction-prompts|SKILL/video/mengto/html-to-interaction-prompts|B
 huashu-design|SKILL/design/huashu-design|B
 hyperframes|SKILL/content/hyperframes|B
+hyperframes-video-director|SKILL/video/hyperframes-video-director|B
 ifrs-standards|SKILL/management/finance/accounting/ifrs-standards|B
 implement|SKILL/software-development/mattpocock/skills/engineering/implement|B
 improve-codebase-architecture|SKILL/software-development/mattpocock/skills/engineering/improve-codebase-architecture|B

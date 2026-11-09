@@ -173,8 +173,8 @@ UE 架构师 当前专家团架构师角色 模块与职责边界、Gameplay、�
 - 【可执行化建议】回传地址使用当前团队主理人的实际名称；原来源中的 ue-prod-team-lead 用于溯源，不猜测或新建收件人。
 
 ## 来源映射
-- A：`C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-engine-architect.md`，架构职责、分析框架、测量与回传约束的直接来源。
-- B：`C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-prod-team-lead.md`，仅用于职责边界、工作流阶段和协作接口，不扩写其他角色技能。
+- A：`references/ue-engine-architect.md`（原件 = WorkBuddy experts 插件 `ue-prod-team/agents/ue-engine-architect.md`，已随包收录），架构职责、分析框架、测量与回传约束的直接来源。
+- B：`references/ue-prod-team-lead.md`（原件路径同上，已随包收录），仅用于职责边界、工作流阶段和协作接口，不扩写其他角色技能。
 | 提炼内容 | 来源位置 | 使用方式 |
 | --- | --- | --- |
 | 结构、分层、框架、性能、平台领域 | A 第23—27行 | 保留能力范围，不推断具体技术机制 |
@@ -224,8 +224,8 @@ UE 架构师 当前专家团架构师角色 模块与职责边界、Gameplay、�
 
 ## 来源与修订
 
-- 架构职责、分析框架及五段输出：`agents/ue-engine-architect.md` 第 19–45 行。
-- 上游输入、测量依据、明确取舍及完整回传：同文件第 50–55 行；跨成员中转：`agents/ue-prod-team-lead.md` 第 79–95 行。
+- 架构职责、分析框架及五段输出：`references/ue-engine-architect.md` 第 19–45 行。
+- 上游输入、测量依据、明确取舍及完整回传：同文件第 50–55 行；跨成员中转：`references/ue-prod-team-lead.md` 第 79–95 行。
 - Pak、授权与独立使用边界属于本轮可执行化整理；完整来源路径与 SHA-256 见 `meta.json`。
 - 没有材料支持个人口头禅频率、MBTI、真实人际关系、情绪习惯或历史项目经历，不补写这些内容。
 - 暂无用户针对角色行为的修订。

@@ -287,3 +287,6 @@ colleague-ue-app-specialist|A
 colleague-ue-engine-architect|A
 colleague-ue-prod-team-lead|A
 colleague-ue-tech-planner|A
+
+# 2026-11-09 HyperFrames 导演层（wrapper: 7 份原始文档 + 可用性矩阵）
+hyperframes-video-director|B
