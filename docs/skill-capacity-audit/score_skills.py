@@ -90,8 +90,14 @@ def collect_refs(text: str):
     for rx in (CODE_PATH_RE, BARE_PATH_RE):
         for m in rx.finditer(text):
             refs.add(m.group(1))
-    return {r for r in refs
-            if r and not r.startswith(("~", "/", "$")) and "://" not in r}
+    cleaned = set()
+    for r in refs:
+        # Sentence punctuation is not part of the path. Windows may silently
+        # tolerate trailing dots/spaces, but Linux runners do not.
+        r = r.rstrip(".,;:!?")
+        if r and not r.startswith(("~", "/", "$")) and "://" not in r:
+            cleaned.add(r)
+    return cleaned
 
 
 def audit(skill_dir: Path, vault_dir: Path = None, vault_rel: str = None):
