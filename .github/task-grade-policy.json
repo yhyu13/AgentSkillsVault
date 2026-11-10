@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "default_branch": "main",
+  "decision_order": ["red", "yellow", "green"],
+  "red": {
+    "description": "Admin-only. Agent must not merge without recorded admin authorization.",
+    "paths": [
+      "AGENTS.md",
+      "CLAUDE.md",
+      "CODEOWNERS",
+      ".agent-gate.conf",
+      ".github/**",
+      ".gitmodules",
+      ".kilo/**",
+      "REMOVED-SKILLS.md",
+      "registered_agents.json",
+      "task_agent_mapping.json",
+      "scripts/policy_gate.py",
+      "scripts/task_policy.py",
+      "scripts/merge_authorization.py",
+      "scripts/check_manifest.py",
+      "scripts/install-manifest.txt",
+      "scripts/skill-tiers.txt",
+      "scripts/sync-skills.ps1",
+      "scripts/verify-install.ps1",
+      "scripts/normalize-external-skills.ps1",
+      "scripts/build-manifest.ps1",
+      "scripts/apply-tiers.ps1",
+      "scripts/verify-capacity.ps1",
+      "vendor/**",
+      "TEMPLATE",
+      "TEMPLATE-GOVERNANCE"
+    ],
+    "conditions": [
+      "merge-conflict-with-base",
+      "ownership-conflict",
+      "force-push-main",
+      "delete-canonical-source",
+      "credential-or-permission-change",
+      "release-or-publish",
+      "unresolved-review-blocker"
+    ]
+  },
+  "yellow": {
+    "description": "Requires one human approval before merge; agent may execute after approval is recorded.",
+    "paths": [
+      "INSTRUCTION.md",
+      "README.md",
+      "KNOWLEDGE.md",
+      "JOURNEY.md",
+      "SKILL_CANDIDATES.md",
+      "docs/**",
+      "SKILL/**/references/**",
+      "SKILL/**/templates/**"
+    ],
+    "conditions": [
+      "missing-same-platform-evidence",
+      "missing-automated-acceptance",
+      "shared-canonical-change",
+      "cross-module-behavior-change",
+      "non-blocking-review-concern"
+    ]
+  },
+  "green": {
+    "description": "May merge without human approval only if all required checks pass and evidence is complete.",
+    "requires": [
+      "no-red-condition",
+      "no-yellow-condition",
+      "no-merge-conflict",
+      "automated-acceptance-pass",
+      "same-version-same-platform-verification"
+    ],
+    "platform_evidence": {
+      "block_language": "platform-verification",
+      "required_fields": [
+        "head_sha",
+        "affected_platforms",
+        "automated_tests",
+        "platform_checks"
+      ],
+      "allowed_methods": [
+        "real-device",
+        "simulator",
+        "emulator",
+        "browser",
+        "ci-runner",
+        "not-applicable"
+      ],
+      "not_applicable_requires_reason": true
+    }
+  },
+  "approval": {
+    "yellow_requires_human_approval": true,
+    "red_requires_admin_approval": true,
+    "green_requires_human_approval": false,
+    "approval_must_match_head_sha": true,
+    "self_approval_allowed": false
+  }
+}

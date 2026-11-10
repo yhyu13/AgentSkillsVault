@@ -13,9 +13,9 @@
 
 # --- 正文措辞 / 模板占位（不是路径）---
 brainstorming|docs/superpowers/specs/YYYY-MM-DD-|正文里的文件名模板，示范命名格式
-brand-docx|scripts/brandkit/...|正文用省略号表示"这里放你的脚本"
-brand-pptx|scripts/brandkit/...|同上
-brand-xlsx|scripts/brandkit/...|同上
+brand-docx|scripts/brandkit/|正文用省略号表示"这里放你的脚本"，提取器规范化为目录前缀
+brand-pptx|scripts/brandkit/|同上
+brand-xlsx|scripts/brandkit/|同上
 huashu-design|assets/style-specimens/sheet-|正文写的是前缀（sheet-01… 之类），非单个文件
 gracker-writing|references/延伸阅读|正文小节名，不是文件
 ui-mockups|agents/brands|正文措辞（"用品牌 agent 的真实图标"），不是目录
