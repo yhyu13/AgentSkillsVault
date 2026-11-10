@@ -67,13 +67,8 @@ def main() -> int:
     args = parser.parse_args()
 
     grade_data = json.loads(Path(args.grade).read_text(encoding="utf-8"))
-    if grade_data.get("grade") == "green":
-        authorized, message = evaluate_authorization(grade_data, "", [], lambda _: None)
-        print(message)
-        return 0 if authorized else 1
-
     if not args.token:
-        print("GITHUB_TOKEN is required to check yellow/red approval", file=sys.stderr)
+        print("GITHUB_TOKEN is required to verify the live PR head", file=sys.stderr)
         return 1
 
     client = GitHubClient(args.repo, args.token, args.api_url)
@@ -82,6 +77,12 @@ def main() -> int:
     if live_head != grade_data.get("head_sha"):
         print("grade file is stale: head_sha does not match live PR head", file=sys.stderr)
         return 1
+
+    if grade_data.get("grade") == "green":
+        authorized, message = evaluate_authorization(grade_data, "", [], lambda _: None)
+        print(message)
+        return 0 if authorized else 1
+
     reviews = client.list_reviews(args.pr)
     pr_author = (pr.get("user") or {}).get("login", "")
     authorized, message = evaluate_authorization(
