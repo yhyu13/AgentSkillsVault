@@ -1,0 +1,135 @@
+name: PR Gate
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+  pull_request_review:
+    types: [submitted, dismissed]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  policy-grade:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Write PR body
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: printf '%s' "$PR_BODY" > /tmp/pr-body.txt
+      - name: Grade task and validate green evidence
+        env:
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PYTHONUTF8: '1'
+        run: |
+          python scripts/policy_gate.py \
+            --base origin/main \
+            --head HEAD \
+            --head-sha "$HEAD_SHA" \
+            --pr-body /tmp/pr-body.txt \
+            --output grade.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: task-grade
+          path: grade.json
+
+  manifest-consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check curated manifest consistency
+        env:
+          PYTHONUTF8: '1'
+        run: python scripts/check_manifest.py --root .
+
+  skill-refs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check vault skill references
+        env:
+          PYTHONUTF8: '1'
+        run: |
+          python docs/skill-capacity-audit/check_refs.py \
+            --root SKILL --jobs 2 --self-check --fail-on-broken
+      - name: Check changed governance markdown references
+        env:
+          PYTHONUTF8: '1'
+        run: |
+          mapfile -t files < <(git diff --name-only origin/main...HEAD -- '*.md' | while read -r file; do
+            if [ -f "$file" ]; then printf '%s\n' "$file"; fi
+          done)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No changed markdown files to check."
+            exit 0
+          fi
+          python SKILL/software-development/multi-agent-repo-governance/templates/scripts/check-refs.py \
+            --root . "${files[@]}"
+
+  governance-selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run governance and policy selftests
+        env:
+          PYTHONUTF8: '1'
+        run: |
+          bash -n SKILL/software-development/multi-agent-repo-governance/templates/scripts/pre-merge-check.sh
+          bash -n SKILL/software-development/multi-agent-repo-governance/templates/scripts/new-slice.sh
+          bash -n SKILL/software-development/multi-agent-repo-governance/templates/scripts/pr-grade.sh
+          bash SKILL/software-development/multi-agent-repo-governance/templates/scripts/pr-grade.sh --selftest
+          python -m py_compile scripts/task_policy.py scripts/policy_gate.py scripts/merge_authorization.py scripts/check_manifest.py
+          python -m unittest discover -s tests -p 'test_*.py' -v
+
+  merge-authorization:
+    needs: policy-grade
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          name: task-grade
+          path: .
+      - name: Enforce yellow/red approval
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONUTF8: '1'
+        run: |
+          python scripts/merge_authorization.py \
+            --grade grade.json \
+            --repo "${{ github.repository }}" \
+            --pr "${{ github.event.pull_request.number }}"

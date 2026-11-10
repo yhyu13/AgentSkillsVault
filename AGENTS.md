@@ -145,11 +145,27 @@ checks.
 - Third-party installers using `curl … | sh` are macOS/Linux only — Windows needs the
   `.ps1` path or `uvx <pkg> setup`.
 
+## Required checks and task grades
+
+`main` is governed by [`.github/task-grade-policy.json`](.github/task-grade-policy.json)
+and [docs/governance/task-grade-policy.md](docs/governance/task-grade-policy.md).
+
+- Red: critical governance/distribution paths, conflicts, permission/release risk. Admin approval required.
+- Yellow: non-red but incomplete evidence or shared-canonical impact. One human approval required.
+- Green: non-red/non-yellow, complete automated acceptance, same-version/same-platform verification.
+  Green tasks may merge without human approval only after all required checks pass.
+
+Required checks are produced by `.github/workflows/pr-gate.yml`:
+`policy-grade`, `manifest-consistency`, `skill-refs`, `governance-selftest`,
+`merge-authorization`. Do not bypass required checks or force-push `main`.
+
 ## Git flow
 
-Work on a feature branch, commit, push the branch, merge it into `main`, then push
-`main`. `main` and `origin/main` are currently in sync; the working branch is ahead.
-Submodules: `git submodule update --init --recursive` before touching `vendor/`.
+Work on a feature branch, commit, push the branch, open a PR, wait for required
+checks, then merge according to the task grade. Green needs no human approval;
+yellow needs one human approving review; red needs admin approval. Approvals must
+match the current PR head SHA. After merge, push `main` only if branch protection
+allows it. Submodules: `git submodule update --init --recursive` before touching `vendor/`.
 
 ## Where to look
 

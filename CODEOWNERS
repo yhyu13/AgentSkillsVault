@@ -1,0 +1,23 @@
+# Critical governance and distribution surfaces require owner review.
+AGENTS.md @yhyu13
+CLAUDE.md @yhyu13
+.github/ @yhyu13
+.gitmodules @yhyu13
+.kilo/ @yhyu13
+CODEOWNERS @yhyu13
+scripts/policy_gate.py @yhyu13
+scripts/task_policy.py @yhyu13
+scripts/merge_authorization.py @yhyu13
+scripts/check_manifest.py @yhyu13
+scripts/install-manifest.txt @yhyu13
+scripts/skill-tiers.txt @yhyu13
+scripts/build-manifest.ps1 @yhyu13
+scripts/sync-skills.ps1 @yhyu13
+scripts/verify-install.ps1 @yhyu13
+scripts/normalize-external-skills.ps1 @yhyu13
+scripts/apply-tiers.ps1 @yhyu13
+scripts/verify-capacity.ps1 @yhyu13
+REMOVED-SKILLS.md @yhyu13
+registered_agents.json @yhyu13
+task_agent_mapping.json @yhyu13
+docs/governance/ @yhyu13
