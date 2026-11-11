@@ -158,6 +158,10 @@ and [docs/governance/task-grade-policy.md](docs/governance/task-grade-policy.md)
 Required checks are produced by `.github/workflows/pr-gate.yml`:
 `policy-grade`, `manifest-consistency`, `skill-refs`, `governance-selftest`,
 `merge-authorization`. Do not bypass required checks or force-push `main`.
+The yellow/red interception in `merge-authorization` is switchable via
+`authorization_gate.enabled` in `.github/task-grade-policy.json` (default
+false = agent auto-merge allowed; grades are still computed and recorded —
+see docs/governance/task-grade-policy.md).
 
 ## Git flow
 

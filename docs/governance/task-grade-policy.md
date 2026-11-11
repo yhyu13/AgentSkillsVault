@@ -124,6 +124,23 @@ GitHub 不允许作者审批自己的 PR。当 PR 由 Agent 挂在唯一管理�
 - 其他人对当前 head 的 CHANGES_REQUESTED review 仍然一票否决。
 - 评论是公开、带时间戳的显式人类动作，保留完整审计与归因痕迹。
 
+## 黄红拦截开关（authorization_gate）
+
+`merge-authorization` 的黄/红拦截是*可开关的*，开关在
+[`.github/task-grade-policy.json`](../../.github/task-grade-policy.json) 的 `authorization_gate.enabled`：
+
+| 状态 | 行为 |
+|---|---|
+| `false`（当前默认） | 检查照跑但直接放行：Agent 黄/红也自动合并；等级照常计算并写进 grade.json，事后可审计 |
+| `true` | 黄需人批、红需 admin 授权（approving review 或 `ADMIN-APPROVE` 评论），即前文的完整拦截行为 |
+| 字段缺失/畸形 | 视为 `true`（fail closed，保持旧行为） |
+
+设计理由：*执行永远在，拦截看开关*。不用 job 级条件跳过——required check 被跳过会显示
+永久等待并阻塞合并（2026-11-11 死锁的近亲）；空转一次约 20 秒，同时兼任策略文件格式校验。
+
+Agent 的询问规则：diff 命中 red 路径清单而开关为关时，Agent 应停下来问用户
+「这个任务要不要开黄红闸？」；其余情况按默认走，不问。开启/关闭都是改一个布尔的 PR。
+
 ## 降低人工介入的升级方向
 
 升级不是增加审批节点，而是减少每任务人工分钟：
