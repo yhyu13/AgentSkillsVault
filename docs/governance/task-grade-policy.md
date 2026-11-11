@@ -112,6 +112,18 @@
 
 批准必须对应当前 head SHA；self-approval 不算。
 
+### ADMIN-APPROVE 评论协议（单管理员仓库的破锁通道）
+
+GitHub 不允许作者审批自己的 PR。当 PR 由 Agent 挂在唯一管理员账号名下创建时，
+"非作者 approving review"永远无法出现，黄/红级会形成死锁（2026-11-11 PR #24 首次暴露）。
+因此 `merge-authorization` 额外接受评论授权：
+
+- 在目标 PR 下评论 `ADMIN-APPROVE <head完整SHA或前7位>`（大小写敏感，精确匹配）。
+- 评论者必须具有 admin 协作者权限，且不是 bot；*允许 PR 作者本人*评论。
+- 授权与 head SHA 绑定：任何新 push 使旧授权自动失效；需重新评论。
+- 其他人对当前 head 的 CHANGES_REQUESTED review 仍然一票否决。
+- 评论是公开、带时间戳的显式人类动作，保留完整审计与归因痕迹。
+
 ## 降低人工介入的升级方向
 
 升级不是增加审批节点，而是减少每任务人工分钟：

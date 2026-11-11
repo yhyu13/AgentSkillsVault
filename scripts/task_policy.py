@@ -245,11 +245,46 @@ def _latest_reviews_by_user(reviews: Iterable[dict[str, Any]]) -> dict[str, dict
     return latest
 
 
+ADMIN_APPROVE_PREFIX = "ADMIN-APPROVE "
+
+
+def _admin_comment_login(
+    head_sha: str,
+    comments: Iterable[dict[str, Any]],
+    permission_lookup: Callable[[str], str | None],
+) -> str | None:
+    """Return the login of the first admin recording authorization via comment.
+
+    Protocol: a PR comment containing ``ADMIN-APPROVE <sha>`` where ``<sha>``
+    is the full head SHA or its first seven characters. Unlike reviews, the
+    PR author's own comment is accepted — GitHub forbids authors from
+    approving their own PR, which otherwise deadlocks single-admin
+    repositories. The head-SHA binding invalidates the authorization on any
+    new push.
+    """
+    for comment in comments:
+        user = comment.get("user") or {}
+        login = user.get("login")
+        if not login:
+            continue
+        if user.get("type") == "Bot" or login.endswith("[bot]"):
+            continue
+        body = comment.get("body") or ""
+        full_token = f"{ADMIN_APPROVE_PREFIX}{head_sha}"
+        short_token = f"{ADMIN_APPROVE_PREFIX}{head_sha[:7]}"
+        if full_token not in body and short_token not in body:
+            continue
+        if permission_lookup(login) == "admin":
+            return login
+    return None
+
+
 def evaluate_authorization(
     grade_data: dict[str, Any],
     pr_author: str,
     reviews: Iterable[dict[str, Any]],
     permission_lookup: Callable[[str], str | None],
+    comments: Iterable[dict[str, Any]] = (),
 ) -> tuple[bool, str]:
     grade = grade_data.get("grade")
     if grade == "green":
@@ -283,6 +318,12 @@ def evaluate_authorization(
         if grade == "red" and permission_lookup(login) == "admin":
             return True, f"red: approved by admin {login} for current head"
 
+    admin_login = _admin_comment_login(head_sha, comments, permission_lookup)
+    if admin_login:
+        if grade == "yellow":
+            return True, f"yellow: admin comment authorization by {admin_login} for current head"
+        return True, f"red: admin comment authorization by {admin_login} for current head"
+
     if grade == "yellow":
         return False, "yellow: requires a non-author human approving review for current head"
-    return False, "red: requires an admin approving review for current head"
+    return False, "red: requires an admin approving review (or an ADMIN-APPROVE comment) for current head"

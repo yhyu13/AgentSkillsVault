@@ -189,6 +189,9 @@ class AuthorizationTests(unittest.TestCase):
             "user": {"login": login, "type": user_type},
         }
 
+    def comment(self, login: str, body: str, user_type: str = "User") -> dict:
+        return {"body": body, "user": {"login": login, "type": user_type}}
+
     def test_green_needs_no_approval(self):
         authorized, _ = evaluate_authorization(self.grade("green"), "author", [], lambda _: None)
         self.assertTrue(authorized)
@@ -246,6 +249,78 @@ class AuthorizationTests(unittest.TestCase):
         new["submitted_at"] = "2026-11-10T01:00:00Z"
         authorized, _ = evaluate_authorization(self.grade("yellow"), "author", [old, new], lambda _: "write")
         self.assertFalse(authorized)
+
+    def test_admin_comment_authorizes_red_for_current_head(self):
+        authorized, message = evaluate_authorization(
+            self.grade("red"),
+            "author",
+            [],
+            lambda _: "admin",
+            comments=[self.comment("author", f"ADMIN-APPROVE {HEAD_SHA}")],
+        )
+        self.assertTrue(authorized)
+        self.assertIn("admin comment authorization", message)
+
+    def test_admin_comment_accepts_seven_char_prefix(self):
+        authorized, _ = evaluate_authorization(
+            self.grade("red"),
+            "author",
+            [],
+            lambda _: "admin",
+            comments=[self.comment("author", f"ADMIN-APPROVE {HEAD_SHA[:7]}")],
+        )
+        self.assertTrue(authorized)
+
+    def test_admin_comment_wrong_sha_rejected(self):
+        authorized, _ = evaluate_authorization(
+            self.grade("red"),
+            "author",
+            [],
+            lambda _: "admin",
+            comments=[self.comment("author", "ADMIN-APPROVE " + "b" * 40)],
+        )
+        self.assertFalse(authorized)
+
+    def test_non_admin_comment_rejected(self):
+        authorized, _ = evaluate_authorization(
+            self.grade("red"),
+            "author",
+            [],
+            lambda _: "write",
+            comments=[self.comment("author", f"ADMIN-APPROVE {HEAD_SHA}")],
+        )
+        self.assertFalse(authorized)
+
+    def test_bot_comment_rejected(self):
+        authorized, _ = evaluate_authorization(
+            self.grade("red"),
+            "author",
+            [],
+            lambda _: "admin",
+            comments=[self.comment("cindy[bot]", f"ADMIN-APPROVE {HEAD_SHA}", user_type="Bot")],
+        )
+        self.assertFalse(authorized)
+
+    def test_admin_comment_also_covers_yellow(self):
+        authorized, _ = evaluate_authorization(
+            self.grade("yellow"),
+            "author",
+            [],
+            lambda _: "admin",
+            comments=[self.comment("author", f"ADMIN-APPROVE {HEAD_SHA[:7]}")],
+        )
+        self.assertTrue(authorized)
+
+    def test_review_blocker_overrides_admin_comment(self):
+        authorized, message = evaluate_authorization(
+            self.grade("red"),
+            "author",
+            [self.review("blocker", state="CHANGES_REQUESTED")],
+            lambda _: "admin",
+            comments=[self.comment("author", f"ADMIN-APPROVE {HEAD_SHA}")],
+        )
+        self.assertFalse(authorized)
+        self.assertIn("unresolved review blocker", message)
 
 
 if __name__ == "__main__":

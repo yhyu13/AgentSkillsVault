@@ -47,6 +47,18 @@ class GitHubClient:
                 return reviews
             page += 1
 
+    def list_comments(self, pr_number: int) -> list[dict[str, Any]]:
+        comments: list[dict[str, Any]] = []
+        page = 1
+        while True:
+            batch = self.get(f"issues/{pr_number}/comments?per_page=100&page={page}")
+            if not isinstance(batch, list):
+                raise RuntimeError("unexpected comments response")
+            comments.extend(batch)
+            if len(batch) < 100:
+                return comments
+            page += 1
+
     def collaborator_permission(self, login: str) -> str | None:
         try:
             data = self.get(f"collaborators/{login}/permission")
@@ -84,12 +96,14 @@ def main() -> int:
         return 0 if authorized else 1
 
     reviews = client.list_reviews(args.pr)
+    comments = client.list_comments(args.pr)
     pr_author = (pr.get("user") or {}).get("login", "")
     authorized, message = evaluate_authorization(
         grade_data,
         pr_author,
         reviews,
         client.collaborator_permission,
+        comments=comments,
     )
     print(message)
     return 0 if authorized else 1
