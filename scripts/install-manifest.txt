@@ -81,6 +81,8 @@ diagnosing-bugs|SKILL/software-development/mattpocock/skills/engineering/diagnos
 distilly|SKILL/software-development/distilly|B
 docx|SKILL/content/docx|A
 domain-modeling|SKILL/software-development/mattpocock/skills/engineering/domain-modeling|B
+doubaofeishu_industry-analysis|SKILL/management/doubaofeishu_industry-analysis|A
+doubaofeishu_ui-design-system|SKILL/design/doubaofeishu_ui-design-system|B
 earnings-models|SKILL/management/finance/equity-research/earnings-models|B
 elevenlabs-tts|SKILL/video/mengto/elevenlabs-tts|B
 engine-project-agent-v2|SKILL/game-dev/engine-project-agent-v2|A
