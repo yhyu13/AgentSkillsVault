@@ -139,32 +139,107 @@ Five worker profiles under `~/.hermes/profiles/`:
   `cp -r ~/.hermes/skills/devops/<name> ~/.hermes/profiles/<worker>/skills/devops/<name>`
 - Verify: `hermes -p <worker> skills list | grep <name>`
 
+## Governance checks — traps and recipes (learned 2026-11-11)
+
+Eleven facts earned the hard way while landing the task-grade gate, the
+TEMPLATE submodule bump and the tier re-bucketing. Each one cost a red check
+or a wasted round; none is guessable from the docs alone.
+
+**1. A PR author cannot approve their own PR.** A repository with one admin,
+where the agent opens PRs under that admin's `gh` login, can never satisfy
+"non-author approving review". Every yellow/red PR deadlocks.
+→ Fixed by the `ADMIN-APPROVE <head SHA>` comment protocol in
+`scripts/task_policy.py` (`_admin_comment_login`); see
+`docs/governance/task-grade-policy.md`.
+
+**2. A skipped required check blocks merges forever.** GitHub reports it as
+"Expected — waiting", so a job-level `if:` switch to turn a gate off turns
+*everything* off instead. → Gates stay unconditional in CI and pass through
+inside the check (`authorization_gate.enabled` in
+`.github/task-grade-policy.json`).
+
+**3. `gh run rerun` reuses the original run's workflow version.** A PR whose
+check fails because the gate is old cannot be rescued by re-running it; the
+rerun prints the same old error. → Merge main into the PR branch
+(`gh pr update-branch`) so the head carries the new check code.
+
+**4. Every gate job checks out `github.event.pull_request.head.sha`.** The
+checking code therefore comes from the PR branch, not from main. Consequence:
+"the PR that fixes the gate waits for the gate" (bootstrap paradox, hit by
+PR #25 → #26). → Update the branch; the long-term fix is to run policy code
+from main instead of the head.
+
+**5. GitGuardian reads `.gitguardian.yaml` from the default branch only.**
+Adding the file inside a PR does not silence that PR's findings.
+`gitguardian` is not a required check, so it does not block merges.
+
+**6. `enforce_admins: true` leaves even the admin with no bypass.** The only
+escape is toggling branch protection by hand — which is why the two fixes
+above exist: they make approval possible instead.
+
+**7. `scripts/build-manifest.ps1` tested its skip regex against the ABSOLUTE
+path.** Any vault living under a skipped segment (a worktree at
+`<repo>/.cindy-worktrees/<name>/`) matches `.cindy-worktrees` and loses every
+skill: the manifest went 246 → 10 entries. Committing that would make
+`sync-skills.ps1` act on a list missing 236 skills. → Never trust a manifest
+regenerated from a nested path without diffing; a correct regeneration on an
+unchanged tree produces **zero diff** (that is the acceptance test). The fix
+(tests the vault-relative path) is pending — see `SKILL_CANDIDATES.md`.
+
+**8. The `py` launcher does not exist on this host.** Scripts calling
+`py -3` fail outright; `python` and `python3` are on PATH. Audit a script
+with `powershell -NoProfile -ExecutionPolicy Bypass -File <script>` before
+committing it, not after CI.
+
+**9. A wholesale move turns "changed markdown" checks into a historical-debt
+scanner.** Re-bucketing 246 skills renamed 1437 tracked `.md` files; the
+ref check scans every changed file, so it surfaced 256 unreachable links
+across 83 files that were already broken on main (verified by hand on one).
+→ Scope such checks to content changes (skip pure renames, `R100`) and queue
+the debt separately; do not let an unrelated PR absorb it.
+
+**10. Multiple sessions can force-push the same branch while you work.** On
+2026-11-11 another session replaced this branch three times (…→`fdb087c`
+→`7eb870f`) and merged it. → `git fetch` before every push, keep a local
+`backup/<name>` ref before a force-push, and when someone else's version
+wins, verify its content (manifest rows, required checks) instead of
+reflexively re-pushing your own.
+
+**11. HTTPS to GitHub is unreliable on this host; SSH is not.** `git fetch`
+over https dies with `Recv failure: Connection was reset`, `gh` occasionally
+loses `api.github.com`. → Use `NO_PROXY='*'` with the proxy vars unset, push
+over `git@github.com:…`, read state through `gh api`, and retry rather than
+concluding the operation failed.
+
 ## Vault Layout
 
-Grouped by category as of 2026-08-08. Earlier revisions dumped skills
-flat at the repo root; category folders now own them.
+Grouped by category as of 2026-08-08; since 2026-11-11 every curated skill sits
+in a quality bucket: `SKILL/<category>/tier<N>/<skill>/SKILL.md`
+(`tier0` ≥ 9.0 … `tier4` < 6.0, scored by
+`docs/skill-capacity-audit/score_skills.py`; re-bucket with
+`docs/skill-capacity-audit/rearrange-tiers.ps1`). The bucket is a *quality*
+tier — unrelated to the `A`/`B`/`C` visibility column in
+`scripts/skill-tiers.txt`.
 
 ```
 AgentSkillsVault/
 ├── README.md
 ├── KNOWLEDGE.md                      ← this file
-├── devops/
-│   ├── kanban-orchestrator/          (10 refs + 1 template + SKILL.md)
-│   ├── kanban-cron-overseer/         (1 ref + SKILL.md)
-│   └── cron-pipeline-state-machine/  (2 refs + SKILL.md)
-├── software-development/
-│   └── aisides-ai-self-review/       (3 refs + SKILL.md)
-├── FDE/                              ← NEW 2026-08-08
-│   ├── book-chapter-to-vault/        (4 refs + 2 scripts + worked example + SKILL.md)
-│   └── analysis-to-vault/            (4 refs + worked example + SKILL.md; reuses extract_docx.py from book-chapter-to-vault)
-└── game-dev/
-    ├── cat-game-architecture/        (3 refs + SKILL.md)
-    ├── kimi3-game-gen/               (5 refs + 1 asset + 1 script + SKILL.md)
-    ├── gdd-markdown-template/        (SKILL.md + 26 section assets)
-    ├── single-file-html-game/        (4 refs + 1 asset + 2 scripts + SKILL.md)
-    ├── technical-design-document/    (1 ref + 13 doc assets + SKILL.md)
-    └── webapp-testing/               (3 examples + 1 script + SKILL.md)
+├── AGENTS.md                         ← agent rules (imported by CLAUDE.md)
+├── SKILL/
+│   ├── <category>/tier<N>/<skill>/SKILL.md
+│   └── …                             curated skills, 246 as of 2026-11-11
+├── TEMPLATE/                         agent workflow template (submodule)
+├── TEMPLATE-GOVERNANCE/              template + multi-agent governance (submodule)
+├── vendor/<repo>/                    upstream submodules, re-add source only
+├── docs/                             audits, governance docs, reports
+├── scripts/                          manifest build / sync / verify / policy gate
+└── .github/                          pr-gate.yml (required checks) + task-grade policy
 ```
+
+The per-category listings that used to live here went stale the moment skills
+were re-bucketed; `scripts/install-manifest.txt` (generated) is the truthful
+list of what exists and where.
 
 Install procedure (local-copy, not hub):
 1. `cp -r <category>/<skill-dir> ~/AppData/Local/hermes/skills/<category>/<skill-name>/`

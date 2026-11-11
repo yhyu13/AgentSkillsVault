@@ -167,6 +167,24 @@ Required checks are produced by `.github/workflows/pr-gate.yml`:
 `policy-grade`, `manifest-consistency`, `skill-refs`, `governance-selftest`,
 `merge-authorization`. Do not bypass required checks or force-push `main`.
 
+Three properties of these checks decide whether you are stuck:
+
+- The yellow/red interception is switchable via `authorization_gate.enabled` in
+  `.github/task-grade-policy.json` (default `false` = agent auto-merge; grades
+  are still computed and recorded).
+- **The check code comes from the PR head**, and `gh run rerun` replays the
+  *original* workflow version. If a check fails because the gate itself is out
+  of date, re-running cannot help — merge main into the branch
+  (`gh pr update-branch`) or open a fresh PR.
+- **A skipped required check blocks the merge** (it shows as "Expected"), so
+  never turn a gate off with a job-level `if:`.
+
+Never approve your own work by weakening a gate. When one admin both authors
+and approves, authorization is recorded as an `ADMIN-APPROVE <head SHA>`
+comment, bound to that SHA — see `docs/governance/task-grade-policy.md`.
+More traps (GitGuardian default-branch config, manifest regeneration, branch
+contention) are in `KNOWLEDGE.md`.
+
 ## Git flow
 
 Work on a feature branch, commit, push the branch, open a PR, wait for required
