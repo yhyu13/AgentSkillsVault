@@ -111,6 +111,7 @@
 | opendeck | repo (submodule) | `github.com/open-deck-org/opendeck` @ `d0dbe02` (MIT) — 上游 `skills/opendeck`：动画 + 朗读的 HTML 演示 deck，音频只烘进 HTML（离线单文件） |
 | storyboard (retired) | repo (submodule) | `github.com/gRAYESS123/storyboard-claude` @ `e6b1597` (MIT) — 上游 `skill/`，`name: storyboard`，目录按 frontmatter 改名；网页/文档 → 分镜 → 视频；裁剪掉 `examples/ media/ downloads/` |
 | video-production | repo (submodule) | `github.com/speechlab0210/video-production-skill` @ `8c46c40` (MIT) — 上游根即 skill，`name: video-production`；含 **ASR 回译校验（TTS 合成后 Whisper 反识别，相似度 ≥0.85 才放行）** |
+| doubaofeishu_ui-design-system | local (distilled 2026-11-10) | 上游为单篇规范稿、**没有 SKILL.md**：`F:\XD\DistillSkills\飞书豆包distill\UI 设计系统与组件规范（UI Design System）.md`（12.9 KB，v1.0.0，逐字收录在 `references/ui-design-system-source.md`），本 vault 补写指针层 SKILL.md。内容 = 四条原则（组件库先于页面/无障碍/像素级/开发者友好）+ 三级 Design Token（基础色→语义色→组件色，含字号/间距/圆角/阴影全表）+ 组件三层与状态矩阵 + 六步设计流程 + 响应式断点栅格 + 暗色模式映射 + 常见坑 + 自检清单 |
 
 > Skipped 6 of the repo's 13 skills as redundant/niche: `taste-skill-v1` (superseded by v2), `gpt-tasteskill` (stricter GPT/Codex variant, subsumed by v2), `soft-skill` / `minimalist-skill` / `brutalist-skill` (fixed style presets — v2 infers the design language from the brief), `image-to-code-skill` (pipeline = imagegen-web + taste-frontend). All recoverable from the sibling clone.
 
@@ -210,6 +211,7 @@
 | style-google | local (from user's own store) | `~/.claude/skills/style-google` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的 Google OKR/GRAD 内容同源；2026-10-25 description 首行判别化，v1.0.0 |
 | style-microsoft | local (from user's own store) | `~/.claude/skills/style-microsoft` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的 Microsoft Connects 内容同源；2026-10-25 description 首行判别化，v1.0.0 |
 | style-tencent | local (from user's own store) | `~/.claude/skills/style-tencent` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的腾讯产品指标内容同源；2026-10-25 description 首行判别化，v1.0.0 |
+| doubaofeishu_industry-analysis | local (distilled 2026-11-10) | 上游为单篇方法稿、**没有 SKILL.md**：`F:\XD\DistillSkills\飞书豆包distill\doubao-industry-analysis（行业分析报告）.md`（16 KB，逐字收录在 `references/industry-analysis-report-source.md`），本 vault 补写指针层 SKILL.md。内容 = 行业深度报告的五条质量标准 + 判断主线底稿（七格表/三情景/子命题）+ 五大板块 + 三级数据分级 + 六步流程 + 12 条硬约束 + 交付标准，外加**飞书文档写作方法论**（四原则/三类模板/五步流程/操作实践/常见坑） |
 
 ### math/
 | skill | origin | source |
