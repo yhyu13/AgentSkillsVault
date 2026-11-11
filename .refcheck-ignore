@@ -13,3 +13,9 @@ docs/assets
 # TEMPLATE 模板子模块在 CI 里不初始化（checkout 不带 submodules），工作树只有空挂载点
 TEMPLATE/Agent_Template_Repo_Setup1
 TEMPLATE/Agent_Template_Repo_Governance
+
+# SKILL_CANDIDATES.md 里作为「坏链接示例」被引用的路径：这些正是该文件记录的问题本身，
+# 不是本仓要解析的链接。只豁免这三条精确路径，不收窄其他检查。
+docs/agents/issue-tracker.md
+scripts/update.sh
+scripts/setup.sh

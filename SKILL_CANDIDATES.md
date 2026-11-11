@@ -89,6 +89,9 @@
 
 | 61 | **`removed-skills.txt` 里的名字不等于「可以无脑删」**：`hyperframes-cli` / `hyperframes-registry` / `media-use` 在 retired 表里，同时又以**真身目录**存在于 6 个 hyperframes 店（cursor/copilot/kiro/lingma/qoder-cn/codebuddy），是 hyperframes 安装器装的，不归 vault | 2026-11-08 铺开 10 个 store 前逐店比对 retired 表，命中 18 处，全部是 `LinkType` 为空的真身目录 | retired 清理只删 vault 自己建的 junction；外来真身保留并在 sync 输出里点名（已写进 `sync-skills.ps1` 的 ownership rule） | **已落地** |
 
+| 62 | **83 个 skill 文档里有 256 处失效链接**：示例视频、辅助脚本、ES 模块文件指向仓库内并不存在的路径 | 2026-11-11 tier 重排把 1437 个 md 变成「变更」，`skill-refs` 首次扫到它们；抽查其中一个文件在 main 旧路径下同样报错，说明是既有内容问题而非搬移引入 | 逐 skill 修引用；确认属于外部示例的写进 `.refcheck-ignore` 并注明理由 | 待审 |
+| 63 | **`build-manifest.ps1` 的 skip 正则匹配绝对路径**：vault 位于 `.cindy-worktrees/<name>/` 这类路径下时，246 个 skill 全被跳过，manifest 掉到 10 行；若提交，`sync-skills.ps1` 会按缺 236 个 skill 的清单操作真实 store | 2026-11-11 在本 worktree 实测：249 个含 SKILL.md 的目录，过滤后剩 0；改为匹配 vault 相对路径后重新生成，与已提交 manifest 逐字节一致（零 diff 即正确性判据） | 修 `scripts/build-manifest.ps1`（修复已在本地 `backup/my-tier-rebuild` 分支验证） | 待审 |
+
 > 注：`dispatch-to-dsh` skill 是 2026-11-04 依用户明确要求（「应该把它内化成一个 skill」）**直接创建**的，未走本队列审核；如需回退或改写，改 `C:\Users\yuhang\.claude\skills\dispatch-to-dsh\SKILL.md`（2026-11-06 起四个 store 的唯一真身；`.kilo` / `.codex` / `.agents` 均为指向它的 junction）。
 
 ## 已采纳并落地的（供追溯）
