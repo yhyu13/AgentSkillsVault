@@ -1,0 +1,11 @@
+# Refcheck 豁免清单（repo 根，供 CI 的 skill-refs 检查使用）
+#
+# 格式：一行一个前缀/精确路径，`*` 结尾表示前缀匹配；`#` 开头是注释。
+# 只登记"引用确实不可达、但属于外部仓或来源项目"的路径，必须写理由。
+#
+# --- INSTRUCTION.md 的溯源行 ---
+# 下面三条出自 skill 的来源记录（hackathon-pitch-pipeline / lieflat-charts），
+# 指向的是**来源项目仓库**里的文件，不在本 vault 内；保留原路径是为了可追溯。
+docs/pitch/decisions.md
+docs/review-gate/README.md
+docs/assets
