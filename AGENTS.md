@@ -8,9 +8,10 @@ globally unique across the whole vault.
 ## Layout
 
 ```
-SKILL/<category>/<skill>/SKILL.md   curated skills (categories: content, design, devops,
-                                    game-dev, knowledge-vault, management, software-development,
-                                    video, writing, agents, …)
+SKILL/<category>/tier<N>/<skill>/SKILL.md
+                                    curated skills (categories: agents, content, design, devops,
+                                    game-dev, knowledge-vault, management, math,
+                                    software-development, video, writing)
 vendor/<repo>/                      upstream git submodules — source of truth for re-adding
                                     skills; NOT installed unless listed in the manifest
 docs/                               audits, reports, audit python scripts (not installable)
@@ -18,9 +19,16 @@ scripts/                            manifest build / sync / verify tooling
 .kilo/                              harness-local sync scripts + pinned/removed skill lists
 ```
 
+- **Two different "tiers" — do not confuse them.**
+  - `SKILL/<category>/tier<N>/` is a *quality* bucket from `docs/skill-capacity-audit/score_skills.py`
+    (0–10): `tier0` ≥ 9.0, `tier1` 8.0–8.99, `tier2` 7.0–7.99, `tier3` 6.0–6.99, `tier4` < 6.0.
+    Re-score and re-bucket with `docs/skill-capacity-audit/rearrange-tiers.ps1` after skills change.
+  - `scripts/skill-tiers.txt` (`A` / `B` / `C`) is the *visibility* tier (always model-invocable /
+    installed-but-hidden / not installed). It is unrelated to the folder name.
 - `SKILL/` is the only source of curated skills. A skill dir is any directory that
-  contains a `SKILL.md`; nesting is allowed (`software-development/mattpocock/skills/engineering/tdd`
-  installs as `tdd`).
+  contains a `SKILL.md`; nesting used to be allowed (`software-development/mattpocock/skills/engineering/tdd`
+  installs as `tdd`) — since 2026-11-10 every curated skill is flattened to
+  `SKILL/<category>/tier<N>/<leaf>` so the folder name states its score bucket.
 - `vendor/` submodules are pinned by commit. Editing a vendored file is lost on
   `git submodule update` — vendored skills are copied into `SKILL/`, never edited in place.
 - `README.md` and `INSTRUCTION.md` are the human-facing index and provenance record.
@@ -158,10 +166,6 @@ and [docs/governance/task-grade-policy.md](docs/governance/task-grade-policy.md)
 Required checks are produced by `.github/workflows/pr-gate.yml`:
 `policy-grade`, `manifest-consistency`, `skill-refs`, `governance-selftest`,
 `merge-authorization`. Do not bypass required checks or force-push `main`.
-The yellow/red interception in `merge-authorization` is switchable via
-`authorization_gate.enabled` in `.github/task-grade-policy.json` (default
-false = agent auto-merge allowed; grades are still computed and recorded —
-see docs/governance/task-grade-policy.md).
 
 ## Git flow
 

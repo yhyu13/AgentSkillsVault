@@ -22,7 +22,7 @@ Source: extracted from **Pirate Ship Sunset**, a single-file Three.js r169 scene
 Copy [assets/ocean.mjs](assets/ocean.mjs). You pass in the project's own `THREE`, and the module does not import a second copy. Before you integrate it, read [references/ocean.md](references/ocean.md), which covers the full constants, render order, buoyancy and post. [The demo](demo/index.html) runs this same module inside the original scene. `demo/build.mjs` rebuilds it from the reference page.
 
 ```js
-import { createWaves, bakeOceanDetail, createOcean, createWake, createPlanarReflection } from './ocean.mjs';
+import { createWaves, bakeOceanDetail, createOcean, createWake, createPlanarReflection } from './assets/ocean.mjs';
 
 const waves = createWaves({ direction: 1.22 });                 // wind heading, radians
 const ocean = createOcean(THREE, {

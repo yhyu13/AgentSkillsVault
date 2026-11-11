@@ -62,8 +62,18 @@ if (Test-Path -LiteralPath $removedFile) {
   $retired = @(Get-Content -LiteralPath $removedFile -Encoding UTF8 | Where-Object { $_ -and -not $_.StartsWith('#') } | ForEach-Object { $_.Trim() })
 }
 $hits = @()
+$CanonicalPath = Join-Path $HOME '.claude\skills'
 foreach ($n in $retired) {
-  foreach ($s in $StorePaths) { if (Test-Path -LiteralPath (Join-Path $s $n)) { $hits += (Split-Path $s -Leaf) + "/" + $n } }
+  foreach ($s in $StorePaths) {
+    $p = Join-Path $s $n
+    if (-not (Test-Path -LiteralPath $p)) { continue }
+    $item = Get-Item -LiteralPath $p -Force -ErrorAction SilentlyContinue
+    # Foreign real dirs in the view stores are installed by other tools, not by
+    # this vault (see AGENTS.md "host quirks"); only junctions and the canonical
+    # copy count as vault-owned leftovers.
+    if ($item -and -not $item.LinkType -and ($s -ne $CanonicalPath)) { continue }
+    $hits += (Split-Path $s -Leaf) + "/" + $n
+  }
 }
 if ($hits.Count -gt 0) { Fail ("retired skills still installed: " + ($hits -join ', ')) } else { Ok ("no retired skill installed ({0} names checked)" -f $retired.Count) }
 

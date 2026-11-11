@@ -79,15 +79,19 @@ jobs:
         env:
           PYTHONUTF8: '1'
         run: |
-          mapfile -t files < <(git diff --name-only origin/main...HEAD -- '*.md' | while read -r file; do
+          # SKILL.md 已由上一小步（docs/skill-capacity-audit/check_refs.py，带 refs-allow.txt）
+          # 全量校验；这里只查仓库级文档，避免同一批引用被两套语义各判一次。
+          mapfile -t files < <(git diff --name-only origin/main...HEAD -- \
+            'AGENTS.md' 'INSTRUCTION.md' 'README.md' 'KNOWLEDGE.md' 'JOURNEY.md' \
+            ':(glob)docs/**/*.md' | while read -r file; do
             if [ -f "$file" ]; then printf '%s\n' "$file"; fi
           done)
           if [ "${#files[@]}" -eq 0 ]; then
             echo "No changed markdown files to check."
             exit 0
           fi
-          python SKILL/software-development/multi-agent-repo-governance/templates/scripts/check-refs.py \
-            --root . "${files[@]}"
+          GOV=$(dirname "$(find SKILL -path '*/multi-agent-repo-governance/templates' -type d -print -quit)")
+          python "$GOV/templates/scripts/check-refs.py" --root . "${files[@]}"
 
   governance-selftest:
     runs-on: ubuntu-latest
@@ -102,10 +106,11 @@ jobs:
         env:
           PYTHONUTF8: '1'
         run: |
-          bash -n SKILL/software-development/multi-agent-repo-governance/templates/scripts/pre-merge-check.sh
-          bash -n SKILL/software-development/multi-agent-repo-governance/templates/scripts/new-slice.sh
-          bash -n SKILL/software-development/multi-agent-repo-governance/templates/scripts/pr-grade.sh
-          bash SKILL/software-development/multi-agent-repo-governance/templates/scripts/pr-grade.sh --selftest
+          GOV=$(dirname "$(find SKILL -path '*/multi-agent-repo-governance/templates' -type d -print -quit)")
+          bash -n "$GOV/templates/scripts/pre-merge-check.sh"
+          bash -n "$GOV/templates/scripts/new-slice.sh"
+          bash -n "$GOV/templates/scripts/pr-grade.sh"
+          bash "$GOV/templates/scripts/pr-grade.sh" --selftest
           python -m py_compile scripts/task_policy.py scripts/policy_gate.py scripts/merge_authorization.py scripts/check_manifest.py
           python -m unittest discover -s tests -p 'test_*.py' -v
 

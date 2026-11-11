@@ -19,6 +19,7 @@ Usage:  python score_skills.py --root <skills-dir> [--vault <vault-dir>]
 """
 import argparse
 import csv
+import fnmatch
 import hashlib
 import json
 import os
@@ -100,7 +101,37 @@ def collect_refs(text: str):
     return cleaned
 
 
-def audit(skill_dir: Path, vault_dir: Path = None, vault_rel: str = None):
+ALLOW_FILE = Path(__file__).resolve().parent / "refs-allow.txt"
+
+
+def load_allow(path: Path = None):
+    """<skill>|<fnmatch pattern>|<reason>; skill '*' matches every skill."""
+    p = Path(path) if path else ALLOW_FILE
+    rules = []
+    if not p.is_file():
+        return rules
+    for line in p.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = line.split("|")
+        if len(parts) < 2:
+            continue
+        rules.append((parts[0].strip(), parts[1].strip(),
+                      (parts[2].strip() if len(parts) > 2 else "")))
+    return rules
+
+
+def is_allowed(skill: str, ref: str, rules):
+    for sk, pat, _reason in rules:
+        if sk not in ("*", skill):
+            continue
+        if fnmatch.fnmatch(ref, pat) or fnmatch.fnmatch(ref.rstrip("/"), pat):
+            return True
+    return False
+
+
+def audit(skill_dir: Path, vault_dir: Path = None, vault_rel: str = None, allow=()):
     skill_md = skill_dir / "SKILL.md"
     raw = read_text(skill_md)
     fm, body = parse_frontmatter(raw)
@@ -144,6 +175,7 @@ def audit(skill_dir: Path, vault_dir: Path = None, vault_rel: str = None):
     # --- D. link integrity (0-2)
     refs = collect_refs(body)
     broken = []
+    allowed_refs = []
     broken_resolvable_in_vault = []
     for r in sorted(refs):
         cand = skill_dir / r
@@ -151,6 +183,9 @@ def audit(skill_dir: Path, vault_dir: Path = None, vault_rel: str = None):
             # tolerate ./ and trailing punctuation
             alt = skill_dir / r.lstrip("./")
             if not alt.exists():
+                if allow and is_allowed(skill_dir.name, r, allow):
+                    allowed_refs.append(r)
+                    continue
                 broken.append(r)
                 if vault_dir is not None and vault_rel is not None:
                     vp = vault_dir / vault_rel
@@ -220,6 +255,11 @@ def main():
     ap.add_argument("--serial", action="store_true", help="force one worker")
     ap.add_argument("--self-check", action="store_true",
                     help="prove parallel == serial, exit 1 on drift")
+    ap.add_argument("--recursive", action="store_true",
+                    help="walk the tree (default: direct children only)")
+    ap.add_argument("--allow", default="",
+                    help="refs allowlist (default: refs-allow.txt beside this script)")
+    ap.add_argument("--no-allow", action="store_true", help="score every ref strictly")
     args = ap.parse_args()
 
     root = Path(args.root)
@@ -227,9 +267,17 @@ def main():
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
 
-    skills = sorted([p for p in root.iterdir()
-                     if p.is_dir() and (p / "SKILL.md").is_file()],
-                    key=lambda p: p.name.lower())
+    allow = () if args.no_allow else load_allow(args.allow or ALLOW_FILE)
+    if args.recursive:
+        skip_parts = {".git", "vendor", "docs", "TEMPLATE", "archived",
+                      "node_modules", ".github"}
+        skills = sorted({sm.parent for sm in root.rglob("SKILL.md")
+                         if not (set(sm.relative_to(root).parts) & skip_parts)},
+                        key=lambda p: p.name.lower())
+    else:
+        skills = sorted([p for p in root.iterdir()
+                         if p.is_dir() and (p / "SKILL.md").is_file()],
+                        key=lambda p: p.name.lower())
 
     # vault path map (skill name -> category/name)
     vmap = {}
@@ -241,9 +289,9 @@ def main():
 
     def audit_all(jobs):
         if jobs <= 1:
-            return [audit(p, vault, vmap.get(p.name)) for p in skills]
+            return [audit(p, vault, vmap.get(p.name), allow) for p in skills]
         with ThreadPoolExecutor(max_workers=jobs) as ex:
-            return list(ex.map(lambda p: audit(p, vault, vmap.get(p.name)), skills))
+            return list(ex.map(lambda p: audit(p, vault, vmap.get(p.name), allow), skills))
 
     jobs = 1 if args.serial else max(1, args.jobs)
     rows = audit_all(jobs)
