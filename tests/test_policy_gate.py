@@ -163,6 +163,19 @@ class GitGradeTests(unittest.TestCase):
         self.assertEqual(result["grade"], "yellow")
         self.assertTrue(result["evidence_errors"])
 
+    def test_grade_output_records_gate_flag(self):
+        policy_without_gate = {k: v for k, v in POLICY.items() if k != "authorization_gate"}
+        (self.repo / "gate-probe.txt").write_text("probe\n", encoding="utf-8")
+        git(self.repo, "add", "-A")
+        git(self.repo, "commit", "-m", "gate probe")
+        head_sha = git(self.repo, "rev-parse", "HEAD")
+        with_flag = grade_pull_request(self.repo, POLICY, "main", "HEAD", head_sha, "no evidence")
+        self.assertIs(with_flag["authorization_gate"], False)
+        without_flag = grade_pull_request(
+            self.repo, policy_without_gate, "main", "HEAD", head_sha, "no evidence"
+        )
+        self.assertIs(without_flag["authorization_gate"], True)
+
     def test_merge_conflict_is_red(self):
         (self.repo / "base.txt").write_text("feature\n", encoding="utf-8")
         git(self.repo, "commit", "-am", "feature change")
@@ -321,6 +334,31 @@ class AuthorizationTests(unittest.TestCase):
         )
         self.assertFalse(authorized)
         self.assertIn("unresolved review blocker", message)
+
+    def grade_gate_off(self, grade: str) -> dict:
+        data = self.grade(grade)
+        data["authorization_gate"] = False
+        return data
+
+    def test_gate_disabled_allows_red_without_approval(self):
+        authorized, message = evaluate_authorization(
+            self.grade_gate_off("red"), "author", [], lambda _: "admin"
+        )
+        self.assertTrue(authorized)
+        self.assertIn("gate disabled", message)
+
+    def test_gate_disabled_allows_yellow_without_approval(self):
+        authorized, _ = evaluate_authorization(
+            self.grade_gate_off("yellow"), "author", [], lambda _: None
+        )
+        self.assertTrue(authorized)
+
+    def test_gate_disabled_does_not_mask_unknown_grade(self):
+        authorized, message = evaluate_authorization(
+            self.grade_gate_off("purple"), "author", [], lambda _: None
+        )
+        self.assertFalse(authorized)
+        self.assertIn("unknown grade", message)
 
 
 if __name__ == "__main__":

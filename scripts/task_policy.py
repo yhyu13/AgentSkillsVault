@@ -228,6 +228,7 @@ def grade_pull_request(
         "merge_conflict": conflict,
         "reasons": reasons,
         "evidence_errors": evidence_errors,
+        "authorization_gate": authorization_gate_enabled(policy),
     }
 
 
@@ -246,6 +247,20 @@ def _latest_reviews_by_user(reviews: Iterable[dict[str, Any]]) -> dict[str, dict
 
 
 ADMIN_APPROVE_PREFIX = "ADMIN-APPROVE "
+
+
+def authorization_gate_enabled(policy: dict[str, Any]) -> bool:
+    """Yellow/red interception switch.
+
+    ``authorization_gate.enabled: false`` in the policy file makes
+    merge-authorization pass through (agent auto-merge allowed; grades are
+    still computed and recorded). A missing or malformed block means enabled
+    (fail closed — the pre-switch behavior).
+    """
+    gate = policy.get("authorization_gate")
+    if not isinstance(gate, dict):
+        return True
+    return bool(gate.get("enabled", True))
 
 
 def _admin_comment_login(
@@ -287,10 +302,15 @@ def evaluate_authorization(
     comments: Iterable[dict[str, Any]] = (),
 ) -> tuple[bool, str]:
     grade = grade_data.get("grade")
+    if grade not in {"green", "yellow", "red"}:
+        return False, f"unknown grade: {grade}"
+    if grade_data.get("authorization_gate") is False:
+        return True, (
+            "authorization gate disabled by policy: agent auto-merge allowed "
+            "(grade recorded)"
+        )
     if grade == "green":
         return True, "green: no human approval required"
-    if grade not in {"yellow", "red"}:
-        return False, f"unknown grade: {grade}"
 
     head_sha = grade_data.get("head_sha")
     if not head_sha:

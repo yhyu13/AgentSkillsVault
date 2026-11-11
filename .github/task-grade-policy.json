@@ -89,6 +89,10 @@
       "not_applicable_requires_reason": true
     }
   },
+  "authorization_gate": {
+    "enabled": false,
+    "description": "false: merge-authorization passes through — agent auto-merge allowed, grades still computed and recorded. true: yellow needs human approval, red needs admin authorization (approving review or ADMIN-APPROVE comment). Missing/malformed = true (fail closed)."
+  },
   "approval": {
     "yellow_requires_human_approval": true,
     "red_requires_admin_approval": true,
