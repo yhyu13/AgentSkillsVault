@@ -1,0 +1,16 @@
+# GitGuardian 误报排除（只针对"文档示例 / 模板占位符"，不放宽扫描范围）
+#
+# 2026-11-10 tier 重排把以下文件移动了位置，GitGuardian 因此把它们当作新增行重扫，
+# 报出 3 个 "secret"。人工核对结论：都是示例文本，不是真实凭据。
+#
+#   authenticated-session.sh  `: "${APP_PASSWORD:?Set APP_PASSWORD environment variable}"` —— 环境变量占位
+#   pocketWatchDraw.ts        `const key = "pwDraw:sched"` —— 绘图缓存键，不是密钥
+#   pdf/reference.md          `qpdf --password=secret123 --decrypt ...` —— 命令行文档示例
+#
+# 只排除这三个文件，不排除目录；新增的真实密钥仍会被扫到。
+version: 2
+secret:
+  ignored-paths:
+    - "SKILL/content/*/agent-browser/templates/authenticated-session.sh"
+    - "SKILL/video/*/anidoodle/engine/src/canvas-core/pocketWatchDraw.ts"
+    - "SKILL/content/*/pdf/reference.md"

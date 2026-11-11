@@ -24,7 +24,7 @@ Verified stack: Three.js r170, WebGL2, GLSL `ShaderMaterial`s, one HalfFloat ren
 Copy [assets/underwater-light.mjs](assets/underwater-light.mjs). You pass in your own `THREE`, and the module does not import a second copy. [The demo](demo/index.html) runs this same module inside Blue Hour's renderer. `demo/build.mjs` rebuilds it from the Blue Hour sources.
 
 ```js
-import { createUnderwaterLight, LIGHT_GLSL, WATER_GLSL } from './underwater-light.mjs';
+import { createUnderwaterLight, LIGHT_GLSL, WATER_GLSL } from './assets/underwater-light.mjs';
 
 // One uniforms object shared by the water, fish and particle materials.
 const uniforms = {

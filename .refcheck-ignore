@@ -9,3 +9,7 @@
 docs/pitch/decisions.md
 docs/review-gate/README.md
 docs/assets
+
+# TEMPLATE 模板子模块在 CI 里不初始化（checkout 不带 submodules），工作树只有空挂载点
+TEMPLATE/Agent_Template_Repo_Setup1
+TEMPLATE/Agent_Template_Repo_Governance
