@@ -1,0 +1,103 @@
+/* MUTANT v2 - every rule below is a deliberate defect, aimed at the gate's
+   own preconditions in scripts/film-checks.mjs. */
+.mv-card {
+  & .ss-stage {
+    overflow: hidden;
+    background: var(--ss-well);
+  }
+
+  /* FAULT 1 - Boxed: the whole window sits inside the stage with even air on
+     all four sides (20px top/bottom, 60px left/right). */
+  .mv-window {
+    position: absolute;
+    top: 20px;
+    left: 60px;
+    width: 600px;
+    height: 300px;
+    background: var(--ss-surface);
+    border-radius: 10px;
+    box-shadow: var(--ss-shadow-hero);
+  }
+
+  .mv-window .ss-window__body {
+    display: flex;
+  }
+
+  .mv-sidebar {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: 4px;
+    width: 120px;
+    padding: 16px 10px;
+    border-right: 1px solid var(--ss-line);
+    background: var(--ss-canvas);
+  }
+
+  /* FAULT 3 - an emoji alone in a small seat box, next to words. */
+  .mv-seat {
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .mv-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 24px;
+    padding: 0 6px;
+    border-radius: 6px;
+  }
+
+  .mv-main {
+    flex: 1;
+    min-width: 0;
+    padding: 16px 18px;
+  }
+
+  .mv-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .mv-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ss-text-strong);
+  }
+
+  .mv-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* FAULT 2 - Fat row: one-line rows 60px tall for a 13px line, no bars. */
+  .mv-row {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid var(--ss-line-faint);
+  }
+
+  .mv-name {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    color: var(--ss-text-strong);
+  }
+
+  .mv-nav__label {
+    font-size: 10.5px;
+    line-height: 14px;
+    color: var(--ss-text);
+  }
+
+  .mv-nav[data-on] .mv-nav__label {
+    color: var(--ss-text-strong);
+    font-weight: 600;
+  }
+}

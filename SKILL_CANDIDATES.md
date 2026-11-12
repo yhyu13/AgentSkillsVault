@@ -92,6 +92,7 @@
 | 62 | **83 个 skill 文档里有 256 处失效链接**：示例视频、辅助脚本、ES 模块文件指向仓库内并不存在的路径 | 2026-11-11 tier 重排把 1437 个 md 变成「变更」，`skill-refs` 首次扫到它们；抽查其中一个文件在 main 旧路径下同样报错，说明是既有内容问题而非搬移引入 | 逐 skill 修引用；确认属于外部示例的写进 `.refcheck-ignore` 并注明理由 | 待审 |
 | 63 | **`build-manifest.ps1` 的 skip 正则匹配绝对路径**：vault 位于 `.cindy-worktrees/<name>/` 这类路径下时，246 个 skill 全被跳过，manifest 掉到 10 行；若提交，`sync-skills.ps1` 会按缺 236 个 skill 的清单操作真实 store | 2026-11-11 在本 worktree 实测：249 个含 SKILL.md 的目录，过滤后剩 0；改为匹配 vault 相对路径后重新生成，与已提交 manifest 逐字节一致（零 diff 即正确性判据） | 修 `scripts/build-manifest.ps1`（修复已在本地 `backup/my-tier-rebuild` 分支验证） | 待审 |
 
+| 64 | ★ **「引用存在」不等于「引用自包含」**：`../sibling/SKILL.md` 这类跨目录引用，只要同级包碰巧并排装在同一个 store 里就 `os.path.exists()` 全绿，单独装任何一个包才暴露。skill 是按「各自一个目录」分发的，跨目录引用等于隐含一个没写进任何地方的多包安装前提 | 2026-11-12 从 `个人成长` 产物装的 process-motivation 一族：原版 9 处 `../…/SKILL.md`，原检查器 `_check_refs.py` 报 PROBLEMS=0（假阴性）；用 `docs/skill-capacity-audit/check_selfcontained.py` 复跑原版 → 3 个包报 ESCAPE，修成按 skill 名引用后 7/7 OK | `docs/skill-capacity-audit/check_selfcontained.py`（本次新建）；凡是从视频/长文提炼出的 skill 家族，装库前先跑它 | **已落地** |
 > 注：`dispatch-to-dsh` skill 是 2026-11-04 依用户明确要求（「应该把它内化成一个 skill」）**直接创建**的，未走本队列审核；如需回退或改写，改 `C:\Users\yuhang\.claude\skills\dispatch-to-dsh\SKILL.md`（2026-11-06 起四个 store 的唯一真身；`.kilo` / `.codex` / `.agents` 均为指向它的 junction）。
 
 ## 已采纳并落地的（供追溯）

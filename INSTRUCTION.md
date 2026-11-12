@@ -85,6 +85,7 @@
 ### design/
 | skill | origin | source |
 |-------|--------|--------|
+| stageshow | repo | `github.com/benjitaylor/skills` @ `299140f`（MIT，stageshow v1.1.1）；已复制 `stageshow/` 整个 skill 目录进 `design/stageshow`（**跳过 `node_modules/` 115 MB**，用 `npm install` 重建，其余 6.4 MB 全保留含 `shots/` 教学截图）。做「假产品 UI」：浏览器/应用窗口、仪表盘、手机、通知、终端、bento 格、光标走查，可出静帧或带动效演示；配 `kit/` 组件、`examples/` 黄金示例、15 份 `references/`、12 个 `scripts/`（含成片自查） |
 | taste-frontend (retired) | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\taste-skill` (GitHub: Leonxlnx/taste-skill) — v2 default; original install name `design-taste-frontend` |
 | taste-redesign | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\redesign-skill` (GitHub: Leonxlnx/taste-skill) — original install name `redesign-existing-projects` |
 | taste-output (retired) | sibling (repo, renamed) | `D:\GitRepo-AI\taste-skill\skills\output-skill` (GitHub: Leonxlnx/taste-skill) — original install name `full-output-enforcement` |
@@ -210,6 +211,7 @@
 | style-bytedance | local (from user's own store) | `~/.claude/skills/style-bytedance` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的字节 OKR 内容同源；2026-10-25 description 首行判别化，v1.0.0 |
 | style-google | local (from user's own store) | `~/.claude/skills/style-google` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的 Google OKR/GRAD 内容同源；2026-10-25 description 首行判别化，v1.0.0 |
 | style-microsoft | local (from user's own store) | `~/.claude/skills/style-microsoft` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的 Microsoft Connects 内容同源；2026-10-25 description 首行判别化，v1.0.0 |
+| process-motivation-design + 3 (process-reward-boost / process-friction-cut / action-substitution) | local (distilled from video) | B 站《长期持续做事，只能靠足够的低级动力》`BV1Evnb6eEbS`（UP 主：奥德修斯的绳索）；素材在 `C:\Git-repo-my\个人成长/bili-low-level-motivation`。父 skill 按「能开始吗 / 能维持吗 / 做不做得到还是停不下」三问路由到三个子 skill；**装进 vault 时修了 9 处跨目录引用**：原版用 `../process-friction-cut/SKILL.md` 指向同级包，只在四个包并排安装时才解析得开，已全部改成按 skill 名引用（父子关系仍写在 description 里）。自包含校验：`docs/skill-capacity-audit/check_selfcontained.py` 7/7 OK |
 | style-tencent | local (from user's own store) | `~/.claude/skills/style-tencent` (2026-10-25 提升进 vault)；与 `style-report/references/` 中的腾讯产品指标内容同源；2026-10-25 description 首行判别化，v1.0.0 |
 | doubaofeishu_industry-analysis | local (distilled 2026-11-10) | 上游为单篇方法稿、**没有 SKILL.md**：`F:\XD\DistillSkills\飞书豆包distill\doubao-industry-analysis（行业分析报告）.md`（16 KB，逐字收录在 `references/industry-analysis-report-source.md`），本 vault 补写指针层 SKILL.md。内容 = 行业深度报告的五条质量标准 + 判断主线底稿（七格表/三情景/子命题）+ 五大板块 + 三级数据分级 + 六步流程 + 12 条硬约束 + 交付标准，外加**飞书文档写作方法论**（四原则/三类模板/五步流程/操作实践/常见坑） |
 
@@ -228,6 +230,7 @@
 ### software-development/
 | skill | origin | source |
 |-------|--------|--------|
+| agent-desktop | repo (extracted from a CLI's bundled skill) | `github.com/vercel-labs/agent-desktop`（Apache-2.0，npm `agent-desktop` v1.0.2）；用 `agent-desktop skills get desktop|platform|<reference>` 导出，导出脚本见 `C:/Git-repo-my/个人成长/bili-ai-desktop-control/export_skill.py`。桌面操控走 OS 无障碍树（不截图、不靠像素）；SKILL.md 正文 + `references/` 5 份（platform / commands-observation / commands-interaction / commands-system / workflows）。装进 vault 时修了 1 处引用歧义：正文 `commands-system.md` 改为 `references/commands-system.md` |
 | aisides-ai-self-review | local | written for the AISides project |
 | debugger-persona (retired) | local | written — debug diagnosis + Chinese doc writing + code discipline persona |
 | journey | local | written (two-column ME/YOU history) |
@@ -259,6 +262,7 @@
 | make-interfaces-feel-better | repo (submodule) | `github.com/jakubkrehel/make-interfaces-feel-better` @ `35545ea` — UI 与动效细节打磨 |
 | onetake | repo (submodule) | `github.com/feitangyuan/onetake` @ `013a61a` — 一镜到底产品发布片（PolyForm Noncommercial；样片 mp4 未复制） |
 | lemo-opuscar | repo (submodule) | `github.com/lemomo-ai/lemo-opuscar` @ `413a6bd` — 39 种纯代码影片风格库 |
+| bili-video-repack | local (distilled from video + skill eval) | B 站《调情力：会让你的生活更美好》`BV1bCn36NEF1`（12:21，UP 主：脑神经科学）；素材在 `C:\Git-repo-my\个人成长/flirting-power-motion`。把一支 B 站视频重做成「中文 PPT + 口播动效网页 + MP4」三件套；bathtub 版（baseline）与本 skill（with-skill）做过对照 eval，见同目录 `qa/eval/verdict.md`——差距在「照抄能否跑通」：baseline 的 yt-dlp/faster-whisper/edge-tts/soffice 四步在本机跑不起来。**装进 vault 时修了 2 处非自包含引用**：写死的 `~/.minimax/skills/...` 复制路径改为「本 skill 目录」；外部绝对路径 `render_pptx.py` 已随包复制进 `scripts/` |
 | motion-showreel | repo (submodule) | `github.com/ConardLi/garden-skills` @ `2b9a893` (MIT) — `vendor/garden-skills`；已复制进 `video/motion-showreel`（上游 `skills/motion-showreel`，整目录含 `references/styles/` 40 风格、`scripts/` 渲染与质检工具、`assets/` starter+editor）。代码渲染动效视频：页面暴露确定性 `render(t)` → Playwright 逐帧截图 → ffmpeg 合成 MP4，画面/口播/配乐共用 `timeline.js`，最长 20 分钟；先预览后导出。安装前经 skill-inspector 静态人工审查（无注入/外传；仅调用本机 ffmpeg/python 与用户自备 key 的 Gemini/MiniMax TTS）。仓库另含 beautiful-article / gpt-image-2 / kb-retriever / web-design-engineer / web-video-presentation 未安装 |
 | mengto/* (29) | repo (submodule, 筛选) | `github.com/MengTo/Skills` @ `398cd41` — `3d/`(16) + `media/`(2) + `codex/`(11)；`web-design/`、`game-*/`、`illustration/` 未复制 |
 | kinetic-reel (retired) | repo (submodule) | `github.com/tuzhechen2005/opus-video-skills` @ `59744a6` — 纯代码动效字 reel：Canvas 2D + three.js 生成层 + WebGL 后期，无头 Chrome 逐帧 + ffmpeg 编码，Node 按同一份 `cues.js` 合成节拍对齐配乐；上游 `skills/kinetic-reel`；已复制进 `video/kinetic-reel` |
