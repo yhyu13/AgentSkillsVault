@@ -11,7 +11,7 @@ description: >-
 metadata:
   category: software-development
   created_by: agent
-  version: 1.1.1
+  version: 1.2.0
   origin: local (distilled from the Aholo hackathon repo's R1~R5 governance, 2026-11)
 ---
 
@@ -40,7 +40,7 @@ multi-agent-repo-governance/
 ├── SKILL.md                        ← 本文件
 ├── references/
 │   ├── governance-model.md         ← 五条规则为什么这样定（判据、失效条件、授权矩阵）
-│   ├── ci-gates.md                 ← 五个闸门怎么接、required checks、账单假红排障
+│   ├── ci-gates.md                 ← 五个闸门怎么接、required checks、账单假红排障、七个自举陷阱
 │   ├── doc-layout-rules.md         ← 目录职责、一份正本、引用检查三级分类、忽略清单
 │   └── anti-patterns.md            ← 10 个真实踩过的坑：症状 → 根因 → 对策
 └── templates/                      ← 拷进目标仓的文件（相对路径引用，可直接复制）
@@ -128,6 +128,9 @@ multi-agent-repo-governance/
 | 合并前 | `bash scripts/pre-merge-check.sh origin/<branch> main` → 贴**完整输出**（含 `SAFE_TO_MERGE` / `CHECK_TIMESTAMP` / `MAIN_HEAD`）→ TTL 内执行合并 |
 | 文档引用报错 | `python scripts/check-refs.py --pr <N>` 看清单；确实是外部仓路径或待产出物料 → 写进 `.refcheck-ignore` 并在 PR 正文说明理由；整篇在讲「还缺什么」→ 文件头加 `refcheck:skip-file` 声明 |
 | CI 全员红但没报错 | 看 check-run 注解原文；`started_at` 与 `completed_at` 只差 1~2 秒 = 没拿到 runner = **账单封锁**，不是权限问题（见 [references/ci-gates.md](references/ci-gates.md)） |
+| 黄/红 PR 卡住、自己又无法 Approve | 单管理员仓的死锁：作者不能审自己。见 ci-gates 的「七个自举陷阱」第 1 条（评论授权协议） |
+| 关掉闸门后 PR 反而合不进去 | 跳过的 required check = 永久 Expected。开关要做进检查内部，不做成 job 级 `if:`（陷阱 2） |
+| 修好闸门、重跑仍是旧报错 | `rerun` 重放原 workflow 且检查代码取自 PR head → `gh pr update-branch` 或开新 PR（陷阱 3、4） |
 | 同步基线后 commit-lint 红了 | 用合规 merge message：`git merge origin/main -m "chore(<slice>): 同步 main 基线" -m "Refs: #<issue>"` |
 
 ## 先读哪篇
