@@ -36,7 +36,9 @@
 3d-virtual-tour|SKILL/video/tier3/3d-virtual-tour|B
 3d-wood-lighting-scorecard|SKILL/video/tier1/3d-wood-lighting-scorecard|B
 3d-wood-material|SKILL/video/tier3/3d-wood-material|B
+action-substitution|SKILL/management/tier4/action-substitution|A
 agent-browser|SKILL/content/tier1/agent-browser|A
+agent-desktop|SKILL/software-development/tier2/agent-desktop|A
 ai-3d-character-pipeline|SKILL/game-dev/tier2/ai-3d-character-pipeline|B
 ai-3d-scene-pipeline|SKILL/game-dev/tier2/ai-3d-scene-pipeline|B
 aigc-image-control|SKILL/content/tier1/aigc-image-control|A
@@ -52,6 +54,7 @@ ask-matt|SKILL/software-development/tier3/ask-matt|B
 audit-verify-explain-grade-5|SKILL/video/tier2/audit-verify-explain-grade-5|B
 aura-asset-images|SKILL/video/tier2/aura-asset-images|B
 bezos-advisor|SKILL/management/tier3/bezos-advisor|B
+bili-video-repack|SKILL/video/tier1/bili-video-repack|A
 blender-game-assets-v2|SKILL/game-dev/tier2/blender-game-assets-v2|A
 blog-to-linkedin-post|SKILL/content/tier1/blog-to-linkedin-post|A
 blog-to-twitter-post|SKILL/content/tier1/blog-to-twitter-post|A
@@ -189,6 +192,9 @@ prd|SKILL/management/tier4/prd|B
 precedent-transactions|SKILL/management/tier3/precedent-transactions|B
 presentation-skill|SKILL/design/tier1/presentation-skill|A
 procedural-3d-scenes|SKILL/game-dev/tier2/procedural-3d-scenes|B
+process-friction-cut|SKILL/management/tier3/process-friction-cut|A
+process-motivation-design|SKILL/management/tier3/process-motivation-design|A
+process-reward-boost|SKILL/management/tier3/process-reward-boost|A
 progress-doc-style|SKILL/content/tier3/progress-doc-style|B
 project-update|SKILL/management/tier3/project-update|A
 prompt-pro|SKILL/software-development/tier3/prompt-pro|A
@@ -218,6 +224,7 @@ social-push|SKILL/content/tier3/social-push|B
 software-dev-loop|SKILL/software-development/tier2/software-dev-loop|A
 source-anchored-design|SKILL/software-development/tier3/source-anchored-design|A
 spark-prairie-fire|SKILL/management/tier3/spark-prairie-fire|B
+stageshow|SKILL/design/tier0/stageshow|A
 style-alibaba|SKILL/management/tier3/style-alibaba|A
 style-amazon|SKILL/management/tier2/style-amazon|A
 style-bytedance|SKILL/management/tier3/style-bytedance|A

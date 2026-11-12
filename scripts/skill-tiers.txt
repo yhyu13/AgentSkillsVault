@@ -44,7 +44,9 @@
 3d-virtual-tour|B
 3d-wood-lighting-scorecard|B
 3d-wood-material|B
+action-substitution|A
 agent-browser|A
+agent-desktop|A
 ai-3d-character-pipeline|B
 ai-3d-scene-pipeline|B
 ai-video-production|A
@@ -61,6 +63,7 @@ ask-matt|B
 audit-verify-explain-grade-5|B
 aura-asset-images|B
 bezos-advisor|B
+bili-video-repack|A
 blog-to-linkedin-post|A
 blog-to-twitter-post|A
 book-chapter-to-vault|A
@@ -185,6 +188,9 @@ prd|B
 precedent-transactions|B
 presentation-skill|A
 procedural-3d-scenes|B
+process-friction-cut|A
+process-motivation-design|A
+process-reward-boost|A
 progress-doc-style|B
 project-update|A
 prompt-pro|A
@@ -213,6 +219,7 @@ social-push|B
 software-dev-loop|A
 source-anchored-design|A
 spark-prairie-fire|B
+stageshow|A
 style-alibaba|A
 style-amazon|A
 style-bytedance|A
