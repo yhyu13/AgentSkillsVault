@@ -81,7 +81,11 @@ $skipDirs = '[\\/](\.git|\.github|\.changeset|\.claude-plugin|\.out-of-scope|\.c
 
 $curated = @{}
 Get-ChildItem -LiteralPath $Vault -Recurse -Directory -ErrorAction SilentlyContinue |
-  Where-Object { $_.FullName -notmatch $skipDirs } |
+  # Match the VAULT-RELATIVE path, never the absolute one: when the vault itself
+  # lives under .cindy-worktrees\<name> (Claude Code worktree checkouts do
+  # exactly that), every absolute path contains that segment and the whole tree
+  # was skipped - producing a 10-line manifest that sync would then obey.
+  Where-Object { $_.FullName.Substring($Vault.Length).TrimEnd('\') -notmatch $skipDirs } |
   Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName 'SKILL.md') } |
   # Longest path first: the curated set is keyed by leaf directory name, so
   # when a skill directory contains a nested copy of itself the shallow one
