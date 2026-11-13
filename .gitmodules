@@ -190,3 +190,6 @@
 [submodule "SKILL/video/tier1/tygg-ai-film-studio"]
 	path = SKILL/video/tier1/tygg-ai-film-studio
 	url = https://github.com/SusamMinami/tygg-ai-film-studio.git
+[submodule "vendor/blender-skills"]
+	path = vendor/blender-skills
+	url = https://github.com/arjun988/blender-skills.git
