@@ -511,3 +511,18 @@ fork 原因：harness 预算不够时先砍 description 尾巴，首行必须自
 | skill | origin | source |
 |---|---|---|
 | tygg-ai-film-studio | repo (submodule) | `github.com/SusamMinami/tygg-ai-film-studio` @ tag `v3.2.7`。视频 BV1RLeg6rEri 画面中的 `$tygg-ai-film-studio`。仓库根即 skill，submodule 路径 `SKILL/video/tier1/tygg-ai-film-studio`。安全审查 CAUTION：上游仓内的 `scripts/probe_hardware.py` 只跑固定的本机 CIM 查询；`exec` 只出现在测试里加载本仓校验器。未把 Higgsfield / 漫剧老李 / Seedance 整包装进可调用列表，原因见下载目录的分级说明。 |
+
+### 2026-11-13 · skill-vault 雷达批次（vendor-only，不装）
+
+> 来源笔记：`SKILL_RADAR/2026-11-13-agent-skill-vault-peers-top20.md`。本批**只 vendor、不复制进分类目录、不进 manifest**——
+> 目的是把上游的方法（lockfile / harness 可见性验证 / 证据绑定 / 评估集）留在本地可读可 diff，而不是把 1,900 个未经本轮审核的 skill 装进库。
+> 任何 skill 从本批提升为 curated 副本前，须按 `AGENTS.md` 走「先 `SKILL_CANDIDATES.md`、批量审核、再改 skill」并跑 skill-inspector。
+
+| skill | origin | source |
+|-------|--------|--------|
+| claude-for-legal (151) | repo (submodule, vendor-only) | `github.com/anthropics/claude-for-legal` @ `4a6c651` — `vendor/claude-for-legal`；Apache-2.0。13 个法律子域（`corporate-legal` `litigation-legal` `ip-legal` `employment-legal` `commercial-legal` `ai-governance-legal` `law-student` `legal-clinic` …），仓库最小（1.7 MB）但补上了本库**完全空白**的领域。skill 在 `skills/<name>/SKILL.md` 与各子域目录下 |
+| wondelai-skills (65 unique) | repo (submodule, vendor-only) | `github.com/wondelai/skills` @ `c526558` — `vendor/wondelai-skills`；MIT。196 个 `SKILL.md` 但按 git blob sha 去重后 **65**（其余是 `.agents/` `.claude/` `.cursor/` `.pi/` `.windsurf/` 镜像副本，与其 README「65 agent skills」一致）。**实测单位 skill 体量最高**：median 17.1 KB、100% 带 `references/` |
+| aaron-marketing-skills (120) | repo (submodule, vendor-only) | `github.com/aaron-he-zhu/aaron-marketing-skills` @ `64bd94b` — `vendor/aaron-marketing-skills`；Apache-2.0。8 个营销分类 × 15 skill。**蒸馏重点不是 skill 而是机制**：`evals/<skill>/cases.md` 的 YAML eval-case（`status: real` 必须带 `evidence_ref` + `evidence_sha256`，否则解析器拒绝）+ `evals/routing-retrieval/`（intent → ≤3 skill） |
+| anthropic-cybersecurity-skills (818) | repo (submodule, vendor-only) | `github.com/mukul975/Anthropic-Cybersecurity-Skills` @ `54a7988` — `vendor/anthropic-cybersecurity-skills`；Apache-2.0。**818/818 每个都同时带 `references/` 与 `scripts/`**，本批一致性最强。⚠️ 域即风险：`skills/performing-credential-access-with-lazagne`、`deploying-honeytokens-and-canarytokens` 等的 `scripts/agent.py` 会主动读 `~/.ssh`、`/root/.aws/credentials`——**是域内正当行为，但绝不可在真实主机上盲跑**；提升任何一条前必须逐条读 `scripts/` |
+| ecc (929 unique) | repo (submodule, vendor-only) | `github.com/affaan-m/ECC` @ `d2ef268` — `vendor/ecc`；MIT，302k star，本批最大。1,068 个 `SKILL.md` → 929 unique（13% 镜像重复），投影到 10 个 harness dotdir。**蒸馏重点**：每 harness 独立 `install.sh`/`uninstall.sh` + `scripts/doctor.js` `catalog.js` `eval-harness.js`，以及 README §Install hooks 记的「ECC-owned entries tracked by stable ID → 幂等更新 + 安全卸载」 |
+| scenario-labs-skills (179) | repo (submodule, vendor-only) | `github.com/scenario-labs/skills` @ `94cab3f` — `vendor/scenario-labs-skills`；MIT。**单位 skill 体量第二高**（median 16.9 KB，112 带 references / 107 带 scripts）。蒸馏重点：根 `skills-lock.json` v1 = `{source, sourceType, skillPath, computedHash}` 四字段 |

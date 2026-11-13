@@ -193,3 +193,21 @@
 [submodule "vendor/blender-skills"]
 	path = vendor/blender-skills
 	url = https://github.com/arjun988/blender-skills.git
+[submodule "vendor/claude-for-legal"]
+	path = vendor/claude-for-legal
+	url = https://github.com/anthropics/claude-for-legal.git
+[submodule "vendor/wondelai-skills"]
+	path = vendor/wondelai-skills
+	url = https://github.com/wondelai/skills.git
+[submodule "vendor/aaron-marketing-skills"]
+	path = vendor/aaron-marketing-skills
+	url = https://github.com/aaron-he-zhu/aaron-marketing-skills.git
+[submodule "vendor/anthropic-cybersecurity-skills"]
+	path = vendor/anthropic-cybersecurity-skills
+	url = https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git
+[submodule "vendor/ecc"]
+	path = vendor/ecc
+	url = https://github.com/affaan-m/ECC.git
+[submodule "vendor/scenario-labs-skills"]
+	path = vendor/scenario-labs-skills
+	url = https://github.com/scenario-labs/skills.git
