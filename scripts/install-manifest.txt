@@ -37,6 +37,7 @@ arming-thought|SKILL/management/tier3/arming-thought|A
 article-prompts-to-skills|SKILL/video/tier1/article-prompts-to-skills|B
 bezos-advisor|SKILL/management/tier3/bezos-advisor|B
 bili-video-repack|SKILL/video/tier1/bili-video-repack|A
+blender-director|SKILL/game-dev/tier1/blender-director|A
 blog-to-linkedin-post|SKILL/content/tier1/blog-to-linkedin-post|A
 blog-to-twitter-post|SKILL/content/tier1/blog-to-twitter-post|A
 book-chapter-to-vault|SKILL/knowledge-vault/tier0/book-chapter-to-vault|A
@@ -184,15 +185,19 @@ xlsx|vendor/anthropics-skills/skills/xlsx|A
 # ai-3d-character-pipeline|SKILL/game-dev/tier2/ai-3d-character-pipeline|B|band=tier2|category=game-dev
 # ai-3d-scene-pipeline|SKILL/game-dev/tier2/ai-3d-scene-pipeline|B|band=tier2|category=game-dev
 # ai-video-production|SKILL/video/tier2/ai-video-production|A|band=tier2|category=video
+# animation|SKILL/game-dev/tier2/animation|B|band=tier2|category=game-dev
 # ask-matt|SKILL/software-development/tier3/ask-matt|B|band=tier3|category=software-development
 # audit-verify-explain-grade-5|SKILL/video/tier2/audit-verify-explain-grade-5|B|band=tier2|category=video
 # aura-asset-images|SKILL/video/tier2/aura-asset-images|B|band=tier2|category=video
 # blender-game-assets-v2|SKILL/game-dev/tier2/blender-game-assets-v2|A|band=tier2|category=game-dev
+# blender-modeler|SKILL/game-dev/tier2/blender-modeler|B|band=tier2|category=game-dev
 # brainstorming|SKILL/software-development/tier2/brainstorming|B|band=tier2|category=software-development
 # cat-game-architecture|SKILL/game-dev/tier2/cat-game-architecture|B|band=tier2|category=game-dev
 # codebase-design|SKILL/software-development/tier2/codebase-design|B|band=tier2|category=software-development
 # code-review|SKILL/software-development/tier2/code-review|B|band=tier2|category=software-development
 # colleague-yuhang|SKILL/agents/tier4/colleague-yuhang|A|band=tier4|category=agents
+# collision-proxy|SKILL/game-dev/tier2/collision-proxy|B|band=tier2|category=game-dev
+# compositing|SKILL/game-dev/tier2/compositing|B|band=tier2|category=game-dev
 # concentrate-forces|SKILL/management/tier4/concentrate-forces|B|band=tier4|category=management
 # content-craft|SKILL/content/tier2/content-craft|A|band=tier2|category=content
 # distilly|SKILL/software-development/tier2/distilly|B|band=tier2|category=software-development
@@ -200,6 +205,7 @@ xlsx|vendor/anthropics-skills/skills/xlsx|A
 # doubaofeishu_ui-design-system|SKILL/design/tier2/doubaofeishu_ui-design-system|B|band=tier2|category=design
 # elevenlabs-tts|SKILL/video/tier2/elevenlabs-tts|B|band=tier2|category=video
 # engine-project-agent-v2|SKILL/game-dev/tier3/engine-project-agent-v2|A|band=tier3|category=game-dev
+# environment-artist|SKILL/game-dev/tier2/environment-artist|B|band=tier2|category=game-dev
 # ffmpeg|SKILL/video/tier2/ffmpeg|B|band=tier2|category=video
 # game-archetype-classifier|SKILL/game-dev/tier4/game-archetype-classifier|B|band=tier4|category=game-dev
 # game-art-director|SKILL/game-dev/tier3/game-art-director|B|band=tier3|category=game-dev
@@ -224,6 +230,7 @@ xlsx|vendor/anthropics-skills/skills/xlsx|A
 # game-tower-defense|SKILL/game-dev/tier3/game-tower-defense|B|band=tier3|category=game-dev
 # game-ui-heavy-narrative|SKILL/game-dev/tier4/game-ui-heavy-narrative|B|band=tier4|category=game-dev
 # gdd-markdown-template|SKILL/game-dev/tier2/gdd-markdown-template|B|band=tier2|category=game-dev
+# geometry-nodes|SKILL/game-dev/tier2/geometry-nodes|B|band=tier2|category=game-dev
 # governance-doc-design|SKILL/software-development/tier3/governance-doc-design|B|band=tier3|category=software-development
 # grafana-promql|SKILL/devops/tier3/grafana-promql|B|band=tier3|category=devops
 # grafana-pyroscope|SKILL/devops/tier3/grafana-pyroscope|B|band=tier3|category=devops
@@ -231,7 +238,10 @@ xlsx|vendor/anthropics-skills/skills/xlsx|A
 # grill-me|SKILL/software-development/tier4/grill-me|B|band=tier4|category=software-development
 # grill-with-docs|SKILL/software-development/tier4/grill-with-docs|B|band=tier4|category=software-development
 # hackathon-pitch-pipeline|SKILL/content/tier2/hackathon-pitch-pipeline|A|band=tier2|category=content
+# hair-groom|SKILL/game-dev/tier2/hair-groom|B|band=tier2|category=game-dev
 # handoff|SKILL/software-development/tier4/handoff|B|band=tier4|category=software-development
+# hard-surface|SKILL/game-dev/tier2/hard-surface|B|band=tier2|category=game-dev
+# horror-style|SKILL/game-dev/tier2/horror-style|B|band=tier2|category=game-dev
 # html-to-interaction-prompts|SKILL/video/tier2/html-to-interaction-prompts|B|band=tier2|category=video
 # hyperframes-video-director|SKILL/video/tier2/hyperframes-video-director|B|band=tier2|category=video
 # implement|SKILL/software-development/tier4/implement|B|band=tier4|category=software-development
@@ -239,24 +249,34 @@ xlsx|vendor/anthropics-skills/skills/xlsx|A
 # iterate-until-verified|SKILL/video/tier2/iterate-until-verified|B|band=tier2|category=video
 # journey|SKILL/software-development/tier3/journey|B|band=tier3|category=software-development
 # lemo-opuscar|SKILL/video/tier3/lemo-opuscar|A|band=tier3|category=video
+# lighting|SKILL/game-dev/tier2/lighting|B|band=tier2|category=game-dev
 # llm-friendly-dsl-verification|SKILL/software-development/tier3/llm-friendly-dsl-verification|B|band=tier3|category=software-development
+# lod-pipeline|SKILL/game-dev/tier2/lod-pipeline|B|band=tier2|category=game-dev
 # long-blog-to-viral-social-posts|SKILL/content/tier2/long-blog-to-viral-social-posts|B|band=tier2|category=content
 # make-interfaces-feel-better|SKILL/video/tier2/make-interfaces-feel-better|B|band=tier2|category=video
 # notes-on-writing|SKILL/content/tier3/notes-on-writing|B|band=tier3|category=content
 # okr-planner|SKILL/content/tier3/okr-planner|B|band=tier3|category=content
 # opus-video-prompts|SKILL/video/tier3/opus-video-prompts|B|band=tier3|category=video
 # phaser-gamedev|SKILL/game-dev/tier2/phaser-gamedev|B|band=tier2|category=game-dev
+# physics-sim|SKILL/game-dev/tier2/physics-sim|B|band=tier2|category=game-dev
 # plugin-capability-brief|SKILL/software-development/tier3/plugin-capability-brief|B|band=tier3|category=software-development
 # prd|SKILL/management/tier4/prd|B|band=tier4|category=management
 # procedural-3d-scenes|SKILL/game-dev/tier2/procedural-3d-scenes|B|band=tier2|category=game-dev
 # progress-doc-style|SKILL/content/tier3/progress-doc-style|B|band=tier3|category=content
 # prompt-pro|SKILL/software-development/tier3/prompt-pro|A|band=tier3|category=software-development
+# prop-artist|SKILL/game-dev/tier2/prop-artist|B|band=tier2|category=game-dev
 # prototype|SKILL/software-development/tier3/prototype|B|band=tier3|category=software-development
+# qa-review|SKILL/game-dev/tier2/qa-review|B|band=tier2|category=game-dev
 # receiving-code-review|SKILL/software-development/tier2/receiving-code-review|A|band=tier2|category=software-development
 # remotion-captions|SKILL/video/tier3/remotion-captions|B|band=tier3|category=video
 # remotion-interactivity|SKILL/video/tier2/remotion-interactivity|B|band=tier2|category=video
 # remotion-video-engineering-distilled|SKILL/video/tier3/remotion-video-engineering-distilled|B|band=tier3|category=video
+# rendering|SKILL/game-dev/tier2/rendering|B|band=tier2|category=game-dev
 # resolving-merge-conflicts|SKILL/software-development/tier4/resolving-merge-conflicts|B|band=tier4|category=software-development
+# retopology|SKILL/game-dev/tier2/retopology|B|band=tier2|category=game-dev
+# rigging|SKILL/game-dev/tier2/rigging|B|band=tier2|category=game-dev
+# scene-assembly|SKILL/game-dev/tier2/scene-assembly|B|band=tier2|category=game-dev
+# sculpting|SKILL/game-dev/tier2/sculpting|B|band=tier2|category=game-dev
 # self-improvement|SKILL/software-development/tier3/self-improvement|B|band=tier3|category=software-development
 # shuorenhua|SKILL/content/tier2/shuorenhua|A|band=tier2|category=content
 # skill-distill|SKILL/software-development/tier3/skill-distill|B|band=tier3|category=software-development
@@ -277,6 +297,7 @@ xlsx|vendor/anthropics-skills/skills/xlsx|A
 # tdd|SKILL/software-development/tier3/tdd|A|band=tier3|category=software-development
 # tech-design-to-zhihu|SKILL/content/tier2/tech-design-to-zhihu|B|band=tier2|category=content
 # technical-research-analysis-doc|SKILL/software-development/tier2/technical-research-analysis-doc|B|band=tier2|category=software-development
+# texture-workflow|SKILL/game-dev/tier2/texture-workflow|B|band=tier2|category=game-dev
 # three-clay-scenes|SKILL/game-dev/tier2/three-clay-scenes|B|band=tier2|category=game-dev
 # three-procedural-scenes|SKILL/game-dev/tier2/three-procedural-scenes|B|band=tier2|category=game-dev
 # to-spec|SKILL/software-development/tier3/to-spec|B|band=tier3|category=software-development
@@ -287,7 +308,9 @@ xlsx|vendor/anthropics-skills/skills/xlsx|A
 # ui-mockups|SKILL/design/tier3/ui-mockups|A|band=tier3|category=design
 # unsplash-asset-images|SKILL/video/tier2/unsplash-asset-images|B|band=tier2|category=video
 # using-git-worktrees|SKILL/software-development/tier2/using-git-worktrees|B|band=tier2|category=software-development
+# uv-workflow|SKILL/game-dev/tier2/uv-workflow|B|band=tier2|category=game-dev
 # verification-before-completion|SKILL/software-development/tier3/verification-before-completion|A|band=tier3|category=software-development
+# vfx-fx|SKILL/game-dev/tier2/vfx-fx|B|band=tier2|category=game-dev
 # video-to-superprompt|SKILL/video/tier2/video-to-superprompt|B|band=tier2|category=video
 # video-use|SKILL/video/tier2/video-use|B|band=tier2|category=video
 # wayfinder|SKILL/software-development/tier2/wayfinder|B|band=tier2|category=software-development

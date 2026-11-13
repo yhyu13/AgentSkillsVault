@@ -144,6 +144,7 @@
 ### game-dev/
 | skill | origin | source |
 |-------|--------|--------|
+| blender-director + 22（blender-modeler / hard-surface / rendering / uv-workflow / environment-artist / horror-style / prop-artist / animation / collision-proxy / compositing / geometry-nodes / hair-groom / lighting / lod-pipeline / physics-sim / qa-review / retopology / rigging / scene-assembly / texture-workflow / vfx-fx / sculpting） | repo (submodule, 评分筛选) | `github.com/arjun988/blender-skills` @ `904f095`（MIT，2.6k star）— `vendor/blender-skills`；上游 94 个 skill 在 `.claude/skills/`（`.cursor/skills/` 是同一批的镜像）。按 `score_skills.py` 评分取 **>=7.0** 的 23 个（blender-director 8.00 最高，全库无 tier0；未装的 71 个分数 5.5–6.99）。**装库时修了引用**：上游把 9 份共享参考放在 `.claude/skills/references/`，每个 skill 用 `../references/x.md` 指过去——单独安装即断。已把用到的 23 份共享文件复制进各自 `references/` 并改写 33 处路径，另修 1 处跨 skill 引用；`check_selfcontained.py` 23/23 OK。安装前静态审查：无危险命令 / 无凭据 / 无外传（仅文档里的环境变量名） |
 | cat-game-architecture | local | distilled from GDC 2026 talk (Hao Yang, Tencent Photon) |
 | gdd-markdown-template | repo | `github.com/TheLazyHatGuy/GDDMarkdownTemplate` |
 | guide-from-probes (retired) | local | from a VibeGames project `.claude/skills/` |

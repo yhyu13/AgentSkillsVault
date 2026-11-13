@@ -56,6 +56,7 @@ algorithmic-art|B
 analysis-to-vault|A
 anatomy|B
 anidoodle|B
+animation|B
 apk-ndk-version-check|A
 arming-thought|A
 article-prompts-to-skills|B
@@ -64,6 +65,8 @@ audit-verify-explain-grade-5|B
 aura-asset-images|B
 bezos-advisor|B
 bili-video-repack|A
+blender-director|A
+blender-modeler|B
 blog-to-linkedin-post|A
 blog-to-twitter-post|A
 book-chapter-to-vault|A
@@ -79,7 +82,9 @@ claude-api|B
 code-review|B
 codebase-design|B
 colleague-yuhang|A
+collision-proxy|B
 comparable-analysis|B
+compositing|B
 concentrate-forces|B
 consolidation|B
 content-craft|A
@@ -95,6 +100,7 @@ docx|A
 domain-modeling|B
 earnings-models|B
 elevenlabs-tts|B
+environment-artist|B
 excel-hygiene|B
 ffmpeg|B
 finance-lead|B
@@ -112,6 +118,7 @@ game-top-down-action|B
 game-tower-defense|B
 game-ui-heavy-narrative|B
 gdd-markdown-template|B
+geometry-nodes|B
 goal-persistence|B
 governance-doc-design|B
 gracker-writing|A
@@ -137,9 +144,12 @@ grilling|B
 guizang-product-video-skill|B
 h3-seedance-prompt-library|B
 hackathon-pitch-pipeline|A
+hair-groom|B
 handoff|B
 hands-on-deck|A
+hard-surface|B
 hgb-standards|B
+horror-style|B
 html-artifacts|B
 html-ppt|A
 html-to-interaction-prompts|B
@@ -156,7 +166,9 @@ karpathy-explain-better|B
 lbo-modeling|B
 lease-accounting|B
 lemo-opuscar|A
+lighting|B
 llm-friendly-dsl-verification|B
+lod-pipeline|B
 long-blog-to-viral-social-posts|B
 make-interfaces-feel-better|B
 manage-up-core|A
@@ -180,6 +192,7 @@ overall-planning|B
 pdf|A
 performance-review|B
 phaser-gamedev|B
+physics-sim|B
 pitch-book-creation|B
 plugin-capability-brief|B
 pptx|A
@@ -194,18 +207,25 @@ process-reward-boost|A
 progress-doc-style|B
 project-update|A
 prompt-pro|A
+prop-artist|B
 proposal|B
 prototype|B
 protracted-strategy|B
+qa-review|B
 quarterly-review|B
 receiving-code-review|A
 remotion-captions|B
 remotion-interactivity|B
 remotion-markup|B
+rendering|B
 renzhengfei-advisor|B
 resolving-merge-conflicts|B
+retopology|B
 revenue-recognition|B
+rigging|B
 rigorous-proof|B
+scene-assembly|B
+sculpting|B
 sector-analysis|B
 self-improvement|B
 shuorenhua|A
@@ -240,6 +260,7 @@ tdd|A
 tech-design-to-zhihu|B
 technical-design-document|B
 technical-research-analysis-doc|B
+texture-workflow|B
 three-clay-scenes|B
 three-procedural-scenes|B
 to-spec|B
@@ -252,7 +273,9 @@ ui-mockups|A
 unsplash-asset-images|B
 upward-email|B
 using-git-worktrees|B
+uv-workflow|B
 verification-before-completion|A
+vfx-fx|B
 video-production|B
 video-to-superprompt|B
 video-use|B
