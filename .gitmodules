@@ -187,3 +187,6 @@
 [submodule "TEMPLATE-GOVERNANCE"]
 	path = TEMPLATE-GOVERNANCE
 	url = https://github.com/yhyu13/Agent_Template_Repo_Governance.git
+[submodule "SKILL/video/tier1/tygg-ai-film-studio"]
+	path = SKILL/video/tier1/tygg-ai-film-studio
+	url = https://github.com/SusamMinami/tygg-ai-film-studio.git

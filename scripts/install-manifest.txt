@@ -137,6 +137,7 @@ style-report|SKILL/management/tier2/style-report|B
 style-tencent|SKILL/management/tier3/style-tencent|A
 systematic-debugging|SKILL/software-development/tier1/systematic-debugging|A
 technical-design-document|SKILL/game-dev/tier1/technical-design-document|B
+tygg-ai-film-studio|SKILL/video/tier1/tygg-ai-film-studio|A
 ue-renderdoc-auto-capture|SKILL/game-dev/tier0/ue-renderdoc-auto-capture|A
 upward-email|SKILL/management/tier3/upward-email|B
 video-production|SKILL/design/tier0/video-production|B

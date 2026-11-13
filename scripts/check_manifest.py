@@ -111,6 +111,20 @@ def scan_curated(root: Path) -> tuple[dict[str, str], list[str]]:
     return curated, errors
 
 
+def submodule_paths(root: Path) -> list[str]:
+    """Paths declared in .gitmodules; CI checks out without submodules, so a
+    declared path may legitimately have no SKILL.md on disk."""
+    gm = root / ".gitmodules"
+    if not gm.exists():
+        return []
+    paths: list[str] = []
+    for raw in gm.read_text(encoding="utf-8-sig").splitlines():
+        line = raw.strip()
+        if line.startswith("path") and "=" in line:
+            paths.append(line.split("=", 1)[1].strip().replace("\\", "/").rstrip("/"))
+    return paths
+
+
 def check(root: Path) -> list[str]:
     manifest_path = root / "scripts/install-manifest.txt"
     rows, errors = parse_manifest(manifest_path)
@@ -157,10 +171,16 @@ def check(root: Path) -> list[str]:
         if tier != expected_tier:
             errors.append(f"tier mismatch for {name}: {tier} != {expected_tier}")
 
+    subs = submodule_paths(root)
     for name, (source, tier) in rows.items():
         if source == "HOST":
             continue
         if source.startswith("vendor/"):
+            continue
+        rel_src = source.replace("\\", "/").rstrip("/")
+        if any(rel_src == s or rel_src.startswith(s + "/") for s in subs):
+            # Declared submodule: the gitlink is the source of truth, and CI does
+            # not initialise it, so "not in tree" here is expected, not an error.
             continue
         if name not in curated:
             errors.append(f"manifest curated source not found in tree: {name} ({source})")

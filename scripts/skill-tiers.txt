@@ -303,3 +303,6 @@ doubaofeishu_industry-analysis|A
 
 # 2026-11-10 飞书豆包蒸馏（第二批）：UI 设计系统与组件规范
 doubaofeishu_ui-design-system|B
+
+# 2026-11-13 BV1RLeg6rEri / TYGG AI Film Studio v3.2.7
+tygg-ai-film-studio|A
