@@ -504,3 +504,9 @@ fork 原因：harness 预算不够时先砍 description 尾巴，首行必须自
 | blog-to-linkedin-post / blog-to-twitter-post | v1.0.0 | 各自首行点名平台，并互相排除 |
 | game-dev-loop / software-dev-loop | v1.1.1 / v1.3.1 | 首行点名领域，并互相排除 |
 | hands-on-deck | v1.0.0 | 'Modify an EXISTING .pptx.' + 排除 pptx |
+
+### 2026-11-13 · BV1RLeg6rEri TYGG AI Film Studio
+
+| skill | origin | source |
+|---|---|---|
+| tygg-ai-film-studio | repo (submodule) | `github.com/SusamMinami/tygg-ai-film-studio` @ tag `v3.2.7`。视频 BV1RLeg6rEri 画面中的 `$tygg-ai-film-studio`。仓库根即 skill，submodule 路径 `SKILL/video/tier1/tygg-ai-film-studio`。安全审查 CAUTION：上游仓内的 `scripts/probe_hardware.py` 只跑固定的本机 CIM 查询；`exec` 只出现在测试里加载本仓校验器。未把 Higgsfield / 漫剧老李 / Seedance 整包装进可调用列表，原因见下载目录的分级说明。 |

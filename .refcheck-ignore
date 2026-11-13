@@ -19,3 +19,7 @@ TEMPLATE/Agent_Template_Repo_Governance
 docs/agents/issue-tracker.md
 scripts/update.sh
 scripts/setup.sh
+
+# TYGG 子模块（SKILL/video/tier1/tygg-ai-film-studio）内部的文件，
+# 溯源行需要写上游仓的真实文件名才可追溯；CI 不初始化子模块，故豁免。
+scripts/probe_hardware.py
