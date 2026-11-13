@@ -14,16 +14,52 @@
 #
 # Deleting a junction uses `cmd /c rmdir` (removes the link only, not the target).
 # Usage: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sync-skills.ps1
+#        ... -AutoRegenerate   # rewrite the manifest first instead of aborting
+#        ... -SkipFreshnessCheck
+#
+# Freshness guard: before touching any store this script regenerates the manifest
+# in memory and compares it with scripts/install-manifest.txt. A stale manifest is
+# refused, because running sync from an old checkout silently re-installs skills
+# that were deliberately held back (this happened on 2026-11-13: a concurrent
+# session synced a 286-entry manifest and undid a 129-skill reduction).
 
 param(
   [string]$Manifest = (Join-Path (Split-Path -Parent $PSScriptRoot) 'scripts\install-manifest.txt'),
   [switch]$Prune,        # remove installed skills that are not in the manifest
   [string]$Profile = 'all',  # 'all' installs tiers A+B; 'core' installs tier A only
-  [switch]$PruneToProfile  # with -Profile core, also REMOVE tier B skills from the canonical store
+  [switch]$PruneToProfile, # with -Profile core, also REMOVE tier B skills from the canonical store
+  [switch]$SkipFreshnessCheck,
+  [switch]$AutoRegenerate
 )
 
 $ErrorActionPreference = 'Continue'
 $Vault = Split-Path -Parent $PSScriptRoot
+
+# --- manifest freshness guard ------------------------------------------------
+if (-not $SkipFreshnessCheck) {
+  $gen = Join-Path $PSScriptRoot 'build-manifest.ps1'
+  if ((Test-Path -LiteralPath $gen) -and (Test-Path -LiteralPath $Manifest)) {
+    if ($AutoRegenerate) {
+      Write-Host 'freshness: regenerating the manifest (-AutoRegenerate)'
+      & powershell -NoProfile -ExecutionPolicy Bypass -File $gen | Out-Host
+    } else {
+      $probeDir = Join-Path ([System.IO.Path]::GetTempPath()) ('manifest-probe-' + [guid]::NewGuid().ToString('N').Substring(0, 8))
+      New-Item -ItemType Directory -Force -Path $probeDir | Out-Null
+      $probe = Join-Path $probeDir 'install-manifest.txt'
+      & powershell -NoProfile -ExecutionPolicy Bypass -File $gen -OutFile $probe -Quiet | Out-Null
+      $a = @(Get-Content -LiteralPath $Manifest -Encoding UTF8)
+      $b = @(Get-Content -LiteralPath $probe -Encoding UTF8 -ErrorAction SilentlyContinue)
+      $same = ($a.Count -eq $b.Count) -and -not (Compare-Object $a $b -SyncWindow 0)
+      Remove-Item -LiteralPath $probeDir -Recurse -Force -ErrorAction SilentlyContinue
+      if (-not $same) {
+        Write-Host ''
+        Write-Error ("manifest is STALE: {0} does not match what this checkout generates. Refusing to touch the stores.`n  fix: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-manifest.ps1`n  or:  add -AutoRegenerate to this command`n  a stale manifest re-installs skills that the current install scope holds back." -f $Manifest)
+        exit 3
+      }
+      Write-Host 'freshness: manifest matches this checkout'
+    }
+  }
+}
 $ClaudePath = Join-Path $HOME '.claude\skills'
 # Every harness store that receives a junction view onto the canonical copy.
 # `.cc-switch\skills` is deliberately absent: it holds no skills (it is a

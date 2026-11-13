@@ -20,7 +20,9 @@
 param(
   [string]$Vault = (Split-Path -Parent $PSScriptRoot),
   [int]$TopBandsPerCategory = -1,   # -1 = use scripts/install-scope.json, 0 = no limit
-  [switch]$NoBandFilter
+  [switch]$NoBandFilter,
+  [string]$OutFile = '',            # write the manifest here instead (freshness probe)
+  [switch]$Quiet
 )
 
 $ErrorActionPreference = 'Continue'
@@ -174,10 +176,11 @@ if ($effectiveTop -gt 0) {
   }
 }
 
-$out = Join-Path $Vault 'scripts\install-manifest.txt'
+$out = if ($OutFile) { $OutFile } else { Join-Path $Vault 'scripts\install-manifest.txt' }
 # Held-back skills get their own file so the CI gate can tell "deliberately not
 # installed" apart from "forgotten". check_manifest.py reads it.
-$holdOut = Join-Path $Vault 'scripts\install-holdback.txt'
+# When emitting a probe manifest elsewhere, the hold-back list follows it.
+$holdOut = Join-Path (Split-Path $out -Parent) 'install-holdback.txt'
 $lines = New-Object System.Collections.Generic.List[string]
 $lines.Add('# Install manifest — the authoritative list of user-level skills and their vault source.')
 $lines.Add('#')
@@ -245,7 +248,9 @@ foreach ($name in ($excluded.Keys | Sort-Object)) {
   $holdLines.Add(('{0}|{1}|{2}' -f $name, $e.Band, $e.Category))
 }
 [System.IO.File]::WriteAllLines($holdOut, $holdLines, (New-Object System.Text.UTF8Encoding($false)))
-Write-Host ("manifest written: {0} skills installed ({1} held back), {2}" -f ($winner.Count - $excluded.Count), $excluded.Count, $out)
-if ($untiered.Count -gt 0) {
+if (-not $Quiet) {
+  Write-Host ("manifest written: {0} skills installed ({1} held back), {2}" -f ($winner.Count - $excluded.Count), $excluded.Count, $out)
+}
+if ($untiered.Count -gt 0 -and -not $Quiet) {
   Write-Warning ("{0} skill(s) have no row in scripts/skill-tiers.txt and defaulted to tier A: {1}" -f $untiered.Count, ($untiered -join ', '))
 }
