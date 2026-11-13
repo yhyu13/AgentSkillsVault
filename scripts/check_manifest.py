@@ -129,8 +129,25 @@ def check(root: Path) -> list[str]:
         if name in removed:
             errors.append(f"retired skill present in manifest: {name}")
 
+    # Skills held back by scripts/install-scope.json are curated but deliberately
+    # not installed. They must be listed here, and must NOT be in the manifest.
+    holdback_path = root / "scripts/install-holdback.txt"
+    holdback: set[str] = set()
+    if holdback_path.exists():
+        for raw in holdback_path.read_text(encoding="utf-8-sig").splitlines():
+            line = raw.strip()
+            if line and not line.startswith("#"):
+                holdback.add(line.split("|", 1)[0].strip())
+    for name in rows:
+        if name in holdback:
+            errors.append(f"held-back skill present in manifest: {name}")
+    for name in sorted(holdback & removed):
+        errors.append(f"skill is both retired and held back: {name}")
+
     for name, rel in curated.items():
         if name not in rows:
+            if name in holdback:
+                continue
             errors.append(f"curated skill missing from manifest: {name} ({rel})")
             continue
         source, tier = rows[name]

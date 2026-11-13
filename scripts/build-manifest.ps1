@@ -9,9 +9,18 @@
 # Host-local skills are never overwritten by this script.
 #
 # Usage: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-manifest.ps1
+#        powershell ... -File scripts/build-manifest.ps1 -TopBandsPerCategory 2
+#        powershell ... -File scripts/build-manifest.ps1 -NoBandFilter
+#
+# Install scope (how many skill bands per category are installed at all) is read
+# from scripts/install-scope.json when present; CLI switches override it.
+# The band is the tierN directory of SKILL/<category>/tierN/<skill> set by
+# docs/skill-capacity-audit/rearrange-tiers.ps1.
 
 param(
-  [string]$Vault = (Split-Path -Parent $PSScriptRoot)
+  [string]$Vault = (Split-Path -Parent $PSScriptRoot),
+  [int]$TopBandsPerCategory = -1,   # -1 = use scripts/install-scope.json, 0 = no limit
+  [switch]$NoBandFilter
 )
 
 $ErrorActionPreference = 'Continue'
@@ -121,7 +130,54 @@ foreach ($r in $rows) {
   $winner[$r.Name] = $r
 }
 
+# --- install scope: keep only the top N score bands of each category ---------
+# The band is the tierN directory created by docs/skill-capacity-audit/rearrange-tiers.ps1.
+# Excluded skills are still in the vault and still listed (as comments) in the
+# manifest, so restoring one is a config change plus a sync, not a re-audit.
+$effectiveTop = 0
+if (-not $NoBandFilter) {
+  if ($TopBandsPerCategory -ge 0) {
+    $effectiveTop = $TopBandsPerCategory
+  } else {
+    $scopeFile = Join-Path $Vault 'scripts\install-scope.json'
+    if (Test-Path -LiteralPath $scopeFile) {
+      try {
+        $scope = Get-Content -LiteralPath $scopeFile -Raw -Encoding UTF8 | ConvertFrom-Json
+        if ($null -ne $scope.topBandsPerCategory) { $effectiveTop = [int]$scope.topBandsPerCategory }
+      } catch {
+        Write-Warning ("install-scope.json is unreadable, installing every band: {0}" -f $_)
+      }
+    }
+  }
+}
+
+$excluded = @{}
+if ($effectiveTop -gt 0) {
+  $byCat = @{}
+  foreach ($r in $winner.Values) {
+    if ($r.Kind -ne 'curated') { continue }
+    if ($r.Source -notmatch '^SKILL/([^/]+)/(tier[0-9])/') { continue }
+    $cat = $Matches[1]; $band = $Matches[2]
+    if (-not $byCat.ContainsKey($cat)) { $byCat[$cat] = @{} }
+    if (-not $byCat[$cat].ContainsKey($band)) { $byCat[$cat][$band] = New-Object System.Collections.Generic.List[string] }
+    $byCat[$cat][$band].Add($r.Name)
+  }
+  foreach ($cat in $byCat.Keys) {
+    $bands = @($byCat[$cat].Keys | Sort-Object)   # tier0 < tier1 < ... < tier4
+    $keep = @($bands | Select-Object -First $effectiveTop)
+    foreach ($b in $bands) {
+      if ($keep -contains $b) { continue }
+      foreach ($n in $byCat[$cat][$b]) {
+        $excluded[$n] = [pscustomobject]@{ Source = $winner[$n].Source; Band = $b; Category = $cat }
+      }
+    }
+  }
+}
+
 $out = Join-Path $Vault 'scripts\install-manifest.txt'
+# Held-back skills get their own file so the CI gate can tell "deliberately not
+# installed" apart from "forgotten". check_manifest.py reads it.
+$holdOut = Join-Path $Vault 'scripts\install-holdback.txt'
 $lines = New-Object System.Collections.Generic.List[string]
 $lines.Add('# Install manifest — the authoritative list of user-level skills and their vault source.')
 $lines.Add('#')
@@ -143,6 +199,14 @@ $lines.Add('#   * a skill must appear here to be installed; unlisted skills are 
   $lines.Add('# documented in REMOVED-SKILLS.md (reason + upstream copy kept for re-adding).')
   $lines.Add('#')
   $lines.Add('# Regenerate with: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-manifest.ps1')
+  $lines.Add('#')
+  if ($effectiveTop -gt 0) {
+    $lines.Add('# INSTALL SCOPE: only the top {0} score band(s) of each category are installed.' -f $effectiveTop)
+    $lines.Add('# Set scripts/install-scope.json -> {"topBandsPerCategory": 0} to install every band.')
+    $lines.Add('# Skills below the cut are listed as comments at the end of this file.')
+  } else {
+    $lines.Add('# INSTALL SCOPE: every score band of every category is installed (no filter).')
+  }
 $lines.Add('')
 
 foreach ($group in @('curated','vendor','host')) {
@@ -153,13 +217,35 @@ foreach ($group in @('curated','vendor','host')) {
   }
   $lines.Add("# --- $label ---")
   foreach ($r in ($winner.Values | Where-Object { $_.Kind -eq $group } | Sort-Object Name)) {
+    if ($excluded.ContainsKey($r.Name)) { continue }
     $lines.Add(('{0}|{1}|{2}' -f $r.Name, $r.Source, (Get-Tier $r.Name)))
   }
   $lines.Add('')
 }
 
+if ($excluded.Count -gt 0) {
+  $lines.Add('# --- not installed: below the top {0} band(s) of its category ---' -f $effectiveTop)
+  foreach ($name in ($excluded.Keys | Sort-Object)) {
+    $e = $excluded[$name]
+    $lines.Add(('# {0}|{1}|{2}|band={3}|category={4}' -f $name, $e.Source, (Get-Tier $name), $e.Band, $e.Category))
+  }
+  $lines.Add('')
+}
+
 [System.IO.File]::WriteAllLines($out, $lines, (New-Object System.Text.UTF8Encoding($false)))
-Write-Host ("manifest written: {0} skills ({1})" -f $winner.Count, $out)
+
+# Machine-readable hold-back list, for scripts/check_manifest.py: a curated skill
+# absent from the manifest is only an error when it is NOT listed here.
+$holdLines = New-Object System.Collections.Generic.List[string]
+$holdLines.Add('# Skills deliberately NOT installed: below the top N score bands of their category.')
+$holdLines.Add('# Generated by scripts/build-manifest.ps1 from scripts/install-scope.json - do not hand-edit.')
+$holdLines.Add('# Format: <skill-name>|<band>|<category>')
+foreach ($name in ($excluded.Keys | Sort-Object)) {
+  $e = $excluded[$name]
+  $holdLines.Add(('{0}|{1}|{2}' -f $name, $e.Band, $e.Category))
+}
+[System.IO.File]::WriteAllLines($holdOut, $holdLines, (New-Object System.Text.UTF8Encoding($false)))
+Write-Host ("manifest written: {0} skills installed ({1} held back), {2}" -f ($winner.Count - $excluded.Count), $excluded.Count, $out)
 if ($untiered.Count -gt 0) {
   Write-Warning ("{0} skill(s) have no row in scripts/skill-tiers.txt and defaulted to tier A: {1}" -f $untiered.Count, ($untiered -join ', '))
 }
