@@ -1,16 +1,16 @@
 # Normalize non-vault (external-source) skills to the vault layout rule:
-#   ~/.claude/skills/<name>   = the ONE real copy
-#   ~/.kilo|.codex|.agents/skills/<name> = junction views
+#   ~/.agents/skills/<name>   = the ONE real copy (primary store)
+#   ~/.claude|.kilo|.codex/skills/<name> = junction views
 # Nothing is deleted until every duplicate tree is proven byte-identical.
 param([switch]$Apply)
 
 $ErrorActionPreference = 'Stop'
-$Root = Join-Path $HOME '.claude\skills'
+$Root = Join-Path $HOME '.agents\skills'
 $stores = [ordered]@{
-  claude = $Root
+  agents = $Root
+  claude = (Join-Path $HOME '.claude\skills')
   kilo   = (Join-Path $HOME '.kilo\skills')
   codex  = (Join-Path $HOME '.codex\skills')
-  agents = (Join-Path $HOME '.agents\skills')
 }
 $manifest = 'C:\Git-repo-AI\4_Skill\AgentSkillsVault\scripts\install-manifest.txt'
 $backup = Join-Path $env:TEMP ('skill-normalize-backup-' + (Get-Date -Format 'yyyyMMdd-HHmmss'))
