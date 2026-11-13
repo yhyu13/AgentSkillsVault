@@ -2,10 +2,17 @@
 # agent skill stores.
 #
 # Layout rule (see AGENTS.md):
-#   ~/.claude/skills/<name>   -> the ONE real copy (canonical store)
-#   every other <store>/skills/<name> -> junction view onto the canonical copy
-#     views: .kilo .codex .agents .workbuddy .hub .mavis .minimax
+#   ~/.agents/skills/<name>   -> the ONE real copy (primary store, Cindy's shared store)
+#   every other <store>/skills/<name> -> junction view onto the primary copy
+#     views: .claude .kilo .codex .workbuddy .hub .mavis .minimax
 #            .cursor .copilot .kiro .lingma .qoder-cn .codebuddy
+#
+# The primary store is configurable (scripts/install-scope.json -> "primaryStore",
+# default ".agents"). Set "linkViews": false - or pass -NoViews - to install into
+# the primary store only: no junctions are created, and vault-owned junctions in
+# the other stores are lifted. Real directories owned by other installers are
+# never touched.
+#
 # Retired skills (.kilo/removed-skills.txt) are pruned from every store on each
 # run, but only when the entry is a vault-created junction.
 #
@@ -29,7 +36,8 @@ param(
   [string]$Profile = 'all',  # 'all' installs tiers A+B; 'core' installs tier A only
   [switch]$PruneToProfile, # with -Profile core, also REMOVE tier B skills from the canonical store
   [switch]$SkipFreshnessCheck,
-  [switch]$AutoRegenerate
+  [switch]$AutoRegenerate,
+  [switch]$NoViews          # install into the primary store only; skip/lift view links
 )
 
 $ErrorActionPreference = 'Continue'
@@ -60,16 +68,36 @@ if (-not $SkipFreshnessCheck) {
     }
   }
 }
-$ClaudePath = Join-Path $HOME '.claude\skills'
+# Primary store: where the ONE real copy of every skill lives. Everything else is
+# a junction view. Default is ~/.agents/skills - Cindy's shared store and the
+# directory its Pi engine scans directly; Cindy re-projects that directory into
+# .claude/skills on every start, so keeping the real copy there matches the host.
+# Override with "primaryStore" in scripts/install-scope.json (e.g. ".claude").
+$ScopeFile = Join-Path $Vault 'scripts\install-scope.json'
+$PrimaryStore = '.agents'
+$LinkViews = $true
+if (Test-Path -LiteralPath $ScopeFile) {
+  try {
+    $scopeCfg = Get-Content -LiteralPath $ScopeFile -Raw -Encoding UTF8 | ConvertFrom-Json
+    if ($scopeCfg.primaryStore) { $PrimaryStore = [string]$scopeCfg.primaryStore }
+    if ($null -ne $scopeCfg.linkViews) { $LinkViews = [bool]$scopeCfg.linkViews }
+  } catch { Write-Warning ('install-scope.json unreadable, using defaults: {0}' -f $_) }
+}
+if ($NoViews) { $LinkViews = $false }
+$PrimaryPath = Join-Path $HOME (Join-Path $PrimaryStore 'skills')
+
 # Every harness store that receives a junction view onto the canonical copy.
 # `.cc-switch\skills` is deliberately absent: it holds no skills (it is a
 # config dir), so linking 240 entries into it would only be noise.
-$ViewNames = @(
-  '.kilo', '.codex', '.agents',        # original three
+$AllStoreNames = @(
+  '.claude', '.kilo', '.codex', '.agents',   # original engines (one of them is the primary)
   '.workbuddy', '.hub', '.mavis', '.minimax',   # harnesses with their own curated sets
   '.cursor', '.copilot', '.kiro', '.lingma', '.qoder-cn', '.codebuddy'  # hyperframes stores
 )
+$ViewNames = @($AllStoreNames | Where-Object { $_ -ne $PrimaryStore })
+if (-not $LinkViews) { $ViewNames = @() }
 $Views = @($ViewNames | ForEach-Object { Join-Path $HOME (Join-Path $_ 'skills') })
+Write-Host ("primary store: ~/{0}/skills  (linkViews={1}, views={2})" -f $PrimaryStore, $LinkViews, $ViewNames.Count)
 
 function Get-TreeHash {
   param([string]$Path)
@@ -118,7 +146,7 @@ function Get-StoreName {
 # is still the one real copy and every store must see it.
 function Sync-ViewsFromCanonical {
   param([string]$Name)
-  $real = Join-Path $ClaudePath $Name
+  $real = Join-Path $PrimaryPath $Name
   if (-not (Test-Path -LiteralPath $real)) { return 'SOURCE-MISSING' }
   if (-not (Test-Path -LiteralPath (Join-Path $real 'SKILL.md'))) { return 'SOURCE-MISSING' }
   $failed = 0
@@ -133,7 +161,7 @@ function Sync-ViewsFromCanonical {
   return 'source-missing-viewed'
 }
 
-New-Item -ItemType Directory -Force -Path $ClaudePath | Out-Null
+New-Item -ItemType Directory -Force -Path $PrimaryPath | Out-Null
 foreach ($v in $Views) { New-Item -ItemType Directory -Force -Path $v | Out-Null }
 
 $entries = New-Object System.Collections.Generic.List[object]
@@ -159,7 +187,7 @@ if ($PruneToProfile) {
   $keep = @{}
   foreach ($e in $entries) { if ($e.Tier -eq 'A') { $keep[$e.Name] = $true } }
   $removed = 0
-  foreach ($d in (Get-ChildItem -LiteralPath $ClaudePath -Directory -Force -ErrorAction SilentlyContinue)) {
+  foreach ($d in (Get-ChildItem -LiteralPath $PrimaryPath -Directory -Force -ErrorAction SilentlyContinue)) {
     if ($keep.ContainsKey($d.Name)) { continue }
     if (-not (Test-Path -LiteralPath (Join-Path $d.FullName 'SKILL.md'))) { continue }
     Remove-Item -LiteralPath $d.FullName -Recurse -Force
@@ -193,7 +221,7 @@ foreach ($e in $entries) {
     # pointing at each other. So: never delete a real directory here, and never link
     # into a cycle. If the real copy is missing and no view holds a REAL dir, report
     # it and leave every store alone.
-    $real = Join-Path $ClaudePath $e.Name
+    $real = Join-Path $PrimaryPath $e.Name
     $realItem = if (Test-Path -LiteralPath $real) { Get-Item -LiteralPath $real -Force } else { $null }
     $realIsLink = $realItem -and $realItem.LinkType
 
@@ -215,7 +243,7 @@ foreach ($e in $entries) {
       }
       else {
         # Either every view points back at $real (a cycle) or nothing holds content.
-        $selfRef = $realIsLink -and (@($realItem.Target) -match [regex]::Escape((Join-Path $ClaudePath '')))
+        $selfRef = $realIsLink -and (@($realItem.Target) -match [regex]::Escape((Join-Path $PrimaryPath '')))
         $action = if ($realItem -or $selfRef) { 'host-dangling-cycle' } else { 'host-content-missing' }
         $report.Add([pscustomobject]@{ Skill = $e.Name; Action = $action }) | Out-Null
         continue
@@ -250,7 +278,7 @@ foreach ($e in $entries) {
     $report.Add([pscustomobject]@{ Skill = $e.Name; Action = (Sync-ViewsFromCanonical -Name $e.Name) }) | Out-Null
     continue
   }
-  $real = Join-Path $ClaudePath $e.Name
+  $real = Join-Path $PrimaryPath $e.Name
   $srcHash = Get-TreeHash -Path $srcPath
   $dstHash = Get-TreeHash -Path $real
   $action = 'unchanged'
@@ -297,7 +325,7 @@ $retiredKept = New-Object System.Collections.Generic.List[string]
 if ($retired.Count -gt 0) {
   # Canonical store: a real dir here is vault-installed unless the manifest says
   # it is a HOST skill, so those are the only ones left alone.
-  foreach ($d in (Get-ChildItem -LiteralPath $ClaudePath -Directory -Force -ErrorAction SilentlyContinue)) {
+  foreach ($d in (Get-ChildItem -LiteralPath $PrimaryPath -Directory -Force -ErrorAction SilentlyContinue)) {
     if (-not $retired.ContainsKey($d.Name)) { continue }
     if ($manifestNames.ContainsKey($d.Name)) { continue }
     Remove-LinkOrDir -Path $d.FullName
@@ -333,6 +361,28 @@ if ($Prune) {
 }
 
 $counts = $report | Where-Object { $_.Action -notin @('unchanged','host-skip','tier-C-skipped','tier-skipped-core-profile') } | Group-Object Action
+
+# -NoViews / "linkViews": false: install into the primary store only. Lift the
+# junctions this vault created in every other store; a real directory is someone
+# else's install and is left alone, a junction pointing elsewhere is not ours.
+if (-not $LinkViews) {
+  $lifted = 0
+  foreach ($name in $AllStoreNames) {
+    if ($name -eq $PrimaryStore) { continue }
+    $store = Join-Path $HOME (Join-Path $name 'skills')
+    if (-not (Test-Path -LiteralPath $store)) { continue }
+    foreach ($d in (Get-ChildItem -LiteralPath $store -Directory -Force -ErrorAction SilentlyContinue)) {
+      if (-not $d.LinkType) { continue }
+      $target = @($d.Target)[0]
+      if ($target -and $target.StartsWith($PrimaryPath, [System.StringComparison]::OrdinalIgnoreCase)) {
+        cmd /c rmdir "$($d.FullName)" 2>&1 | Out-Null
+        $lifted++
+      }
+    }
+  }
+  Write-Host ("no-views: lifted {0} vault junction(s) from the other stores" -f $lifted)
+}
+
 foreach ($c in $counts) { Write-Host ("{0}={1}" -f $c.Name, $c.Count) }
 if ($skipped.Count -gt 0) {
   Write-Host ("tier-skipped={0} (profile '{1}': tier C is vault-only; tier B is installed only under profile 'all')" -f $skipped.Count, $Profile)

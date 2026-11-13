@@ -62,7 +62,16 @@ if (Test-Path -LiteralPath $removedFile) {
   $retired = @(Get-Content -LiteralPath $removedFile -Encoding UTF8 | Where-Object { $_ -and -not $_.StartsWith('#') } | ForEach-Object { $_.Trim() })
 }
 $hits = @()
-$CanonicalPath = Join-Path $HOME '.claude\skills'
+# Primary store holds the ONE real copy (see scripts/install-scope.json).
+$scopeFile = Join-Path $Vault 'scripts\install-scope.json'
+$primaryStore = '.agents'
+if (Test-Path -LiteralPath $scopeFile) {
+  try {
+    $scopeCfg = Get-Content -LiteralPath $scopeFile -Raw -Encoding UTF8 | ConvertFrom-Json
+    if ($scopeCfg.primaryStore) { $primaryStore = [string]$scopeCfg.primaryStore }
+  } catch { }
+}
+$CanonicalPath = Join-Path $HOME (Join-Path $primaryStore 'skills')
 foreach ($n in $retired) {
   foreach ($s in $StorePaths) {
     $p = Join-Path $s $n

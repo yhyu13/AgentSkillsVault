@@ -1,5 +1,7 @@
 {
   "topBandsPerCategory": 2,
-  "note": "Install only the top N score bands of each category (SKILL/<category>/tierN/<skill>). 0 = install every band. Regenerate scripts/install-manifest.txt after changing this.",
-  "since": "2026-11-13"
+  "note": "Install only the top N score bands of each category (SKILL/<category>/tierN/<skill>). 0 = install every band. primaryStore = the store holding the ONE real copy (others get junction views). linkViews=false installs into primaryStore only. Regenerate scripts/install-manifest.txt after changing the band setting.",
+  "since": "2026-11-13",
+  "primaryStore": ".agents",
+  "linkViews": false
 }

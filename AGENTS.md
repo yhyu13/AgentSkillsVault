@@ -34,16 +34,15 @@ scripts/                            manifest build / sync / verify tooling
 - `README.md` and `INSTRUCTION.md` are the human-facing index and provenance record.
   **The manifest and the file tree are the executable truth** — those two docs drift.
 
-## Install / distribution model (single real copy + junction views)
+## Install / distribution model (primary store + optional junction views)
 
 ```
-~/.claude/skills/<name>      the ONE real copy (canonical store)
-~/.kilo/skills/<name>        junction view  \
+~/.agents/skills/<name>      the ONE real copy (primary store)
+~/.claude/skills/<name>      junction view  ~/.kilo/skills/<name>        junction view   |
 ~/.codex/skills/<name>       junction view   |
-~/.agents/skills/<name>      junction view   |
 ~/.workbuddy/skills/<name>   junction view   |
 ~/.hub/skills/<name>         junction view   |
-~/.mavis/skills/<name>       junction view   } -> ~/.claude/skills/<name>
+~/.mavis/skills/<name>       junction view   } -> ~/.agents/skills/<name>
 ~/.minimax/skills/<name>     junction view   |
 ~/.cursor/skills/<name>      junction view   |
 ~/.copilot/skills/<name>     junction view   |
@@ -53,7 +52,24 @@ scripts/                            manifest build / sync / verify tooling
 ~/.codebuddy/skills/<name>   junction view  /
 ```
 
-- The store list lives in `$ViewNames` (`sync-skills.ps1`) and must be mirrored in
+**`.agents` is primary on purpose.** It is Cindy's shared store and the directory the
+Pi engine scans directly; Cindy re-projects it into `~/.claude/skills` on every start.
+Keeping the real copy anywhere else fights the host (a real dir under `.claude` and a
+junction under `.agents` ends up pointing at each other).
+
+The model is configured in `scripts/install-scope.json`:
+
+| key | meaning |
+|---|---|
+| `primaryStore` | which store holds the real copy (default `.agents`) |
+| `linkViews` | `true` = junction every other store; `false` = install into the primary store only |
+| `topBandsPerCategory` | install only this many score bands per category (0 = all) |
+
+Changing `linkViews` to `false` (or passing `-NoViews`) makes `sync-skills.ps1` lift the
+junctions it previously created; real directories owned by other installers are never
+touched. Switching back to `true` re-creates them on the next sync.
+
+- The store list lives in `$AllStoreNames` (`sync-skills.ps1`) and must be mirrored in
   `verify-install.ps1`. `.cc-switch/skills` is deliberately excluded — it holds no
   skills (config dir only).
 - Some stores also hold **foreign real directories** from other installers:
@@ -67,6 +83,8 @@ scripts/                            manifest build / sync / verify tooling
   junction in PS 5.1 can delete the target's contents.
 - Never hand-copy a skill into a second store. That is how a foreign `SKILL.md` silently
   overwrote a vault copy before.
+- Moving an existing install to the new primary store: `scripts/migrate-primary-to-agents.ps1`
+  (dry-run by default; proves every store's tree hash agrees before deleting anything).
 
 ## Commands (the workflow that matters)
 

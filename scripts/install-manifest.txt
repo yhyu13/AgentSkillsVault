@@ -9,8 +9,8 @@
 #
 # THIS FILE IS GENERATED - edit scripts/skill-tiers.txt, not this file.
 # Rules (see AGENTS.md):
-#   * ~/.claude/skills/<name>   is the ONE real copy (canonical store)
-#   * ~/.kilo/skills, ~/.codex/skills, ~/.agents/skills are junction views onto it
+#   * ~/.agents/skills/<name>   is the ONE real copy (primary store)
+#   * ~/.claude, ~/.kilo, ~/.codex ... are junction views onto it (unless linkViews=false)
 #   * a skill must appear here to be installed; unlisted skills are never auto-installed
 #   * removing a line here + deleting it from the stores is how a skill is retired
 #
