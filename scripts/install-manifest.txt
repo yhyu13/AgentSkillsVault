@@ -113,7 +113,7 @@ remotion-markup|SKILL/video/tier1/remotion-markup|B
 renzhengfei-advisor|SKILL/management/tier3/renzhengfei-advisor|B
 revenue-recognition|SKILL/management/tier3/revenue-recognition|B
 rigorous-proof|SKILL/math/tier2/rigorous-proof|B
-search-fallback|SKILL/agents/tier2/search-fallback|B
+search-fallback|SKILL/agents/tier0/search-fallback|B
 sector-analysis|SKILL/management/tier3/sector-analysis|B
 single-file-html-game|SKILL/game-dev/tier0/single-file-html-game|A
 spark-prairie-fire|SKILL/management/tier3/spark-prairie-fire|B
