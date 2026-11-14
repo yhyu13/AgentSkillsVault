@@ -52,6 +52,7 @@ colleague-ue-tech-planner|SKILL/agents/tier3/colleague-ue-tech-planner|A
 comparable-analysis|SKILL/management/tier3/comparable-analysis|B
 consolidation|SKILL/management/tier3/consolidation|B
 contradiction-analysis|SKILL/management/tier3/contradiction-analysis|A
+course-repack|SKILL/video/tier0/course-repack|A
 criticism-self-criticism|SKILL/management/tier3/criticism-self-criticism|A
 dcf-valuation|SKILL/management/tier3/dcf-valuation|B
 deal-structuring|SKILL/management/tier3/deal-structuring|B

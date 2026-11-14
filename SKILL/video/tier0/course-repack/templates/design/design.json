@@ -1,0 +1,39 @@
+{
+  "brand": {
+    "name": "Michigan Maize on Ink",
+    "note": "内容驱动配色：课程来自密歇根大学，用校色 maize 做唯一强调色；底色用墨蓝，与'人脉网络'的节点意象同构。"
+  },
+  "colors": {
+    "ink": "0E1A2B",
+    "inkDeep": "070E18",
+    "slate": "2E4463",
+    "slateSoft": "DDE4EE",
+    "maize": "FFCB05",
+    "maizeDim": "8A6E00",
+    "white": "FFFFFF",
+    "paper": "FFFFFF",
+    "paperAlt": "F4F6F9",
+    "textOnDark": "FFFFFF",
+    "mutedOnDark": "9FB2CC",
+    "mutedOnLight": "5A6B80",
+    "inkOnLight": "0E1A2B"
+  },
+  "fonts": {
+    "cjk": "Microsoft YaHei",
+    "num": "Arial",
+    "cjkWeb": "\"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+    "numWeb": "Arial, Helvetica, sans-serif"
+  },
+  "pptx": {
+    "layout": "LAYOUT_WIDE",
+    "w": 13.333,
+    "h": 7.5,
+    "margin": 0.75
+  },
+  "web": {
+    "w": 1920,
+    "h": 1080,
+    "margin": 96
+  },
+  "_note": "颜色与字体是唯一事实源：PPTX 读 colors/fonts，视频在渲染时把 colors/fonts 注入 templates/scene/template.html 的 :root。字号不在这里——它由 fit_text.py 实测后写回 content.json 的 sizes，两侧读同一个值。"
+}

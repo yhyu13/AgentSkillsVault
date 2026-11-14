@@ -45,6 +45,7 @@
 |-------|--------|--------|
 | goal-persistence | sibling (distilled) | `D:\GitRepo-AI\codex` — goal feature (`codex-rs/ext/goal/`) |
 | search-fallback | local (adopted 2026-11-01) | adopted from `~/.agents/skills/search-fallback` (previously installed only in the `.agents` store, never vault-tracked); scripts reviewed inline (search ladder: DDG Lite → Baidu via browser → Bing RSS; no exfiltration/injection) |
+| course-repack | local (distilled 2026-11-14) | 从 `C:/Git-repo-my/个人成长/networking-course` 的一次真实交付蒸馏：B 站搬运营的密歇根大学 Coursera 课《How to Network》54 节 / 418 分钟 → 6 集中文演讲版 PPTX + 口播成片 + 内嵌字幕。沉淀的是可复用的部分：集数/字数/帧成本三算、`content.json` 单一事实源、`layout.json` 几何与真实字体测量、edge-tts 逐句时间轴、Playwright 逐帧渲染、五道退出码闸。源码证据：`scripts/` 全部脚本在该项目上实跑；音频链真峰值缺陷（旧顺序 −0.6~0 dBTP → 新顺序 −1.4 dBTP）、黑帧 16/17 边界、断句 19–36 字闭环均是本次实测所得。评审与评分见 `C:/Git-repo-my/个人成长/agent-skill-vote/`（终审 8.4 / HIGH，容量分 10.0）。 |
 | colleague-yuhang | local (distilled 2026-11-02) | 俞航本人的行为 skill：从其 788 条会话原话（Cindy `messages` 表 733 条 + pi sessions 142 条去重后 55 条）+ 3 项当面确认蒸馏出工作能力与人格两层。生成器 = distilly（`tools/skill_writer.py`，character=colleague）；生成中间件在 `~/.distilly/skills/colleague/yuhang/`（含 work.md / persona.md / meta.json / versions），vault 只保留自包含的 `SKILL.md`（中间件含私人语料，不入库）。蒸馏方法与证据见 `docs/yuhang-distillation-2026-11-02.md` |
 | colleague-ue-app-specialist / -engine-architect / -prod-team-lead / -tech-planner (4) | local (imported 2026-11-08) | 源：`E:\XD\P4V\tl_yuhang_preUGS\frontend\trunk\我的SKILL\UE专家团\<name>\`（每目录 SKILL.md + persona/work/meta，`versions/v1..v4` 未入库，只取顶层版本）。原蒸馏自 WorkBuddy experts 插件 `ue-prod-team`：`C:/Users/XINDONG/.workbuddy/plugins/marketplaces/experts/plugins/ue-prod-team/agents/ue-*.md`（该路径不在包内，SKILL.md 正文引用它 → 链接分被扣，见评分表 D 列）；目录名按 frontmatter `name:` 统一为 `colleague-ue-*` |
 
@@ -128,6 +129,7 @@
 | planetscale/* (15) (retired 2026-10-26) | repo (submodule) | `github.com/planetscale/skills` @ `999045c` (MIT) — 变更门禁 / 只读盘点 / Vitess 安全评审 / schema 建议循环 |
 | dynatrace/* (11) (retired 2026-10-26) | repo (submodule) | `github.com/Dynatrace/dynatrace-for-ai` @ `4f9aa71` (Apache-2.0) — DQL / 日志 / 链路 / 服务 / 成本 / 安全洞察；只装 11 个，平台专属的（aws/azure/gcp/mobile…）留 vendor |
 | feishu-kdocs-cli | local（本仓实测沉淀） | 2026-11-14 在 Windows + Cindy 上实测：飞书 `@larksuite/cli` 1.0.100（含 24 个官方 Skill）+ 金山官方 Skill v2.9.6 / `kdocs-cli` 2.9.6 + 三个办公 MCP 端点（飞书 / WPS SkillHub / 腾讯文档）。capability score 9.5 → `SKILL/devops/tier0/` |
+| edithere | repo | `github.com/Inginnng/EditHere` @ `5b7fb78797af81f79e6f99c1f37d5ae3ac5e33ef`（`codex/native`，Release v0.13.1）的 `skills/edithere`。本机 `score_skills.py` 2026-11-14：补 `version: 0.13.1` 与 upstream metadata 前 8.75（tier1），补后 9.25（tier0）。落位 `SKILL/software-development/tier0/edithere`。许可 PolyForm Noncommercial 1.0.0，仅非商业。`references/local-installation.md` 是本机路径，不入库。 |
 
 ### FDE/ — 个人学习库（learning-vault 流程）+ FDE 领域语料
 | skill | origin | source |
@@ -232,6 +234,7 @@
 ### software-development/
 | skill | origin | source |
 |-------|--------|--------|
+| next-token-agent-loop | local（2026-11-14，从 MegaDev 第 1 课整理） | 事实来自 `BV1xsWQ6nEky` P1，讲师 Theo。目录 `SKILL/software-development/tier0/next-token-agent-loop`。`score_skills.py` 2026-11-14：A 3.0、B 1.3、C 2.0、D 2.0、E 1.0，合计 9.3，断链 0。质量评审不是这个分数：独立 reviewer 对上一版给过 7.3，其中 Executability 6、Resistance 5；收紧检查器后的复评超时，没有新的质量分。不要把 9.3 当成质量通过。 |
 | agent-desktop | repo (extracted from a CLI's bundled skill) | `github.com/vercel-labs/agent-desktop`（Apache-2.0，npm `agent-desktop` v1.0.2）；用 `agent-desktop skills get desktop|platform|<reference>` 导出，导出脚本见 `C:/Git-repo-my/个人成长/bili-ai-desktop-control/export_skill.py`。桌面操控走 OS 无障碍树（不截图、不靠像素）；SKILL.md 正文 + `references/` 5 份（platform / commands-observation / commands-interaction / commands-system / workflows）。装进 vault 时修了 1 处引用歧义：正文 `commands-system.md` 改为 `references/commands-system.md` |
 | aisides-ai-self-review | local | written for the AISides project |
 | debugger-persona (retired) | local | written — debug diagnosis + Chinese doc writing + code discipline persona |

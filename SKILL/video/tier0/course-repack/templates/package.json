@@ -1,0 +1,8 @@
+{
+  "name": "course-repack-deck",
+  "private": true,
+  "description": "PPTX builder dependency for course-repack/build_pptx.js",
+  "dependencies": {
+    "pptxgenjs": "^3.12.0"
+  }
+}

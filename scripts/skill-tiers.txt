@@ -332,3 +332,6 @@ tygg-ai-film-studio|A
 
 # 2026-11-14 飞书 / 金山文档 CLI 安装与边界（实测沉淀）
 feishu-kdocs-cli|A
+
+# 2026-11-14 course-repack（网课 -> 中文课程包；容量分 10.0，独立评审 8.4 HIGH）
+course-repack|A
