@@ -29,10 +29,19 @@
 # refused, because running sync from an old checkout silently re-installs skills
 # that were deliberately held back (this happened on 2026-11-13: a concurrent
 # session synced a 286-entry manifest and undid a 129-skill reduction).
+#
+# Prune policy: a normal run never deletes an installed skill. Skills that leave
+# the manifest (held back by scripts/install-scope.json, or retired) stay in
+# ~/.agents/skills and their views until a deliberate full reinstall:
+#     ... -FullReinstall -Yes
+# `-Prune` alone is ignored with a warning so older call sites cannot delete by
+# accident. A full reinstall without `-Yes` only prints the removal plan.
 
 param(
   [string]$Manifest = (Join-Path (Split-Path -Parent $PSScriptRoot) 'scripts\install-manifest.txt'),
-  [switch]$Prune,        # remove installed skills that are not in the manifest
+  [switch]$Prune,        # legacy flag; only takes effect together with -FullReinstall
+  [switch]$FullReinstall,# full reinstall: also remove installed vault skills that left the manifest
+  [switch]$Yes,          # confirm -FullReinstall non-interactively (otherwise dry run)
   [string]$Profile = 'all',  # 'all' installs tiers A+B; 'core' installs tier A only
   [switch]$PruneToProfile, # with -Profile core, also REMOVE tier B skills from the canonical store
   [switch]$SkipFreshnessCheck,
@@ -347,17 +356,52 @@ if ($retiredKept.Count -gt 0) {
   Write-Host ("retired kept (foreign real dirs, not vault-owned): {0}" -f (($retiredKept | Sort-Object -Unique) -join ', '))
 }
 
-if ($Prune) {
-  # Only junction views are pruned: a real dir in a foreign store is someone
-  # else's install (custom skills, another installer) and is never deleted here.
-  foreach ($v in $Views) {
-    foreach ($d in (Get-ChildItem -LiteralPath $v -Directory -Force -ErrorAction SilentlyContinue)) {
-      if (-not $manifestNames.ContainsKey($d.Name) -and $d.LinkType) {
-        cmd /c rmdir "$($d.FullName)" 2>&1 | Out-Null
-        Write-Host ("PRUNED {0} :: {1}" -f $d.Name, (Get-StoreName $v))
+# --- prune policy -----------------------------------------------------------
+# Default runs only add/update. Deleting an installed vault skill is a full
+# reinstall action: -FullReinstall -Yes. -Prune alone is ignored so old call
+# sites and muscle memory cannot remove skills by accident.
+$holdbackNames = @{}
+$holdbackPath = Join-Path $PSScriptRoot 'install-holdback.txt'
+if (Test-Path -LiteralPath $holdbackPath) {
+  foreach ($line in Get-Content -LiteralPath $holdbackPath -Encoding UTF8) {
+    $line = $line.Trim()
+    if (-not $line -or $line.StartsWith('#')) { continue }
+    $holdbackNames[($line -split '\|', 2)[0].Trim()] = $true
+  }
+}
+$staleInstalled = @(Get-ChildItem -LiteralPath $PrimaryPath -Directory -Force -ErrorAction SilentlyContinue |
+  Where-Object { $holdbackNames.ContainsKey($_.Name) -and -not $manifestNames.ContainsKey($_.Name) })
+
+if ($Prune -and -not $FullReinstall) {
+  Write-Host 'prune: -Prune ignored - cleanup only runs as -FullReinstall -Yes (installed skills kept)'
+}
+if ($FullReinstall) {
+  $plan = @(($staleInstalled | ForEach-Object { $_.Name } | Sort-Object))
+  if (-not $Yes) {
+    Write-Host ("prune plan: {0} installed skill(s) are outside the manifest and would be removed: {1}" -f $plan.Count, ($plan -join ', '))
+    Write-Host 'prune: dry run - add -Yes to execute'
+  } else {
+    $pruned = 0
+    foreach ($d in $staleInstalled) {
+      Remove-LinkOrDir -Path $d.FullName
+      Write-Host ("PRUNED {0} :: primary" -f $d.Name)
+      $pruned++
+    }
+    # Only junction views are pruned: a real dir in a foreign store is someone
+    # else's install (custom skills, another installer) and is never deleted here.
+    foreach ($v in $Views) {
+      foreach ($d in (Get-ChildItem -LiteralPath $v -Directory -Force -ErrorAction SilentlyContinue)) {
+        if (-not $manifestNames.ContainsKey($d.Name) -and $d.LinkType) {
+          cmd /c rmdir "$($d.FullName)" 2>&1 | Out-Null
+          Write-Host ("PRUNED {0} :: {1}" -f $d.Name, (Get-StoreName $v))
+          $pruned++
+        }
       }
     }
+    Write-Host ("prune: removed {0} skill(s) outside the manifest" -f $pruned)
   }
+} else {
+  Write-Host ("prune: off (default) - {0} installed skill(s) outside the manifest are kept; run -FullReinstall -Yes to clean" -f $staleInstalled.Count)
 }
 
 $counts = $report | Where-Object { $_.Action -notin @('unchanged','host-skip','tier-C-skipped','tier-skipped-core-profile') } | Group-Object Action
