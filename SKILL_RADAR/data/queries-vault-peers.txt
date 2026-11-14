@@ -1,0 +1,30 @@
+# Skill-vault peers scan — "repos that are themselves a curated skills vault"
+# Two strategies (per SKILL_RADAR/README.md): (A) topic sweeps, (B) keyword searches
+# on what a vault actually contains (SKILL.md, manifest, installer, tiers).
+
+# --- A. topic sweeps ---------------------------------------------------------
+topic:agent-skills
+topic:claude-skills
+topic:claude-code-skills
+topic:agent-skill
+topic:skills-library
+topic:skill-library
+topic:awesome-skills
+topic:claude-plugins
+topic:agentic-skills
+
+# --- B. keyword sweeps -------------------------------------------------------
+"SKILL.md" in:readme
+"agent skills" "library" in:name,description
+"skill library" in:name,description
+"skills library" in:name,description
+"skills marketplace" in:name,description
+"awesome claude" skills in:name,description
+"skill registry" in:name,description
+"curated skills" agent in:readme
+"portable skills" in:name,description,readme
+"skills for ai agents" in:name,description
+"anthropic skills" in:name,description
+"codex skills" in:name,description
+"gemini skills" in:name,description
+"skills installer" agent in:name,description,readme

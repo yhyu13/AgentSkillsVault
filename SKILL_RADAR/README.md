@@ -24,6 +24,7 @@ Research notes and live radars for the **AgentSkillsVault** — evidence-backed 
 | 2026-10-24 | [Agent startup radar — skill builders, AI employees, all-night workers, distilled masters](./2026-10-24-agent-startup-radar-skill-employee-allnight-distilled-masters.md) | Top-20 star ranking across four agent-startup archetypes + per-archetype radar, OSS digital-worker tier (all sub-1k★), and the commercial startup layer; CSV twin alongside |
 | 2026-10-24 | [Top 20 agent skills for MBA / business domains](./2026-10-24-top-20-agent-skills-for-mba-business-domains.md) | Market analysis, competitive analysis, PRD, entrepreneurship kits, finance/accounting/valuation, sales & GTM, strategy frameworks, HR/legal/ops — ranked by stars plus a by-vertical radar; CSV twin alongside |
 | 2026-10-24 | [雷达采纳批次：submodule 落地 + skill 安装记录](./2026-10-24-radar-adoption-install-record.md) | 上面 6 篇笔记各自结尾的「采纳清单」如何落地：34 个 repo 变 `vendor/` submodule、137 个 skill 装进分类目录并分发到用户级；含 7 类不装理由、4 处刻意适配（重命名 / 前缀 / frontmatter 补丁） |
+| 2026-11-13 | [Top 20 agent-skill **vault** 同形态同行](./2026-11-13-agent-skill-vault-peers-top20.md) | 与前几篇按主题扫不同，这篇按**形态**扫：谁也是「多分类、可安装、被维护」的 skill 库。1,840 个候选 → 52 个实测（unique SKILL.md / 分类数 / 工具链 / 每 skill 载荷）→ 前 20。发现：镜像副本让星数榜严重虚高（最高 67% 重复）、我们缺 lockfile / harness 可见性验证 / 证据绑定、7 个 repo 值得挂 submodule |
 
 ## Adoption status（哪些结论已经落进 vault）
 
@@ -70,5 +71,7 @@ Raw payloads for the 2026-10-24 agent-startup scan are kept in `data/` (`sweep-2
 ## Why stars are not enough
 
 The most useful finding from the first scan: **stars follow the kit, installs follow the file.** A 287k-star repo's most-installed skill (18,189 installs) is out-installed by a same-named skill from a 1,075-star repo (20,611 installs). Index future skills by `stars` **and** `installs` **and** `pushed_at` — a high-star repo with a stale `pushed_at` is dead weight.
+
+The 2026-11-13 vault scan adds a second correction: **a `SKILL.md` count is not a library size.** Several repos keep a real copy of every skill in each harness dotdir (`.claude/`, `.codex/`, `.cursor/`, …), so the same skill is counted 2–5 times. Measured duplication: `wondelai/skills` 67% (196 → 65 unique), `sickn33/agentic-awesome-skills` 66% (9,454 → 3,246), `jeremylongshore/tons-of-skills-marketplace` 43% (5,764 → 3,299). Dedupe by git blob SHA before comparing libraries — `scripts/skill_substance.py` does it in one API call per repo.
 
 The MBA/business scan adds a sharper version of the same lesson: **stars are inversely correlated with method depth in that niche.** `brainbytes-dev/everything-claude-finance` (6 stars) contains `dcf-valuation`, `lbo-modeling`, `precedent-transactions` and `pitch-book-creation`; `M-MMahmood/business-frameworks-agent-skills` (0 stars) contains all 26 canonical strategy frameworks. Both beat a 163k-star agent roster that has no financial model at all.
