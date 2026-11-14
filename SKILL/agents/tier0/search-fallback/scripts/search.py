@@ -41,6 +41,8 @@ def ddg_lite(q, n):
         m = re.search(r"uddg=([^&]+)", h)
         if m:
             h = urllib.parse.unquote(m.group(1))
+        if h.startswith("//"):
+            h = "https:" + h
         out.append({"title": clean(title), "url": h,
                     "snippet": clean(snips[i])[:300] if i < len(snips) else ""})
     return out
@@ -68,7 +70,7 @@ def run(q, n, engine):
              "auto": [ddg_lite, bing_rss]}[engine]
     for fn in order:
         for attempt in range(2):
-            res = fn(q, n) if fn is ddg_lite else fn(q, n)
+            res = fn(q, n)
             if res:
                 return fn.__name__, res
             if attempt == 0:
