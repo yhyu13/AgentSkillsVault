@@ -206,6 +206,7 @@ AgentSkillsVault/
 | devops/kanban-orchestrator | devops | AgentMOD caretaker, AISides caretaker, PKB caretaker |
 | devops/kanban-cron-overseer | devops | AgentMOD overseer |
 | devops/cron-pipeline-state-machine | devops | (reference pattern) |
+| devops/feishu-kdocs-cli | devops | install / re-auth / troubleshoot Feishu lark-cli + Kingsoft kdocs-cli and the three office MCP endpoints (Feishu / WPS SkillHub / Tencent Docs); score 9.5, tier0 |
 | software-development/aisides-ai-self-review | software-development | AISides caretaker |
 | software-development/software-dev-loop | software-development | goal �?plan doc �?implement �?test �?journey �?memory dev loop (holy grail) |
 | software-development/technical-research-analysis-doc | software-development | UE pak/打包/热更/渲染 调研 �?TorchLight 格式分析文档（背景→结论先行→影响链条→mermaid→方案对比） |
