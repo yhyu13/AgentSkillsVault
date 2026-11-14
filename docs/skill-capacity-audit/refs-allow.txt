@@ -48,3 +48,4 @@ hyperframes|assets/fonts/|同上
 html-ppt|examples/my-talk/*|示例 deck 目录，用户自建
 multi-agent-repo-governance|docs/README.md|要求新建的治理骨架文件
 multi-agent-repo-governance|scripts/*|要求新建的检查脚本（模板中给出）
+feishu-kdocs-cli|agents/skills*|正文引用的是用户级技能目录（$HOME/.agents/skills），在包外，不可能随包携带

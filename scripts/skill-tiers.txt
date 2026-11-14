@@ -329,3 +329,6 @@ doubaofeishu_ui-design-system|B
 
 # 2026-11-13 BV1RLeg6rEri / TYGG AI Film Studio v3.2.7
 tygg-ai-film-studio|A
+
+# 2026-11-14 飞书 / 金山文档 CLI 安装与边界（实测沉淀）
+feishu-kdocs-cli|A

@@ -69,6 +69,30 @@ Changing `linkViews` to `false` (or passing `-NoViews`) makes `sync-skills.ps1` 
 junctions it previously created; real directories owned by other installers are never
 touched. Switching back to `true` re-creates them on the next sync.
 
+### Prune policy — a regular sync never deletes
+
+A normal `sync-skills.ps1` run only adds and updates. When a skill leaves the
+manifest (it fell out of the top-N score bands, or was retired), its installed
+copy stays in the primary store and in every view, and it is listed in
+`scripts/install-holdback.txt`.
+
+Removing those copies is a deliberate **full reinstall**:
+
+```bash
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sync-skills.ps1 -FullReinstall -Yes
+```
+
+- `-FullReinstall` without `-Yes` prints the removal plan and changes nothing.
+- `-Prune` on its own is ignored (kept for old call sites), so muscle memory and
+  stale automation cannot delete skills by accident.
+- Even a full reinstall only removes vault-known names (holdback + retired) and
+  vault-created junctions; real directories owned by other installers are never
+  deleted.
+
+Rationale: the 2026-11-13 audit reduction and the 2026-11-14 `tier0` addition
+both changed the manifest. Deleting the difference on the next routine sync
+would silently remove skills a user is still relying on.
+
 - The store list lives in `$AllStoreNames` (`sync-skills.ps1`) and must be mirrored in
   `verify-install.ps1`. `.cc-switch/skills` is deliberately excluded — it holds no
   skills (config dir only).

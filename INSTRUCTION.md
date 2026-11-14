@@ -127,6 +127,7 @@
 | monte-carlo/* (9) (retired 2026-10-26) | repo (submodule) | `github.com/monte-carlo-data/mc-agent-toolkit` @ `d3915f3` (Apache-2.0) — 监控即代码（根因分析/事故响应/成本/主动监控）；只装 9 个，generic 名的 12 个（`prevent` `onboarding` `manage-mac` 等）留 vendor |
 | planetscale/* (15) (retired 2026-10-26) | repo (submodule) | `github.com/planetscale/skills` @ `999045c` (MIT) — 变更门禁 / 只读盘点 / Vitess 安全评审 / schema 建议循环 |
 | dynatrace/* (11) (retired 2026-10-26) | repo (submodule) | `github.com/Dynatrace/dynatrace-for-ai` @ `4f9aa71` (Apache-2.0) — DQL / 日志 / 链路 / 服务 / 成本 / 安全洞察；只装 11 个，平台专属的（aws/azure/gcp/mobile…）留 vendor |
+| feishu-kdocs-cli | local（本仓实测沉淀） | 2026-11-14 在 Windows + Cindy 上实测：飞书 `@larksuite/cli` 1.0.100（含 24 个官方 Skill）+ 金山官方 Skill v2.9.6 / `kdocs-cli` 2.9.6 + 三个办公 MCP 端点（飞书 / WPS SkillHub / 腾讯文档）。capability score 9.5 → `SKILL/devops/tier0/` |
 
 ### FDE/ — 个人学习库（learning-vault 流程）+ FDE 领域语料
 | skill | origin | source |

@@ -61,23 +61,12 @@ doubaofeishu_industry-analysis|SKILL/management/tier2/doubaofeishu_industry-anal
 earnings-models|SKILL/management/tier3/earnings-models|B
 excel-hygiene|SKILL/content/tier1/excel-hygiene|B
 family-edu-gamified-skills|SKILL/knowledge-vault/tier2/family-edu-gamified-skills|A
+feishu-kdocs-cli|SKILL/devops/tier0/feishu-kdocs-cli|A
 finance-lead|SKILL/management/tier3/finance-lead|B
 goal-persistence|SKILL/agents/tier3/goal-persistence|B
 gracker-writing|SKILL/content/tier1/gracker-writing|A
-grafana-alerting-irm|SKILL/devops/tier2/grafana-alerting-irm|B
-grafana-alloy|SKILL/devops/tier2/grafana-alloy|B
-grafana-beyla|SKILL/devops/tier2/grafana-beyla|B
-grafana-dashboarding|SKILL/devops/tier2/grafana-dashboarding|B
 grafana-loki-label-analyzer|SKILL/devops/tier1/grafana-loki-label-analyzer|B
-grafana-mimir|SKILL/devops/tier2/grafana-mimir|B
-grafana-opentelemetry|SKILL/devops/tier2/grafana-opentelemetry|B
 grafana-oss|SKILL/devops/tier1/grafana-oss|B
-grafana-profilecli-insights|SKILL/devops/tier2/grafana-profilecli-insights|B
-grafana-prometheus|SKILL/devops/tier2/grafana-prometheus|B
-grafana-prometheus-cardinality-troubleshooter|SKILL/devops/tier2/grafana-prometheus-cardinality-troubleshooter|B
-grafana-prometheus-label-strategy|SKILL/devops/tier2/grafana-prometheus-label-strategy|B
-grafana-skill-authoring|SKILL/devops/tier2/grafana-skill-authoring|B
-grafana-tempo|SKILL/devops/tier2/grafana-tempo|B
 guizang-product-video-skill|SKILL/video/tier1/guizang-product-video-skill|B
 h3-seedance-prompt-library|SKILL/video/tier0/h3-seedance-prompt-library|B
 hands-on-deck|SKILL/design/tier0/hands-on-deck|A
@@ -232,8 +221,20 @@ xlsx|vendor/anthropics-skills/skills/xlsx|A
 # gdd-markdown-template|SKILL/game-dev/tier2/gdd-markdown-template|B|band=tier2|category=game-dev
 # geometry-nodes|SKILL/game-dev/tier2/geometry-nodes|B|band=tier2|category=game-dev
 # governance-doc-design|SKILL/software-development/tier3/governance-doc-design|B|band=tier3|category=software-development
+# grafana-alerting-irm|SKILL/devops/tier2/grafana-alerting-irm|B|band=tier2|category=devops
+# grafana-alloy|SKILL/devops/tier2/grafana-alloy|B|band=tier2|category=devops
+# grafana-beyla|SKILL/devops/tier2/grafana-beyla|B|band=tier2|category=devops
+# grafana-dashboarding|SKILL/devops/tier2/grafana-dashboarding|B|band=tier2|category=devops
+# grafana-mimir|SKILL/devops/tier2/grafana-mimir|B|band=tier2|category=devops
+# grafana-opentelemetry|SKILL/devops/tier2/grafana-opentelemetry|B|band=tier2|category=devops
+# grafana-profilecli-insights|SKILL/devops/tier2/grafana-profilecli-insights|B|band=tier2|category=devops
+# grafana-prometheus|SKILL/devops/tier2/grafana-prometheus|B|band=tier2|category=devops
+# grafana-prometheus-cardinality-troubleshooter|SKILL/devops/tier2/grafana-prometheus-cardinality-troubleshooter|B|band=tier2|category=devops
+# grafana-prometheus-label-strategy|SKILL/devops/tier2/grafana-prometheus-label-strategy|B|band=tier2|category=devops
 # grafana-promql|SKILL/devops/tier3/grafana-promql|B|band=tier3|category=devops
 # grafana-pyroscope|SKILL/devops/tier3/grafana-pyroscope|B|band=tier3|category=devops
+# grafana-skill-authoring|SKILL/devops/tier2/grafana-skill-authoring|B|band=tier2|category=devops
+# grafana-tempo|SKILL/devops/tier2/grafana-tempo|B|band=tier2|category=devops
 # grilling|SKILL/software-development/tier3/grilling|B|band=tier3|category=software-development
 # grill-me|SKILL/software-development/tier4/grill-me|B|band=tier4|category=software-development
 # grill-with-docs|SKILL/software-development/tier4/grill-with-docs|B|band=tier4|category=software-development
