@@ -1,0 +1,21 @@
+{
+  "name": "vault-devops",
+  "version": "1.0.0",
+  "description": "3 curated skills — Observability, Grafana, deployment and infrastructure review.. Full provenance per skill in skills-lock.json.",
+  "author": {
+    "name": "yhyu13",
+    "url": "https://github.com/yhyu13"
+  },
+  "homepage": "https://github.com/yhyu13/AgentSkillsVault",
+  "license": "MIT",
+  "keywords": [
+    "devops",
+    "agent-skills",
+    "skills-vault"
+  ],
+  "skills": [
+    "./tier0/feishu-kdocs-cli",
+    "./tier1/grafana-loki-label-analyzer",
+    "./tier1/grafana-oss"
+  ]
+}

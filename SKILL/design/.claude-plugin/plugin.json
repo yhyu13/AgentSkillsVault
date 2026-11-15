@@ -1,0 +1,34 @@
+{
+  "name": "vault-design",
+  "version": "1.0.0",
+  "description": "16 curated skills — HTML/visual design, slides, decks, diagrams and explainers.. Full provenance per skill in skills-lock.json.",
+  "author": {
+    "name": "yhyu13",
+    "url": "https://github.com/yhyu13"
+  },
+  "homepage": "https://github.com/yhyu13/AgentSkillsVault",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "agent-skills",
+    "skills-vault"
+  ],
+  "skills": [
+    "./tier0/anatomy",
+    "./tier0/brand-docx",
+    "./tier1/brand-pptx",
+    "./tier1/brand-xlsx",
+    "./tier0/hands-on-deck",
+    "./tier1/html-artifacts",
+    "./tier0/html-ppt",
+    "./tier0/huashu-design",
+    "./tier0/opendeck",
+    "./tier1/presentation-skill",
+    "./tier0/stageshow",
+    "./tier0/video-production",
+    "./tier1/visual-explainer",
+    "./tier1/visual-learner",
+    "./tier1/web-prototype",
+    "./tier1/xiaoma-studio"
+  ]
+}

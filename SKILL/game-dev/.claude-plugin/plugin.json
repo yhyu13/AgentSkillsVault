@@ -1,0 +1,23 @@
+{
+  "name": "vault-game-dev",
+  "version": "1.0.0",
+  "description": "5 curated skills — Godot/Phaser/Blender/UE game production and rendering.. Full provenance per skill in skills-lock.json.",
+  "author": {
+    "name": "yhyu13",
+    "url": "https://github.com/yhyu13"
+  },
+  "homepage": "https://github.com/yhyu13/AgentSkillsVault",
+  "license": "MIT",
+  "keywords": [
+    "game-dev",
+    "agent-skills",
+    "skills-vault"
+  ],
+  "skills": [
+    "./tier1/blender-director",
+    "./tier0/single-file-html-game",
+    "./tier1/technical-design-document",
+    "./tier0/ue-renderdoc-auto-capture",
+    "./tier1/webapp-testing"
+  ]
+}

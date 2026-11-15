@@ -107,6 +107,9 @@
 
 | 经验 | 落位 | 证据 |
 | --- | --- | --- |
+| **D2 skill lockfile**（#66）：来源与内容哈希变成数据，指针解析不出来就是失败 | `scripts/skills_lock.py` + 根目录 `skills-lock.json`（125 skills / 67 可解析 / 58 无出处 = 2026-11-13 基线） | `--check` 实测四种漂移全部拦下：hash 变（pptx）、skill 增删（weekly-report）、出处新增（lock 过期）、**出处丢失（search-fallback，改一行 INSTRUCTION 复现）**；`--strict` 才因 58 个无出处失败，避免历史欠账把闸门变成噪声 |
+| **D1 store 审计**（#65/#73/#74/#75）：归属 / 空 store / 宿主投影 / 漂移方向 | `scripts/audit_stores.py` | 实测：`.kilo` 空、`.claude` 194 reparse 中 193 指向 `.agents`、primary 228 条里 103 条外来、`pptx` 因 `__pycache__` 被判 MISMATCH→现 MATCH；受控测试（改 store 副本 + 新 mtime）报 `DRIFT-REVERSE`「sync would overwrite it」且 `--fail-on-drift` 退出 1 |
+| **D6 marketplace 入口**（#70）：一条命令装，零复制 | `scripts/build_marketplace.py` → `.claude-plugin/marketplace.json` + 11 × `SKILL/<cat>/.claude-plugin/plugin.json`（115 skills，插件用显式 `skills:["./tierN/<name>"]` 指向既有目录） | `claude plugin validate . --strict` = **Validation passed**（exit 0，0 warning）。首版把 `skills` 写成 `./<name>` 漏掉 tier 段，被 validate 逐条报 115 个 `Path not found` —— 正是「问 harness」比自查可靠的地方 |
 | 时长只有一个事实来源（音频实测，估算只做备胎） | `references/form4-video-delivery.md` §1 | 分镜估算 290s vs 旁白实测 177.8s（差 39%），后半段音画全错 |
 | 静帧推镜必须逐帧亚像素渲染（别用 `zoompan` 整数裁剪） | 同上 §2 + `references/scripts/render_pipe.py` | 冻结帧 15/39、抖动残差 0.161 → 逐帧渲染后 1/39、0.002 |
 | 交付前跑抽帧最近邻校验 + 抖动量化（含阈值） | 同上 §3 + `references/scripts/verify_video.py` | 阈值标定表在 `references/scripts/README.md` |

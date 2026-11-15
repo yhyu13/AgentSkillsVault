@@ -1,0 +1,19 @@
+{
+  "name": "vault-writing",
+  "version": "1.0.0",
+  "description": "1 curated skills — Long-form and technical writing craft.. Full provenance per skill in skills-lock.json.",
+  "author": {
+    "name": "yhyu13",
+    "url": "https://github.com/yhyu13"
+  },
+  "homepage": "https://github.com/yhyu13/AgentSkillsVault",
+  "license": "MIT",
+  "keywords": [
+    "writing",
+    "agent-skills",
+    "skills-vault"
+  ],
+  "skills": [
+    "./tier1/karpathy-explain-better"
+  ]
+}
