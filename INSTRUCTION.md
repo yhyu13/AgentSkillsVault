@@ -233,6 +233,7 @@
 | skill | origin | source |
 |-------|--------|--------|
 | agent-desktop | repo (extracted from a CLI's bundled skill) | `github.com/vercel-labs/agent-desktop`（Apache-2.0，npm `agent-desktop` v1.0.2）；用 `agent-desktop skills get desktop|platform|<reference>` 导出，导出脚本见 `C:/Git-repo-my/个人成长/bili-ai-desktop-control/export_skill.py`。桌面操控走 OS 无障碍树（不截图、不靠像素）；SKILL.md 正文 + `references/` 5 份（platform / commands-observation / commands-interaction / commands-system / workflows）。装进 vault 时修了 1 处引用歧义：正文 `commands-system.md` 改为 `references/commands-system.md` |
+| agent-eval-loop | local (distilled from a talk) | 素材在 `C:/Git-repo-my/个人成长/agent-eval-from-spacexai/skill/agent-eval-loop`（MIT）。方法论 skill：给任何 agent 工作流搭 Skill + Eval + Verification 三件套，再沿信任曲线从本地观察升到云端自动化。随包 4 份 references（eval-playbook / skill-design / trust-curve / verification-patterns）、`scripts/eval-runner.sh`、2 个模板，以及 `examples/01-bug-repro-skill` 示例。评分 9.70（tier0），`check_selfcontained.py` 14 refs 全通过；缺陷：正文用 ``/loop`` 指斜杠命令，曾让自包含检查器误判为绝对路径，已在检查器中修正 |
 | aisides-ai-self-review | local | written for the AISides project |
 | debugger-persona (retired) | local | written — debug diagnosis + Chinese doc writing + code discipline persona |
 | journey | local | written (two-column ME/YOU history) |
