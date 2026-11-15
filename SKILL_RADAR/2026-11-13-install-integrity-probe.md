@@ -1,8 +1,8 @@
-# Store visibility probe — does the install actually reach the harness?
+# Install-integrity probe — does the install reach the harness, and can provenance be checked?
 
 **Date:** 2026-11-13 · **Host:** the authoring machine (Windows, MSYS Git Bash) · **Mode:** read-only
-**Companion note:** [Top 20 agent-skill vault peers](./2026-11-13-agent-skill-vault-peers-top20.md), mechanism **D1** ("ask the harness what it discovered")
-**Tool:** `SKILL_RADAR/scripts/store_matrix.py` (prototype, read-only) · `scripts/verify-install.ps1` (existing)
+**Companion note:** [Top 20 agent-skill vault peers](./2026-11-13-agent-skill-vault-peers-top20.md) — this probe measures mechanisms **D1** (ask the harness) and **D2** (skill lockfile) on this vault instead of citing them
+**Tools:** `SKILL_RADAR/scripts/store_matrix.py`, `SKILL_RADAR/scripts/provenance_coverage.py` (prototypes, read-only) · `scripts/verify-install.ps1` (existing)
 
 ---
 
@@ -10,7 +10,7 @@
 
 The peer scan found that `alirezarezvani/claude-skills` verifies installs by *asking each harness which skills it discovered*, not by hashing files. That raised an obvious question about this vault: **we prove the copies are byte-identical — but does anything prove the skills are actually reachable?**
 
-So instead of writing that up as advice, I measured it on this machine.
+So instead of writing that up as advice, I measured it on this machine — first whether the store matches intent (§3–§4), then whether "where did this skill come from" is *checkable* at all (§7).
 
 ---
 
@@ -126,11 +126,56 @@ Items 1–4 are corrections to live defects. Items 5–7 are the peer-scan disti
 
 ---
 
+## 7. D2 probe — is provenance machine-checkable?
+
+Peers ship `skills-lock.json` (`{source, sourceType, skillPath, computedHash}`). Ours lives in `INSTRUCTION.md` as a Markdown table. `SKILL_RADAR/scripts/provenance_coverage.py` parses both table shapes in that file and joins them against the install manifest:
+
+| measure | value |
+|---|---|
+| installed skills in the manifest | 125 |
+| provenance rows parsed from `INSTRUCTION.md` | 221 |
+| submodule-table rows parsed | 34 |
+| installed skills with a **per-skill** provenance row | **77 / 125 (61%)** |
+| installed skills with **no** provenance at all | **48** |
+| installed skills linked only by a glob row | 0 — the globs do not resolve |
+| **path tokens in the submodule table** | 28 |
+| **of those, resolvable under `SKILL/`** | **1** |
+
+### 7.1 The globs point at paths that no longer exist
+
+Every submodule row says something like `装 management/finance/**（15）` or `装 content/genoffice`. Since the 2026-11-10 flattening (per `AGENTS.md`: *"every curated skill is flattened to `SKILL/<category>/tier<N>/<leaf>`"*), those paths are gone:
+
+```
+$ ls -d SKILL/management/finance
+ls: cannot access 'SKILL/management/finance': No such file or directory
+$ ls -d SKILL/management/tier3/dcf-valuation
+SKILL/management/tier3/dcf-valuation
+```
+
+**27 of 28 path tokens in the provenance table are unresolvable.** So 15 finance skills, 36 grafana skills, 9 monte-carlo skills and the rest are recorded as "installed from <repo>" in a form no script can follow. The information is not wrong — it is *stranded*: correct at the moment of writing, orphaned by a directory rename, and nothing failed loudly.
+
+### 7.2 48 installed skills have no provenance row at all
+
+Including the whole `ds-*`/thinking family (`arming-thought`, `contradiction-analysis`, `practice-cognition`, `mass-line`, `overall-planning`, `investigation-first`, `spark-prairie-fire`, `protracted-strategy`, `criticism-self-criticism`, `systemic-change-design`) and the finance set (`dcf-valuation`, `lbo-modeling`, `comparable-analysis`, `precedent-transactions`, `pitch-book-creation`, `earnings-models`, `sector-analysis`, `consolidation`, `lease-accounting`, `hgb-standards`, `ifrs-standards`, `revenue-recognition`, `deal-structuring`, `finance-lead`). Several are almost certainly covered by a glob row §7.1 says cannot be resolved.
+
+### 7.3 Why this is a D2 argument and not a scolding
+
+Nobody did anything wrong: a table written in one directory layout and a rename executed later will always drift, because **nothing joins them**. A lockfile regenerated from the tree would fail to resolve `management/finance/**` and say so on the next run. That is the whole value of D2 — not tidiness, but making the rename *unable* to silently orphan 27 provenance pointers.
+
+Minimum viable version, no new infrastructure:
+
+1. add a `path` column to the provenance tables (`SKILL/management/tier3/dcf-valuation`) or a per-skill row per skill;
+2. `scripts/check_manifest.py` additionally asserts every `path` cell exists;
+3. emit `skills-lock.json` from `(name, path, source, computedHash)` in `build-manifest.ps1`.
+
+---
+
 ## Sources
 
-- `scripts/install-manifest.txt` (136 entries, committed), `scripts/install-scope.json`, `scripts/verify-install.ps1` (read at lines 40–100)
-- `SKILL_RADAR/scripts/store_matrix.py` (this probe), `install-scope.json` parsed for `primaryStore` / `linkViews`
+- `scripts/install-manifest.txt` (125 entries on `main` @ `959346a`), `scripts/install-scope.json`, `scripts/verify-install.ps1` (read at lines 40–100), `.github/workflows/pr-gate.yml`
+- `SKILL_RADAR/scripts/store_matrix.py` and `SKILL_RADAR/scripts/provenance_coverage.py` — the two probes in this note
+- `INSTRUCTION.md` — 221 provenance rows and 34 submodule-table rows parsed; `AGENTS.md` for the 2026-11-10 flattening rule
 - Live `~/.agents/skills`, `~/.claude/skills`, and 12 further store paths, enumerated read-only on 2026-11-13
 - `claude --version` → 2.1.295; `claude --help` subcommands inspected; no offline skill-listing subcommand exists (`plugin`, `mcp`, `doctor`, `agents` only)
 
-*Re-run with `python SKILL_RADAR/scripts/store_matrix.py`. Numbers are a snapshot of one machine on one day; the findings F1/F6/F8 are structural and will reproduce anywhere.*
+*Re-run with `python SKILL_RADAR/scripts/store_matrix.py` and `python SKILL_RADAR/scripts/provenance_coverage.py`. The store numbers are a snapshot of one machine on one day; F1/F6/F8 and the §7 findings are structural and will reproduce anywhere.*
