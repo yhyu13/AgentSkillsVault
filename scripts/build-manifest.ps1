@@ -109,6 +109,30 @@ Get-ChildItem -LiteralPath $Vault -Recurse -Directory -ErrorAction SilentlyConti
     if (-not $curated.ContainsKey($_.Name)) { $curated[$_.Name] = $rel }
   }
 
+# A skill directory that is itself a submodule, checked out without --init, is an
+# empty dir: it has no SKILL.md, so it silently drops out of the curated set and the
+# next sync removes it from every store. Silence is the wrong default here — report it.
+$submodulePaths = @()
+if (Test-Path -LiteralPath (Join-Path $Vault '.gitmodules')) {
+  $submodulePaths = Get-Content -LiteralPath (Join-Path $Vault '.gitmodules') |
+    Where-Object { $_ -match '^\s*path\s*=' } |
+    ForEach-Object { ($_ -split '=', 2)[1].Trim().Replace([string][char]92, '/') }
+}
+$emptySubmodules = @()
+foreach ($sub in $submodulePaths) {
+  if ($sub -notlike 'SKILL/*') { continue }
+  $full = Join-Path $Vault $sub
+  if (-not (Test-Path -LiteralPath $full)) { continue }
+  $entries = @(Get-ChildItem -LiteralPath $full -Force -ErrorAction SilentlyContinue)
+  if ($entries.Count -eq 0) {
+    $emptySubmodules += $sub
+    Write-Warning ("skill submodule not initialised (empty, will be dropped from the manifest): {0}" -f $sub)
+  }
+}
+if ($emptySubmodules.Count -gt 0) {
+  Write-Warning ("{0} skill submodule(s) empty. Run: git submodule update --init --recursive" -f $emptySubmodules.Count)
+}
+
 $rows = New-Object System.Collections.Generic.List[object]
 
 foreach ($k in ($curated.Keys | Sort-Object)) {

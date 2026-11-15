@@ -69,6 +69,45 @@ Changing `linkViews` to `false` (or passing `-NoViews`) makes `sync-skills.ps1` 
 junctions it previously created; real directories owned by other installers are never
 touched. Switching back to `true` re-creates them on the next sync.
 
+### Verified state of the stores (measured 2026-11-13 — read before trusting the diagram above)
+
+The tables above describe the *model*. This is what the model actually looks like on the
+authoring machine, measured with `scripts/audit_stores.py`:
+
+| fact | value |
+|---|---|
+| `scripts/install-scope.json` | `linkViews: false` — so 13 junction views are **switched off** |
+| `~/.agents/skills` (primary) | 228 entries: 125 ours, 103 foreign, 1 external-skill junction |
+| `~/.claude/skills` | 226 entries, **193 reparse**: 192 are symlinks into `.agents` created by the Cindy host on start — not vault-owned views |
+| `~/.kilo/skills` | **0 entries** (Kilo is not installed here) |
+| other 11 stores | hold 0 of our skills; their contents are other installers' |
+
+Two consequences worth internalising:
+
+1. **Never state a skill count from a directory listing.** 103 of 228 entries in the primary
+   store are not ours. Count the manifest (`scripts/install-manifest.txt`), never `ls`.
+2. **Third-party library comparisons must use *unique* `SKILL.md` counts.** Peers that keep
+   a real copy per harness dotdir inflate their headline number by 2–2.5×: `wondelai/skills`
+   196 → 65 unique, `sickn33/agentic-awesome-skills` 9,454 → 3,246 (66% duplicates),
+   `jeremylongshore/tons-of-skills-marketplace` 5,764 → 3,299. Dedupe by git blob SHA
+   (`SKILL_RADAR/scripts/skill_substance.py`). This vault is 0% duplicate by construction
+   (one curated tree + junctions) — do not "fix" it into copies.
+
+### Verifying an install
+
+Three tools, three different questions — use the one that matches what you doubt:
+
+| command | answers | cost |
+|---|---|---|
+| `powershell -File scripts/verify-install.ps1 -Manifest scripts/install-manifest.txt` | is each manifest entry present in the primary store and byte-identical to the vault? (ignores `__pycache__`/`*.pyc`) | ~2 min, PowerShell |
+| `python scripts/audit_stores.py [--fail-on-drift]` | which stores are empty, which entries are foreign, which side of a drift is newer (`DRIFT` = vault newer, `DRIFT-REVERSE` = **sync would destroy the store copy**) | ~2 s |
+| `python scripts/skills_lock.py --check` | did any skill move, change content, or lose its provenance row since the lock was written? | ~3 s |
+
+`scripts/skills_lock.py` regenerates `skills-lock.json` (path + content hash + provenance row
+per skill). `--check` fails on drift and on *lost* provenance — which is how a directory
+rename gets caught instead of silently orphaning a pointer (27 of 28 provenance path tokens
+were dead before this tool existed).
+
 ### Prune policy — a regular sync never deletes
 
 A normal `sync-skills.ps1` run only adds and updates. When a skill leaves the

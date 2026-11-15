@@ -21,6 +21,11 @@ function Get-TreeHash {
   if (-not (Test-Path -LiteralPath $Path)) { return $null }
   $root = (Resolve-Path -LiteralPath $Path).Path
   $files = Get-ChildItem -LiteralPath $root -Recurse -File -ErrorAction SilentlyContinue |
+    # __pycache__ / *.pyc are runtime droppings: running a skill's own scripts inside a
+    # store creates them, and hashing them makes MATCH unreachable for any skill that
+    # ships runnable code (measured: pptx differed only by scripts/office/*/__pycache__).
+    # Exclude them so the hash describes authored content, which is what we verify.
+    Where-Object { $_.Name -notlike '*.pyc' -and $_.Name -notlike '*.pyo' -and $_.FullName -notmatch '[\\/]__pycache__[\\/]' } |
     Where-Object { $_.FullName -notmatch '[\\/]\.git[\\/]' } | Sort-Object FullName
   if (-not $files -or $files.Count -eq 0) { return 'EMPTY' }
   $sb = New-Object System.Text.StringBuilder
