@@ -71,7 +71,7 @@ So it answers one question well: **"is this manifest entry present in the primar
 |---|---|---|
 | `search-fallback` | `SKILL.md` + `scripts/search.py` differ, **`references/` absent in the store** | real drift — the `tier2 → tier0` move in #41 was never synced |
 | `feishu-kdocs-cli` | `SKILL.md`, 2 × `references/*.md`, `scripts/doctor.ps1` | real drift |
-| `gracker-writing` | `SKILL.md` line 3 (`description:`); store mtime 2026-11-15 > vault 2026-11-14 | real drift, store ahead of vault |
+| `gracker-writing` | `SKILL.md` line 3 (`description:`); store mtime 2026-11-15 > vault 2026-11-14. The store copy carries the **short discriminant-first** description (the style `SKILL_CANDIDATES.md` #27–#36 adopted), the vault copy still has the long trigger-word list — i.e. the improvement was made in the store and never came back | real drift, store ahead of vault |
 | `pptx` | `scripts/office/{helpers,validators}/__pycache__` **only** | un-fixable by re-sync |
 | `tygg-ai-film-studio`, `investment-masters` | uninitialised `vendor/` submodule | worktree artefact |
 
@@ -115,7 +115,7 @@ Last turn's candidate said "`verify-install.ps1` proves files identical, not tha
 | # | action | why now |
 |---|---|---|
 | 1 | **Put `verify-install.ps1` in `pr-gate.yml`.** Not to block on `mismatch` (see #3) but to publish the count as a check output | F9 — today a drifted store is invisible to every automated gate |
-| 2 | **Re-sync the three drifted skills** — `search-fallback` (missing `references/`), `feishu-kdocs-cli`, `gracker-writing` | F5 — live functional drift; `search-fallback` cannot load its own references |
+| 2 | **Re-sync the three drifted skills — except `gracker-writing`, where sync would overwrite the better copy.** For those two, `sync-skills.ps1` is the fix; for `gracker-writing` the store side must be copied back into the vault first (and a blind sync would destroy it) | F5/F7 — live functional drift, and one case where the standard remedy is the wrong direction |
 | 3 | Teach `Get-TreeHash` to ignore `__pycache__` / `*.pyc` | F6 — otherwise `mismatch` can never reach 0 and a real check becomes noise |
 | 4 | Add a **reverse** drift check (store → vault) and state the rule: only edit the vault, then sync | F7 — `gracker-writing`'s store copy is ahead; no tool looks that way |
 | 5 | Promote `store_matrix.py` into `scripts/` and run it beside the verifier | F2/F3/F4 — one second, read-only, answers a class the hasher cannot |
