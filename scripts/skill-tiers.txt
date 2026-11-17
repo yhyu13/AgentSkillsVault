@@ -97,6 +97,8 @@ criticism-self-criticism|A
 dcf-valuation|B
 deal-structuring|B
 deep-research|B
+deliberate-practice|A
+deliberate-practice-talk|A
 diagnosing-bugs|A
 discernment-nudge|B
 distilly|B
@@ -187,6 +189,7 @@ mgmt-individual|B
 mgmt-org|B
 motion-showreel|A
 multi-agent-repo-governance|A
+next-token-agent-loop|A
 notes-on-writing|B
 okr-planner|B
 one-on-one-prep|A
@@ -240,6 +243,7 @@ single-file-html-game|A
 skill-distill|B
 skill-doctor|A
 skill-inspector|A
+skill-trigger|A
 skillopt-sleep|B
 slack-gif-creator|B
 slideshow|A

@@ -142,6 +142,7 @@
 | skill | origin | source |
 |-------|--------|--------|
 | family-edu-gamified-skills | sibling (imported 2026-11-08) | `D:\GitRepo-AI\AIGameMaker\family-edu-gamified-skills`（整目录复制：SKILL.md + references/ + assets/，20 个文件）；小学 1–6 年级预习/复习/作业/拓展/兴趣/习惯/家长激励的闯关流程，七角色技能说明 + 协作接口 + 输出模板 |
+| deliberate-practice | local (distilled from a lecture) | `C:/Git-repo-my/个人成长/deadlock-improvement-bili/skill/deliberate-practice`（MIT，v2026.11.15.1，`metadata.category: learning`）。把 Akraken 在 Deadlock 讲座里的刻意练习方法收成可执行计划：`references/method.md` 方法论 + `templates/session-card.md` 训练卡 + `examples/` 一份坏卡一份完整卡，随包 `check_plan.py`（在 skill 的 scripts/ 下）做机器校验。容量分 9.30（A3.0 B1.3 C2.0 D2.0 E1.0），5 refs 自包含 |
 
 ### game-dev/
 | skill | origin | source |
@@ -255,6 +256,8 @@
 | distilly | repo (submodule) | `github.com/titanwings/distilly` @ `0afc45c` (MIT) — 上游根即 skill（分支 `dot-skill`）：Work + Persona 分离的蒸馏流程；裁剪掉 `tests/` `.github/` |
 | skill-doctor | local (distilled from a talk) | 上游方法 `github.com/warpdotdev/common-skills` 的 `.agents/skills/skill-doctor`（MIT，2026-11-11 抓取；沿用了它的四维标签语义、`insufficient_evidence` 规则、加权公式与「只从失败会话取证」的改写纪律），讲解为 B 站 `BV1dYt46kEMw`《Skill Doctor：会自我改进的 Agent》（531.64 秒），交付在 `C:/Git-repo-my/个人成长/skill-doctor-bili/`。用途：从真实会话记录给 Agent 与它用的 Skill 打分，只按失败会话取证起草一处最小改动，再走 PR + 人审 + 回滚 + 黄金集回归；正文、脚本、模板、闸门与边界为本版重写。原版依赖它自己的会话收集器与报告渲染器，本版收成 3 个可独立跑的脚本（收集校验 / 加权计分 / 改动闸门）加 `scripts/selftest.py`。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），78 refs 自包含 |
 | pstack-trust-ladder | local | `C:/Git-repo-my/个人成长/pstack-ai-automation/review/incoming/pstack-trust-ladder`（MIT，v1.0.0）。按「人该看证据 / 抽查 / 继续盯」三档给出信任阶梯，配 `scripts/check_ladder.py` 与 `agents/openai.yaml`。**导入的是 store 里 2026-11-15 的当前版**：它把 description 改成判别式触发语（「同一个 AI 错误反复出现」而非抽象的「AI 协作错误」），个人成长 的快照还停在 11-14 的旧描述。容量分 9.50（A2.5 B2.0 C2.0 D2.0 E1.0），28 refs 自包含 |
+| next-token-agent-loop | local (distilled from a talk) | `C:/Git-repo-my/个人成长/ai-engineering-leap-BV1xsWQ6nEky/skills/next-token-agent-loop`（v2026.11.14）。排查「Agent 该调工具却没调 / 拿陈旧记忆答 / 停在错的一步」的账本式方法：`templates/` 的 CASE + CHECK + SOURCES + TRACE 四件套、`examples/filesystem-gap/` 一份完整案例、`demo/` 可复现的输入输出，随包 `check_case.py`（在 skill 的 scripts/ 下）。**store 版比 个人成长 版少一个 `review/` 目录**（评审快照，不进安装面），本次取 store 版。容量分 9.30，9 refs 自包含 |
+| skill-trigger | local (distilled from a video) | `C:/Git-repo-my/个人成长/skill-trigger`（MIT，v2026.11.15.4，`metadata.source: BV1BqnJ63E4h`）。写「会在该用时被 Agent 自己选中」的 Skill：description 怎么判别化、正文多长、步骤该多死、要不要放脚本、谁来验收、模型升级后怎么删旧补丁；`references/` 六份（claims / description / maintenance / perplexity-six / pocock-manual / verification-trust），随包 `check_skill.py`（在 skill 的 scripts/ 下）。容量分 9.30，7 refs 自包含 |
 
 ### video/
 | skill | origin | source |
@@ -283,6 +286,7 @@
 | course-repack | local (distilled 2026-11-14) | `C:/Git-repo-my/个人成长/course-repack`（MIT，v2026.11.14）。整门多集网课（几十到上百节）→ 分集 PPTX + 口播成片 + 内嵌字幕 / SRT，随包 6 个机器验收闸（内容 / 版式 / 字幕 / 影像 / 可见性 / 附件）。与 film-repack、video-to-deck-reel 按「集数 × 片长」分流：整门课走这个，单支长片走 film-repack，单支中文讲解走 video-to-deck-reel。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），42 refs 自包含 |
 | film-repack | local (distilled 2026-11-17) | `C:/Git-repo-my/个人成长/musk-work-method/skill/film-repack`（MIT，v2026.11.17）。30 分钟以上的纪录片 / 访谈 / 长演讲（含英文等非中文原声）→ 带原片时间码的逐字稿 + 可核对的中文压缩总结 + 带原片静帧的 PPTX + 用 motion-showreel 渲染的 1920×1080 口播 MP4。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），62 refs 自包含 |
 | video-to-deck-reel | local (distilled 2026-11-17) | `C:/Git-repo-my/个人成长/skill-build/video-to-deck-reel`（MIT，v2026.11.17）。一条命令把单支中文讲解视频跑成课件 + 可播放的画布口播网页 + 1920×1080 MP4（取源 → 转写 → 口播 → 时间轴 → 逐帧渲染 → 合成 → 查错）。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），128 refs 自包含 |
+| deliberate-practice-talk | local (distilled from a video) | `C:/Git-repo-my/个人成长/deadlock-improvement-bili/skill/deliberate-practice-talk`（MIT，v2026.11.15）。把「刻意练习 / 复盘 / 变强方法」类讲解视频做成可核对的中文总结 + 课件 + 口播成片；纪律是引语与数字必须能回溯到原片（`references/claims.md` 是判据，`examples/bad-number.json` 是反例），随包 `check_talk.py`（在 skill 的 scripts/ 下）。与 talk-repack / bili-video-repack 的分工：这支只吃「方法论讲解」题材。容量分 9.30，3 refs 自包含 |
 
 ### vendor/
 | skill | origin | source |
