@@ -37,6 +37,7 @@ apk-ndk-version-check|SKILL/software-development/tier1/apk-ndk-version-check|A
 arming-thought|SKILL/management/tier3/arming-thought|A
 article-prompts-to-skills|SKILL/video/tier1/article-prompts-to-skills|B
 bezos-advisor|SKILL/management/tier3/bezos-advisor|B
+bili-video-brief|SKILL/video/tier0/bili-video-brief|A
 bili-video-repack|SKILL/video/tier1/bili-video-repack|A
 blender-director|SKILL/game-dev/tier1/blender-director|A
 blog-to-linkedin-post|SKILL/content/tier1/blog-to-linkedin-post|A
@@ -128,7 +129,6 @@ style-report|SKILL/management/tier2/style-report|B
 style-tencent|SKILL/management/tier3/style-tencent|A
 systematic-debugging|SKILL/software-development/tier1/systematic-debugging|A
 technical-design-document|SKILL/game-dev/tier1/technical-design-document|B
-tygg-ai-film-studio|SKILL/video/tier1/tygg-ai-film-studio|A
 ue-renderdoc-auto-capture|SKILL/game-dev/tier0/ue-renderdoc-auto-capture|A
 upward-email|SKILL/management/tier3/upward-email|B
 video-production|SKILL/design/tier0/video-production|B

@@ -66,6 +66,7 @@ audit-verify-explain-grade-5|B
 aura-asset-images|B
 bezos-advisor|B
 bili-video-repack|A
+bili-video-brief|A
 blender-director|A
 blender-modeler|B
 blog-to-linkedin-post|A
