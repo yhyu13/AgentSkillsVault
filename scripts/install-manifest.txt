@@ -54,6 +54,8 @@ colleague-ue-tech-planner|SKILL/agents/tier3/colleague-ue-tech-planner|A
 comparable-analysis|SKILL/management/tier3/comparable-analysis|B
 consolidation|SKILL/management/tier3/consolidation|B
 contradiction-analysis|SKILL/management/tier3/contradiction-analysis|A
+cook|SKILL/design/tier0/cook|A
+course-repack|SKILL/video/tier0/course-repack|A
 criticism-self-criticism|SKILL/management/tier3/criticism-self-criticism|A
 dcf-valuation|SKILL/management/tier3/dcf-valuation|B
 deal-structuring|SKILL/management/tier3/deal-structuring|B
@@ -62,8 +64,10 @@ docx|SKILL/content/tier0/docx|A
 doubaofeishu_industry-analysis|SKILL/management/tier2/doubaofeishu_industry-analysis|A
 earnings-models|SKILL/management/tier3/earnings-models|B
 excel-hygiene|SKILL/content/tier1/excel-hygiene|B
+fable52-reproduction|SKILL/game-dev/tier0/fable52-reproduction|A
 family-edu-gamified-skills|SKILL/knowledge-vault/tier2/family-edu-gamified-skills|A
 feishu-kdocs-cli|SKILL/devops/tier0/feishu-kdocs-cli|A
+film-repack|SKILL/video/tier0/film-repack|A
 finance-lead|SKILL/management/tier3/finance-lead|B
 goal-persistence|SKILL/agents/tier3/goal-persistence|B
 gracker-writing|SKILL/content/tier1/gracker-writing|A
@@ -110,6 +114,7 @@ process-reward-boost|SKILL/management/tier3/process-reward-boost|A
 project-update|SKILL/management/tier3/project-update|A
 proposal|SKILL/management/tier2/proposal|B
 protracted-strategy|SKILL/management/tier3/protracted-strategy|B
+pstack-trust-ladder|SKILL/software-development/tier0/pstack-trust-ladder|A
 quarterly-review|SKILL/management/tier2/quarterly-review|B
 remotion-markup|SKILL/video/tier1/remotion-markup|B
 renzhengfei-advisor|SKILL/management/tier3/renzhengfei-advisor|B
@@ -118,6 +123,7 @@ rigorous-proof|SKILL/math/tier2/rigorous-proof|B
 search-fallback|SKILL/agents/tier0/search-fallback|B
 sector-analysis|SKILL/management/tier3/sector-analysis|B
 single-file-html-game|SKILL/game-dev/tier0/single-file-html-game|A
+skill-doctor|SKILL/software-development/tier0/skill-doctor|A
 spark-prairie-fire|SKILL/management/tier3/spark-prairie-fire|B
 stageshow|SKILL/design/tier0/stageshow|A
 style-alibaba|SKILL/management/tier3/style-alibaba|A
@@ -132,6 +138,7 @@ technical-design-document|SKILL/game-dev/tier1/technical-design-document|B
 ue-renderdoc-auto-capture|SKILL/game-dev/tier0/ue-renderdoc-auto-capture|A
 upward-email|SKILL/management/tier3/upward-email|B
 video-production|SKILL/design/tier0/video-production|B
+video-to-deck-reel|SKILL/video/tier0/video-to-deck-reel|A
 visual-explainer|SKILL/design/tier1/visual-explainer|A
 visual-learner|SKILL/design/tier1/visual-learner|B
 webapp-testing|SKILL/game-dev/tier1/webapp-testing|A

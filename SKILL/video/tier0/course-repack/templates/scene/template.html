@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>scene</title>
+<style>
+  :root {
+    --ink:#0E1A2B; --inkDeep:#070E18; --slate:#2E4463; --slateSoft:#DDE4EE;
+    --maize:#FFCB05; --maizeDim:#8A6E00; --white:#FFFFFF;
+    --paper:#FFFFFF; --paperAlt:#F4F6F9;
+    --mutedOnDark:#9FB2CC; --mutedOnLight:#5A6B80; --inkOnLight:#0E1A2B;
+    --cjk:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;
+    --num:Arial,Helvetica,sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:100%; height:100%; overflow:hidden; background:var(--ink); }
+  /* canvases live OUTSIDE #root and map 1:1 to device pixels (crisp + fast).
+     #root holds only the DOM layer, laid out in the 1920x1080 design space. */
+  #bg { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; }
+  #fg { position:fixed; top:0; left:0; width:100%; height:100%; z-index:10; pointer-events:none; }
+  #root { position:absolute; top:0; left:0; width:1920px; height:1080px; z-index:5;
+          transform-origin:top left; transform:scale(var(--k,1)); }
+  #stage { position:absolute; inset:0; }
+  .slide { position:absolute; inset:0; display:none; }
+  .slide.on { display:block; }
+  .box { position:absolute; font-family:var(--cjk); }
+  .label { font-weight:700; }
+  .plain { font-weight:400; }
+  .num { font-family:var(--num); font-weight:700; }
+  .card { position:absolute; border-radius:20px; }
+  .chip { position:absolute; border-radius:50%; display:flex; align-items:center; justify-content:center;
+          font-family:var(--num); font-weight:700; color:var(--ink); background:var(--maize); }
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="root">
+<div id="stage"></div>
+</div>
+<canvas id="fg"></canvas>
+<script>
+const CONTENT = /*__CONTENT__*/null/*__END__*/;
+const TIMING  = window.TIMING || /*__TIMING__*/null/*__END__*/;
+
+const LAYOUT = CONTENT.layout;
+
+const DW = 1920, DH = 1080;           // design space
+const cv = document.getElementById('bg');
+const ctx = cv.getContext('2d');
+const fgc = document.getElementById('fg');
+const fctx = fgc.getContext('2d');
+const stage = document.getElementById('stage');
+
+/* canvas backing store follows the viewport (cheap raster); the design space is
+   kept via ctx.scale, so layout is identical at 720p and 1080p */
+let K = 1;
+function fitRoot(){
+  const k = Math.min(window.innerWidth/DW, window.innerHeight/DH);
+  K = k;
+  document.documentElement.style.setProperty('--k', k);
+  cv.width = fgc.width = Math.round(window.innerWidth);
+  cv.height = fgc.height = Math.round(window.innerHeight);
+  ctx.setTransform(1,0,0,1,0,0); ctx.scale(k, k);
+  fctx.setTransform(1,0,0,1,0,0); fctx.scale(k, k);
+}
+fitRoot();
+window.addEventListener('resize', fitRoot);
+
+const M = 108, CW = 1318;               // matches build_pptx.js (1in = 144px)
+
+/* ---------- deterministic drifting network background ---------- */
+const NODES = [];
+(function seed(){
+  let s = 20261103;
+  const rnd = () => (s = (s*1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+  for (let i=0;i<40;i++){
+    NODES.push({
+      x: rnd()*1920, y: rnd()*1080, r: 4 + rnd()*9,
+      ph: rnd()*6.283, sp: 0.22 + rnd()*0.5,
+      amp: 10 + rnd()*26, big: rnd() > 0.72
+    });
+  }
+})();
+/* large soft blobs: the human-visible "背景在动" */
+const BLOBS = [];
+(function seed(){
+  let s = 777123;
+  const rnd = () => (s = (s*1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+  for (let i=0;i<6;i++){
+    BLOBS.push({
+      x: rnd()*1920, y: rnd()*1080, r: 340 + rnd()*420,
+      ph: rnd()*6.283, sp: 0.07 + rnd()*0.09,
+      amp: 90 + rnd()*150, warm: rnd() > 0.55
+    });
+  }
+})();
+
+function drawBg(t, dark){
+  /* 1. base gradient with a slow global drift — keeps every frame "alive" */
+  const gx = 1920 + 460 * Math.sin(t * 0.105);
+  const gy = 1080 + 300 * Math.cos(t * 0.083);
+  const g = ctx.createLinearGradient(0, 0, gx, gy);
+  if (dark){ g.addColorStop(0,'#0E1A2B'); g.addColorStop(1,'#070E18'); }
+  else     { g.addColorStop(0,'#FFFFFF'); g.addColorStop(1,'#F4F6F9'); }
+  ctx.fillStyle = g;
+  ctx.fillRect(0,0,DW,DH);
+
+  /* 2. a wide, slow light sweep across the frame */
+  const sweep = ((t * 96) % (1920 + 1500)) - 750;
+  const lg = ctx.createLinearGradient(sweep - 620, 0, sweep + 620, 1080);
+  if (dark){
+    lg.addColorStop(0, 'rgba(159,178,204,0)');
+    lg.addColorStop(0.5, 'rgba(159,178,204,0.075)');
+    lg.addColorStop(1, 'rgba(159,178,204,0)');
+  } else {
+    lg.addColorStop(0, 'rgba(46,68,99,0)');
+    lg.addColorStop(0.5, 'rgba(46,68,99,0.07)');
+    lg.addColorStop(1, 'rgba(46,68,99,0)');
+  }
+  ctx.fillStyle = lg;
+  ctx.fillRect(0,0,1920,1080);
+
+  /* 3. drifting soft blobs */
+  BLOBS.forEach(b => {
+    const x = b.x + Math.sin(t*b.sp + b.ph) * b.amp;
+    const y = b.y + Math.cos(t*b.sp*0.9 + b.ph) * b.amp*0.7;
+    const rg = ctx.createRadialGradient(x, y, 0, x, y, b.r);
+    if (dark){
+      rg.addColorStop(0, b.warm ? 'rgba(255,203,5,0.105)' : 'rgba(159,178,204,0.125)');
+      rg.addColorStop(1, 'rgba(0,0,0,0)');
+    } else {
+      rg.addColorStop(0, b.warm ? 'rgba(255,203,5,0.155)' : 'rgba(46,68,99,0.105)');
+      rg.addColorStop(1, 'rgba(0,0,0,0)');
+    }
+    ctx.fillStyle = rg;
+    ctx.beginPath(); ctx.arc(x, y, b.r, 0, 6.283); ctx.fill();
+  });
+
+  /* 4. node network texture */
+  const P = NODES.map(n => ({
+    x: n.x + Math.sin(t*n.sp + n.ph)*n.amp,
+    y: n.y + Math.cos(t*n.sp*0.8 + n.ph)*n.amp*0.7,
+    r: n.r, big: n.big
+  }));
+  ctx.lineWidth = 1.4;
+  for (let i=0;i<P.length;i++){
+    for (let j=i+1;j<P.length;j++){
+      const dx=P[i].x-P[j].x, dy=P[i].y-P[j].y, d2=dx*dx+dy*dy;
+      if (d2 < 46000){
+        const a = (1 - Math.sqrt(d2)/214) * 0.16;
+        ctx.strokeStyle = dark ? `rgba(159,178,204,${a})` : `rgba(46,68,99,${a*0.85})`;
+        ctx.beginPath(); ctx.moveTo(P[i].x,P[i].y); ctx.lineTo(P[j].x,P[j].y); ctx.stroke();
+      }
+    }
+  }
+  P.forEach(n => {
+    const a = 0.12 + 0.06*Math.sin(t*0.9 + n.x*0.01);
+    ctx.fillStyle = dark ? `rgba(255,203,5,${n.big ? a*1.8 : a})` : `rgba(46,68,99,${a*0.7})`;
+    ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,6.283); ctx.fill();
+  });
+}
+
+/* ---------- foreground motion layer ----------
+   Two slow elements drawn ABOVE the content so cards never hide them:
+   (1) a wide, low-alpha light sweep   (2) a drifting dot field (texture)
+   Both are "low frequency" per the spec: period >= 3s, no colour cycling,
+   no flashing. The content text itself never moves. */
+const DOTS = [];
+(function seed(){
+  let s = 424242;
+  const rnd = () => (s = (s*1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+  for (let i=0;i<130;i++){
+    DOTS.push({
+      x: rnd()*DW, y: rnd()*DH, r: 6 + rnd()*9,
+      ph: rnd()*6.283, sp: 0.10 + rnd()*0.22,
+      amp: 10 + rnd()*26, warm: rnd() > 0.72
+    });
+  }
+})();
+
+function drawFg(t, dark){
+  fctx.clearRect(0,0,DW,DH);
+
+  /* (1) light sweep */
+  const span = DW + 2000;
+  const x = ((t * 96) % span) - 1000;
+  const lg = fctx.createLinearGradient(x - 560, 0, x + 560, DH);
+  if (dark){
+    lg.addColorStop(0,   'rgba(255,203,5,0)');
+    lg.addColorStop(0.42,'rgba(255,203,5,0.07)');
+    lg.addColorStop(0.5, 'rgba(255,255,255,0.10)');
+    lg.addColorStop(0.58,'rgba(255,203,5,0.07)');
+    lg.addColorStop(1,   'rgba(255,203,5,0)');
+  } else {
+    lg.addColorStop(0,   'rgba(46,68,99,0)');
+    lg.addColorStop(0.42,'rgba(46,68,99,0.065)');
+    lg.addColorStop(0.5, 'rgba(14,26,43,0.085)');
+    lg.addColorStop(0.58,'rgba(46,68,99,0.065)');
+    lg.addColorStop(1,   'rgba(46,68,99,0)');
+  }
+  fctx.fillStyle = lg;
+  fctx.fillRect(0,0,1920,1080);
+
+  /* (2) drifting dot field */
+  DOTS.forEach(d => {
+    const dx = d.x + Math.sin(t*d.sp + d.ph) * d.amp;
+    const dy = d.y + Math.cos(t*d.sp*0.85 + d.ph) * d.amp*0.8;
+    const a = 0.10 + 0.05 * Math.sin(t*0.7 + d.ph);
+    fctx.fillStyle = dark
+      ? (d.warm ? `rgba(255,203,5,${a})` : `rgba(159,178,204,${a*0.85})`)
+      : (d.warm ? `rgba(255,203,5,${a*0.8})` : `rgba(46,68,99,${a*0.75})`);
+    fctx.beginPath(); fctx.arc(dx, dy, d.r, 0, 6.283); fctx.fill();
+  });
+}
+
+/* ---------- slide DOM (geometry mirrors design/layout.json exactly) ---------- */
+function el(tag, cls, style, html){
+  const d = document.createElement(tag);
+  if (cls) d.className = cls;
+  if (style) Object.assign(d.style, style);
+  if (html !== undefined) d.innerHTML = html;
+  return d;
+}
+const CJK_RE = /[\u2e80-\u9fff\u3000-\u303f\uff00-\uffef]/;
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function runsHTML(text, face){
+  if (face === 'cjk') return esc(text);
+  let out = '', buf = '', cur = null;
+  for (const ch of text){
+    const c = CJK_RE.test(ch);
+    if (cur === null) cur = c;
+    if (c !== cur){
+      out += '<span style="font-family:' + (cur ? 'var(--cjk)' : 'var(--num)') + '">' + esc(buf) + '</span>';
+      buf = ''; cur = c;
+    }
+    buf += ch;
+  }
+  if (buf) out += '<span style="font-family:' + (cur ? 'var(--cjk)' : 'var(--num)') + '">' + esc(buf) + '</span>';
+  return out;
+}
+
+const ROLE_COLOR = {
+  label: (d) => d ? 'var(--maize)' : 'var(--maizeDim)',
+  kicker: (d) => d ? 'var(--maize)' : 'var(--maizeDim)',
+  head:   (d) => d ? 'var(--white)' : 'var(--inkOnLight)',
+  title:  (d) => d ? 'var(--white)' : 'var(--inkOnLight)',
+  hero:   () => 'var(--maize)',
+  id:     () => 'var(--maize)',
+  n:      () => 'var(--maize)',
+  support:(d) => d ? 'var(--mutedOnDark)' : 'var(--mutedOnLight)',
+  foot:   (d) => d ? 'var(--mutedOnDark)' : 'var(--mutedOnLight)',
+  source: (d) => d ? 'var(--mutedOnDark)' : 'var(--mutedOnLight)',
+  subtitle:(d) => d ? 'var(--mutedOnDark)' : 'var(--mutedOnLight)',
+  hero_label:(d) => d ? 'var(--mutedOnDark)' : 'var(--mutedOnLight)',
+};
+const BOLD_ROLES = new Set(['label','head','hero','id','title','n']);
+
+function getSrc(obj, src){
+  if (src === 'id') return String(obj.id).padStart(2,'0');
+  if (src.indexOf('hero.') === 0) return (obj.hero || {})[src.split('.')[1]] || '';
+  return obj[src] || '';
+}
+function sizeOf(sizes, role, box){ return (sizes && typeof sizes[role] === 'number') ? sizes[role] : box.base; }
+
+function makeBox(box, text, sizePx, dark, extra){
+  const e = extra || {};
+  const d = el('div', 'box ' + (BOLD_ROLES.has(box.role) ? 'label' : 'plain'), {
+    left: box.x + 'px', top: box.y + 'px', width: box.w + 'px',
+    fontSize: sizePx + 'px',
+    lineHeight: String(box.lh || 1.14),
+    color: e.color || (ROLE_COLOR[box.role] ? ROLE_COLOR[box.role](dark) : (dark ? 'var(--white)' : 'var(--inkOnLight)')),
+    fontFamily: box.face === 'num' ? 'var(--num)' : 'var(--cjk)',
+  });
+  if (e.valign === 'middle'){
+    d.style.display = 'flex';
+    d.style.alignItems = 'center';
+  }
+  d.innerHTML = runsHTML(String(text), box.face);
+  return d;
+}
+
+function buildSlide(sl){
+  const spec = LAYOUT.types[sl.type];
+  const dark = ['cover','chapter','hero','takeaway'].indexOf(sl.type) >= 0;
+  /* 'try' paints a dark card on a light page: its own text must be light */
+  const boxDark = (sl.type === 'try') ? true : dark;
+  const d = el('div','slide ' + (dark ? 'dark' : 'light'));
+  if (!spec) return d;
+  const sizes = sl.sizes || {};
+
+  if (sl.type === 'try' && spec.rect){
+    d.appendChild(el('div','card',{left:spec.rect.x+'px',top:spec.rect.y+'px',
+      width:spec.rect.w+'px',height:spec.rect.h+'px',background:'var(--ink)'}));
+  }
+
+  spec.boxes.forEach((box) => {
+    const text = getSrc(sl, box.src);
+    if (!text || !String(text).trim()) return;
+    const sizePx = sizeOf(sizes, box.role, box);
+    d.appendChild(makeBox(box, text, sizePx, boxDark,
+      { valign: box.role === 'hero' ? 'middle' : null }));
+  });
+
+  if (sl.type === 'steps'){
+    const c = spec.cards;
+    const cols = sizes.cols || sl.steps.length;
+    const rows = sizes.rows || 1;
+    const cs = rows === 1 ? c.rows1 : c.rows2;
+    const cw = (CW - c.gap*(cols-1))/cols;
+    const tw = cw - c.pad*2;
+    sl.steps.forEach((st,i) => {
+      const r = Math.floor(i/cols), cc = i % cols;
+      const x = M + cc*(cw + c.gap);
+      const y = c.top + r*(cs.cardH + c.rowGap);
+      const sz = (sizes.cards && sizes.cards[i]) || {};
+      d.appendChild(el('div','card',{left:x+'px',top:y+'px',width:cw+'px',height:cs.cardH+'px',background:'var(--paperAlt)'}));
+      d.appendChild(el('div','chip',{left:(x+c.pad)+'px',top:(y+cs.chipY)+'px',
+        width:cs.chipW+'px',height:cs.chipH+'px',fontSize:(sz.n||cs.chipSize)+'px'}, String(st.n||i+1)));
+      d.appendChild(makeBox({role:'title',face:'cjk',lh:c.title.lh,x:x+c.pad,y:y+cs.titleY,w:tw,h:cs.titleH},
+        st.t||'', sz.t||c.title.size, dark));
+      d.appendChild(makeBox({role:'support',face:'cjk',lh:c.desc.lh,x:x+c.pad,y:y+cs.descY,w:tw,h:cs.descH},
+        st.d||'', sz.d||c.desc.size, dark));
+    });
+  }
+
+  if (sl.type === 'review'){
+    const r = spec.rows;
+    (sl.bullets||[]).forEach((b,i) => {
+      const text = typeof b === 'string' ? b : (b.t || '');
+      const y = r.top + i*(r.rowH + r.gap);
+      const s = (sizes.rows && sizes.rows[i]) || r.textSize;
+      d.appendChild(el('div','chip',{left:M+'px',top:(y+14)+'px',width:r.chipW+'px',height:r.chipH+'px',
+        fontSize:r.chipSize+'px'}, String(i+1)));
+      const t = el('div','box plain',{left:r.textX+'px',top:y+'px',width:r.textW+'px',
+        height:r.rowH+'px',fontSize:s+'px',lineHeight:String(r.lh),color:'var(--inkOnLight)',
+        display:'flex',alignItems:'center'});
+      t.innerHTML = runsHTML(text,'cjk');
+      d.appendChild(t);
+    });
+  }
+  return d;
+}
+
+const nodes = [];
+CONTENT.episode.slides.forEach(sl => { const n = buildSlide(sl); stage.appendChild(n); nodes.push(n); });
+
+function easeOut(p){ return 1 - Math.pow(1-p, 3); }
+
+window.renderAt = function(t){
+  const segs = TIMING.segments;
+  let idx = 0;
+  for (let i=0;i<segs.length;i++){ if (t >= segs[i].start) idx = i; else break; }
+  const seg = segs[idx] || {start:0,end:1};
+  const slideIdx = (seg.slide !== undefined) ? seg.slide : idx;
+  /* progress within the whole slide (all its cues), not just this cue */
+  let sStart = seg.start, sEnd = seg.end;
+  for (let i = idx; i >= 0; i--){
+    if (segs[i].slide === slideIdx){ sStart = segs[i].start; break; }
+  }
+  for (let i = idx; i < segs.length; i++){
+    if (segs[i].slide === slideIdx){ sEnd = segs[i].end; break; }
+  }
+  const dur = Math.max(sEnd - sStart, 0.001);
+  const p = Math.min(Math.max((t - sStart)/dur, 0), 1);
+  const sl = CONTENT.episode.slides[slideIdx];
+  const dark = sl.dark !== undefined ? sl.dark
+    : ['cover','chapter','hero','takeaway'].indexOf(sl.type) >= 0;
+
+  drawBg(t, dark);
+  drawFg(t, dark);
+
+  nodes.forEach((n,i) => {
+    const on = (i === slideIdx);
+    n.className = 'slide' + (on ? ' on' : '');
+    if (on){
+      n.style.opacity = 1;
+      /* R5: 文字只做 0.4s 淡入，不做位移。
+         错峰步长必须按子元素数量收敛，否则子元素多的页(步骤卡 17 个)
+         后半部分会永远停在 opacity 0。 */
+      const kids = n.children;
+      const cnt = kids.length;
+      const FADE = 0.4, STAG = 0.25;
+      const step = cnt > 1 ? Math.min(STAG / (cnt - 1), FADE * 0.6) : 0;
+      const dur = FADE - STAG;
+      const elapsed = Math.max(t - sStart, 0);
+      for (let k=0;k<cnt;k++){
+        const rp = Math.min(Math.max((elapsed - k*step)/dur, 0), 1);
+        kids[k].style.opacity = easeOut(rp);
+      }
+    } else {
+      n.style.opacity = 0;
+    }
+  });
+};
+window.renderAt(0);
+</script>
+</body>
+</html>

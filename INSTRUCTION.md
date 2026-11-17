@@ -113,6 +113,7 @@
 | storyboard (retired) | repo (submodule) | `github.com/gRAYESS123/storyboard-claude` @ `e6b1597` (MIT) — 上游 `skill/`，`name: storyboard`，目录按 frontmatter 改名；网页/文档 → 分镜 → 视频；裁剪掉 `examples/ media/ downloads/` |
 | video-production | repo (submodule) | `github.com/speechlab0210/video-production-skill` @ `8c46c40` (MIT) — 上游根即 skill，`name: video-production`；含 **ASR 回译校验（TTS 合成后 Whisper 反识别，相似度 ≥0.85 才放行）** |
 | doubaofeishu_ui-design-system | local (distilled 2026-11-10) | 上游为单篇规范稿、**没有 SKILL.md**：`F:\XD\DistillSkills\飞书豆包distill\UI 设计系统与组件规范（UI Design System）.md`（12.9 KB，v1.0.0，逐字收录在 `references/ui-design-system-source.md`），本 vault 补写指针层 SKILL.md。内容 = 四条原则（组件库先于页面/无障碍/像素级/开发者友好）+ 三级 Design Token（基础色→语义色→组件色，含字号/间距/圆角/阴影全表）+ 组件三层与状态矩阵 + 六步设计流程 + 响应式断点栅格 + 暗色模式映射 + 常见坑 + 自检清单 |
+| cook | local (distilled 2026-11-14) | `C:/Git-repo-my/个人成长/cook-loop-skill/audit/cook`；上游方法 `github.com/Leonxlnx/cook` @ `b23cac6fd9`（MIT），2026-11-14 取回后本地改了 version、description 的「不是 Cook run」边界，以及「自评的一轮不能算达标」一条。Cook Loop：一次 intake 之后循环 build → stills → 零上下文评审 → 修，对着数值门槛迭代，成片先扣住等用户确认。容量分 9.70（A3.0 B1.7 C2.0 D2.0 E1.0），`check_selfcontained.py` 17 refs 全通过。**导入的是 store 里 19:55 的当前版**（含 `PROVENANCE.md` 与节奏那条修订），不是 个人成长 19:28 的快照 |
 
 > Skipped 6 of the repo's 13 skills as redundant/niche: `taste-skill-v1` (superseded by v2), `gpt-tasteskill` (stricter GPT/Codex variant, subsumed by v2), `soft-skill` / `minimalist-skill` / `brutalist-skill` (fixed style presets — v2 infers the design language from the brief), `image-to-code-skill` (pipeline = imagegen-web + taste-frontend). All recoverable from the sibling clone.
 
@@ -185,6 +186,7 @@
 | game-tower-defense | local (distilled) | OpenGame TS monorepo — 塔防核心循环、路径/波次/经济设计 |
 | game-ui-heavy-narrative | local (distilled) | OpenGame TS monorepo — UI 驱动型游戏（视觉小说/卡牌/问答）的场景流模式 |
 | game-studio-lead / game-design-strategist / game-engineering-lead / game-art-director / game-audio-director / game-quality-lead / game-release-ops-lead (7) | sibling (imported 2026-11-08) | 打包源 `D:\GitRepo-AI\AIGameMaker\documents\skills\dist\<name>.zip`（每个 = SKILL.md + references/{workflow,deliverables,source-map}.md；`game-studio-lead` 另有 handoff-template / role-boundaries）。作者源 = `D:\GitRepo-AI\AIGameMaker\docs\game-dev-studio-skills\roles\0*.md`（角色能力文档，本身无 SKILL.md，不单独安装；`game-development-studio-skills.zip` 是含 `_authoring/` 的聚合包，内容与 7 个单包重复，未整包入库）。SKILL.md 里引用的 `docs/architecture/*.md` 指项目侧文档，不在包内 → 评分 D 列有扣分 |
+| fable52-reproduction | local (distilled) | `C:/Git-repo-my/个人成长/fable5.2-repro/packages/fable52-reproduction`（`metadata.provenance: local`，v1.1.0）。把「按网页 Demo 的源码或运行证据复现玩法与画面」收成取证链：source intake、demo forensics、PCG / 材质 / Shader / 世界结构转储、最小可跑切片、小模型任务卡；随包 `assets/schemas/v2/` 七份 JSON Schema 与 forensics / intake / materials / pcg / world 任务模板。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），41 refs 自包含。同目录另有 `skills/00-orchestrator … 08-validation` 九个阶段子 skill，**本次只纳管主包**，子包仍在 个人成长 |
 
 > **合并记录（2026-10-24）：** 原 `opengame-harness/` 分类（14 个 skill）已并入 `game-dev/`。
 > 该分类本身不是 skill、也不构成任何运行时依赖——13 个 skill 均为自包含方法论文档，可单独安装使用。
@@ -251,6 +253,8 @@
 | skill-inspector | repo (submodule) | `github.com/NVIDIA/SkillSpector` @ `d7338f5` (Apache-2.0) — 上游 `skills/skill-inspector`：装第三方 skill 前的注入/外泄/供应链扫描（**建议作为以后装任何第三方 pack 的前置闸**） |
 | skillopt-sleep | repo (submodule) | `github.com/microsoft/SkillOpt` @ `84b36cd` (MIT) — 上游 `plugins/claude-code/skills/skillopt-sleep`：让 agent 自我优化 skill（配套 prompt 模板在 `skillopt/prompts/`，未装） |
 | distilly | repo (submodule) | `github.com/titanwings/distilly` @ `0afc45c` (MIT) — 上游根即 skill（分支 `dot-skill`）：Work + Persona 分离的蒸馏流程；裁剪掉 `tests/` `.github/` |
+| skill-doctor | local (distilled from a talk) | 上游方法 `github.com/warpdotdev/common-skills` 的 `.agents/skills/skill-doctor`（MIT，2026-11-11 抓取；沿用了它的四维标签语义、`insufficient_evidence` 规则、加权公式与「只从失败会话取证」的改写纪律），讲解为 B 站 `BV1dYt46kEMw`《Skill Doctor：会自我改进的 Agent》（531.64 秒），交付在 `C:/Git-repo-my/个人成长/skill-doctor-bili/`。用途：从真实会话记录给 Agent 与它用的 Skill 打分，只按失败会话取证起草一处最小改动，再走 PR + 人审 + 回滚 + 黄金集回归；正文、脚本、模板、闸门与边界为本版重写。原版依赖它自己的会话收集器与报告渲染器，本版收成 3 个可独立跑的脚本（收集校验 / 加权计分 / 改动闸门）加 `scripts/selftest.py`。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），78 refs 自包含 |
+| pstack-trust-ladder | local | `C:/Git-repo-my/个人成长/pstack-ai-automation/review/incoming/pstack-trust-ladder`（MIT，v1.0.0）。按「人该看证据 / 抽查 / 继续盯」三档给出信任阶梯，配 `scripts/check_ladder.py` 与 `agents/openai.yaml`。**导入的是 store 里 2026-11-15 的当前版**：它把 description 改成判别式触发语（「同一个 AI 错误反复出现」而非抽象的「AI 协作错误」），个人成长 的快照还停在 11-14 的旧描述。容量分 9.50（A2.5 B2.0 C2.0 D2.0 E1.0），28 refs 自包含 |
 
 ### video/
 | skill | origin | source |
@@ -276,6 +280,9 @@
 | ffmpeg / moviepy (retired) / elevenlabs (retired) / playwright-recording (retired) / qwen-edit (retired) / ideogram4 (retired) / ltx2 (retired) / acestep (retired) / runpod (retired) / synthetic-ui-demo (retired) / video_toolkit (retired) | repo (submodule) | `github.com/digitalsamba/claude-code-video-toolkit` @ `da3f474` (MIT) — 上游 `.claude/skills/<name>`（11 个）+ `skills/openclaw-video-toolkit`；`video_toolkit` 的 frontmatter 名是 `video_toolkit`，目录按其改名；`remotion` / `remotion-official` / `frontend-design` 未装（与 vault 既有 remotion 系列 / taste-frontend 重叠） |
 | remotion-video-engineering-distilled | local (imported 2026-11-08) | 源：`E:\XD\P4V\tl_yuhang_preUGS\frontend\trunk\Remotion视频工程技能蒸馏\remotion-video-engineering-distilled\`（SKILL.md + 11 份 `references/0*.md` + `scripts/`，共 13 个文件；同目录的 zip 是同一内容的打包副本）。Remotion 工程知识蒸馏：架构 / core composition / 渲染管线 / Studio 与 devtools / 云端规模化 / Player 嵌入 / 生态特效 / 资产与字幕 / AI 集成 / 质量验收 / 用法配方 / 源索引 |
 | hyperframes-video-director | local (wrapper 2026-11-09) | 上游**没有 SKILL.md**：源 `E:\XD\P4V\tl_yuhang_preUGS\frontend\trunk\我的SKILL\HyperFrames视频导演\` 只有 7 份整理稿（README / 总览 / 能力路由 / 制作方法 / 验收规则 / 项目卡模板 / 来源与依赖），逐字收录进 `references/`，本 vault 补写指针层 SKILL.md（状态判断 → 选路线 → flow/storyboard/mode → 项目卡 → 分阶段验收）。**可用性矩阵写进正文**：被路由的 19 个 skill 本机只有 `hyperframes`、`slideshow` 两个，其余明确标"未安装，不要假装有"。 |
+| course-repack | local (distilled 2026-11-14) | `C:/Git-repo-my/个人成长/course-repack`（MIT，v2026.11.14）。整门多集网课（几十到上百节）→ 分集 PPTX + 口播成片 + 内嵌字幕 / SRT，随包 6 个机器验收闸（内容 / 版式 / 字幕 / 影像 / 可见性 / 附件）。与 film-repack、video-to-deck-reel 按「集数 × 片长」分流：整门课走这个，单支长片走 film-repack，单支中文讲解走 video-to-deck-reel。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），42 refs 自包含 |
+| film-repack | local (distilled 2026-11-17) | `C:/Git-repo-my/个人成长/musk-work-method/skill/film-repack`（MIT，v2026.11.17）。30 分钟以上的纪录片 / 访谈 / 长演讲（含英文等非中文原声）→ 带原片时间码的逐字稿 + 可核对的中文压缩总结 + 带原片静帧的 PPTX + 用 motion-showreel 渲染的 1920×1080 口播 MP4。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），62 refs 自包含 |
+| video-to-deck-reel | local (distilled 2026-11-17) | `C:/Git-repo-my/个人成长/skill-build/video-to-deck-reel`（MIT，v2026.11.17）。一条命令把单支中文讲解视频跑成课件 + 可播放的画布口播网页 + 1920×1080 MP4（取源 → 转写 → 口播 → 时间轴 → 逐帧渲染 → 合成 → 查错）。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），128 refs 自包含 |
 
 ### vendor/
 | skill | origin | source |
