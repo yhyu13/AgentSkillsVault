@@ -114,6 +114,7 @@
 | video-production | repo (submodule) | `github.com/speechlab0210/video-production-skill` @ `8c46c40` (MIT) — 上游根即 skill，`name: video-production`；含 **ASR 回译校验（TTS 合成后 Whisper 反识别，相似度 ≥0.85 才放行）** |
 | doubaofeishu_ui-design-system | local (distilled 2026-11-10) | 上游为单篇规范稿、**没有 SKILL.md**：`F:\XD\DistillSkills\飞书豆包distill\UI 设计系统与组件规范（UI Design System）.md`（12.9 KB，v1.0.0，逐字收录在 `references/ui-design-system-source.md`），本 vault 补写指针层 SKILL.md。内容 = 四条原则（组件库先于页面/无障碍/像素级/开发者友好）+ 三级 Design Token（基础色→语义色→组件色，含字号/间距/圆角/阴影全表）+ 组件三层与状态矩阵 + 六步设计流程 + 响应式断点栅格 + 暗色模式映射 + 常见坑 + 自检清单 |
 | cook | local (distilled 2026-11-14) | `C:/Git-repo-my/个人成长/cook-loop-skill/audit/cook`；上游方法 `github.com/Leonxlnx/cook` @ `b23cac6fd9`（MIT），2026-11-14 取回后本地改了 version、description 的「不是 Cook run」边界，以及「自评的一轮不能算达标」一条。Cook Loop：一次 intake 之后循环 build → stills → 零上下文评审 → 修，对着数值门槛迭代，成片先扣住等用户确认。容量分 9.70（A3.0 B1.7 C2.0 D2.0 E1.0），`check_selfcontained.py` 17 refs 全通过。**导入的是 store 里 19:55 的当前版**（含 `PROVENANCE.md` 与节奏那条修订），不是 个人成长 19:28 的快照 |
+| trimsheet-disguise | local (authored in the user store, imported 2026-11-18) | 只在 `C:/Users/yuhang/.agents/skills/trimsheet-disguise` 存在，vault 与 manifest 都没有——已装、被独立评审记 8.4 HIGH，但不在版本控制里。内容：一套共享 trim sheet 做硬表面复用（UV 整数格选颜色、三层脏迹、加权法线），并把原片数字与演示假设分开记账。容量分 9.05（A3.0 B1.3 C1.75 D2.0 E1.0），3 refs 自包含；导入时未改内容 |
 
 > Skipped 6 of the repo's 13 skills as redundant/niche: `taste-skill-v1` (superseded by v2), `gpt-tasteskill` (stricter GPT/Codex variant, subsumed by v2), `soft-skill` / `minimalist-skill` / `brutalist-skill` (fixed style presets — v2 infers the design language from the brief), `image-to-code-skill` (pipeline = imagegen-web + taste-frontend). All recoverable from the sibling clone.
 
@@ -258,6 +259,8 @@
 | pstack-trust-ladder | local | `C:/Git-repo-my/个人成长/pstack-ai-automation/review/incoming/pstack-trust-ladder`（MIT，v1.0.0）。按「人该看证据 / 抽查 / 继续盯」三档给出信任阶梯，配 `scripts/check_ladder.py` 与 `agents/openai.yaml`。**导入的是 store 里 2026-11-15 的当前版**：它把 description 改成判别式触发语（「同一个 AI 错误反复出现」而非抽象的「AI 协作错误」），个人成长 的快照还停在 11-14 的旧描述。容量分 9.50（A2.5 B2.0 C2.0 D2.0 E1.0），28 refs 自包含 |
 | next-token-agent-loop | local (distilled from a talk) | `C:/Git-repo-my/个人成长/ai-engineering-leap-BV1xsWQ6nEky/skills/next-token-agent-loop`（v2026.11.14）。排查「Agent 该调工具却没调 / 拿陈旧记忆答 / 停在错的一步」的账本式方法：`templates/` 的 CASE + CHECK + SOURCES + TRACE 四件套、`examples/filesystem-gap/` 一份完整案例、`demo/` 可复现的输入输出，随包 `check_case.py`（在 skill 的 scripts/ 下）。**store 版比 个人成长 版少一个 `review/` 目录**（评审快照，不进安装面），本次取 store 版。容量分 9.30，9 refs 自包含 |
 | skill-trigger | local (distilled from a video) | `C:/Git-repo-my/个人成长/skill-trigger`（MIT，v2026.11.15.4，`metadata.source: BV1BqnJ63E4h`）。写「会在该用时被 Agent 自己选中」的 Skill：description 怎么判别化、正文多长、步骤该多死、要不要放脚本、谁来验收、模型升级后怎么删旧补丁；`references/` 六份（claims / description / maintenance / perplexity-six / pocock-manual / verification-trust），随包 `check_skill.py`（在 skill 的 scripts/ 下）。容量分 9.30，7 refs 自包含 |
+| long-ai-project | local (distilled from a video, imported 2026-11-18) | 只在 store 存在；`metadata.source: oil欧呦 BV1rPWd6nEpP`，vault 与 manifest 都没有。内容：把长期 AI 开发复杂项目的经验收成治理流程——多轮功能迭代、多模型分工、工作区并行、测试分层、文档巡检、缺陷止损、发布回滚。容量分 9.30（A3.0 B1.3 C2.0 D2.0 E1.0），5 refs 自包含 |
+| quality-first-delivery | local (imported 2026-11-18) | 只在 store 存在；`metadata.provenance: local`。内容：复杂交互 / 视觉 / 游戏 / 软件产物按证据化的质量线交付，而不是对着功能清单打勾；`references/` + `scripts/` 共 9 个文件。评审史在个人成长账本里：初版 7.0，2026.11.14.5 复核 8.0 HIGH。容量分 9.20（A3.0 B1.7 C1.5 D2.0 E1.0），6 refs 自包含 |
 
 ### video/
 | skill | origin | source |
@@ -287,6 +290,7 @@
 | film-repack | local (distilled 2026-11-17) | `C:/Git-repo-my/个人成长/musk-work-method/skill/film-repack`（MIT，v2026.11.17）。30 分钟以上的纪录片 / 访谈 / 长演讲（含英文等非中文原声）→ 带原片时间码的逐字稿 + 可核对的中文压缩总结 + 带原片静帧的 PPTX + 用 motion-showreel 渲染的 1920×1080 口播 MP4。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），62 refs 自包含 |
 | video-to-deck-reel | local (distilled 2026-11-17) | `C:/Git-repo-my/个人成长/skill-build/video-to-deck-reel`（MIT，v2026.11.17）。一条命令把单支中文讲解视频跑成课件 + 可播放的画布口播网页 + 1920×1080 MP4（取源 → 转写 → 口播 → 时间轴 → 逐帧渲染 → 合成 → 查错）。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），128 refs 自包含 |
 | deliberate-practice-talk | local (distilled from a video) | `C:/Git-repo-my/个人成长/deadlock-improvement-bili/skill/deliberate-practice-talk`（MIT，v2026.11.15）。把「刻意练习 / 复盘 / 变强方法」类讲解视频做成可核对的中文总结 + 课件 + 口播成片；纪律是引语与数字必须能回溯到原片（`references/claims.md` 是判据，`examples/bad-number.json` 是反例），随包 `check_talk.py`（在 skill 的 scripts/ 下）。与 talk-repack / bili-video-repack 的分工：这支只吃「方法论讲解」题材。容量分 9.30，3 refs 自包含 |
+| bili-talk-showreel | local (distilled, imported 2026-11-18) | 只在 store 存在，v2026.11.14，MIT。把已有逐字稿或可转写的 B 站讲解视频做成中文课件 + 画布口播网页 + 1920×1080 MP4；与 bili-talk-repack（DOM 成片）、bili-video-repack（MiniMax 流程）、course-repack（多集课程）按产物形态分流。容量分 9.50（A2.5 B2.0 C2.0 D2.0 E1.0），41 refs 自包含 |
 
 ### vendor/
 | skill | origin | source |
