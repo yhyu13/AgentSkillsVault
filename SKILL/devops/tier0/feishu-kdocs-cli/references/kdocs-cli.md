@@ -1,6 +1,6 @@
 # 金山文档 CLI（kdocs-cli）安装与用法细节
 
-版本基线：**2.9.6**（2026-11-14）。官方 Skill 包 `kdocs.zip` 内含 `SKILL.md`、
+版本基线：**2.9.8**（2026-11-17 升级；2.9.6 为 11-14 首次实测）。官方 Skill 包 `kdocs.zip` 内含 `SKILL.md`、
 `skills/kdocs-*`、`references/`、`scripts/setup.{ps1,sh,cjs}`，以及从 CDN 下载的预编译二进制。
 上游入口：`https://www.kdocs.cn/latest`（不是 GitHub）。
 
@@ -8,7 +8,7 @@
 
 ```bash
 # 拿最新包（版本号可自查，见下）
-curl -L -o kdocs.zip "https://wpsai.wpscdn.cn/skillhub/pro/v2.9.6/kdocs.zip"
+curl -L -o kdocs.zip "https://wpsai.wpscdn.cn/skillhub/pro/v2.9.8/kdocs.zip"
 unzip kdocs.zip
 powershell -ExecutionPolicy Bypass -File kdocs/scripts/setup.ps1    # Windows
 bash kdocs/scripts/setup.sh                                          # macOS / Linux
@@ -20,7 +20,7 @@ bash kdocs/scripts/setup.sh                                          # macOS / L
   （`~/bin`、`~/.local/bin`）即可，不必重启宿主。
 - Skill 目录（`SKILL.md` + 子 skills + references）应落到 `$HOME/.agents/skills/kdocs`；
   只复制 SKILL.md 会断掉相对链接。
-- 查最新版：调用 SkillHub MCP 的 `check_skill_update({"version":"2.9.6","skill_name":"kdocs"})`，
+- 查最新版：调用 SkillHub MCP 的 `check_skill_update({"version":"2.9.8","skill_name":"kdocs"})`，
   `data.instruction` 里是 zip 地址；CLI 升级用 `kdocs-cli upgrade [-y|--check|--rollback]`。
 
 ## 鉴权

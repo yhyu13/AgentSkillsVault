@@ -8,11 +8,11 @@
 | 项 | 值 |
 |---|---|
 | `lark-cli --version` | `lark-cli version 1.0.100` |
-| `kdocs-cli version` | `2.9.6` |
+| `kdocs-cli version` | `2.9.6`（2026-11-17 升到 2.9.8） |
 | 飞书应用 | 一键创建（`config init --new`），App ID `cli_aa7d5c0cd6b81c14` |
 | 飞书用户 | Hang Yu，`tokenStatus=valid`，refresh 至 2026-11-21 |
 | 金山 drive | `1427945015`（`special`） |
-| 金山 Skill | `kdocs` v2.9.6 → `$HOME/.agents/skills/kdocs` |
+| 金山 Skill | `kdocs` v2.9.6 → 2026-11-17 升到 v2.9.8，仍在 `$HOME/.agents/skills/kdocs` |
 
 ## 读：已验证
 
@@ -83,3 +83,23 @@ POST /open-apis/app/v1/dcr
 - 自定义 MCP 写入后，当前会话 `availableServers` 不含新 server；新会话才加载（文档口径一致）。
 - 宿主重写配置后，`headers` 列从明文变成 `safe-storage:v1:...`，说明凭据被托管加密。
 - 子 agent（scout / worker）不透传 `mcp__*` 工具，不能拿子 agent 验证 MCP。
+
+## 双平台发布脚本（同日验证）
+
+`scripts/publish-md.ps1` 以本 SKILL.md 为源跑通：
+
+```powershell
+powershell -File scripts/publish-md.ps1 -File SKILL.md
+# feishu  https://z8fdqawp6q.feishu.cn/docx/MMlDdNQy7oqwr7xr5F7cckoHnye
+# kdocs   https://www.kdocs.cn/l/cgSOzfxHRqf5
+
+powershell -File scripts/publish-md.ps1 -File SKILL.md -Update
+# updated MMlDdNQy7oqwr7xr5F7cckoHnye / replaced body x5o77zjGc1M1iwmmonMhrx37pjzTX3NwC
+```
+
+读回复核：飞书 9 个 h2 / 2 张表 / 3 个代码块，无重复 H1；金山 markdown 9 个二级标题，
+关键小节各出现 1 次（无重复插入）。
+
+当日删除的测试文档：飞书 4 篇（上传测试、MD 保真测试、两次失败标题）已进回收站；
+金山 2 篇（`Cindy 上传测试`、`MD 保真测试 kdocs`）——**kdocs 服务端未提供删除接口**，
+CLI 只有 `list_deleted_files` / `restore_deleted_file`，删除需在网页端操作。

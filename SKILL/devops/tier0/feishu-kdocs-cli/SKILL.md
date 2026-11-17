@@ -28,7 +28,7 @@ license: MIT
 |---|---|
 | 飞书 CLI | `lark-cli 1.0.100`，npm 全局包 `@larksuite/cli` |
 | 飞书凭证 | 系统凭据 + DPoP；`config.json` 只存 App ID，`appSecret` 由 keychain 托管 |
-| 金山 CLI | `kdocs-cli 2.9.6`（官方 Skill 包 v2.9.6 内自带安装脚本） |
+| 金山 CLI | `kdocs-cli 2.9.8`（官方 Skill 包 v2.9.8 内自带安装脚本） |
 | 金山凭证 | Windows 凭据管理器 / macOS Keychain，`auth set-token` 或 `auth login` 写入 |
 | 飞书远程 MCP | `https://mcp.feishu.cn/mcp`，OAuth 2.1 + DCR + PKCE |
 | 金山远程 MCP | `https://mcp-center.wps.cn/skill_hub/mcp`，自定义 auth-guide 换 token，**638 个工具** |
@@ -55,7 +55,7 @@ lark-cli auth status                     # 验证：identities.user.tokenStatus 
 
 ```bash
 # 1) 官方 Skill 包自带安装脚本（无需 Node/Go）
-curl -L -o kdocs.zip "https://wpsai.wpscdn.cn/skillhub/pro/v2.9.6/kdocs.zip"
+curl -L -o kdocs.zip "https://wpsai.wpscdn.cn/skillhub/pro/v2.9.8/kdocs.zip"
 unzip kdocs.zip && powershell -ExecutionPolicy Bypass -File kdocs/scripts/setup.ps1
 
 # 2) 把二进制放进「当前进程 PATH 里已存在」的目录（关键，见坑 #3）
@@ -123,6 +123,24 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/doctor.ps1
 
 输出：两个 CLI 的版本、是否在 PATH、鉴权状态、（可选）Cindy 自定义 MCP 里是否已有 wps / qqdocs 条目。
 任何一项 FAIL 时按上面的坑位号处理。
+
+## 双平台发布（同一份 Markdown）
+
+`scripts/publish-md.ps1` 把一篇 Markdown 同时发到飞书和金山，状态写进
+`$HOME/.agent-publish-state.json`，`-Update` 原地覆盖不新建：
+
+```powershell
+powershell -File scripts/publish-md.ps1 -File .\doc.md              # 两边都建
+powershell -File scripts/publish-md.ps1 -File .\doc.md -Target kdocs
+powershell -File scripts/publish-md.ps1 -File .\doc.md -Update       # 覆盖已发布的两篇
+```
+
+行为：
+- 去掉 YAML frontmatter，首个 H1 作为标题（正文里删除，避免重复标题）。
+- 飞书走 `docs +create/+update --doc-format markdown`，```mermaid 自动变画板。
+- 金山走 `drive create-file-with-content` / `otl insert-content --mode replace`；
+  标题里的 `\ / : * ? " < > |` 会被换成全角（金山文件名不允许这 9 个半角字符）。
+- 失败时打印 CLI 原始输出，不重试、不猜。
 
 ## 安全红线
 
