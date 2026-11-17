@@ -59,6 +59,8 @@ course-repack|SKILL/video/tier0/course-repack|A
 criticism-self-criticism|SKILL/management/tier3/criticism-self-criticism|A
 dcf-valuation|SKILL/management/tier3/dcf-valuation|B
 deal-structuring|SKILL/management/tier3/deal-structuring|B
+deliberate-practice|SKILL/knowledge-vault/tier0/deliberate-practice|A
+deliberate-practice-talk|SKILL/video/tier0/deliberate-practice-talk|A
 diagnosing-bugs|SKILL/software-development/tier1/diagnosing-bugs|A
 docx|SKILL/content/tier0/docx|A
 doubaofeishu_industry-analysis|SKILL/management/tier2/doubaofeishu_industry-analysis|A
@@ -96,6 +98,7 @@ mgmt-individual|SKILL/management/tier3/mgmt-individual|B
 mgmt-org|SKILL/management/tier3/mgmt-org|B
 motion-showreel|SKILL/video/tier0/motion-showreel|A
 multi-agent-repo-governance|SKILL/software-development/tier0/multi-agent-repo-governance|A
+next-token-agent-loop|SKILL/software-development/tier0/next-token-agent-loop|A
 one-on-one-prep|SKILL/management/tier3/one-on-one-prep|A
 onetake|SKILL/video/tier0/onetake|A
 opendeck|SKILL/design/tier0/opendeck|A
@@ -124,6 +127,7 @@ search-fallback|SKILL/agents/tier0/search-fallback|B
 sector-analysis|SKILL/management/tier3/sector-analysis|B
 single-file-html-game|SKILL/game-dev/tier0/single-file-html-game|A
 skill-doctor|SKILL/software-development/tier0/skill-doctor|A
+skill-trigger|SKILL/software-development/tier0/skill-trigger|A
 spark-prairie-fire|SKILL/management/tier3/spark-prairie-fire|B
 stageshow|SKILL/design/tier0/stageshow|A
 style-alibaba|SKILL/management/tier3/style-alibaba|A
