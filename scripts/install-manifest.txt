@@ -30,12 +30,15 @@ agent-browser|SKILL/content/tier1/agent-browser|A
 aigc-image-control|SKILL/content/tier1/aigc-image-control|A
 aigc-video-creation|SKILL/content/tier1/aigc-video-creation|B
 analysis-to-vault|SKILL/knowledge-vault/tier0/analysis-to-vault|A
-anatomy|SKILL/design/tier0/anatomy|B
+anatomy|SKILL/design/tier0/anatomy|A
 anidoodle|SKILL/video/tier1/anidoodle|B
 apk-ndk-version-check|SKILL/software-development/tier1/apk-ndk-version-check|A
 arming-thought|SKILL/management/tier3/arming-thought|A
 article-prompts-to-skills|SKILL/video/tier1/article-prompts-to-skills|B
 bezos-advisor|SKILL/management/tier3/bezos-advisor|B
+bili-talk-repack|SKILL/video/tier0/bili-talk-repack|A
+bili-talk-showreel|SKILL/video/tier0/bili-talk-showreel|A
+bili-video-brief|SKILL/video/tier0/bili-video-brief|A
 bili-video-repack|SKILL/video/tier1/bili-video-repack|A
 blender-director|SKILL/game-dev/tier1/blender-director|A
 blog-to-linkedin-post|SKILL/content/tier1/blog-to-linkedin-post|A
@@ -45,45 +48,76 @@ booth-kiosk-deck|SKILL/content/tier1/booth-kiosk-deck|B
 brand-docx|SKILL/design/tier0/brand-docx|A
 brand-pptx|SKILL/design/tier1/brand-pptx|A
 brand-xlsx|SKILL/design/tier1/brand-xlsx|A
-colleague-ue-app-specialist|SKILL/agents/tier3/colleague-ue-app-specialist|A
-colleague-ue-engine-architect|SKILL/agents/tier3/colleague-ue-engine-architect|A
-colleague-ue-prod-team-lead|SKILL/agents/tier3/colleague-ue-prod-team-lead|A
-colleague-ue-tech-planner|SKILL/agents/tier3/colleague-ue-tech-planner|A
 comparable-analysis|SKILL/management/tier3/comparable-analysis|B
 consolidation|SKILL/management/tier3/consolidation|B
 contradiction-analysis|SKILL/management/tier3/contradiction-analysis|A
+cook|SKILL/design/tier0/cook|A
 course-repack|SKILL/video/tier0/course-repack|A
 criticism-self-criticism|SKILL/management/tier3/criticism-self-criticism|A
 dcf-valuation|SKILL/management/tier3/dcf-valuation|B
 deal-structuring|SKILL/management/tier3/deal-structuring|B
+deepseek-stack|SKILL/software-development/tier1/deepseek-stack|A
+deliberate-practice|SKILL/content/tier0/deliberate-practice|A
+deliberate-practice-talk|SKILL/content/tier0/deliberate-practice-talk|A
 diagnosing-bugs|SKILL/software-development/tier1/diagnosing-bugs|A
 docx|SKILL/content/tier0/docx|A
 doubaofeishu_industry-analysis|SKILL/management/tier2/doubaofeishu_industry-analysis|A
+ds-adopt|SKILL/software-development/tier1/ds-adopt|A
+ds-best-of-n|SKILL/software-development/tier1/ds-best-of-n|A
+ds-blast-radius|SKILL/software-development/tier1/ds-blast-radius|A
+ds-blueprint|SKILL/software-development/tier1/ds-blueprint|A
+ds-catchup|SKILL/software-development/tier1/ds-catchup|A
+ds-context-reset|SKILL/software-development/tier1/ds-context-reset|A
+ds-design|SKILL/software-development/tier1/ds-design|A
+ds-design-audit|SKILL/software-development/tier1/ds-design-audit|A
+ds-explain|SKILL/software-development/tier1/ds-explain|A
+ds-help|SKILL/software-development/tier1/ds-help|A
+ds-jury|SKILL/software-development/tier1/ds-jury|A
+ds-ledger|SKILL/software-development/tier1/ds-ledger|A
+ds-lessons|SKILL/software-development/tier1/ds-lessons|A
+ds-mode|SKILL/software-development/tier1/ds-mode|A
+ds-plan-loop|SKILL/software-development/tier1/ds-plan-loop|A
+ds-pr|SKILL/software-development/tier1/ds-pr|A
+ds-pr-comments|SKILL/software-development/tier1/ds-pr-comments|A
+ds-principles|SKILL/software-development/tier1/ds-principles|A
+ds-ready|SKILL/software-development/tier1/ds-ready|A
+ds-review-loop|SKILL/software-development/tier1/ds-review-loop|A
+ds-revive|SKILL/software-development/tier1/ds-revive|A
+ds-sharpen|SKILL/software-development/tier1/ds-sharpen|A
+ds-ship|SKILL/software-development/tier1/ds-ship|A
+ds-swarm|SKILL/software-development/tier1/ds-swarm|A
+ds-tdd|SKILL/software-development/tier1/ds-tdd|A
+ds-unslop|SKILL/software-development/tier1/ds-unslop|A
+ds-unstick|SKILL/software-development/tier1/ds-unstick|A
+ds-verify-loop|SKILL/software-development/tier1/ds-verify-loop|A
+ds-watch-pr|SKILL/software-development/tier1/ds-watch-pr|A
 earnings-models|SKILL/management/tier3/earnings-models|B
+edithere|SKILL/software-development/tier0/edithere|A
 excel-hygiene|SKILL/content/tier1/excel-hygiene|B
+fable52-reproduction|SKILL/game-dev/tier0/fable52-reproduction|A
 family-edu-gamified-skills|SKILL/knowledge-vault/tier2/family-edu-gamified-skills|A
 feishu-kdocs-cli|SKILL/devops/tier0/feishu-kdocs-cli|A
 finance-lead|SKILL/management/tier3/finance-lead|B
-goal-persistence|SKILL/agents/tier3/goal-persistence|B
 gracker-writing|SKILL/content/tier1/gracker-writing|A
 grafana-loki-label-analyzer|SKILL/devops/tier1/grafana-loki-label-analyzer|B
 grafana-oss|SKILL/devops/tier1/grafana-oss|B
 guizang-product-video-skill|SKILL/video/tier1/guizang-product-video-skill|B
-h3-seedance-prompt-library|SKILL/video/tier0/h3-seedance-prompt-library|B
+h3-seedance-prompt-library|SKILL/video/tier0/h3-seedance-prompt-library|A
 hands-on-deck|SKILL/design/tier0/hands-on-deck|A
 hgb-standards|SKILL/management/tier3/hgb-standards|B
 html-artifacts|SKILL/design/tier1/html-artifacts|B
 html-ppt|SKILL/design/tier0/html-ppt|A
-huashu-design|SKILL/design/tier0/huashu-design|B
+huashu-design|SKILL/design/tier0/huashu-design|A
 hyperframes|SKILL/content/tier1/hyperframes|B
 ifrs-standards|SKILL/management/tier3/ifrs-standards|B
 investigation-first|SKILL/management/tier3/investigation-first|A
 karpathy-explain-better|SKILL/writing/tier1/karpathy-explain-better|B
 lbo-modeling|SKILL/management/tier3/lbo-modeling|B
 lease-accounting|SKILL/management/tier3/lease-accounting|B
+long-ai-project|SKILL/software-development/tier0/long-ai-project|A
 management-loop|SKILL/management/tier2/management-loop|B
 manage-up-core|SKILL/management/tier2/manage-up-core|A
-manim-video|SKILL/video/tier0/manim-video|B
+manim-video|SKILL/video/tier0/manim-video|A
 mass-line|SKILL/management/tier3/mass-line|B
 meeting-summary|SKILL/management/tier3/meeting-summary|A
 mgmt-discipline|SKILL/management/tier3/mgmt-discipline|B
@@ -91,6 +125,7 @@ mgmt-individual|SKILL/management/tier3/mgmt-individual|B
 mgmt-org|SKILL/management/tier3/mgmt-org|B
 motion-showreel|SKILL/video/tier0/motion-showreel|A
 multi-agent-repo-governance|SKILL/software-development/tier0/multi-agent-repo-governance|A
+next-token-agent-loop|SKILL/software-development/tier0/next-token-agent-loop|A
 one-on-one-prep|SKILL/management/tier3/one-on-one-prep|A
 onetake|SKILL/video/tier0/onetake|A
 opendeck|SKILL/design/tier0/opendeck|A
@@ -109,6 +144,8 @@ process-reward-boost|SKILL/management/tier3/process-reward-boost|A
 project-update|SKILL/management/tier3/project-update|A
 proposal|SKILL/management/tier2/proposal|B
 protracted-strategy|SKILL/management/tier3/protracted-strategy|B
+pstack-trust-ladder|SKILL/software-development/tier0/pstack-trust-ladder|A
+quality-first-delivery|SKILL/design/tier0/quality-first-delivery|A
 quarterly-review|SKILL/management/tier2/quarterly-review|B
 remotion-markup|SKILL/video/tier1/remotion-markup|B
 renzhengfei-advisor|SKILL/management/tier3/renzhengfei-advisor|B
@@ -117,6 +154,7 @@ rigorous-proof|SKILL/math/tier2/rigorous-proof|B
 search-fallback|SKILL/agents/tier2/search-fallback|B
 sector-analysis|SKILL/management/tier3/sector-analysis|B
 single-file-html-game|SKILL/game-dev/tier0/single-file-html-game|A
+skill-trigger|SKILL/agents/tier0/skill-trigger|A
 spark-prairie-fire|SKILL/management/tier3/spark-prairie-fire|B
 stageshow|SKILL/design/tier0/stageshow|A
 style-alibaba|SKILL/management/tier3/style-alibaba|A
@@ -127,11 +165,13 @@ style-microsoft|SKILL/management/tier2/style-microsoft|A
 style-report|SKILL/management/tier2/style-report|B
 style-tencent|SKILL/management/tier3/style-tencent|A
 systematic-debugging|SKILL/software-development/tier1/systematic-debugging|A
+talk-repack|SKILL/video/tier0/talk-repack|A
 technical-design-document|SKILL/game-dev/tier1/technical-design-document|B
+trimsheet-disguise|SKILL/design/tier0/trimsheet-disguise|A
 tygg-ai-film-studio|SKILL/video/tier1/tygg-ai-film-studio|A
 ue-renderdoc-auto-capture|SKILL/game-dev/tier0/ue-renderdoc-auto-capture|A
 upward-email|SKILL/management/tier3/upward-email|B
-video-production|SKILL/design/tier0/video-production|B
+video-production|SKILL/design/tier0/video-production|A
 visual-explainer|SKILL/design/tier1/visual-explainer|A
 visual-learner|SKILL/design/tier1/visual-learner|B
 webapp-testing|SKILL/game-dev/tier1/webapp-testing|A
@@ -185,6 +225,10 @@ xlsx|vendor/anthropics-skills/skills/xlsx|A
 # cat-game-architecture|SKILL/game-dev/tier2/cat-game-architecture|B|band=tier2|category=game-dev
 # codebase-design|SKILL/software-development/tier2/codebase-design|B|band=tier2|category=software-development
 # code-review|SKILL/software-development/tier2/code-review|B|band=tier2|category=software-development
+# colleague-ue-app-specialist|SKILL/agents/tier3/colleague-ue-app-specialist|A|band=tier3|category=agents
+# colleague-ue-engine-architect|SKILL/agents/tier3/colleague-ue-engine-architect|A|band=tier3|category=agents
+# colleague-ue-prod-team-lead|SKILL/agents/tier3/colleague-ue-prod-team-lead|A|band=tier3|category=agents
+# colleague-ue-tech-planner|SKILL/agents/tier3/colleague-ue-tech-planner|A|band=tier3|category=agents
 # colleague-yuhang|SKILL/agents/tier4/colleague-yuhang|A|band=tier4|category=agents
 # collision-proxy|SKILL/game-dev/tier2/collision-proxy|B|band=tier2|category=game-dev
 # compositing|SKILL/game-dev/tier2/compositing|B|band=tier2|category=game-dev
@@ -221,6 +265,7 @@ xlsx|vendor/anthropics-skills/skills/xlsx|A
 # game-ui-heavy-narrative|SKILL/game-dev/tier4/game-ui-heavy-narrative|B|band=tier4|category=game-dev
 # gdd-markdown-template|SKILL/game-dev/tier2/gdd-markdown-template|B|band=tier2|category=game-dev
 # geometry-nodes|SKILL/game-dev/tier2/geometry-nodes|B|band=tier2|category=game-dev
+# goal-persistence|SKILL/agents/tier3/goal-persistence|B|band=tier3|category=agents
 # governance-doc-design|SKILL/software-development/tier3/governance-doc-design|B|band=tier3|category=software-development
 # grafana-alerting-irm|SKILL/devops/tier2/grafana-alerting-irm|B|band=tier2|category=devops
 # grafana-alloy|SKILL/devops/tier2/grafana-alloy|B|band=tier2|category=devops

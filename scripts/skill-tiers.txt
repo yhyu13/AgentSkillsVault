@@ -54,7 +54,7 @@ aigc-image-control|A
 aigc-video-creation|B
 algorithmic-art|B
 analysis-to-vault|A
-anatomy|B
+anatomy|A
 anidoodle|B
 animation|B
 apk-ndk-version-check|A
@@ -64,6 +64,7 @@ ask-matt|B
 audit-verify-explain-grade-5|B
 aura-asset-images|B
 bezos-advisor|B
+bili-talk-repack|A
 bili-video-repack|A
 blender-director|A
 blender-modeler|B
@@ -89,6 +90,7 @@ concentrate-forces|B
 consolidation|B
 content-craft|A
 contradiction-analysis|A
+cook|A
 criticism-self-criticism|A
 dcf-valuation|B
 deal-structuring|B
@@ -99,9 +101,11 @@ distilly|B
 docx|A
 domain-modeling|B
 earnings-models|B
+edithere|A
 elevenlabs-tts|B
 environment-artist|B
 excel-hygiene|B
+fable52-reproduction|A
 ffmpeg|B
 finance-lead|B
 game-archetype-classifier|B
@@ -142,7 +146,7 @@ grill-me|B
 grill-with-docs|B
 grilling|B
 guizang-product-video-skill|B
-h3-seedance-prompt-library|B
+h3-seedance-prompt-library|A
 hackathon-pitch-pipeline|A
 hair-groom|B
 handoff|B
@@ -153,7 +157,7 @@ horror-style|B
 html-artifacts|B
 html-ppt|A
 html-to-interaction-prompts|B
-huashu-design|B
+huashu-design|A
 hyperframes|B
 ifrs-standards|B
 implement|B
@@ -173,7 +177,7 @@ long-blog-to-viral-social-posts|B
 make-interfaces-feel-better|B
 manage-up-core|A
 management-loop|B
-manim-video|B
+manim-video|A
 mass-line|B
 meeting-summary|A
 mgmt-discipline|B
@@ -181,6 +185,7 @@ mgmt-individual|B
 mgmt-org|B
 motion-showreel|A
 multi-agent-repo-governance|A
+next-token-agent-loop|A
 notes-on-writing|B
 okr-planner|B
 one-on-one-prep|A
@@ -211,7 +216,9 @@ prop-artist|B
 proposal|B
 prototype|B
 protracted-strategy|B
+pstack-trust-ladder|A
 qa-review|B
+quality-first-delivery|A
 quarterly-review|B
 receiving-code-review|A
 remotion-captions|B
@@ -266,6 +273,7 @@ three-procedural-scenes|B
 to-spec|B
 to-tickets|B
 triage|B
+trimsheet-disguise|A
 truth-seeking-research|A
 ue-renderdoc-auto-capture|A
 ue4-shader-debug|A
@@ -276,7 +284,7 @@ using-git-worktrees|B
 uv-workflow|B
 verification-before-completion|A
 vfx-fx|B
-video-production|B
+video-production|A
 video-to-superprompt|B
 video-use|B
 visual-explainer|A
@@ -294,6 +302,7 @@ xlsx|A
 yu-hang-writing-style|A
 zhangyiming-advisor|B
 search-fallback|B
+skill-trigger|A
 game-proto-validation-v2|A
 blender-game-assets-v2|A
 engine-project-agent-v2|A
@@ -335,3 +344,6 @@ feishu-kdocs-cli|A
 
 # 2026-11-14 course-repack（网课 -> 中文课程包；容量分 10.0，独立评审 8.4 HIGH）
 course-repack|A
+long-ai-project|A
+bili-talk-showreel|A
+bili-video-brief|A
