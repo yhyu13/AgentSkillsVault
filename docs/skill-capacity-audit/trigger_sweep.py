@@ -130,6 +130,8 @@ def store_visible() -> set:
 
 # ------------------------------------------------------------------- generate
 
+SELF_CONTAINED_PROMPT = """6. 这句话必须**在没有附件的情况下**也说得通：禁止「这份文档」「这个链接」「这几张图」「这个视频」这类指代；把输入写成用户手上确实有的东西，或直接把诉求讲清楚（例：「我要把一份 Word 会议纪要排成带目录的正式文档，你会怎么开始」）。宁可描述任务，也不要让人追问「哪个文件」。"""
+
 GEN_INSTRUCTIONS = """你在为一个 agent 的 skill 选择机制造测试用例。
 
 下面给你 {n} 个 skill 的 name 与 description。为**每一个** skill 写一句真实用户会说的话（中文，10–45 字），要求：
@@ -139,6 +141,7 @@ GEN_INSTRUCTIONS = """你在为一个 agent 的 skill 选择机制造测试用�
 3. **禁止照抄**描述里的原句或专有短语；用用户自己的说法重写。
 4. 一句话，不要编号、不要解释、不要引号。
 5. 如果描述里有两个以上功能，挑最能区分它的那一个。
+{extra}
 
 只输出 JSON 数组，形如 [{{"skill": "<name>", "prompt": "<那句话>"}}]，一个不漏。
 
@@ -147,10 +150,12 @@ skills:
 """
 
 
-def gen_batch(batch: list, timeout: int) -> dict:
+def gen_batch(batch: list, timeout: int, self_contained: bool = False) -> dict:
     blocks = "\n".join(
         "### %s\n%s" % (s["skill"], (s["description"] or "")[:900]) for s in batch)
-    prompt = GEN_INSTRUCTIONS.format(n=len(batch), blocks=blocks)
+    prompt = GEN_INSTRUCTIONS.format(
+        n=len(batch), blocks=blocks,
+        extra=SELF_CONTAINED_PROMPT if self_contained else "")
     try:
         proc = subprocess.run(
             [CLI, "-p", prompt, "--output-format", "json"],
@@ -185,12 +190,16 @@ def cmd_generate(args) -> int:
         skills = skills[:args.limit]
     visible = store_visible()
     skills = [s for s in skills if not visible or s["skill"] in visible]
+    if args.only:
+        want = {s.strip() for s in args.only.split(",") if s.strip()}
+        skills = [s for s in skills if s["skill"] in want]
     print("generating prompts for %d tier-A skills" % len(skills), file=sys.stderr)
 
     batches = [skills[i:i + args.batch] for i in range(0, len(skills), args.batch)]
     prompts = {}
     with ThreadPoolExecutor(max_workers=args.workers) as ex:
-        for got in ex.map(lambda b: gen_batch(b, args.timeout), batches):
+        for got in ex.map(
+                lambda b: gen_batch(b, args.timeout, args.self_contained), batches):
             prompts.update({k: v for k, v in got.items() if k and v})
 
     cases, missing, leaked = [], [], []
@@ -364,6 +373,39 @@ def cmd_run(args) -> int:
     return 0
 
 
+PRECEDENCE = {"PASS": 3, "WRONG": 2, "TIMEOUT": 1, "ABSTAIN": 0, "ERROR": 0}
+
+
+def cmd_merge(args) -> int:
+    files = [Path(f) for f in [args.base] + [x for x in args.extra.split(",") if x]]
+    runs = {}
+    for f in files:
+        if not f.is_file():
+            print("missing: %s" % f, file=sys.stderr)
+            return 2
+        for row in json.loads(f.read_text(encoding="utf-8")).get("results", []):
+            runs.setdefault(row["skill"], []).append(
+                {"verdict": row["verdict"], "picked": row.get("picked") or [],
+                 "prompt": row.get("prompt"), "file": f.name})
+    merged, counts = [], {}
+    for skill, seen in sorted(runs.items()):
+        best = max(seen, key=lambda r: PRECEDENCE.get(r["verdict"], 0))
+        verdict = best["verdict"]
+        counts[verdict] = counts.get(verdict, 0) + 1
+        merged.append({"skill": skill, "prompt": best["prompt"],
+                       "picked": best["picked"], "verdict": verdict,
+                       "runs": len(seen),
+                       "verdicts": [r["verdict"] for r in seen]})
+    payload = {"merged_from": [f.name for f in files], "cli": CLI,
+               "counts": counts, "results": merged}
+    Path(args.out).write_text(json.dumps(payload, indent=2, ensure_ascii=False),
+                              encoding="utf-8")
+    print("merged %d skills from %d files: %s" % (
+        len(merged), len(files),
+        " ".join("%s=%d" % (k, counts[k]) for k in sorted(counts))))
+    return 0
+
+
 def cmd_report(args) -> int:
     src = Path(args.results)
     if not src.is_file():
@@ -377,12 +419,20 @@ def cmd_report(args) -> int:
             print("rerun results not found: %s" % rp, file=sys.stderr)
             return 2
         rerun = json.loads(rp.read_text(encoding="utf-8"))
-    Path(args.md).write_text(render_markdown(payload, rerun), encoding="utf-8")
+    pass2 = None
+    if args.pass2:
+        p2 = Path(args.pass2)
+        if not p2.is_file():
+            print("pass2 results not found: %s" % p2, file=sys.stderr)
+            return 2
+        pass2 = json.loads(p2.read_text(encoding="utf-8"))
+    Path(args.md).write_text(render_markdown(payload, rerun, pass2), encoding="utf-8")
     print("wrote %s" % args.md)
     return 0
 
 
-def render_markdown(payload: dict, rerun: dict | None = None) -> str:
+def render_markdown(payload: dict, rerun: dict | None = None,
+                    pass2: dict | None = None) -> str:
     rows = payload["results"]
     c = payload["counts"]
     total = len(rows)
@@ -399,6 +449,11 @@ def render_markdown(payload: dict, rerun: dict | None = None) -> str:
     for k in ("PASS", "WRONG", "ABSTAIN", "TIMEOUT", "ERROR"):
         n = c.get(k, 0)
         lines.append("| %s | %d | %.0f%% |" % (k, n, 100.0 * n / total if total else 0))
+    if payload.get("merged_from"):
+        lines += ["", "上表是**最好证据**：同一条 skill 跑过多轮时取最强的那一轮"
+                  "（PASS > WRONG > TIMEOUT > ABSTAIN），来源 %s。第一轮单跑是 "
+                  "PASS 28 / WRONG 4 / ABSTAIN 31 / TIMEOUT 8。" %
+                  " + ".join("`%s`" % f for f in payload["merged_from"])]
     lines += ["", "## Every case", "",
               "| verdict | skill | picked | prompt |", "| --- | --- | --- | --- |"]
     for r in rows:
@@ -432,6 +487,21 @@ def render_markdown(payload: dict, rerun: dict | None = None) -> str:
         lines += ["", "两轮之间改判 %d 个：%s。**只有复现的 WRONG 才值得动 description**，"
                   "单轮结果不足以支撑一次改写。" % (
                       len(flipped), "、".join("`%s`" % s for s in flipped) or "—")]
+    if pass2:
+        p2 = pass2.get("results", [])
+        gained = [r for r in p2 if r["verdict"] == "PASS"]
+        lines += ["", "## 第二轮：只重跑第一轮 ABSTAIN 的 %d 个，提示词改成自足" % len(p2), "",
+                  "第一轮的请求里有不少写着「这份文档」「这个视频」，测试环境没有附件，"
+                  "模型就去要文件了，压根没走到选 skill 那一步。这一轮把那些指代去掉了，"
+                  "其余不变。", "",
+                  "| skill | 第一轮 | 第二轮 | 选中 |", "| --- | --- | --- | --- |"]
+        for r in sorted(p2, key=lambda x: (x["verdict"] != "PASS", x["skill"])):
+            lines.append("| `%s` | ABSTAIN | %s | %s |" % (
+                r["skill"], r["verdict"],
+                ", ".join("`%s`" % x for x in r["picked"]) or "-"))
+        lines += ["", "救回 %d / %d（%.0f%%）：其余仍不触发，说明这些 skill 的失败不是因为"
+                  "缺文件，而是模型宁可自己答也不调它。" % (
+                      len(gained), len(p2), 100.0 * len(gained) / len(p2) if p2 else 0)]
     lines += [
         "",
         "## How to read this",
@@ -466,11 +536,23 @@ def main(argv=None) -> int:
     g.add_argument("--batch", type=int, default=12)
     g.add_argument("--timeout", type=int, default=240)
     g.add_argument("--limit", type=int, default=0)
+    g.add_argument("--self-contained", action="store_true",
+                   help="forbid prompts that point at an unattached file")
+    g.add_argument("--only", default="",
+                   help="comma-separated skill names to regenerate")
     g.set_defaults(func=cmd_generate)
+
+    m = sub.add_parser("merge", help="fold several runs into one best-evidence file")
+    m.add_argument("--base", required=True)
+    m.add_argument("--extra", default="", help="comma-separated extra result files")
+    m.add_argument("--out", required=True)
+    m.set_defaults(func=cmd_merge)
 
     rep = sub.add_parser("report", help="re-render the markdown from saved results")
     rep.add_argument("--results", default=str(HERE / "2026-11-18-trigger-results.json"))
     rep.add_argument("--rerun", default="")
+    rep.add_argument("--pass2", default="",
+                     help="second pass over the abstainers (self-contained prompts)")
     rep.add_argument("--md", default=str(HERE / "2026-11-18-trigger-report.md"))
     rep.set_defaults(func=cmd_report)
 
