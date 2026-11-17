@@ -255,6 +255,7 @@
 ### video/
 | skill | origin | source |
 |-------|--------|--------|
+| bili-video-brief | local (distilled 2026-11-17) | 从 `C:/Git-repo-my/个人成长/herdr-multi-agent-BV1xz8Y6SEX1` 的一次真实交付蒸馏：BV1xz8Y6SEX1《多Agent瓶颈是人类注意力，是时候使用 Herdr 了》562 秒中文原片。交付为 216 行逐字稿（93 条校正）、12 章摘要（13 条整句引语全部回溯成功）、15 页课件、17 段口播 228.09 秒 1920×1080 MP4（6843 帧、3.71 汉字/秒）。沉淀的是摘要优先的纪律与可执行闸门：取源探字幕、分块转写、校正账本命中 0 次即失败、摘要时间戳与引语回溯、课件结构检查、口播真实时长排轴。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0，断链 0）；三轮独立评审 5.65 → 5.60 → 8.8 HIGH，阻断项已逐条关闭；评审记录在 `C:/Git-repo-my/个人成长/agent-skill-vote/`。 |
 | ai-video-production | local (distilled) | 余弦博客《用 Opus 5.5 做视频：制作流程与提示词资源记录》(2026-09-27) + 已 vendor 的开源 skill 清单；含 `references/prompts.md`（提示词模板）与 `references/resources.md`（仓库/工具清单）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 | h3-seedance-prompt-library | local (HOST import) | 用户本机已装 skill：`C:\Users\XINDONG\.claude\skills\h3-seedance-prompt-library`（canonical；`~/.agents/skills` 为 junction view）。无上游 git 仓库，`NOTICE.md` 声明自有内容 MIT、官方原件不随包分发。MiniMax H3（海螺 03）三字段 + Seedance 2.5 七段提示词库：22 个维度共 603 条可拼装片段、`agents/h3-seedance-translator.md` 翻译 Agent、`library/intel/` 官方原件差异清单。**导入时未改动内容**（与源树哈希 `1788110e…` 一致）；已知缺陷见 `SKILL_CANDIDATES.md` #52–#54 |
 | remotion-best-practices (retired) / -create / -render / -captions / -markup / -multimedia / -maps / -interactivity / -docs / -saas / -studio / -upgrade | repo (submodule) | `github.com/remotion-dev/skills` @ `6c67adc` — Remotion 官方 Agent Skills（12 个），上游 `skills/<name>` |
