@@ -1,0 +1,362 @@
+{
+  "source": "C:\\Git-repo-my\\个人成长\\agent-skill-vote",
+  "rubric": {
+    "dimensions": [
+      "contract",
+      "executability",
+      "resistance",
+      "recoverability",
+      "boundaries",
+      "honesty",
+      "cost_of_misuse"
+    ],
+    "high_threshold": 8.0,
+    "dimension_floor": 7.0,
+    "rule": "HIGH = weighted >= 8 and no single dimension below 7; a document-only review never promotes a skill to the 9-and-above execution line"
+  },
+  "entries": [
+    {
+      "skill": "cook",
+      "quality": 9.2,
+      "verdict": "advanced",
+      "reviewer": "deepseek-v4-pro, fresh context, skill files only",
+      "date": "2026-11-14",
+      "note": "It turns a taste problem into a resumable loop: one intake, a numeric bar per dimension, a time floor, zero-context critics, a measured color check, and a hard gate before the final render. The ledger survives a context reset. It is not a prompt list.",
+      "origin": "votes.json#cook"
+    },
+    {
+      "skill": "video-to-deck-reel",
+      "quality": 9.2,
+      "verdict": "high tier",
+      "reviewer": "deepseek-v4-pro（只读，fresh context，8 轮）+ kimi k3.1-pro（第 7 轮撞配额，未计入）",
+      "date": "2026-11-17",
+      "note": "It turns one fragile manual checklist into nine idempotent stages with four mechanical gates: the transcript's language is detected rather than asserted, every spoken figure must exist in the transcript, every chapter must visibly move between its first and last frame, and every slide must carry a legal timecode plus figures that come from the transcript. The deck preview is rendered from the real",
+      "origin": "votes.json#video-to-deck-reel"
+    },
+    {
+      "skill": "bili-video-brief",
+      "quality": 8.8,
+      "verdict": "advanced",
+      "reviewer": "round 1 deepseek-v4-pro (read-only), round 2 gpt-6.1-sol (executing), round 3 k3 (executing, re-verify)",
+      "date": "2026-11-17",
+      "note": "可核对摘要的纪律落成了可执行闸门：引语整句回溯、时间戳限片内、五段结构、校正账本命中 0 次即失败、缺块即失败。三轮评审把 5.6 拉到 8.8，阻断项逐条关闭；剩余 8 分项（短引语、近似渲染）已在技能里写明，没有假装覆盖。",
+      "origin": "votes.json#bili-video-brief"
+    },
+    {
+      "skill": "film-repack",
+      "quality": 8.7,
+      "verdict": "HIGH",
+      "reviewer": "本地 subagent，只读，glm-5.3",
+      "date": "",
+      "note": "",
+      "origin": "votes.json#film-repack"
+    },
+    {
+      "skill": "anatomy",
+      "quality": 8.6,
+      "verdict": "HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "没有限制反复打磨的轮数",
+      "origin": "2026-11-15-tier0-independent-review.md#anatomy"
+    },
+    {
+      "skill": "deliberate-practice",
+      "quality": 8.6,
+      "verdict": "HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "字段检查通过不等于训练有效",
+      "origin": "2026-11-15-tier0-independent-review.md#deliberate-practice"
+    },
+    {
+      "skill": "motion-showreel",
+      "quality": 8.5,
+      "verdict": "HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "验收命令写死 1920×1080、30 帧和 16 秒",
+      "origin": "2026-11-15-tier0-independent-review.md#motion-showreel"
+    },
+    {
+      "skill": "bili-talk-showreel",
+      "quality": 8.4,
+      "verdict": "HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "中文片没有逐字稿时只说停止，没有取得路径",
+      "origin": "2026-11-15-tier0-independent-review.md#bili-talk-showreel"
+    },
+    {
+      "skill": "pstack-trust-ladder",
+      "quality": 8.4,
+      "verdict": "HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "命令依赖未说明是否已安装的插件",
+      "origin": "2026-11-15-tier0-independent-review.md#pstack-trust-ladder"
+    },
+    {
+      "skill": "trimsheet-disguise",
+      "quality": 8.4,
+      "verdict": "HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "脚本只检查账本还在，不检查画面",
+      "origin": "2026-11-15-tier0-independent-review.md#trimsheet-disguise"
+    },
+    {
+      "skill": "long-ai-project",
+      "quality": 8.3,
+      "verdict": "HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "没有人签字时没有收尾方式",
+      "origin": "2026-11-15-tier0-independent-review.md#long-ai-project"
+    },
+    {
+      "skill": "skill-doctor",
+      "quality": 8.29,
+      "verdict": "HIGH",
+      "reviewer": "stale Orca grok-review re-read (round 3 report)",
+      "date": "2026-11-17",
+      "note": "It turns 'the agent keeps making the same mistake' into an auditable loop: score real sessions, take only failing ones as evidence, change one rule, and put the change through a mechanical gate, a human-reviewed PR and a regression set. The gate runs, the example reproduces to the digit, and zero change is an accepted result.",
+      "origin": "votes.json#skill-doctor"
+    },
+    {
+      "skill": "multi-agent-repo-governance",
+      "quality": 8.2,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "单项低于 7：审批顺序可能锁死合并",
+      "origin": "2026-11-15-tier0-independent-review.md#multi-agent-repo-governance"
+    },
+    {
+      "skill": "brand-docx",
+      "quality": 8.1,
+      "verdict": "HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "视觉判断仍靠人看图",
+      "origin": "2026-11-15-tier0-independent-review.md#brand-docx"
+    },
+    {
+      "skill": "feishu-kdocs-cli",
+      "quality": 8.1,
+      "verdict": "HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "描述里的 400001 在正文没有处理",
+      "origin": "2026-11-15-tier0-independent-review.md#feishu-kdocs-cli"
+    },
+    {
+      "skill": "huashu-design",
+      "quality": 8.1,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "单项低于 7：无人值守时停在方向稿",
+      "origin": "2026-11-15-tier0-independent-review.md#huashu-design"
+    },
+    {
+      "skill": "onetake",
+      "quality": 8.1,
+      "verdict": "HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "混音命令没有给出脚本目录",
+      "origin": "2026-11-15-tier0-independent-review.md#onetake"
+    },
+    {
+      "quality": 8.0,
+      "verdict": "HIGH",
+      "date": "2026-11-14",
+      "note": "修复复核 8.0 HIGH（同一评审者），覆盖可安装 / 可执行 / 证据 / 边界；votes.json 里的 5.0 是修复前的文档评审",
+      "origin": "agent-skill-vote/README.md#fable52-reproduction",
+      "skill": "fable52-reproduction",
+      "history": [
+        {
+          "quality": 5.0,
+          "verdict": "below-threshold-document-review",
+          "date": "2026-11-14",
+          "origin": "votes.json#fable52-reproduction"
+        }
+      ]
+    },
+    {
+      "skill": "hands-on-deck",
+      "quality": 8.0,
+      "verdict": "HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "描述会把新建演示文稿也吸进来",
+      "origin": "2026-11-15-tier0-independent-review.md#hands-on-deck"
+    },
+    {
+      "quality": 8.0,
+      "verdict": "HIGH",
+      "date": "2026-11-14",
+      "note": "2026.11.14.5 的 Q2 复核 8.0 HIGH；votes.json 里的 7.0 是初版",
+      "origin": "agent-skill-vote/README.md#quality-first-delivery",
+      "skill": "quality-first-delivery",
+      "history": [
+        {
+          "quality": 7.0,
+          "verdict": "below-threshold-before-revision",
+          "date": "2026-11-14",
+          "origin": "votes.json#quality-first-delivery"
+        }
+      ]
+    },
+    {
+      "skill": "course-repack",
+      "quality": 7.9,
+      "verdict": "advanced",
+      "reviewer": "deepseek-v4-pro, fresh context, 4 rounds, skill files only",
+      "date": "2026-11-14",
+      "note": "It turns '整门课重做成课程包' into a resumable pipeline with five exit-code gates: content, subtitles, visibility, PPTX (COM-measured), and video (loudness/true-peak/black-frame/subtitle-language). The single-source geometry and the shared sentence splitter are the two things that stop the deck and the film from drifting. Remaining gap is documentation-vs-code drift in content.schema.json, not runtime fail",
+      "origin": "votes.json#course-repack"
+    },
+    {
+      "skill": "stageshow",
+      "quality": 7.9,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "没有说明预览地址",
+      "origin": "2026-11-15-tier0-independent-review.md#stageshow"
+    },
+    {
+      "skill": "video-production",
+      "quality": 7.8,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "中文规则被写成所有语言的默认",
+      "origin": "2026-11-15-tier0-independent-review.md#video-production"
+    },
+    {
+      "skill": "deliberate-practice-talk",
+      "quality": 7.7,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "正文没有给出成片命令",
+      "origin": "2026-11-15-tier0-independent-review.md#deliberate-practice-talk"
+    },
+    {
+      "skill": "edithere",
+      "quality": 7.6,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "批注循环没有次数上限",
+      "origin": "2026-11-15-tier0-independent-review.md#edithere"
+    },
+    {
+      "skill": "docx",
+      "quality": 7.5,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "缺渲染工具时没有退路",
+      "origin": "2026-11-15-tier0-independent-review.md#docx"
+    },
+    {
+      "skill": "next-token-agent-loop",
+      "quality": 7.5,
+      "verdict": "installed-with-open-quality-review",
+      "reviewer": "Pi reviewer subagent",
+      "date": "2026-11-14",
+      "note": "The mechanism matches the lesson, and the demo numbers stay marked as one lecture. It has no resumable ledger, no runnable check, and no record of what happens when the step limit is hit. Below 9, so it stays out of the installed skill library.",
+      "origin": "votes.json#next-token-agent-loop"
+    },
+    {
+      "skill": "opendeck",
+      "quality": 7.4,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "发布所需文件没有列全",
+      "origin": "2026-11-15-tier0-independent-review.md#opendeck"
+    },
+    {
+      "skill": "ue-renderdoc-auto-capture",
+      "quality": 7.4,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "已验证范围窄于描述",
+      "origin": "2026-11-15-tier0-independent-review.md#ue-renderdoc-auto-capture"
+    },
+    {
+      "skill": "single-file-html-game",
+      "quality": 7.3,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "检查命令依赖特定仓库目录",
+      "origin": "2026-11-15-tier0-independent-review.md#single-file-html-game"
+    },
+    {
+      "skill": "h3-seedance-prompt-library",
+      "quality": 7.2,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "帧率说法和官方未说明互相冲突",
+      "origin": "2026-11-15-tier0-independent-review.md#h3-seedance-prompt-library"
+    },
+    {
+      "skill": "book-chapter-to-vault",
+      "quality": 6.8,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "可选产物又被写成质量必做",
+      "origin": "2026-11-15-tier0-independent-review.md#book-chapter-to-vault"
+    },
+    {
+      "skill": "html-ppt",
+      "quality": 6.8,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "导出脚本写死 macOS Chrome",
+      "origin": "2026-11-15-tier0-independent-review.md#html-ppt"
+    },
+    {
+      "skill": "manim-video",
+      "quality": 6.6,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "高质量渲染后仍拼接低清路径",
+      "origin": "2026-11-15-tier0-independent-review.md#manim-video"
+    },
+    {
+      "skill": "pdf",
+      "quality": 6.2,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "空元数据会让提取崩溃",
+      "origin": "2026-11-15-tier0-independent-review.md#pdf"
+    },
+    {
+      "skill": "analysis-to-vault",
+      "quality": 6.1,
+      "verdict": "NOT HIGH",
+      "reviewer": "2026-11-15 只读评审",
+      "date": "2026-11-15",
+      "note": "依赖另一个技能的脚本",
+      "origin": "2026-11-15-tier0-independent-review.md#analysis-to-vault"
+    }
+  ],
+  "counts": {
+    "skills": 36,
+    "at_or_above_9": 2,
+    "high": 32
+  }
+}

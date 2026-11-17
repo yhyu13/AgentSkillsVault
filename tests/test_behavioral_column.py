@@ -75,3 +75,26 @@ class LoadBehaviouralTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class QualityColumnTest(unittest.TestCase):
+    """Capacity is not quality; the two must stay visibly separate."""
+
+    def test_reads_a_ledger(self):
+        payload = {"entries": [
+            {"skill": "cook", "quality": 9.2, "verdict": "advanced"},
+            {"skill": "pdf", "quality": 6.2, "verdict": "NOT HIGH"},
+        ]}
+        with tempfile.TemporaryDirectory() as td:
+            f = Path(td) / "ledger.json"
+            f.write_text(json.dumps(payload), encoding="utf-8")
+            got = score_skills.load_quality(f)
+        self.assertEqual(got["cook"]["quality"], 9.2)
+        self.assertEqual(got["pdf"]["verdict"], "NOT HIGH")
+
+    def test_unreviewed_is_absent_not_zero(self):
+        self.assertEqual(score_skills.load_quality(""), {})
+
+    def test_missing_ledger_fails_loudly(self):
+        with self.assertRaises(SystemExit):
+            score_skills.load_quality(Path("nope.json"))
