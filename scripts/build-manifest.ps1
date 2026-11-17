@@ -88,7 +88,11 @@ $HostSkills = @()
 # embedded .claude/skills/ copies must never enter the curated install list.
 # Worktrees inside the repo (.cindy-worktrees/, .worktrees/) are full copies of
 # this same tree — scanning them made the manifest point at throwaway copies.
-$skipDirs = '[\\/](\.git|\.github|\.changeset|\.claude-plugin|\.out-of-scope|\.cindy-worktrees|\.worktrees|node_modules|archived|vendor|docs|TEMPLATE[A-Za-z0-9_-]*)[\\/]'
+# `examples/` is a skill PAYLOAD dir (AGENTS.md), so a SKILL.md inside it is a
+# demo attached to its parent skill, not a peer skill. agent-eval-loop ships
+# examples/01-bug-repro-skill/SKILL.md as a worked example; without this skip it
+# became an install entry of its own.
+$skipDirs = '[\\/](\.git|\.github|\.changeset|\.claude-plugin|\.out-of-scope|\.cindy-worktrees|\.worktrees|node_modules|archived|vendor|docs|examples|TEMPLATE[A-Za-z0-9_-]*)[\\/]'
 
 $curated = @{}
 Get-ChildItem -LiteralPath $Vault -Recurse -Directory -ErrorAction SilentlyContinue |

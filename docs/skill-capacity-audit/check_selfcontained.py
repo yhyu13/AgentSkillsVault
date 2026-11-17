@@ -30,7 +30,9 @@ LINK_RE = re.compile(r"\]\(([^)\s]+)\)")
 EXT = (".md", ".js", ".mjs", ".ts", ".tsx", ".html", ".css", ".mp3", ".wav",
        ".png", ".jpg", ".jpeg", ".svg", ".json", ".py", ".sh", ".ps1", ".mp4")
 ABS_WIN_RE = re.compile(r"^[A-Za-z]:\\")
-ABS_POSIX_RE = re.compile(r"^(/|~/|\\\\)")
+# `/loop`, `/cook` are slash commands, not paths: a leading / only counts as a
+# path when it carries a second segment or a file extension.
+ABS_POSIX_RE = re.compile(r"^(~/|\\\\)|^/[A-Za-z0-9_.-]+[/.]")
 # A bare relative path that looks like a file in the package.
 REL_RE = re.compile(r"^(?:\./)?[A-Za-z0-9_.\-]+(?:/[A-Za-z0-9_.\-]+)*\.[A-Za-z0-9]+$")
 

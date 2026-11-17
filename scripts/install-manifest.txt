@@ -27,6 +27,7 @@
 3d-ultra-realistic-water|SKILL/video/tier1/3d-ultra-realistic-water|B
 3d-wood-lighting-scorecard|SKILL/video/tier1/3d-wood-lighting-scorecard|B
 agent-browser|SKILL/content/tier1/agent-browser|A
+agent-eval-loop|SKILL/software-development/tier0/agent-eval-loop|A
 aigc-image-control|SKILL/content/tier1/aigc-image-control|A
 aigc-video-creation|SKILL/content/tier1/aigc-video-creation|B
 analysis-to-vault|SKILL/knowledge-vault/tier0/analysis-to-vault|A

@@ -47,6 +47,7 @@
 action-substitution|A
 agent-browser|A
 agent-desktop|A
+agent-eval-loop|A
 ai-3d-character-pipeline|B
 ai-3d-scene-pipeline|B
 ai-video-production|A
