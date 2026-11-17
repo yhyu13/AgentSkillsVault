@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>reel</title>
+<style>
+  html, body { margin: 0; background: #0b0c0e; }
+  #stage { width: 1920px; height: 1080px; position: relative; }
+  #stage canvas { display: block; width: 1920px; height: 1080px; }
+</style>
+</head>
+<body>
+<!--
+  Starter canvas. Copy to <project>/reel/index.html and edit only the marked
+  parts: TITLE, SUBTITLE, and what drawSegment() puts on screen.
+
+  Contract (render_frames.mjs relies on all three):
+    * one <canvas> inside #stage, sized to timeline.width x timeline.height
+    * window.renderAt(t) is a pure function of t and clears the canvas
+    * window.__ready flips true once fonts are loaded
+
+  Timeline comes from ./timeline.js (same folder), written by build_timeline.py, so the page
+  and the audio read the same numbers.
+-->
+<div id="stage"><canvas id="c" width="1920" height="1080"></canvas></div>
+<script src="timeline.js"></script>
+<script>
+const TITLE = "片名写在这里";
+const SUBTITLE = "副题：一句话说清这支片子要论证什么";
+const W = 1920, H = 1080;
+const TL = window.TIMELINE || { total: 1, segments: [] };
+
+const cv = document.getElementById("c");
+const ctx = cv.getContext("2d", { alpha: false });
+const FONT = '"Microsoft YaHei", sans-serif';
+const FONT_EN = "Georgia, serif";
+
+const ink = "#F4EFE7", sub = "#B9B3A9", dim = "#6E6961", accent = "#CF4520";
+
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const easeOut = (p) => 1 - Math.pow(1 - clamp(p), 3);
+
+function wrap(text, maxWidth, font) {
+  ctx.font = font;
+  const lines = [];
+  let line = "";
+  // token-aware: latin words stay whole, CJK breaks per character
+  for (const token of text.match(/[A-Za-z0-9%+\-_.]+|\s|[^\s]/g) || []) {
+    const next = line + token;
+    if (ctx.measureText(next).width > maxWidth && line) {
+      lines.push(line);
+      line = token.trim() === "" ? "" : token;
+    } else {
+      line = next;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function segmentAt(t) {
+  const segs = TL.segments || [];
+  for (let i = 0; i < segs.length; i++) {
+    if (t < segs[i].end || i === segs.length - 1) return { seg: segs[i], index: i };
+  }
+  return { seg: { id: "-", chapter: "", text: "", start: 0, end: 1 }, index: 0 };
+}
+
+// A very slow push plus a drifting highlight. Without one continuous motion the
+// start and end of a text-heavy segment can differ by <0.1% of their pixels and
+// check_frames --timeline rightly calls that a frozen segment.
+function cameraPush(t, draw) {
+  const k = 1.0 + 0.012 * (t / Math.max(1, TL.total));   // 1.0 -> 1.012
+  ctx.save();
+  ctx.translate(960, 540);
+  ctx.scale(k, k);
+  ctx.translate(-960, -540);
+  draw();
+  ctx.restore();
+}
+
+function background(t) {
+  const g = ctx.createRadialGradient(W * 0.28, H * 0.2, 80, W * 0.5, H * 0.5, W * 0.85);
+  g.addColorStop(0, "#1a1512");
+  g.addColorStop(0.55, "#0e0f11");
+  g.addColorStop(1, "#080909");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+
+  // slow drift light
+  const x = W * (0.3 + 0.05 * Math.sin(t * 0.09));
+  const y = H * (0.28 + 0.04 * Math.cos(t * 0.07));
+  const lg = ctx.createRadialGradient(x, y, 0, x, y, 620);
+  lg.addColorStop(0, "rgba(207,69,32,0.10)");
+  lg.addColorStop(1, "rgba(207,69,32,0)");
+  ctx.fillStyle = lg;
+  ctx.fillRect(0, 0, W, H);
+
+  // grid + vignette
+  ctx.strokeStyle = "rgba(255,255,255,0.022)";
+  ctx.lineWidth = 1;
+  for (let gx = 96; gx < W; gx += 96) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+  for (let gy = 96; gy < H; gy += 96) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+  const v = ctx.createRadialGradient(W / 2, H / 2, H * 0.45, W / 2, H / 2, H * 0.95);
+  v.addColorStop(0, "rgba(0,0,0,0)");
+  v.addColorStop(1, "rgba(0,0,0,0.55)");
+  ctx.fillStyle = v;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function chrome(t, seg, index) {
+  const n = (TL.segments || []).length || 1;
+  ctx.textBaseline = "alphabetic";
+  ctx.fillStyle = dim;
+  ctx.font = `500 20px ${FONT}`;
+  ctx.fillText(TITLE.slice(0, 26), 96, 66);
+  ctx.textAlign = "right";
+  ctx.fillText(`${String(index + 1).padStart(2, "0")} / ${String(n).padStart(2, "0")}  ${seg.chapter || ""}`, W - 96, 66);
+  ctx.textAlign = "left";
+
+  const p = clamp(t / TL.total);
+  ctx.fillStyle = "rgba(255,255,255,0.10)";
+  ctx.fillRect(96, H - 96, W - 192, 3);
+  ctx.fillStyle = accent;
+  ctx.fillRect(96, H - 96, (W - 192) * p, 3);
+
+  ctx.fillStyle = dim;
+  ctx.font = `400 17px ${FONT}`;
+  ctx.fillText(SUBTITLE, 96, H - 58);
+  ctx.textAlign = "right";
+  ctx.fillText(`${TL.total.toFixed(1)}s · canvas cut`, W - 96, H - 58);
+  ctx.textAlign = "left";
+}
+
+function drawSegment(t, seg) {
+  const dur = Math.max(0.1, seg.end - seg.start);
+  const p = easeOut((t - seg.start) / Math.min(1.1, dur * 0.45));
+  const rise = (1 - p) * 34;
+
+  // chapter line
+  ctx.save();
+  ctx.globalAlpha = p;
+  ctx.fillStyle = accent;
+  ctx.font = `600 22px ${FONT}`;
+  ctx.fillText((seg.chapter || "").toUpperCase(), 96, 250 + rise);
+
+  // body copy, up to 3 columns of 30 chars
+  ctx.fillStyle = ink;
+  ctx.font = `600 62px ${FONT}`;
+  const lines = wrap(seg.text || "", 1560, `600 62px ${FONT}`);
+  const shown = lines.slice(0, 6);
+  shown.forEach((line, i) => {
+    const lp = easeOut((t - seg.start - 0.15 - i * 0.09) / 0.5);
+    if (lp <= 0) return;
+    ctx.globalAlpha = p * lp;
+    ctx.fillText(line, 96, 372 + i * 92 + (1 - lp) * 18);
+  });
+  ctx.restore();
+
+  // right column: timecode of this segment, so the reel is self-locating
+  ctx.save();
+  ctx.globalAlpha = p * 0.9;
+  ctx.textAlign = "right";
+  ctx.fillStyle = dim;
+  ctx.font = `400 20px ${FONT_EN}`;
+  const mmss = (s) => `${String(Math.floor(s / 60)).padStart(2, "0")}:${(s % 60).toFixed(1).padStart(4, "0")}`;
+  ctx.fillText(`${mmss(seg.start)} – ${mmss(seg.end)}`, W - 96, 250 + rise);
+  ctx.restore();
+}
+
+window.renderAt = (t) => {
+  ctx.clearRect(0, 0, W, H);
+  const { seg, index } = segmentAt(t);
+  // the world pushes slowly; the chrome stays nailed to the frame
+  cameraPush(t, () => {
+    background(t);
+    drawSegment(t, seg);
+  });
+  chrome(t, seg, index);
+  // global fade in / out, 0.35 s, so a cut never lands on a hard frame
+  const fade = Math.min(1, clamp(t / 0.35), clamp((TL.total - t) / 0.35));
+  if (fade < 1) {
+    ctx.fillStyle = `rgba(0,0,0,${(1 - fade).toFixed(3)})`;
+    ctx.fillRect(0, 0, W, H);
+  }
+};
+
+async function boot() {
+  await document.fonts.load(`600 62px ${FONT}`);
+  await document.fonts.ready;
+  window.renderAt(0);
+  window.__ready = true;
+}
+boot();
+</script>
+</body>
+</html>

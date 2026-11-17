@@ -91,6 +91,8 @@ concentrate-forces|B
 consolidation|B
 content-craft|A
 contradiction-analysis|A
+cook|A
+course-repack|A
 criticism-self-criticism|A
 dcf-valuation|B
 deal-structuring|B
@@ -104,7 +106,9 @@ earnings-models|B
 elevenlabs-tts|B
 environment-artist|B
 excel-hygiene|B
+fable52-reproduction|A
 ffmpeg|B
+film-repack|A
 finance-lead|B
 game-archetype-classifier|B
 game-asset-art-direction|B
@@ -213,6 +217,7 @@ prop-artist|B
 proposal|B
 prototype|B
 protracted-strategy|B
+pstack-trust-ladder|A
 qa-review|B
 quarterly-review|B
 receiving-code-review|A
@@ -233,6 +238,7 @@ self-improvement|B
 shuorenhua|A
 single-file-html-game|A
 skill-distill|B
+skill-doctor|A
 skill-inspector|A
 skillopt-sleep|B
 slack-gif-creator|B
@@ -279,6 +285,7 @@ uv-workflow|B
 verification-before-completion|A
 vfx-fx|B
 video-production|B
+video-to-deck-reel|A
 video-to-superprompt|B
 video-use|B
 visual-explainer|A
