@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pcg.schema.json",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/document"
+    }
+  ],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "common.schema.json#/$defs/entityBase"
+          }
+        ],
+        "required": [
+          "inputs",
+          "outputs",
+          "determinism"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "random_generator",
+              "noise_function",
+              "texture_recipe",
+              "world_builder",
+              "generator_output",
+              "not_observed"
+            ]
+          },
+          "inputs": {
+            "type": "object"
+          },
+          "outputs": {
+            "type": "object"
+          },
+          "determinism": {
+            "type": "object",
+            "required": [
+              "seed_fixed",
+              "repeatability"
+            ],
+            "properties": {
+              "seed_fixed": {
+                "type": "boolean"
+              },
+              "repeatability": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

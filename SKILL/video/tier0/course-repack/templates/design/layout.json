@@ -1,0 +1,560 @@
+{
+  "_comment": "模板：文字几何的唯一事实源，单位是设计像素（1920x1080；1in=144px，1px=0.5pt）。视频渲染器与 PPTX 生成器都读这一份，fit_text.py 按它收缩字号并写回 content.json 的 sizes。lh 是行高倍数（CSS line-height），PPT 侧换算成 spcPts。min 是硬地板（36px=18pt）；hero 框的地板是 130px（1080 的 12%）。",
+  "fontFaces": {
+    "cjk": "Microsoft YaHei",
+    "num": "Arial"
+  },
+  "types": {
+    "cover": {
+      "boxes": [
+        {
+          "role": "label",
+          "src": "label",
+          "x": 108,
+          "y": 187,
+          "w": 1318,
+          "h": 76,
+          "face": "cjk",
+          "base": 40,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "head",
+          "src": "head",
+          "x": 108,
+          "y": 274,
+          "w": 1318,
+          "h": 300,
+          "face": "cjk",
+          "base": 120,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "support",
+          "src": "support",
+          "x": 108,
+          "y": 655,
+          "w": 1232,
+          "h": 160,
+          "face": "cjk",
+          "base": 52,
+          "min": 36,
+          "lh": 1.24
+        },
+        {
+          "role": "foot",
+          "src": "foot",
+          "x": 108,
+          "y": 929,
+          "w": 1560,
+          "h": 70,
+          "face": "cjk",
+          "base": 36,
+          "min": 36,
+          "lh": 1.24
+        }
+      ]
+    },
+    "chapter": {
+      "boxes": [
+        {
+          "role": "label",
+          "src": "label",
+          "x": 108,
+          "y": 173,
+          "w": 1318,
+          "h": 76,
+          "face": "cjk",
+          "base": 44,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "id",
+          "src": "id",
+          "x": 108,
+          "y": 250,
+          "w": 432,
+          "h": 250,
+          "face": "num",
+          "base": 220,
+          "min": 36,
+          "lh": 1.0
+        },
+        {
+          "role": "head",
+          "src": "head",
+          "x": 108,
+          "y": 512,
+          "w": 1318,
+          "h": 230,
+          "face": "cjk",
+          "base": 108,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "support",
+          "src": "support",
+          "x": 108,
+          "y": 763,
+          "w": 1318,
+          "h": 87,
+          "face": "cjk",
+          "base": 48,
+          "min": 36,
+          "lh": 1.24
+        }
+      ]
+    },
+    "conclusion": {
+      "boxes": [
+        {
+          "role": "label",
+          "src": "label",
+          "x": 108,
+          "y": 112,
+          "w": 720,
+          "h": 66,
+          "face": "cjk",
+          "base": 40,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "head",
+          "src": "head",
+          "x": 108,
+          "y": 196,
+          "w": 1318,
+          "h": 280,
+          "face": "cjk",
+          "base": 80,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "hero",
+          "src": "hero.value",
+          "x": 108,
+          "y": 400,
+          "w": 1318,
+          "h": 420,
+          "face": "mixed",
+          "base": 300,
+          "min": 130,
+          "lh": 1.35
+        },
+        {
+          "role": "hero_label",
+          "src": "hero.label",
+          "x": 108,
+          "y": 830,
+          "w": 1290,
+          "h": 150,
+          "face": "cjk",
+          "base": 48,
+          "min": 36,
+          "lh": 1.24
+        },
+        {
+          "role": "support",
+          "src": "support",
+          "x": 108,
+          "y": 430,
+          "w": 1290,
+          "h": 420,
+          "face": "cjk",
+          "base": 52,
+          "min": 36,
+          "lh": 1.24
+        }
+      ]
+    },
+    "hero": {
+      "boxes": [
+        {
+          "role": "head",
+          "src": "head",
+          "x": 108,
+          "y": 126,
+          "w": 1318,
+          "h": 280,
+          "face": "cjk",
+          "base": 80,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "hero",
+          "src": "hero.value",
+          "x": 108,
+          "y": 340,
+          "w": 1318,
+          "h": 420,
+          "face": "mixed",
+          "base": 300,
+          "min": 130,
+          "lh": 1.35
+        },
+        {
+          "role": "hero_label",
+          "src": "hero.label",
+          "x": 108,
+          "y": 780,
+          "w": 1290,
+          "h": 160,
+          "face": "cjk",
+          "base": 56,
+          "min": 36,
+          "lh": 1.24
+        }
+      ]
+    },
+    "steps": {
+      "boxes": [
+        {
+          "role": "head",
+          "src": "head",
+          "x": 108,
+          "y": 115,
+          "w": 1318,
+          "h": 160,
+          "face": "cjk",
+          "base": 80,
+          "min": 36,
+          "lh": 1.14
+        }
+      ],
+      "cards": {
+        "top": 317,
+        "gap": 49,
+        "rowGap": 26,
+        "bottom": 1040,
+        "pad": 30,
+        "num": {
+          "size": 60,
+          "min": 36,
+          "w": 101,
+          "h": 101,
+          "face": "num"
+        },
+        "title": {
+          "size": 52,
+          "min": 36,
+          "face": "cjk",
+          "lh": 1.14
+        },
+        "desc": {
+          "size": 44,
+          "min": 36,
+          "face": "cjk",
+          "lh": 1.24
+        },
+        "rows1": {
+          "cardH": 590,
+          "chipY": 46,
+          "chipW": 88,
+          "chipH": 88,
+          "chipSize": 52,
+          "titleY": 180,
+          "titleH": 150,
+          "descY": 331,
+          "descH": 230
+        },
+        "rows2": {
+          "cardH": 320,
+          "chipY": 26,
+          "chipW": 68,
+          "chipH": 68,
+          "chipSize": 40,
+          "titleY": 116,
+          "titleH": 104,
+          "descY": 228,
+          "descH": 76
+        }
+      }
+    },
+    "try": {
+      "rect": {
+        "x": 108,
+        "y": 209,
+        "w": 1318,
+        "h": 641
+      },
+      "boxes": [
+        {
+          "role": "label",
+          "src": "label",
+          "x": 187,
+          "y": 281,
+          "w": 720,
+          "h": 66,
+          "face": "cjk",
+          "base": 40,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "head",
+          "src": "head",
+          "x": 187,
+          "y": 367,
+          "w": 1205,
+          "h": 290,
+          "face": "cjk",
+          "base": 92,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "support",
+          "src": "support",
+          "x": 187,
+          "y": 690,
+          "w": 1205,
+          "h": 140,
+          "face": "cjk",
+          "base": 44,
+          "min": 36,
+          "lh": 1.24
+        }
+      ]
+    },
+    "review": {
+      "boxes": [
+        {
+          "role": "label",
+          "src": "label",
+          "x": 108,
+          "y": 112,
+          "w": 720,
+          "h": 66,
+          "face": "cjk",
+          "base": 40,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "head",
+          "src": "head",
+          "x": 108,
+          "y": 196,
+          "w": 1318,
+          "h": 130,
+          "face": "cjk",
+          "base": 80,
+          "min": 36,
+          "lh": 1.14
+        }
+      ],
+      "rows": {
+        "top": 352,
+        "rowH": 124,
+        "gap": 29,
+        "chipW": 81,
+        "chipH": 81,
+        "chipSize": 44,
+        "textX": 232,
+        "textW": 1194,
+        "textSize": 54,
+        "textMin": 36,
+        "lh": 1.14
+      }
+    },
+    "takeaway": {
+      "boxes": [
+        {
+          "role": "label",
+          "src": "label",
+          "x": 108,
+          "y": 223,
+          "w": 720,
+          "h": 72,
+          "face": "cjk",
+          "base": 40,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "head",
+          "src": "head",
+          "x": 108,
+          "y": 324,
+          "w": 1318,
+          "h": 430,
+          "face": "cjk",
+          "base": 88,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "support",
+          "src": "support",
+          "x": 108,
+          "y": 792,
+          "w": 1290,
+          "h": 140,
+          "face": "cjk",
+          "base": 44,
+          "min": 36,
+          "lh": 1.24
+        }
+      ]
+    }
+  },
+  "pptxOnly": {
+    "course_cover": {
+      "boxes": [
+        {
+          "role": "kicker",
+          "src": "kicker",
+          "x": 108,
+          "y": 166,
+          "w": 1318,
+          "h": 66,
+          "face": "cjk",
+          "base": 40,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "title",
+          "src": "title",
+          "x": 108,
+          "y": 252,
+          "w": 1318,
+          "h": 300,
+          "face": "cjk",
+          "base": 120,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "subtitle",
+          "src": "subtitle",
+          "x": 108,
+          "y": 612,
+          "w": 1232,
+          "h": 160,
+          "face": "cjk",
+          "base": 52,
+          "min": 36,
+          "lh": 1.24
+        },
+        {
+          "role": "source",
+          "src": "source",
+          "x": 108,
+          "y": 929,
+          "w": 1706,
+          "h": 110,
+          "face": "cjk",
+          "base": 36,
+          "min": 36,
+          "lh": 1.24
+        }
+      ]
+    },
+    "agenda": {
+      "boxes": [
+        {
+          "role": "label",
+          "src": "label",
+          "x": 108,
+          "y": 115,
+          "w": 720,
+          "h": 66,
+          "face": "cjk",
+          "base": 40,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "head",
+          "src": "head",
+          "x": 108,
+          "y": 185,
+          "w": 1318,
+          "h": 200,
+          "face": "cjk",
+          "base": 72,
+          "min": 36,
+          "lh": 1.14
+        }
+      ],
+      "cards": {
+        "top": 395,
+        "gap": 49,
+        "rowGap": 24,
+        "pad": 40,
+        "cardH": 310,
+        "num": {
+          "size": 56,
+          "min": 36,
+          "w": 173,
+          "h": 60,
+          "y": 18
+        },
+        "title": {
+          "size": 46,
+          "min": 36,
+          "lh": 1.14,
+          "y": 84,
+          "h": 112
+        },
+        "desc": {
+          "size": 36,
+          "min": 36,
+          "lh": 1.24,
+          "y": 200,
+          "h": 100
+        }
+      }
+    },
+    "summary": {
+      "boxes": [
+        {
+          "role": "label",
+          "src": "label",
+          "x": 108,
+          "y": 122,
+          "w": 720,
+          "h": 66,
+          "face": "cjk",
+          "base": 40,
+          "min": 36,
+          "lh": 1.14
+        },
+        {
+          "role": "head",
+          "src": "head",
+          "x": 108,
+          "y": 208,
+          "w": 1318,
+          "h": 190,
+          "face": "cjk",
+          "base": 88,
+          "min": 36,
+          "lh": 1.14
+        }
+      ],
+      "rows": {
+        "top": 453,
+        "rowH": 118,
+        "gap": 0,
+        "chipW": 60,
+        "chipH": 60,
+        "chipSize": 36,
+        "chipY": 10,
+        "textX": 212,
+        "textW": 1214,
+        "textSize": 52,
+        "textMin": 36,
+        "lh": 1.14
+      }
+    }
+  }
+}

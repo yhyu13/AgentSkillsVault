@@ -1,0 +1,847 @@
+{
+  "merged_from": [
+    "2026-11-18-trigger-results.json",
+    "2026-11-18-trigger-pass2.json"
+  ],
+  "cli": "claude",
+  "counts": {
+    "ABSTAIN": 15,
+    "PASS": 40,
+    "TIMEOUT": 11,
+    "WRONG": 5
+  },
+  "results": [
+    {
+      "skill": "agent-browser",
+      "prompt": "帮我打开这个网站登录后台，把订单列表那一页的数据都抓下来",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "agent-eval-loop",
+      "prompt": "我写的技能老是胡编乱造，怎么给它写个测试，确认它靠谱了再放到云端批量跑",
+      "picked": [
+        "agent-eval-loop"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "aigc-image-control",
+      "prompt": "参考这张海报的感觉，用生图模型再做三张同一系列的新海报，主角长相别变",
+      "picked": [
+        "aigc-image-control"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "analysis-to-vault",
+      "prompt": "这篇讲半导体行业走势的深度长文，帮我理清它的核心论点和证据，整理成学习笔记",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "apk-ndk-version-check",
+      "prompt": "这个安卓安装包里的原生库是用哪个版本的编译工具链编出来的？符号表好像被剥掉了",
+      "picked": [
+        "apk-ndk-version-check"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "arming-thought",
+      "prompt": "新对话开始前先定个规矩：一切从实际情况出发，查证清楚再下结论，再判断该用哪套方法",
+      "picked": [
+        "arming-thought"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "bili-video-brief",
+      "prompt": "这个B站视频到底讲了啥？每条要点都标上原片时间，方便我回去核对",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "bili-video-repack",
+      "prompt": "我有个B站讲解视频的网址，想把它重讲一遍，出中文幻灯片、带配音动效的网页和导出的成片",
+      "picked": [
+        "bili-video-repack"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "blender-director",
+      "prompt": "我想在那个开源三维软件里做个能进游戏的机甲角色，从建模到导出帮我规划整条流程",
+      "picked": [
+        "blender-director"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "blog-to-linkedin-post",
+      "prompt": "把我这篇技术博客改写成几条适合在领英上发、体现专业观点的职场帖子",
+      "picked": [
+        "blog-to-linkedin-post"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "blog-to-twitter-post",
+      "prompt": "把这篇长博客拆成几条推特短帖，角度要犀利，最好能蹭上最近的热点",
+      "picked": [
+        "blog-to-twitter-post"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "book-chapter-to-vault",
+      "prompt": "我把一本管理书按章节分成了几个文档，帮我每章写个总结，再汇总成一张复习速查卡",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "brand-docx",
+      "prompt": "把公司这份Word模板的字体、配色和版式记下来，以后都照它出新的报告文档",
+      "picked": [
+        "brand-docx"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "brand-pptx",
+      "prompt": "我们公司有套官方幻灯片模板，想先把配色字体版式提取存档，以后生成的汇报稿都按这套品牌来",
+      "picked": [
+        "brand-pptx"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "brand-xlsx",
+      "prompt": "财务那份带公司配色的表格模板，抽出它的样式规范，之后按它填出新的工作簿",
+      "picked": [
+        "brand-xlsx"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "canvas-design",
+      "prompt": "给我设计一张极简风格的音乐节海报，导出成图片就行",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "runs": 1,
+      "verdicts": [
+        "TIMEOUT"
+      ]
+    },
+    {
+      "skill": "colleague-ue-app-specialist",
+      "prompt": "虚幻5.3打包安卓后材质丢了，给我一套能复现、自己也能验证的排查步骤",
+      "picked": [
+        "colleague-ue-app-specialist"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "colleague-ue-engine-architect",
+      "prompt": "虚幻项目里模块互相引用乱成一团，想重新分层，还得保证主机和手机帧率达标",
+      "picked": [
+        "colleague-ue-engine-architect"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "colleague-ue-prod-team-lead",
+      "prompt": "虚幻项目的规划、架构和应用评估都交上来了，帮我统筹一下，给个有依据的评审结论",
+      "picked": [
+        "colleague-ue-prod-team-lead"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "colleague-ue-tech-planner",
+      "prompt": "老板要三个月内用虚幻做出可玩演示版，帮我排个带里程碑和预留余量的排期",
+      "picked": [
+        "colleague-ue-tech-planner"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "contradiction-analysis",
+      "prompt": "团队人手、上线时间和质量要求互相卡着，事情一大堆，我实在不知道该先抓哪一个",
+      "picked": [
+        "contradiction-analysis"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "cook",
+      "prompt": "照这几张参考截图用网页3D把场景还原，我出门这一整天你就一直改到几乎看不出差别",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "course-repack",
+      "prompt": "我有一门六十多集的搬运网课合集，想整门翻成中文，每集出演讲幻灯片、配音成片和字幕文件",
+      "picked": [
+        "course-repack"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "criticism-self-criticism",
+      "prompt": "这版方案交付后被客户挑了一堆毛病，帮我老实查查自己哪里做错了并改掉",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "deliberate-practice",
+      "prompt": "打游戏一直卡在同一个段位，想有方法地练，帮我排一份每天该练什么的安排",
+      "picked": [
+        "deliberate-practice"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "deliberate-practice-talk",
+      "prompt": "我看了一支讲怎么靠刻意复盘变强的演讲，想要一份能对回原片的中文总结，再配课件和口播成片",
+      "picked": [
+        "bili-video-brief"
+      ],
+      "verdict": "WRONG",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "WRONG"
+      ]
+    },
+    {
+      "skill": "diagnosing-bugs",
+      "prompt": "接口上线后突然慢了三倍，偶尔还会报空指针，帮我一步步查出根因",
+      "picked": [
+        "diagnosing-bugs"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "docx",
+      "prompt": "帮我写一封带公司信头和页码的正式函件，要能在Word里打开继续改",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "TIMEOUT"
+      ]
+    },
+    {
+      "skill": "doubaofeishu_industry-analysis",
+      "prompt": "想投储能赛道，先帮我摸清市场规模、竞争格局和产业链哪段最赚钱，出份深度研究",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "runs": 1,
+      "verdicts": [
+        "TIMEOUT"
+      ]
+    },
+    {
+      "skill": "fable52-reproduction",
+      "prompt": "这个公开网页小游戏的地形生成很有意思，根据它的源码和运行数据帮我做个能跑的最小复刻",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "family-edu-gamified-skills",
+      "prompt": "孩子上三年级总拖作业，帮我设计个打怪升级式的每日学习和奖励方案",
+      "picked": [
+        "family-edu-gamified-skills"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "feishu-kdocs-cli",
+      "prompt": "金山文档命令行一直报 400001，飞书那边也提示缺权限，帮我重新登录配好",
+      "picked": [
+        "feishu-kdocs-cli"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "film-repack",
+      "prompt": "有部一个半小时的英文纪录片，想要带时间码的逐字稿、中文压缩总结、配静帧的课件和口播成片",
+      "picked": [
+        "film-repack"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "gracker-writing",
+      "prompt": "把我这次排查内存泄漏的经历按我平时的风格写成一篇公众号技术长文",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "hands-on-deck",
+      "prompt": "我这份季度汇报的演示文件第五页图表换一下，再把最后两页顺序调过来",
+      "picked": [
+        "hands-on-deck"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "html-ppt",
+      "prompt": "下周技术分享要讲缓存设计，帮我做一套在浏览器里打开、键盘就能翻页的好看幻灯片",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "TIMEOUT"
+      ]
+    },
+    {
+      "skill": "investigation-first",
+      "prompt": "我对这个领域不熟，在决定要不要换供应商之前先帮我把现状和事实摸清楚",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "manage-up-core",
+      "prompt": "模型帮我写的给领导的季度述职材料全是空话套话，帮我改成开门见山、拿数字说话的版本",
+      "picked": [
+        "manage-up-core"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "meeting-summary",
+      "prompt": "这是今天需求评审会的录音转写稿，帮我理清会上拍板了哪些事、谁接了什么活、什么时候交",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "motion-showreel",
+      "prompt": "用代码给我做一段八分钟左右的动态文字讲解片，配背景音乐，旁白用我写好的稿子合成语音",
+      "picked": [
+        "motion-showreel"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "multi-agent-repo-governance",
+      "prompt": "好几个AI助手同时往我们的代码仓库提交改动，总是合并打架，想给仓库加几道自动拦截的检查关卡",
+      "picked": [
+        "multi-agent-repo-governance"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "next-token-agent-loop",
+      "prompt": "我的智能体明明该去调搜索工具，却凭旧记忆直接回答还停在半路，帮我查问题出在哪一层",
+      "picked": [
+        "next-token-agent-loop"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "one-on-one-prep",
+      "prompt": "下周要和直属领导单独聊半小时，想顺便提一下晋升的事，帮我列个谈话要点",
+      "picked": [
+        "one-on-one-prep"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "onetake",
+      "prompt": "给我们刚上线的应用做一支十五秒的上新预告短片，拿真实界面当素材，要有运动模糊和音效",
+      "picked": [
+        "motion-showreel"
+      ],
+      "verdict": "WRONG",
+      "runs": 1,
+      "verdicts": [
+        "WRONG"
+      ]
+    },
+    {
+      "skill": "opendeck",
+      "prompt": "想要一套网页版演示稿，每点一下出一步内容还能自己念讲解，最后打包成离线也能放的文件",
+      "picked": [
+        "html-ppt"
+      ],
+      "verdict": "WRONG",
+      "runs": 1,
+      "verdicts": [
+        "WRONG"
+      ]
+    },
+    {
+      "skill": "pdf",
+      "prompt": "我有几份扫描的合同没法搜索文字，想先做文字识别，再合并成一个文件并加上水印",
+      "picked": [
+        "pdf"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "pptx",
+      "prompt": "用公司这个母版模板从头新建一套产品介绍幻灯片，每一页都带上演讲者备注",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "presentation-skill",
+      "prompt": "帮我把这篇临床研究结果做成组会汇报幻灯片，图表要对齐、字要看得清、每页别塞太满",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "process-friction-cut",
+      "prompt": "改论文这事我已经躲了一周，一点开文档就胸口发紧，完全下不去手该怎么办",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "process-motivation-design",
+      "prompt": "我每年都定健身计划，撑两周就断，感觉全靠咬牙死扛，到底问题出在哪",
+      "picked": [
+        "process-motivation-design"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "process-reward-boost",
+      "prompt": "背单词我能坐下来开始，可十分钟就腻了，有没有办法让这件事本身变得有意思",
+      "picked": [
+        "process-motivation-design",
+        "process-reward-boost"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "project-update",
+      "prompt": "老板让我交一份官网改版项目目前进度的汇报，要列清楚各个节点完成情况和主要风险",
+      "picked": [
+        "project-update"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "pstack-trust-ladder",
+      "prompt": "AI每次交活都说搞定了却拿不出证据，我到底该逐个检查还是抽查就够",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "single-file-html-game",
+      "prompt": "帮我做个手机浏览器能直接玩的小游戏，全部塞进一个网页文件，不要任何外部依赖",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "runs": 1,
+      "verdicts": [
+        "TIMEOUT"
+      ]
+    },
+    {
+      "skill": "skill-doctor",
+      "prompt": "翻一下上周的对话记录，找出助手为什么总在同一步出错，再小改一下它用的那份说明",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "runs": 1,
+      "verdicts": [
+        "TIMEOUT"
+      ]
+    },
+    {
+      "skill": "skill-trigger",
+      "prompt": "我写的能力说明放进去后助手根本不调用，开头那段描述该怎么写才会被选上",
+      "picked": [
+        "skill-trigger"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "stageshow",
+      "prompt": "官网首屏想放一个仿真的应用后台界面，带鼠标点来点去的演示动画，用React写",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "TIMEOUT"
+      ]
+    },
+    {
+      "skill": "style-alibaba",
+      "prompt": "年底述职要照阿里那套写法来，业绩结果和价值观表现得分开两部分讲",
+      "picked": [
+        "style-alibaba"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "style-amazon",
+      "prompt": "把这份方案改成贝索斯那家公司的写法，用整段叙述代替要点列表",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "runs": 1,
+      "verdicts": [
+        "TIMEOUT"
+      ]
+    },
+    {
+      "skill": "style-bytedance",
+      "prompt": "我在抖音母公司，周报得围绕目标和关键结果来对齐，帮我按他们那套改",
+      "picked": [
+        "style-bytedance"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "style-google",
+      "prompt": "我在搜索引擎巨头那边写年度自评，要按他们的绩效评级体系来讲成果",
+      "picked": [
+        "style-google"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "style-microsoft",
+      "prompt": "把我这份年度总结改成做视窗系统那家公司的绩效写法，分成以身作则、辅导他人、关怀团队三块",
+      "picked": [
+        "style-microsoft"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "style-tencent",
+      "prompt": "按鹅厂那套汇报习惯改写这份报告，开头先摆日活和留存这些产品指标",
+      "picked": [
+        "style-tencent"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "systematic-debugging",
+      "prompt": "单测突然挂了一个，先别急着改代码，帮我一步步排查出真正的根因",
+      "picked": [
+        "diagnosing-bugs"
+      ],
+      "verdict": "WRONG",
+      "runs": 1,
+      "verdicts": [
+        "WRONG"
+      ]
+    },
+    {
+      "skill": "ue-renderdoc-auto-capture",
+      "prompt": "虚幻编辑器里阴影显示不对，帮我自动抓一帧显卡画面，看看着色器到底收到了什么数据",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "runs": 1,
+      "verdicts": [
+        "TIMEOUT"
+      ]
+    },
+    {
+      "skill": "video-to-deck-reel",
+      "prompt": "我手上有一支B站中文讲解视频的地址，想一条命令同时拿到课件和带口播的1080p成片",
+      "picked": [
+        "video-to-deck-reel"
+      ],
+      "verdict": "PASS",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "PASS"
+      ]
+    },
+    {
+      "skill": "visual-explainer",
+      "prompt": "把这次代码改动画成一个单文件网页，让同事一眼看懂架构哪里变了",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "runs": 1,
+      "verdicts": [
+        "TIMEOUT"
+      ]
+    },
+    {
+      "skill": "webapp-testing",
+      "prompt": "本地起的前端页面点提交没反应，用自动化浏览器打开截个图，再看看控制台报了什么错",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "runs": 2,
+      "verdicts": [
+        "ABSTAIN",
+        "ABSTAIN"
+      ]
+    },
+    {
+      "skill": "weekly-report",
+      "prompt": "帮我把这周做的几件事整理成给老板的例行汇报，先说结果，再拿数字支撑",
+      "picked": [
+        "weekly-report"
+      ],
+      "verdict": "PASS",
+      "runs": 1,
+      "verdicts": [
+        "PASS"
+      ]
+    },
+    {
+      "skill": "xiaoma-studio",
+      "prompt": "想用代码做一支短视频平台爆款风格的产品发布动效片，配上音乐，导出成视频文件",
+      "picked": [
+        "motion-showreel"
+      ],
+      "verdict": "WRONG",
+      "runs": 1,
+      "verdicts": [
+        "WRONG"
+      ]
+    },
+    {
+      "skill": "xlsx",
+      "prompt": "下载文件夹里那个表格表头错位还夹着空行，帮我清理干净，再加一列汇总公式",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "runs": 1,
+      "verdicts": [
+        "TIMEOUT"
+      ]
+    }
+  ]
+}

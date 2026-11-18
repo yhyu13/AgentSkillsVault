@@ -1,0 +1,120 @@
+{
+  "cases_file": "C:\\tmp\\rerun.json",
+  "cli": "claude",
+  "counts": {
+    "PASS": 2,
+    "WRONG": 1,
+    "ABSTAIN": 2,
+    "TIMEOUT": 7
+  },
+  "results": [
+    {
+      "skill": "ue-renderdoc-auto-capture",
+      "prompt": "虚幻编辑器里阴影显示不对，帮我自动抓一帧显卡画面，看看着色器到底收到了什么数据",
+      "path": "SKILL/game-dev/tier0/ue-renderdoc-auto-capture",
+      "picked": [
+        "ue-renderdoc-auto-capture"
+      ],
+      "verdict": "PASS",
+      "exit": 0,
+      "said": "[Your previous response had no visible output. Please continue and produce a user-visible response.]"
+    },
+    {
+      "skill": "xlsx",
+      "prompt": "下载文件夹里那个表格表头错位还夹着空行，帮我清理干净，再加一列汇总公式",
+      "path": "vendor/anthropics-skills/skills/xlsx",
+      "picked": [
+        "xlsx"
+      ],
+      "verdict": "PASS",
+      "exit": 0,
+      "said": "## 当前阶段\n卡在读取阶段：表格还没有读出来，所以没有做任何清理。\n\n## 已验证的事实\n- 下载文件夹里只有一个表格：`C:\\Users\\yuhang\\Downloads\\1. 我需要一个伙伴.xlsx`。\n- 本机 Python 可用（`python --version` 返回 3.13.12）。\n\n## 本次改动\n无。原文件没有被修改。\n\n## 未验证或失败的项目\n- 用 openpyxl 只读打开这个表格的命令被自动权限检查拦了 3 次，提示是“无法评估”，不是判定"
+    },
+    {
+      "skill": "opendeck",
+      "prompt": "想要一套网页版演示稿，每点一下出一步内容还能自己念讲解，最后打包成离线也能放的文件",
+      "path": "SKILL/design/tier0/opendeck",
+      "picked": [
+        "html-ppt"
+      ],
+      "verdict": "WRONG",
+      "exit": 0,
+      "said": "可以做，但还缺内容，没法开工。我查过技能自带的运行时脚本（`runtime.js`），里面没有逐步显示和朗读功能，这两项需要我补上。\n\n## 需要你提供\n1. 主题和内容：讲什么、大约几页、观众是谁。有现成的大纲、文章或文档，直接发过来就行。\n2. 风格：\n   - 技术分享：`tokyo-night`\n   - 正式汇报：`corporate-clean`\n   - 轻松讲解：`soft-pastel`\n   \n   没有偏好的话，我按内容来选。\n3. 朗读方式：见下表。\n"
+    },
+    {
+      "skill": "systematic-debugging",
+      "prompt": "单测突然挂了一个，先别急着改代码，帮我一步步排查出真正的根因",
+      "path": "SKILL/software-development/tier1/systematic-debugging",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "exit": 0,
+      "said": "## 当前阶段\n排查还没开始。当前工作目录 `C:\\Users\\yuhang\\AppData\\Local\\Temp\\trigger-sweep-xfadyrrr` 是空的，里面没有代码、没有测试，也不是 git 仓库，所以我找不到挂掉的那个单测。\n\n## 已验证的事实\n- 运行 `ls -la` 和 `find`：目录为空，只有 `.` 本身。\n\n## 本次改动\n无。我没有读写任何文件。\n\n## 未验证的项目\n项目在哪、哪个测试失败、报错是什么，目前都不知道。\n\n## 需要你"
+    },
+    {
+      "skill": "visual-explainer",
+      "prompt": "把这次代码改动画成一个单文件网页，让同事一眼看懂架构哪里变了",
+      "path": "SKILL/design/tier1/visual-explainer",
+      "picked": [],
+      "verdict": "ABSTAIN",
+      "exit": 0,
+      "said": "## 当前阶段\n停在调研阶段。我找不到这次的代码改动，所以还没有开始画网页。\n\n## 已验证的事实\n- 当前工作目录 `C:\\Users\\yuhang\\AppData\\Local\\Temp\\trigger-sweep-fge2jc5z` 是空的，也不是 git 仓库，没有 diff 可以读。\n- 唯一相关的文件是 `C:\\Users\\yuhang\\.claude\\projects\\c--Epic-UE-Engine-UE4-27Chaos-UnrealEngine\\plans"
+    },
+    {
+      "skill": "canvas-design",
+      "prompt": "给我设计一张极简风格的音乐节海报，导出成图片就行",
+      "path": "vendor/anthropics-skills/skills/canvas-design",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "said": "no result within 260s"
+    },
+    {
+      "skill": "doubaofeishu_industry-analysis",
+      "prompt": "想投储能赛道，先帮我摸清市场规模、竞争格局和产业链哪段最赚钱，出份深度研究",
+      "path": "SKILL/management/tier2/doubaofeishu_industry-analysis",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "said": "no result within 260s"
+    },
+    {
+      "skill": "onetake",
+      "prompt": "给我们刚上线的应用做一支十五秒的上新预告短片，拿真实界面当素材，要有运动模糊和音效",
+      "path": "SKILL/video/tier0/onetake",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "said": "no result within 260s"
+    },
+    {
+      "skill": "single-file-html-game",
+      "prompt": "帮我做个手机浏览器能直接玩的小游戏，全部塞进一个网页文件，不要任何外部依赖",
+      "path": "SKILL/game-dev/tier0/single-file-html-game",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "said": "no result within 260s"
+    },
+    {
+      "skill": "skill-doctor",
+      "prompt": "翻一下上周的对话记录，找出助手为什么总在同一步出错，再小改一下它用的那份说明",
+      "path": "SKILL/software-development/tier0/skill-doctor",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "said": "no result within 260s"
+    },
+    {
+      "skill": "style-amazon",
+      "prompt": "把这份方案改成贝索斯那家公司的写法，用整段叙述代替要点列表",
+      "path": "SKILL/management/tier2/style-amazon",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "said": "no result within 260s"
+    },
+    {
+      "skill": "xiaoma-studio",
+      "prompt": "想用代码做一支短视频平台爆款风格的产品发布动效片，配上音乐，导出成视频文件",
+      "path": "SKILL/design/tier1/xiaoma-studio",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "said": "no result within 260s"
+    }
+  ],
+  "skipped_not_installed": []
+}
