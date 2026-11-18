@@ -1,0 +1,134 @@
+{
+  "name": "agentskillsvault",
+  "owner": {
+    "name": "yhyu13",
+    "url": "https://github.com/yhyu13"
+  },
+  "metadata": {
+    "description": "AgentSkillsVault — 131 curated agent skills across 11 categories, one plugin per category. Curated skills are generated from the install manifest; skills-lock.json records source-resolution status.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "vault-agents",
+      "source": "./SKILL/agents",
+      "description": "6 skills — Agent behaviour, self-review loops and problem-solving methods.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent-skills",
+        "agents"
+      ]
+    },
+    {
+      "name": "vault-content",
+      "source": "./SKILL/content",
+      "description": "12 skills — Documents, decks, spreadsheets, PDFs and content repurposing.",
+      "version": "1.0.0",
+      "category": "content",
+      "tags": [
+        "agent-skills",
+        "content"
+      ]
+    },
+    {
+      "name": "vault-design",
+      "source": "./SKILL/design",
+      "description": "17 skills — HTML/visual design, slides, decks, diagrams and explainers.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": [
+        "agent-skills",
+        "design"
+      ]
+    },
+    {
+      "name": "vault-devops",
+      "source": "./SKILL/devops",
+      "description": "3 skills — Observability, Grafana, deployment and infrastructure review.",
+      "version": "1.0.0",
+      "category": "devops",
+      "tags": [
+        "agent-skills",
+        "devops"
+      ]
+    },
+    {
+      "name": "vault-game-dev",
+      "source": "./SKILL/game-dev",
+      "description": "6 skills — Godot/Phaser/Blender/UE game production and rendering.",
+      "version": "1.0.0",
+      "category": "game-dev",
+      "tags": [
+        "agent-skills",
+        "game-dev"
+      ]
+    },
+    {
+      "name": "vault-knowledge-vault",
+      "source": "./SKILL/knowledge-vault",
+      "description": "4 skills — Notes, knowledge bases and vault upkeep.",
+      "version": "1.0.0",
+      "category": "knowledge-vault",
+      "tags": [
+        "agent-skills",
+        "knowledge-vault"
+      ]
+    },
+    {
+      "name": "vault-management",
+      "source": "./SKILL/management",
+      "description": "51 skills — Reports, OKRs, strategy frameworks, PM and finance models.",
+      "version": "1.0.0",
+      "category": "management",
+      "tags": [
+        "agent-skills",
+        "management"
+      ]
+    },
+    {
+      "name": "vault-math",
+      "source": "./SKILL/math",
+      "description": "1 skills — Mathematical proof and rigour.",
+      "version": "1.0.0",
+      "category": "math",
+      "tags": [
+        "agent-skills",
+        "math"
+      ]
+    },
+    {
+      "name": "vault-software-development",
+      "source": "./SKILL/software-development",
+      "description": "11 skills — Engineering workflow: specs, review, debugging, skill quality.",
+      "version": "1.0.0",
+      "category": "software-development",
+      "tags": [
+        "agent-skills",
+        "software-development"
+      ]
+    },
+    {
+      "name": "vault-video",
+      "source": "./SKILL/video",
+      "description": "18 skills — Code-rendered video, motion design and cinema pipelines.",
+      "version": "1.0.0",
+      "category": "video",
+      "tags": [
+        "agent-skills",
+        "video"
+      ]
+    },
+    {
+      "name": "vault-writing",
+      "source": "./SKILL/writing",
+      "description": "2 skills — Long-form and technical writing craft.",
+      "version": "1.0.0",
+      "category": "writing",
+      "tags": [
+        "agent-skills",
+        "writing"
+      ]
+    }
+  ]
+}

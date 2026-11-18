@@ -1,0 +1,29 @@
+{
+  "name": "vault-content",
+  "version": "1.0.0",
+  "description": "12 curated skills — Documents, decks, spreadsheets, PDFs and content repurposing.. Provenance resolution status is recorded in skills-lock.json.",
+  "author": {
+    "name": "yhyu13",
+    "url": "https://github.com/yhyu13"
+  },
+  "homepage": "https://github.com/yhyu13/AgentSkillsVault",
+  "keywords": [
+    "content",
+    "agent-skills",
+    "skills-vault"
+  ],
+  "skills": [
+    "./tier1/agent-browser",
+    "./tier1/aigc-image-control",
+    "./tier1/aigc-video-creation",
+    "./tier1/blog-to-linkedin-post",
+    "./tier1/blog-to-twitter-post",
+    "./tier1/booth-kiosk-deck",
+    "./tier0/docx",
+    "./tier1/excel-hygiene",
+    "./tier1/gracker-writing",
+    "./tier1/hyperframes",
+    "./tier0/pdf",
+    "./tier1/pptx"
+  ]
+}
