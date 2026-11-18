@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Trigger"
+  short_description: "写一份会自己被选中的 Skill"
+  default_prompt: "用 skill-trigger 检查这份 Skill 为什么没有被主动调用。"

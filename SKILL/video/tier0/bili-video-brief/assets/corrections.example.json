@@ -1,0 +1,467 @@
+[
+  {
+    "from": "大家好,我是《为什么叫QQ》。",
+    "to": "大家好，我是「为什么叫QQ」。",
+    "why": "UP 主名，原稿加了书名号"
+  },
+  {
+    "from": "轮寻",
+    "to": "轮询",
+    "why": "手动轮询，ASR 同音"
+  },
+  {
+    "from": "查港",
+    "to": "查岗",
+    "why": "轮流查岗"
+  },
+  {
+    "from": "字符日制",
+    "to": "字符日志",
+    "why": "终端只打字符日志"
+  },
+  {
+    "from": "窗口一过",
+    "to": "窗口一多",
+    "why": "窗口多了看名字成摆设"
+  },
+  {
+    "from": "尾中端",
+    "to": "伪终端",
+    "why": "PTY，ASR 同音"
+  },
+  {
+    "from": "持久化绘画",
+    "to": "持久化会话",
+    "why": "会话（session），不是画面"
+  },
+  {
+    "from": "绘画",
+    "to": "会话",
+    "why": "session 的整段同音误写"
+  },
+  {
+    "from": "摇测",
+    "to": "遥测",
+    "why": "telemetry"
+  },
+  {
+    "from": "再见命名的",
+    "to": "再建命名的",
+    "why": "要硬隔离就再建命名会话"
+  },
+  {
+    "from": "抵态",
+    "to": "待机",
+    "why": "正常待机时"
+  },
+  {
+    "from": "坑吃坑吃",
+    "to": "吭哧吭哧",
+    "why": "口语拟声"
+  },
+  {
+    "from": "CS 模式",
+    "to": "C/S 模式",
+    "why": "客户端/服务端"
+  },
+  {
+    "from": "Ptyd",
+    "to": "PTY",
+    "why": "伪终端进程"
+  },
+  {
+    "from": "SizenID",
+    "to": "Session ID",
+    "why": "原生会话 ID"
+  },
+  {
+    "from": "绘图转生",
+    "to": "复活",
+    "why": "没法复活构建进程"
+  },
+  {
+    "from": "Pain History",
+    "to": "Pane History",
+    "why": "官方叫法是 Pane"
+  },
+  {
+    "from": "Pain",
+    "to": "Pane",
+    "why": "派恩，终端窗格"
+  },
+  {
+    "from": "PayIn",
+    "to": "Pane",
+    "why": "同上"
+  },
+  {
+    "from": "waitoutput",
+    "to": "wait-output",
+    "why": "CLI 子命令连字符"
+  },
+  {
+    "from": "paint ",
+    "to": "pane ",
+    "why": "pane wait-output"
+  },
+  {
+    "from": "字浮流",
+    "to": "字节流",
+    "why": "前者管字节流"
+  },
+  {
+    "from": "agent 的到底是什么",
+    "to": "agent 到底是什么",
+    "why": "多一个字"
+  },
+  {
+    "from": "看界面就会高亮成蛋",
+    "to": "界面上就会高亮",
+    "why": "听不清，只保留能确认的部分"
+  },
+  {
+    "from": "down其实",
+    "to": "done 其实",
+    "why": "状态名 done"
+  },
+  {
+    "from": "down或blocked",
+    "to": "done 或 blocked",
+    "why": "同上"
+  },
+  {
+    "from": "秀态状态",
+    "to": "感知状态",
+    "why": "它怎么感知状态"
+  },
+  {
+    "from": "写,互可就能",
+    "to": "写接口，就能",
+    "why": "工具不必配合，靠接口低成本介入"
+  },
+  {
+    "from": "当然,也 Lose 也有代价",
+    "to": "当然也有代价",
+    "why": "Lose 是误听"
+  },
+  {
+    "from": "面对 All Gnome",
+    "to": "面对 all unknown",
+    "why": "全是 unknown 状态"
+  },
+  {
+    "from": "忙心自动化",
+    "to": "盲目自动化",
+    "why": "不建议盲信自动化"
+  },
+  {
+    "from": "项目跟目录",
+    "to": "项目根目录",
+    "why": "根目录"
+  },
+  {
+    "from": "切穿格拉大小",
+    "to": "切窗格、拉大小",
+    "why": "鼠标切窗格拉大小"
+  },
+  {
+    "from": "键盘挡",
+    "to": "键盘也",
+    "why": "键盘也能用"
+  },
+  {
+    "from": "前锥键",
+    "to": "前缀键",
+    "why": "tmux prefix key"
+  },
+  {
+    "from": "无风过度",
+    "to": "无痛过渡",
+    "why": "无痛过渡"
+  },
+  {
+    "from": "TMUX",
+    "to": "tmux",
+    "why": "小写写法"
+  },
+  {
+    "from": "T-Mux",
+    "to": "tmux",
+    "why": "同上"
+  },
+  {
+    "from": "Xellite",
+    "to": "Zellij",
+    "why": "终端复用器名"
+  },
+  {
+    "from": "Cloud Code",
+    "to": "Claude Code",
+    "why": "产品名"
+  },
+  {
+    "from": "Herder",
+    "to": "Herdr",
+    "why": "产品名"
+  },
+  {
+    "from": "Hurter",
+    "to": "Herdr",
+    "why": "产品名"
+  },
+  {
+    "from": "(?<![A-Za-z])Herd(?![a-z])",
+    "to": "Herdr",
+    "why": "产品名截断"
+  },
+  {
+    "from": "Nahird就刚好",
+    "to": "那 Herdr 就刚好",
+    "why": "断句"
+  },
+  {
+    "from": "介入后Codex",
+    "to": "接入后 Codex",
+    "why": "接入后还是原生界面"
+  },
+  {
+    "from": "我一般把Agent's dev和Test物理隔开",
+    "to": "我一般把 agent、dev 和 test 物理隔开",
+    "why": "Tab 按职责分隔"
+  },
+  {
+    "from": "Hard的服务端一停的进程全得陪葬",
+    "to": "Herdr 的服务端一停，进程全得陪葬",
+    "why": "C/S 模式下服务端是唯一真身"
+  },
+  {
+    "from": "改了提示界面的 UI",
+    "to": "改了终端界面的 UI",
+    "why": "TUI 界面改版"
+  },
+  {
+    "from": "真遇到误判就会被判断",
+    "to": "真遇到误判就能看出是哪条规则",
+    "why": "agent explain 能查出命中规则"
+  },
+  {
+    "from": "Herdr AgentXplain",
+    "to": "herdr agent explain",
+    "why": "真实子命令"
+  },
+  {
+    "from": "部署起来极其清亮",
+    "to": "部署起来极其轻量",
+    "why": "单二进制"
+  },
+  {
+    "from": "网易恢复连上去",
+    "to": "随时恢复连上去",
+    "why": "断线重连"
+  },
+  {
+    "from": "他对窄屏也做了适配",
+    "to": "它对窄屏也做了适配",
+    "why": "它不是他"
+  },
+  {
+    "from": "手机中端",
+    "to": "手机终端",
+    "why": "手机终端连上去"
+  },
+  {
+    "from": "代码和HUD服务端",
+    "to": "代码和 herdr 服务端",
+    "why": "HUD 是 herdr 的误听"
+  },
+  {
+    "from": "跑个HUD做售客户端",
+    "to": "跑个 herdr 桌面客户端",
+    "why": "同上，桌面客户端"
+  },
+  {
+    "from": "剪贴版",
+    "to": "剪贴板",
+    "why": "剪贴板图片"
+  },
+  {
+    "from": "DAV挂着",
+    "to": "dev 挂着",
+    "why": "dev 标签页"
+  },
+  {
+    "from": "deploy丁死发不流",
+    "to": "deploy 盯死发布流",
+    "why": "盯死发布流水线"
+  },
+  {
+    "from": "目录pan甚至agent",
+    "to": "目录、pane 甚至 agent",
+    "why": "列举三项"
+  },
+  {
+    "from": "上下稳切换",
+    "to": "上下文切换",
+    "why": "无损上下文切换"
+  },
+  {
+    "from": "和日制最好独立",
+    "to": "和日志最好独立",
+    "why": "日志不该交给 agent"
+  },
+  {
+    "from": "去chex看包错",
+    "to": "去 checks 看报错",
+    "why": "checks 标签页看报错"
+  },
+  {
+    "from": "指读模式",
+    "to": "只读模式",
+    "why": "reviewer 只读"
+  },
+  {
+    "from": "看DF",
+    "to": "看 diff",
+    "why": "看 diff"
+  },
+  {
+    "from": "郭到底算谁的",
+    "to": "锅到底算谁的",
+    "why": "背锅"
+  },
+  {
+    "from": "Git work tree",
+    "to": "git worktree",
+    "why": "命令名"
+  },
+  {
+    "from": "Layout命令一键拉起WorkspaceTab和",
+    "to": "layout 命令一键拉起 Workspace、Tab 和",
+    "why": "CLI 子命令"
+  },
+  {
+    "from": "Pane命令去管测试和服务",
+    "to": "pane 命令去管测试和服务",
+    "why": "CLI 子命令"
+  },
+  {
+    "from": "Agent命令专门负责启动Prompt透传和等待",
+    "to": "agent 命令专门负责启动、prompt 透传和等待",
+    "why": "CLI 子命令"
+  },
+  {
+    "from": "Jason",
+    "to": "JSON",
+    "why": "返回 JSON"
+  },
+  {
+    "from": "编号级",
+    "to": "编号几",
+    "why": "别猜新 pane 是几号"
+  },
+  {
+    "from": "斯等挨斗",
+    "to": "死等 done",
+    "why": "死等 done 或 blocked"
+  },
+  {
+    "from": "等羽翼状态",
+    "to": "等 agent 状态",
+    "why": "等真实状态"
+  },
+  {
+    "from": "sleep30",
+    "to": "sleep 30",
+    "why": "命令写法"
+  },
+  {
+    "from": "HER的最大",
+    "to": "Herdr 最大的",
+    "why": "产品名"
+  },
+  {
+    "from": "裸原码 10 打 10 的写进磁盘",
+    "to": "裸源码原封不动地写进磁盘",
+    "why": "10 打 10 是「原封不动」的误听"
+  },
+  {
+    "from": "并发移上去",
+    "to": "并发一上去",
+    "why": "并发上来之后"
+  },
+  {
+    "from": "发布对列",
+    "to": "发布队列",
+    "why": "队列"
+  },
+  {
+    "from": "长号式任务",
+    "to": "长耗时任务",
+    "why": "长耗时任务"
+  },
+  {
+    "from": "留出配影看测试",
+    "to": "留出旁屏看测试",
+    "why": "旁屏看测试"
+  },
+  {
+    "from": "听服务保远程",
+    "to": "盯服务、保远程",
+    "why": "盯服务保远程"
+  },
+  {
+    "from": "谁在演叭叭等你授权",
+    "to": "谁在演、巴巴等你授权",
+    "why": "断句"
+  },
+  {
+    "from": "那Herdr绝对值得",
+    "to": "那 Herdr 绝对值得",
+    "why": "断句"
+  },
+  {
+    "from": "欢迎把你的工作留",
+    "to": "欢迎把你的工作流留",
+    "why": "工作流"
+  },
+  {
+    "from": "多个 Agent 的之间",
+    "to": "多个 Agent 之间",
+    "why": "多一个字"
+  },
+  {
+    "from": "他根本看不懂",
+    "to": "它根本看不懂",
+    "why": "它指终端"
+  },
+  {
+    "from": "键盘也也能用",
+    "to": "键盘也能用",
+    "why": "重复字"
+  },
+  {
+    "from": "特定仕途",
+    "to": "特定视图",
+    "why": "tab 是项目里的视图"
+  },
+  {
+    "from": "伪中端",
+    "to": "伪终端",
+    "why": "PTY"
+  },
+  {
+    "from": "最大的的工程价值",
+    "to": "最大的工程价值",
+    "why": "重复字"
+  },
+  {
+    "from": "review大段DIF",
+    "to": "review 大段 diff",
+    "why": "diff"
+  },
+  {
+    "from": "Open Code",
+    "to": "OpenCode",
+    "why": "产品名"
+  }
+]

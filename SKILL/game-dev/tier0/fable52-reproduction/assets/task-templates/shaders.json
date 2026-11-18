@@ -1,0 +1,27 @@
+{
+  "task_id": "shaders.{{DEMO_ID}}",
+  "skill": "shader-analysis",
+  "input_files": ["{{PROJECT_ROOT}}/demos/raw/{{DEMO_ID}}/index.html", "{{PROJECT_ROOT}}/dumps/materials/{{DEMO_ID}}/materials.json"],
+  "input_schema": "{{SKILL_DIR}}/assets/schemas/v2/shaders.schema.json",
+  "allowed_tools": ["read", "grep", "python"],
+  "operation": "Inventory shader units with representation type, stages, uniforms, injection points and variant status.",
+  "output_file": "{{PROJECT_ROOT}}/dumps/shaders/{{DEMO_ID}}/shaders.json",
+  "output_schema": "{{SKILL_DIR}}/assets/schemas/v2/shaders.schema.json",
+  "required_evidence": ["source location per unit", "representation classification", "injection chunk names for patches", "variant capture or an explicit not_captured state"],
+  "steps": [
+    "Search ShaderMaterial, ShaderPass, onBeforeCompile, vertexShader and fragmentShader.",
+    "Classify each hit as complete_source, source_patch, runtime_compiled, ir or binary.",
+    "Record stages, uniforms and injection chunks, then link dependencies to materials and targets.",
+    "Leave compiled variants empty with not_captured unless a program capture actually lists them."
+  ],
+  "acceptance_checks": [
+    "No patch is presented as independently compilable source.",
+    "Program totals are not distributed across units.",
+    "An empty variant list carries a reason instead of a guess."
+  ],
+  "on_failure": {
+    "record": "{{PROJECT_ROOT}}/reports/gaps/{{DEMO_ID}}-shaders.json",
+    "retry": "Re-check the unresolved dependency or chunk name against the pinned file.",
+    "stop": "Stop when shader identity cannot be pinned or a capture would exceed authorization."
+  }
+}

@@ -139,7 +139,7 @@ Fixes for the skills that stay are queued in `SKILL_CANDIDATES.md`.
 | `grafana-private-connectivity` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-private-connectivity/` | `vendor/grafana-skills/` |
 | `grafana-send-data` | X (needs external account) | Grafana Cloud only (stack + `glc_` token / `gcx`); the self-hostable Grafana skills stay | `devops/grafana/grafana-cloud/grafana-send-data/` | `vendor/grafana-skills/` |
 | `ideogram4` | U (never usable here) | runs `tools/ideogram4.py`/`tools/flux2.py`, not shipped; needs an Ideogram API key | `video/ideogram4/` | `vendor/claude-code-video-toolkit/` (with the `tools/` it needs) |
-| `ltx2` | U (never usable here) | runs `tools/ltx2.py` and cites `docs/ltx2.md`, neither shipped; needs a Modal A100 endpoint | `video/ltx2/` | `vendor/claude-code-video-toolkit/` (with the `tools/` it needs) |
+| `ltx2` | U (never usable here) | runs `tools/ltx2.py` and cites an `ltx2.md` doc, neither shipped; needs a Modal A100 endpoint | `video/ltx2/` | `vendor/claude-code-video-toolkit/` (with the `tools/` it needs) |
 | `monte-carlo-proactive-monitoring` | S (not standalone) | pure router: every step loads `monitoring-advisor`/`prevent`, both retired 2026-10-25; no logic of its own | `devops/monte-carlo/monte-carlo-proactive-monitoring/` | `vendor/mc-agent-toolkit/` |
 | `planetscale-autonomous-execution-mode` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-autonomous-execution-mode/` | `vendor/planetscale-skills/` |
 | `planetscale-best-practices-matrix` | X (needs external account) | needs a PlanetScale org + `pscale`; one assessment split 14 ways (the orchestrator reads its 13 siblings by `../` path, so the family goes together) | `devops/planetscale/planetscale-best-practices-matrix/` | `vendor/planetscale-skills/` |
@@ -182,3 +182,24 @@ or `D:\GitRepo-AI`. `vssadmin` could not check shadow copies (needs admin).
 - Root cause fixed: the `HOST` branch now never deletes a real directory and never
   links into a cycle; it reports `host-dangling-cycle` / `host-content-missing` /
   `FOREIGN-REAL-KEPT` instead.
+
+## Merged 2026-11-18 - `opendeck` folded into `html-ppt` (#80)
+
+Not a retirement: the skill's content was merged, not dropped.
+
+`opendeck` and `html-ppt` competed for the same request ("网页版演示稿"). The
+behavioural trigger sweep picked `html-ppt` twice, and two rounds of rewriting
+`opendeck`'s description did not change that (`docs/skill-capacity-audit/2026-11-18-opendeck-routing-attempts.json`).
+Keeping a skill the model will not select means its one unique capability —
+step reveal, in-browser narration, offline single-file packaging — was
+effectively invisible.
+
+| what moved | where it lives now |
+|---|---|
+| SKILL.md body (9 sections) | `SKILL/design/tier0/html-ppt/references/narrated-deck.md` (verbatim; only `assets/…` → `assets/narrated/…`) |
+| `assets/` (10 files: stage, enhance, narration, animation css, bundler, export, schema, starter) | `SKILL/design/tier0/html-ppt/assets/narrated/` |
+| trigger territory | `html-ppt` description now names 逐步展开 / 配音 / 离线单文件, plus a dedicated section in its SKILL.md |
+
+Upstream kept at `vendor/opendeck` (MIT, The OpenDeck Authors @ `d0dbe02`).
+No store still receives `opendeck`: it is out of `scripts/install-manifest.txt`,
+and a sync leaves an existing copy untouched (prune is opt-in).

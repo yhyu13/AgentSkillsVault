@@ -21,13 +21,35 @@
 红级包括但不限于：
 
 - 修改治理面：`AGENTS.md`、`CLAUDE.md`、`.github/**`、`CODEOWNERS`、
-  `.agent-gate.conf`、策略/授权脚本、安装清单、同步/验证脚本、退役清单、
+  `.agent-gate.conf`、策略/授权脚本、同步/验证脚本、退役清单、
   Agent 注册表、submodule 指针。
+  （`scripts/install-manifest.txt` 2026-11-18 起移出此列，见下方「豁免」——
+  它是从文件树生成的清单，不是分发决策本身。）
 - 与 `main` 或目标 PR 存在未解决合并冲突。
 - 所有权冲突：两个切片同时写同一独占范围，或改了未登记给自己的路径。
 - force-push `main`、删除正本、修改凭据/权限、发布/部署、未解决的阻塞评审。
 
 红级不是“Agent 更努力一点就能变成绿”。它需要 admin 明确授权。
+
+## 豁免（2026-11-18）
+
+有一条命中的路径会从黄降到绿，机器可读规则在
+[`.github/task-grade-policy.json`](../../.github/task-grade-policy.json) 的 `exemptions`：
+
+| 名称 | 命中条件 | 降级 |
+|---|---|---|
+| `manifest-entry-churn` | 本次 diff **只**改了 `scripts/install-manifest.txt`，且每一处增删行都是注释、空行或合法的 `<name>|<vault-path>|<tier>` 条目 | 黄 → 绿 |
+| | 任何一行不是条目（格式被改坏），或 diff 里出现第二个文件 | 不豁免 |
+
+设计取舍：
+
+- **只降黄，不降红。** `matching_exemption()` 只在等级已经是黄、且原因是纯路径黄时生效；
+  红级代表治理面、权限或不可逆动作，行级规则不该能说服它放行。
+- **降级不等于放行。** 降到绿之后仍要满足绿的全部要求（含 `platform-verification` 证据块）；
+  证据缺失会把等级打回黄并撤销豁免记录（`exemption` 置空），避免读者把「豁免」误读成「已批准」。
+- **为什么这条值得豁免。** 加、删、合并 skill 一定重写这个清单，而清单是文件树的投影：
+  变它本身不改变任何 skill 的安装目标，风险在树和内容里。2026-11-18 之前每条常规 skill
+  变更都要一次 admin SHA 授权（#56、#57 都是这么合的）。
 
 ## 黄级触发器
 
@@ -37,6 +59,7 @@
 - 自动化验收不完整，或验收命令不能复现。
 - 修改共享正本：`INSTRUCTION.md`、`README.md`、`KNOWLEDGE.md`、`JOURNEY.md`、
   `docs/**`、skill 的 `references/**` 或 `templates/**`。
+- 修改安装清单 `scripts/install-manifest.txt`（2026-11-18 从红移入黄）。
 - 跨模块行为变化、需要人工目验、reviewer 有非阻塞但需人判断的意见。
 
 黄级只需要一次人工批准，不要求人逐步盯着 Agent 执行。

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "materials.schema.json",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/document"
+    }
+  ],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "common.schema.json#/$defs/entityBase"
+          }
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "texture_generator",
+              "texture_recipe",
+              "material",
+              "channel_convention",
+              "not_observed"
+            ]
+          },
+          "material_class": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "object"
+          },
+          "texture_inputs": {
+            "type": "array"
+          },
+          "outputs": {
+            "type": "object"
+          }
+        },
+        "if": {
+          "properties": {
+            "kind": {
+              "const": "material"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "material_class",
+            "parameters"
+          ]
+        }
+      }
+    }
+  }
+}

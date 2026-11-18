@@ -1,0 +1,22 @@
+{
+  "colors": {
+    "bg": "101318",
+    "panel": "171b22",
+    "line": "2a3038",
+    "text": "eceae5",
+    "dim": "9aa2ae",
+    "accent": "d8a24a",
+    "cool": "58b0a6",
+    "warn": "c4664f",
+    "faint": "4a525f"
+  },
+  "fonts": {
+    "cjk": "Microsoft YaHei",
+    "latin": "Georgia"
+  },
+  "slide": {
+    "width": 13.333,
+    "height": 7.5,
+    "margin": 0.92
+  }
+}

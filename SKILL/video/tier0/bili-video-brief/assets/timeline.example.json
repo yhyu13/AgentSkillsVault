@@ -1,0 +1,181 @@
+{
+  "total": 228.09,
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "lead": 1.4,
+  "gap": 0.55,
+  "tail": 2.6,
+  "shots": [
+    {
+      "id": "s01",
+      "chapter": "问题",
+      "text": "现在写代码，最便宜的扩容资源是 agent。开一个改页面，再起一个做 review，旁边还挂着开发和测试服务。账面吞吐量拉满了，人的注意力却先爆了。",
+      "audioStart": 1.4,
+      "audioEnd": 13.98,
+      "start": 0,
+      "end": 14.53,
+      "duration": 12.58
+    },
+    {
+      "id": "s02",
+      "chapter": "问题",
+      "text": "你得切着终端轮流查岗：谁还在跑，谁卡在授权，谁早跑完了。窗口一多名字全成摆设，因为终端只会打字符日志，看不懂 agent 的状态。",
+      "audioStart": 14.53,
+      "audioEnd": 25.98,
+      "start": 14.53,
+      "end": 26.53,
+      "duration": 11.45
+    },
+    {
+      "id": "s03",
+      "chapter": "问题",
+      "text": "于是人成了赛博保安，每隔几分钟点开、扫一眼、再切走。被摧毁的不是效率，是思路的连续性。Herdr 想砍掉的就是这笔调度开销。",
+      "audioStart": 26.53,
+      "audioEnd": 38.34,
+      "start": 26.53,
+      "end": 38.89,
+      "duration": 11.81
+    },
+    {
+      "id": "s04",
+      "chapter": "定位",
+      "text": "作者称它是给 Coding Agent 重新发明的 tmux。伪终端、窗格、持久化会话都在，Codex 和 Claude Code 仍是原生界面，它只补上状态感知、CLI 控制和本地 API。",
+      "audioStart": 38.89,
+      "audioEnd": 53.17,
+      "start": 38.89,
+      "end": 53.72,
+      "duration": 14.28
+    },
+    {
+      "id": "s05",
+      "chapter": "模型",
+      "text": "边界很克制：一个 Rust 二进制，不强制账户，没有云端面板，没有遥测。核心五个对象：Session 管运行时，Workspace 对应仓库，Tab 是项目视图，Pane 是终端，Agent 是里面的进程。",
+      "audioStart": 53.72,
+      "audioEnd": 68.6,
+      "start": 53.72,
+      "end": 69.15,
+      "duration": 14.88
+    },
+    {
+      "id": "s06",
+      "chapter": "模型",
+      "text": "测试脚本只算 Pane，Codex 既是 Pane 也是 Agent：前者管字节流，后者管生命周期。状态会冒泡到 Tab 和 Workspace，项目再多，也能一眼看到卡壳的节点。",
+      "audioStart": 69.15,
+      "audioEnd": 82.16,
+      "start": 69.15,
+      "end": 82.71,
+      "duration": 13.01
+    },
+    {
+      "id": "s07",
+      "chapter": "架构",
+      "text": "架构是客户端服务端：服务端握着 PTY 和布局，客户端只管渲染和透传，多个客户端能连同一个会话。代价很硬：服务端一停，进程全陪葬，重启也回不来。",
+      "audioStart": 82.71,
+      "audioEnd": 96.03,
+      "start": 82.71,
+      "end": 96.58,
+      "duration": 13.32
+    },
+    {
+      "id": "s08",
+      "chapter": "架构",
+      "text": "所以持久化要拆开看：进程、布局、对话，各有各的持久化。原生 Session ID 能接回对话，但复活不了一个跑到一半的构建进程。",
+      "audioStart": 96.58,
+      "audioEnd": 108.03,
+      "start": 96.58,
+      "end": 108.58,
+      "duration": 11.45
+    },
+    {
+      "id": "s09",
+      "chapter": "状态",
+      "text": "讲者说，最省时间的是侧边栏状态：working 在干活，blocked 等你授权，done 像未读消息，点开回落成 idle，unknown 别当成成败。状态还会向上聚合，后台工作区也能亮红灯。",
+      "audioStart": 108.58,
+      "audioEnd": 123.05,
+      "start": 108.58,
+      "end": 123.6,
+      "duration": 14.47
+    },
+    {
+      "id": "s10",
+      "chapter": "识别",
+      "text": "判定靠 Screen Manifest 匹配界面特征，不强求工具配合，Codex、Claude Code、OpenCode 都能跑。代价是界面一改就抓瞎，不过 agent explain 能查出命中了哪条规则。",
+      "audioStart": 123.6,
+      "audioEnd": 137.66,
+      "start": 123.6,
+      "end": 138.21,
+      "duration": 14.06
+    },
+    {
+      "id": "s11",
+      "chapter": "使用",
+      "text": "部署很轻：项目根目录敲一下 herdr，默认会话就起来了。远程走原生 SSH，代码和服务端都在远端，断线后台照跑，重连回来 Pane 还在原位。",
+      "audioStart": 138.21,
+      "audioEnd": 149.99,
+      "start": 138.21,
+      "end": 150.54,
+      "duration": 11.78
+    },
+    {
+      "id": "s12",
+      "chapter": "使用",
+      "text": "日常是一个仓库一个 workspace，按职责切 tab：agents 写代码和 review，dev 挂热更新，checks 跑测试，deploy 盯发布。典型是一会话两只 agent，Builder 爆改，Reviewer 只读看 diff。",
+      "audioStart": 150.54,
+      "audioEnd": 165.23,
+      "start": 150.54,
+      "end": 165.78,
+      "duration": 14.69
+    },
+    {
+      "id": "s13",
+      "chapter": "边界",
+      "text": "硬边界别忘了：Workspace 只管逻辑，不管文件隔离，两个 Pane 指同一目录照样冲突。大需求切分支或 git worktree，交接走 commit 和 patch。",
+      "audioStart": 165.78,
+      "audioEnd": 177.25,
+      "start": 165.78,
+      "end": 177.8,
+      "duration": 11.47
+    },
+    {
+      "id": "s14",
+      "chapter": "控制",
+      "text": "CLI 才是控制面：layout 拉起对象，pane 管服务，agent 负责启动和等待，返回的是带 ID 的 JSON。别猜编号、别拿焦点盲发命令，更别写死 sleep 三十。",
+      "audioStart": 177.8,
+      "audioEnd": 191.29,
+      "start": 177.8,
+      "end": 191.84,
+      "duration": 13.49
+    },
+    {
+      "id": "s15",
+      "chapter": "风险",
+      "text": "风险也真实：Pane History 把 prompt 和裸源码写进磁盘，异常时 token 会裸奔；装插件等于用你的权限跑不受信程序，它也没有任务依赖图。",
+      "audioStart": 191.84,
+      "audioEnd": 203.1,
+      "start": 191.84,
+      "end": 203.65,
+      "duration": 11.26
+    },
+    {
+      "id": "s16",
+      "chapter": "结论",
+      "text": "结论：只开一个 shell 别折腾，早用 tmux 也不用换。但只要跑两个 agent 加一个长任务，关心谁在干活、谁在等授权，还想用脚本控住全场，它就值得试。",
+      "audioStart": 203.65,
+      "audioEnd": 216.18,
+      "start": 203.65,
+      "end": 216.73,
+      "duration": 12.53
+    },
+    {
+      "id": "s17",
+      "chapter": "结论",
+      "text": "说到底，它是给熟悉的终端套上一层可观测的状态。多 agent 时代，瓶颈会从生成能力转向调度质量。",
+      "audioStart": 216.73,
+      "audioEnd": 225.49,
+      "start": 216.73,
+      "end": 228.09,
+      "duration": 8.76
+    }
+  ]
+}

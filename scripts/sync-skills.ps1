@@ -85,13 +85,20 @@ if (-not $SkipFreshnessCheck) {
 $ScopeFile = Join-Path $Vault 'scripts\install-scope.json'
 $PrimaryStore = '.agents'
 $LinkViews = $true
+# Stores whose views belong to the host, not to this vault. Cindy re-projects
+# ~/.agents/skills into ~/.claude/skills on every start; lifting those junctions
+# here drops the harness from ~230 visible skills to ~30 until the next restart
+# (SKILL_CANDIDATES.md #81). Never touched by the -NoViews lift.
+$HostProjected = @()
 if (Test-Path -LiteralPath $ScopeFile) {
   try {
     $scopeCfg = Get-Content -LiteralPath $ScopeFile -Raw -Encoding UTF8 | ConvertFrom-Json
     if ($scopeCfg.primaryStore) { $PrimaryStore = [string]$scopeCfg.primaryStore }
     if ($null -ne $scopeCfg.linkViews) { $LinkViews = [bool]$scopeCfg.linkViews }
+    if ($scopeCfg.hostProjected) { $HostProjected = @($scopeCfg.hostProjected) }
   } catch { Write-Warning ('install-scope.json unreadable, using defaults: {0}' -f $_) }
 }
+if ($HostProjected.Count -eq 0) { $HostProjected = @('.claude') }
 if ($NoViews) { $LinkViews = $false }
 $PrimaryPath = Join-Path $HOME (Join-Path $PrimaryStore 'skills')
 
@@ -413,6 +420,10 @@ if (-not $LinkViews) {
   $lifted = 0
   foreach ($name in $AllStoreNames) {
     if ($name -eq $PrimaryStore) { continue }
+    if ($HostProjected -contains $name) {
+      Write-Host ("no-views: kept host-projected views in ~/{0}/skills" -f $name)
+      continue
+    }
     $store = Join-Path $HOME (Join-Path $name 'skills')
     if (-not (Test-Path -LiteralPath $store)) { continue }
     foreach ($d in (Get-ChildItem -LiteralPath $store -Directory -Force -ErrorAction SilentlyContinue)) {

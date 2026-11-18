@@ -122,6 +122,77 @@ def load_allow(path: Path = None):
     return rules
 
 
+BEHAVIOURAL_TAGS = {"PASS": "tested-pass", "WRONG": "tested-wrong",
+                   "ABSTAIN": "tested-abstain", "TIMEOUT": "timeout",
+                   "ERROR": "error"}
+
+
+def load_behavioral(path) -> dict:
+    """skill -> behavioural tag, from a trigger_sweep `run` results file.
+
+    A static score says the package is shaped right.  It says nothing about
+    whether the model ever picks the skill, so the two are recorded side by
+    side instead of folded into one number (SKILL_CANDIDATES.md #73).
+    """
+    if not path:
+        return {}
+    p = Path(path)
+    if not p.is_file():
+        raise SystemExit("behavioural file not found: %s" % p)
+    blob = json.loads(p.read_text(encoding="utf-8"))
+    out = {}
+    for row in blob.get("results", []):
+        name = row.get("skill")
+        if name:
+            out[name] = BEHAVIOURAL_TAGS.get(row.get("verdict"), "untested")
+    return out
+
+
+def behavioural_tag(skill: str, beh: dict, tiers: dict) -> str:
+    tag = beh.get(skill, "untested")
+    if tag == "untested":
+        tag = {"B": "hidden", "C": "vault-only"}.get(tiers.get(skill), tag)
+    return tag
+
+
+def load_quality(path) -> dict:
+    """skill -> {"quality": float, "verdict": str}, from a quality ledger.
+
+    Capacity is what this file measures; quality is what an independent review
+    found.  Keeping them apart is the point: a structurally perfect package
+    that a reviewer rated 6.1 must not look identical to a 9.2.
+    """
+    if not path:
+        return {}
+    f = Path(path)
+    if not f.is_file():
+        raise SystemExit("quality ledger not found: %s" % f)
+    blob = json.loads(f.read_text(encoding="utf-8"))
+    return {e["skill"]: {"quality": e.get("quality"),
+                         "verdict": (e.get("verdict") or "").strip()}
+            for e in blob.get("entries", []) if e.get("skill")}
+
+
+def load_tiers(path) -> dict:
+    """skill -> A|B|C visibility tier.
+
+    Only tier-A skills are on the model's auto-selection surface, so an
+    unmeasured tier-B skill is not a gap: the harness is never allowed to pick
+    it.  Without this, every hidden skill reads as "untested" evidence.
+    """
+    if not path:
+        return {}
+    f = Path(path)
+    if not f.is_file():
+        return {}
+    out = {}
+    for line in f.read_text(encoding="utf-8").splitlines():
+        if "|" in line and not line.startswith("#"):
+            name, tier = line.split("|", 1)
+            out[name.strip()] = tier.strip()
+    return out
+
+
 def is_allowed(skill: str, ref: str, rules):
     for sk, pat, _reason in rules:
         if sk not in ("*", skill):
@@ -260,6 +331,13 @@ def main():
     ap.add_argument("--allow", default="",
                     help="refs allowlist (default: refs-allow.txt beside this script)")
     ap.add_argument("--no-allow", action="store_true", help="score every ref strictly")
+    ap.add_argument("--behavioral", default="",
+                    help="trigger_sweep results JSON; adds a behavioural column")
+    ap.add_argument("--quality", default="",
+                    help="quality ledger JSON; adds quality / quality_verdict columns")
+    ap.add_argument("--tiers", default=str(Path(__file__).resolve().parents[2]
+                                           / "scripts" / "skill-tiers.txt"),
+                    help="visibility tiers; tier-B skills are hidden, not untested")
     args = ap.parse_args()
 
     root = Path(args.root)
@@ -315,6 +393,17 @@ def main():
         r["duplicate_of"] = "; ".join(
             x for x in dups.get(r["body_hash"], []) if x != r["skill"])
 
+    # Behavioural tag before the CSV is written, not after: a column that only
+    # shows up in meta.json is invisible to every CSV consumer.
+    beh = load_behavioral(args.behavioral) if args.behavioral else {}
+    tiers = load_tiers(args.tiers) if args.behavioral else {}
+    quality = load_quality(args.quality) if args.quality else {}
+    for r in rows:
+        r["behavioral"] = behavioural_tag(r["skill"], beh, tiers)
+        q = quality.get(r["skill"]) or {}
+        r["quality"] = q.get("quality", "")
+        r["quality_verdict"] = q.get("verdict", "")
+
     rows.sort(key=lambda r: (r["score"], r["skill"]))
     csv_path = out / f"{args.date}-capacity-scores.csv"
     with csv_path.open("w", newline="", encoding="utf-8-sig") as fh:
@@ -334,6 +423,18 @@ def main():
         "broken_ref_skills": sum(1 for r in rows if r["broken_refs"]),
         "no_frontmatter": sum(1 for r in rows if not r["frontmatter"]),
         "name_mismatch": sum(1 for r in rows if not r["name_matches_dir"]),
+        "quality": ({"reviewed": len(quality),
+                     "at_or_above_9": sum(1 for q in quality.values()
+                                          if (q.get("quality") or 0) >= 9),
+                     # capacity is not quality: name the skills where they disagree
+                     "structurally_strong_but_reviewed_below_8": sorted(
+                         r["skill"] for r in rows
+                         if float(r["score"]) >= 9.0 and r["quality"] != ""
+                         and float(r["quality"]) < 8.0)}
+                    if args.quality else "not measured"),
+        "behavioral": ({k: sum(1 for r in rows if r["behavioral"] == k)
+                        for k in sorted(set(r["behavioral"] for r in rows))}
+                       if args.behavioral else "not measured"),
     }
     (out / f"{args.date}-capacity-meta.json").write_text(
         json.dumps(meta, indent=2, ensure_ascii=False), encoding="utf-8")

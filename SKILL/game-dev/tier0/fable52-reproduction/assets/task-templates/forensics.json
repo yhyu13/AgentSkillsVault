@@ -1,0 +1,28 @@
+{
+  "task_id": "forensics.{{DEMO_ID}}",
+  "skill": "demo-forensics",
+  "input_files": ["{{PROJECT_ROOT}}/demos/raw/{{DEMO_ID}}/index.html", "{{PROJECT_ROOT}}/sources/manifests/{{DEMO_ID}}-source.json"],
+  "input_schema": "{{SKILL_DIR}}/assets/schemas/task-card.schema.json",
+  "allowed_tools": ["read", "bash", "browser", "python"],
+  "operation": "Load the pinned demo once and record startup, requests, renderer, initial state and one controlled step sequence.",
+  "output_file": "{{PROJECT_ROOT}}/reports/evidence/{{DEMO_ID}}-runtime-initial.json",
+  "output_schema": "{{SKILL_DIR}}/assets/schemas/task-card.schema.json",
+  "required_evidence": ["served byte length and SHA-256", "request list including failures", "GPU and WebGL strings", "console output", "initial state and one stepped state", "screenshot hash"],
+  "steps": [
+    "Serve the pinned file locally and confirm its bytes match the intake hash; python scripts/capture_runtime.py can do this and record requests, WebGL, console and a screenshot.",
+    "Open the URL, record title, readyState, request timings and renderer strings.",
+    "Screenshot the first frame, reopen it and describe what is actually visible.",
+    "Use the source's own start and step hooks for a fixed number of steps, or real input when none exists.",
+    "Reload once and compare only the fields that actually matched."
+  ],
+  "acceptance_checks": [
+    "A served-byte mismatch is reported and the run is discarded.",
+    "Program counts and in-app metrics are stored as raw values without reinterpretation.",
+    "Unobserved input, audio, progression and performance remain listed as gaps."
+  ],
+  "on_failure": {
+    "record": "{{PROJECT_ROOT}}/reports/gaps/{{DEMO_ID}}-forensics.json",
+    "retry": "Retry with a fresh port and a clean browser session; never reuse a stale page.",
+    "stop": "Stop when the served file differs from the analyzed bytes or the page cannot reach a stable initial state."
+  }
+}
