@@ -63,8 +63,19 @@ def is_noise(rel: str) -> bool:
     return rel.endswith(NOISE_SUFFIX)
 
 
+def canonical_file_bytes(data: bytes) -> bytes:
+    """Normalize Git text checkout line endings before hashing.
+
+    core.autocrlf can expose the same tracked text as CRLF on Windows and LF on
+    Linux. Normalize NUL-free files to LF; retain binary assets byte-for-byte.
+    """
+    if b"\x00" in data:
+        return data
+    return data.replace(b"\r\n", b"\n")
+
+
 def tree_hash(path: Path) -> tuple[str, int]:
-    """(hash, file_count). Skips __pycache__ and other runtime droppings."""
+    """(hash, file_count). Skips runtime droppings and normalizes text EOLs."""
     if not path.exists():
         return "", 0
     entries = []
@@ -76,8 +87,9 @@ def tree_hash(path: Path) -> tuple[str, int]:
             if is_noise(rel):
                 continue
             try:
-                size = full.stat().st_size
-                digest = hashlib.sha256(full.read_bytes()).hexdigest().upper()
+                data = canonical_file_bytes(full.read_bytes())
+                size = len(data)
+                digest = hashlib.sha256(data).hexdigest().upper()
             except OSError:
                 continue
             entries.append((rel, size, digest))

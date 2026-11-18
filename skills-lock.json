@@ -74,7 +74,7 @@
     "3d-ultra-realistic-water": {
       "path": "SKILL/video/tier1/3d-ultra-realistic-water",
       "tier": "B",
-      "hash": "2e9768b85c5674da424dadcf09420b56ab5ed268b2511af9406362ee3c845ed1",
+      "hash": "7474da6a3070f8c31bd1fd9de29b574a26d25c303d2ea226b5ffd5796f319cbd",
       "files": 11,
       "origin": {
         "type": "unknown",
@@ -85,7 +85,7 @@
     "3d-wood-lighting-scorecard": {
       "path": "SKILL/video/tier1/3d-wood-lighting-scorecard",
       "tier": "B",
-      "hash": "1aac66b1e4dd57a26bdcf30304ae3118c1ac686e2835772b864acaca94280266",
+      "hash": "b10ac6484dcd3d8634312e0b4f056c8001884ac32b3ea100e8c8e16c5d8a66bf",
       "files": 9,
       "origin": {
         "type": "unknown",
@@ -96,7 +96,7 @@
     "agent-browser": {
       "path": "SKILL/content/tier1/agent-browser",
       "tier": "A",
-      "hash": "1b934f8bbc5f461de49ddb17676608c99fb0b15eb8891acf55a0e00c3a6a8e59",
+      "hash": "6f6777dca082bb371472f39534736406e7a8bdfed08e322c4fe1e06e03970c8c",
       "files": 11,
       "origin": {
         "type": "repo",
@@ -110,7 +110,7 @@
     "agent-eval-loop": {
       "path": "SKILL/software-development/tier0/agent-eval-loop",
       "tier": "A",
-      "hash": "14d404fe0fa69764c8984d6f8d9f44d583db5af950003ac3aec4a527a42c557b",
+      "hash": "ace181279645367302cb9cae2de4f9ac511fc320932000f344f65a7ab705508a",
       "files": 14,
       "origin": {
         "type": "local",
@@ -124,7 +124,7 @@
     "aigc-image-control": {
       "path": "SKILL/content/tier1/aigc-image-control",
       "tier": "A",
-      "hash": "7fa6e9413fb1e21610050a0cd39b53020d54197d9309e2b1ce9be0d2e5790c2c",
+      "hash": "a33c6ed60aac057a15c02c39e771a06f1337a3cea9541b49540c87e2c88d44e9",
       "files": 3,
       "origin": {
         "type": "repo",
@@ -138,7 +138,7 @@
     "aigc-video-creation": {
       "path": "SKILL/content/tier1/aigc-video-creation",
       "tier": "B",
-      "hash": "f7840e1fac1198ba44de92aa4692c40225fc759348548742e6773b745dd5260c",
+      "hash": "e729e4bdf1eacee5cd2fe6861e93aacde234bbfea86cc346d51723cc400e89dd",
       "files": 5,
       "origin": {
         "type": "unknown",
@@ -160,7 +160,7 @@
     "analysis-to-vault": {
       "path": "SKILL/knowledge-vault/tier0/analysis-to-vault",
       "tier": "A",
-      "hash": "5a7c9972a615412a992621bd17c8ab5017d20fc6d94a81179fb3a08b0b186acd",
+      "hash": "35f56e366464ba78972352a18644b202581bab20d6bdf67d0ccfc4edb817ccac",
       "files": 8,
       "origin": {
         "type": "local",
@@ -185,7 +185,7 @@
     "anidoodle": {
       "path": "SKILL/video/tier1/anidoodle",
       "tier": "B",
-      "hash": "d033a8884f26eba43a5c804a258a0c8ce0e80c7cd9c191fa48147ea56010e968",
+      "hash": "b2ea0d168698d45598a87713d264ad8765b7d6ff367a5f9b6c02e20a5a8eae6f",
       "files": 589,
       "origin": {
         "type": "repo",
@@ -199,7 +199,7 @@
     "apk-ndk-version-check": {
       "path": "SKILL/software-development/tier1/apk-ndk-version-check",
       "tier": "A",
-      "hash": "82d7264e9e1ad702322506eca9b997b53bffa59224b7209740404f9a384b8f8e",
+      "hash": "7d0fa0e250630074e809417ddc9a0d39a67fafecdfca358b8c9afe3c3f20b389",
       "files": 3,
       "origin": {
         "type": "unknown",
@@ -210,7 +210,7 @@
     "arming-thought": {
       "path": "SKILL/management/tier3/arming-thought",
       "tier": "A",
-      "hash": "be62e2d0f84a81dbee7e9ba039f78a9254be116078e2c591598910bc33d171a1",
+      "hash": "778029a5d8cd8c19eb37736b6502d6667bbd368f5adb863b407a005a11f56783",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -221,7 +221,7 @@
     "article-prompts-to-skills": {
       "path": "SKILL/video/tier1/article-prompts-to-skills",
       "tier": "B",
-      "hash": "8696e6f18cb60b2aeeff40d9a6062b5d072e0383ffa25b8a2e886333ba378c89",
+      "hash": "6b02305848c1d85a135a5726a4dafc539c25889c28fe06ebd8b55137df891ba6",
       "files": 8,
       "origin": {
         "type": "unknown",
@@ -232,7 +232,7 @@
     "bezos-advisor": {
       "path": "SKILL/management/tier3/bezos-advisor",
       "tier": "B",
-      "hash": "173c01fa1e7dc2ad533f33c2ce204d1ff96cd31ee5852896bcc32622e1d2b5b8",
+      "hash": "ec9aadea7017d3f6f87c7f970ea4e6c19d0fb601cade3262328610c3a7bdefb5",
       "files": 1,
       "origin": {
         "type": "sibling",
@@ -246,7 +246,7 @@
     "bili-talk-showreel": {
       "path": "SKILL/video/tier0/bili-talk-showreel",
       "tier": "A",
-      "hash": "b3e94c3d14d26aeb693d2b057ad47441e3d9b88f26f1819ecc2cca66c26a6586",
+      "hash": "d5158e6703b262e9b5e2bce468b65102485acd82c9f7db5de7bf52cda3310951",
       "files": 9,
       "origin": {
         "type": "local",
@@ -260,7 +260,7 @@
     "bili-video-brief": {
       "path": "SKILL/video/tier0/bili-video-brief",
       "tier": "A",
-      "hash": "1ef0ad8f12439d4f5b89fe46a43a24598ed1421a743ba5473c983d6a08a1458b",
+      "hash": "52b5a0ff6c9027dc1695193af1bd6f72fe3076a3753523e8baaf877661fc6d13",
       "files": 29,
       "origin": {
         "type": "local",
@@ -274,7 +274,7 @@
     "bili-video-repack": {
       "path": "SKILL/video/tier1/bili-video-repack",
       "tier": "A",
-      "hash": "60279798f9bf1ce6b4b186857ada07f88870aee02ffacb08c0d8b47fb5a9ab2e",
+      "hash": "19aadc381a0c1489a6411a21a332708b02c77055bb4be20169343f647898188d",
       "files": 7,
       "origin": {
         "type": "local",
@@ -288,7 +288,7 @@
     "blender-director": {
       "path": "SKILL/game-dev/tier1/blender-director",
       "tier": "A",
-      "hash": "4fc171956df3ca8625f52cd7c21d7e53e0f923255f8cf2046b03556c9df7fd82",
+      "hash": "12eeeee7d41d8ee9e59d156c20cf5da0e5278ff4ff3e50f88c3acc1017bba3a6",
       "files": 11,
       "origin": {
         "type": "repo",
@@ -302,7 +302,7 @@
     "blog-to-linkedin-post": {
       "path": "SKILL/content/tier1/blog-to-linkedin-post",
       "tier": "A",
-      "hash": "8e42fcc4425542bcb5d7d01025ba5df2647c31dbfc10a8bdac50f460f8d6ffe9",
+      "hash": "6f54736cdfd897467518f4d57b6291b19f88ddf489dea2de3d205a5efa9ee066",
       "files": 2,
       "origin": {
         "type": "sibling",
@@ -316,7 +316,7 @@
     "blog-to-twitter-post": {
       "path": "SKILL/content/tier1/blog-to-twitter-post",
       "tier": "A",
-      "hash": "a9a1b97bc66fce792fd4091e7e7534de014b90b918a504e6acb3db395e6c7136",
+      "hash": "9a15892d2ea1d94447ea175492e134dd97ab2a1dd0af90ead3155a1714b074ee",
       "files": 3,
       "origin": {
         "type": "sibling",
@@ -330,7 +330,7 @@
     "book-chapter-to-vault": {
       "path": "SKILL/knowledge-vault/tier0/book-chapter-to-vault",
       "tier": "A",
-      "hash": "1d88933b9c4aa53975449a7ef53284113fead596fa6e3105f9f8db5ee9cc3c86",
+      "hash": "05122f4ab76307eaa843dc114d6658889b64d20cce99215f7fcc4a5dc22077db",
       "files": 17,
       "origin": {
         "type": "local",
@@ -344,7 +344,7 @@
     "booth-kiosk-deck": {
       "path": "SKILL/content/tier1/booth-kiosk-deck",
       "tier": "B",
-      "hash": "ee7d7a2f7535a7dfb8673f90131932f491c5c173ff6f4e71a8f9cfc0e13d1fd6",
+      "hash": "bc78bb66eb933cd23531da6a1be0ab135a11ba973ac0145cc52e33ee7d9201bc",
       "files": 37,
       "origin": {
         "type": "sibling",
@@ -358,7 +358,7 @@
     "brand-docx": {
       "path": "SKILL/design/tier0/brand-docx",
       "tier": "A",
-      "hash": "b29d900cdd918002be6f391a61cfc17d51a76a43f7740fdce9c2536d7eb91191",
+      "hash": "b75f0d1e67dce3679d7a85525e5765e8e0d38e1b63f24a61d8e69ddfad52af32",
       "files": 11,
       "origin": {
         "type": "repo",
@@ -372,7 +372,7 @@
     "brand-pptx": {
       "path": "SKILL/design/tier1/brand-pptx",
       "tier": "A",
-      "hash": "da7bffd1cc8d4a7bdba545d667f9a2d12f6f2f73225d7bad177e71ea1b5370ef",
+      "hash": "d980b2b543929cb4aa147a750ef0819d783550f42cff6e2759cfcf95b262089f",
       "files": 4,
       "origin": {
         "type": "repo",
@@ -386,7 +386,7 @@
     "brand-xlsx": {
       "path": "SKILL/design/tier1/brand-xlsx",
       "tier": "A",
-      "hash": "8b7b9f496798d560c33f2528da915052c811b713bd3e5461d436674701f1999c",
+      "hash": "0cb696d6271fbca5cba48d2e8defa557163e8dfbd0a45bf5582ad03130064fd6",
       "files": 4,
       "origin": {
         "type": "repo",
@@ -433,7 +433,7 @@
     "colleague-ue-app-specialist": {
       "path": "SKILL/agents/tier3/colleague-ue-app-specialist",
       "tier": "A",
-      "hash": "eb72b4be5bfd95902822164f768938f673cc70bebeb518e4cea9e9c3c5fa5900",
+      "hash": "7d6df391f47092c153b77466c2387d562985cd4f6a22d95c8d12d57a7f888baa",
       "files": 9,
       "origin": {
         "type": "local",
@@ -447,7 +447,7 @@
     "colleague-ue-engine-architect": {
       "path": "SKILL/agents/tier3/colleague-ue-engine-architect",
       "tier": "A",
-      "hash": "da1e3ddd33e8a9a0a5d1ead1e646d823bc6bd3f5a0cb4b2eefe586f99dd55e46",
+      "hash": "166d61633a5f132346fc050a9b95e82e34fd5ad8e74172527b56dc0446e0b2e0",
       "files": 9,
       "origin": {
         "type": "unknown",
@@ -458,7 +458,7 @@
     "colleague-ue-prod-team-lead": {
       "path": "SKILL/agents/tier3/colleague-ue-prod-team-lead",
       "tier": "A",
-      "hash": "96e9c4db1fadbec3296988d6cd6ecc85f1b2b234f189409f0033a64b05b54896",
+      "hash": "92f98aadf42ee5cee1ca8797bcf6b69674f52022d948e9d19a2c6f7e2cf1c3ee",
       "files": 8,
       "origin": {
         "type": "unknown",
@@ -469,7 +469,7 @@
     "colleague-ue-tech-planner": {
       "path": "SKILL/agents/tier3/colleague-ue-tech-planner",
       "tier": "A",
-      "hash": "a6d8d18baa00af6ec7d37c362745c354774714a3829f52e70982e86ae59de47c",
+      "hash": "c4341a0a36a109dacd28383723280c3fdbb53d162a998b2915df83f82a583a19",
       "files": 9,
       "origin": {
         "type": "unknown",
@@ -480,7 +480,7 @@
     "comparable-analysis": {
       "path": "SKILL/management/tier3/comparable-analysis",
       "tier": "B",
-      "hash": "42494758fa1c4cfcad5ce4119487465e64c920d018f03a4fac47decfb8ba15bd",
+      "hash": "e68b77be556cc75dfd6c74f7e6e685a4ada922d0bdfbd2a2226444f26f649a96",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -491,7 +491,7 @@
     "consolidation": {
       "path": "SKILL/management/tier3/consolidation",
       "tier": "B",
-      "hash": "a83ab51c320e447ee7014a5bf6cccbef24f81837a7dbbad5cd16f376eb810a26",
+      "hash": "ed687734fbb80f9d279866e5ce271be947d4731b4505f71462dc2f8fbdc2b02c",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -502,7 +502,7 @@
     "contradiction-analysis": {
       "path": "SKILL/management/tier3/contradiction-analysis",
       "tier": "A",
-      "hash": "d858b63436bd234d1a0adb619d402fcec97159cdb362104184e1cd087baf7166",
+      "hash": "a5d1142057800151eab5ce226cf383154fc26dd5fb55b759ab80f76bed144f73",
       "files": 4,
       "origin": {
         "type": "unknown",
@@ -513,7 +513,7 @@
     "cook": {
       "path": "SKILL/design/tier0/cook",
       "tier": "A",
-      "hash": "8677cffcf566d6a59903022771da92762731e8b19e188c9a335ce4ca9791fd9a",
+      "hash": "1f09addf044534bdc4615a388543d06c464ca2495e3ec50be9d3984b99105de4",
       "files": 12,
       "origin": {
         "type": "repo",
@@ -527,7 +527,7 @@
     "course-repack": {
       "path": "SKILL/video/tier0/course-repack",
       "tier": "A",
-      "hash": "71308b10a0a19db9d7466f891bcf4f70b593ef3f57d6307e5c4868451989cfa4",
+      "hash": "38e55d1b7f5ac9608904a9a9f3f8a1fb6c2493c1c34aae03aee4782114c392b6",
       "files": 26,
       "origin": {
         "type": "local",
@@ -541,7 +541,7 @@
     "criticism-self-criticism": {
       "path": "SKILL/management/tier3/criticism-self-criticism",
       "tier": "A",
-      "hash": "678d2265d481fbdb680cb68cfc28ff2450bee1094f524a694e132c9a0db28e22",
+      "hash": "880234d16f784df7dec53b1929a77cbc1fc03de81625d398a16f2340a1b1c9c1",
       "files": 3,
       "origin": {
         "type": "unknown",
@@ -552,7 +552,7 @@
     "dcf-valuation": {
       "path": "SKILL/management/tier3/dcf-valuation",
       "tier": "B",
-      "hash": "0ba89ee718bf8edffbd0d072ad249d616d92e2c75b583a0191a1082420f0068c",
+      "hash": "e350a4b51ddb1e8f01fe2d5ea87bf8989dfcc14f517c108df7d5566cef21dc47",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -563,7 +563,7 @@
     "deal-structuring": {
       "path": "SKILL/management/tier3/deal-structuring",
       "tier": "B",
-      "hash": "8e93b8ce1d4a6f210da92dd462376781ef159fc2b41f270298b181503e10aeae",
+      "hash": "ae6733c36d0c910790429309fdfaa8f7c9c85a554a7d229f08d0f9d44604f800",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -585,7 +585,7 @@
     "deliberate-practice": {
       "path": "SKILL/knowledge-vault/tier0/deliberate-practice",
       "tier": "A",
-      "hash": "11773c46560a963eb4ceaf25da282e5b6e8965e04d29ae26c851db671f2d4a45",
+      "hash": "5dcda25261b40bacd114108a22b347f1887c49458ed379bc1f687544610d6736",
       "files": 6,
       "origin": {
         "type": "local",
@@ -599,7 +599,7 @@
     "deliberate-practice-talk": {
       "path": "SKILL/video/tier0/deliberate-practice-talk",
       "tier": "A",
-      "hash": "baa707b9bfa712a72c2f06aabbc2f40ed9896fe251c2c859f15ec519a4cba35c",
+      "hash": "3111e026c0e0d41adf9c495ca5e7f06a2bc9db9d9d87dcfddf3a7b43ecae3161",
       "files": 6,
       "origin": {
         "type": "local",
@@ -613,7 +613,7 @@
     "diagnosing-bugs": {
       "path": "SKILL/software-development/tier1/diagnosing-bugs",
       "tier": "A",
-      "hash": "e9963cf39f293bb82ab36cb40fc53fb6055c28752fe23f3142ea70596729b503",
+      "hash": "57bc027367f360f3850aada2ca328eb7c5c3c9f7413a90b5f496e855efa0e3ff",
       "files": 3,
       "origin": {
         "type": "unknown",
@@ -635,7 +635,7 @@
     "docx": {
       "path": "SKILL/content/tier0/docx",
       "tier": "A",
-      "hash": "1f4d40a002f2c8666f3d0fdab2a39ae395a1ff3386d93ea1143987f20ffd20c9",
+      "hash": "7c31188c0087330fe84c097da96c59c7521b6aab17070cb56c66cfea1e419c69",
       "files": 61,
       "origin": {
         "type": "repo",
@@ -649,7 +649,7 @@
     "doubaofeishu_industry-analysis": {
       "path": "SKILL/management/tier2/doubaofeishu_industry-analysis",
       "tier": "A",
-      "hash": "551bda7ee4fd4d3281057fcd6a987cb49a2aecb70a711627985175b77dc16d86",
+      "hash": "fd78e346c6789ea941f95067e0729de1be6af7f8f165a6f4a315be65f61cd508",
       "files": 2,
       "origin": {
         "type": "local",
@@ -663,7 +663,7 @@
     "earnings-models": {
       "path": "SKILL/management/tier3/earnings-models",
       "tier": "B",
-      "hash": "fd636a93d7057f746fc547f3ec64e67daa89362a1ee1196a67985ebcf0905bd3",
+      "hash": "81f62cce8c9f28e16342f853488082c04e265f7a02c00bb19d327670fba7125e",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -674,7 +674,7 @@
     "excel-hygiene": {
       "path": "SKILL/content/tier1/excel-hygiene",
       "tier": "B",
-      "hash": "23a251770be1ee479eb0777642cecdf8be215471e83a68117dd14b0e7fc73fcb",
+      "hash": "e3ba0b3d120bac5839639d2aae24087cd0f9fb94537751c1e93d9ae6af717aaf",
       "files": 8,
       "origin": {
         "type": "repo",
@@ -688,7 +688,7 @@
     "fable52-reproduction": {
       "path": "SKILL/game-dev/tier0/fable52-reproduction",
       "tier": "A",
-      "hash": "d5afd7d5d5ae85956a8fff32e8681808b961f3817187a3402dd9e5594d85b2dc",
+      "hash": "55fa2a1df0d20ea6f65884930b267fcd44f269a713f023fa6be69c1dfb2e5577",
       "files": 33,
       "origin": {
         "type": "local",
@@ -702,7 +702,7 @@
     "family-edu-gamified-skills": {
       "path": "SKILL/knowledge-vault/tier2/family-edu-gamified-skills",
       "tier": "A",
-      "hash": "1afc462ebbf6df29448413462a9dcc95f3c76d580166eb2907fb4c0675c80cbc",
+      "hash": "5004f40e8468d2efc56b1f03e9e9b828b04522e8c85cba6c849f6251c5fdc3a2",
       "files": 20,
       "origin": {
         "type": "sibling",
@@ -716,7 +716,7 @@
     "feishu-kdocs-cli": {
       "path": "SKILL/devops/tier0/feishu-kdocs-cli",
       "tier": "A",
-      "hash": "cde01c36cef0aae39c99a00f750c7709eb52b535ffea533f7c4e070af1fa37ac",
+      "hash": "55c031f6f33be7e61f9b08ee7e753ca34f65a449ba883590ea21d1d06bc0d006",
       "files": 6,
       "origin": {
         "type": "local",
@@ -730,7 +730,7 @@
     "film-repack": {
       "path": "SKILL/video/tier0/film-repack",
       "tier": "A",
-      "hash": "d49de4daa6e0274144aeb661986ad4674e7eeb3004c22e93e1369e26b8e7a238",
+      "hash": "0134ffc13e4e48befb25ce0cc8c14789473a2287ab8c629ce55c8be9437de9f7",
       "files": 23,
       "origin": {
         "type": "local",
@@ -744,7 +744,7 @@
     "finance-lead": {
       "path": "SKILL/management/tier3/finance-lead",
       "tier": "B",
-      "hash": "c3a2edfa192b0f95c3f10c3aba2ca2889e67f190c14d0704d828e6347573f25c",
+      "hash": "271b3509ed3416708350a77c51b3f4378bb2a92ab3b96ba3619d727eff20bbbf",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -755,7 +755,7 @@
     "goal-persistence": {
       "path": "SKILL/agents/tier3/goal-persistence",
       "tier": "B",
-      "hash": "8a909943727a456f3c6222c6e764482faae14030b6369396ca6e29b3decb2089",
+      "hash": "05f83fe0f036bf74e8603eafbc84d45a0dae48841f3c4e2837874adb5a16a202",
       "files": 1,
       "origin": {
         "type": "sibling",
@@ -769,7 +769,7 @@
     "gracker-writing": {
       "path": "SKILL/content/tier1/gracker-writing",
       "tier": "A",
-      "hash": "cbefce8e26beedf8fdb04b3793ff922000b93e5b99817635b85f21db789a7da4",
+      "hash": "da7bc333afab7f43d56b0205a9298ddbcdb37bc90d6ea577dda2b237641ba289",
       "files": 12,
       "origin": {
         "type": "sibling",
@@ -783,7 +783,7 @@
     "grafana-loki-label-analyzer": {
       "path": "SKILL/devops/tier1/grafana-loki-label-analyzer",
       "tier": "B",
-      "hash": "d51f567c650ca3bce4fb697105378ab68c799671665b1ec85886dec6c4e94749",
+      "hash": "5bd63f0128d495e92b0145d1f357d6e5cc4b8d68b706269d7df6e6945d150b11",
       "files": 5,
       "origin": {
         "type": "unknown",
@@ -794,7 +794,7 @@
     "grafana-oss": {
       "path": "SKILL/devops/tier1/grafana-oss",
       "tier": "B",
-      "hash": "b7dc4d63afb07c72034bfc939164c92dd4823b3998c956c1e2b6c44d6f15bd7c",
+      "hash": "9bb1305ff7cbd1e6d5a2a327be6a7daaa541037cdcad84b07ad79e9ff2a4f617",
       "files": 9,
       "origin": {
         "type": "unknown",
@@ -805,7 +805,7 @@
     "guizang-product-video-skill": {
       "path": "SKILL/video/tier1/guizang-product-video-skill",
       "tier": "B",
-      "hash": "93a7a0c789529fa7f2a9288721becd445d01e2636346833e345cfe33e2034934",
+      "hash": "0ad0887cf0c696e4f38bd4b0d0c5a366e9d91f53ec22922e58d42ecf9875f174",
       "files": 104,
       "origin": {
         "type": "repo",
@@ -819,7 +819,7 @@
     "h3-seedance-prompt-library": {
       "path": "SKILL/video/tier0/h3-seedance-prompt-library",
       "tier": "B",
-      "hash": "ba0d188358f56b460242b712634615dddb02957b25e78018d80a4ed201a4ec25",
+      "hash": "b2ab8d9dec5894d84209309a7bdada5979d2f11f1842a03dca51f79c29436303",
       "files": 49,
       "origin": {
         "type": "local",
@@ -833,7 +833,7 @@
     "hands-on-deck": {
       "path": "SKILL/design/tier0/hands-on-deck",
       "tier": "A",
-      "hash": "a3283799922a852163c0a7d06a29b4ff953d349266b704b8a09821be725c0f4c",
+      "hash": "1934559c4ac56096072a25266f799e65523494c2c067d2db2f43c63c6c3761a2",
       "files": 9,
       "origin": {
         "type": "repo",
@@ -847,7 +847,7 @@
     "hgb-standards": {
       "path": "SKILL/management/tier3/hgb-standards",
       "tier": "B",
-      "hash": "cfba661a4319ddf7532d65bb3a3360e038423ce1afc601f4d62df63583e375dd",
+      "hash": "174106b67b90adace45e6e99b03e2fc1d76cba6af7ebb41b8b2f96d044e7bc97",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -858,7 +858,7 @@
     "html-artifacts": {
       "path": "SKILL/design/tier1/html-artifacts",
       "tier": "B",
-      "hash": "93d303413f1eaaee07c0f41d1358fa73231fff7fed6293c5af11793bf433efa7",
+      "hash": "a59c6c57baedcab39bfffeb3d100260614c13f7266dfeca7b9a59f4055002929",
       "files": 24,
       "origin": {
         "type": "sibling",
@@ -872,7 +872,7 @@
     "html-ppt": {
       "path": "SKILL/design/tier0/html-ppt",
       "tier": "A",
-      "hash": "c1d51b0423c981b6610ecdc7ba9734b8e3d0a08b3269b3abdc3aea00a6dfc175",
+      "hash": "22231be4332d955d0774b0b9e213bafda59a71adbcf7c21ab2acede4d4143f53",
       "files": 250,
       "origin": {
         "type": "unknown",
@@ -883,7 +883,7 @@
     "huashu-design": {
       "path": "SKILL/design/tier0/huashu-design",
       "tier": "B",
-      "hash": "2d6aefdf4b62861ee0cc99aa121aebce4d3f2d4751d7bcf70fc7bdf02e21463a",
+      "hash": "ae9af52a5ec8ec3285fd7f737230d7cb058f898d2ce69b9aeef1e973dd3813aa",
       "files": 366,
       "origin": {
         "type": "repo",
@@ -897,7 +897,7 @@
     "hyperframes": {
       "path": "SKILL/content/tier1/hyperframes",
       "tier": "B",
-      "hash": "b797c19356e117909d3e9655f40622683927ceca8b6e75baac698fa6748f353c",
+      "hash": "5f6d4a55c2e6e2e3e3215feca037386a4d0d9a08880d8ebbb22439aa5fa653d1",
       "files": 79,
       "origin": {
         "type": "sibling",
@@ -911,7 +911,7 @@
     "ifrs-standards": {
       "path": "SKILL/management/tier3/ifrs-standards",
       "tier": "B",
-      "hash": "9c848fa3ccfabe05965ed702cfda78ad219c881d8e2c9a30aab7c05de56778b9",
+      "hash": "4f3eb79461e6b232751c7638d729357fdc738945a20bb0e803bd22cfb8f6ba5e",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -922,7 +922,7 @@
     "investigation-first": {
       "path": "SKILL/management/tier3/investigation-first",
       "tier": "A",
-      "hash": "2f1368aecba5c11c48f2482bdbe5a9444abff1d7a89abc5fc3b154dfb4649051",
+      "hash": "1d29c4c2535820f1fbcb0c97aa5d8aca0588a915e5647806d93e8373ec7bf746",
       "files": 3,
       "origin": {
         "type": "unknown",
@@ -944,7 +944,7 @@
     "karpathy-explain-better": {
       "path": "SKILL/writing/tier1/karpathy-explain-better",
       "tier": "B",
-      "hash": "7400a64f33667b08a027a3ce4a1d4cda1bd330e55ee8766bbdc143194c523b1f",
+      "hash": "30fe3c716e92699fdffbd4ff66a36e01bd6034313b8723f8bbe1ef316be15bfe",
       "files": 16,
       "origin": {
         "type": "local",
@@ -958,7 +958,7 @@
     "lbo-modeling": {
       "path": "SKILL/management/tier3/lbo-modeling",
       "tier": "B",
-      "hash": "96e4e400c919359a0b5152402f52cba6317d7277bd65d196ad37754e7e1c01a6",
+      "hash": "2ff431908b3aa45b6966d396a6a4b8ffc81f660318c4edf8c0697c285b8e5d1f",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -969,7 +969,7 @@
     "lease-accounting": {
       "path": "SKILL/management/tier3/lease-accounting",
       "tier": "B",
-      "hash": "1c05f8e33f4bfa658f1677eb02805f7c66c67d5ee4d6b7533795b070a9a33615",
+      "hash": "afe43b916a08a094f7b243121149bb88aa7c4d4c222c7f9bf402b3302596259b",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -980,7 +980,7 @@
     "long-ai-project": {
       "path": "SKILL/software-development/tier0/long-ai-project",
       "tier": "A",
-      "hash": "b7cdf24836dc92c73af9388294474231d2970b8622cb293d058162aed02fd146",
+      "hash": "20e7c50fb7073660922e6af97a162f3968da10762061f09639818551eeefcec1",
       "files": 7,
       "origin": {
         "type": "local",
@@ -994,7 +994,7 @@
     "manage-up-core": {
       "path": "SKILL/management/tier2/manage-up-core",
       "tier": "A",
-      "hash": "435735d2c9754200c4a6b9066e2e50f77c9344e2642eb088882078adf9d7df57",
+      "hash": "dec78f1bf3d4142cc8c8aac43bac666c5b3e647636db992ffcd1c894368d7e5b",
       "files": 2,
       "origin": {
         "type": "sibling",
@@ -1008,7 +1008,7 @@
     "management-loop": {
       "path": "SKILL/management/tier2/management-loop",
       "tier": "B",
-      "hash": "caec5fe7e6ac788b63753fd602f90bb66b8cec628c67870252c226aeefd0d3a0",
+      "hash": "3a32256a8ab1777e432e6eee35f8447803cc73d088ffe7a84978d95d3eddb634",
       "files": 1,
       "origin": {
         "type": "local",
@@ -1022,7 +1022,7 @@
     "manim-video": {
       "path": "SKILL/video/tier0/manim-video",
       "tier": "B",
-      "hash": "d1fcbbd888e249fb6dff29233781d5ef994c966355e78a06366c628b9cb77508",
+      "hash": "d8d27e186cff6bc11f78a0d08e4fc085351c7db6e1c62476a68f918cb0bb0661",
       "files": 17,
       "origin": {
         "type": "repo",
@@ -1036,7 +1036,7 @@
     "mass-line": {
       "path": "SKILL/management/tier3/mass-line",
       "tier": "B",
-      "hash": "64030257760f418696c709c7efb9b0be3a7a690393be3830a96883b11c6e3f92",
+      "hash": "2116be9b8ed6b1cf215c976be809a37108a3ffa45e1da1676c98166a01168495",
       "files": 3,
       "origin": {
         "type": "unknown",
@@ -1047,7 +1047,7 @@
     "meeting-summary": {
       "path": "SKILL/management/tier3/meeting-summary",
       "tier": "A",
-      "hash": "f5d3c9a2c61cc39378548520d579a09af27f72fa96b15dce3cab5b228452287b",
+      "hash": "cf2587655b01edd4427468b3daa32f9ca206b13918cfb39dcd6239cd2422136f",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1058,7 +1058,7 @@
     "mgmt-discipline": {
       "path": "SKILL/management/tier3/mgmt-discipline",
       "tier": "B",
-      "hash": "72adbec5ec9de7ad527331537af642a95c604685551c52e315d5f55ba659b458",
+      "hash": "f2f61e5c8c43f84c09d5b366abcfb94b6a40602353a6fa8b9bc01a0b75a47458",
       "files": 16,
       "origin": {
         "type": "sibling",
@@ -1072,7 +1072,7 @@
     "mgmt-individual": {
       "path": "SKILL/management/tier3/mgmt-individual",
       "tier": "B",
-      "hash": "1201bbba59ff861e65efd5757098ef0c8e2e4c4b2554516618fb32edd354a3fa",
+      "hash": "9e573cfa6e551b952c23f32223050bd537542b02b237038c9f08ae4d013a52d0",
       "files": 81,
       "origin": {
         "type": "sibling",
@@ -1086,7 +1086,7 @@
     "mgmt-org": {
       "path": "SKILL/management/tier3/mgmt-org",
       "tier": "B",
-      "hash": "679b8bb4c0ca26f19d7f3baf67051d964c9549b6c83c9fc86fb3d6c814f9739e",
+      "hash": "8396ea4ab39c5b2cb0946d9880709ba7bf869417c9dcc83228ff0fdab48e157e",
       "files": 134,
       "origin": {
         "type": "sibling",
@@ -1100,7 +1100,7 @@
     "motion-showreel": {
       "path": "SKILL/video/tier0/motion-showreel",
       "tier": "A",
-      "hash": "1affa14fa319b4a0a1e92b24ebeceeb8c1881e0d89a70f77dcc20dd43421a5ab",
+      "hash": "a278f6e8d9ecd237c1d5cf5bdea9830e44074c51df1e62b2eb190f1ae84a7d79",
       "files": 114,
       "origin": {
         "type": "repo",
@@ -1114,7 +1114,7 @@
     "multi-agent-repo-governance": {
       "path": "SKILL/software-development/tier0/multi-agent-repo-governance",
       "tier": "A",
-      "hash": "85cc9195ae7ee71630c69fd8d4f3c9112eaa12af2c3d639e41d81dcf42b233c0",
+      "hash": "eb6f4292b9b1d1c9538b8823c5e3fb5f99903b12cbb9a4784be4d0bfa3dc2fa4",
       "files": 15,
       "origin": {
         "type": "local",
@@ -1128,7 +1128,7 @@
     "next-token-agent-loop": {
       "path": "SKILL/software-development/tier0/next-token-agent-loop",
       "tier": "A",
-      "hash": "262753be36ebfb86b665ed5e7359b0743912a7535bcdc316d54ca99849e0ce7e",
+      "hash": "1cb484d992ca0aa2b0983812c000b8a23127ba8a2afdd2c1a39508bb62746d35",
       "files": 14,
       "origin": {
         "type": "local",
@@ -1142,7 +1142,7 @@
     "one-on-one-prep": {
       "path": "SKILL/management/tier3/one-on-one-prep",
       "tier": "A",
-      "hash": "6f4bf59709db00a632b10eea7014e1144ca216d4bacfebed238a7c133999f7a9",
+      "hash": "12c3b6a4fbc58ef9608d6284208ad425d91954d477865fa238c5205e2d8a706e",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1153,7 +1153,7 @@
     "onetake": {
       "path": "SKILL/video/tier0/onetake",
       "tier": "A",
-      "hash": "98f0f99391805340e390b53047952b752efa091e7e1b4956175b660cf5075fad",
+      "hash": "ef6e29fc6245f189313dee9f1e5b6810ccb009cff481063aa2814d81f27ee8e3",
       "files": 86,
       "origin": {
         "type": "repo",
@@ -1167,7 +1167,7 @@
     "optimize-web-animations": {
       "path": "SKILL/video/tier1/optimize-web-animations",
       "tier": "B",
-      "hash": "508fc46303651ebd85de5bc9ca60887efc117a331c6193eb60414950df999180",
+      "hash": "6b8ee8038205def106936e6ea383a93ce15f5685f50158c6b08f0c5564886947",
       "files": 8,
       "origin": {
         "type": "unknown",
@@ -1178,7 +1178,7 @@
     "overall-planning": {
       "path": "SKILL/management/tier3/overall-planning",
       "tier": "B",
-      "hash": "5d840958fc4a5c74b9a956ee0100303a7d07352bf824d1ba7f9b3c2346c5012e",
+      "hash": "e12ebca63207dca16176bc1d143c2f40101f27bc1e26c72edcc82363bd6c6c5d",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1189,7 +1189,7 @@
     "pdf": {
       "path": "SKILL/content/tier0/pdf",
       "tier": "A",
-      "hash": "0c38854b526efd4d9d2af16a61839aa219d8c700eef2d96f1cc533a279b20218",
+      "hash": "8d7911dca599bb2c244b5bd186125a66cce312d55b1e2a86cc347213fec863f2",
       "files": 12,
       "origin": {
         "type": "repo",
@@ -1203,7 +1203,7 @@
     "performance-review": {
       "path": "SKILL/management/tier3/performance-review",
       "tier": "B",
-      "hash": "fff7e67404ffb0200e0194b67ca9228176fc2e4aa6d3af25583a94578b6c172b",
+      "hash": "16dc589b6ee4234bb4e5ffc6b7a5432a59450c4034912ca952515aa17bf6673d",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1214,7 +1214,7 @@
     "pitch-book-creation": {
       "path": "SKILL/management/tier3/pitch-book-creation",
       "tier": "B",
-      "hash": "f4e503822874403a66d30c9756250cf9239a79a22bf2e404e7bf223e96234c4b",
+      "hash": "7c9e8189a1cdd84f5bc29f73b9e52eaa9c2bd59b671b1c37df22fcb0b4100728",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -1225,7 +1225,7 @@
     "pptx": {
       "path": "SKILL/content/tier1/pptx",
       "tier": "A",
-      "hash": "dbe0a24f023b80ded38cb1816e9eb0993b62849f2ba411fbd2771f111fc050cd",
+      "hash": "eb9891c1333282e87f7212b6547ceb0a4c59448e96eaf4f50a610e8c94e41570",
       "files": 56,
       "origin": {
         "type": "repo",
@@ -1239,7 +1239,7 @@
     "practice-cognition": {
       "path": "SKILL/management/tier3/practice-cognition",
       "tier": "B",
-      "hash": "ac3297bd10a8a5c1575b412990ccfc703ba40ab16c8273edab312a5213e44ff8",
+      "hash": "796342cc8c39879d950bd6f64605cebcc7d8cb80dd6a6bc27af0d0d006f19115",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1250,7 +1250,7 @@
     "precedent-transactions": {
       "path": "SKILL/management/tier3/precedent-transactions",
       "tier": "B",
-      "hash": "aa5c1936abc46ab9cbea982fd02caabdd83b04368bb915c5ba2f898b24a5c75e",
+      "hash": "0f49f6ea7717a2187353138bf1e2e7099346c7c9034a21f14675643cb447db16",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -1261,7 +1261,7 @@
     "presentation-skill": {
       "path": "SKILL/design/tier1/presentation-skill",
       "tier": "A",
-      "hash": "31e327e16f20096a91dc8a98281f8fc9228dc68b73be9d266ad883437c76327b",
+      "hash": "ad3425edd38ef926ee498b44c1422ad9a9eec8813944294216db1f458f35a69d",
       "files": 241,
       "origin": {
         "type": "repo",
@@ -1275,7 +1275,7 @@
     "process-friction-cut": {
       "path": "SKILL/management/tier3/process-friction-cut",
       "tier": "A",
-      "hash": "1298dfa36b7f9296d9eaaa38a79293d3eb02db96975e5c5ae5b964ccf4e88093",
+      "hash": "33e68c74f7b7fb4966823f4944bfe0b32690e3a8292a48ac7e3779d3aa33762a",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1286,7 +1286,7 @@
     "process-motivation-design": {
       "path": "SKILL/management/tier3/process-motivation-design",
       "tier": "A",
-      "hash": "8c069f5a5ed20b0d22918e015a57b9e63d34a6df2a163d4f49e72d38fc361ceb",
+      "hash": "03d8144f4fed57dbc3504e05818f1dbd1d007380ae2309cd1a83be5f91c778ef",
       "files": 2,
       "origin": {
         "type": "local",
@@ -1300,7 +1300,7 @@
     "process-reward-boost": {
       "path": "SKILL/management/tier3/process-reward-boost",
       "tier": "A",
-      "hash": "e62744377abd2f5ce90c2c2b201813cfea192b51f5ded042613c6e17264ab879",
+      "hash": "3b7210b703c16059e1fb5953050cdb2dce5ba9e433f935ecc3208dc061abdea9",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1311,7 +1311,7 @@
     "project-update": {
       "path": "SKILL/management/tier3/project-update",
       "tier": "A",
-      "hash": "f9ccf96a4a1cb1ba937e3b297bc2f8f3b247bbc2d2bb57cdca2a501f8ebed4a2",
+      "hash": "5d25a9322b87d9f05664303b938d4f6e23b2b2f6af71790ca8168b65f58c4de1",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1322,7 +1322,7 @@
     "proposal": {
       "path": "SKILL/management/tier2/proposal",
       "tier": "B",
-      "hash": "b3ccc9e66addf5fac48f95c04c548a7ba7fa6fc36c4954a81994aa6b2f945a01",
+      "hash": "bea1d65a9ea23361a6813d64c19e6def97f54069b1276a933c3b96918b45e500",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1333,7 +1333,7 @@
     "protracted-strategy": {
       "path": "SKILL/management/tier3/protracted-strategy",
       "tier": "B",
-      "hash": "a9261cef8683362c1c0a3511f25baaad43ebf8f5bb86b00169e0a06fda3986fe",
+      "hash": "8819a7f011cb1629ff1e552ae67bc367fbc29052225c66a779597c772056f2a4",
       "files": 3,
       "origin": {
         "type": "unknown",
@@ -1344,7 +1344,7 @@
     "pstack-trust-ladder": {
       "path": "SKILL/software-development/tier0/pstack-trust-ladder",
       "tier": "A",
-      "hash": "2f0dd7157df8d9e2e4c6428eda9ae296628fce032761b32cff6305fc960d7c4d",
+      "hash": "d1503f6127bf74a2259bdbcefa3bfd43e1c891a3fbdb72b6ce402ff215bd6c43",
       "files": 7,
       "origin": {
         "type": "local",
@@ -1358,7 +1358,7 @@
     "quality-first-delivery": {
       "path": "SKILL/software-development/tier0/quality-first-delivery",
       "tier": "A",
-      "hash": "c754e741a7036659e641576f5cc904e90c218e59f3ba549a1262f77a9d678845",
+      "hash": "0d3296077b5a58245ef63b100cb0dd643c231bb7c00153a1af28e0834bd30ff6",
       "files": 9,
       "origin": {
         "type": "local",
@@ -1372,7 +1372,7 @@
     "quarterly-review": {
       "path": "SKILL/management/tier2/quarterly-review",
       "tier": "B",
-      "hash": "eebeb9ee282facefee252382634745b6bcfcf848d1c4d7e8dd2b696edb65becb",
+      "hash": "39d67a70fc429c188c52a8de0fe96e347cfe635bd757b945a8098c017c16762e",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1383,7 +1383,7 @@
     "remotion-markup": {
       "path": "SKILL/video/tier1/remotion-markup",
       "tier": "B",
-      "hash": "1b4e0c9b303ca35c9e3802fc61bee29e1d3578621fbdc951ddc5c467259451ac",
+      "hash": "2c816f98efe9aa880a19a9edb8e2f7714375ef316bcbbedf92467d69124c855f",
       "files": 68,
       "origin": {
         "type": "unknown",
@@ -1394,7 +1394,7 @@
     "renzhengfei-advisor": {
       "path": "SKILL/management/tier3/renzhengfei-advisor",
       "tier": "B",
-      "hash": "99dcbd15c08caaaff47a72b9cf9bd36a09dd45fa9cedfa5cef4cd9e98546fb9f",
+      "hash": "3bada7ab08cc3fdbb9360bdf23f461c87bb285504aaf2b2b02439c2a49e47334",
       "files": 1,
       "origin": {
         "type": "sibling",
@@ -1408,7 +1408,7 @@
     "revenue-recognition": {
       "path": "SKILL/management/tier3/revenue-recognition",
       "tier": "B",
-      "hash": "47873108b9f170ab59d94a1fc7ef7a6a8697dbd4181ac3de3c7914f706b39916",
+      "hash": "a56ceb4e0cfc20398e751b90d5c8a8f7e806c1cb1bb6cf807e61c017b2c1b682",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -1419,7 +1419,7 @@
     "rigorous-proof": {
       "path": "SKILL/math/tier2/rigorous-proof",
       "tier": "B",
-      "hash": "c491ebcf83d55275d7accc5ab9819ff07f5d332ff4c3823ad46a39bb5e5d8a78",
+      "hash": "db7a356ad8c7259ce2fcec7943db23648f390a23fa2b4c9bdded3629b1d28afc",
       "files": 1,
       "origin": {
         "type": "local",
@@ -1433,7 +1433,7 @@
     "search-fallback": {
       "path": "SKILL/agents/tier0/search-fallback",
       "tier": "B",
-      "hash": "3c8cbfe96df95c63b71662aecdcc49f80d6afd8632a41e6ba448cd92c48d39e8",
+      "hash": "1e43db38f2d4c0963962cf790e2f11974f1f434eba694471709d1d42ec8fbd32",
       "files": 4,
       "origin": {
         "type": "local",
@@ -1447,7 +1447,7 @@
     "sector-analysis": {
       "path": "SKILL/management/tier3/sector-analysis",
       "tier": "B",
-      "hash": "2f3196872d2f04fae5288867578411aa36f030d06144f5e5523f3138396734e1",
+      "hash": "0cb7365d47a65857ee6730dfe118f7087ab7e2a8a89114578017fb66baa57bfb",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -1458,7 +1458,7 @@
     "single-file-html-game": {
       "path": "SKILL/game-dev/tier0/single-file-html-game",
       "tier": "A",
-      "hash": "966faa0e162573175101bc8890ce2814f699f552134e37bd37e75cf963011c44",
+      "hash": "65e418fe849c2c1fe4acfbbcea5fad880e316913c2eb2005dedadab83d272e93",
       "files": 8,
       "origin": {
         "type": "local",
@@ -1472,7 +1472,7 @@
     "skill-doctor": {
       "path": "SKILL/software-development/tier0/skill-doctor",
       "tier": "A",
-      "hash": "f7e88a45e6f9531b9ce1fc9590a7e50f04c0b16d9cbc4183df6ce0f66876b9d9",
+      "hash": "107aca0dcbea05507004865d0394443094ff50e0a85bbe717a8deb4f195c4261",
       "files": 20,
       "origin": {
         "type": "unknown",
@@ -1483,7 +1483,7 @@
     "skill-trigger": {
       "path": "SKILL/software-development/tier0/skill-trigger",
       "tier": "A",
-      "hash": "4303dffe4940db25eb6b845a3fa32a582aedc3b63440b81fd33d52e0be5354b9",
+      "hash": "0edecbee5af31ea3c784568e2fd7c3759a5cb5c0cc380f218c922410b6c7b9b9",
       "files": 9,
       "origin": {
         "type": "unknown",
@@ -1505,7 +1505,7 @@
     "spark-prairie-fire": {
       "path": "SKILL/management/tier3/spark-prairie-fire",
       "tier": "B",
-      "hash": "8da48c9b9ef0502a23960f69540238dfddc31c8741b3afc4271109d7049611ad",
+      "hash": "0c9d72e5f0b4fef36157ceb461a9c326952221e61797326406919c9fab53f22f",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1516,7 +1516,7 @@
     "stageshow": {
       "path": "SKILL/design/tier0/stageshow",
       "tier": "A",
-      "hash": "b7d63403cbe92dcbbab17e9325a0697e66fb969133b84f6942ab7a154b801d8d",
+      "hash": "c7c3bc96789a52c1ada0601b26550bdef1550f1266690bbb55491733c9a467b6",
       "files": 405,
       "origin": {
         "type": "repo",
@@ -1530,7 +1530,7 @@
     "style-alibaba": {
       "path": "SKILL/management/tier3/style-alibaba",
       "tier": "A",
-      "hash": "0bbfe184b956c3fa34248011a774911d3dbec3f443f445877f74828f0ac4f23f",
+      "hash": "88d4c0709bc3877b2d46153f8f967033978906f91c6dd68854fe06850ae67b2e",
       "files": 2,
       "origin": {
         "type": "local",
@@ -1544,7 +1544,7 @@
     "style-amazon": {
       "path": "SKILL/management/tier2/style-amazon",
       "tier": "A",
-      "hash": "05ec046bb27c39e57818deafd8ec95b41ddd4df239725abce3c8d3045a8f3c7d",
+      "hash": "faf34c60c8855a437302adbf0b5f384f32e63279135f2e1fc15e89bf607f42d4",
       "files": 2,
       "origin": {
         "type": "local",
@@ -1558,7 +1558,7 @@
     "style-bytedance": {
       "path": "SKILL/management/tier3/style-bytedance",
       "tier": "A",
-      "hash": "cc067ceeb30b3bd193437409e3670132210ab39a66bf7818590e65c29371f0d5",
+      "hash": "56672870f4b66d1c868525c4dd77c64bc870d29f0c1f17e5c02a5adeae5d7c8f",
       "files": 2,
       "origin": {
         "type": "local",
@@ -1572,7 +1572,7 @@
     "style-google": {
       "path": "SKILL/management/tier2/style-google",
       "tier": "A",
-      "hash": "a694e5877754ec13ce7304f8d2e0b19a1a546625c72a71156ad624e09f673f8e",
+      "hash": "29f1371de3eb078c9c844d56754c8edbd0e6988750fa6f98b7d3ca6bae41716e",
       "files": 2,
       "origin": {
         "type": "local",
@@ -1586,7 +1586,7 @@
     "style-microsoft": {
       "path": "SKILL/management/tier2/style-microsoft",
       "tier": "A",
-      "hash": "eb9a44671cab7a54fdf20587c43cf395662ac3a59e36f962bd1f30a7780a182f",
+      "hash": "d00e73595f86ca96fd10dbd00296ad3a06762e1e70d16d5d00f4931b64f9b8ba",
       "files": 2,
       "origin": {
         "type": "local",
@@ -1600,7 +1600,7 @@
     "style-report": {
       "path": "SKILL/management/tier2/style-report",
       "tier": "B",
-      "hash": "bc7fda9d813d137e160ce93372f64a63fbdef80ac092927b954adecc474c6ecd",
+      "hash": "401884515a8e902ef0cb4eb009b27e31409346fd5a1dea7c93a7b9b7b4c3c535",
       "files": 13,
       "origin": {
         "type": "unknown",
@@ -1611,7 +1611,7 @@
     "style-tencent": {
       "path": "SKILL/management/tier3/style-tencent",
       "tier": "A",
-      "hash": "1191247a0f909ff82ce038ec53cd1a2bf08dd2b73f6e68877498ba98e6638c88",
+      "hash": "22ce0b653d07560824f7da2547a52068de4859bcf9bd8d05f2f5e5554402d251",
       "files": 2,
       "origin": {
         "type": "local",
@@ -1625,7 +1625,7 @@
     "systematic-debugging": {
       "path": "SKILL/software-development/tier1/systematic-debugging",
       "tier": "A",
-      "hash": "383b8d83238d9edd362c3d0198c29cece856a6c74574831038357612a5fb2dc0",
+      "hash": "c8e5ff7574edad5daab075aaf96aee0e5ed4b6b0fada1f3994abf059b9bd7fd9",
       "files": 11,
       "origin": {
         "type": "repo",
@@ -1639,7 +1639,7 @@
     "technical-design-document": {
       "path": "SKILL/game-dev/tier1/technical-design-document",
       "tier": "B",
-      "hash": "7ee162cc66cea17a3634705e791938ddd40943f224862e2dc0994bc59601dd58",
+      "hash": "c6ab7da8d2b9826a3a6692f6c1196a26553e96199ce12da5b6b8bfb81366ab15",
       "files": 16,
       "origin": {
         "type": "repo",
@@ -1653,7 +1653,7 @@
     "trimsheet-disguise": {
       "path": "SKILL/design/tier0/trimsheet-disguise",
       "tier": "A",
-      "hash": "84ff1da792b1c8f5c279e91b615213413964ea4523464a85a1908088df9aef8e",
+      "hash": "cf11b46767d964ad4194e2a2de67029ffabc3262d9d0bbf48c782e8e8f1bcc8b",
       "files": 5,
       "origin": {
         "type": "local",
@@ -1667,7 +1667,7 @@
     "truly-anti-ai-flavor": {
       "path": "SKILL/writing/tier1/truly-anti-ai-flavor",
       "tier": "A",
-      "hash": "cb1b16c252e6a1225d3eb69ef4d7dee85b66907f6f69a02900159d8262774655",
+      "hash": "098a36f0d5953431c1e5af4e2bf65cdc8934dbbe5c92962d198e46f58f4a2817",
       "files": 3,
       "origin": {
         "type": "local",
@@ -1681,7 +1681,7 @@
     "ue-renderdoc-auto-capture": {
       "path": "SKILL/game-dev/tier0/ue-renderdoc-auto-capture",
       "tier": "A",
-      "hash": "aede723751e808037ec1b1f203ca5acc5e725dca6320fd8d96471bec81e73104",
+      "hash": "3cabdc43338cc96a8033a6a35691419878f4bf3751af0fb8bd4775b583a014a2",
       "files": 10,
       "origin": {
         "type": "local",
@@ -1695,7 +1695,7 @@
     "upward-email": {
       "path": "SKILL/management/tier3/upward-email",
       "tier": "B",
-      "hash": "6c9aa3c3c14bcad8b884b270b2eebd9a123b0f992dce92a9b1a53eed9863d4e4",
+      "hash": "bdd5fa875e5b66b394bcfd5f2b888ffb344358a2825b31eb8569f6577d16028a",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1706,7 +1706,7 @@
     "video-production": {
       "path": "SKILL/design/tier0/video-production",
       "tier": "B",
-      "hash": "9b38a7a1b8ef683b8549bd96e966272bcf4e110dd00cfc5729c08c1acf0d0666",
+      "hash": "93b98a5e4d084faea8f91f75b66ae9bc54ed54a1bb987c98c03a05b405d133d4",
       "files": 22,
       "origin": {
         "type": "repo",
@@ -1720,7 +1720,7 @@
     "video-to-deck-reel": {
       "path": "SKILL/video/tier0/video-to-deck-reel",
       "tier": "A",
-      "hash": "e64767f2e6c8a1cc5cea49d63c0fb1ce8be3b1a3216db596c002a3b55204e628",
+      "hash": "fcc6606b85a5fe621b0da2540e57cdb3d4b83b8ffaedee55a74f8f468726e6b5",
       "files": 23,
       "origin": {
         "type": "local",
@@ -1734,7 +1734,7 @@
     "visual-explainer": {
       "path": "SKILL/design/tier1/visual-explainer",
       "tier": "A",
-      "hash": "1130cb2ffc00c7fcdd6d55a2b602e826f85220dae562323c1d8e57ecf1aa1b3b",
+      "hash": "ac6c8040aa92e8b1c5ad8d263090da1d7745733c104120627f7d56c491da44c2",
       "files": 50,
       "origin": {
         "type": "sibling",
@@ -1748,7 +1748,7 @@
     "visual-learner": {
       "path": "SKILL/design/tier1/visual-learner",
       "tier": "B",
-      "hash": "220e6b61c1bb1ee5adde905634e32ae426b19128c8ae00a8114a82ac47026304",
+      "hash": "8b7def925dd7a27d2c3ff705ee4dc5cd7992d2cfe3f8114cd526428465be5401",
       "files": 6,
       "origin": {
         "type": "repo",
@@ -1773,7 +1773,7 @@
     "web-prototype": {
       "path": "SKILL/design/tier1/web-prototype",
       "tier": "B",
-      "hash": "14ce8cdd6d5b23f9c26661f5cdf8ff7ae153d4ee2d4126fe6ecf8ca0d76dba6f",
+      "hash": "85b05ee4c0bea68df6bc51ffe838d56f5adaca5f0d8f67230648ce17c7e0e9ab",
       "files": 6,
       "origin": {
         "type": "sibling",
@@ -1787,7 +1787,7 @@
     "webapp-testing": {
       "path": "SKILL/game-dev/tier1/webapp-testing",
       "tier": "A",
-      "hash": "98923b45be6a6ea7f56fa2431eda92dc16ef9c71be396f44864052cfd22ee132",
+      "hash": "e014313a62daf95c52c5bd3ad13eeeb47fd68ca80a267a0bda3e43b6eb123070",
       "files": 7,
       "origin": {
         "type": "repo",
@@ -1801,7 +1801,7 @@
     "weekly-report": {
       "path": "SKILL/management/tier3/weekly-report",
       "tier": "A",
-      "hash": "3a051ee5b90ba4ad7577055563908e2fc3d5ec8df264ffdce6b57d4000902fd2",
+      "hash": "c165c7b975033e8e83da97334a5484432b0d2c444c052a1095035685f575abcb",
       "files": 2,
       "origin": {
         "type": "unknown",
@@ -1812,7 +1812,7 @@
     "workflows": {
       "path": "SKILL/management/tier2/workflows",
       "tier": "B",
-      "hash": "942c8f8386f386b07f2345565309e28d2db63a26d8fe8712e8b4c4699f69bc55",
+      "hash": "559ed213d8f680fed337c1394042c47c9d16282c247911f87d8bc79aead1b2fb",
       "files": 1,
       "origin": {
         "type": "unknown",
@@ -1823,7 +1823,7 @@
     "xiaoma-studio": {
       "path": "SKILL/design/tier1/xiaoma-studio",
       "tier": "A",
-      "hash": "205920020473c830ceb66b03e3b957a48cbcd8c5a5eb691c30ff36229d620eb3",
+      "hash": "4b9ac401de9ba94f7c1326adfe30f31c33d8889af392e1b93b40d3a98a42a820",
       "files": 53,
       "origin": {
         "type": "repo",
@@ -1851,7 +1851,7 @@
     "zhangyiming-advisor": {
       "path": "SKILL/management/tier3/zhangyiming-advisor",
       "tier": "B",
-      "hash": "479bd1998d0d20cc82f69f897d06309cf2d2347f940ce74a2ea5ec6a7ce21bac",
+      "hash": "ce7c2da1d1dd9aed1323cc8d4087e027a336b00f93dd59af695d51d3e0003b43",
       "files": 1,
       "origin": {
         "type": "sibling",
