@@ -1,0 +1,27 @@
+{
+  "what": "opendeck 并入 html-ppt 之后的触发验证",
+  "before": "同一条请求（网页版演示稿 + 每点一下出一步 + 自己念讲解 + 打包离线）三次都判 WRONG 给 html-ppt，因为当时 opendeck 还在、应该是它接",
+  "after": "opendeck 目录与 store 副本都撤掉、能力并入 html-ppt 后，同一条请求判 PASS（选中的就是 html-ppt）",
+  "caveat": "第二条（静态键盘翻页幻灯片）仍是 TIMEOUT —— 240 秒内模型一直在做事，不是选错。合并前它也是 TIMEOUT。",
+  "results": [
+    {
+      "skill": "html-ppt",
+      "path": "SKILL/design/tier0/html-ppt",
+      "prompt": "想要一套网页版演示稿，每点一下出一步内容还能自己念讲解，最后打包成离线也能放的文件",
+      "picked": [
+        "html-ppt"
+      ],
+      "verdict": "PASS",
+      "exit": 0,
+      "said": "这件事能做：本机已经有一套现成工具（html-ppt 技能里的 OpenDeck 套件），点一下出一步、配音讲解、打包成离线单文件这三项它都支持。开工前还缺两项信息，需要你来定。\n\n## 已核实的事实\n- 套件文件在 `C:\\Users\\yuhang\\.claude\\skills\\html-ppt\\assets\\narrated\\`，包括逐步展开引擎 `deck-stage.js` 和 `deck-enhance.js`、讲解稿文件 `narration-script.js`"
+    },
+    {
+      "skill": "html-ppt",
+      "path": "SKILL/design/tier0/html-ppt",
+      "prompt": "下周技术分享要讲缓存设计，帮我做一套在浏览器里打开、键盘就能翻页的好看幻灯片",
+      "picked": [],
+      "verdict": "TIMEOUT",
+      "said": "no result within 240s"
+    }
+  ]
+}
