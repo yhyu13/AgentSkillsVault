@@ -103,7 +103,6 @@ multi-agent-repo-governance|SKILL/software-development/tier0/multi-agent-repo-go
 next-token-agent-loop|SKILL/software-development/tier0/next-token-agent-loop|A
 one-on-one-prep|SKILL/management/tier3/one-on-one-prep|A
 onetake|SKILL/video/tier0/onetake|A
-opendeck|SKILL/design/tier0/opendeck|A
 optimize-web-animations|SKILL/video/tier1/optimize-web-animations|B
 overall-planning|SKILL/management/tier3/overall-planning|B
 pdf|SKILL/content/tier0/pdf|A

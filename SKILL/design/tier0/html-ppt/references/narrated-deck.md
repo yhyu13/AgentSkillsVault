@@ -1,11 +1,13 @@
----
-name: opendeck
-description: Build animated, narrated HTML presentation decks — slides that reveal step-by-step as you click, hover tooltips, a thumbnail rail, fullscreen, plus AI voice narration generated in-browser via ElevenLabs that can be baked into a fully offline file. Use when the user wants a presentation, deck, or slides that animate step-by-step, a self-running or narrated presentation, a deck to present and export, or anything described as "click through and it talks." Can also package the deck as a portable `.deck` file (deck.json + zipped standalone HTML) for playback in a compatible deck player app.
-license: MIT
-metadata:
-  author: The OpenDeck Authors
-  version: 1.3.1
-  created: "2026-06"
+# 讲解型 deck：逐步展开 + 配音 + 离线单文件
+
+> 这一章来自 OpenDeck（`github.com/open-deck-org/opendeck` @ `d0dbe02`，MIT，The OpenDeck Authors），
+> 2026-11-18 由 SKILL_CANDIDATES.md #80 并入 `html-ppt`：两者本来抢同一条请求，
+> 「网页版演示稿」先命中 html-ppt，而 OpenDeck 的独有能力（分步展开、浏览器内配音、离线单文件）
+> 被留在另一个 skill 里，模型看不见就等于没有。合并后由本 skill 一处承接两种情况：
+> 静态键盘翻页 → 走 templates / layouts；点一下出一段 + 自念讲解 + 打包离线 → 走本章 + `assets/narrated/`。
+>
+> 下面是原 OpenDeck 正文，**未改写**，只把 `assets/…` 改成 `assets/narrated/…`。
+
 ---
 
 # OpenDeck — Narrated Animated Presentations
@@ -18,7 +20,7 @@ Use this skill when the user asks for: a presentation/deck/slides that animates 
 
 ## What you ship
 
-The shippable kit lives in this skill's **`assets/`** folder. A deck is a single deck file (`starter-deck.html`, or a `.dc.html` Design Component when building inside a Claude design project) plus five companion files (all copied into the **same folder** as the deck), and a zero-dependency bundler for offline export:
+The shippable kit lives in this skill's **`assets/narrated/`** folder. A deck is a single deck file (`starter-deck.html`, or a `.dc.html` Design Component when building inside a Claude design project) plus five companion files (all copied into the **same folder** as the deck), and a zero-dependency bundler for offline export:
 
 | File | Role | You edit it? |
 |---|---|---|
@@ -39,7 +41,7 @@ The shippable kit lives in this skill's **`assets/`** folder. A deck is a single
 
 ## Step 1 — Scaffold the deck
 
-Start from **`assets/starter-deck.html`** (in this skill) — it's a complete, working deck you can open directly: 3 slides, a stepped reveal, tooltips, the rail, and the narration controls. Copy it into the project together with the five companion files from `assets/` (`deck-stage.js`, `deck-enhance.js`, `narration-script.js`, `deck-narration.js`, `deck-animation.css`) — **all in one folder, no subdirectories**. The engine resolves `<script src>` and the `deck-stage` mount relative to the deck, so a flat layout is required. Then replace the demo `<section>`s with the real slides.
+Start from **`assets/narrated/starter-deck.html`** (in this skill) — it's a complete, working deck you can open directly: 3 slides, a stepped reveal, tooltips, the rail, and the narration controls. Copy it into the project together with the five companion files from `assets/narrated/` (`deck-stage.js`, `deck-enhance.js`, `narration-script.js`, `deck-narration.js`, `deck-animation.css`) — **all in one folder, no subdirectories**. The engine resolves `<script src>` and the `deck-stage` mount relative to the deck, so a flat layout is required. Then replace the demo `<section>`s with the real slides.
 
 ### Two wiring shapes — pick the one that matches where you're building
 
@@ -72,7 +74,7 @@ Start from **`assets/starter-deck.html`** (in this skill) — it's a complete, w
   <script src="deck-export.js"></script>
 </helmet>
 
-<x-import component-from-global-scope="deck-stage" from="./deck-stage.js"
+<x-import component-from-global-scope="deck-stage" from="deck-stage.js"
           width="1920" height="1080" hint-size="100%,100%">
   <section data-label="Title" data-speaker-notes="…">…</section>
   <section data-label="Agenda" data-speaker-notes="…">…</section>
@@ -278,7 +280,7 @@ deckExport.deck()   // browser console: builds the standalone, writes deck.json,
 
 …or **ask the agent** to do it with file tools: produce the published HTML exactly as in Route A, write it as `index.html`, add a `deck.json`, and zip the two at the archive root as `<id>.deck`. Either way the result is one portable file.
 
-The `deck.json` manifest is defined by **`assets/deck.schema.json`** (JSON Schema) — read that file for the exact field set, types, patterns, and defaults. In short: only `entry` (`"index.html"`) is strictly required; `id` (the filename), `title`, `orientation` (`landscape` for these 1920×1080 decks), and optional `author`/`version` round it out. Add `"$schema": "./deck.schema.json"` to a hand-written `deck.json` for editor validation.
+The `deck.json` manifest is defined by **`assets/narrated/deck.schema.json`** (JSON Schema) — read that file for the exact field set, types, patterns, and defaults. In short: only `entry` (`"index.html"`) is strictly required; `id` (the filename), `title`, `orientation` (`landscape` for these 1920×1080 decks), and optional `author`/`version` round it out. Add `"$schema": "deck.schema.json"` to a hand-written `deck.json` for editor validation.
 
 **Optional thumbnail.** Drop a `thumbnail.png` (or `.jpg`/`.webp`/`.svg`) next to the deck before exporting and `deckExport.deck()` bakes it into the package and records `"thumbnail": "thumbnail.png"` in `deck.json`; or pass one explicitly: `deckExport.deck({ thumbnail: "data:image/png;base64,…" })`. Hand-writing the package? Add the image file at the archive root and point `thumbnail` at its relative path. Players that support it (e.g. the OpenDeck app) show the image in their library; players that don't simply ignore the field.
 
