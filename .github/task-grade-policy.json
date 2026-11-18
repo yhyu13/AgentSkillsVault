@@ -1,7 +1,11 @@
 {
   "version": 1,
   "default_branch": "main",
-  "decision_order": ["red", "yellow", "green"],
+  "decision_order": [
+    "red",
+    "yellow",
+    "green"
+  ],
   "red": {
     "description": "Admin-only. Agent must not merge without recorded admin authorization.",
     "paths": [
@@ -19,7 +23,6 @@
       "scripts/task_policy.py",
       "scripts/merge_authorization.py",
       "scripts/check_manifest.py",
-      "scripts/install-manifest.txt",
       "scripts/skill-tiers.txt",
       "scripts/sync-skills.ps1",
       "scripts/verify-install.ps1",
@@ -44,6 +47,7 @@
   "yellow": {
     "description": "Requires one human approval before merge; agent may execute after approval is recorded.",
     "paths": [
+      "scripts/install-manifest.txt",
       "INSTRUCTION.md",
       "README.md",
       "KNOWLEDGE.md",
@@ -99,5 +103,17 @@
     "green_requires_human_approval": false,
     "approval_must_match_head_sha": true,
     "self_approval_allowed": false
-  }
+  },
+  "exemptions": [
+    {
+      "name": "manifest-entry-churn",
+      "description": "A PR whose ONLY changed file is scripts/install-manifest.txt, and where every changed line is a comment, a blank line, or a `<name>|<vault-path>|<tier>` entry, is manifest bookkeeping, not a distribution decision. The automated checks (manifest-consistency, skill-refs) already prove the list matches the tree, so the grade drops from yellow to green. Any other file in the diff, or any line that is not an entry, keeps the yellow grade.",
+      "paths": [
+        "scripts/install-manifest.txt"
+      ],
+      "when": "diff-lines-are-manifest-entries",
+      "downgrade_to": "green",
+      "why": "2026-11-18: adding, merging or retiring a skill always rewrites this file, so every routine skill-set change escalated to red and needed an admin SHA approval (#56, #57). The file is a generated projection of the tree; the risky part is the skill content and the tree itself, not the row."
+    }
+  ]
 }

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "world.schema.json",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/document"
+    }
+  ],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "common.schema.json#/$defs/entityBase"
+          }
+        ],
+        "required": [
+          "value"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "scene",
+              "world_region",
+              "geometry_batch",
+              "collision_system",
+              "lighting_set",
+              "quality_system",
+              "runtime_observation",
+              "not_observed"
+            ]
+          },
+          "value": {
+            "type": "object"
+          },
+          "related_entities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }
+}

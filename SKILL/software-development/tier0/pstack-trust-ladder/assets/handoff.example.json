@@ -1,0 +1,15 @@
+{
+  "current_rung": 1,
+  "repeated_errors": [
+    {"name": "口头说完成但没有运行", "count": 4},
+    {"name": "同一盲点换个说法再出现", "count": 3},
+    {"name": "把提醒写进说明后仍再犯", "count": 2}
+  ],
+  "evidence_count": 0,
+  "author": "writer",
+  "reviewer": "",
+  "accepted_without_rewrite": 0,
+  "clean_mornings": 0,
+  "merge_requested": false,
+  "done_definition": "三条失败都有计数"
+}

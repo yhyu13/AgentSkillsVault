@@ -1,0 +1,75 @@
+{
+  "skill": "bug-repro",
+  "version": "0.1.0",
+  "description": "Eval for the bug-repro skill. See ../references/eval-playbook.md for the 4 mandatory design rules.",
+
+  "test_cases": [
+    {
+      "id": "tc-01-positive-clear-bug",
+      "type": "positive",
+      "hidden_dir": "~/work/CURSOR-4521/repro",
+      "input": {
+        "user_prompt": "On commit abc123, parse_config returns None when the file has a trailing newline, but parse_config is expected to return an empty dict.",
+        "context": { "language": "python", "framework": "pytest" }
+      },
+      "rubric": [
+        { "weight": 3, "criterion": "Test code is present and runnable" },
+        { "weight": 2, "criterion": "Test asserts the expected behavior (empty dict, not None)" },
+        { "weight": 1, "criterion": "Failure output from running the test is included" },
+        { "weight": 1, "criterion": "Confidence level is stated" }
+      ],
+      "judge_model": "different from runner",
+      "expected_min_score": 8
+    },
+    {
+      "id": "tc-02-vague-bug",
+      "type": "negative",
+      "hidden_dir": "~/work/MOB-991/repro",
+      "input": {
+        "user_prompt": "the app feels broken sometimes",
+        "context": {}
+      },
+      "rubric": [
+        { "weight": 1, "criterion": "Agent does NOT produce a confident test for an unspecified bug" },
+        { "weight": 1, "criterion": "Agent asks for the missing details (which scenario, which version, which path)" }
+      ],
+      "judge_model": "different from runner",
+      "expected_max_score": 3
+    },
+    {
+      "id": "tc-03-stack-trace",
+      "type": "positive",
+      "hidden_dir": "~/work/SENTRY-77/repro",
+      "input": {
+        "user_prompt": "Sentry alert: TypeError: Cannot read property 'id' of undefined at UserService.getById (src/services/user.js:42:18) triggered 312 times in the last hour",
+        "context": { "language": "javascript", "framework": "jest" }
+      },
+      "rubric": [
+        { "weight": 3, "criterion": "Test reproduces the TypeError on the reported line" },
+        { "weight": 2, "criterion": "Test sets up the precondition (undefined user object)" },
+        { "weight": 1, "criterion": "Test uses jest, not a different framework" }
+      ],
+      "judge_model": "different from runner",
+      "expected_min_score": 8
+    }
+  ],
+
+  "models_to_test": [
+    "claude-opus-4",
+    "claude-sonnet-4",
+    "gpt-4o"
+  ],
+
+  "pass_criteria": {
+    "min_score_per_case": 8,
+    "min_score_across_models": 7,
+    "judge_agreement": 1
+  },
+
+  "meta_verification": {
+    "fail_injection_case": "tc-meta-fail",
+    "best_effort_case": "tc-meta-pass",
+    "stability_runs": 3,
+    "stability_tolerance": 1
+  }
+}

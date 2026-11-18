@@ -101,7 +101,7 @@
 | ui-mockups | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\ui-mockups` — 产品 UI 截图级 mockup（浏览器窗口 chrome / 真实品牌图标） |
 | visual-explainer | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\visual-explainer` — 可视化解释产物（commands/ kit/ mcp/ plan/ pptx/ video/ templates/ + extension.ts） |
 | web-prototype | sibling | `D:\GitRepo-AI\FDE20261023\.kilo\skills\web-prototype` — 网页原型（assets/ references/ example.html） |
-| html-ppt | repo (submodule) | `github.com/lewislulu/html-ppt-skill` @ `fd16290` — HTML PPT Studio：一个 theme 文件 = 一套外观、一个 layout 文件 = 一种页面、一个 animation class = 一种入场；token 化设计系统（`assets/base.css`），纯静态、可离线，MIT；已复制进 `SKILL/design/tier0/html-ppt`（2026-10-25 从 `vendor/html-ppt-skill` 重新复制：目录重构时该副本被删除，用户机器上只剩一个 1 文件的残桩和一份缺 13 个文件的旧拷贝） |
+| html-ppt | repo (submodule) | `github.com/lewislulu/html-ppt-skill` @ `fd16290` — HTML PPT Studio：一个 theme 文件 = 一套外观、一个 layout 文件 = 一种页面、一个 animation class = 一种入场；token 化设计系统（`assets/base.css`），纯静态、可离线，MIT；已复制进 `SKILL/design/tier0/html-ppt`（2026-10-25 从 `vendor/html-ppt-skill` 重新复制：目录重构时该副本被删除，用户机器上只剩一个 1 文件的残桩和一份缺 13 个文件的旧拷贝） |。**2026-11-18 并入 `opendeck`**：题目相同的两个 skill 合成一个，讲解型 deck（逐步展开 / 浏览器内配音 / 离线单文件）走 `references/narrated-deck.md` 与 `assets/narrated/`；描述已覆盖该触发面。见 `REMOVED-SKILLS.md` 的 Merged 一节
 | hands-on-deck | repo (submodule) | `github.com/EveryInc/hands-on-deck` @ `a24b996` (MIT) — 上游 `skills/hands-on-deck`：任何 `.pptx` 相关的活（改现有 deck 而非新生成） ；2026-10-25 本地 fork：description 首行判别化（消除 shadowing），v1.0.0 |
 | presentation-skill | repo (submodule) | `github.com/siril9/presentation-skill` @ `efd899c` (MIT) — 上游根即 skill（另带 `plugins/` 内同一 skill 的第二份拷贝，vault 副本已删除该重复目录）；裁剪掉 `decks/ examples/ tests/` 等演示物料 |
 | html-to-pptx (retired) | repo (submodule) | `github.com/Hasasasa/html-to-editable-pptx` @ `17c1dbb` (MIT) — 上游根即 skill，`name: html-to-pptx`，目录按 frontmatter 改名 |
@@ -109,10 +109,12 @@
 | huashu-design | repo (submodule) | `github.com/alchaincyf/huashu-design` @ `4fc7bfd` (MIT) — HTML 高保真原型/幻灯片/动画 + 专家评审；裁剪掉 `demos/`（保留 `assets/ scripts/ references/`） |
 | xiaoma-studio | repo (submodule) | `github.com/crawfordxx/xiaoma-studio` @ `2907bd6` (MIT) — 代码做动效视频 / HTML 幻灯片；裁剪掉 `examples/`（31 MB） |
 | visual-learner | repo (submodule) | `github.com/huseyingayiran/visual-learner` @ `e3c6497` (MIT) — 上游 `skills/visual-learner`：把主题/文档/会议纪要变成讲解产物，含 TTS 四档降级链 |
-| opendeck | repo (submodule) | `github.com/open-deck-org/opendeck` @ `d0dbe02` (MIT) — 上游 `skills/opendeck`：动画 + 朗读的 HTML 演示 deck，音频只烘进 HTML（离线单文件） |
+| opendeck | repo (submodule) | `github.com/open-deck-org/opendeck` @ `d0dbe02` (MIT) — 上游 `skills/opendeck`：动画 + 朗读的 HTML 演示 deck，音频只烘进 HTML（离线单文件）。**2026-11-18 并入 `html-ppt`（SKILL_CANDIDATES.md #80）**：两者抢同一条请求，行为测试两轮都选 `html-ppt`，两次改 `opendeck` 的 description 也没有改变结论，于是把内容搬过去、目录撤掉——正文进 `html-ppt/references/narrated-deck.md`（逐字保留，只改 `assets/…` → `assets/narrated/…`），10 个 assets 进 `html-ppt/assets/narrated/`，触发面写进 html-ppt 的 description 与正文一节。上游保留在 `vendor/opendeck`；记录见 `REMOVED-SKILLS.md` |
 | storyboard (retired) | repo (submodule) | `github.com/gRAYESS123/storyboard-claude` @ `e6b1597` (MIT) — 上游 `skill/`，`name: storyboard`，目录按 frontmatter 改名；网页/文档 → 分镜 → 视频；裁剪掉 `examples/ media/ downloads/` |
 | video-production | repo (submodule) | `github.com/speechlab0210/video-production-skill` @ `8c46c40` (MIT) — 上游根即 skill，`name: video-production`；含 **ASR 回译校验（TTS 合成后 Whisper 反识别，相似度 ≥0.85 才放行）** |
 | doubaofeishu_ui-design-system | local (distilled 2026-11-10) | 上游为单篇规范稿、**没有 SKILL.md**：`F:\XD\DistillSkills\飞书豆包distill\UI 设计系统与组件规范（UI Design System）.md`（12.9 KB，v1.0.0，逐字收录在 `references/ui-design-system-source.md`），本 vault 补写指针层 SKILL.md。内容 = 四条原则（组件库先于页面/无障碍/像素级/开发者友好）+ 三级 Design Token（基础色→语义色→组件色，含字号/间距/圆角/阴影全表）+ 组件三层与状态矩阵 + 六步设计流程 + 响应式断点栅格 + 暗色模式映射 + 常见坑 + 自检清单 |
+| cook | local (distilled 2026-11-14) | `C:/Git-repo-my/个人成长/cook-loop-skill/audit/cook`；上游方法 `github.com/Leonxlnx/cook` @ `b23cac6fd9`（MIT），2026-11-14 取回后本地改了 version、description 的「不是 Cook run」边界，以及「自评的一轮不能算达标」一条。Cook Loop：一次 intake 之后循环 build → stills → 零上下文评审 → 修，对着数值门槛迭代，成片先扣住等用户确认。容量分 9.70（A3.0 B1.7 C2.0 D2.0 E1.0），`check_selfcontained.py` 17 refs 全通过。**导入的是 store 里 19:55 的当前版**（含 `PROVENANCE.md` 与节奏那条修订），不是 个人成长 19:28 的快照 |
+| trimsheet-disguise | local (authored in the user store, imported 2026-11-18) | 只在 `C:/Users/yuhang/.agents/skills/trimsheet-disguise` 存在，vault 与 manifest 都没有——已装、被独立评审记 8.4 HIGH，但不在版本控制里。内容：一套共享 trim sheet 做硬表面复用（UV 整数格选颜色、三层脏迹、加权法线），并把原片数字与演示假设分开记账。容量分 9.05（A3.0 B1.3 C1.75 D2.0 E1.0），3 refs 自包含；导入时未改内容 |
 
 > Skipped 6 of the repo's 13 skills as redundant/niche: `taste-skill-v1` (superseded by v2), `gpt-tasteskill` (stricter GPT/Codex variant, subsumed by v2), `soft-skill` / `minimalist-skill` / `brutalist-skill` (fixed style presets — v2 infers the design language from the brief), `image-to-code-skill` (pipeline = imagegen-web + taste-frontend). All recoverable from the sibling clone.
 
@@ -141,6 +143,7 @@
 | skill | origin | source |
 |-------|--------|--------|
 | family-edu-gamified-skills | sibling (imported 2026-11-08) | `D:\GitRepo-AI\AIGameMaker\family-edu-gamified-skills`（整目录复制：SKILL.md + references/ + assets/，20 个文件）；小学 1–6 年级预习/复习/作业/拓展/兴趣/习惯/家长激励的闯关流程，七角色技能说明 + 协作接口 + 输出模板 |
+| deliberate-practice | local (distilled from a lecture) | `C:/Git-repo-my/个人成长/deadlock-improvement-bili/skill/deliberate-practice`（MIT，v2026.11.15.1，`metadata.category: learning`）。把 Akraken 在 Deadlock 讲座里的刻意练习方法收成可执行计划：`references/method.md` 方法论 + `templates/session-card.md` 训练卡 + `examples/` 一份坏卡一份完整卡，随包 `check_plan.py`（在 skill 的 scripts/ 下）做机器校验。容量分 9.30（A3.0 B1.3 C2.0 D2.0 E1.0），5 refs 自包含 |
 
 ### game-dev/
 | skill | origin | source |
@@ -185,6 +188,7 @@
 | game-tower-defense | local (distilled) | OpenGame TS monorepo — 塔防核心循环、路径/波次/经济设计 |
 | game-ui-heavy-narrative | local (distilled) | OpenGame TS monorepo — UI 驱动型游戏（视觉小说/卡牌/问答）的场景流模式 |
 | game-studio-lead / game-design-strategist / game-engineering-lead / game-art-director / game-audio-director / game-quality-lead / game-release-ops-lead (7) | sibling (imported 2026-11-08) | 打包源 `D:\GitRepo-AI\AIGameMaker\documents\skills\dist\<name>.zip`（每个 = SKILL.md + references/{workflow,deliverables,source-map}.md；`game-studio-lead` 另有 handoff-template / role-boundaries）。作者源 = `D:\GitRepo-AI\AIGameMaker\docs\game-dev-studio-skills\roles\0*.md`（角色能力文档，本身无 SKILL.md，不单独安装；`game-development-studio-skills.zip` 是含 `_authoring/` 的聚合包，内容与 7 个单包重复，未整包入库）。SKILL.md 里引用的 `docs/architecture/*.md` 指项目侧文档，不在包内 → 评分 D 列有扣分 |
+| fable52-reproduction | local (distilled) | `C:/Git-repo-my/个人成长/fable5.2-repro/packages/fable52-reproduction`（`metadata.provenance: local`，v1.1.0）。把「按网页 Demo 的源码或运行证据复现玩法与画面」收成取证链：source intake、demo forensics、PCG / 材质 / Shader / 世界结构转储、最小可跑切片、小模型任务卡；随包 `assets/schemas/v2/` 七份 JSON Schema 与 forensics / intake / materials / pcg / world 任务模板。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），41 refs 自包含。同目录另有 `skills/00-orchestrator … 08-validation` 九个阶段子 skill，**本次只纳管主包**，子包仍在 个人成长 |
 
 > **合并记录（2026-10-24）：** 原 `opengame-harness/` 分类（14 个 skill）已并入 `game-dev/`。
 > 该分类本身不是 skill、也不构成任何运行时依赖——13 个 skill 均为自包含方法论文档，可单独安装使用。
@@ -233,6 +237,7 @@
 | skill | origin | source |
 |-------|--------|--------|
 | agent-desktop | repo (extracted from a CLI's bundled skill) | `github.com/vercel-labs/agent-desktop`（Apache-2.0，npm `agent-desktop` v1.0.2）；用 `agent-desktop skills get desktop|platform|<reference>` 导出，导出脚本见 `C:/Git-repo-my/个人成长/bili-ai-desktop-control/export_skill.py`。桌面操控走 OS 无障碍树（不截图、不靠像素）；SKILL.md 正文 + `references/` 5 份（platform / commands-observation / commands-interaction / commands-system / workflows）。装进 vault 时修了 1 处引用歧义：正文 `commands-system.md` 改为 `references/commands-system.md` |
+| agent-eval-loop | local (distilled from a talk) | 素材在 `C:/Git-repo-my/个人成长/agent-eval-from-spacexai/skill/agent-eval-loop`（MIT）。方法论 skill：给任何 agent 工作流搭 Skill + Eval + Verification 三件套，再沿信任曲线从本地观察升到云端自动化。随包 4 份 references（eval-playbook / skill-design / trust-curve / verification-patterns）、`scripts/eval-runner.sh`、2 个模板，以及 `examples/01-bug-repro-skill` 示例。评分 9.70（tier0），`check_selfcontained.py` 14 refs 全通过；缺陷：正文用 ``/loop`` 指斜杠命令，曾让自包含检查器误判为绝对路径，已在检查器中修正 |
 | aisides-ai-self-review | local | written for the AISides project |
 | debugger-persona (retired) | local | written — debug diagnosis + Chinese doc writing + code discipline persona |
 | journey | local | written (two-column ME/YOU history) |
@@ -250,10 +255,17 @@
 | skill-inspector | repo (submodule) | `github.com/NVIDIA/SkillSpector` @ `d7338f5` (Apache-2.0) — 上游 `skills/skill-inspector`：装第三方 skill 前的注入/外泄/供应链扫描（**建议作为以后装任何第三方 pack 的前置闸**） |
 | skillopt-sleep | repo (submodule) | `github.com/microsoft/SkillOpt` @ `84b36cd` (MIT) — 上游 `plugins/claude-code/skills/skillopt-sleep`：让 agent 自我优化 skill（配套 prompt 模板在 `skillopt/prompts/`，未装） |
 | distilly | repo (submodule) | `github.com/titanwings/distilly` @ `0afc45c` (MIT) — 上游根即 skill（分支 `dot-skill`）：Work + Persona 分离的蒸馏流程；裁剪掉 `tests/` `.github/` |
+| skill-doctor | local (distilled from a talk) | 上游方法 `github.com/warpdotdev/common-skills` 的 `.agents/skills/skill-doctor`（MIT，2026-11-11 抓取；沿用了它的四维标签语义、`insufficient_evidence` 规则、加权公式与「只从失败会话取证」的改写纪律），讲解为 B 站 `BV1dYt46kEMw`《Skill Doctor：会自我改进的 Agent》（531.64 秒），交付在 `C:/Git-repo-my/个人成长/skill-doctor-bili/`。用途：从真实会话记录给 Agent 与它用的 Skill 打分，只按失败会话取证起草一处最小改动，再走 PR + 人审 + 回滚 + 黄金集回归；正文、脚本、模板、闸门与边界为本版重写。原版依赖它自己的会话收集器与报告渲染器，本版收成 3 个可独立跑的脚本（收集校验 / 加权计分 / 改动闸门）加 `scripts/selftest.py`。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），78 refs 自包含 |
+| pstack-trust-ladder | local | `C:/Git-repo-my/个人成长/pstack-ai-automation/review/incoming/pstack-trust-ladder`（MIT，v1.0.0）。按「人该看证据 / 抽查 / 继续盯」三档给出信任阶梯，配 `scripts/check_ladder.py` 与 `agents/openai.yaml`。**导入的是 store 里 2026-11-15 的当前版**：它把 description 改成判别式触发语（「同一个 AI 错误反复出现」而非抽象的「AI 协作错误」），个人成长 的快照还停在 11-14 的旧描述。容量分 9.50（A2.5 B2.0 C2.0 D2.0 E1.0），28 refs 自包含 |
+| next-token-agent-loop | local (distilled from a talk) | `C:/Git-repo-my/个人成长/ai-engineering-leap-BV1xsWQ6nEky/skills/next-token-agent-loop`（v2026.11.14）。排查「Agent 该调工具却没调 / 拿陈旧记忆答 / 停在错的一步」的账本式方法：`templates/` 的 CASE + CHECK + SOURCES + TRACE 四件套、`examples/filesystem-gap/` 一份完整案例、`demo/` 可复现的输入输出，随包 `check_case.py`（在 skill 的 scripts/ 下）。**store 版比 个人成长 版少一个 `review/` 目录**（评审快照，不进安装面），本次取 store 版。容量分 9.30，9 refs 自包含 |
+| skill-trigger | local (distilled from a video) | `C:/Git-repo-my/个人成长/skill-trigger`（MIT，v2026.11.15.4，`metadata.source: BV1BqnJ63E4h`）。写「会在该用时被 Agent 自己选中」的 Skill：description 怎么判别化、正文多长、步骤该多死、要不要放脚本、谁来验收、模型升级后怎么删旧补丁；`references/` 六份（claims / description / maintenance / perplexity-six / pocock-manual / verification-trust），随包 `check_skill.py`（在 skill 的 scripts/ 下）。容量分 9.30，7 refs 自包含 |
+| long-ai-project | local (distilled from a video, imported 2026-11-18) | 只在 store 存在；`metadata.source: oil欧呦 BV1rPWd6nEpP`，vault 与 manifest 都没有。内容：把长期 AI 开发复杂项目的经验收成治理流程——多轮功能迭代、多模型分工、工作区并行、测试分层、文档巡检、缺陷止损、发布回滚。容量分 9.30（A3.0 B1.3 C2.0 D2.0 E1.0），5 refs 自包含 |
+| quality-first-delivery | local (imported 2026-11-18) | 只在 store 存在；`metadata.provenance: local`。内容：复杂交互 / 视觉 / 游戏 / 软件产物按证据化的质量线交付，而不是对着功能清单打勾；`references/` + `scripts/` 共 9 个文件。评审史在个人成长账本里：初版 7.0，2026.11.14.5 复核 8.0 HIGH。容量分 9.20（A3.0 B1.7 C1.5 D2.0 E1.0），6 refs 自包含 |
 
 ### video/
 | skill | origin | source |
 |-------|--------|--------|
+| bili-video-brief | local (distilled 2026-11-17) | 从 `C:/Git-repo-my/个人成长/herdr-multi-agent-BV1xz8Y6SEX1` 的一次真实交付蒸馏：BV1xz8Y6SEX1《多Agent瓶颈是人类注意力，是时候使用 Herdr 了》562 秒中文原片。交付为 216 行逐字稿（93 条校正）、12 章摘要（13 条整句引语全部回溯成功）、15 页课件、17 段口播 228.09 秒 1920×1080 MP4（6843 帧、3.71 汉字/秒）。沉淀的是摘要优先的纪律与可执行闸门：取源探字幕、分块转写、校正账本命中 0 次即失败、摘要时间戳与引语回溯、课件结构检查、口播真实时长排轴。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0，断链 0）；三轮独立评审 5.65 → 5.60 → 8.8 HIGH，阻断项已逐条关闭；评审记录在 `C:/Git-repo-my/个人成长/agent-skill-vote/`。 |
 | ai-video-production | local (distilled) | 余弦博客《用 Opus 5.5 做视频：制作流程与提示词资源记录》(2026-09-27) + 已 vendor 的开源 skill 清单；含 `references/prompts.md`（提示词模板）与 `references/resources.md`（仓库/工具清单）。分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图） |
 | h3-seedance-prompt-library | local (HOST import) | 用户本机已装 skill：`C:\Users\XINDONG\.claude\skills\h3-seedance-prompt-library`（canonical；`~/.agents/skills` 为 junction view）。无上游 git 仓库，`NOTICE.md` 声明自有内容 MIT、官方原件不随包分发。MiniMax H3（海螺 03）三字段 + Seedance 2.5 七段提示词库：22 个维度共 603 条可拼装片段、`agents/h3-seedance-translator.md` 翻译 Agent、`library/intel/` 官方原件差异清单。**导入时未改动内容**（与源树哈希 `1788110e…` 一致）；已知缺陷见 `SKILL_CANDIDATES.md` #52–#54 |
 | remotion-best-practices (retired) / -create / -render / -captions / -markup / -multimedia / -maps / -interactivity / -docs / -saas / -studio / -upgrade | repo (submodule) | `github.com/remotion-dev/skills` @ `6c67adc` — Remotion 官方 Agent Skills（12 个），上游 `skills/<name>` |
@@ -274,6 +286,11 @@
 | ffmpeg / moviepy (retired) / elevenlabs (retired) / playwright-recording (retired) / qwen-edit (retired) / ideogram4 (retired) / ltx2 (retired) / acestep (retired) / runpod (retired) / synthetic-ui-demo (retired) / video_toolkit (retired) | repo (submodule) | `github.com/digitalsamba/claude-code-video-toolkit` @ `da3f474` (MIT) — 上游 `.claude/skills/<name>`（11 个）+ `skills/openclaw-video-toolkit`；`video_toolkit` 的 frontmatter 名是 `video_toolkit`，目录按其改名；`remotion` / `remotion-official` / `frontend-design` 未装（与 vault 既有 remotion 系列 / taste-frontend 重叠） |
 | remotion-video-engineering-distilled | local (imported 2026-11-08) | 源：`E:\XD\P4V\tl_yuhang_preUGS\frontend\trunk\Remotion视频工程技能蒸馏\remotion-video-engineering-distilled\`（SKILL.md + 11 份 `references/0*.md` + `scripts/`，共 13 个文件；同目录的 zip 是同一内容的打包副本）。Remotion 工程知识蒸馏：架构 / core composition / 渲染管线 / Studio 与 devtools / 云端规模化 / Player 嵌入 / 生态特效 / 资产与字幕 / AI 集成 / 质量验收 / 用法配方 / 源索引 |
 | hyperframes-video-director | local (wrapper 2026-11-09) | 上游**没有 SKILL.md**：源 `E:\XD\P4V\tl_yuhang_preUGS\frontend\trunk\我的SKILL\HyperFrames视频导演\` 只有 7 份整理稿（README / 总览 / 能力路由 / 制作方法 / 验收规则 / 项目卡模板 / 来源与依赖），逐字收录进 `references/`，本 vault 补写指针层 SKILL.md（状态判断 → 选路线 → flow/storyboard/mode → 项目卡 → 分阶段验收）。**可用性矩阵写进正文**：被路由的 19 个 skill 本机只有 `hyperframes`、`slideshow` 两个，其余明确标"未安装，不要假装有"。 |
+| course-repack | local (distilled 2026-11-14) | `C:/Git-repo-my/个人成长/course-repack`（MIT，v2026.11.14）。整门多集网课（几十到上百节）→ 分集 PPTX + 口播成片 + 内嵌字幕 / SRT，随包 6 个机器验收闸（内容 / 版式 / 字幕 / 影像 / 可见性 / 附件）。与 film-repack、video-to-deck-reel 按「集数 × 片长」分流：整门课走这个，单支长片走 film-repack，单支中文讲解走 video-to-deck-reel。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），42 refs 自包含 |
+| film-repack | local (distilled 2026-11-17) | `C:/Git-repo-my/个人成长/musk-work-method/skill/film-repack`（MIT，v2026.11.17）。30 分钟以上的纪录片 / 访谈 / 长演讲（含英文等非中文原声）→ 带原片时间码的逐字稿 + 可核对的中文压缩总结 + 带原片静帧的 PPTX + 用 motion-showreel 渲染的 1920×1080 口播 MP4。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），62 refs 自包含 |
+| video-to-deck-reel | local (distilled 2026-11-17) | `C:/Git-repo-my/个人成长/skill-build/video-to-deck-reel`（MIT，v2026.11.17）。一条命令把单支中文讲解视频跑成课件 + 可播放的画布口播网页 + 1920×1080 MP4（取源 → 转写 → 口播 → 时间轴 → 逐帧渲染 → 合成 → 查错）。容量分 10.0（A3.0 B2.0 C2.0 D2.0 E1.0），128 refs 自包含 |
+| deliberate-practice-talk | local (distilled from a video) | `C:/Git-repo-my/个人成长/deadlock-improvement-bili/skill/deliberate-practice-talk`（MIT，v2026.11.15）。把「刻意练习 / 复盘 / 变强方法」类讲解视频做成可核对的中文总结 + 课件 + 口播成片；纪律是引语与数字必须能回溯到原片（`references/claims.md` 是判据，`examples/bad-number.json` 是反例），随包 `check_talk.py`（在 skill 的 scripts/ 下）。与 talk-repack / bili-video-repack 的分工：这支只吃「方法论讲解」题材。容量分 9.30，3 refs 自包含 |
+| bili-talk-showreel | local (distilled, imported 2026-11-18) | 只在 store 存在，v2026.11.14，MIT。把已有逐字稿或可转写的 B 站讲解视频做成中文课件 + 画布口播网页 + 1920×1080 MP4；与 bili-talk-repack（DOM 成片）、bili-video-repack（MiniMax 流程）、course-repack（多集课程）按产物形态分流。容量分 9.50（A2.5 B2.0 C2.0 D2.0 E1.0），41 refs 自包含 |
 
 ### vendor/
 | skill | origin | source |
@@ -395,6 +412,7 @@
 | skill | origin | source |
 |-------|--------|--------|
 | karpathy-explain-better | local | distilled from Karpathy 2026-10-02 X post (4 AI uses: ASD-STE100 简化文字 → 结构图 → 可交互网页 → 讲解视频)；SKILL.md 含触发条件/形式组合/工作流/交付前自检/常见坑；references/modes.md 含每种形式的提示词模板与判断清单；**references/form4-video-delivery.md** 形式 4 交付细则（时长口径 / 逐帧亚像素渲染 / 校验三件套 / faststart+Range / 跨平台清单）；**references/scripts/** 四件可运行脚本（`ffmedia.py` 探测、`plan_timeline.py` 时长规划、`render_pipe.py` 逐帧渲染、`verify_video.py` 交付校验）+ README（含抖动阈值标定表）；分发：vault → `~/.claude/skills`（实体）→ `~/.codex/skills`、`~/.kilo/skills`、`~/.agents/skills`（junction 视图）
+| truly-anti-ai-flavor | local (distilled 2026-11-18) | User-provided skills_export/distilled; distilled from a WorkBuddy long-form editing case. Raw WorkBuddy originals and private source files are excluded; public examples are anonymized. |
 
 ## Update workflow
 

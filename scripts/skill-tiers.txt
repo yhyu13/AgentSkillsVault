@@ -47,6 +47,7 @@
 action-substitution|A
 agent-browser|A
 agent-desktop|A
+agent-eval-loop|A
 ai-3d-character-pipeline|B
 ai-3d-scene-pipeline|B
 ai-video-production|A
@@ -64,7 +65,9 @@ ask-matt|B
 audit-verify-explain-grade-5|B
 aura-asset-images|B
 bezos-advisor|B
+bili-talk-showreel|A
 bili-video-repack|A
+bili-video-brief|A
 blender-director|A
 blender-modeler|B
 blog-to-linkedin-post|A
@@ -89,10 +92,14 @@ concentrate-forces|B
 consolidation|B
 content-craft|A
 contradiction-analysis|A
+cook|A
+course-repack|A
 criticism-self-criticism|A
 dcf-valuation|B
 deal-structuring|B
 deep-research|B
+deliberate-practice|A
+deliberate-practice-talk|A
 diagnosing-bugs|A
 discernment-nudge|B
 distilly|B
@@ -102,7 +109,9 @@ earnings-models|B
 elevenlabs-tts|B
 environment-artist|B
 excel-hygiene|B
+fable52-reproduction|A
 ffmpeg|B
+film-repack|A
 finance-lead|B
 game-archetype-classifier|B
 game-asset-art-direction|B
@@ -169,6 +178,7 @@ lemo-opuscar|A
 lighting|B
 llm-friendly-dsl-verification|B
 lod-pipeline|B
+long-ai-project|A
 long-blog-to-viral-social-posts|B
 make-interfaces-feel-better|B
 manage-up-core|A
@@ -181,6 +191,7 @@ mgmt-individual|B
 mgmt-org|B
 motion-showreel|A
 multi-agent-repo-governance|A
+next-token-agent-loop|A
 notes-on-writing|B
 okr-planner|B
 one-on-one-prep|A
@@ -211,7 +222,9 @@ prop-artist|B
 proposal|B
 prototype|B
 protracted-strategy|B
+pstack-trust-ladder|A
 qa-review|B
+quality-first-delivery|A
 quarterly-review|B
 receiving-code-review|A
 remotion-captions|B
@@ -231,7 +244,9 @@ self-improvement|B
 shuorenhua|A
 single-file-html-game|A
 skill-distill|B
+skill-doctor|A
 skill-inspector|A
+skill-trigger|A
 skillopt-sleep|B
 slack-gif-creator|B
 slideshow|A
@@ -266,6 +281,7 @@ three-procedural-scenes|B
 to-spec|B
 to-tickets|B
 triage|B
+trimsheet-disguise|A
 truth-seeking-research|A
 ue-renderdoc-auto-capture|A
 ue4-shader-debug|A
@@ -277,6 +293,7 @@ uv-workflow|B
 verification-before-completion|A
 vfx-fx|B
 video-production|B
+video-to-deck-reel|A
 video-to-superprompt|B
 video-use|B
 visual-explainer|A
@@ -332,3 +349,5 @@ tygg-ai-film-studio|A
 
 # 2026-11-14 飞书 / 金山文档 CLI 安装与边界（实测沉淀）
 feishu-kdocs-cli|A
+# 2026-11-18 local distilled writing skill
+truly-anti-ai-flavor|A

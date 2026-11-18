@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fable52 reproduction task card",
+  "type": "object",
+  "required": ["task_id", "skill", "input_files", "input_schema", "allowed_tools", "operation", "output_file", "output_schema", "required_evidence", "steps", "acceptance_checks", "on_failure"],
+  "properties": {
+    "task_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9.-]*$"},
+    "skill": {"type": "string", "minLength": 1},
+    "input_files": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "input_schema": {"type": "string", "minLength": 1},
+    "allowed_tools": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "operation": {"type": "string", "minLength": 8},
+    "output_file": {"type": "string", "minLength": 1},
+    "output_schema": {"type": "string", "minLength": 1},
+    "required_evidence": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+    "steps": {"type": "array", "minItems": 2, "items": {"type": "string", "minLength": 8}},
+    "acceptance_checks": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 8}},
+    "on_failure": {
+      "type": "object",
+      "required": ["record", "retry", "stop"],
+      "properties": {
+        "record": {"type": "string", "minLength": 1},
+        "retry": {"type": "string", "minLength": 1},
+        "stop": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

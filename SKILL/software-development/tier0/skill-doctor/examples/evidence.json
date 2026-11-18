@@ -1,0 +1,11 @@
+{
+  "skill": "skill-doctor",
+  "evidence": [
+    {
+      "session_id": "2026-11-16T09-12-ab12",
+      "scorer": "procedure_compliance",
+      "quote": "你没跑测试就说完成了",
+      "change": "交付前先跑本次改动涉及的目标测试，失败时不宣布完成"
+    }
+  ]
+}

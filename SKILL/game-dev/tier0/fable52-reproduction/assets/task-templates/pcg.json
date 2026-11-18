@@ -1,0 +1,27 @@
+{
+  "task_id": "pcg.{{DEMO_ID}}",
+  "skill": "pcg-analysis",
+  "input_files": ["{{PROJECT_ROOT}}/demos/raw/{{DEMO_ID}}/index.html", "{{PROJECT_ROOT}}/reports/evidence/{{DEMO_ID}}-runtime-initial.json"],
+  "input_schema": "{{SKILL_DIR}}/assets/schemas/v2/pcg.schema.json",
+  "allowed_tools": ["read", "grep", "python"],
+  "operation": "Extract seeded random sources, noise functions, texture recipes and geometry builders into a PCG dump.",
+  "output_file": "{{PROJECT_ROOT}}/dumps/pcg/{{DEMO_ID}}/pcg.json",
+  "output_schema": "{{SKILL_DIR}}/assets/schemas/v2/pcg.schema.json",
+  "required_evidence": ["source line range per entity", "seed or algorithm per random source", "resolution and generator per recipe", "runtime pointer for generated results"],
+  "steps": [
+    "Pin the demo id, commit and source hash, then search seed, random, noise, permutation and hash helpers.",
+    "Split noise functions from texture recipes and from geometry or placement builders.",
+    "Link random to noise to recipe to consumer with resolvable related entities.",
+    "Attach generated results only from a runtime record; otherwise leave them out and record the gap."
+  ],
+  "acceptance_checks": [
+    "Every entity carries inputs, outputs, determinism and evidence.",
+    "Line ranges fall inside the pinned source file.",
+    "No PCG node graph is claimed when only explicit builders were observed."
+  ],
+  "on_failure": {
+    "record": "{{PROJECT_ROOT}}/reports/gaps/{{DEMO_ID}}-pcg.json",
+    "retry": "Re-run only the failed step after fixing the referenced evidence.",
+    "stop": "Stop when the source hash is unknown or a generated result cannot be tied to an observation."
+  }
+}

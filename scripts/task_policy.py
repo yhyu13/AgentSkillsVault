@@ -78,6 +78,60 @@ def classify_paths(
     return "green", []
 
 
+MANIFEST_ENTRY_RE = re.compile(r"^(#.*)?$|^[A-Za-z0-9_.@-]+\|[^|]+\|(?:A|B|C|HOST)$")
+
+
+def _changed_lines(repo_root: Path, base_ref: str, head_ref: str, path: str) -> list[str]:
+    """Added/removed lines for one path, without the +/- or the file headers."""
+    result = _git(repo_root, "diff", "--unified=0", f"{base_ref}...{head_ref}", "--", path)
+    lines = []
+    for line in result.stdout.splitlines():
+        if line.startswith(("+++", "---")):
+            continue
+        if line.startswith(("+", "-")):
+            lines.append(line[1:])
+    return lines
+
+
+def matching_exemption(
+    repo_root: Path,
+    base_ref: str,
+    head_ref: str,
+    changed_paths: Iterable[str],
+    policy: dict[str, Any],
+) -> dict[str, Any] | None:
+    """Return the exemption rule that covers this diff, if any.
+
+    An exemption can only narrow a yellow grade to green. It never rescues a
+    red one: red is about governance, permissions and irreversible actions,
+    and no line-level rule should be able to talk its way out of that.
+    """
+    changed = sorted({normalize_path(path) for path in changed_paths})
+    for rule in policy.get("exemptions") or []:
+        patterns = rule.get("paths") or []
+        if not patterns:
+            continue
+        covered = sorted(set(matched_paths(changed, patterns)))
+        if not covered:
+            continue
+        # Anything outside the exempt paths keeps the normal grade.
+        if covered != changed:
+            continue
+        if rule.get("when") != "diff-lines-are-manifest-entries":
+            continue
+        ok = True
+        for path in covered:
+            for line in _changed_lines(repo_root, base_ref, head_ref, path):
+                if not MANIFEST_ENTRY_RE.match(line.strip()):
+                    ok = False
+                    break
+            if not ok:
+                break
+        if ok:
+            return rule
+    return None
+
+
 def extract_platform_evidence(pr_body: str) -> tuple[dict[str, Any] | None, str | None]:
     pattern = r"```platform-verification\s*\n(.*?)\n```"
     matches = re.findall(pattern, pr_body or "", flags=re.DOTALL)
@@ -209,6 +263,21 @@ def grade_pull_request(
     extra_conditions = ["merge-conflict-with-base"] if conflict else []
     grade, reasons = classify_paths(files, policy, extra_conditions)
 
+    exempt = None
+    if grade == "yellow" and not conflict:
+        # Only path-driven yellow is eligible; a yellow *condition* (missing
+        # evidence, cross-module behaviour, reviewer concern) is a judgement
+        # call and stays yellow.
+        path_only = all(reason.startswith("yellow path:") for reason in reasons)
+        if path_only:
+            exempt = matching_exemption(repo_root, base_ref, head_ref, files, policy)
+            if exempt:
+                grade = "green"
+                reasons = [reason for reason in reasons if not reason.startswith("yellow path:")]
+                reasons.append(
+                    f"exempt: {exempt['name']} (yellow -> green, only manifest entry lines changed)"
+                )
+
     evidence, parse_error = extract_platform_evidence(pr_body)
     evidence_errors: list[str] = []
     if grade == "green":
@@ -217,6 +286,10 @@ def grade_pull_request(
         evidence_errors.extend(validate_platform_evidence(evidence, head_sha, policy))
         if evidence_errors:
             grade = "yellow"
+            # The exemption only buys the grade; the green requirements still
+            # apply. If they are not met, the grant is revoked rather than
+            # reported as an exemption the reader could mistake for approval.
+            exempt = None
             reasons.extend(f"green evidence missing/invalid: {item}" for item in evidence_errors)
 
     return {
@@ -227,6 +300,7 @@ def grade_pull_request(
         "changed_files": files,
         "merge_conflict": conflict,
         "reasons": reasons,
+        "exemption": exempt["name"] if exempt else None,
         "evidence_errors": evidence_errors,
         "authorization_gate": authorization_gate_enabled(policy),
     }

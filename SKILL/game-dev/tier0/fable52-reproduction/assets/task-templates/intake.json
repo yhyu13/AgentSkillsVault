@@ -1,0 +1,32 @@
+{
+  "task_id": "intake.{{DEMO_ID}}",
+  "skill": "source-intake",
+  "source": {
+    "commit": "{{SOURCE_COMMIT}}",
+    "sha256": "{{SOURCE_SHA256}}",
+    "path": "{{SOURCE_PATH}}"
+  },
+  "input_files": ["{{PROJECT_ROOT}}/sources/manifests/{{DEMO_ID}}-candidate.md"],
+  "input_schema": "{{SKILL_DIR}}/assets/schemas/task-card.schema.json",
+  "allowed_tools": ["read", "bash", "python"],
+  "operation": "Record one candidate web demo with quoted origin, pinned version, license status and per-file hashes.",
+  "output_file": "{{PROJECT_ROOT}}/sources/manifests/{{DEMO_ID}}-source.json",
+  "output_schema": "{{SKILL_DIR}}/assets/schemas/task-card.schema.json",
+  "required_evidence": ["quoted source passage", "final URL and HTTP status", "UTC capture time", "license finding", "SHA-256 of the analyzed bytes"],
+  "steps": [
+    "Read the candidate note and classify the source as official, author, community_catalog, mirror or unknown.",
+    "Open the source, save the quoted passage and record the final URL, status and UTC time.",
+    "Pin a commit or file blob and compute the SHA-256 of the exact analyzed bytes.",
+    "Read the actual license file; write unknown when none is found and state what that forbids."
+  ],
+  "acceptance_checks": [
+    "Every recorded file rehashes to the recorded SHA-256.",
+    "License status is explicit and is not inferred from public visibility.",
+    "Claims made by the author or a catalog stay labeled as claims."
+  ],
+  "on_failure": {
+    "record": "{{PROJECT_ROOT}}/reports/gaps/{{DEMO_ID}}-intake.json",
+    "retry": "Retry only the unreadable URL or file; do not substitute cached text from another site.",
+    "stop": "Stop when the source or version cannot be pinned, or when the license forbids the intended use."
+  }
+}

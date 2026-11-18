@@ -1,6 +1,6 @@
 ---
 name: html-ppt
-description: HTML PPT Studio — author professional static HTML presentations in many styles, layouts, and animations, all driven by templates. Use when the user asks for a presentation, PPT, slides, keynote, deck, slideshow, "幻灯片", "演讲稿", "做一份 PPT", "做一份 slides", a reveal-style HTML deck, a 小红书 图文, or any kind of multi-slide pitch/report/sharing document that should look tasteful and be usable with keyboard navigation. Triggers include keywords like "presentation", "ppt", "slides", "deck", "keynote", "reveal", "slideshow", "幻灯片", "演讲稿", "分享稿", "小红书图文", "talk slides", "pitch deck", "tech sharing", "technical presentation".
+description: HTML PPT Studio — author professional static HTML presentations in many styles, layouts, and animations, all driven by templates. Use when the user asks for a presentation, PPT, slides, keynote, deck, slideshow, "幻灯片", "演讲稿", "做一份 PPT", "做一份 slides", a reveal-style HTML deck, a 小红书 图文, or any kind of multi-slide pitch/report/sharing document that should look tasteful and be usable with keyboard navigation. Triggers include keywords like "presentation", "ppt", "slides", "deck", "keynote", "reveal", "slideshow", "幻灯片", "演讲稿", "分享稿", "小红书图文", "talk slides", "pitch deck", "tech sharing", "technical presentation. 也覆盖「讲解型 deck」：点一下出一段（逐步展开）、悬停提示、缩略图栏、全屏，浏览器内生成讲解配音，最后打包成离线也能放的单文件——这类需求见 references/narrated-deck.md 与 assets/narrated/
 ---
 
 # html-ppt — HTML PPT Studio
@@ -253,6 +253,24 @@ step-by-step walkthrough: file structure, naming, how to transform an outline
 into a deck, how to choose layouts and themes per audience, how to do a
 Chinese + English deck, and how to export.
 
+## 讲解型 deck（逐步展开 + 配音 + 离线单文件）
+
+静态键盘翻页走上面的模板体系；如果用户要的是**点一下出一段、自己念讲解、最后打包成离线单文件**，
+走 `references/narrated-deck.md`（OpenDeck 的完整方法，2026-11-18 并入）和它配套的 `assets/narrated/`：
+
+| 文件 | 作用 |
+|---|---|
+| `starter-deck.html` | 可直接打开的工作样例：3 页、分步展开、tooltip、缩略图栏、朗读控件 |
+| `deck-stage.js` / `deck-enhance.js` | 舞台与增强（分步、tooltip、缩略图栏、全屏） |
+| `narration-script.js` / `deck-narration.js` | 讲解稿与浏览器内配音 |
+| `deck-animation.css` | 入场动画 |
+| `build-standalone.mjs` | 无依赖打包成离线单文件（推荐路线） |
+| `deck-export.js` / `make-studio-link.mjs` | 浏览器内自助导出 / 生成 studio 链接 |
+| `deck.schema.json` | `.deck` 清单的 JSON Schema |
+
+两条硬约束（原文里也写了）：这些文件必须**平铺在 deck 同级目录**，不能带子目录；
+`.deck` 打包只放 `deck.json` + 单文件 HTML。
+
 ## Catalogs (load when needed)
 
 - [references/themes.md](references/themes.md) — all 36 themes with when-to-use.
@@ -321,5 +339,8 @@ Esc                                     close all overlays
 ```
 
 ## License & author
+
+`assets/narrated/` 与 `references/narrated-deck.md` 来自 OpenDeck（MIT，The OpenDeck Authors，
+`github.com/open-deck-org/opendeck` @ `d0dbe02`），2026-11-18 并入本 skill。
 
 MIT. Copyright (c) 2026 lewis &lt;sudolewis@gmail.com&gt;.

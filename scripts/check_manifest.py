@@ -26,6 +26,10 @@ SKIP_DIRS = {
     "archived",
     "vendor",
     "docs",
+    # `examples/` is a skill PAYLOAD dir (AGENTS.md): a SKILL.md inside it is a
+    # worked example attached to its parent skill, not a peer skill. Mirrors the
+    # same entry in build-manifest.ps1's $skipDirs.
+    "examples",
 }
 VALID_TIERS = {"A", "B", "C"}
 

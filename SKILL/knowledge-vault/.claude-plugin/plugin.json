@@ -1,13 +1,12 @@
 {
   "name": "vault-knowledge-vault",
   "version": "1.0.0",
-  "description": "3 curated skills — Notes, knowledge bases and vault upkeep.. Full provenance per skill in skills-lock.json.",
+  "description": "4 curated skills — Notes, knowledge bases and vault upkeep.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
   },
   "homepage": "https://github.com/yhyu13/AgentSkillsVault",
-  "license": "MIT",
   "keywords": [
     "knowledge-vault",
     "agent-skills",
@@ -16,6 +15,7 @@
   "skills": [
     "./tier0/analysis-to-vault",
     "./tier0/book-chapter-to-vault",
+    "./tier0/deliberate-practice",
     "./tier2/family-edu-gamified-skills"
   ]
 }

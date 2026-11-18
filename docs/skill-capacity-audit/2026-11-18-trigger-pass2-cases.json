@@ -1,0 +1,193 @@
+{
+  "generated_by": "claude",
+  "cases": [
+    {
+      "skill": "agent-browser",
+      "prompt": "帮我打开公司内部报销网站，自动登录后把上个月的单据列表截图保存下来",
+      "path": "SKILL/content/tier1/agent-browser",
+      "source": "generated"
+    },
+    {
+      "skill": "analysis-to-vault",
+      "prompt": "我手上有篇讲新能源车价格战的长篇行业评论Word稿，想拆出论点做成复习笔记和速查卡，再把待办放进看板",
+      "path": "SKILL/knowledge-vault/tier0/analysis-to-vault",
+      "source": "generated"
+    },
+    {
+      "skill": "bili-video-brief",
+      "prompt": "B站上有支讲大模型推理的视频，帮我总结要点，每条都标上原片时间点方便我核对",
+      "path": "SKILL/video/tier0/bili-video-brief",
+      "source": "generated"
+    },
+    {
+      "skill": "bili-video-repack",
+      "prompt": "我有个B站讲解视频的网址，想把它重讲一遍，出中文幻灯片、带配音动效的网页和导出的成片",
+      "path": "SKILL/video/tier1/bili-video-repack",
+      "source": "generated"
+    },
+    {
+      "skill": "book-chapter-to-vault",
+      "prompt": "我把一本产品经理的书按章节存成了几个Word文件，想每章出一份总结笔记，再汇总成一张速查卡",
+      "path": "SKILL/knowledge-vault/tier0/book-chapter-to-vault",
+      "source": "generated"
+    },
+    {
+      "skill": "brand-pptx",
+      "prompt": "我们公司有套官方幻灯片模板，想先把配色字体版式提取存档，以后生成的汇报稿都按这套品牌来",
+      "path": "SKILL/design/tier1/brand-pptx",
+      "source": "generated"
+    },
+    {
+      "skill": "contradiction-analysis",
+      "prompt": "团队人手、上线时间和质量要求互相卡着，事情一大堆，我实在不知道该先抓哪一个",
+      "path": "SKILL/management/tier3/contradiction-analysis",
+      "source": "generated"
+    },
+    {
+      "skill": "cook",
+      "prompt": "用代码复刻一个和我手里参考截图几乎一样的三维场景，你自己连续迭代一整晚，直到足够像再交给我",
+      "path": "SKILL/design/tier0/cook",
+      "source": "generated"
+    },
+    {
+      "skill": "course-repack",
+      "prompt": "我有一门六十多集的搬运网课合集，想整门翻成中文，每集出演讲幻灯片、配音成片和字幕文件",
+      "path": "SKILL/video/tier0/course-repack",
+      "source": "generated"
+    },
+    {
+      "skill": "criticism-self-criticism",
+      "prompt": "上周交付的数据看板被老板挑了好几处毛病，同类错误已经犯了三次，帮我认真复盘纠正一下",
+      "path": "SKILL/management/tier3/criticism-self-criticism",
+      "source": "generated"
+    },
+    {
+      "skill": "deliberate-practice-talk",
+      "prompt": "我看了一支讲怎么靠刻意复盘变强的演讲，想要一份能对回原片的中文总结，再配课件和口播成片",
+      "path": "SKILL/video/tier0/deliberate-practice-talk",
+      "source": "generated"
+    },
+    {
+      "skill": "docx",
+      "prompt": "帮我写一封带公司信头和页码的正式函件，要能在Word里打开继续改",
+      "path": "SKILL/content/tier0/docx",
+      "source": "generated"
+    },
+    {
+      "skill": "fable52-reproduction",
+      "prompt": "想根据一个公开网页小游戏的源码和运行记录，弄清它的地形生成和着色器，再做个能跑的最小复刻",
+      "path": "SKILL/game-dev/tier0/fable52-reproduction",
+      "source": "generated"
+    },
+    {
+      "skill": "film-repack",
+      "prompt": "有部一个半小时的英文纪录片，想要带时间码的逐字稿、中文压缩总结、配静帧的课件和口播成片",
+      "path": "SKILL/video/tier0/film-repack",
+      "source": "generated"
+    },
+    {
+      "skill": "gracker-writing",
+      "prompt": "帮我把上周排查内存泄漏的经历写成一篇公众号技术长文，按我平时的文风来",
+      "path": "SKILL/content/tier1/gracker-writing",
+      "source": "generated"
+    },
+    {
+      "skill": "html-ppt",
+      "prompt": "下周技术分享要讲缓存设计，帮我做一套在浏览器里打开、键盘就能翻页的好看幻灯片",
+      "path": "SKILL/design/tier0/html-ppt",
+      "source": "generated"
+    },
+    {
+      "skill": "investigation-first",
+      "prompt": "要不要把老系统迁到新消息队列我还拿不准，现状都没摸清，先别急着给建议",
+      "path": "SKILL/management/tier3/investigation-first",
+      "source": "generated"
+    },
+    {
+      "skill": "meeting-summary",
+      "prompt": "刚开完周例会，手里有一大段录音转出来的文字，帮我理出拍板的事和谁负责做什么",
+      "path": "SKILL/management/tier3/meeting-summary",
+      "source": "generated"
+    },
+    {
+      "skill": "next-token-agent-loop",
+      "prompt": "我的智能体明明该去调搜索工具，却凭旧记忆直接回答还停在半路，帮我查问题出在哪一层",
+      "path": "SKILL/software-development/tier0/next-token-agent-loop",
+      "source": "generated"
+    },
+    {
+      "skill": "pdf",
+      "prompt": "我有几份扫描的合同没法搜索文字，想先做文字识别，再合并成一个文件并加上水印",
+      "path": "SKILL/content/tier0/pdf",
+      "source": "generated"
+    },
+    {
+      "skill": "pptx",
+      "prompt": "帮我从零做一套新品发布会用的演示文稿，十页左右，每页都配好演讲者备注",
+      "path": "SKILL/content/tier1/pptx",
+      "source": "generated"
+    },
+    {
+      "skill": "presentation-skill",
+      "prompt": "下周组会要汇报实验结果，想要一套对齐规整、图文密度均衡、之后还能自己改的幻灯片",
+      "path": "SKILL/design/tier1/presentation-skill",
+      "source": "generated"
+    },
+    {
+      "skill": "process-friction-cut",
+      "prompt": "一想到要写开题报告就心慌，电脑上那个文档好几天都不敢点开，怎么破",
+      "path": "SKILL/management/tier3/process-friction-cut",
+      "source": "generated"
+    },
+    {
+      "skill": "process-motivation-design",
+      "prompt": "我每年都定健身计划，撑两周就断，感觉全靠咬牙死扛，到底问题出在哪",
+      "path": "SKILL/management/tier3/process-motivation-design",
+      "source": "generated"
+    },
+    {
+      "skill": "process-reward-boost",
+      "prompt": "背单词我能坐下来开始，可十分钟就腻了，有没有办法让这件事本身变得有意思",
+      "path": "SKILL/management/tier3/process-reward-boost",
+      "source": "generated"
+    },
+    {
+      "skill": "project-update",
+      "prompt": "老板让我交一份官网改版项目目前进度的汇报，要列清楚各个节点完成情况和主要风险",
+      "path": "SKILL/management/tier3/project-update",
+      "source": "generated"
+    },
+    {
+      "skill": "pstack-trust-ladder",
+      "prompt": "AI助手总说改好了却拿不出凭据，同样的错一犯再犯，我该每次细看还是抽查就够",
+      "path": "SKILL/software-development/tier0/pstack-trust-ladder",
+      "source": "generated"
+    },
+    {
+      "skill": "stageshow",
+      "prompt": "官网首屏想放一个仿真的应用后台界面，带鼠标点来点去的演示动画，用React写",
+      "path": "SKILL/design/tier0/stageshow",
+      "source": "generated"
+    },
+    {
+      "skill": "style-alibaba",
+      "prompt": "年底述职要照阿里那套写法来，业绩结果和价值观表现得分开两部分讲",
+      "path": "SKILL/management/tier3/style-alibaba",
+      "source": "generated"
+    },
+    {
+      "skill": "video-to-deck-reel",
+      "prompt": "我手上有一支B站中文讲解视频的地址，想一条命令同时拿到课件和带口播的1080p成片",
+      "path": "SKILL/video/tier0/video-to-deck-reel",
+      "source": "generated"
+    },
+    {
+      "skill": "webapp-testing",
+      "prompt": "我本地跑着一个前端项目，点提交按钮没反应，帮我开浏览器复现一下并看看控制台报错",
+      "path": "SKILL/game-dev/tier1/webapp-testing",
+      "source": "generated"
+    }
+  ],
+  "missing": [],
+  "leaked": []
+}

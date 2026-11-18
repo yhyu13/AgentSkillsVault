@@ -163,6 +163,70 @@ class GitGradeTests(unittest.TestCase):
         self.assertEqual(result["grade"], "yellow")
         self.assertTrue(result["evidence_errors"])
 
+    def _write_manifest(self, entries):
+        target = self.repo / "scripts" / "install-manifest.txt"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text("\n".join(entries) + "\n", encoding="utf-8")
+        return target
+
+    def test_manifest_entry_churn_is_green(self):
+        """Adding/removing entry rows is bookkeeping, not a distribution decision."""
+        base = self._write_manifest(["alpha|SKILL/x/tier0/alpha|A", "beta|SKILL/x/tier0/beta|B"])
+        git(self.repo, "add", ".")
+        git(self.repo, "commit", "-m", "manifest base")
+        self._write_manifest(["alpha|SKILL/x/tier0/alpha|A", "gamma|SKILL/x/tier0/gamma|A"])
+        git(self.repo, "add", ".")
+        git(self.repo, "commit", "-m", "swap beta for gamma")
+        head_sha = git(self.repo, "rev-parse", "HEAD")
+        evidence = valid_evidence()
+        evidence["head_sha"] = head_sha
+        result = grade_pull_request(self.repo, POLICY, "main", "HEAD", head_sha, body_with(evidence))
+        self.assertEqual(result["grade"], "green")
+        self.assertEqual(result["exemption"], "manifest-entry-churn")
+
+    def test_manifest_churn_without_evidence_stays_yellow(self):
+        self._write_manifest(["alpha|SKILL/x/tier0/alpha|A"])
+        git(self.repo, "add", ".")
+        git(self.repo, "commit", "-m", "manifest base")
+        self._write_manifest(["alpha|SKILL/x/tier0/alpha|A", "beta|SKILL/x/tier0/beta|B"])
+        git(self.repo, "add", ".")
+        git(self.repo, "commit", "-m", "add beta")
+        head_sha = git(self.repo, "rev-parse", "HEAD")
+        result = grade_pull_request(self.repo, POLICY, "main", "HEAD", head_sha, "no evidence")
+        self.assertEqual(result["grade"], "yellow")
+        self.assertIsNone(result["exemption"])
+
+    def test_manifest_plus_skill_content_stays_yellow(self):
+        self._write_manifest(["alpha|SKILL/x/tier0/alpha|A"])
+        git(self.repo, "add", ".")
+        git(self.repo, "commit", "-m", "manifest base")
+        self._write_manifest(["alpha|SKILL/x/tier0/alpha|A", "beta|SKILL/x/tier0/beta|B"])
+        skill = self.repo / "SKILL" / "x" / "tier0" / "beta" / "SKILL.md"
+        skill.parent.mkdir(parents=True)
+        skill.write_text("---\nname: beta\n---\n", encoding="utf-8")
+        git(self.repo, "add", ".")
+        git(self.repo, "commit", "-m", "add beta with content")
+        head_sha = git(self.repo, "rev-parse", "HEAD")
+        evidence = valid_evidence()
+        evidence["head_sha"] = head_sha
+        result = grade_pull_request(self.repo, POLICY, "main", "HEAD", head_sha, body_with(evidence))
+        self.assertEqual(result["grade"], "yellow")
+        self.assertIsNone(result["exemption"])
+
+    def test_manifest_with_a_non_entry_line_stays_yellow(self):
+        self._write_manifest(["alpha|SKILL/x/tier0/alpha|A"])
+        git(self.repo, "add", ".")
+        git(self.repo, "commit", "-m", "manifest base")
+        self._write_manifest(["alpha|SKILL/x/tier0/alpha|A", "not a manifest row"])
+        git(self.repo, "add", ".")
+        git(self.repo, "commit", "-m", "malformed row")
+        head_sha = git(self.repo, "rev-parse", "HEAD")
+        evidence = valid_evidence()
+        evidence["head_sha"] = head_sha
+        result = grade_pull_request(self.repo, POLICY, "main", "HEAD", head_sha, body_with(evidence))
+        self.assertEqual(result["grade"], "yellow")
+        self.assertIsNone(result["exemption"])
+
     def test_grade_output_records_gate_flag(self):
         policy_without_gate = {k: v for k, v in POLICY.items() if k != "authorization_gate"}
         (self.repo / "gate-probe.txt").write_text("probe\n", encoding="utf-8")

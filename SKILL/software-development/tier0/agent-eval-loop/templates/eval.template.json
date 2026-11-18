@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "skill": "<skill-name>",
+  "version": "0.1.0",
+  "description": "Eval for <skill-name>. See ../references/eval-playbook.md for the 4 mandatory design rules.",
+
+  "test_cases": [
+    {
+      "id": "tc-01-positive",
+      "type": "positive",
+      "hidden_dir": "<use a realistic-looking dir name, NOT 'eval_*' or 'test_*'>",
+      "input": {
+        "user_prompt": "<realistic input the skill should handle>",
+        "context": { "any": "context the agent needs" }
+      },
+      "rubric": [
+        { "weight": 3, "criterion": "Output contains X" },
+        { "weight": 2, "criterion": "Output format matches the Example in SKILL.md" },
+        { "weight": 1, "criterion": "No hallucinated APIs or files" }
+      ],
+      "judge_model": "<different from runner model>",
+      "expected_min_score": 8
+    },
+    {
+      "id": "tc-02-negative",
+      "type": "negative",
+      "hidden_dir": "<realistic-looking dir>",
+      "input": {
+        "user_prompt": "<input that should fail / be rejected>",
+        "context": {}
+      },
+      "rubric": [
+        { "weight": 1, "criterion": "Agent recognizes this is out of scope" },
+        { "weight": 1, "criterion": "Agent does NOT produce a confident answer" }
+      ],
+      "judge_model": "<different from runner model>",
+      "expected_max_score": 3
+    }
+  ],
+
+  "models_to_test": [
+    "<model-1>",
+    "<model-2>",
+    "<model-3>"
+  ],
+
+  "pass_criteria": {
+    "min_score_per_case": 8,
+    "min_score_across_models": 7,
+    "judge_agreement": 1
+  },
+
+  "meta_verification": {
+    "fail_injection_case": "tc-meta-fail",
+    "best_effort_case": "tc-meta-pass",
+    "stability_runs": 3,
+    "stability_tolerance": 1
+  }
+}

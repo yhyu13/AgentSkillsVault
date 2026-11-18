@@ -1,13 +1,12 @@
 {
   "name": "vault-devops",
   "version": "1.0.0",
-  "description": "3 curated skills — Observability, Grafana, deployment and infrastructure review.. Full provenance per skill in skills-lock.json.",
+  "description": "3 curated skills — Observability, Grafana, deployment and infrastructure review.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
   },
   "homepage": "https://github.com/yhyu13/AgentSkillsVault",
-  "license": "MIT",
   "keywords": [
     "devops",
     "agent-skills",

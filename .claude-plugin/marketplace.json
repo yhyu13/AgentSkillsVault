@@ -5,7 +5,7 @@
     "url": "https://github.com/yhyu13"
   },
   "metadata": {
-    "description": "AgentSkillsVault — 115 curated agent skills across 11 categories, one plugin per category. Every skill scores >= 6.0 on the vault's own rubric and carries a provenance record in skills-lock.json.",
+    "description": "AgentSkillsVault — 131 curated agent skills across 11 categories, one plugin per category. Curated skills are generated from the install manifest; skills-lock.json records source-resolution status.",
     "version": "1.0.0"
   },
   "plugins": [
@@ -34,7 +34,7 @@
     {
       "name": "vault-design",
       "source": "./SKILL/design",
-      "description": "16 skills — HTML/visual design, slides, decks, diagrams and explainers.",
+      "description": "17 skills — HTML/visual design, slides, decks, diagrams and explainers.",
       "version": "1.0.0",
       "category": "design",
       "tags": [
@@ -56,7 +56,7 @@
     {
       "name": "vault-game-dev",
       "source": "./SKILL/game-dev",
-      "description": "5 skills — Godot/Phaser/Blender/UE game production and rendering.",
+      "description": "6 skills — Godot/Phaser/Blender/UE game production and rendering.",
       "version": "1.0.0",
       "category": "game-dev",
       "tags": [
@@ -67,7 +67,7 @@
     {
       "name": "vault-knowledge-vault",
       "source": "./SKILL/knowledge-vault",
-      "description": "3 skills — Notes, knowledge bases and vault upkeep.",
+      "description": "4 skills — Notes, knowledge bases and vault upkeep.",
       "version": "1.0.0",
       "category": "knowledge-vault",
       "tags": [
@@ -100,7 +100,7 @@
     {
       "name": "vault-software-development",
       "source": "./SKILL/software-development",
-      "description": "4 skills — Engineering workflow: specs, review, debugging, skill quality.",
+      "description": "11 skills — Engineering workflow: specs, review, debugging, skill quality.",
       "version": "1.0.0",
       "category": "software-development",
       "tags": [
@@ -111,7 +111,7 @@
     {
       "name": "vault-video",
       "source": "./SKILL/video",
-      "description": "13 skills — Code-rendered video, motion design and cinema pipelines.",
+      "description": "18 skills — Code-rendered video, motion design and cinema pipelines.",
       "version": "1.0.0",
       "category": "video",
       "tags": [
@@ -122,7 +122,7 @@
     {
       "name": "vault-writing",
       "source": "./SKILL/writing",
-      "description": "1 skills — Long-form and technical writing craft.",
+      "description": "2 skills — Long-form and technical writing craft.",
       "version": "1.0.0",
       "category": "writing",
       "tags": [
