@@ -126,7 +126,7 @@ AgentSkillsVault/
     └── web-prototype/               �?网页原型（assets/ references/ example.html�?
 ├── writing/                         �?「换种形式让人看懂」工作流（不堆文�?/ 画图 / 试出�?/ 讲清楚）
 �?  └── karpathy-explain-better/     �?Karpathy 4 法：简化文�?ASD-STE100) �?结构�?�?可交互网�?�?讲解视频；含判断清单与升�?降级信号
-    +-- writing/truly-anti-ai-flavor/ (source-grounded Chinese long-form editing)
+    +-- truly-anti-ai-flavor/ (source-grounded Chinese long-form editing)
 ├── video/                           �?AI 视频生产：流�?+ 渲染选型 + 社区开�?skill（源自余�?2026-09-27 博客资源盘点�?
 �?  ├── ai-video-production/         �?总纲：制作流程（素材→脚本→配音→包装→提速→自验收→HANDOFF）、短片多 agent 流水线、对抗审片、提示词模板、审片清�?
 �?  ├── remotion-*/ (12)             �?Remotion 官方 Agent Skills（best-practices / create / render / captions / markup / multimedia / maps / interactivity / docs / saas / studio / upgrade�?
