@@ -1,13 +1,12 @@
 {
   "name": "vault-management",
   "version": "1.0.0",
-  "description": "51 curated skills — Reports, OKRs, strategy frameworks, PM and finance models.. Full provenance per skill in skills-lock.json.",
+  "description": "51 curated skills — Reports, OKRs, strategy frameworks, PM and finance models.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
   },
   "homepage": "https://github.com/yhyu13/AgentSkillsVault",
-  "license": "MIT",
   "keywords": [
     "management",
     "agent-skills",

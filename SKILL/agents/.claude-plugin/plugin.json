@@ -1,13 +1,12 @@
 {
   "name": "vault-agents",
   "version": "1.0.0",
-  "description": "6 curated skills — Agent behaviour, self-review loops and problem-solving methods.. Full provenance per skill in skills-lock.json.",
+  "description": "6 curated skills — Agent behaviour, self-review loops and problem-solving methods.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
   },
   "homepage": "https://github.com/yhyu13/AgentSkillsVault",
-  "license": "MIT",
   "keywords": [
     "agents",
     "agent-skills",

@@ -1,13 +1,12 @@
 {
   "name": "vault-content",
   "version": "1.0.0",
-  "description": "12 curated skills — Documents, decks, spreadsheets, PDFs and content repurposing.. Full provenance per skill in skills-lock.json.",
+  "description": "12 curated skills — Documents, decks, spreadsheets, PDFs and content repurposing.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
   },
   "homepage": "https://github.com/yhyu13/AgentSkillsVault",
-  "license": "MIT",
   "keywords": [
     "content",
     "agent-skills",

@@ -77,10 +77,9 @@ def plugin_manifest(category: str, skills: list[tuple[str, str]]) -> dict:
         "name": f"vault-{category}",
         "version": VERSION,
         "description": (f"{len(skills)} curated skills — {CATEGORY_BLURB.get(category, category)}. "
-                        f"Full provenance per skill in skills-lock.json."),
+                        f"Provenance resolution status is recorded in skills-lock.json."),
         "author": {"name": OWNER_NAME, "url": OWNER_URL},
         "homepage": REPO_URL,
-        "license": "MIT",
         "keywords": [category, "agent-skills", "skills-vault"],
         "skills": [f"./{rel}" for _, rel in sorted(skills)],
     }
@@ -94,8 +93,8 @@ def marketplace(groups: dict[str, list[tuple[str, str]]]) -> dict:
         "metadata": {
             "description": (f"AgentSkillsVault — {total} curated agent skills across "
                             f"{len(groups)} categories, one plugin per category. "
-                            f"Every skill scores >= 6.0 on the vault's own rubric and carries a "
-                            f"provenance record in skills-lock.json."),
+                            f"Curated skills are generated from the install manifest; "
+                            f"skills-lock.json records source-resolution status."),
             "version": VERSION,
         },
         "plugins": [

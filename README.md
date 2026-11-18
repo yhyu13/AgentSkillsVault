@@ -362,11 +362,12 @@ view over `SKILL/<category>/<tierN>/<name>/`.
 /plugin install vault-design --marketplace yhyu13/AgentSkillsVault
 ```
 
-11 plugins cover 115 of the curated skills (`vault-agents`, `vault-content`, `vault-design`,
+The category plugins cover skills in the current install manifest (`vault-agents`, `vault-content`, `vault-design`,
 `vault-devops`, `vault-game-dev`, `vault-knowledge-vault`, `vault-management`, `vault-math`,
 `vault-software-development`, `vault-video`, `vault-writing`). The remaining manifest rows
 are vendor-hosted (`vendor/<repo>/...`) or host-provided; a plugin can only point inside this
 repository, so those install through the store sync described above.
+The aggregate declares no single license; see INSTRUCTION.md for per-skill provenance and licensing.
 
 The manifests are generated, and validated by the harness itself:
 
