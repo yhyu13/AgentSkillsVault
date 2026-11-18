@@ -349,3 +349,5 @@ tygg-ai-film-studio|A
 
 # 2026-11-14 飞书 / 金山文档 CLI 安装与边界（实测沉淀）
 feishu-kdocs-cli|A
+# 2026-11-18 local distilled writing skill
+truly-anti-ai-flavor|A
