@@ -109,6 +109,7 @@ process-reward-boost|SKILL/management/tier3/process-reward-boost|A
 project-update|SKILL/management/tier3/project-update|A
 proposal|SKILL/management/tier2/proposal|B
 protracted-strategy|SKILL/management/tier3/protracted-strategy|B
+pstack|SKILL/software-development/tier0/pstack|A
 quarterly-review|SKILL/management/tier2/quarterly-review|B
 remotion-markup|SKILL/video/tier1/remotion-markup|B
 renzhengfei-advisor|SKILL/management/tier3/renzhengfei-advisor|B
