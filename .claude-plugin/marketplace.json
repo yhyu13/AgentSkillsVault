@@ -5,7 +5,7 @@
     "url": "https://github.com/yhyu13"
   },
   "metadata": {
-    "description": "AgentSkillsVault — 131 curated agent skills across 11 categories, one plugin per category. Curated skills are generated from the install manifest; skills-lock.json records source-resolution status.",
+    "description": "AgentSkillsVault — 132 curated agent skills across 11 categories, one plugin per category. Curated skills are generated from the install manifest; skills-lock.json records source-resolution status.",
     "version": "1.0.0"
   },
   "plugins": [
@@ -100,7 +100,7 @@
     {
       "name": "vault-software-development",
       "source": "./SKILL/software-development",
-      "description": "11 skills — Engineering workflow: specs, review, debugging, skill quality.",
+      "description": "12 skills — Engineering workflow: specs, review, debugging, skill quality.",
       "version": "1.0.0",
       "category": "software-development",
       "tags": [
