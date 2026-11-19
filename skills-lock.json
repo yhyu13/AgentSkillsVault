@@ -118,8 +118,8 @@
     "algorithmic-art": {
       "path": "vendor/anthropics-skills/skills/algorithmic-art",
       "tier": "B",
-      "hash": "5bd9f4ee27df15158a98562a0237cdb64cf54e097020bd50deb7fa236f3178ea",
-      "files": 4,
+      "hash": "",
+      "files": 0,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -344,8 +344,8 @@
     "browser-automation": {
       "path": "vendor/claude-skills/engineering/skills/browser-automation",
       "tier": "B",
-      "hash": "44ddabfa9292eb2142b98faa5157044d48231974fe402cc94bf9a861e1c13d02",
-      "files": 7,
+      "hash": "",
+      "files": 0,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -355,8 +355,8 @@
     "canvas-design": {
       "path": "vendor/anthropics-skills/skills/canvas-design",
       "tier": "A",
-      "hash": "63c8ece0dca41fe7c79e1501ffb3190483075b477b69cc8c826f06bfb3491ba9",
-      "files": 83,
+      "hash": "",
+      "files": 0,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -366,8 +366,8 @@
     "claude-api": {
       "path": "vendor/anthropics-skills/skills/claude-api",
       "tier": "B",
-      "hash": "770bc29634974035e6501478926553fb0c3eb5bec68ea6e95001c5fdde9d961e",
-      "files": 96,
+      "hash": "",
+      "files": 0,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -452,8 +452,8 @@
     "deep-research": {
       "path": "vendor/claude-skills/research/deep-research/skills/deep-research",
       "tier": "B",
-      "hash": "35db04ab24b2baafa2068e7efd2601cc8dacfc734e5a0f6bfe69d9fa883dac6e",
-      "files": 2,
+      "hash": "",
+      "files": 0,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -502,8 +502,8 @@
     "discernment-nudge": {
       "path": "vendor/anthropics-skills/skills/discernment-nudge",
       "tier": "B",
-      "hash": "b0eb47e01136da8879af0cc2101d05908beaf60d772b7b519548612527d1b789",
-      "files": 2,
+      "hash": "",
+      "files": 0,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -770,8 +770,8 @@
     "investment-masters": {
       "path": "vendor/investment-masters",
       "tier": "B",
-      "hash": "5d96203959a213558fccc03a20720cca44f2b940fea1ae735bdee4ba768e246d",
-      "files": 23,
+      "hash": "",
+      "files": 0,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -1113,8 +1113,8 @@
     "slack-gif-creator": {
       "path": "vendor/anthropics-skills/skills/slack-gif-creator",
       "tier": "B",
-      "hash": "eec098226d9e316e43af77e4b64f71983b3e6be5000269c060905854e5d43039",
-      "files": 7,
+      "hash": "",
+      "files": 0,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -1247,8 +1247,8 @@
     "tygg-ai-film-studio": {
       "path": "SKILL/video/tier1/tygg-ai-film-studio",
       "tier": "A",
-      "hash": "b6190f1dbdc502fd98d17141ab7de260336ee38802d8bcd6ce9124cc436cbf0f",
-      "files": 49,
+      "hash": "",
+      "files": 0,
       "origin": {
         "type": "repo",
         "repo": "SusamMinami/tygg-ai-film-studio",
@@ -1331,8 +1331,8 @@
     "web-artifacts-builder": {
       "path": "vendor/anthropics-skills/skills/web-artifacts-builder",
       "tier": "B",
-      "hash": "5cd211af69609bac0a230889be46910ea2b86591c8eb283dd402674fe43893b2",
-      "files": 5,
+      "hash": "",
+      "files": 0,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -1395,8 +1395,8 @@
     "xlsx": {
       "path": "vendor/anthropics-skills/skills/xlsx",
       "tier": "A",
-      "hash": "7c0b58bda8d02769e220e20fab85a311cf26515fa36e19ab399152b79c13695a",
-      "files": 53,
+      "hash": "",
+      "files": 0,
       "origin": {
         "type": "repo",
         "repo": "appautomaton/document-SKILLs",
