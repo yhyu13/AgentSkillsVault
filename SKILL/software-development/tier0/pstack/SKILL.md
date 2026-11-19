@@ -95,6 +95,8 @@ task is honest. A "basically done" task is not.
 - `TEAM.md` defines the human roles, gates, evidence standard, and weekly
   maintenance.
 - `README.md` is the five-minute onboarding.
+- `CINDY-QUICKSTART.md` is the Cindy-specific five-minute path: task files,
+  evidence, and the completion check.
 - `models.md` is the role-to-model table. It is advisory. If the host cannot
   select a model, use the host default and record that in `.pstack/host.md`.
 
@@ -104,6 +106,7 @@ task is honest. A "basically done" task is not.
 |---|---|
 | `RULES.md` | Canonical non-negotiables, principles index, autonomy, subagents, writing, playbook routing |
 | `TEAM.md` | Human roles, gates, evidence standard, definition of done, maintenance |
+| `CINDY-QUICKSTART.md` | Cindy partner onboarding: task files and completion check |
 | `HOST-ADAPTER.md` | Capability probe and Cursor/Claude Code to host-neutral translation |
 | `models.md` | Role-to-model and effort defaults, with fallbacks |
 | `references/upstream/` | Full upstream pstack text. Inner `SKILL.md` files are renamed `RULE.md` |

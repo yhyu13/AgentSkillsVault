@@ -1344,8 +1344,8 @@
     "pstack": {
       "path": "SKILL/software-development/tier0/pstack",
       "tier": "A",
-      "hash": "ea1eeb8a744c6ce344d4553abbc41716214c25330b9af90dd41e71222a205f44",
-      "files": 578,
+      "hash": "26af2f3705c769eaef2a67a8af1de5c521d87d2b602b682614cd2741916bae26",
+      "files": 579,
       "origin": {
         "type": "repo",
         "repo": "cursor/plugins",

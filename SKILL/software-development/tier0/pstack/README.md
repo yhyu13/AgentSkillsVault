@@ -99,6 +99,8 @@ node <pstack>/scripts/pstack.mjs check fix-login
 
 详细角色和门禁见 `TEAM.md`。
 
+Cindy 伙伴先读 `CINDY-QUICKSTART.md`，它按任务目录逐项说明 `task.md`、`plan.md`、`evidence/`、`result.md` 怎么填，以及 `pstack check` 的每种失败怎么修。
+
 ## 文件地图
 
 | 路径 | 用途 |
@@ -106,6 +108,7 @@ node <pstack>/scripts/pstack.mjs check fix-login
 | `SKILL.md` | 入口和强制阅读顺序 |
 | `RULES.md` | 十一条不可协商、二十四条原则、二十二个 playbook、完成定义 |
 | `TEAM.md` | 人的角色、门禁、证据标准、周维护 |
+| `CINDY-QUICKSTART.md` | Cindy 伙伴的五分钟上手：任务目录怎么填、完成检查怎么验 |
 | `HOST-ADAPTER.md` | 能力探测、翻译表、降级规则 |
 | `models.md` | 角色到模型/档位的建议 |
 | `references/upstream/` | 上游全文，内层 `SKILL.md` 已改名 `RULE.md` |
