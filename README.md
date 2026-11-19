@@ -126,6 +126,7 @@ AgentSkillsVault/
     └── web-prototype/               �?网页原型（assets/ references/ example.html�?
 ├── writing/                         �?「换种形式让人看懂」工作流（不堆文�?/ 画图 / 试出�?/ 讲清楚）
 �?  └── karpathy-explain-better/     �?Karpathy 4 法：简化文�?ASD-STE100) �?结构�?�?可交互网�?�?讲解视频；含判断清单与升�?降级信号
+    +-- truly-anti-ai-flavor/ (source-grounded Chinese long-form editing)
 ├── video/                           �?AI 视频生产：流�?+ 渲染选型 + 社区开�?skill（源自余�?2026-09-27 博客资源盘点�?
 �?  ├── ai-video-production/         �?总纲：制作流程（素材→脚本→配音→包装→提速→自验收→HANDOFF）、短片多 agent 流水线、对抗审片、提示词模板、审片清�?
 �?  ├── remotion-*/ (12)             �?Remotion 官方 Agent Skills（best-practices / create / render / captions / markup / multimedia / maps / interactivity / docs / saas / studio / upgrade�?
@@ -267,6 +268,7 @@ AgentSkillsVault/
 | design/taste-director | design | router 总纲：按意图分发�?7 �?taste-* 子技�?+ 共享 anti-slop taste 契约 |
 | design/anatomy | design | 等距 SVG 插图器：将想法做�?真实可工作的小机�?�?0�?00 件精密零件，4 色调光，分屏 SVG + WebGL + 3D），�?kit/references/scripts/examples�?1.7 MB，wheresryan22/anatomy，MIT�?|
 | writing/karpathy-explain-better | writing | Karpathy 4 法：别再说「再解释一遍」——把答案换成简化文�?/ 结构�?/ 可交互网�?/ 讲解视频。SKILL.md + references/modes.md（含每种形式的提示词模板、判断清单、决策树�?|
+| writing/truly-anti-ai-flavor | writing | Chinese long-form structural editing; preserves source facts and verifies platform rules. |
 | video/ai-video-production | video | AI 视频生产总纲：技术路线选型（Remotion / HyperFrames / �?Canvas / Three.js / Blender�? 长片流水线（素材→脚本→配音→包装→提速→自验收→HANDOFF�? 短片�?agent 流水�?+ 对抗审片 + 提示词模�?+ 审片清单 |
 | video/remotion-* (12) | video | Remotion 官方 Agent Skills（best-practices / create / render / captions / markup / multimedia / maps / interactivity / docs / saas / studio / upgrade�?|
 | video/onetake | video | 一镜到底产品发布片/功能演示：每一拍从上一拍长出来，不切成幻灯�?|
@@ -348,6 +350,61 @@ missing helper scripts.
 
 The examples below install one skill. Replace `<category>` and `<skill-name>`
 with a vault path such as `game-dev/phaser-gamedev`.
+
+### Claude Code plugin marketplace (no PowerShell, no copies)
+
+The vault is also a Claude Code **plugin marketplace**: one plugin per category, each
+listing the curated skills by explicit path, so nothing is duplicated — the plugin is a
+view over `SKILL/<category>/<tierN>/<name>/`.
+
+```text
+/plugin marketplace add yhyu13/AgentSkillsVault
+/plugin install vault-design --marketplace yhyu13/AgentSkillsVault
+```
+
+The category plugins cover skills in the current install manifest (`vault-agents`, `vault-content`, `vault-design`,
+`vault-devops`, `vault-game-dev`, `vault-knowledge-vault`, `vault-management`, `vault-math`,
+`vault-software-development`, `vault-video`, `vault-writing`). The remaining manifest rows
+are vendor-hosted (`vendor/<repo>/...`) or host-provided; a plugin can only point inside this
+repository, so those install through the store sync described above.
+The aggregate declares no single license; see INSTRUCTION.md for per-skill provenance and licensing.
+
+The manifests are generated, and validated by the harness itself:
+
+```powershell
+python scripts/build_marketplace.py          # regenerate .claude-plugin/ + SKILL/<cat>/.claude-plugin/
+python scripts/build_marketplace.py --check  # fail if the tree and the manifests disagree
+claude plugin validate . --strict            # the harness's own verdict
+```
+
+### Machine-readable provenance
+
+`skills-lock.json` records, for every installed skill, its vault path, content hash, and the
+provenance row it came from. It is generated from the tree, so a pointer that no longer
+resolves is a failure instead of a paragraph nobody re-reads.
+
+```powershell
+python scripts/skills_lock.py           # write skills-lock.json
+python scripts/skills_lock.py --check   # fail on drift, on lost provenance, or on a stale lock
+```
+
+58 of 125 installed skills still have no resolvable provenance row (2026-11-13 baseline);
+`--check` fails when that number *grows*, and `--strict` fails while it is non-zero.
+
+### Store audit
+
+`scripts/verify-install.ps1` proves each manifest entry is present in the primary store and
+byte-identical to the vault. `scripts/audit_stores.py` answers the questions it cannot:
+which stores are empty, which entries are foreign, and which side of a drift is newer.
+
+```powershell
+python scripts/audit_stores.py                   # matrix + per-skill status
+python scripts/audit_stores.py --fail-on-drift   # exit 1 on real drift (usable in CI)
+```
+
+It ignores `__pycache__`/`*.pyc`, so running a skill's own scripts does not read as
+corruption, and it distinguishes `DRIFT` (vault newer — sync fixes it) from
+`DRIFT-REVERSE` (store newer — **sync would destroy it**, reconcile by hand).
 
 ### Quick reference
 

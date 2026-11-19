@@ -1,0 +1,46 @@
+{
+  "sessions": [
+    {
+      "session_id": "2026-11-16T09-12-ab12",
+      "efficiency": {
+        "label": "mostly_efficient",
+        "reason": "一次重复读取，无连带成本"
+      },
+      "code_quality": {
+        "label": "insufficient_evidence",
+        "reason": "本会话只有文档改动"
+      },
+      "procedure_compliance": {
+        "label": "mostly_inefficient",
+        "reason": "跳过目标测试直接宣布完成"
+      },
+      "verbosity": {
+        "label": "mostly_efficient",
+        "reason": "结论清楚，末尾有一段复述"
+      },
+      "skills_used": [
+        "example-skill"
+      ]
+    },
+    {
+      "session_id": "2026-11-12T14-05-77cd",
+      "efficiency": {
+        "label": "highly_efficient",
+        "reason": "顺序直接，无返工"
+      },
+      "code_quality": {
+        "label": "mostly_efficient",
+        "reason": "改动最小，边界少一个"
+      },
+      "procedure_compliance": {
+        "label": "highly_efficient",
+        "reason": "按仓库规范执行"
+      },
+      "verbosity": {
+        "label": "highly_efficient",
+        "reason": "只给结论与证据"
+      },
+      "skills_used": []
+    }
+  ]
+}

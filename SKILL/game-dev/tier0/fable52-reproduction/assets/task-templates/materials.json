@@ -1,0 +1,27 @@
+{
+  "task_id": "materials.{{DEMO_ID}}",
+  "skill": "materials-pbr",
+  "input_files": ["{{PROJECT_ROOT}}/demos/raw/{{DEMO_ID}}/index.html", "{{PROJECT_ROOT}}/reports/evidence/{{DEMO_ID}}-runtime-initial.json"],
+  "input_schema": "{{SKILL_DIR}}/assets/schemas/v2/materials.schema.json",
+  "allowed_tools": ["read", "grep", "python"],
+  "operation": "Split surface recipes and material bindings from lighting, reflection and post-processing into linked dumps.",
+  "output_file": "{{PROJECT_ROOT}}/dumps/materials/{{DEMO_ID}}/materials.json",
+  "output_schema": "{{SKILL_DIR}}/assets/schemas/v2/materials.schema.json",
+  "required_evidence": ["channel writes per texture", "color space per map", "light and environment setup", "render pass order as written", "runtime pointer for sampled values"],
+  "steps": [
+    "Map the chain recipe to material to lights to reflection to output.",
+    "Record channel meaning from the code that writes each channel, not from map names.",
+    "Write the material dump with mat. ids and the PBR dump with pbr. ids, cross-linked.",
+    "Record only the passes that exist, in source order, including the absence of common chains."
+  ],
+  "acceptance_checks": [
+    "No ORM assumption is carried over from another demo.",
+    "Roughness and metalness stay within [0,1] and cite their source.",
+    "A visible reflection is not described as a specific algorithm without a matching capture."
+  ],
+  "on_failure": {
+    "record": "{{PROJECT_ROOT}}/reports/gaps/{{DEMO_ID}}-materials.json",
+    "retry": "Re-run the affected dump step after resolving the cross-reference error.",
+    "stop": "Stop when textures are missing without a license, or when channel meaning cannot be established."
+  }
+}

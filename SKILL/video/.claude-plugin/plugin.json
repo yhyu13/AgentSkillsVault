@@ -1,0 +1,35 @@
+{
+  "name": "vault-video",
+  "version": "1.0.0",
+  "description": "18 curated skills — Code-rendered video, motion design and cinema pipelines.. Provenance resolution status is recorded in skills-lock.json.",
+  "author": {
+    "name": "yhyu13",
+    "url": "https://github.com/yhyu13"
+  },
+  "homepage": "https://github.com/yhyu13/AgentSkillsVault",
+  "keywords": [
+    "video",
+    "agent-skills",
+    "skills-vault"
+  ],
+  "skills": [
+    "./tier1/3d-ultra-realistic-water",
+    "./tier1/3d-wood-lighting-scorecard",
+    "./tier1/anidoodle",
+    "./tier1/article-prompts-to-skills",
+    "./tier0/bili-talk-showreel",
+    "./tier0/bili-video-brief",
+    "./tier1/bili-video-repack",
+    "./tier0/course-repack",
+    "./tier0/deliberate-practice-talk",
+    "./tier0/film-repack",
+    "./tier1/guizang-product-video-skill",
+    "./tier0/h3-seedance-prompt-library",
+    "./tier0/manim-video",
+    "./tier0/motion-showreel",
+    "./tier0/onetake",
+    "./tier1/optimize-web-animations",
+    "./tier1/remotion-markup",
+    "./tier0/video-to-deck-reel"
+  ]
+}

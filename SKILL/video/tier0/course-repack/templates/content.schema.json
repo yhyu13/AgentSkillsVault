@@ -1,0 +1,322 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "course content script",
+  "description": "整门课的脚本：集 -> 页 -> 文案。一份文件同时驱动 PPTX 与视频，是唯一事实源。",
+  "type": "object",
+  "required": [
+    "meta",
+    "episodes"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "title",
+        "subtitle",
+        "source"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "课程名；封面与文件名的来源"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "一句话定位，不是内容简介"
+        },
+        "kicker": {
+          "type": "string",
+          "description": "封面顶部的小字，通常写来源与主题"
+        },
+        "source": {
+          "type": "string",
+          "description": "原课出处、节数与总时长"
+        },
+        "author": {
+          "type": "string"
+        }
+      }
+    },
+    "course_cover": {
+      "type": "object",
+      "description": "PPTX 首屏；视频里不需要",
+      "properties": {
+        "kicker": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "sizes": {
+          "$ref": "#/$defs/sizes"
+        },
+        "note": {
+          "type": "string",
+          "description": "封面讲者备注"
+        }
+      },
+      "required": [
+        "note"
+      ]
+    },
+    "agenda": {
+      "type": "object",
+      "description": "六集导览页，只出现在 PPTX",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "head": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "n": {
+                "type": "integer",
+                "description": "集号"
+              },
+              "t": {
+                "type": "string",
+                "description": "集标题"
+              },
+              "d": {
+                "type": "string",
+                "description": "一句话说明"
+              },
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "desc": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "sizes": {
+          "$ref": "#/$defs/sizes"
+        },
+        "note": {
+          "type": "string",
+          "description": "导览页讲者备注"
+        }
+      },
+      "required": [
+        "note"
+      ]
+    },
+    "episodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "slides"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "必须是 1..N 连续"
+          },
+          "kicker": {
+            "type": "string",
+            "description": "模块编号，如「模块一」"
+          },
+          "title": {
+            "type": "string"
+          },
+          "range": {
+            "type": "string",
+            "description": "对应原课哪几节"
+          },
+          "slides": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "$ref": "#/$defs/slide"
+            }
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "description": "全课收束页，只出现在 PPTX",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "head": {
+          "type": "string"
+        },
+        "bullets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 6
+        },
+        "note": {
+          "type": "string"
+        },
+        "sizes": {
+          "$ref": "#/$defs/sizes"
+        }
+      },
+      "required": [
+        "note"
+      ]
+    }
+  },
+  "$defs": {
+    "sizes": {
+      "type": "object",
+      "description": "fit_text.py 写回的最终字号（设计像素）。不要手填。",
+      "additionalProperties": {
+        "type": [
+          "number",
+          "array"
+        ]
+      }
+    },
+    "slide": {
+      "type": "object",
+      "required": [
+        "type",
+        "note",
+        "narration"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "head"
+          ]
+        },
+        {
+          "required": [
+            "hero"
+          ]
+        }
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "cover",
+            "chapter",
+            "hero",
+            "steps",
+            "conclusion",
+            "try",
+            "review",
+            "takeaway"
+          ],
+          "description": "cover/chapter/hero/takeaway 是深色页，其余是浅色页"
+        },
+        "label": {
+          "type": "string",
+          "description": "左上角模块名或页型标签"
+        },
+        "id": {
+          "type": "integer",
+          "description": "chapter 页的大号数字"
+        },
+        "head": {
+          "type": "string",
+          "description": "页面主张：三秒读完，一个判断"
+        },
+        "support": {
+          "type": "string",
+          "description": "限定、出处或反例；不重复 head"
+        },
+        "hero": {
+          "type": "object",
+          "description": "大数字或大判断；一页只能有一个视觉焦点",
+          "required": [
+            "value",
+            "label"
+          ],
+          "properties": {
+            "value": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string",
+              "description": "单位与对照系"
+            }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "description": "steps 页专用；2–6 步，超过 6 步拆页（布局支持两行）",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "n": {
+                "type": "string",
+                "description": "序号，省略时用 1..N"
+              },
+              "t": {
+                "type": "string",
+                "description": "步骤标题（build_pptx.js 与 scene 都读 t）"
+              },
+              "d": {
+                "type": "string",
+                "description": "一行解释"
+              },
+              "title": {
+                "type": "string",
+                "description": "t 的别名，二者取其一"
+              },
+              "desc": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "bullets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 4
+        },
+        "cols": {
+          "type": "object",
+          "description": "steps 分栏覆盖，如 {\"rows\": 2}"
+        },
+        "foot": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string",
+          "description": "讲者备注；不得复制 narration"
+        },
+        "narration": {
+          "type": "string",
+          "description": "口播；按句切，单句 <= 36 个字符"
+        },
+        "sizes": {
+          "$ref": "#/$defs/sizes"
+        }
+      }
+    }
+  }
+}

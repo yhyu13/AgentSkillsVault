@@ -1,0 +1,1880 @@
+{
+  "version": 1,
+  "generatedBy": "scripts/skills_lock.py",
+  "note": "hash is this tool's own tree hash; it is NOT byte-compatible with Get-TreeHash in scripts/verify-install.ps1 (independent implementations).",
+  "counts": {
+    "skills": 142,
+    "resolved": 81,
+    "unresolved": 61
+  },
+  "unresolved": [
+    "3d-ultra-realistic-water",
+    "3d-wood-lighting-scorecard",
+    "aigc-video-creation",
+    "algorithmic-art",
+    "anatomy",
+    "apk-ndk-version-check",
+    "arming-thought",
+    "article-prompts-to-skills",
+    "browser-automation",
+    "canvas-design",
+    "claude-api",
+    "colleague-ue-engine-architect",
+    "colleague-ue-prod-team-lead",
+    "colleague-ue-tech-planner",
+    "comparable-analysis",
+    "consolidation",
+    "contradiction-analysis",
+    "criticism-self-criticism",
+    "dcf-valuation",
+    "deal-structuring",
+    "deep-research",
+    "diagnosing-bugs",
+    "discernment-nudge",
+    "earnings-models",
+    "finance-lead",
+    "grafana-loki-label-analyzer",
+    "grafana-oss",
+    "hgb-standards",
+    "html-ppt",
+    "ifrs-standards",
+    "investigation-first",
+    "investment-masters",
+    "lbo-modeling",
+    "lease-accounting",
+    "mass-line",
+    "meeting-summary",
+    "one-on-one-prep",
+    "optimize-web-animations",
+    "overall-planning",
+    "performance-review",
+    "pitch-book-creation",
+    "practice-cognition",
+    "precedent-transactions",
+    "process-friction-cut",
+    "process-reward-boost",
+    "project-update",
+    "proposal",
+    "protracted-strategy",
+    "quarterly-review",
+    "remotion-markup",
+    "revenue-recognition",
+    "sector-analysis",
+    "skill-doctor",
+    "skill-trigger",
+    "slack-gif-creator",
+    "spark-prairie-fire",
+    "style-report",
+    "upward-email",
+    "web-artifacts-builder",
+    "weekly-report",
+    "workflows"
+  ],
+  "skills": {
+    "3d-ultra-realistic-water": {
+      "path": "SKILL/video/tier1/3d-ultra-realistic-water",
+      "tier": "B",
+      "hash": "7474da6a3070f8c31bd1fd9de29b574a26d25c303d2ea226b5ffd5796f319cbd",
+      "files": 11,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "3d-wood-lighting-scorecard": {
+      "path": "SKILL/video/tier1/3d-wood-lighting-scorecard",
+      "tier": "B",
+      "hash": "b10ac6484dcd3d8634312e0b4f056c8001884ac32b3ea100e8c8e16c5d8a66bf",
+      "files": 9,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "agent-browser": {
+      "path": "SKILL/content/tier1/agent-browser",
+      "tier": "A",
+      "hash": "6f6777dca082bb371472f39534736406e7a8bdfed08e322c4fe1e06e03970c8c",
+      "files": 11,
+      "origin": {
+        "type": "repo",
+        "repo": "vercel-labs/agent-browser",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:62"
+      },
+      "resolved": true
+    },
+    "agent-eval-loop": {
+      "path": "SKILL/software-development/tier0/agent-eval-loop",
+      "tier": "A",
+      "hash": "ace181279645367302cb9cae2de4f9ac511fc320932000f344f65a7ab705508a",
+      "files": 14,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:241"
+      },
+      "resolved": true
+    },
+    "aigc-image-control": {
+      "path": "SKILL/content/tier1/aigc-image-control",
+      "tier": "A",
+      "hash": "a33c6ed60aac057a15c02c39e771a06f1337a3cea9541b49540c87e2c88d44e9",
+      "files": 3,
+      "origin": {
+        "type": "repo",
+        "repo": "jiemianduan/poster-style-transfer",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:65"
+      },
+      "resolved": true
+    },
+    "aigc-video-creation": {
+      "path": "SKILL/content/tier1/aigc-video-creation",
+      "tier": "B",
+      "hash": "e729e4bdf1eacee5cd2fe6861e93aacde234bbfea86cc346d51723cc400e89dd",
+      "files": 5,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "algorithmic-art": {
+      "path": "vendor/anthropics-skills/skills/algorithmic-art",
+      "tier": "B",
+      "hash": "",
+      "files": 0,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "analysis-to-vault": {
+      "path": "SKILL/knowledge-vault/tier0/analysis-to-vault",
+      "tier": "A",
+      "hash": "35f56e366464ba78972352a18644b202581bab20d6bdf67d0ccfc4edb817ccac",
+      "files": 8,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:138"
+      },
+      "resolved": true
+    },
+    "anatomy": {
+      "path": "SKILL/design/tier0/anatomy",
+      "tier": "B",
+      "hash": "666205d9908b4b26eeebccec284c359b48bbf680d63c9e00a231629a8e70ec6f",
+      "files": 147,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "anidoodle": {
+      "path": "SKILL/video/tier1/anidoodle",
+      "tier": "B",
+      "hash": "b2ea0d168698d45598a87713d264ad8765b7d6ff367a5f9b6c02e20a5a8eae6f",
+      "files": 589,
+      "origin": {
+        "type": "repo",
+        "repo": "alexgreensh/anidoodle",
+        "ref": "f746cbd",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:273"
+      },
+      "resolved": true
+    },
+    "apk-ndk-version-check": {
+      "path": "SKILL/software-development/tier1/apk-ndk-version-check",
+      "tier": "A",
+      "hash": "7d0fa0e250630074e809417ddc9a0d39a67fafecdfca358b8c9afe3c3f20b389",
+      "files": 3,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "arming-thought": {
+      "path": "SKILL/management/tier3/arming-thought",
+      "tier": "A",
+      "hash": "778029a5d8cd8c19eb37736b6502d6667bbd368f5adb863b407a005a11f56783",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "article-prompts-to-skills": {
+      "path": "SKILL/video/tier1/article-prompts-to-skills",
+      "tier": "B",
+      "hash": "6b02305848c1d85a135a5726a4dafc539c25889c28fe06ebd8b55137df891ba6",
+      "files": 8,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "bezos-advisor": {
+      "path": "SKILL/management/tier3/bezos-advisor",
+      "tier": "B",
+      "hash": "ec9aadea7017d3f6f87c7f970ea4e6c19d0fb601cade3262328610c3a7bdefb5",
+      "files": 1,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:211"
+      },
+      "resolved": true
+    },
+    "bili-talk-showreel": {
+      "path": "SKILL/video/tier0/bili-talk-showreel",
+      "tier": "A",
+      "hash": "d5158e6703b262e9b5e2bce468b65102485acd82c9f7db5de7bf52cda3310951",
+      "files": 9,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:294"
+      },
+      "resolved": true
+    },
+    "bili-video-brief": {
+      "path": "SKILL/video/tier0/bili-video-brief",
+      "tier": "A",
+      "hash": "52b5a0ff6c9027dc1695193af1bd6f72fe3076a3753523e8baaf877661fc6d13",
+      "files": 29,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:269"
+      },
+      "resolved": true
+    },
+    "bili-video-repack": {
+      "path": "SKILL/video/tier1/bili-video-repack",
+      "tier": "A",
+      "hash": "19aadc381a0c1489a6411a21a332708b02c77055bb4be20169343f647898188d",
+      "files": 7,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:280"
+      },
+      "resolved": true
+    },
+    "blender-director": {
+      "path": "SKILL/game-dev/tier1/blender-director",
+      "tier": "A",
+      "hash": "12eeeee7d41d8ee9e59d156c20cf5da0e5278ff4ff3e50f88c3acc1017bba3a6",
+      "files": 11,
+      "origin": {
+        "type": "repo",
+        "repo": "arjun988/blender-skills",
+        "ref": "904f095",
+        "vendor": "vendor/blender-skills",
+        "evidence": "INSTRUCTION.md:151"
+      },
+      "resolved": true
+    },
+    "blog-to-linkedin-post": {
+      "path": "SKILL/content/tier1/blog-to-linkedin-post",
+      "tier": "A",
+      "hash": "6f54736cdfd897467518f4d57b6291b19f88ddf489dea2de3d205a5efa9ee066",
+      "files": 2,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:57"
+      },
+      "resolved": true
+    },
+    "blog-to-twitter-post": {
+      "path": "SKILL/content/tier1/blog-to-twitter-post",
+      "tier": "A",
+      "hash": "9a15892d2ea1d94447ea175492e134dd97ab2a1dd0af90ead3155a1714b074ee",
+      "files": 3,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:56"
+      },
+      "resolved": true
+    },
+    "book-chapter-to-vault": {
+      "path": "SKILL/knowledge-vault/tier0/book-chapter-to-vault",
+      "tier": "A",
+      "hash": "05122f4ab76307eaa843dc114d6658889b64d20cce99215f7fcc4a5dc22077db",
+      "files": 17,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:137"
+      },
+      "resolved": true
+    },
+    "booth-kiosk-deck": {
+      "path": "SKILL/content/tier1/booth-kiosk-deck",
+      "tier": "B",
+      "hash": "bc78bb66eb933cd23531da6a1be0ab135a11ba973ac0145cc52e33ee7d9201bc",
+      "files": 37,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:75"
+      },
+      "resolved": true
+    },
+    "brand-docx": {
+      "path": "SKILL/design/tier0/brand-docx",
+      "tier": "A",
+      "hash": "b75f0d1e67dce3679d7a85525e5765e8e0d38e1b63f24a61d8e69ddfad52af32",
+      "files": 11,
+      "origin": {
+        "type": "repo",
+        "repo": "ferdinandobons/brand-docs",
+        "ref": "97a6e38",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:108"
+      },
+      "resolved": true
+    },
+    "brand-pptx": {
+      "path": "SKILL/design/tier1/brand-pptx",
+      "tier": "A",
+      "hash": "d980b2b543929cb4aa147a750ef0819d783550f42cff6e2759cfcf95b262089f",
+      "files": 4,
+      "origin": {
+        "type": "repo",
+        "repo": "ferdinandobons/brand-docs",
+        "ref": "97a6e38",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:108"
+      },
+      "resolved": true
+    },
+    "brand-xlsx": {
+      "path": "SKILL/design/tier1/brand-xlsx",
+      "tier": "A",
+      "hash": "0cb696d6271fbca5cba48d2e8defa557163e8dfbd0a45bf5582ad03130064fd6",
+      "files": 4,
+      "origin": {
+        "type": "repo",
+        "repo": "ferdinandobons/brand-docs",
+        "ref": "97a6e38",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:108"
+      },
+      "resolved": true
+    },
+    "browser-automation": {
+      "path": "vendor/claude-skills/engineering/skills/browser-automation",
+      "tier": "B",
+      "hash": "",
+      "files": 0,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "canvas-design": {
+      "path": "vendor/anthropics-skills/skills/canvas-design",
+      "tier": "A",
+      "hash": "",
+      "files": 0,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "claude-api": {
+      "path": "vendor/anthropics-skills/skills/claude-api",
+      "tier": "B",
+      "hash": "",
+      "files": 0,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "colleague-ue-app-specialist": {
+      "path": "SKILL/agents/tier3/colleague-ue-app-specialist",
+      "tier": "A",
+      "hash": "7d6df391f47092c153b77466c2387d562985cd4f6a22d95c8d12d57a7f888baa",
+      "files": 9,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:49"
+      },
+      "resolved": true
+    },
+    "colleague-ue-engine-architect": {
+      "path": "SKILL/agents/tier3/colleague-ue-engine-architect",
+      "tier": "A",
+      "hash": "166d61633a5f132346fc050a9b95e82e34fd5ad8e74172527b56dc0446e0b2e0",
+      "files": 9,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "colleague-ue-prod-team-lead": {
+      "path": "SKILL/agents/tier3/colleague-ue-prod-team-lead",
+      "tier": "A",
+      "hash": "92f98aadf42ee5cee1ca8797bcf6b69674f52022d948e9d19a2c6f7e2cf1c3ee",
+      "files": 8,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "colleague-ue-tech-planner": {
+      "path": "SKILL/agents/tier3/colleague-ue-tech-planner",
+      "tier": "A",
+      "hash": "c4341a0a36a109dacd28383723280c3fdbb53d162a998b2915df83f82a583a19",
+      "files": 9,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "comparable-analysis": {
+      "path": "SKILL/management/tier3/comparable-analysis",
+      "tier": "B",
+      "hash": "e68b77be556cc75dfd6c74f7e6e685a4ada922d0bdfbd2a2226444f26f649a96",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "consolidation": {
+      "path": "SKILL/management/tier3/consolidation",
+      "tier": "B",
+      "hash": "ed687734fbb80f9d279866e5ce271be947d4731b4505f71462dc2f8fbdc2b02c",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "contradiction-analysis": {
+      "path": "SKILL/management/tier3/contradiction-analysis",
+      "tier": "A",
+      "hash": "a5d1142057800151eab5ce226cf383154fc26dd5fb55b759ab80f76bed144f73",
+      "files": 4,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "cook": {
+      "path": "SKILL/design/tier0/cook",
+      "tier": "A",
+      "hash": "1f09addf044534bdc4615a388543d06c464ca2495e3ec50be9d3984b99105de4",
+      "files": 12,
+      "origin": {
+        "type": "repo",
+        "repo": "Leonxlnx/cook",
+        "ref": "b23cac6fd9",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:116"
+      },
+      "resolved": true
+    },
+    "course-repack": {
+      "path": "SKILL/video/tier0/course-repack",
+      "tier": "A",
+      "hash": "38e55d1b7f5ac9608904a9a9f3f8a1fb6c2493c1c34aae03aee4782114c392b6",
+      "files": 26,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:290"
+      },
+      "resolved": true
+    },
+    "criticism-self-criticism": {
+      "path": "SKILL/management/tier3/criticism-self-criticism",
+      "tier": "A",
+      "hash": "880234d16f784df7dec53b1929a77cbc1fc03de81625d398a16f2340a1b1c9c1",
+      "files": 3,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "dcf-valuation": {
+      "path": "SKILL/management/tier3/dcf-valuation",
+      "tier": "B",
+      "hash": "e350a4b51ddb1e8f01fe2d5ea87bf8989dfcc14f517c108df7d5566cef21dc47",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "deal-structuring": {
+      "path": "SKILL/management/tier3/deal-structuring",
+      "tier": "B",
+      "hash": "ae6733c36d0c910790429309fdfaa8f7c9c85a554a7d229f08d0f9d44604f800",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "deep-research": {
+      "path": "vendor/claude-skills/research/deep-research/skills/deep-research",
+      "tier": "B",
+      "hash": "",
+      "files": 0,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "deliberate-practice": {
+      "path": "SKILL/knowledge-vault/tier0/deliberate-practice",
+      "tier": "A",
+      "hash": "5dcda25261b40bacd114108a22b347f1887c49458ed379bc1f687544610d6736",
+      "files": 6,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:146"
+      },
+      "resolved": true
+    },
+    "deliberate-practice-talk": {
+      "path": "SKILL/video/tier0/deliberate-practice-talk",
+      "tier": "A",
+      "hash": "3111e026c0e0d41adf9c495ca5e7f06a2bc9db9d9d87dcfddf3a7b43ecae3161",
+      "files": 6,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:293"
+      },
+      "resolved": true
+    },
+    "diagnosing-bugs": {
+      "path": "SKILL/software-development/tier1/diagnosing-bugs",
+      "tier": "A",
+      "hash": "57bc027367f360f3850aada2ca328eb7c5c3c9f7413a90b5f496e855efa0e3ff",
+      "files": 3,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "discernment-nudge": {
+      "path": "vendor/anthropics-skills/skills/discernment-nudge",
+      "tier": "B",
+      "hash": "",
+      "files": 0,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "docx": {
+      "path": "SKILL/content/tier0/docx",
+      "tier": "A",
+      "hash": "7c31188c0087330fe84c097da96c59c7521b6aab17070cb56c66cfea1e419c69",
+      "files": 61,
+      "origin": {
+        "type": "repo",
+        "repo": "anthropics/skills",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:54"
+      },
+      "resolved": true
+    },
+    "doubaofeishu_industry-analysis": {
+      "path": "SKILL/management/tier2/doubaofeishu_industry-analysis",
+      "tier": "A",
+      "hash": "fd78e346c6789ea941f95067e0729de1be6af7f8f165a6f4a315be65f61cd508",
+      "files": 2,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:222"
+      },
+      "resolved": true
+    },
+    "earnings-models": {
+      "path": "SKILL/management/tier3/earnings-models",
+      "tier": "B",
+      "hash": "81f62cce8c9f28e16342f853488082c04e265f7a02c00bb19d327670fba7125e",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "excel-hygiene": {
+      "path": "SKILL/content/tier1/excel-hygiene",
+      "tier": "B",
+      "hash": "e3ba0b3d120bac5839639d2aae24087cd0f9fb94537751c1e93d9ae6af717aaf",
+      "files": 8,
+      "origin": {
+        "type": "repo",
+        "repo": "BayramAnnakov/excel-hygiene",
+        "ref": "bca5a74",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:81"
+      },
+      "resolved": true
+    },
+    "fable52-reproduction": {
+      "path": "SKILL/game-dev/tier0/fable52-reproduction",
+      "tier": "A",
+      "hash": "55fa2a1df0d20ea6f65884930b267fcd44f269a713f023fa6be69c1dfb2e5577",
+      "files": 33,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:191"
+      },
+      "resolved": true
+    },
+    "family-edu-gamified-skills": {
+      "path": "SKILL/knowledge-vault/tier2/family-edu-gamified-skills",
+      "tier": "A",
+      "hash": "5004f40e8468d2efc56b1f03e9e9b828b04522e8c85cba6c849f6251c5fdc3a2",
+      "files": 20,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:145"
+      },
+      "resolved": true
+    },
+    "feishu-kdocs-cli": {
+      "path": "SKILL/devops/tier0/feishu-kdocs-cli",
+      "tier": "A",
+      "hash": "55c031f6f33be7e61f9b08ee7e753ca34f65a449ba883590ea21d1d06bc0d006",
+      "files": 6,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:132"
+      },
+      "resolved": true
+    },
+    "film-repack": {
+      "path": "SKILL/video/tier0/film-repack",
+      "tier": "A",
+      "hash": "0134ffc13e4e48befb25ce0cc8c14789473a2287ab8c629ce55c8be9437de9f7",
+      "files": 23,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:291"
+      },
+      "resolved": true
+    },
+    "finance-lead": {
+      "path": "SKILL/management/tier3/finance-lead",
+      "tier": "B",
+      "hash": "271b3509ed3416708350a77c51b3f4378bb2a92ab3b96ba3619d727eff20bbbf",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "goal-persistence": {
+      "path": "SKILL/agents/tier3/goal-persistence",
+      "tier": "B",
+      "hash": "05f83fe0f036bf74e8603eafbc84d45a0dae48841f3c4e2837874adb5a16a202",
+      "files": 1,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:46"
+      },
+      "resolved": true
+    },
+    "gracker-writing": {
+      "path": "SKILL/content/tier1/gracker-writing",
+      "tier": "A",
+      "hash": "da7bc333afab7f43d56b0205a9298ddbcdb37bc90d6ea577dda2b237641ba289",
+      "files": 12,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:60"
+      },
+      "resolved": true
+    },
+    "grafana-loki-label-analyzer": {
+      "path": "SKILL/devops/tier1/grafana-loki-label-analyzer",
+      "tier": "B",
+      "hash": "5bd63f0128d495e92b0145d1f357d6e5cc4b8d68b706269d7df6e6945d150b11",
+      "files": 5,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "grafana-oss": {
+      "path": "SKILL/devops/tier1/grafana-oss",
+      "tier": "B",
+      "hash": "9bb1305ff7cbd1e6d5a2a327be6a7daaa541037cdcad84b07ad79e9ff2a4f617",
+      "files": 9,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "guizang-product-video-skill": {
+      "path": "SKILL/video/tier1/guizang-product-video-skill",
+      "tier": "B",
+      "hash": "0ad0887cf0c696e4f38bd4b0d0c5a366e9d91f53ec22922e58d42ecf9875f174",
+      "files": 104,
+      "origin": {
+        "type": "repo",
+        "repo": "op7418/guizang-product-video-skill",
+        "ref": "18842e0",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:274"
+      },
+      "resolved": true
+    },
+    "h3-seedance-prompt-library": {
+      "path": "SKILL/video/tier0/h3-seedance-prompt-library",
+      "tier": "B",
+      "hash": "b2ab8d9dec5894d84209309a7bdada5979d2f11f1842a03dca51f79c29436303",
+      "files": 49,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:271"
+      },
+      "resolved": true
+    },
+    "hands-on-deck": {
+      "path": "SKILL/design/tier0/hands-on-deck",
+      "tier": "A",
+      "hash": "1934559c4ac56096072a25266f799e65523494c2c067d2db2f43c63c6c3761a2",
+      "files": 9,
+      "origin": {
+        "type": "repo",
+        "repo": "EveryInc/hands-on-deck",
+        "ref": "a24b996",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:105"
+      },
+      "resolved": true
+    },
+    "hgb-standards": {
+      "path": "SKILL/management/tier3/hgb-standards",
+      "tier": "B",
+      "hash": "174106b67b90adace45e6e99b03e2fc1d76cba6af7ebb41b8b2f96d044e7bc97",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "html-artifacts": {
+      "path": "SKILL/design/tier1/html-artifacts",
+      "tier": "B",
+      "hash": "a59c6c57baedcab39bfffeb3d100260614c13f7266dfeca7b9a59f4055002929",
+      "files": 24,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:98"
+      },
+      "resolved": true
+    },
+    "html-ppt": {
+      "path": "SKILL/design/tier0/html-ppt",
+      "tier": "A",
+      "hash": "22231be4332d955d0774b0b9e213bafda59a71adbcf7c21ab2acede4d4143f53",
+      "files": 250,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "huashu-design": {
+      "path": "SKILL/design/tier0/huashu-design",
+      "tier": "B",
+      "hash": "ae9af52a5ec8ec3285fd7f737230d7cb058f898d2ce69b9aeef1e973dd3813aa",
+      "files": 366,
+      "origin": {
+        "type": "repo",
+        "repo": "alchaincyf/huashu-design",
+        "ref": "4fc7bfd",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:109"
+      },
+      "resolved": true
+    },
+    "hyperframes": {
+      "path": "SKILL/content/tier1/hyperframes",
+      "tier": "B",
+      "hash": "5f6d4a55c2e6e2e3e3215feca037386a4d0d9a08880d8ebbb22439aa5fa653d1",
+      "files": 79,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:71"
+      },
+      "resolved": true
+    },
+    "ifrs-standards": {
+      "path": "SKILL/management/tier3/ifrs-standards",
+      "tier": "B",
+      "hash": "4f3eb79461e6b232751c7638d729357fdc738945a20bb0e803bd22cfb8f6ba5e",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "investigation-first": {
+      "path": "SKILL/management/tier3/investigation-first",
+      "tier": "A",
+      "hash": "1d29c4c2535820f1fbcb0c97aa5d8aca0588a915e5647806d93e8373ec7bf746",
+      "files": 3,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "investment-masters": {
+      "path": "vendor/investment-masters",
+      "tier": "B",
+      "hash": "",
+      "files": 0,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "karpathy-explain-better": {
+      "path": "SKILL/writing/tier1/karpathy-explain-better",
+      "tier": "B",
+      "hash": "30fe3c716e92699fdffbd4ff66a36e01bd6034313b8723f8bbe1ef316be15bfe",
+      "files": 16,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:415"
+      },
+      "resolved": true
+    },
+    "lbo-modeling": {
+      "path": "SKILL/management/tier3/lbo-modeling",
+      "tier": "B",
+      "hash": "2ff431908b3aa45b6966d396a6a4b8ffc81f660318c4edf8c0697c285b8e5d1f",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "lease-accounting": {
+      "path": "SKILL/management/tier3/lease-accounting",
+      "tier": "B",
+      "hash": "afe43b916a08a094f7b243121149bb88aa7c4d4c222c7f9bf402b3302596259b",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "long-ai-project": {
+      "path": "SKILL/software-development/tier0/long-ai-project",
+      "tier": "A",
+      "hash": "20e7c50fb7073660922e6af97a162f3968da10762061f09639818551eeefcec1",
+      "files": 7,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:263"
+      },
+      "resolved": true
+    },
+    "manage-up-core": {
+      "path": "SKILL/management/tier2/manage-up-core",
+      "tier": "A",
+      "hash": "dec78f1bf3d4142cc8c8aac43bac666c5b3e647636db992ffcd1c894368d7e5b",
+      "files": 2,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:207"
+      },
+      "resolved": true
+    },
+    "management-loop": {
+      "path": "SKILL/management/tier2/management-loop",
+      "tier": "B",
+      "hash": "3a32256a8ab1777e432e6eee35f8447803cc73d088ffe7a84978d95d3eddb634",
+      "files": 1,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:214"
+      },
+      "resolved": true
+    },
+    "manim-video": {
+      "path": "SKILL/video/tier0/manim-video",
+      "tier": "B",
+      "hash": "d8d27e186cff6bc11f78a0d08e4fc085351c7db6e1c62476a68f918cb0bb0661",
+      "files": 17,
+      "origin": {
+        "type": "repo",
+        "repo": "browser-use/video-use",
+        "ref": "43cfc56",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:276"
+      },
+      "resolved": true
+    },
+    "mass-line": {
+      "path": "SKILL/management/tier3/mass-line",
+      "tier": "B",
+      "hash": "2116be9b8ed6b1cf215c976be809a37108a3ffa45e1da1676c98166a01168495",
+      "files": 3,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "meeting-summary": {
+      "path": "SKILL/management/tier3/meeting-summary",
+      "tier": "A",
+      "hash": "cf2587655b01edd4427468b3daa32f9ca206b13918cfb39dcd6239cd2422136f",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "mgmt-discipline": {
+      "path": "SKILL/management/tier3/mgmt-discipline",
+      "tier": "B",
+      "hash": "f2f61e5c8c43f84c09d5b366abcfb94b6a40602353a6fa8b9bc01a0b75a47458",
+      "files": 16,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:208"
+      },
+      "resolved": true
+    },
+    "mgmt-individual": {
+      "path": "SKILL/management/tier3/mgmt-individual",
+      "tier": "B",
+      "hash": "9e573cfa6e551b952c23f32223050bd537542b02b237038c9f08ae4d013a52d0",
+      "files": 81,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:209"
+      },
+      "resolved": true
+    },
+    "mgmt-org": {
+      "path": "SKILL/management/tier3/mgmt-org",
+      "tier": "B",
+      "hash": "8396ea4ab39c5b2cb0946d9880709ba7bf869417c9dcc83228ff0fdab48e157e",
+      "files": 134,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:210"
+      },
+      "resolved": true
+    },
+    "motion-showreel": {
+      "path": "SKILL/video/tier0/motion-showreel",
+      "tier": "A",
+      "hash": "a278f6e8d9ecd237c1d5cf5bdea9830e44074c51df1e62b2eb190f1ae84a7d79",
+      "files": 114,
+      "origin": {
+        "type": "repo",
+        "repo": "ConardLi/garden-skills",
+        "ref": "2b9a893",
+        "vendor": "vendor/garden-skills",
+        "evidence": "INSTRUCTION.md:281"
+      },
+      "resolved": true
+    },
+    "multi-agent-repo-governance": {
+      "path": "SKILL/software-development/tier0/multi-agent-repo-governance",
+      "tier": "A",
+      "hash": "eb6f4292b9b1d1c9538b8823c5e3fb5f99903b12cbb9a4784be4d0bfa3dc2fa4",
+      "files": 15,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:249"
+      },
+      "resolved": true
+    },
+    "next-token-agent-loop": {
+      "path": "SKILL/software-development/tier0/next-token-agent-loop",
+      "tier": "A",
+      "hash": "1cb484d992ca0aa2b0983812c000b8a23127ba8a2afdd2c1a39508bb62746d35",
+      "files": 14,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:261"
+      },
+      "resolved": true
+    },
+    "one-on-one-prep": {
+      "path": "SKILL/management/tier3/one-on-one-prep",
+      "tier": "A",
+      "hash": "12c3b6a4fbc58ef9608d6284208ad425d91954d477865fa238c5205e2d8a706e",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "onetake": {
+      "path": "SKILL/video/tier0/onetake",
+      "tier": "A",
+      "hash": "ef6e29fc6245f189313dee9f1e5b6810ccb009cff481063aa2814d81f27ee8e3",
+      "files": 86,
+      "origin": {
+        "type": "repo",
+        "repo": "feitangyuan/onetake",
+        "ref": "013a61a",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:278"
+      },
+      "resolved": true
+    },
+    "optimize-web-animations": {
+      "path": "SKILL/video/tier1/optimize-web-animations",
+      "tier": "B",
+      "hash": "6b8ee8038205def106936e6ea383a93ce15f5685f50158c6b08f0c5564886947",
+      "files": 8,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "overall-planning": {
+      "path": "SKILL/management/tier3/overall-planning",
+      "tier": "B",
+      "hash": "e12ebca63207dca16176bc1d143c2f40101f27bc1e26c72edcc82363bd6c6c5d",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "pdf": {
+      "path": "SKILL/content/tier0/pdf",
+      "tier": "A",
+      "hash": "8d7911dca599bb2c244b5bd186125a66cce312d55b1e2a86cc347213fec863f2",
+      "files": 12,
+      "origin": {
+        "type": "repo",
+        "repo": "anthropics/skills",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:55"
+      },
+      "resolved": true
+    },
+    "performance-review": {
+      "path": "SKILL/management/tier3/performance-review",
+      "tier": "B",
+      "hash": "16dc589b6ee4234bb4e5ffc6b7a5432a59450c4034912ca952515aa17bf6673d",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "pitch-book-creation": {
+      "path": "SKILL/management/tier3/pitch-book-creation",
+      "tier": "B",
+      "hash": "7c9e8189a1cdd84f5bc29f73b9e52eaa9c2bd59b671b1c37df22fcb0b4100728",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "pptx": {
+      "path": "SKILL/content/tier1/pptx",
+      "tier": "A",
+      "hash": "eb9891c1333282e87f7212b6547ceb0a4c59448e96eaf4f50a610e8c94e41570",
+      "files": 56,
+      "origin": {
+        "type": "repo",
+        "repo": "anthropics/skills",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:83"
+      },
+      "resolved": true
+    },
+    "practice-cognition": {
+      "path": "SKILL/management/tier3/practice-cognition",
+      "tier": "B",
+      "hash": "796342cc8c39879d950bd6f64605cebcc7d8cb80dd6a6bc27af0d0d006f19115",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "precedent-transactions": {
+      "path": "SKILL/management/tier3/precedent-transactions",
+      "tier": "B",
+      "hash": "0f49f6ea7717a2187353138bf1e2e7099346c7c9034a21f14675643cb447db16",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "presentation-skill": {
+      "path": "SKILL/design/tier1/presentation-skill",
+      "tier": "A",
+      "hash": "ad3425edd38ef926ee498b44c1422ad9a9eec8813944294216db1f458f35a69d",
+      "files": 241,
+      "origin": {
+        "type": "repo",
+        "repo": "siril9/presentation-skill",
+        "ref": "efd899c",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:106"
+      },
+      "resolved": true
+    },
+    "process-friction-cut": {
+      "path": "SKILL/management/tier3/process-friction-cut",
+      "tier": "A",
+      "hash": "33e68c74f7b7fb4966823f4944bfe0b32690e3a8292a48ac7e3779d3aa33762a",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "process-motivation-design": {
+      "path": "SKILL/management/tier3/process-motivation-design",
+      "tier": "A",
+      "hash": "03d8144f4fed57dbc3504e05818f1dbd1d007380ae2309cd1a83be5f91c778ef",
+      "files": 2,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:220"
+      },
+      "resolved": true
+    },
+    "process-reward-boost": {
+      "path": "SKILL/management/tier3/process-reward-boost",
+      "tier": "A",
+      "hash": "3b7210b703c16059e1fb5953050cdb2dce5ba9e433f935ecc3208dc061abdea9",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "project-update": {
+      "path": "SKILL/management/tier3/project-update",
+      "tier": "A",
+      "hash": "5d25a9322b87d9f05664303b938d4f6e23b2b2f6af71790ca8168b65f58c4de1",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "proposal": {
+      "path": "SKILL/management/tier2/proposal",
+      "tier": "B",
+      "hash": "bea1d65a9ea23361a6813d64c19e6def97f54069b1276a933c3b96918b45e500",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "protracted-strategy": {
+      "path": "SKILL/management/tier3/protracted-strategy",
+      "tier": "B",
+      "hash": "8819a7f011cb1629ff1e552ae67bc367fbc29052225c66a779597c772056f2a4",
+      "files": 3,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "pstack": {
+      "path": "SKILL/software-development/tier0/pstack",
+      "tier": "A",
+      "hash": "ea1eeb8a744c6ce344d4553abbc41716214c25330b9af90dd41e71222a205f44",
+      "files": 578,
+      "origin": {
+        "type": "repo",
+        "repo": "cursor/plugins",
+        "ref": "e58dd043600587dbaf58ba315e7f2b38373eeb43",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:239"
+      },
+      "resolved": true
+    },
+    "pstack-trust-ladder": {
+      "path": "SKILL/software-development/tier0/pstack-trust-ladder",
+      "tier": "A",
+      "hash": "d1503f6127bf74a2259bdbcefa3bfd43e1c891a3fbdb72b6ce402ff215bd6c43",
+      "files": 7,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:260"
+      },
+      "resolved": true
+    },
+    "quality-first-delivery": {
+      "path": "SKILL/software-development/tier0/quality-first-delivery",
+      "tier": "A",
+      "hash": "0d3296077b5a58245ef63b100cb0dd643c231bb7c00153a1af28e0834bd30ff6",
+      "files": 9,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:264"
+      },
+      "resolved": true
+    },
+    "quarterly-review": {
+      "path": "SKILL/management/tier2/quarterly-review",
+      "tier": "B",
+      "hash": "39d67a70fc429c188c52a8de0fe96e347cfe635bd757b945a8098c017c16762e",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "remotion-markup": {
+      "path": "SKILL/video/tier1/remotion-markup",
+      "tier": "B",
+      "hash": "2c816f98efe9aa880a19a9edb8e2f7714375ef316bcbbedf92467d69124c855f",
+      "files": 68,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "renzhengfei-advisor": {
+      "path": "SKILL/management/tier3/renzhengfei-advisor",
+      "tier": "B",
+      "hash": "3bada7ab08cc3fdbb9360bdf23f461c87bb285504aaf2b2b02439c2a49e47334",
+      "files": 1,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:211"
+      },
+      "resolved": true
+    },
+    "revenue-recognition": {
+      "path": "SKILL/management/tier3/revenue-recognition",
+      "tier": "B",
+      "hash": "a56ceb4e0cfc20398e751b90d5c8a8f7e806c1cb1bb6cf807e61c017b2c1b682",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "rigorous-proof": {
+      "path": "SKILL/math/tier2/rigorous-proof",
+      "tier": "B",
+      "hash": "db7a356ad8c7259ce2fcec7943db23648f390a23fa2b4c9bdded3629b1d28afc",
+      "files": 1,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:227"
+      },
+      "resolved": true
+    },
+    "search-fallback": {
+      "path": "SKILL/agents/tier0/search-fallback",
+      "tier": "B",
+      "hash": "1e43db38f2d4c0963962cf790e2f11974f1f434eba694471709d1d42ec8fbd32",
+      "files": 4,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:47"
+      },
+      "resolved": true
+    },
+    "sector-analysis": {
+      "path": "SKILL/management/tier3/sector-analysis",
+      "tier": "B",
+      "hash": "0cb7365d47a65857ee6730dfe118f7087ab7e2a8a89114578017fb66baa57bfb",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "single-file-html-game": {
+      "path": "SKILL/game-dev/tier0/single-file-html-game",
+      "tier": "A",
+      "hash": "65e418fe849c2c1fe4acfbbcea5fad880e316913c2eb2005dedadab83d272e93",
+      "files": 8,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:160"
+      },
+      "resolved": true
+    },
+    "skill-doctor": {
+      "path": "SKILL/software-development/tier0/skill-doctor",
+      "tier": "A",
+      "hash": "107aca0dcbea05507004865d0394443094ff50e0a85bbe717a8deb4f195c4261",
+      "files": 20,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "skill-trigger": {
+      "path": "SKILL/software-development/tier0/skill-trigger",
+      "tier": "A",
+      "hash": "0edecbee5af31ea3c784568e2fd7c3759a5cb5c0cc380f218c922410b6c7b9b9",
+      "files": 9,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "slack-gif-creator": {
+      "path": "vendor/anthropics-skills/skills/slack-gif-creator",
+      "tier": "B",
+      "hash": "",
+      "files": 0,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "spark-prairie-fire": {
+      "path": "SKILL/management/tier3/spark-prairie-fire",
+      "tier": "B",
+      "hash": "0c9d72e5f0b4fef36157ceb461a9c326952221e61797326406919c9fab53f22f",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "stageshow": {
+      "path": "SKILL/design/tier0/stageshow",
+      "tier": "A",
+      "hash": "c7c3bc96789a52c1ada0601b26550bdef1550f1266690bbb55491733c9a467b6",
+      "files": 405,
+      "origin": {
+        "type": "repo",
+        "repo": "benjitaylor/skills",
+        "ref": "299140f",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:88"
+      },
+      "resolved": true
+    },
+    "style-alibaba": {
+      "path": "SKILL/management/tier3/style-alibaba",
+      "tier": "A",
+      "hash": "88d4c0709bc3877b2d46153f8f967033978906f91c6dd68854fe06850ae67b2e",
+      "files": 2,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:215"
+      },
+      "resolved": true
+    },
+    "style-amazon": {
+      "path": "SKILL/management/tier2/style-amazon",
+      "tier": "A",
+      "hash": "faf34c60c8855a437302adbf0b5f384f32e63279135f2e1fc15e89bf607f42d4",
+      "files": 2,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:216"
+      },
+      "resolved": true
+    },
+    "style-bytedance": {
+      "path": "SKILL/management/tier3/style-bytedance",
+      "tier": "A",
+      "hash": "56672870f4b66d1c868525c4dd77c64bc870d29f0c1f17e5c02a5adeae5d7c8f",
+      "files": 2,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:217"
+      },
+      "resolved": true
+    },
+    "style-google": {
+      "path": "SKILL/management/tier2/style-google",
+      "tier": "A",
+      "hash": "29f1371de3eb078c9c844d56754c8edbd0e6988750fa6f98b7d3ca6bae41716e",
+      "files": 2,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:218"
+      },
+      "resolved": true
+    },
+    "style-microsoft": {
+      "path": "SKILL/management/tier2/style-microsoft",
+      "tier": "A",
+      "hash": "d00e73595f86ca96fd10dbd00296ad3a06762e1e70d16d5d00f4931b64f9b8ba",
+      "files": 2,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:219"
+      },
+      "resolved": true
+    },
+    "style-report": {
+      "path": "SKILL/management/tier2/style-report",
+      "tier": "B",
+      "hash": "401884515a8e902ef0cb4eb009b27e31409346fd5a1dea7c93a7b9b7b4c3c535",
+      "files": 13,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "style-tencent": {
+      "path": "SKILL/management/tier3/style-tencent",
+      "tier": "A",
+      "hash": "22ce0b653d07560824f7da2547a52068de4859bcf9bd8d05f2f5e5554402d251",
+      "files": 2,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:221"
+      },
+      "resolved": true
+    },
+    "systematic-debugging": {
+      "path": "SKILL/software-development/tier1/systematic-debugging",
+      "tier": "A",
+      "hash": "c8e5ff7574edad5daab075aaf96aee0e5ed4b6b0fada1f3994abf059b9bd7fd9",
+      "files": 11,
+      "origin": {
+        "type": "repo",
+        "repo": "obra/superpowers",
+        "ref": "2ce8aa1",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:255"
+      },
+      "resolved": true
+    },
+    "technical-design-document": {
+      "path": "SKILL/game-dev/tier1/technical-design-document",
+      "tier": "B",
+      "hash": "c6ab7da8d2b9826a3a6692f6c1196a26553e96199ce12da5b6b8bfb81366ab15",
+      "files": 16,
+      "origin": {
+        "type": "repo",
+        "repo": "Siitoo/Technical-Design-Document",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:161"
+      },
+      "resolved": true
+    },
+    "trimsheet-disguise": {
+      "path": "SKILL/design/tier0/trimsheet-disguise",
+      "tier": "A",
+      "hash": "cf11b46767d964ad4194e2a2de67029ffabc3262d9d0bbf48c782e8e8f1bcc8b",
+      "files": 5,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:117"
+      },
+      "resolved": true
+    },
+    "truly-anti-ai-flavor": {
+      "path": "SKILL/writing/tier1/truly-anti-ai-flavor",
+      "tier": "A",
+      "hash": "098a36f0d5953431c1e5af4e2bf65cdc8934dbbe5c92962d198e46f58f4a2817",
+      "files": 3,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:416"
+      },
+      "resolved": true
+    },
+    "ue-renderdoc-auto-capture": {
+      "path": "SKILL/game-dev/tier0/ue-renderdoc-auto-capture",
+      "tier": "A",
+      "hash": "3cabdc43338cc96a8033a6a35691419878f4bf3751af0fb8bd4775b583a014a2",
+      "files": 10,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:167"
+      },
+      "resolved": true
+    },
+    "upward-email": {
+      "path": "SKILL/management/tier3/upward-email",
+      "tier": "B",
+      "hash": "bdd5fa875e5b66b394bcfd5f2b888ffb344358a2825b31eb8569f6577d16028a",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "video-production": {
+      "path": "SKILL/design/tier0/video-production",
+      "tier": "B",
+      "hash": "93b98a5e4d084faea8f91f75b66ae9bc54ed54a1bb987c98c03a05b405d133d4",
+      "files": 22,
+      "origin": {
+        "type": "repo",
+        "repo": "speechlab0210/video-production-skill",
+        "ref": "8c46c40",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:114"
+      },
+      "resolved": true
+    },
+    "video-to-deck-reel": {
+      "path": "SKILL/video/tier0/video-to-deck-reel",
+      "tier": "A",
+      "hash": "fcc6606b85a5fe621b0da2540e57cdb3d4b83b8ffaedee55a74f8f468726e6b5",
+      "files": 23,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:292"
+      },
+      "resolved": true
+    },
+    "visual-explainer": {
+      "path": "SKILL/design/tier1/visual-explainer",
+      "tier": "A",
+      "hash": "ac6c8040aa92e8b1c5ad8d263090da1d7745733c104120627f7d56c491da44c2",
+      "files": 50,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:102"
+      },
+      "resolved": true
+    },
+    "visual-learner": {
+      "path": "SKILL/design/tier1/visual-learner",
+      "tier": "B",
+      "hash": "8b7def925dd7a27d2c3ff705ee4dc5cd7992d2cfe3f8114cd526428465be5401",
+      "files": 6,
+      "origin": {
+        "type": "repo",
+        "repo": "huseyingayiran/visual-learner",
+        "ref": "e3c6497",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:111"
+      },
+      "resolved": true
+    },
+    "web-artifacts-builder": {
+      "path": "vendor/anthropics-skills/skills/web-artifacts-builder",
+      "tier": "B",
+      "hash": "",
+      "files": 0,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "web-prototype": {
+      "path": "SKILL/design/tier1/web-prototype",
+      "tier": "B",
+      "hash": "85b05ee4c0bea68df6bc51ffe838d56f5adaca5f0d8f67230648ce17c7e0e9ab",
+      "files": 6,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:103"
+      },
+      "resolved": true
+    },
+    "webapp-testing": {
+      "path": "SKILL/game-dev/tier1/webapp-testing",
+      "tier": "A",
+      "hash": "e014313a62daf95c52c5bd3ad13eeeb47fd68ca80a267a0bda3e43b6eb123070",
+      "files": 7,
+      "origin": {
+        "type": "repo",
+        "repo": "ComposioHQ/awesome-claude-skills",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:168"
+      },
+      "resolved": true
+    },
+    "weekly-report": {
+      "path": "SKILL/management/tier3/weekly-report",
+      "tier": "A",
+      "hash": "c165c7b975033e8e83da97334a5484432b0d2c444c052a1095035685f575abcb",
+      "files": 2,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "workflows": {
+      "path": "SKILL/management/tier2/workflows",
+      "tier": "B",
+      "hash": "559ed213d8f680fed337c1394042c47c9d16282c247911f87d8bc79aead1b2fb",
+      "files": 1,
+      "origin": {
+        "type": "unknown",
+        "evidence": ""
+      },
+      "resolved": false
+    },
+    "xiaoma-studio": {
+      "path": "SKILL/design/tier1/xiaoma-studio",
+      "tier": "A",
+      "hash": "4b9ac401de9ba94f7c1326adfe30f31c33d8889af392e1b93b40d3a98a42a820",
+      "files": 53,
+      "origin": {
+        "type": "repo",
+        "repo": "crawfordxx/xiaoma-studio",
+        "ref": "2907bd6",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:110"
+      },
+      "resolved": true
+    },
+    "xlsx": {
+      "path": "vendor/anthropics-skills/skills/xlsx",
+      "tier": "A",
+      "hash": "",
+      "files": 0,
+      "origin": {
+        "type": "repo",
+        "repo": "appautomaton/document-SKILLs",
+        "ref": "dfb5685",
+        "vendor": "vendor/document-SKILLs",
+        "evidence": "INSTRUCTION.md:334"
+      },
+      "resolved": true
+    },
+    "zhangyiming-advisor": {
+      "path": "SKILL/management/tier3/zhangyiming-advisor",
+      "tier": "B",
+      "hash": "ce7c2da1d1dd9aed1323cc8d4087e027a336b00f93dd59af695d51d3e0003b43",
+      "files": 1,
+      "origin": {
+        "type": "sibling",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:211"
+      },
+      "resolved": true
+    }
+  }
+}

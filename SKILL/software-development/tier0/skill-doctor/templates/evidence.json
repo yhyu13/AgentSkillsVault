@@ -1,0 +1,13 @@
+{
+  "skill": "example-skill",
+  "generated_at": "2026-11-17T12:00:00Z",
+  "evidence": [
+    {
+      "session_id": "2026-11-16T09-12-ab12",
+      "scorer": "procedure_compliance",
+      "quote": "在没跑目标测试的情况下宣布完成",
+      "change": "交付前先跑本次改动涉及的目标测试，失败时不宣布完成",
+      "surface": "skills/example-skill/SKILL.md"
+    }
+  ]
+}

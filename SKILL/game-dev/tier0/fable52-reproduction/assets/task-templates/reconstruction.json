@@ -1,0 +1,27 @@
+{
+  "task_id": "reconstruction.{{DEMO_ID}}",
+  "skill": "reconstruction",
+  "input_files": ["{{PROJECT_ROOT}}/dumps/pcg/{{DEMO_ID}}/pcg.json", "{{PROJECT_ROOT}}/dumps/world/{{DEMO_ID}}/world.json"],
+  "input_schema": "{{SKILL_DIR}}/assets/schemas/task-card.schema.json",
+  "allowed_tools": ["read", "bash", "browser", "python"],
+  "operation": "Build a runnable mechanism slice with a manifest, license note, runtime audit and reopened screenshots.",
+  "output_file": "{{PROJECT_ROOT}}/reproduction/implementations/{{DEMO_ID}}/manifest.json",
+  "output_schema": "{{SKILL_DIR}}/assets/schemas/task-card.schema.json",
+  "required_evidence": ["resolving mechanism source refs", "runtime audit values", "console and request anomalies", "before and after screenshot hashes", "explicit deviation list"],
+  "steps": [
+    "Agree the mechanism set, deviations and stopping point before writing code.",
+    "Write manifest, README and license note before completing the implementation.",
+    "Expose seed, channels, pass order and collision through real runtime objects.",
+    "Run the slice, save the audit and console, reopen screenshots and test one full user path."
+  ],
+  "acceptance_checks": [
+    "Every mechanism ref resolves to a dump entity.",
+    "Behavior assertions could fail for the defect they claim to catch.",
+    "The report does not present the slice as visually equivalent or as full gameplay."
+  ],
+  "on_failure": {
+    "record": "{{PROJECT_ROOT}}/reports/gaps/{{DEMO_ID}}-reconstruction.json",
+    "retry": "Fix the named mechanism or audit defect and re-run the same checks.",
+    "stop": "Stop when the license forbids the deliverable or the runtime cannot be reproduced."
+  }
+}

@@ -114,6 +114,34 @@ jobs:
           python -m py_compile scripts/task_policy.py scripts/policy_gate.py scripts/merge_authorization.py scripts/check_manifest.py
           python -m unittest discover -s tests -p 'test_*.py' -v
 
+  store-integrity:
+    # Publishes the two signals the user-store verifier cannot see, and that no other
+    # job looks at: is the provenance lock still true, and do the generated plugin
+    # manifests still match the curated tree. Neither needs a populated ~/.agents, so
+    # both run on a bare checkout. Informational by design: `mismatch` in the store
+    # verifier is 1/3 noise today (__pycache__, uninitialised submodules), so turning
+    # this into a block now would train everyone to ignore it.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check skills lock is current
+        env:
+          PYTHONUTF8: '1'
+        run: python scripts/skills_lock.py --check
+      - name: Check generated plugin manifests match the tree
+        env:
+          PYTHONUTF8: '1'
+        run: python scripts/build_marketplace.py --check
+      - name: Compile the new scripts
+        env:
+          PYTHONUTF8: '1'
+        run: python -m py_compile scripts/skills_lock.py scripts/audit_stores.py scripts/build_marketplace.py
+
   merge-authorization:
     needs: policy-grade
     if: github.event_name != 'push'

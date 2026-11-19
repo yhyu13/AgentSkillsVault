@@ -1,0 +1,27 @@
+{
+  "task_id": "validation.{{DEMO_ID}}",
+  "skill": "validation",
+  "input_files": ["{{PROJECT_ROOT}}/dumps/pcg/{{DEMO_ID}}/pcg.json", "{{PROJECT_ROOT}}/dumps/world/{{DEMO_ID}}/world.json"],
+  "input_schema": "{{SKILL_DIR}}/assets/schemas/task-card.schema.json",
+  "allowed_tools": ["read", "bash", "python"],
+  "operation": "Run structural and relational checks plus four failure injections, and write a report without overwriting history.",
+  "output_file": "{{PROJECT_ROOT}}/reports/evidence/{{DEMO_ID}}-dump-validation.json",
+  "output_schema": "{{SKILL_DIR}}/assets/schemas/task-card.schema.json",
+  "required_evidence": ["checker exit code", "per-file hashes", "error list", "four injection outcomes"],
+  "steps": [
+    "Confirm the report path does not already contain a different historical run.",
+    "Run the checker with failure injection and capture the log.",
+    "Compare report hashes with the files actually on disk.",
+    "Record every rejection and every check that could not run."
+  ],
+  "acceptance_checks": [
+    "Exit code and report status agree.",
+    "Each injected defect is rejected with its expected code.",
+    "The report separates schema success from coverage completeness."
+  ],
+  "on_failure": {
+    "record": "{{PROJECT_ROOT}}/reports/gaps/{{DEMO_ID}}-validation.json",
+    "retry": "Return to the domain task named by the failing entity and fix the evidence.",
+    "stop": "Stop when a required check cannot run and report the unverified status instead of a pass."
+  }
+}

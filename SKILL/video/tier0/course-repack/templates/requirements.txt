@@ -1,0 +1,5 @@
+# Python side of course-repack. Install once per machine.
+pillow>=10.0          # fit_text.py: real font metrics
+playwright>=1.40      # check_visibility.py; then: playwright install chromium
+edge-tts>=7.0         # tts_episode.py (needs network)
+pywin32>=306          # check_pptx_layout.py (Windows + PowerPoint only)

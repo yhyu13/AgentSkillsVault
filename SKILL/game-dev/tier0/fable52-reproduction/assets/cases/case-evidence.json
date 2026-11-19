@@ -1,0 +1,124 @@
+{
+  "note": "Case evidence stays in the source project; this manifest pins hashes so a reviewer with the project can verify. The package does not bundle these files.",
+  "cases": {
+    "sublevel-07-fps-repro": {
+      "commit": "a7e1df3ce32eb2bb05e23ae457fe5fe2bffab961",
+      "source_path": "demos/raw/sublevel-07-fps-repro/index.html",
+      "source_sha256": "155918cef3cfb1860c441725b35d90893822d1e20c75cd4c79f06f3251b8f0de",
+      "files": [
+        {
+          "path": "demos/raw/sublevel-07-fps-repro/index.html",
+          "sha256": "155918cef3cfb1860c441725b35d90893822d1e20c75cd4c79f06f3251b8f0de",
+          "bytes": 130777
+        },
+        {
+          "path": "dumps/materials/sublevel-07-fps-repro/materials.json",
+          "sha256": "0710ffe1b72f72156a815b848c127c294f5eb442a3245732cbeb517959557663",
+          "bytes": 26529
+        },
+        {
+          "path": "dumps/pbr/sublevel-07-fps-repro/pbr.json",
+          "sha256": "81bf7be97235513f79eb6b289a3c27f9aefce6067aadef9d43c36300b8ec05b3",
+          "bytes": 9281
+        },
+        {
+          "path": "dumps/pcg/sublevel-07-fps-repro/pcg.json",
+          "sha256": "2738f20da6eabaa72ac2b58a1ab2fe904a84712f9fd009c25f0421337504171b",
+          "bytes": 30969
+        },
+        {
+          "path": "dumps/shaders/sublevel-07-fps-repro/shaders.json",
+          "sha256": "114b6dbe6f9d560b66c01e419079ed55eb64719fb4f4f734a3b72646d121d97b",
+          "bytes": 5340
+        },
+        {
+          "path": "dumps/world/sublevel-07-fps-repro/world.json",
+          "sha256": "2cd3265ecf8bfd481185ac42d05f127efc36e56b7fc24f3b15d3854131513e04",
+          "bytes": 9687
+        },
+        {
+          "path": "reports/evidence/sublevel07-playing.png",
+          "sha256": "2d7a56c18971f6fb80ce9cfcda7e4c6e5f8de1ce6ab27e600ab3d847116bf4a9",
+          "bytes": 1885011
+        },
+        {
+          "path": "reports/evidence/sublevel07-runtime-initial.json",
+          "sha256": "5e1c77bd5eb295227e409800a98915a88122678f0d27fa4fea1aa9f3aecfcda6",
+          "bytes": 5542
+        },
+        {
+          "path": "reports/evidence/sublevel07-runtime-reload.json",
+          "sha256": "5fa0ac93cac39fa1a3735221b69014a96b2f3d9269a47838d06fff69a69cf053",
+          "bytes": 4123
+        },
+        {
+          "path": "reports/evidence/sublevel07-runtime-step.json",
+          "sha256": "8027a998cb1aa1c79824f20240e65fc9f64a83366496046ad03480c90606cec8",
+          "bytes": 1425
+        }
+      ]
+    },
+    "materials-02": {
+      "commit": "a7e1df3ce32eb2bb05e23ae457fe5fe2bffab961",
+      "source_path": "demos/raw/materials-02/index.html",
+      "source_sha256": "b4e99f82d7816b7786ba1e91ac2e7b9df3a98ec65e870db4163648a8a0753a20",
+      "files": [
+        {
+          "path": "demos/raw/materials-02/index.html",
+          "sha256": "b4e99f82d7816b7786ba1e91ac2e7b9df3a98ec65e870db4163648a8a0753a20",
+          "bytes": 55388
+        },
+        {
+          "path": "dumps/materials/materials-02/materials.json",
+          "sha256": "23a645b95d8edc8733117e92d0321c33fd1517c9b5078dd332e85a50cdeedfea",
+          "bytes": 12878
+        },
+        {
+          "path": "dumps/pbr/materials-02/pbr.json",
+          "sha256": "da5ab8dc4a043ca075f19f3abdcb4928ef225c39e51edc167dfffe83b771c115",
+          "bytes": 9406
+        },
+        {
+          "path": "dumps/pcg/materials-02/pcg.json",
+          "sha256": "0a2305930d82e57588c0c3c5339c5a7cc43e7dc5a0251bd1015b0198d93e7452",
+          "bytes": 16069
+        },
+        {
+          "path": "dumps/shaders/materials-02/shaders.json",
+          "sha256": "cc70f90823864886434644673af38fdf9807ec9893bf0c5512892e729d168874",
+          "bytes": 6879
+        },
+        {
+          "path": "dumps/world/materials-02/world.json",
+          "sha256": "5c8eab311de407ea7caa5076506596a04b0e6d3e088a9730f00d2553dadc8170",
+          "bytes": 10760
+        },
+        {
+          "path": "reports/evidence/materials02-concrete.webp",
+          "sha256": "7f1ce63298174b4c043e3242273960e914a2201a40bc7bc453aadbfe0149f9f7",
+          "bytes": 223308
+        },
+        {
+          "path": "reports/evidence/materials02-container.webp",
+          "sha256": "bcb535f4c2e5d61c2605fa64aa5924ff0b34ff05c6633a6f040d89903f4a3b81",
+          "bytes": 252076
+        },
+        {
+          "path": "reports/evidence/materials02-overview.webp",
+          "sha256": "1a8f726f986b16b582ab05ddd11721450454d59164bd1408eb543e2e9b78c16d",
+          "bytes": 191076
+        },
+        {
+          "path": "reports/evidence/materials02-plate.webp",
+          "sha256": "affa5ae90afc6d5234ee79059f1f038f6a320a73ecc7d9ea3f4ab6311b3517e3",
+          "bytes": 264322
+        },
+        {
+          "path": "reports/evidence/materials02-runtime.json",
+          "sha256": "b30a15411e83914ea3bd3649bdbaddd095efc10002d9f350a186b3817fe83c7d",
+          "bytes": 4016
+        }
+      ]
+    }
+  }
+}

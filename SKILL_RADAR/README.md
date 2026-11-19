@@ -25,6 +25,7 @@ Research notes and live radars for the **AgentSkillsVault** — evidence-backed 
 | 2026-10-24 | [Top 20 agent skills for MBA / business domains](./2026-10-24-top-20-agent-skills-for-mba-business-domains.md) | Market analysis, competitive analysis, PRD, entrepreneurship kits, finance/accounting/valuation, sales & GTM, strategy frameworks, HR/legal/ops — ranked by stars plus a by-vertical radar; CSV twin alongside |
 | 2026-10-24 | [雷达采纳批次：submodule 落地 + skill 安装记录](./2026-10-24-radar-adoption-install-record.md) | 上面 6 篇笔记各自结尾的「采纳清单」如何落地：34 个 repo 变 `vendor/` submodule、137 个 skill 装进分类目录并分发到用户级；含 7 类不装理由、4 处刻意适配（重命名 / 前缀 / frontmatter 补丁） |
 | 2026-11-13 | [Top 20 agent-skill **vault** 同形态同行](./2026-11-13-agent-skill-vault-peers-top20.md) | 与前几篇按主题扫不同，这篇按**形态**扫：谁也是「多分类、可安装、被维护」的 skill 库。1,840 个候选 → 52 个实测（unique SKILL.md / 分类数 / 工具链 / 每 skill 载荷）→ 前 20。发现：镜像副本让星数榜严重虚高（最高 67% 重复）、我们缺 lockfile / harness 可见性验证 / 证据绑定、7 个 repo 值得挂 submodule |
+| 2026-11-13 | [Install-integrity probe — 装进去等于 harness 看得见吗 / 出处能机检吗](./2026-11-13-install-integrity-probe.md) | 把上面那篇的 D1 从「引用同行做法」变成「在本机量一遍」：`verify-install.ps1` 实际只证 primary store 里的存在性 + tree hash（`linkViews:false` 时不看任何 view store）；实测 `.kilo` 为空、`.claude` 192 条是宿主投影、`pptx` 的 MISMATCH 只是 `__pycache__`、`gracker-writing` 的安装副本比 vault 还新；出处表 28 个路径 token 里 **27 个已随 flatten 失效**、125 个已装 skill 有 48 个没有逐条出处。附两个只读工具 `scripts/store_matrix.py` / `scripts/provenance_coverage.py` |
 
 ## Adoption status（哪些结论已经落进 vault）
 

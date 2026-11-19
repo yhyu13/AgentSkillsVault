@@ -1,0 +1,27 @@
+{
+  "task_id": "world.{{DEMO_ID}}",
+  "skill": "world-dump",
+  "input_files": ["{{PROJECT_ROOT}}/demos/raw/{{DEMO_ID}}/index.html", "{{PROJECT_ROOT}}/reports/evidence/{{DEMO_ID}}-runtime-initial.json"],
+  "input_schema": "{{SKILL_DIR}}/assets/schemas/v2/world.schema.json",
+  "allowed_tools": ["read", "grep", "python"],
+  "operation": "Dump regions, geometry batches, collision, lighting, quality switches and runtime handles with explicit units.",
+  "output_file": "{{PROJECT_ROOT}}/dumps/world/{{DEMO_ID}}/world.json",
+  "output_schema": "{{SKILL_DIR}}/assets/schemas/v2/world.schema.json",
+  "required_evidence": ["scene root and coordinate convention", "source line range per architecture entity", "collider data or a not_captured marker", "runtime traversal pointer when used"],
+  "steps": [
+    "Root the scene and record background, fog, camera, lights and any unit statement.",
+    "Describe regions, batching and collision from the code that creates them.",
+    "Record quality switches separately from lighting and reflections.",
+    "Search LOD, streaming and instancing; record a scoped not_observed rather than an absolute absence."
+  ],
+  "acceptance_checks": [
+    "Units remain not_specified when the source does not state them.",
+    "Uncaptured collider and instance counts are labeled, not estimated.",
+    "Four explicitly created lights are not turned into a screenshot-based estimate."
+  ],
+  "on_failure": {
+    "record": "{{PROJECT_ROOT}}/reports/gaps/{{DEMO_ID}}-world.json",
+    "retry": "Resolve the specific unresolved reference or line range, then re-run the check.",
+    "stop": "Stop when the scene cannot be rooted without guessing or a traversal would require unauthorized access."
+  }
+}
