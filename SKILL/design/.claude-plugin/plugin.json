@@ -1,7 +1,7 @@
 {
   "name": "vault-design",
   "version": "1.0.0",
-  "description": "17 curated skills — HTML/visual design, slides, decks, diagrams and explainers.. Provenance resolution status is recorded in skills-lock.json.",
+  "description": "16 curated skills — HTML/visual design, slides, decks, diagrams and explainers.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
@@ -22,13 +22,12 @@
     "./tier1/html-artifacts",
     "./tier0/html-ppt",
     "./tier0/huashu-design",
-    "./tier1/presentation-skill",
+    "./tier0/humanize-ppt-team-lead",
     "./tier0/stageshow",
     "./tier0/trimsheet-disguise",
     "./tier0/video-production",
     "./tier1/visual-explainer",
     "./tier1/visual-learner",
-    "./tier1/web-prototype",
-    "./tier1/xiaoma-studio"
+    "./tier1/web-prototype"
   ]
 }

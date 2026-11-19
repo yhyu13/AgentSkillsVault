@@ -1,7 +1,7 @@
 {
   "name": "vault-software-development",
   "version": "1.0.0",
-  "description": "12 curated skills — Engineering workflow: specs, review, debugging, skill quality.. Provenance resolution status is recorded in skills-lock.json.",
+  "description": "25 curated skills — Engineering workflow: specs, review, debugging, skill quality.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
@@ -13,17 +13,30 @@
     "skills-vault"
   ],
   "skills": [
+    "./tier2/agent-desktop",
     "./tier0/agent-eval-loop",
     "./tier1/apk-ndk-version-check",
+    "./tier2/brainstorming",
+    "./tier2/code-review",
+    "./tier2/codebase-design",
     "./tier1/diagnosing-bugs",
+    "./tier2/distilly",
+    "./tier2/domain-modeling",
     "./tier0/long-ai-project",
     "./tier0/multi-agent-repo-governance",
     "./tier0/next-token-agent-loop",
     "./tier0/pstack",
     "./tier0/pstack-trust-ladder",
     "./tier0/quality-first-delivery",
+    "./tier2/receiving-code-review",
     "./tier0/skill-doctor",
+    "./tier2/skill-inspector",
     "./tier0/skill-trigger",
-    "./tier1/systematic-debugging"
+    "./tier2/skillopt-sleep",
+    "./tier2/software-dev-loop",
+    "./tier1/systematic-debugging",
+    "./tier2/technical-research-analysis-doc",
+    "./tier2/triage",
+    "./tier2/wizard"
   ]
 }

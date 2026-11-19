@@ -1,0 +1,10 @@
+[
+  {
+    "id": "A1",
+    "assumption": "",
+    "type": "desirability | viability | feasibility",
+    "impact": "high | medium | low",
+    "if_false": "",
+    "verify_in": "06-mvp-design"
+  }
+]

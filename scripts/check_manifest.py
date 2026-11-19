@@ -33,6 +33,18 @@ SKIP_DIRS = {
 }
 VALID_TIERS = {"A", "B", "C"}
 
+# A "lead" skill may carry the team it orchestrates under `skills/`:
+# `SKILL/<category>/tier<N>/<leaf>/skills/<sub>/SKILL.md`. Those sub-skills are
+# PAYLOAD, not peers — same rule build-manifest.ps1 applies via
+# `[\\/]tier\d[\\/][^\\/]+[\\/]skills[\\/]`. Anchored on purpose: a generic
+# `skills` skip would swallow real paths (`software-development/mattpocock/skills/…`,
+# `video/tier2/video-use/skills/…`, `…/references/upstream/…/skills/`).
+NESTED_SKILLS_RE = re.compile(r"(?:^|/)tier\d+/[^/]+/skills/")
+
+
+def is_nested_payload(rel: str) -> bool:
+    return bool(NESTED_SKILLS_RE.search(rel + "/"))
+
 
 def is_template_dir(name: str) -> bool:
     return name.startswith("TEMPLATE")
@@ -100,6 +112,8 @@ def scan_curated(root: Path) -> tuple[dict[str, str], list[str]]:
             continue
         skill_file = Path(dirpath) / "SKILL.md"
         rel = Path(dirpath).relative_to(root).as_posix()
+        if is_nested_payload(rel):
+            continue
         leaf = Path(dirpath).name
         if leaf in curated:
             errors.append(f"duplicate curated leaf name: {leaf} ({curated[leaf]} and {rel})")

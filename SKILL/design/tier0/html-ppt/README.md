@@ -78,17 +78,20 @@ machine, run `npm i -g skills` on a connected one first, or use method 2.
 
 | Agent | Project scope | Global scope |
 |---|---|---|
-| Claude Code | `.claude/skills/html-ppt/` | `~/.claude/skills/html-ppt/` |
-| Codex | `.agents/skills/html-ppt/` | `~/.codex/skills/html-ppt/` |
-| Cursor | `.agents/skills/html-ppt/` | `~/.cursor/skills/html-ppt/` |
-| OpenCode | `.agents/skills/html-ppt/` | `~/.config/opencode/skills/html-ppt/` |
-| Gemini CLI | `.agents/skills/html-ppt/` | `~/.gemini/skills/html-ppt/` |
-| Windsurf | `.windsurf/skills/html-ppt/` | `~/.codeium/windsurf/skills/html-ppt/` |
+| Claude Code | `.claude/skills/html-ppt/` | `<home>/.claude/skills/html-ppt/` |
+| Codex | `.agents/skills/html-ppt/` | `<home>/.codex/skills/html-ppt/` |
+| Cursor | `.agents/skills/html-ppt/` | `<home>/.cursor/skills/html-ppt/` |
+| OpenCode | `.agents/skills/html-ppt/` | `<home>/.config/opencode/skills/html-ppt/` |
+| Gemini CLI | `.agents/skills/html-ppt/` | `<home>/.gemini/skills/html-ppt/` |
+| Windsurf | `.windsurf/skills/html-ppt/` | `<home>/.codeium/windsurf/skills/html-ppt/` |
+
+`<home>` is the user's home directory. Pick the store your harness reads and
+copy the skill directory into it:
 
 ```bash
-mkdir -p ~/.claude/skills
-cp -R html-ppt-skill ~/.claude/skills/html-ppt
-ls ~/.claude/skills/html-ppt/SKILL.md      # must exist
+mkdir -p "$STORE/skills"
+cp -R html-ppt-skill "$STORE/skills/html-ppt"
+ls "$STORE/skills/html-ppt/SKILL.md"      # must exist
 ```
 
 Only `SKILL.md`, `assets/`, `templates/`, `references/` and `scripts/` are
@@ -99,7 +102,7 @@ an offline copy.
 
 ```bash
 ./scripts/new-deck.sh my-talk
-open examples/my-talk/index.html
+open examples/demo-deck/index.html
 ```
 
 ### Does it run without a network?

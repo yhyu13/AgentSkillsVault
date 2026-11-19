@@ -1,7 +1,7 @@
 {
   "name": "vault-game-dev",
   "version": "1.0.0",
-  "description": "6 curated skills — Godot/Phaser/Blender/UE game production and rendering.. Provenance resolution status is recorded in skills-lock.json.",
+  "description": "31 curated skills — Godot/Phaser/Blender/UE game production and rendering.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
@@ -13,11 +13,36 @@
     "skills-vault"
   ],
   "skills": [
+    "./tier2/ai-3d-scene-pipeline",
+    "./tier2/animation",
     "./tier1/blender-director",
+    "./tier2/blender-game-assets-v2",
+    "./tier2/blender-modeler",
+    "./tier2/cat-game-architecture",
+    "./tier2/collision-proxy",
+    "./tier2/compositing",
+    "./tier2/environment-artist",
     "./tier0/fable52-reproduction",
+    "./tier2/game-audio-director",
+    "./tier2/game-dev-loop",
+    "./tier2/game-liveops-assist-v2",
+    "./tier2/gdd-markdown-template",
+    "./tier2/geometry-nodes",
+    "./tier2/hair-groom",
+    "./tier2/hard-surface",
+    "./tier2/horror-style",
+    "./tier2/phaser-gamedev",
+    "./tier2/procedural-3d-scenes",
+    "./tier2/prop-artist",
+    "./tier2/qa-review",
+    "./tier2/rendering",
     "./tier0/single-file-html-game",
     "./tier1/technical-design-document",
+    "./tier2/three-clay-scenes",
+    "./tier2/three-procedural-scenes",
     "./tier0/ue-renderdoc-auto-capture",
+    "./tier2/ue4-shader-debug",
+    "./tier2/uv-workflow",
     "./tier1/webapp-testing"
   ]
 }

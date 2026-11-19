@@ -1,0 +1,4 @@
+{
+  "assumptions": [],
+  "_comment": "待验证假设清单。每条：{\"id\": \"A1\", \"stage\": \"02-niche-positioning\", \"assumption\": \"一句话\", \"evidence_needed\": \"怎么验\", \"status\": \"open|validated|refuted\", \"updated_at\": \"YYYY-MM-DD\"}。产生待验证假设时立即追加，验证后改 status，不要删条目。"
+}

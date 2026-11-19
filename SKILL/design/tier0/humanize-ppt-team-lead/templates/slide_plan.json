@@ -1,0 +1,35 @@
+{
+  "_comment": "slide_plan.json 契约。slides[].no 必须从 1 连续；每页必须有 purpose；assets 引用 asset_manifest 的编号。",
+  "meta": {
+    "title": "<标题>",
+    "audience": "<受众>",
+    "scene": "<场景>",
+    "language": "zh",
+    "target_slides": 12,
+    "primary_path": "guizang"
+  },
+  "slides": [
+    {
+      "no": 1,
+      "title": "<封面标题>",
+      "purpose": "<让听众此刻意识到/相信什么>",
+      "layout": "cover",
+      "blocks": ["<主标题>", "<副标题>", "<讲者/日期>"],
+      "assets": [],
+      "notes": "<演讲意图一句话>"
+    },
+    {
+      "no": 2,
+      "title": "<钩子页>",
+      "purpose": "<打破既有判断>",
+      "layout": "statement",
+      "blocks": ["<一句反常识的话>", "<支撑数字>"],
+      "assets": [1],
+      "notes": "<...>"
+    }
+  ],
+  "narrative": {
+    "arc": ["打破", "展开方法", "给出证据", "收束到动作"],
+    "state_changes": ["<第1→2页的状态位移>", "<第2→3页的状态位移>"]
+  }
+}

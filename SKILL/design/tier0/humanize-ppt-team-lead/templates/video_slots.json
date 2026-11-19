@@ -1,0 +1,23 @@
+{
+  "_comment": "video_slots.json 契约。没有视频需求时保留空 slots 数组，不要删文件。每个 slot 必须能被解析为 mp4 / poster / 降级说明三者之一。",
+  "slots": [
+    {
+      "id": "slot-1",
+      "after_slide": 7,
+      "goal": "<这段动效要解释什么>",
+      "duration_sec": 8,
+      "engine": "remotion",
+      "fallback": "css-fade",
+      "deliverables": {
+        "clip": "videos/slot-1.mp4",
+        "poster": "videos/slot-1-poster.png"
+      },
+      "status": "planned"
+    }
+  ],
+  "policy": {
+    "autoplay": false,
+    "loop": false,
+    "must_have_fallback": true
+  }
+}

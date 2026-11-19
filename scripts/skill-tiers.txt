@@ -352,3 +352,6 @@ tygg-ai-film-studio|A
 feishu-kdocs-cli|A
 # 2026-11-18 local distilled writing skill
 truly-anti-ai-flavor|A
+# 2026-11-20 distilled packs promoted from DISTILLED/ (tier0 by capacity score)
+humanize-ppt-team-lead|A
+opc-orchestrator|A
