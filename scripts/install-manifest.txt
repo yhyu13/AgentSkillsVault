@@ -118,6 +118,7 @@ process-reward-boost|SKILL/management/tier3/process-reward-boost|A
 project-update|SKILL/management/tier3/project-update|A
 proposal|SKILL/management/tier2/proposal|B
 protracted-strategy|SKILL/management/tier3/protracted-strategy|B
+pstack|SKILL/software-development/tier0/pstack|A
 pstack-trust-ladder|SKILL/software-development/tier0/pstack-trust-ladder|A
 quality-first-delivery|SKILL/software-development/tier0/quality-first-delivery|A
 quarterly-review|SKILL/management/tier2/quarterly-review|B

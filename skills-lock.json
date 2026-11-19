@@ -3,8 +3,8 @@
   "generatedBy": "scripts/skills_lock.py",
   "note": "hash is this tool's own tree hash; it is NOT byte-compatible with Get-TreeHash in scripts/verify-install.ps1 (independent implementations).",
   "counts": {
-    "skills": 141,
-    "resolved": 80,
+    "skills": 142,
+    "resolved": 81,
     "unresolved": 61
   },
   "unresolved": [
@@ -117,7 +117,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:240"
+        "evidence": "INSTRUCTION.md:241"
       },
       "resolved": true
     },
@@ -192,7 +192,7 @@
         "repo": "alexgreensh/anidoodle",
         "ref": "f746cbd",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:272"
+        "evidence": "INSTRUCTION.md:273"
       },
       "resolved": true
     },
@@ -253,7 +253,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:293"
+        "evidence": "INSTRUCTION.md:294"
       },
       "resolved": true
     },
@@ -267,7 +267,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:268"
+        "evidence": "INSTRUCTION.md:269"
       },
       "resolved": true
     },
@@ -281,7 +281,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:279"
+        "evidence": "INSTRUCTION.md:280"
       },
       "resolved": true
     },
@@ -534,7 +534,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:289"
+        "evidence": "INSTRUCTION.md:290"
       },
       "resolved": true
     },
@@ -606,7 +606,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:292"
+        "evidence": "INSTRUCTION.md:293"
       },
       "resolved": true
     },
@@ -737,7 +737,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:290"
+        "evidence": "INSTRUCTION.md:291"
       },
       "resolved": true
     },
@@ -812,7 +812,7 @@
         "repo": "op7418/guizang-product-video-skill",
         "ref": "18842e0",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:273"
+        "evidence": "INSTRUCTION.md:274"
       },
       "resolved": true
     },
@@ -826,7 +826,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:270"
+        "evidence": "INSTRUCTION.md:271"
       },
       "resolved": true
     },
@@ -951,7 +951,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:414"
+        "evidence": "INSTRUCTION.md:415"
       },
       "resolved": true
     },
@@ -987,7 +987,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:262"
+        "evidence": "INSTRUCTION.md:263"
       },
       "resolved": true
     },
@@ -1029,7 +1029,7 @@
         "repo": "browser-use/video-use",
         "ref": "43cfc56",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:275"
+        "evidence": "INSTRUCTION.md:276"
       },
       "resolved": true
     },
@@ -1107,7 +1107,7 @@
         "repo": "ConardLi/garden-skills",
         "ref": "2b9a893",
         "vendor": "vendor/garden-skills",
-        "evidence": "INSTRUCTION.md:280"
+        "evidence": "INSTRUCTION.md:281"
       },
       "resolved": true
     },
@@ -1121,7 +1121,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:248"
+        "evidence": "INSTRUCTION.md:249"
       },
       "resolved": true
     },
@@ -1135,7 +1135,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:260"
+        "evidence": "INSTRUCTION.md:261"
       },
       "resolved": true
     },
@@ -1160,7 +1160,7 @@
         "repo": "feitangyuan/onetake",
         "ref": "013a61a",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:277"
+        "evidence": "INSTRUCTION.md:278"
       },
       "resolved": true
     },
@@ -1341,6 +1341,20 @@
       },
       "resolved": false
     },
+    "pstack": {
+      "path": "SKILL/software-development/tier0/pstack",
+      "tier": "A",
+      "hash": "26af2f3705c769eaef2a67a8af1de5c521d87d2b602b682614cd2741916bae26",
+      "files": 579,
+      "origin": {
+        "type": "repo",
+        "repo": "cursor/plugins",
+        "ref": "e58dd043600587dbaf58ba315e7f2b38373eeb43",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:239"
+      },
+      "resolved": true
+    },
     "pstack-trust-ladder": {
       "path": "SKILL/software-development/tier0/pstack-trust-ladder",
       "tier": "A",
@@ -1351,7 +1365,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:259"
+        "evidence": "INSTRUCTION.md:260"
       },
       "resolved": true
     },
@@ -1365,7 +1379,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:263"
+        "evidence": "INSTRUCTION.md:264"
       },
       "resolved": true
     },
@@ -1632,7 +1646,7 @@
         "repo": "obra/superpowers",
         "ref": "2ce8aa1",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:254"
+        "evidence": "INSTRUCTION.md:255"
       },
       "resolved": true
     },
@@ -1674,7 +1688,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:415"
+        "evidence": "INSTRUCTION.md:416"
       },
       "resolved": true
     },
@@ -1727,7 +1741,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:291"
+        "evidence": "INSTRUCTION.md:292"
       },
       "resolved": true
     },
@@ -1844,7 +1858,7 @@
         "repo": "appautomaton/document-SKILLs",
         "ref": "dfb5685",
         "vendor": "vendor/document-SKILLs",
-        "evidence": "INSTRUCTION.md:333"
+        "evidence": "INSTRUCTION.md:334"
       },
       "resolved": true
     },
