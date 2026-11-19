@@ -21,9 +21,9 @@
     "./tier1/booth-kiosk-deck",
     "./tier0/docx",
     "./tier1/excel-hygiene",
-    "./tier1/gracker-writing",
+    "./tier2/hackathon-pitch-pipeline",
     "./tier1/hyperframes",
-    "./tier0/pdf",
-    "./tier1/pptx"
+    "./tier2/long-blog-to-viral-social-posts",
+    "./tier0/pdf"
   ]
 }

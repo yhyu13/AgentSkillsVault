@@ -1,7 +1,7 @@
 {
   "name": "vault-devops",
   "version": "1.0.0",
-  "description": "3 curated skills — Observability, Grafana, deployment and infrastructure review.. Provenance resolution status is recorded in skills-lock.json.",
+  "description": "9 curated skills — Observability, Grafana, deployment and infrastructure review.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
@@ -14,7 +14,13 @@
   ],
   "skills": [
     "./tier0/feishu-kdocs-cli",
+    "./tier2/grafana-alerting-irm",
+    "./tier2/grafana-dashboarding",
     "./tier1/grafana-loki-label-analyzer",
-    "./tier1/grafana-oss"
+    "./tier2/grafana-opentelemetry",
+    "./tier1/grafana-oss",
+    "./tier2/grafana-prometheus-label-strategy",
+    "./tier2/grafana-skill-authoring",
+    "./tier2/grafana-tempo"
   ]
 }

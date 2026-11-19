@@ -1,7 +1,7 @@
 {
   "name": "vault-agents",
   "version": "1.0.0",
-  "description": "6 curated skills — Agent behaviour, self-review loops and problem-solving methods.. Provenance resolution status is recorded in skills-lock.json.",
+  "description": "5 curated skills — Agent behaviour, self-review loops and problem-solving methods.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
@@ -17,7 +17,6 @@
     "./tier3/colleague-ue-engine-architect",
     "./tier3/colleague-ue-prod-team-lead",
     "./tier3/colleague-ue-tech-planner",
-    "./tier3/goal-persistence",
     "./tier0/search-fallback"
   ]
 }

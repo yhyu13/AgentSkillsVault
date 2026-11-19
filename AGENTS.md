@@ -79,7 +79,21 @@ The model is configured in `scripts/install-scope.json`:
 |---|---|
 | `primaryStore` | which store holds the real copy (default `.agents`) |
 | `linkViews` | `true` = junction every other store; `false` = install into the primary store only |
-| `topBandsPerCategory` | install only this many score bands per category (0 = all) |
+| `keepSharePerCategory` | per category, install the top share of curated skills ranked by `scripts/install_scores.py` (0 = all) |
+| `keepMinScore` | absolute floor on the selection score; at or above it a skill is installed however crowded its category is |
+| `minKeepPerCategory` | never cut a category below this many skills |
+| `topBandsPerCategory` | **legacy** absolute-band rule; only used when `keepSharePerCategory` is absent |
+
+**Why the band rule was retired (2026-11-20).** `tier<N>` is a *capacity* bucket, and the
+capacity score cannot see past the shape of a package: `C_payload` needs payload dirs and
+`E_hygiene` needs at least one real script, so a docs-only skill has a hard ceiling of
+`A 3.0 + B 2.0 + C 0 + D 2.0 + E 0.5 = 7.5` — tier2 forever, whatever it is worth. On this
+vault that capped 99 of 312 skills, and “keep the top 2 bands” then kept wildly uneven
+shares per category (game-dev 4/37, software-development 4/41, management 51/54). The
+install decision now ranks each category on `scripts/install_scores.py`: capacity plus
+evidence (a behavioural PASS +1, ABSTAIN/WRONG −1, a quality review ±1), with PASS and the
+absolute floor as overrides. Retention is now 50–100% per category. Full numbers and the
+before/after table: `docs/skill-capacity-audit/2026-11-20-install-scope-relative-ranking.md`.
 
 Changing `linkViews` to `false` (or passing `-NoViews`) makes `sync-skills.ps1` lift the
 junctions it previously created; real directories owned by other installers are never

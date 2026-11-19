@@ -1,7 +1,10 @@
 {
-  "topBandsPerCategory": 2,
-  "note": "Install only the top N score bands of each category (SKILL/<category>/tierN/<skill>). 0 = install every band. primaryStore = the store holding the ONE real copy (others get junction views). linkViews=false installs into primaryStore only. Regenerate scripts/install-manifest.txt after changing the band setting.",
-  "since": "2026-11-13",
+  "keepSharePerCategory": 0.5,
+  "keepMinScore": 8.0,
+  "minKeepPerCategory": 3,
+  "note": "Per category, install the top `keepSharePerCategory` share of curated skills, ranked by the selection score from scripts/install_scores.py (capacity + behavioural/quality evidence). `keepMinScore` is an absolute floor: anything scoring at or above it is installed no matter how crowded the category is. A behavioural PASS is always installed. 0 for keepSharePerCategory = install everything. `topBandsPerCategory` is the LEGACY absolute-band rule and is only used when keepSharePerCategory is absent. Regenerate scripts/install-manifest.txt after changing this file.",
+  "since": "2026-11-20",
+  "replaces": "topBandsPerCategory=2 (2026-11-13)",
   "primaryStore": ".agents",
   "linkViews": false,
   "hostProjected": [

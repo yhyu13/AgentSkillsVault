@@ -1,7 +1,7 @@
 {
   "name": "vault-management",
   "version": "1.0.0",
-  "description": "11 curated skills — Reports, OKRs, strategy frameworks, PM and finance models.. Provenance resolution status is recorded in skills-lock.json.",
+  "description": "28 curated skills — Reports, OKRs, strategy frameworks, PM and finance models.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
@@ -13,16 +13,33 @@
     "skills-vault"
   ],
   "skills": [
+    "./tier3/arming-thought",
+    "./tier3/contradiction-analysis",
     "./tier2/doubaofeishu_industry-analysis",
+    "./tier3/earnings-models",
+    "./tier3/finance-lead",
+    "./tier3/lease-accounting",
     "./tier2/manage-up-core",
     "./tier2/management-loop",
+    "./tier3/one-on-one-prep",
     "./tier0/opc-orchestrator",
+    "./tier3/overall-planning",
+    "./tier3/performance-review",
+    "./tier3/process-motivation-design",
+    "./tier3/process-reward-boost",
+    "./tier3/project-update",
     "./tier2/proposal",
     "./tier2/quarterly-review",
+    "./tier3/sector-analysis",
+    "./tier3/spark-prairie-fire",
+    "./tier3/style-alibaba",
     "./tier2/style-amazon",
+    "./tier3/style-bytedance",
     "./tier2/style-google",
     "./tier2/style-microsoft",
     "./tier2/style-report",
+    "./tier3/style-tencent",
+    "./tier3/weekly-report",
     "./tier2/workflows"
   ]
 }

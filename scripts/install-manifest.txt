@@ -19,105 +19,170 @@
 #
 # Regenerate with: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-manifest.ps1
 #
-# INSTALL SCOPE: only the top 2 score band(s) of each category are installed.
-# Set scripts/install-scope.json -> {"topBandsPerCategory": 0} to install every band.
-# Skills below the cut are listed as comments at the end of this file.
+# INSTALL SCOPE: per category, the top 50% of curated skills by selection score.
+# Score = capacity (scripts/install_scores.py) + behavioural/quality evidence;
+# a behavioural PASS is always installed. Set keepSharePerCategory to 0 to install everything.
+# Skills below the cut are listed as comments at the end of this file, with their score.
 
 # --- curated (vault-owned) ---
 3d-ultra-realistic-water|SKILL/video/tier1/3d-ultra-realistic-water|B
+3d-underwater-god-rays|SKILL/video/tier2/3d-underwater-god-rays|B
 3d-wood-lighting-scorecard|SKILL/video/tier1/3d-wood-lighting-scorecard|B
 agent-browser|SKILL/content/tier1/agent-browser|A
+agent-desktop|SKILL/software-development/tier2/agent-desktop|A
 agent-eval-loop|SKILL/software-development/tier0/agent-eval-loop|A
+ai-3d-scene-pipeline|SKILL/game-dev/tier2/ai-3d-scene-pipeline|B
 aigc-image-control|SKILL/content/tier1/aigc-image-control|A
 aigc-video-creation|SKILL/content/tier1/aigc-video-creation|B
-analysis-to-vault|SKILL/knowledge-vault/tier0/analysis-to-vault|A
 anatomy|SKILL/design/tier0/anatomy|B
 anidoodle|SKILL/video/tier1/anidoodle|B
+animation|SKILL/game-dev/tier2/animation|B
 apk-ndk-version-check|SKILL/software-development/tier1/apk-ndk-version-check|A
+arming-thought|SKILL/management/tier3/arming-thought|A
 article-prompts-to-skills|SKILL/video/tier1/article-prompts-to-skills|B
+aura-asset-images|SKILL/video/tier2/aura-asset-images|B
 bili-talk-showreel|SKILL/video/tier0/bili-talk-showreel|A
 bili-video-brief|SKILL/video/tier0/bili-video-brief|A
 bili-video-repack|SKILL/video/tier1/bili-video-repack|A
 blender-director|SKILL/game-dev/tier1/blender-director|A
+blender-game-assets-v2|SKILL/game-dev/tier2/blender-game-assets-v2|A
+blender-modeler|SKILL/game-dev/tier2/blender-modeler|B
 blog-to-linkedin-post|SKILL/content/tier1/blog-to-linkedin-post|A
 blog-to-twitter-post|SKILL/content/tier1/blog-to-twitter-post|A
 book-chapter-to-vault|SKILL/knowledge-vault/tier0/book-chapter-to-vault|A
 booth-kiosk-deck|SKILL/content/tier1/booth-kiosk-deck|B
+brainstorming|SKILL/software-development/tier2/brainstorming|B
 brand-docx|SKILL/design/tier0/brand-docx|A
 brand-pptx|SKILL/design/tier1/brand-pptx|A
 brand-xlsx|SKILL/design/tier1/brand-xlsx|A
+cat-game-architecture|SKILL/game-dev/tier2/cat-game-architecture|B
+codebase-design|SKILL/software-development/tier2/codebase-design|B
+code-review|SKILL/software-development/tier2/code-review|B
 colleague-ue-app-specialist|SKILL/agents/tier3/colleague-ue-app-specialist|A
 colleague-ue-engine-architect|SKILL/agents/tier3/colleague-ue-engine-architect|A
 colleague-ue-prod-team-lead|SKILL/agents/tier3/colleague-ue-prod-team-lead|A
 colleague-ue-tech-planner|SKILL/agents/tier3/colleague-ue-tech-planner|A
+collision-proxy|SKILL/game-dev/tier2/collision-proxy|B
+compositing|SKILL/game-dev/tier2/compositing|B
+contradiction-analysis|SKILL/management/tier3/contradiction-analysis|A
 cook|SKILL/design/tier0/cook|A
 course-repack|SKILL/video/tier0/course-repack|A
 deliberate-practice|SKILL/knowledge-vault/tier0/deliberate-practice|A
 deliberate-practice-talk|SKILL/video/tier0/deliberate-practice-talk|A
 diagnosing-bugs|SKILL/software-development/tier1/diagnosing-bugs|A
+distilly|SKILL/software-development/tier2/distilly|B
 docx|SKILL/content/tier0/docx|A
+domain-modeling|SKILL/software-development/tier2/domain-modeling|B
 doubaofeishu_industry-analysis|SKILL/management/tier2/doubaofeishu_industry-analysis|A
+earnings-models|SKILL/management/tier3/earnings-models|B
+elevenlabs-tts|SKILL/video/tier2/elevenlabs-tts|B
+environment-artist|SKILL/game-dev/tier2/environment-artist|B
 excel-hygiene|SKILL/content/tier1/excel-hygiene|B
 fable52-reproduction|SKILL/game-dev/tier0/fable52-reproduction|A
 family-edu-gamified-skills|SKILL/knowledge-vault/tier2/family-edu-gamified-skills|A
 feishu-kdocs-cli|SKILL/devops/tier0/feishu-kdocs-cli|A
 film-repack|SKILL/video/tier0/film-repack|A
-goal-persistence|SKILL/agents/tier3/goal-persistence|B
-gracker-writing|SKILL/content/tier1/gracker-writing|A
+finance-lead|SKILL/management/tier3/finance-lead|B
+game-audio-director|SKILL/game-dev/tier2/game-audio-director|B
+game-dev-loop|SKILL/game-dev/tier2/game-dev-loop|B
+game-liveops-assist-v2|SKILL/game-dev/tier2/game-liveops-assist-v2|A
+gdd-markdown-template|SKILL/game-dev/tier2/gdd-markdown-template|B
+geometry-nodes|SKILL/game-dev/tier2/geometry-nodes|B
+grafana-alerting-irm|SKILL/devops/tier2/grafana-alerting-irm|B
+grafana-dashboarding|SKILL/devops/tier2/grafana-dashboarding|B
 grafana-loki-label-analyzer|SKILL/devops/tier1/grafana-loki-label-analyzer|B
+grafana-opentelemetry|SKILL/devops/tier2/grafana-opentelemetry|B
 grafana-oss|SKILL/devops/tier1/grafana-oss|B
+grafana-prometheus-label-strategy|SKILL/devops/tier2/grafana-prometheus-label-strategy|B
+grafana-skill-authoring|SKILL/devops/tier2/grafana-skill-authoring|B
+grafana-tempo|SKILL/devops/tier2/grafana-tempo|B
 guizang-product-video-skill|SKILL/video/tier1/guizang-product-video-skill|B
 h3-seedance-prompt-library|SKILL/video/tier0/h3-seedance-prompt-library|B
+hackathon-pitch-pipeline|SKILL/content/tier2/hackathon-pitch-pipeline|A
+hair-groom|SKILL/game-dev/tier2/hair-groom|B
 hands-on-deck|SKILL/design/tier0/hands-on-deck|A
+hard-surface|SKILL/game-dev/tier2/hard-surface|B
+horror-style|SKILL/game-dev/tier2/horror-style|B
 html-artifacts|SKILL/design/tier1/html-artifacts|B
 html-ppt|SKILL/design/tier0/html-ppt|A
+html-to-interaction-prompts|SKILL/video/tier2/html-to-interaction-prompts|B
 huashu-design|SKILL/design/tier0/huashu-design|B
 humanize-ppt-team-lead|SKILL/design/tier0/humanize-ppt-team-lead|A
 hyperframes|SKILL/content/tier1/hyperframes|B
 karpathy-explain-better|SKILL/writing/tier1/karpathy-explain-better|B
+lease-accounting|SKILL/management/tier3/lease-accounting|B
 long-ai-project|SKILL/software-development/tier0/long-ai-project|A
+long-blog-to-viral-social-posts|SKILL/content/tier2/long-blog-to-viral-social-posts|B
+make-interfaces-feel-better|SKILL/video/tier2/make-interfaces-feel-better|B
 management-loop|SKILL/management/tier2/management-loop|B
 manage-up-core|SKILL/management/tier2/manage-up-core|A
 manim-video|SKILL/video/tier0/manim-video|B
 motion-showreel|SKILL/video/tier0/motion-showreel|A
 multi-agent-repo-governance|SKILL/software-development/tier0/multi-agent-repo-governance|A
 next-token-agent-loop|SKILL/software-development/tier0/next-token-agent-loop|A
+one-on-one-prep|SKILL/management/tier3/one-on-one-prep|A
 onetake|SKILL/video/tier0/onetake|A
 opc-orchestrator|SKILL/management/tier0/opc-orchestrator|A
 optimize-web-animations|SKILL/video/tier1/optimize-web-animations|B
+overall-planning|SKILL/management/tier3/overall-planning|B
 pdf|SKILL/content/tier0/pdf|A
-pptx|SKILL/content/tier1/pptx|A
-presentation-skill|SKILL/design/tier1/presentation-skill|A
+performance-review|SKILL/management/tier3/performance-review|B
+phaser-gamedev|SKILL/game-dev/tier2/phaser-gamedev|B
+procedural-3d-scenes|SKILL/game-dev/tier2/procedural-3d-scenes|B
+process-motivation-design|SKILL/management/tier3/process-motivation-design|A
+process-reward-boost|SKILL/management/tier3/process-reward-boost|A
+project-update|SKILL/management/tier3/project-update|A
+prop-artist|SKILL/game-dev/tier2/prop-artist|B
 proposal|SKILL/management/tier2/proposal|B
 pstack|SKILL/software-development/tier0/pstack|A
 pstack-trust-ladder|SKILL/software-development/tier0/pstack-trust-ladder|A
+qa-review|SKILL/game-dev/tier2/qa-review|B
 quality-first-delivery|SKILL/software-development/tier0/quality-first-delivery|A
 quarterly-review|SKILL/management/tier2/quarterly-review|B
+receiving-code-review|SKILL/software-development/tier2/receiving-code-review|A
 remotion-markup|SKILL/video/tier1/remotion-markup|B
+rendering|SKILL/game-dev/tier2/rendering|B
 rigorous-proof|SKILL/math/tier2/rigorous-proof|B
 search-fallback|SKILL/agents/tier0/search-fallback|B
+sector-analysis|SKILL/management/tier3/sector-analysis|B
 single-file-html-game|SKILL/game-dev/tier0/single-file-html-game|A
 skill-doctor|SKILL/software-development/tier0/skill-doctor|A
+skill-inspector|SKILL/software-development/tier2/skill-inspector|A
+skillopt-sleep|SKILL/software-development/tier2/skillopt-sleep|B
 skill-trigger|SKILL/software-development/tier0/skill-trigger|A
+software-dev-loop|SKILL/software-development/tier2/software-dev-loop|A
+spark-prairie-fire|SKILL/management/tier3/spark-prairie-fire|B
 stageshow|SKILL/design/tier0/stageshow|A
+style-alibaba|SKILL/management/tier3/style-alibaba|A
 style-amazon|SKILL/management/tier2/style-amazon|A
+style-bytedance|SKILL/management/tier3/style-bytedance|A
 style-google|SKILL/management/tier2/style-google|A
 style-microsoft|SKILL/management/tier2/style-microsoft|A
 style-report|SKILL/management/tier2/style-report|B
+style-tencent|SKILL/management/tier3/style-tencent|A
 systematic-debugging|SKILL/software-development/tier1/systematic-debugging|A
 technical-design-document|SKILL/game-dev/tier1/technical-design-document|B
+technical-research-analysis-doc|SKILL/software-development/tier2/technical-research-analysis-doc|B
+three-clay-scenes|SKILL/game-dev/tier2/three-clay-scenes|B
+three-procedural-scenes|SKILL/game-dev/tier2/three-procedural-scenes|B
+triage|SKILL/software-development/tier2/triage|B
 trimsheet-disguise|SKILL/design/tier0/trimsheet-disguise|A
 truly-anti-ai-flavor|SKILL/writing/tier1/truly-anti-ai-flavor|A
 tygg-ai-film-studio|SKILL/video/tier1/tygg-ai-film-studio|A
+ue4-shader-debug|SKILL/game-dev/tier2/ue4-shader-debug|A
 ue-renderdoc-auto-capture|SKILL/game-dev/tier0/ue-renderdoc-auto-capture|A
+uv-workflow|SKILL/game-dev/tier2/uv-workflow|B
 video-production|SKILL/design/tier0/video-production|B
 video-to-deck-reel|SKILL/video/tier0/video-to-deck-reel|A
+video-to-superprompt|SKILL/video/tier2/video-to-superprompt|B
 visual-explainer|SKILL/design/tier1/visual-explainer|A
 visual-learner|SKILL/design/tier1/visual-learner|B
 webapp-testing|SKILL/game-dev/tier1/webapp-testing|A
 web-prototype|SKILL/design/tier1/web-prototype|B
+web-technique-to-skill|SKILL/video/tier2/web-technique-to-skill|B
+weekly-report|SKILL/management/tier3/weekly-report|A
+wizard|SKILL/software-development/tier2/wizard|B
 workflows|SKILL/management/tier2/workflows|B
-xiaoma-studio|SKILL/design/tier1/xiaoma-studio|A
 
 # --- vendor-sourced (upstream submodules) ---
 algorithmic-art|vendor/anthropics-skills/skills/algorithmic-art|B
@@ -133,209 +198,146 @@ xlsx|vendor/anthropics-skills/skills/xlsx|A
 
 # --- host-local (installed outside this vault; sync leaves them untouched) ---
 
-# --- not installed: below the top 2 band(s) of its category ---
-# 3d-cloth-material|SKILL/video/tier3/3d-cloth-material|B|band=tier3|category=video
-# 3d-falling-leaves|SKILL/video/tier3/3d-falling-leaves|B|band=tier3|category=video
-# 3d-four-seasons|SKILL/video/tier2/3d-four-seasons|B|band=tier2|category=video
-# 3d-high-poly-models|SKILL/video/tier2/3d-high-poly-models|B|band=tier2|category=video
-# 3d-high-resolution-textures|SKILL/video/tier3/3d-high-resolution-textures|B|band=tier3|category=video
-# 3d-metal-material|SKILL/video/tier2/3d-metal-material|B|band=tier2|category=video
-# 3d-orbit-inspect-demo|SKILL/video/tier2/3d-orbit-inspect-demo|B|band=tier2|category=video
-# 3d-paper-material|SKILL/video/tier3/3d-paper-material|B|band=tier3|category=video
-# 3d-retina-resolution|SKILL/video/tier3/3d-retina-resolution|B|band=tier3|category=video
-# 3d-sky-background|SKILL/video/tier3/3d-sky-background|B|band=tier3|category=video
-# 3d-sky-rays|SKILL/video/tier3/3d-sky-rays|B|band=tier3|category=video
-# 3d-underwater-god-rays|SKILL/video/tier2/3d-underwater-god-rays|B|band=tier2|category=video
-# 3d-virtual-tour|SKILL/video/tier3/3d-virtual-tour|B|band=tier3|category=video
-# 3d-wood-material|SKILL/video/tier3/3d-wood-material|B|band=tier3|category=video
-# action-substitution|SKILL/management/tier4/action-substitution|A|band=tier4|category=management
-# agent-desktop|SKILL/software-development/tier2/agent-desktop|A|band=tier2|category=software-development
-# ai-3d-character-pipeline|SKILL/game-dev/tier2/ai-3d-character-pipeline|B|band=tier2|category=game-dev
-# ai-3d-scene-pipeline|SKILL/game-dev/tier2/ai-3d-scene-pipeline|B|band=tier2|category=game-dev
-# ai-video-production|SKILL/video/tier2/ai-video-production|A|band=tier2|category=video
-# animation|SKILL/game-dev/tier2/animation|B|band=tier2|category=game-dev
-# arming-thought|SKILL/management/tier3/arming-thought|A|band=tier3|category=management
-# ask-matt|SKILL/software-development/tier3/ask-matt|B|band=tier3|category=software-development
-# audit-verify-explain-grade-5|SKILL/video/tier2/audit-verify-explain-grade-5|B|band=tier2|category=video
-# aura-asset-images|SKILL/video/tier2/aura-asset-images|B|band=tier2|category=video
-# bezos-advisor|SKILL/management/tier3/bezos-advisor|B|band=tier3|category=management
-# blender-game-assets-v2|SKILL/game-dev/tier2/blender-game-assets-v2|A|band=tier2|category=game-dev
-# blender-modeler|SKILL/game-dev/tier2/blender-modeler|B|band=tier2|category=game-dev
-# brainstorming|SKILL/software-development/tier2/brainstorming|B|band=tier2|category=software-development
-# cat-game-architecture|SKILL/game-dev/tier2/cat-game-architecture|B|band=tier2|category=game-dev
-# codebase-design|SKILL/software-development/tier2/codebase-design|B|band=tier2|category=software-development
-# code-review|SKILL/software-development/tier2/code-review|B|band=tier2|category=software-development
-# colleague-yuhang|SKILL/agents/tier4/colleague-yuhang|A|band=tier4|category=agents
-# collision-proxy|SKILL/game-dev/tier2/collision-proxy|B|band=tier2|category=game-dev
-# comparable-analysis|SKILL/management/tier3/comparable-analysis|B|band=tier3|category=management
-# compositing|SKILL/game-dev/tier2/compositing|B|band=tier2|category=game-dev
-# concentrate-forces|SKILL/management/tier4/concentrate-forces|B|band=tier4|category=management
-# consolidation|SKILL/management/tier3/consolidation|B|band=tier3|category=management
-# content-craft|SKILL/content/tier2/content-craft|A|band=tier2|category=content
-# contradiction-analysis|SKILL/management/tier3/contradiction-analysis|A|band=tier3|category=management
-# criticism-self-criticism|SKILL/management/tier3/criticism-self-criticism|A|band=tier3|category=management
-# dcf-valuation|SKILL/management/tier3/dcf-valuation|B|band=tier3|category=management
-# deal-structuring|SKILL/management/tier3/deal-structuring|B|band=tier3|category=management
-# distilly|SKILL/software-development/tier2/distilly|B|band=tier2|category=software-development
-# domain-modeling|SKILL/software-development/tier2/domain-modeling|B|band=tier2|category=software-development
-# doubaofeishu_ui-design-system|SKILL/design/tier2/doubaofeishu_ui-design-system|B|band=tier2|category=design
-# earnings-models|SKILL/management/tier3/earnings-models|B|band=tier3|category=management
-# elevenlabs-tts|SKILL/video/tier2/elevenlabs-tts|B|band=tier2|category=video
-# engine-project-agent-v2|SKILL/game-dev/tier3/engine-project-agent-v2|A|band=tier3|category=game-dev
-# environment-artist|SKILL/game-dev/tier2/environment-artist|B|band=tier2|category=game-dev
-# ffmpeg|SKILL/video/tier2/ffmpeg|B|band=tier2|category=video
-# finance-lead|SKILL/management/tier3/finance-lead|B|band=tier3|category=management
-# game-archetype-classifier|SKILL/game-dev/tier4/game-archetype-classifier|B|band=tier4|category=game-dev
-# game-art-director|SKILL/game-dev/tier3/game-art-director|B|band=tier3|category=game-dev
-# game-asset-art-direction|SKILL/game-dev/tier3/game-asset-art-direction|B|band=tier3|category=game-dev
-# game-audio-director|SKILL/game-dev/tier2/game-audio-director|B|band=tier2|category=game-dev
-# game-build-verification|SKILL/game-dev/tier4/game-build-verification|B|band=tier4|category=game-dev
-# game-debug|SKILL/game-dev/tier3/game-debug|B|band=tier3|category=game-dev
-# game-design-strategist|SKILL/game-dev/tier3/game-design-strategist|B|band=tier3|category=game-dev
-# game-dev-loop|SKILL/game-dev/tier2/game-dev-loop|B|band=tier2|category=game-dev
-# game-engineering-lead|SKILL/game-dev/tier3/game-engineering-lead|B|band=tier3|category=game-dev
-# game-gdd-writing|SKILL/game-dev/tier3/game-gdd-writing|B|band=tier3|category=game-dev
-# game-grid-logic|SKILL/game-dev/tier3/game-grid-logic|B|band=tier3|category=game-dev
-# game-liveops-assist-v2|SKILL/game-dev/tier2/game-liveops-assist-v2|A|band=tier2|category=game-dev
-# game-platformer|SKILL/game-dev/tier4/game-platformer|B|band=tier4|category=game-dev
-# game-proto-validation-v2|SKILL/game-dev/tier3/game-proto-validation-v2|A|band=tier3|category=game-dev
-# game-quality-lead|SKILL/game-dev/tier3/game-quality-lead|B|band=tier3|category=game-dev
-# game-release-ops-lead|SKILL/game-dev/tier3/game-release-ops-lead|B|band=tier3|category=game-dev
-# game-studio-lead|SKILL/game-dev/tier3/game-studio-lead|B|band=tier3|category=game-dev
-# game-template|SKILL/game-dev/tier4/game-template|B|band=tier4|category=game-dev
-# game-template-engineering|SKILL/game-dev/tier4/game-template-engineering|B|band=tier4|category=game-dev
-# game-top-down-action|SKILL/game-dev/tier4/game-top-down-action|B|band=tier4|category=game-dev
-# game-tower-defense|SKILL/game-dev/tier3/game-tower-defense|B|band=tier3|category=game-dev
-# game-ui-heavy-narrative|SKILL/game-dev/tier4/game-ui-heavy-narrative|B|band=tier4|category=game-dev
-# gdd-markdown-template|SKILL/game-dev/tier2/gdd-markdown-template|B|band=tier2|category=game-dev
-# geometry-nodes|SKILL/game-dev/tier2/geometry-nodes|B|band=tier2|category=game-dev
-# governance-doc-design|SKILL/software-development/tier3/governance-doc-design|B|band=tier3|category=software-development
-# grafana-alerting-irm|SKILL/devops/tier2/grafana-alerting-irm|B|band=tier2|category=devops
-# grafana-alloy|SKILL/devops/tier2/grafana-alloy|B|band=tier2|category=devops
-# grafana-beyla|SKILL/devops/tier2/grafana-beyla|B|band=tier2|category=devops
-# grafana-dashboarding|SKILL/devops/tier2/grafana-dashboarding|B|band=tier2|category=devops
-# grafana-mimir|SKILL/devops/tier2/grafana-mimir|B|band=tier2|category=devops
-# grafana-opentelemetry|SKILL/devops/tier2/grafana-opentelemetry|B|band=tier2|category=devops
-# grafana-profilecli-insights|SKILL/devops/tier2/grafana-profilecli-insights|B|band=tier2|category=devops
-# grafana-prometheus|SKILL/devops/tier2/grafana-prometheus|B|band=tier2|category=devops
-# grafana-prometheus-cardinality-troubleshooter|SKILL/devops/tier2/grafana-prometheus-cardinality-troubleshooter|B|band=tier2|category=devops
-# grafana-prometheus-label-strategy|SKILL/devops/tier2/grafana-prometheus-label-strategy|B|band=tier2|category=devops
-# grafana-promql|SKILL/devops/tier3/grafana-promql|B|band=tier3|category=devops
-# grafana-pyroscope|SKILL/devops/tier3/grafana-pyroscope|B|band=tier3|category=devops
-# grafana-skill-authoring|SKILL/devops/tier2/grafana-skill-authoring|B|band=tier2|category=devops
-# grafana-tempo|SKILL/devops/tier2/grafana-tempo|B|band=tier2|category=devops
-# grilling|SKILL/software-development/tier3/grilling|B|band=tier3|category=software-development
-# grill-me|SKILL/software-development/tier4/grill-me|B|band=tier4|category=software-development
-# grill-with-docs|SKILL/software-development/tier4/grill-with-docs|B|band=tier4|category=software-development
-# hackathon-pitch-pipeline|SKILL/content/tier2/hackathon-pitch-pipeline|A|band=tier2|category=content
-# hair-groom|SKILL/game-dev/tier2/hair-groom|B|band=tier2|category=game-dev
-# handoff|SKILL/software-development/tier4/handoff|B|band=tier4|category=software-development
-# hard-surface|SKILL/game-dev/tier2/hard-surface|B|band=tier2|category=game-dev
-# hgb-standards|SKILL/management/tier3/hgb-standards|B|band=tier3|category=management
-# horror-style|SKILL/game-dev/tier2/horror-style|B|band=tier2|category=game-dev
-# html-to-interaction-prompts|SKILL/video/tier2/html-to-interaction-prompts|B|band=tier2|category=video
-# hyperframes-video-director|SKILL/video/tier2/hyperframes-video-director|B|band=tier2|category=video
-# ifrs-standards|SKILL/management/tier3/ifrs-standards|B|band=tier3|category=management
-# implement|SKILL/software-development/tier4/implement|B|band=tier4|category=software-development
-# improve-codebase-architecture|SKILL/software-development/tier3/improve-codebase-architecture|B|band=tier3|category=software-development
-# investigation-first|SKILL/management/tier3/investigation-first|A|band=tier3|category=management
-# iterate-until-verified|SKILL/video/tier2/iterate-until-verified|B|band=tier2|category=video
-# journey|SKILL/software-development/tier3/journey|B|band=tier3|category=software-development
-# lbo-modeling|SKILL/management/tier3/lbo-modeling|B|band=tier3|category=management
-# lease-accounting|SKILL/management/tier3/lease-accounting|B|band=tier3|category=management
-# lemo-opuscar|SKILL/video/tier3/lemo-opuscar|A|band=tier3|category=video
-# lighting|SKILL/game-dev/tier2/lighting|B|band=tier2|category=game-dev
-# llm-friendly-dsl-verification|SKILL/software-development/tier3/llm-friendly-dsl-verification|B|band=tier3|category=software-development
-# lod-pipeline|SKILL/game-dev/tier2/lod-pipeline|B|band=tier2|category=game-dev
-# long-blog-to-viral-social-posts|SKILL/content/tier2/long-blog-to-viral-social-posts|B|band=tier2|category=content
-# make-interfaces-feel-better|SKILL/video/tier2/make-interfaces-feel-better|B|band=tier2|category=video
-# mass-line|SKILL/management/tier3/mass-line|B|band=tier3|category=management
-# meeting-summary|SKILL/management/tier3/meeting-summary|A|band=tier3|category=management
-# mgmt-discipline|SKILL/management/tier3/mgmt-discipline|B|band=tier3|category=management
-# mgmt-individual|SKILL/management/tier3/mgmt-individual|B|band=tier3|category=management
-# mgmt-org|SKILL/management/tier3/mgmt-org|B|band=tier3|category=management
-# notes-on-writing|SKILL/content/tier3/notes-on-writing|B|band=tier3|category=content
-# okr-planner|SKILL/content/tier3/okr-planner|B|band=tier3|category=content
-# one-on-one-prep|SKILL/management/tier3/one-on-one-prep|A|band=tier3|category=management
-# opus-video-prompts|SKILL/video/tier3/opus-video-prompts|B|band=tier3|category=video
-# overall-planning|SKILL/management/tier3/overall-planning|B|band=tier3|category=management
-# performance-review|SKILL/management/tier3/performance-review|B|band=tier3|category=management
-# phaser-gamedev|SKILL/game-dev/tier2/phaser-gamedev|B|band=tier2|category=game-dev
-# physics-sim|SKILL/game-dev/tier2/physics-sim|B|band=tier2|category=game-dev
-# pitch-book-creation|SKILL/management/tier3/pitch-book-creation|B|band=tier3|category=management
-# plugin-capability-brief|SKILL/software-development/tier3/plugin-capability-brief|B|band=tier3|category=software-development
-# practice-cognition|SKILL/management/tier3/practice-cognition|B|band=tier3|category=management
-# prd|SKILL/management/tier4/prd|B|band=tier4|category=management
-# precedent-transactions|SKILL/management/tier3/precedent-transactions|B|band=tier3|category=management
-# procedural-3d-scenes|SKILL/game-dev/tier2/procedural-3d-scenes|B|band=tier2|category=game-dev
-# process-friction-cut|SKILL/management/tier3/process-friction-cut|A|band=tier3|category=management
-# process-motivation-design|SKILL/management/tier3/process-motivation-design|A|band=tier3|category=management
-# process-reward-boost|SKILL/management/tier3/process-reward-boost|A|band=tier3|category=management
-# progress-doc-style|SKILL/content/tier3/progress-doc-style|B|band=tier3|category=content
-# project-update|SKILL/management/tier3/project-update|A|band=tier3|category=management
-# prompt-pro|SKILL/software-development/tier3/prompt-pro|A|band=tier3|category=software-development
-# prop-artist|SKILL/game-dev/tier2/prop-artist|B|band=tier2|category=game-dev
-# prototype|SKILL/software-development/tier3/prototype|B|band=tier3|category=software-development
-# protracted-strategy|SKILL/management/tier3/protracted-strategy|B|band=tier3|category=management
-# qa-review|SKILL/game-dev/tier2/qa-review|B|band=tier2|category=game-dev
-# receiving-code-review|SKILL/software-development/tier2/receiving-code-review|A|band=tier2|category=software-development
-# remotion-captions|SKILL/video/tier3/remotion-captions|B|band=tier3|category=video
-# remotion-interactivity|SKILL/video/tier2/remotion-interactivity|B|band=tier2|category=video
-# remotion-video-engineering-distilled|SKILL/video/tier3/remotion-video-engineering-distilled|B|band=tier3|category=video
-# rendering|SKILL/game-dev/tier2/rendering|B|band=tier2|category=game-dev
-# renzhengfei-advisor|SKILL/management/tier3/renzhengfei-advisor|B|band=tier3|category=management
-# resolving-merge-conflicts|SKILL/software-development/tier4/resolving-merge-conflicts|B|band=tier4|category=software-development
-# retopology|SKILL/game-dev/tier2/retopology|B|band=tier2|category=game-dev
-# revenue-recognition|SKILL/management/tier3/revenue-recognition|B|band=tier3|category=management
-# rigging|SKILL/game-dev/tier2/rigging|B|band=tier2|category=game-dev
-# scene-assembly|SKILL/game-dev/tier2/scene-assembly|B|band=tier2|category=game-dev
-# sculpting|SKILL/game-dev/tier2/sculpting|B|band=tier2|category=game-dev
-# sector-analysis|SKILL/management/tier3/sector-analysis|B|band=tier3|category=management
-# self-improvement|SKILL/software-development/tier3/self-improvement|B|band=tier3|category=software-development
-# shuorenhua|SKILL/content/tier2/shuorenhua|A|band=tier2|category=content
-# skill-distill|SKILL/software-development/tier3/skill-distill|B|band=tier3|category=software-development
-# skill-inspector|SKILL/software-development/tier2/skill-inspector|A|band=tier2|category=software-development
-# skillopt-sleep|SKILL/software-development/tier2/skillopt-sleep|B|band=tier2|category=software-development
-# slideshow|SKILL/design/tier2/slideshow|A|band=tier2|category=design
-# social-push|SKILL/content/tier3/social-push|B|band=tier3|category=content
-# software-dev-loop|SKILL/software-development/tier2/software-dev-loop|A|band=tier2|category=software-development
-# source-anchored-design|SKILL/software-development/tier3/source-anchored-design|A|band=tier3|category=software-development
-# spark-prairie-fire|SKILL/management/tier3/spark-prairie-fire|B|band=tier3|category=management
-# style-alibaba|SKILL/management/tier3/style-alibaba|A|band=tier3|category=management
-# style-bytedance|SKILL/management/tier3/style-bytedance|A|band=tier3|category=management
-# style-cn-platform-tutorial|SKILL/content/tier2/style-cn-platform-tutorial|B|band=tier2|category=content
-# style-cn-tech-deep-dive|SKILL/content/tier2/style-cn-tech-deep-dive|B|band=tier2|category=content
-# style-tencent|SKILL/management/tier3/style-tencent|A|band=tier3|category=management
-# taste-brandkit|SKILL/design/tier3/taste-brandkit|B|band=tier3|category=design
-# taste-director|SKILL/design/tier3/taste-director|B|band=tier3|category=design
-# taste-imagegen-mobile|SKILL/design/tier3/taste-imagegen-mobile|B|band=tier3|category=design
-# taste-imagegen-web|SKILL/design/tier3/taste-imagegen-web|B|band=tier3|category=design
-# taste-redesign|SKILL/design/tier4/taste-redesign|B|band=tier4|category=design
-# taste-stitch|SKILL/design/tier4/taste-stitch|B|band=tier4|category=design
-# tdd|SKILL/software-development/tier3/tdd|A|band=tier3|category=software-development
-# tech-design-to-zhihu|SKILL/content/tier2/tech-design-to-zhihu|B|band=tier2|category=content
-# technical-research-analysis-doc|SKILL/software-development/tier2/technical-research-analysis-doc|B|band=tier2|category=software-development
-# texture-workflow|SKILL/game-dev/tier2/texture-workflow|B|band=tier2|category=game-dev
-# three-clay-scenes|SKILL/game-dev/tier2/three-clay-scenes|B|band=tier2|category=game-dev
-# three-procedural-scenes|SKILL/game-dev/tier2/three-procedural-scenes|B|band=tier2|category=game-dev
-# to-spec|SKILL/software-development/tier3/to-spec|B|band=tier3|category=software-development
-# to-tickets|SKILL/software-development/tier3/to-tickets|B|band=tier3|category=software-development
-# triage|SKILL/software-development/tier2/triage|B|band=tier2|category=software-development
-# truth-seeking-research|SKILL/software-development/tier3/truth-seeking-research|A|band=tier3|category=software-development
-# ue4-shader-debug|SKILL/game-dev/tier2/ue4-shader-debug|A|band=tier2|category=game-dev
-# ui-mockups|SKILL/design/tier3/ui-mockups|A|band=tier3|category=design
-# unsplash-asset-images|SKILL/video/tier2/unsplash-asset-images|B|band=tier2|category=video
-# upward-email|SKILL/management/tier3/upward-email|B|band=tier3|category=management
-# using-git-worktrees|SKILL/software-development/tier2/using-git-worktrees|B|band=tier2|category=software-development
-# uv-workflow|SKILL/game-dev/tier2/uv-workflow|B|band=tier2|category=game-dev
-# verification-before-completion|SKILL/software-development/tier3/verification-before-completion|A|band=tier3|category=software-development
-# vfx-fx|SKILL/game-dev/tier2/vfx-fx|B|band=tier2|category=game-dev
-# video-to-superprompt|SKILL/video/tier2/video-to-superprompt|B|band=tier2|category=video
-# video-use|SKILL/video/tier2/video-use|B|band=tier2|category=video
-# wayfinder|SKILL/software-development/tier2/wayfinder|B|band=tier2|category=software-development
-# web-technique-to-skill|SKILL/video/tier2/web-technique-to-skill|B|band=tier2|category=video
-# weekly-report|SKILL/management/tier3/weekly-report|A|band=tier3|category=management
-# wizard|SKILL/software-development/tier2/wizard|B|band=tier2|category=software-development
-# yu-hang-writing-style|SKILL/content/tier3/yu-hang-writing-style|A|band=tier3|category=content
-# zhangyiming-advisor|SKILL/management/tier3/zhangyiming-advisor|B|band=tier3|category=management
+# --- not installed: below the top 50% of its category by selection score ---
+# <name>|select=<selection score>|capacity=<shape score>|behavioural=<PASS|ABSTAIN|->
+# 3d-cloth-material|SKILL/video/tier3/3d-cloth-material|B|band=tier3|category=video|select=6.95|capacity=6.95|behavioural=-
+# 3d-falling-leaves|SKILL/video/tier3/3d-falling-leaves|B|band=tier3|category=video|select=6.95|capacity=6.95|behavioural=-
+# 3d-four-seasons|SKILL/video/tier2/3d-four-seasons|B|band=tier2|category=video|select=7.25|capacity=7.25|behavioural=-
+# 3d-high-poly-models|SKILL/video/tier2/3d-high-poly-models|B|band=tier2|category=video|select=7.45|capacity=7.45|behavioural=-
+# 3d-high-resolution-textures|SKILL/video/tier3/3d-high-resolution-textures|B|band=tier3|category=video|select=6.45|capacity=6.45|behavioural=-
+# 3d-metal-material|SKILL/video/tier2/3d-metal-material|B|band=tier2|category=video|select=7.45|capacity=7.45|behavioural=-
+# 3d-orbit-inspect-demo|SKILL/video/tier2/3d-orbit-inspect-demo|B|band=tier2|category=video|select=7.2|capacity=7.2|behavioural=-
+# 3d-paper-material|SKILL/video/tier3/3d-paper-material|B|band=tier3|category=video|select=6.95|capacity=6.95|behavioural=-
+# 3d-retina-resolution|SKILL/video/tier3/3d-retina-resolution|B|band=tier3|category=video|select=6.95|capacity=6.95|behavioural=-
+# 3d-sky-background|SKILL/video/tier3/3d-sky-background|B|band=tier3|category=video|select=6.95|capacity=6.95|behavioural=-
+# 3d-sky-rays|SKILL/video/tier3/3d-sky-rays|B|band=tier3|category=video|select=6.95|capacity=6.95|behavioural=-
+# 3d-virtual-tour|SKILL/video/tier3/3d-virtual-tour|B|band=tier3|category=video|select=6.45|capacity=6.45|behavioural=-
+# 3d-wood-material|SKILL/video/tier3/3d-wood-material|B|band=tier3|category=video|select=6.95|capacity=6.95|behavioural=-
+# action-substitution|SKILL/management/tier4/action-substitution|A|band=tier4|category=management|select=5.65|capacity=5.65|behavioural=-
+# ai-3d-character-pipeline|SKILL/game-dev/tier2/ai-3d-character-pipeline|B|band=tier2|category=game-dev|select=7.0|capacity=7.0|behavioural=-
+# ai-video-production|SKILL/video/tier2/ai-video-production|A|band=tier2|category=video|select=7.25|capacity=7.25|behavioural=-
+# analysis-to-vault|SKILL/knowledge-vault/tier0/analysis-to-vault|A|band=tier0|category=knowledge-vault|select=7.0|capacity=9.0|behavioural=ABSTAIN
+# ask-matt|SKILL/software-development/tier3/ask-matt|B|band=tier3|category=software-development|select=6.95|capacity=6.95|behavioural=-
+# audit-verify-explain-grade-5|SKILL/video/tier2/audit-verify-explain-grade-5|B|band=tier2|category=video|select=7.0|capacity=7.0|behavioural=-
+# bezos-advisor|SKILL/management/tier3/bezos-advisor|B|band=tier3|category=management|select=6.0|capacity=6.0|behavioural=-
+# colleague-yuhang|SKILL/agents/tier4/colleague-yuhang|A|band=tier4|category=agents|select=5.95|capacity=5.95|behavioural=-
+# comparable-analysis|SKILL/management/tier3/comparable-analysis|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# concentrate-forces|SKILL/management/tier4/concentrate-forces|B|band=tier4|category=management|select=5.5|capacity=5.5|behavioural=-
+# consolidation|SKILL/management/tier3/consolidation|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# content-craft|SKILL/content/tier2/content-craft|A|band=tier2|category=content|select=7.0|capacity=7.0|behavioural=-
+# criticism-self-criticism|SKILL/management/tier3/criticism-self-criticism|A|band=tier3|category=management|select=5.25|capacity=6.25|behavioural=ABSTAIN
+# dcf-valuation|SKILL/management/tier3/dcf-valuation|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# deal-structuring|SKILL/management/tier3/deal-structuring|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# doubaofeishu_ui-design-system|SKILL/design/tier2/doubaofeishu_ui-design-system|B|band=tier2|category=design|select=7.3|capacity=7.3|behavioural=-
+# engine-project-agent-v2|SKILL/game-dev/tier3/engine-project-agent-v2|A|band=tier3|category=game-dev|select=6.65|capacity=6.65|behavioural=-
+# ffmpeg|SKILL/video/tier2/ffmpeg|B|band=tier2|category=video|select=7.0|capacity=7.0|behavioural=-
+# game-archetype-classifier|SKILL/game-dev/tier4/game-archetype-classifier|B|band=tier4|category=game-dev|select=5.5|capacity=5.5|behavioural=-
+# game-art-director|SKILL/game-dev/tier3/game-art-director|B|band=tier3|category=game-dev|select=6.45|capacity=6.45|behavioural=-
+# game-asset-art-direction|SKILL/game-dev/tier3/game-asset-art-direction|B|band=tier3|category=game-dev|select=6.2|capacity=6.2|behavioural=-
+# game-build-verification|SKILL/game-dev/tier4/game-build-verification|B|band=tier4|category=game-dev|select=5.7|capacity=5.7|behavioural=-
+# game-debug|SKILL/game-dev/tier3/game-debug|B|band=tier3|category=game-dev|select=6.0|capacity=6.0|behavioural=-
+# game-design-strategist|SKILL/game-dev/tier3/game-design-strategist|B|band=tier3|category=game-dev|select=6.45|capacity=6.45|behavioural=-
+# game-engineering-lead|SKILL/game-dev/tier3/game-engineering-lead|B|band=tier3|category=game-dev|select=6.45|capacity=6.45|behavioural=-
+# game-gdd-writing|SKILL/game-dev/tier3/game-gdd-writing|B|band=tier3|category=game-dev|select=6.0|capacity=6.0|behavioural=-
+# game-grid-logic|SKILL/game-dev/tier3/game-grid-logic|B|band=tier3|category=game-dev|select=6.2|capacity=6.2|behavioural=-
+# game-platformer|SKILL/game-dev/tier4/game-platformer|B|band=tier4|category=game-dev|select=5.5|capacity=5.5|behavioural=-
+# game-proto-validation-v2|SKILL/game-dev/tier3/game-proto-validation-v2|A|band=tier3|category=game-dev|select=6.65|capacity=6.65|behavioural=-
+# game-quality-lead|SKILL/game-dev/tier3/game-quality-lead|B|band=tier3|category=game-dev|select=6.45|capacity=6.45|behavioural=-
+# game-release-ops-lead|SKILL/game-dev/tier3/game-release-ops-lead|B|band=tier3|category=game-dev|select=6.45|capacity=6.45|behavioural=-
+# game-studio-lead|SKILL/game-dev/tier3/game-studio-lead|B|band=tier3|category=game-dev|select=6.75|capacity=6.75|behavioural=-
+# game-template|SKILL/game-dev/tier4/game-template|B|band=tier4|category=game-dev|select=5.7|capacity=5.7|behavioural=-
+# game-template-engineering|SKILL/game-dev/tier4/game-template-engineering|B|band=tier4|category=game-dev|select=5.5|capacity=5.5|behavioural=-
+# game-top-down-action|SKILL/game-dev/tier4/game-top-down-action|B|band=tier4|category=game-dev|select=5.5|capacity=5.5|behavioural=-
+# game-tower-defense|SKILL/game-dev/tier3/game-tower-defense|B|band=tier3|category=game-dev|select=6.2|capacity=6.2|behavioural=-
+# game-ui-heavy-narrative|SKILL/game-dev/tier4/game-ui-heavy-narrative|B|band=tier4|category=game-dev|select=5.5|capacity=5.5|behavioural=-
+# goal-persistence|SKILL/agents/tier3/goal-persistence|B|band=tier3|category=agents|select=6.5|capacity=6.5|behavioural=-
+# governance-doc-design|SKILL/software-development/tier3/governance-doc-design|B|band=tier3|category=software-development|select=6.45|capacity=6.45|behavioural=-
+# gracker-writing|SKILL/content/tier1/gracker-writing|A|band=tier1|category=content|select=7.0|capacity=8.0|behavioural=ABSTAIN
+# grafana-alloy|SKILL/devops/tier2/grafana-alloy|B|band=tier2|category=devops|select=7.25|capacity=7.25|behavioural=-
+# grafana-beyla|SKILL/devops/tier2/grafana-beyla|B|band=tier2|category=devops|select=7.05|capacity=7.05|behavioural=-
+# grafana-mimir|SKILL/devops/tier2/grafana-mimir|B|band=tier2|category=devops|select=7.05|capacity=7.05|behavioural=-
+# grafana-profilecli-insights|SKILL/devops/tier2/grafana-profilecli-insights|B|band=tier2|category=devops|select=7.0|capacity=7.0|behavioural=-
+# grafana-prometheus|SKILL/devops/tier2/grafana-prometheus|B|band=tier2|category=devops|select=7.0|capacity=7.0|behavioural=-
+# grafana-prometheus-cardinality-troubleshooter|SKILL/devops/tier2/grafana-prometheus-cardinality-troubleshooter|B|band=tier2|category=devops|select=7.0|capacity=7.0|behavioural=-
+# grafana-promql|SKILL/devops/tier3/grafana-promql|B|band=tier3|category=devops|select=6.8|capacity=6.8|behavioural=-
+# grafana-pyroscope|SKILL/devops/tier3/grafana-pyroscope|B|band=tier3|category=devops|select=6.55|capacity=6.55|behavioural=-
+# grilling|SKILL/software-development/tier3/grilling|B|band=tier3|category=software-development|select=6.2|capacity=6.2|behavioural=-
+# grill-me|SKILL/software-development/tier4/grill-me|B|band=tier4|category=software-development|select=5.5|capacity=5.5|behavioural=-
+# grill-with-docs|SKILL/software-development/tier4/grill-with-docs|B|band=tier4|category=software-development|select=5.5|capacity=5.5|behavioural=-
+# handoff|SKILL/software-development/tier4/handoff|B|band=tier4|category=software-development|select=5.35|capacity=5.35|behavioural=-
+# hgb-standards|SKILL/management/tier3/hgb-standards|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# hyperframes-video-director|SKILL/video/tier2/hyperframes-video-director|B|band=tier2|category=video|select=7.5|capacity=7.5|behavioural=-
+# ifrs-standards|SKILL/management/tier3/ifrs-standards|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# implement|SKILL/software-development/tier4/implement|B|band=tier4|category=software-development|select=4.75|capacity=4.75|behavioural=-
+# improve-codebase-architecture|SKILL/software-development/tier3/improve-codebase-architecture|B|band=tier3|category=software-development|select=6.95|capacity=6.95|behavioural=-
+# investigation-first|SKILL/management/tier3/investigation-first|A|band=tier3|category=management|select=5.25|capacity=6.25|behavioural=ABSTAIN
+# iterate-until-verified|SKILL/video/tier2/iterate-until-verified|B|band=tier2|category=video|select=7.45|capacity=7.45|behavioural=-
+# journey|SKILL/software-development/tier3/journey|B|band=tier3|category=software-development|select=6.7|capacity=6.7|behavioural=-
+# lbo-modeling|SKILL/management/tier3/lbo-modeling|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# lemo-opuscar|SKILL/video/tier3/lemo-opuscar|A|band=tier3|category=video|select=6.7|capacity=6.7|behavioural=-
+# lighting|SKILL/game-dev/tier2/lighting|B|band=tier2|category=game-dev|select=7.05|capacity=7.05|behavioural=-
+# llm-friendly-dsl-verification|SKILL/software-development/tier3/llm-friendly-dsl-verification|B|band=tier3|category=software-development|select=6.45|capacity=6.45|behavioural=-
+# lod-pipeline|SKILL/game-dev/tier2/lod-pipeline|B|band=tier2|category=game-dev|select=7.05|capacity=7.05|behavioural=-
+# mass-line|SKILL/management/tier3/mass-line|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# meeting-summary|SKILL/management/tier3/meeting-summary|A|band=tier3|category=management|select=5.3|capacity=6.3|behavioural=ABSTAIN
+# mgmt-discipline|SKILL/management/tier3/mgmt-discipline|B|band=tier3|category=management|select=6.15|capacity=6.15|behavioural=-
+# mgmt-individual|SKILL/management/tier3/mgmt-individual|B|band=tier3|category=management|select=6.15|capacity=6.15|behavioural=-
+# mgmt-org|SKILL/management/tier3/mgmt-org|B|band=tier3|category=management|select=6.15|capacity=6.15|behavioural=-
+# notes-on-writing|SKILL/content/tier3/notes-on-writing|B|band=tier3|category=content|select=6.65|capacity=6.65|behavioural=-
+# okr-planner|SKILL/content/tier3/okr-planner|B|band=tier3|category=content|select=6.0|capacity=6.0|behavioural=-
+# opus-video-prompts|SKILL/video/tier3/opus-video-prompts|B|band=tier3|category=video|select=6.65|capacity=6.65|behavioural=-
+# physics-sim|SKILL/game-dev/tier2/physics-sim|B|band=tier2|category=game-dev|select=7.05|capacity=7.05|behavioural=-
+# pitch-book-creation|SKILL/management/tier3/pitch-book-creation|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# plugin-capability-brief|SKILL/software-development/tier3/plugin-capability-brief|B|band=tier3|category=software-development|select=6.7|capacity=6.7|behavioural=-
+# pptx|SKILL/content/tier1/pptx|A|band=tier1|category=content|select=7.5|capacity=8.5|behavioural=ABSTAIN
+# practice-cognition|SKILL/management/tier3/practice-cognition|B|band=tier3|category=management|select=6.0|capacity=6.0|behavioural=-
+# prd|SKILL/management/tier4/prd|B|band=tier4|category=management|select=5.8|capacity=5.8|behavioural=-
+# precedent-transactions|SKILL/management/tier3/precedent-transactions|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# presentation-skill|SKILL/design/tier1/presentation-skill|A|band=tier1|category=design|select=7.5|capacity=8.5|behavioural=ABSTAIN
+# process-friction-cut|SKILL/management/tier3/process-friction-cut|A|band=tier3|category=management|select=5.0|capacity=6.0|behavioural=ABSTAIN
+# progress-doc-style|SKILL/content/tier3/progress-doc-style|B|band=tier3|category=content|select=6.0|capacity=6.0|behavioural=-
+# prompt-pro|SKILL/software-development/tier3/prompt-pro|A|band=tier3|category=software-development|select=6.5|capacity=6.5|behavioural=-
+# prototype|SKILL/software-development/tier3/prototype|B|band=tier3|category=software-development|select=6.75|capacity=6.75|behavioural=-
+# protracted-strategy|SKILL/management/tier3/protracted-strategy|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# remotion-captions|SKILL/video/tier3/remotion-captions|B|band=tier3|category=video|select=6.7|capacity=6.7|behavioural=-
+# remotion-interactivity|SKILL/video/tier2/remotion-interactivity|B|band=tier2|category=video|select=7.5|capacity=7.5|behavioural=-
+# remotion-video-engineering-distilled|SKILL/video/tier3/remotion-video-engineering-distilled|B|band=tier3|category=video|select=6.0|capacity=6.0|behavioural=-
+# renzhengfei-advisor|SKILL/management/tier3/renzhengfei-advisor|B|band=tier3|category=management|select=6.0|capacity=6.0|behavioural=-
+# resolving-merge-conflicts|SKILL/software-development/tier4/resolving-merge-conflicts|B|band=tier4|category=software-development|select=5.6|capacity=5.6|behavioural=-
+# retopology|SKILL/game-dev/tier2/retopology|B|band=tier2|category=game-dev|select=7.05|capacity=7.05|behavioural=-
+# revenue-recognition|SKILL/management/tier3/revenue-recognition|B|band=tier3|category=management|select=6.25|capacity=6.25|behavioural=-
+# rigging|SKILL/game-dev/tier2/rigging|B|band=tier2|category=game-dev|select=7.05|capacity=7.05|behavioural=-
+# scene-assembly|SKILL/game-dev/tier2/scene-assembly|B|band=tier2|category=game-dev|select=7.05|capacity=7.05|behavioural=-
+# sculpting|SKILL/game-dev/tier2/sculpting|B|band=tier2|category=game-dev|select=7.0|capacity=7.0|behavioural=-
+# self-improvement|SKILL/software-development/tier3/self-improvement|B|band=tier3|category=software-development|select=6.0|capacity=6.0|behavioural=-
+# shuorenhua|SKILL/content/tier2/shuorenhua|A|band=tier2|category=content|select=7.2|capacity=7.2|behavioural=-
+# skill-distill|SKILL/software-development/tier3/skill-distill|B|band=tier3|category=software-development|select=6.3|capacity=6.3|behavioural=-
+# slideshow|SKILL/design/tier2/slideshow|A|band=tier2|category=design|select=7.45|capacity=7.45|behavioural=-
+# social-push|SKILL/content/tier3/social-push|B|band=tier3|category=content|select=6.25|capacity=6.25|behavioural=-
+# source-anchored-design|SKILL/software-development/tier3/source-anchored-design|A|band=tier3|category=software-development|select=6.0|capacity=6.0|behavioural=-
+# style-cn-platform-tutorial|SKILL/content/tier2/style-cn-platform-tutorial|B|band=tier2|category=content|select=7.0|capacity=7.0|behavioural=-
+# style-cn-tech-deep-dive|SKILL/content/tier2/style-cn-tech-deep-dive|B|band=tier2|category=content|select=7.5|capacity=7.5|behavioural=-
+# taste-brandkit|SKILL/design/tier3/taste-brandkit|B|band=tier3|category=design|select=6.2|capacity=6.2|behavioural=-
+# taste-director|SKILL/design/tier3/taste-director|B|band=tier3|category=design|select=6.0|capacity=6.0|behavioural=-
+# taste-imagegen-mobile|SKILL/design/tier3/taste-imagegen-mobile|B|band=tier3|category=design|select=6.2|capacity=6.2|behavioural=-
+# taste-imagegen-web|SKILL/design/tier3/taste-imagegen-web|B|band=tier3|category=design|select=6.2|capacity=6.2|behavioural=-
+# taste-redesign|SKILL/design/tier4/taste-redesign|B|band=tier4|category=design|select=5.7|capacity=5.7|behavioural=-
+# taste-stitch|SKILL/design/tier4/taste-stitch|B|band=tier4|category=design|select=5.7|capacity=5.7|behavioural=-
+# tdd|SKILL/software-development/tier3/tdd|A|band=tier3|category=software-development|select=6.95|capacity=6.95|behavioural=-
+# tech-design-to-zhihu|SKILL/content/tier2/tech-design-to-zhihu|B|band=tier2|category=content|select=7.5|capacity=7.5|behavioural=-
+# texture-workflow|SKILL/game-dev/tier2/texture-workflow|B|band=tier2|category=game-dev|select=7.05|capacity=7.05|behavioural=-
+# to-spec|SKILL/software-development/tier3/to-spec|B|band=tier3|category=software-development|select=6.0|capacity=6.0|behavioural=-
+# to-tickets|SKILL/software-development/tier3/to-tickets|B|band=tier3|category=software-development|select=6.7|capacity=6.7|behavioural=-
+# truth-seeking-research|SKILL/software-development/tier3/truth-seeking-research|A|band=tier3|category=software-development|select=6.5|capacity=6.5|behavioural=-
+# ui-mockups|SKILL/design/tier3/ui-mockups|A|band=tier3|category=design|select=6.95|capacity=6.95|behavioural=-
+# unsplash-asset-images|SKILL/video/tier2/unsplash-asset-images|B|band=tier2|category=video|select=7.45|capacity=7.45|behavioural=-
+# upward-email|SKILL/management/tier3/upward-email|B|band=tier3|category=management|select=6.3|capacity=6.3|behavioural=-
+# using-git-worktrees|SKILL/software-development/tier2/using-git-worktrees|B|band=tier2|category=software-development|select=7.0|capacity=7.0|behavioural=-
+# verification-before-completion|SKILL/software-development/tier3/verification-before-completion|A|band=tier3|category=software-development|select=6.3|capacity=6.3|behavioural=-
+# vfx-fx|SKILL/game-dev/tier2/vfx-fx|B|band=tier2|category=game-dev|select=7.05|capacity=7.05|behavioural=-
+# video-use|SKILL/video/tier2/video-use|B|band=tier2|category=video|select=7.5|capacity=7.5|behavioural=-
+# wayfinder|SKILL/software-development/tier2/wayfinder|B|band=tier2|category=software-development|select=7.0|capacity=7.0|behavioural=-
+# xiaoma-studio|SKILL/design/tier1/xiaoma-studio|A|band=tier1|category=design|select=7.5|capacity=8.5|behavioural=WRONG
+# yu-hang-writing-style|SKILL/content/tier3/yu-hang-writing-style|A|band=tier3|category=content|select=6.7|capacity=6.7|behavioural=-
+# zhangyiming-advisor|SKILL/management/tier3/zhangyiming-advisor|B|band=tier3|category=management|select=6.0|capacity=6.0|behavioural=-
 

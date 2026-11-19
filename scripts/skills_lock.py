@@ -41,6 +41,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -72,6 +73,44 @@ def canonical_file_bytes(data: bytes) -> bytes:
     if b"\x00" in data:
         return data
     return data.replace(b"\r\n", b"\n")
+
+
+def gitlinks(root: Path) -> list[tuple[str, str]]:
+    """Every committed submodule as (path, sha), longest-first for prefix lookup."""
+    try:
+        out = subprocess.run(
+            ["git", "-C", str(root), "ls-files", "-s"],
+            capture_output=True, text=True, encoding="utf-8", errors="replace",
+            check=False,
+        ).stdout
+    except OSError:
+        return []
+    links = []
+    for line in out.splitlines():
+        meta, _, path = line.partition("\t")
+        parts = meta.split()
+        if len(parts) >= 2 and parts[0] == "160000":
+            links.append((path.strip(), parts[1]))
+    links.sort(key=lambda p: len(p[0]), reverse=True)
+    return links
+
+
+def gitlink_sha(links: list[tuple[str, str]], rel: str) -> str:
+    """Committed submodule SHA covering *rel*, or '' when it is not a gitlink.
+
+    Hazard this fixes: `tree_hash` hashes what is ON DISK, but CI checks the
+    tree out without `submodules: recursive`, so `vendor/**` (and
+    `SKILL/video/tier1/tygg-ai-film-studio`) are EMPTY there. A lock generated
+    on a machine with submodules initialised therefore failed `skills_lock
+    --check` on every PR (2026-11-20), and the only way to keep CI green was to
+    hand-blank those hashes — i.e. the check silently stopped covering 70+
+    vendored skills. Recording the gitlink SHA keeps the guarantee (a submodule
+    bump is still a change) and is identical locally and in CI.
+    """
+    for path, sha in links:
+        if rel == path or rel.startswith(path + "/"):
+            return sha
+    return ""
 
 
 def tree_hash(path: Path) -> tuple[str, int]:
@@ -201,6 +240,7 @@ def build(root: Path) -> dict:
     manifest_rel = "scripts/install-manifest.txt"
     rows = read_manifest(root / manifest_rel)
     by_name, subs = parse_instruction(root / "INSTRUCTION.md")
+    links = gitlinks(root)
 
     skills: dict[str, dict] = {}
     unresolved: list[str] = []
@@ -210,7 +250,11 @@ def build(root: Path) -> dict:
                             "origin": {"type": "host", "evidence": ""}, "resolved": True}
             continue
         target = root / src
-        digest, count = tree_hash(target)
+        link = gitlink_sha(links, src)
+        if link:
+            digest, count = f"gitlink:{link}", 0
+        else:
+            digest, count = tree_hash(target)
         origin: dict = {}
         if name in by_name:
             origin = origin_from_row(by_name[name], "INSTRUCTION.md")

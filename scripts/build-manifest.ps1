@@ -174,11 +174,23 @@ foreach ($r in $rows) {
   $winner[$r.Name] = $r
 }
 
-# --- install scope: keep only the top N score bands of each category ---------
-# The band is the tierN directory created by docs/skill-capacity-audit/rearrange-tiers.ps1.
-# Excluded skills are still in the vault and still listed (as comments) in the
-# manifest, so restoring one is a config change plus a sync, not a re-audit.
+# --- install scope ---------------------------------------------------------
+# Two rules, checked in this order:
+#
+#   keepSharePerCategory (2026-11-20, default) — rank each category by the
+#     selection score from scripts/install_scores.py and keep the top share.
+#     A PASS on the behavioural trigger test is an override: evidence beats quota.
+#   topBandsPerCategory (2026-11-13, LEGACY) — keep the top N absolute bands.
+#     Dropped because the band is a capacity bucket that caps docs-only skills at
+#     7.5 (no payload dirs, no script => 3 of 10 points unreachable), so one
+#     category kept 51/54 while another kept 4/37.
+#
+# The band is the tierN directory of SKILL/<category>/tierN/<skill> set by
+# docs/skill-capacity-audit/rearrange-tiers.ps1.
 $effectiveTop = 0
+$effectiveShare = 0.0
+$minKeep = 3
+$keepMinScore = 0.0
 if (-not $NoBandFilter) {
   if ($TopBandsPerCategory -ge 0) {
     $effectiveTop = $TopBandsPerCategory
@@ -187,7 +199,13 @@ if (-not $NoBandFilter) {
     if (Test-Path -LiteralPath $scopeFile) {
       try {
         $scope = Get-Content -LiteralPath $scopeFile -Raw -Encoding UTF8 | ConvertFrom-Json
-        if ($null -ne $scope.topBandsPerCategory) { $effectiveTop = [int]$scope.topBandsPerCategory }
+        if ($null -ne $scope.keepSharePerCategory) {
+          $effectiveShare = [double]$scope.keepSharePerCategory
+        } elseif ($null -ne $scope.topBandsPerCategory) {
+          $effectiveTop = [int]$scope.topBandsPerCategory
+        }
+        if ($null -ne $scope.minKeepPerCategory) { $minKeep = [int]$scope.minKeepPerCategory }
+        if ($null -ne $scope.keepMinScore) { $keepMinScore = [double]$scope.keepMinScore }
       } catch {
         Write-Warning ("install-scope.json is unreadable, installing every band: {0}" -f $_)
       }
@@ -196,7 +214,65 @@ if (-not $NoBandFilter) {
 }
 
 $excluded = @{}
-if ($effectiveTop -gt 0) {
+if ($effectiveShare -gt 0) {
+  # --- relative ranking inside each category --------------------------------
+  $scores = @{}
+  $scoresScript = Join-Path $PSScriptRoot 'install_scores.py'
+  if (Test-Path -LiteralPath $scoresScript) {
+    $py = if ($env:PYTHON) { $env:PYTHON } else { 'python' }
+    $jsonLines = & $py $scoresScript --json 2>$null
+    if ($LASTEXITCODE -ne 0) {
+      throw ("install_scores.py failed (exit {0}); install scope cannot be computed. " -f $LASTEXITCODE) +
+            'Fix the scorer rather than falling back to a band rule that hides the problem.'
+    }
+    foreach ($ln in $jsonLines) {
+      if (-not $ln) { continue }
+      $row = $ln | ConvertFrom-Json
+      $scores[$row.skill] = $row
+    }
+  }
+
+  $byCat = @{}
+  foreach ($r in $winner.Values) {
+    if ($r.Kind -ne 'curated') { continue }
+    if ($r.Source -notmatch '^SKILL/([^/]+)/(tier[0-9])/') { continue }
+    $cat = $Matches[1]
+    if (-not $byCat.ContainsKey($cat)) { $byCat[$cat] = New-Object System.Collections.Generic.List[object] }
+    $byCat[$cat].Add($r)
+  }
+  $sortKeys = @(
+    # Ranking key: selection score desc, then name for a stable, reviewable cut.
+    # A skill with no score row is kept (fail-open) so a freshly added skill is
+    # never silently uninstalled; it sorts last but survives the quota.
+    @{ Expression = { if ($scores.ContainsKey($_.Name)) { $scores[$_.Name].select } else { -1 } }; Descending = $true },
+    @{ Expression = { $_.Name }; Descending = $false }
+  )
+  foreach ($cat in $byCat.Keys) {
+    $members = @($byCat[$cat] | Sort-Object -Property $sortKeys)
+    $nMembers = $members.Count
+    $quota = [int][math]::Ceiling($nMembers * $effectiveShare)
+    if ($quota -lt $minKeep) { $quota = $minKeep }
+    if ($quota -ge $nMembers) { continue }
+    for ($i = 0; $i -lt $nMembers; $i++) {
+      $name = $members[$i].Name
+      if ($i -lt $quota) { continue }
+      # Evidence override: a PASS means it fired correctly on a real prompt.
+      if ($scores.ContainsKey($name) -and $scores[$name].behavioral -eq 'PASS') { continue }
+      # Absolute floor: a high-scoring skill is not dropped just because its
+      # category happens to be crowded with other high scorers.
+      if ($keepMinScore -gt 0 -and $scores.ContainsKey($name) -and
+          [double]$scores[$name].select -ge $keepMinScore) { continue }
+      $excluded[$name] = [pscustomobject]@{
+        Source       = $members[$i].Source
+        Band         = if ($scores.ContainsKey($name)) { $scores[$name].band } else { '' }
+        Category     = $cat
+        Select       = if ($scores.ContainsKey($name)) { $scores[$name].select } else { $null }
+        Capacity     = if ($scores.ContainsKey($name)) { $scores[$name].capacity } else { $null }
+        Behavioral   = if ($scores.ContainsKey($name)) { $scores[$name].behavioral } else { '' }
+      }
+    }
+  }
+} elseif ($effectiveTop -gt 0) {
   $byCat = @{}
   foreach ($r in $winner.Values) {
     if ($r.Kind -ne 'curated') { continue }
@@ -245,8 +321,13 @@ $lines.Add('#   * a skill must appear here to be installed; unlisted skills are 
   $lines.Add('#')
   $lines.Add('# Regenerate with: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-manifest.ps1')
   $lines.Add('#')
-  if ($effectiveTop -gt 0) {
-    $lines.Add('# INSTALL SCOPE: only the top {0} score band(s) of each category are installed.' -f $effectiveTop)
+  if ($effectiveShare -gt 0) {
+    $lines.Add('# INSTALL SCOPE: per category, the top {0:P0} of curated skills by selection score.' -f $effectiveShare)
+    $lines.Add('# Score = capacity (scripts/install_scores.py) + behavioural/quality evidence;')
+    $lines.Add('# a behavioural PASS is always installed. Set keepSharePerCategory to 0 to install everything.')
+    $lines.Add('# Skills below the cut are listed as comments at the end of this file, with their score.')
+  } elseif ($effectiveTop -gt 0) {
+    $lines.Add('# INSTALL SCOPE (legacy): only the top {0} score band(s) of each category are installed.' -f $effectiveTop)
     $lines.Add('# Set scripts/install-scope.json -> {"topBandsPerCategory": 0} to install every band.')
     $lines.Add('# Skills below the cut are listed as comments at the end of this file.')
   } else {
@@ -269,10 +350,21 @@ foreach ($group in @('curated','vendor','host')) {
 }
 
 if ($excluded.Count -gt 0) {
-  $lines.Add('# --- not installed: below the top {0} band(s) of its category ---' -f $effectiveTop)
+  if ($effectiveShare -gt 0) {
+    $lines.Add('# --- not installed: below the top {0:P0} of its category by selection score ---' -f $effectiveShare)
+    $lines.Add('# <name>|select=<selection score>|capacity=<shape score>|behavioural=<PASS|ABSTAIN|->')
+  } else {
+    $lines.Add('# --- not installed: below the top {0} band(s) of its category ---' -f $effectiveTop)
+  }
   foreach ($name in ($excluded.Keys | Sort-Object)) {
     $e = $excluded[$name]
-    $lines.Add(('# {0}|{1}|{2}|band={3}|category={4}' -f $name, $e.Source, (Get-Tier $name), $e.Band, $e.Category))
+    if ($effectiveShare -gt 0) {
+      $lines.Add(('# {0}|{1}|{2}|band={3}|category={4}|select={5}|capacity={6}|behavioural={7}' -f
+        $name, $e.Source, (Get-Tier $name), $e.Band, $e.Category, $e.Select, $e.Capacity,
+        $(if ($e.Behavioral) { $e.Behavioral } else { '-' })))
+    } else {
+      $lines.Add(('# {0}|{1}|{2}|band={3}|category={4}' -f $name, $e.Source, (Get-Tier $name), $e.Band, $e.Category))
+    }
   }
   $lines.Add('')
 }
@@ -282,7 +374,7 @@ if ($excluded.Count -gt 0) {
 # Machine-readable hold-back list, for scripts/check_manifest.py: a curated skill
 # absent from the manifest is only an error when it is NOT listed here.
 $holdLines = New-Object System.Collections.Generic.List[string]
-$holdLines.Add('# Skills deliberately NOT installed: below the top N score bands of their category.')
+$holdLines.Add('# Skills deliberately NOT installed: below the install-scope cut of their category.')
 $holdLines.Add('# Generated by scripts/build-manifest.ps1 from scripts/install-scope.json - do not hand-edit.')
 $holdLines.Add('# Format: <skill-name>|<band>|<category>')
 foreach ($name in ($excluded.Keys | Sort-Object)) {
