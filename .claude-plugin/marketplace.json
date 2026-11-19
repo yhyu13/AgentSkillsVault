@@ -5,7 +5,7 @@
     "url": "https://github.com/yhyu13"
   },
   "metadata": {
-    "description": "AgentSkillsVault — 132 curated agent skills across 11 categories, one plugin per category. Curated skills are generated from the install manifest; skills-lock.json records source-resolution status.",
+    "description": "AgentSkillsVault — 94 curated agent skills across 11 categories, one plugin per category. Curated skills are generated from the install manifest; skills-lock.json records source-resolution status.",
     "version": "1.0.0"
   },
   "plugins": [
@@ -34,7 +34,7 @@
     {
       "name": "vault-design",
       "source": "./SKILL/design",
-      "description": "17 skills — HTML/visual design, slides, decks, diagrams and explainers.",
+      "description": "18 skills — HTML/visual design, slides, decks, diagrams and explainers.",
       "version": "1.0.0",
       "category": "design",
       "tags": [
@@ -78,7 +78,7 @@
     {
       "name": "vault-management",
       "source": "./SKILL/management",
-      "description": "51 skills — Reports, OKRs, strategy frameworks, PM and finance models.",
+      "description": "11 skills — Reports, OKRs, strategy frameworks, PM and finance models.",
       "version": "1.0.0",
       "category": "management",
       "tags": [
@@ -111,7 +111,7 @@
     {
       "name": "vault-video",
       "source": "./SKILL/video",
-      "description": "18 skills — Code-rendered video, motion design and cinema pipelines.",
+      "description": "19 skills — Code-rendered video, motion design and cinema pipelines.",
       "version": "1.0.0",
       "category": "video",
       "tags": [

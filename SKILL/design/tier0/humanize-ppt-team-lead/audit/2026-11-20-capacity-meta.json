@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-20",
+  "root": "SKILL\\design\\tier0\\humanize-ppt-team-lead",
+  "skills": 6,
+  "avg": 9.83,
+  "median": 10.0,
+  "min": 9.0,
+  "max": 10.0,
+  "dup_groups": 0,
+  "broken_ref_skills": 0,
+  "no_frontmatter": 0,
+  "name_mismatch": 0,
+  "quality": "not measured",
+  "behavioral": "not measured"
+}

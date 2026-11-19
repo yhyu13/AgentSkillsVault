@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Starter Deck</title>
+<style>
+  :root{
+    --bg:#0f1115; --fg:#f4f4f5; --muted:#9ca3af; --accent:#e8b04b;
+    --serif:"Songti SC","Noto Serif CJK SC",Georgia,serif;
+    --sans:"PingFang SC","Noto Sans CJK SC",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);overflow:hidden}
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+    padding:8vh 10vw;opacity:0;transform:translateY(12px);transition:opacity .35s,transform .35s;
+    pointer-events:none}
+  .slide.active{opacity:1;transform:none;pointer-events:auto}
+  .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+  h1,h2{font-family:var(--serif);font-weight:600;line-height:1.15;letter-spacing:.01em}
+  h1{font-size:clamp(36px,5.2vw,72px)}
+  h2{font-size:clamp(28px,3.6vw,48px);margin-bottom:24px}
+  p{font-size:clamp(16px,1.5vw,22px);line-height:1.7;color:#d7d7db;max-width:42em}
+  .pageno{position:fixed;right:24px;bottom:18px;font-size:13px;color:var(--muted);opacity:.7}
+  @media (prefers-reduced-motion: reduce){
+    .slide{transition:none}
+  }
+</style>
+</head>
+<body>
+  <section class="slide active">
+    <div class="eyebrow">Deck · Starter</div>
+    <h1>标题写在能说出口的句子上</h1>
+    <p>副标题用一句话交代这场分享要把听众推到哪里。</p>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">01 · 钩子</div>
+    <h2>先说一个反常识的事实</h2>
+    <p>把旧做法成本具体化：一个数字，一个场景，一个大家都见过的失败案例。</p>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">02 · 收束</div>
+    <h2>听完之后，请做这一件事</h2>
+    <p>动作越具体越好：打开哪个文件、找谁、在什么时候之前完成。</p>
+  </section>
+
+  <div class="pageno"><span id="cur">1</span> / <span id="tot">3</span></div>
+<script>
+  const slides = [...document.querySelectorAll('.slide')];
+  let i = 0;
+  document.getElementById('tot').textContent = slides.length;
+  const go = n => {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    document.getElementById('cur').textContent = i + 1;
+    history.replaceState(null, '', '#' + (i + 1));
+  };
+  addEventListener('keydown', e => {
+    if (['ArrowRight','PageDown',' '].includes(e.key)) { e.preventDefault(); go(i + 1); }
+    if (['ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); go(i - 1); }
+    if (e.key === 'Home') go(0);
+    if (e.key === 'End') go(slides.length - 1);
+    if (e.key === 'f' || e.key === 'F') {
+      document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+    }
+  });
+  const fromHash = parseInt(location.hash.slice(1), 10);
+  if (fromHash) go(fromHash - 1);
+</script>
+</body>
+</html>

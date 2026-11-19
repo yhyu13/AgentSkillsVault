@@ -1,7 +1,7 @@
 {
   "name": "vault-video",
   "version": "1.0.0",
-  "description": "18 curated skills — Code-rendered video, motion design and cinema pipelines.. Provenance resolution status is recorded in skills-lock.json.",
+  "description": "19 curated skills — Code-rendered video, motion design and cinema pipelines.. Provenance resolution status is recorded in skills-lock.json.",
   "author": {
     "name": "yhyu13",
     "url": "https://github.com/yhyu13"
@@ -30,6 +30,7 @@
     "./tier0/onetake",
     "./tier1/optimize-web-animations",
     "./tier1/remotion-markup",
+    "./tier1/tygg-ai-film-studio",
     "./tier0/video-to-deck-reel"
   ]
 }

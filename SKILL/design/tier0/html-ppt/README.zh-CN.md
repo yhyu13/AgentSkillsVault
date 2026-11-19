@@ -74,17 +74,19 @@ npx skills add ./html-ppt-skill
 
 | Agent | 项目级 | 全局 |
 |---|---|---|
-| Claude Code | `.claude/skills/html-ppt/` | `~/.claude/skills/html-ppt/` |
-| Codex | `.agents/skills/html-ppt/` | `~/.codex/skills/html-ppt/` |
-| Cursor | `.agents/skills/html-ppt/` | `~/.cursor/skills/html-ppt/` |
-| OpenCode | `.agents/skills/html-ppt/` | `~/.config/opencode/skills/html-ppt/` |
-| Gemini CLI | `.agents/skills/html-ppt/` | `~/.gemini/skills/html-ppt/` |
-| Windsurf | `.windsurf/skills/html-ppt/` | `~/.codeium/windsurf/skills/html-ppt/` |
+| Claude Code | `.claude/skills/html-ppt/` | `<home>/.claude/skills/html-ppt/` |
+| Codex | `.agents/skills/html-ppt/` | `<home>/.codex/skills/html-ppt/` |
+| Cursor | `.agents/skills/html-ppt/` | `<home>/.cursor/skills/html-ppt/` |
+| OpenCode | `.agents/skills/html-ppt/` | `<home>/.config/opencode/skills/html-ppt/` |
+| Gemini CLI | `.agents/skills/html-ppt/` | `<home>/.gemini/skills/html-ppt/` |
+| Windsurf | `.windsurf/skills/html-ppt/` | `<home>/.codeium/windsurf/skills/html-ppt/` |
+
+`<home>` 指用户主目录。把 skill 目录拷到你实际使用的那个 store 下：
 
 ```bash
-mkdir -p ~/.claude/skills
-cp -R html-ppt-skill ~/.claude/skills/html-ppt
-ls ~/.claude/skills/html-ppt/SKILL.md      # 必须存在
+mkdir -p "$STORE/skills"
+cp -R html-ppt-skill "$STORE/skills/html-ppt"
+ls "$STORE/skills/html-ppt/SKILL.md"      # 必须存在
 ```
 
 运行时只需要 `SKILL.md`、`assets/`、`templates/`、`references/`、`scripts/`。
@@ -94,7 +96,7 @@ ls ~/.claude/skills/html-ppt/SKILL.md      # 必须存在
 
 ```bash
 ./scripts/new-deck.sh my-talk
-open examples/my-talk/index.html
+open examples/demo-deck/index.html
 ```
 
 ### 断网能用吗？

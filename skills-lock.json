@@ -3,9 +3,9 @@
   "generatedBy": "scripts/skills_lock.py",
   "note": "hash is this tool's own tree hash; it is NOT byte-compatible with Get-TreeHash in scripts/verify-install.ps1 (independent implementations).",
   "counts": {
-    "skills": 142,
-    "resolved": 81,
-    "unresolved": 61
+    "skills": 104,
+    "resolved": 74,
+    "unresolved": 30
   },
   "unresolved": [
     "3d-ultra-realistic-water",
@@ -14,7 +14,6 @@
     "algorithmic-art",
     "anatomy",
     "apk-ndk-version-check",
-    "arming-thought",
     "article-prompts-to-skills",
     "browser-automation",
     "canvas-design",
@@ -22,52 +21,22 @@
     "colleague-ue-engine-architect",
     "colleague-ue-prod-team-lead",
     "colleague-ue-tech-planner",
-    "comparable-analysis",
-    "consolidation",
-    "contradiction-analysis",
-    "criticism-self-criticism",
-    "dcf-valuation",
-    "deal-structuring",
     "deep-research",
     "diagnosing-bugs",
     "discernment-nudge",
-    "earnings-models",
-    "finance-lead",
     "grafana-loki-label-analyzer",
     "grafana-oss",
-    "hgb-standards",
     "html-ppt",
-    "ifrs-standards",
-    "investigation-first",
     "investment-masters",
-    "lbo-modeling",
-    "lease-accounting",
-    "mass-line",
-    "meeting-summary",
-    "one-on-one-prep",
     "optimize-web-animations",
-    "overall-planning",
-    "performance-review",
-    "pitch-book-creation",
-    "practice-cognition",
-    "precedent-transactions",
-    "process-friction-cut",
-    "process-reward-boost",
-    "project-update",
     "proposal",
-    "protracted-strategy",
     "quarterly-review",
     "remotion-markup",
-    "revenue-recognition",
-    "sector-analysis",
     "skill-doctor",
     "skill-trigger",
     "slack-gif-creator",
-    "spark-prairie-fire",
     "style-report",
-    "upward-email",
     "web-artifacts-builder",
-    "weekly-report",
     "workflows"
   ],
   "skills": {
@@ -117,7 +86,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:241"
+        "evidence": "INSTRUCTION.md:243"
       },
       "resolved": true
     },
@@ -149,8 +118,8 @@
     "algorithmic-art": {
       "path": "vendor/anthropics-skills/skills/algorithmic-art",
       "tier": "B",
-      "hash": "",
-      "files": 0,
+      "hash": "5bd9f4ee27df15158a98562a0237cdb64cf54e097020bd50deb7fa236f3178ea",
+      "files": 4,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -167,7 +136,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:138"
+        "evidence": "INSTRUCTION.md:139"
       },
       "resolved": true
     },
@@ -192,7 +161,7 @@
         "repo": "alexgreensh/anidoodle",
         "ref": "f746cbd",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:273"
+        "evidence": "INSTRUCTION.md:275"
       },
       "resolved": true
     },
@@ -201,17 +170,6 @@
       "tier": "A",
       "hash": "7d0fa0e250630074e809417ddc9a0d39a67fafecdfca358b8c9afe3c3f20b389",
       "files": 3,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "arming-thought": {
-      "path": "SKILL/management/tier3/arming-thought",
-      "tier": "A",
-      "hash": "778029a5d8cd8c19eb37736b6502d6667bbd368f5adb863b407a005a11f56783",
-      "files": 1,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -229,20 +187,6 @@
       },
       "resolved": false
     },
-    "bezos-advisor": {
-      "path": "SKILL/management/tier3/bezos-advisor",
-      "tier": "B",
-      "hash": "ec9aadea7017d3f6f87c7f970ea4e6c19d0fb601cade3262328610c3a7bdefb5",
-      "files": 1,
-      "origin": {
-        "type": "sibling",
-        "repo": "",
-        "ref": "",
-        "vendor": "",
-        "evidence": "INSTRUCTION.md:211"
-      },
-      "resolved": true
-    },
     "bili-talk-showreel": {
       "path": "SKILL/video/tier0/bili-talk-showreel",
       "tier": "A",
@@ -253,7 +197,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:294"
+        "evidence": "INSTRUCTION.md:296"
       },
       "resolved": true
     },
@@ -267,7 +211,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:269"
+        "evidence": "INSTRUCTION.md:271"
       },
       "resolved": true
     },
@@ -281,7 +225,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:280"
+        "evidence": "INSTRUCTION.md:282"
       },
       "resolved": true
     },
@@ -295,7 +239,7 @@
         "repo": "arjun988/blender-skills",
         "ref": "904f095",
         "vendor": "vendor/blender-skills",
-        "evidence": "INSTRUCTION.md:151"
+        "evidence": "INSTRUCTION.md:152"
       },
       "resolved": true
     },
@@ -337,7 +281,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:137"
+        "evidence": "INSTRUCTION.md:138"
       },
       "resolved": true
     },
@@ -400,8 +344,8 @@
     "browser-automation": {
       "path": "vendor/claude-skills/engineering/skills/browser-automation",
       "tier": "B",
-      "hash": "",
-      "files": 0,
+      "hash": "44ddabfa9292eb2142b98faa5157044d48231974fe402cc94bf9a861e1c13d02",
+      "files": 7,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -411,8 +355,8 @@
     "canvas-design": {
       "path": "vendor/anthropics-skills/skills/canvas-design",
       "tier": "A",
-      "hash": "",
-      "files": 0,
+      "hash": "63c8ece0dca41fe7c79e1501ffb3190483075b477b69cc8c826f06bfb3491ba9",
+      "files": 83,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -422,8 +366,8 @@
     "claude-api": {
       "path": "vendor/anthropics-skills/skills/claude-api",
       "tier": "B",
-      "hash": "",
-      "files": 0,
+      "hash": "770bc29634974035e6501478926553fb0c3eb5bec68ea6e95001c5fdde9d961e",
+      "files": 96,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -477,39 +421,6 @@
       },
       "resolved": false
     },
-    "comparable-analysis": {
-      "path": "SKILL/management/tier3/comparable-analysis",
-      "tier": "B",
-      "hash": "e68b77be556cc75dfd6c74f7e6e685a4ada922d0bdfbd2a2226444f26f649a96",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "consolidation": {
-      "path": "SKILL/management/tier3/consolidation",
-      "tier": "B",
-      "hash": "ed687734fbb80f9d279866e5ce271be947d4731b4505f71462dc2f8fbdc2b02c",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "contradiction-analysis": {
-      "path": "SKILL/management/tier3/contradiction-analysis",
-      "tier": "A",
-      "hash": "a5d1142057800151eab5ce226cf383154fc26dd5fb55b759ab80f76bed144f73",
-      "files": 4,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
     "cook": {
       "path": "SKILL/design/tier0/cook",
       "tier": "A",
@@ -534,48 +445,15 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:290"
+        "evidence": "INSTRUCTION.md:292"
       },
       "resolved": true
-    },
-    "criticism-self-criticism": {
-      "path": "SKILL/management/tier3/criticism-self-criticism",
-      "tier": "A",
-      "hash": "880234d16f784df7dec53b1929a77cbc1fc03de81625d398a16f2340a1b1c9c1",
-      "files": 3,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "dcf-valuation": {
-      "path": "SKILL/management/tier3/dcf-valuation",
-      "tier": "B",
-      "hash": "e350a4b51ddb1e8f01fe2d5ea87bf8989dfcc14f517c108df7d5566cef21dc47",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "deal-structuring": {
-      "path": "SKILL/management/tier3/deal-structuring",
-      "tier": "B",
-      "hash": "ae6733c36d0c910790429309fdfaa8f7c9c85a554a7d229f08d0f9d44604f800",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
     },
     "deep-research": {
       "path": "vendor/claude-skills/research/deep-research/skills/deep-research",
       "tier": "B",
-      "hash": "",
-      "files": 0,
+      "hash": "35db04ab24b2baafa2068e7efd2601cc8dacfc734e5a0f6bfe69d9fa883dac6e",
+      "files": 2,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -592,7 +470,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:146"
+        "evidence": "INSTRUCTION.md:147"
       },
       "resolved": true
     },
@@ -606,7 +484,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:293"
+        "evidence": "INSTRUCTION.md:295"
       },
       "resolved": true
     },
@@ -624,8 +502,8 @@
     "discernment-nudge": {
       "path": "vendor/anthropics-skills/skills/discernment-nudge",
       "tier": "B",
-      "hash": "",
-      "files": 0,
+      "hash": "b0eb47e01136da8879af0cc2101d05908beaf60d772b7b519548612527d1b789",
+      "files": 2,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -656,20 +534,9 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:222"
+        "evidence": "INSTRUCTION.md:224"
       },
       "resolved": true
-    },
-    "earnings-models": {
-      "path": "SKILL/management/tier3/earnings-models",
-      "tier": "B",
-      "hash": "81f62cce8c9f28e16342f853488082c04e265f7a02c00bb19d327670fba7125e",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
     },
     "excel-hygiene": {
       "path": "SKILL/content/tier1/excel-hygiene",
@@ -695,7 +562,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:191"
+        "evidence": "INSTRUCTION.md:192"
       },
       "resolved": true
     },
@@ -709,7 +576,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:145"
+        "evidence": "INSTRUCTION.md:146"
       },
       "resolved": true
     },
@@ -723,7 +590,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:132"
+        "evidence": "INSTRUCTION.md:133"
       },
       "resolved": true
     },
@@ -737,20 +604,9 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:291"
+        "evidence": "INSTRUCTION.md:293"
       },
       "resolved": true
-    },
-    "finance-lead": {
-      "path": "SKILL/management/tier3/finance-lead",
-      "tier": "B",
-      "hash": "271b3509ed3416708350a77c51b3f4378bb2a92ab3b96ba3619d727eff20bbbf",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
     },
     "goal-persistence": {
       "path": "SKILL/agents/tier3/goal-persistence",
@@ -812,7 +668,7 @@
         "repo": "op7418/guizang-product-video-skill",
         "ref": "18842e0",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:274"
+        "evidence": "INSTRUCTION.md:276"
       },
       "resolved": true
     },
@@ -826,7 +682,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:271"
+        "evidence": "INSTRUCTION.md:273"
       },
       "resolved": true
     },
@@ -843,17 +699,6 @@
         "evidence": "INSTRUCTION.md:105"
       },
       "resolved": true
-    },
-    "hgb-standards": {
-      "path": "SKILL/management/tier3/hgb-standards",
-      "tier": "B",
-      "hash": "174106b67b90adace45e6e99b03e2fc1d76cba6af7ebb41b8b2f96d044e7bc97",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
     },
     "html-artifacts": {
       "path": "SKILL/design/tier1/html-artifacts",
@@ -872,7 +717,7 @@
     "html-ppt": {
       "path": "SKILL/design/tier0/html-ppt",
       "tier": "A",
-      "hash": "22231be4332d955d0774b0b9e213bafda59a71adbcf7c21ab2acede4d4143f53",
+      "hash": "bc91d0a8cd6e6b1d2e88121198d80b96eb1a194bc6c1e2b9dacfa1b684811268",
       "files": 250,
       "origin": {
         "type": "unknown",
@@ -894,6 +739,20 @@
       },
       "resolved": true
     },
+    "humanize-ppt-team-lead": {
+      "path": "SKILL/design/tier0/humanize-ppt-team-lead",
+      "tier": "A",
+      "hash": "9fe012aa6d2d87863fc581d98c62f8bc82ab2f9c4c07ca83fd3f83378b4c9bbf",
+      "files": 377,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:118"
+      },
+      "resolved": true
+    },
     "hyperframes": {
       "path": "SKILL/content/tier1/hyperframes",
       "tier": "B",
@@ -908,33 +767,11 @@
       },
       "resolved": true
     },
-    "ifrs-standards": {
-      "path": "SKILL/management/tier3/ifrs-standards",
-      "tier": "B",
-      "hash": "4f3eb79461e6b232751c7638d729357fdc738945a20bb0e803bd22cfb8f6ba5e",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "investigation-first": {
-      "path": "SKILL/management/tier3/investigation-first",
-      "tier": "A",
-      "hash": "1d29c4c2535820f1fbcb0c97aa5d8aca0588a915e5647806d93e8373ec7bf746",
-      "files": 3,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
     "investment-masters": {
       "path": "vendor/investment-masters",
       "tier": "B",
-      "hash": "",
-      "files": 0,
+      "hash": "5d96203959a213558fccc03a20720cca44f2b940fea1ae735bdee4ba768e246d",
+      "files": 23,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -951,31 +788,9 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:415"
+        "evidence": "INSTRUCTION.md:417"
       },
       "resolved": true
-    },
-    "lbo-modeling": {
-      "path": "SKILL/management/tier3/lbo-modeling",
-      "tier": "B",
-      "hash": "2ff431908b3aa45b6966d396a6a4b8ffc81f660318c4edf8c0697c285b8e5d1f",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "lease-accounting": {
-      "path": "SKILL/management/tier3/lease-accounting",
-      "tier": "B",
-      "hash": "afe43b916a08a094f7b243121149bb88aa7c4d4c222c7f9bf402b3302596259b",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
     },
     "long-ai-project": {
       "path": "SKILL/software-development/tier0/long-ai-project",
@@ -987,7 +802,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:263"
+        "evidence": "INSTRUCTION.md:265"
       },
       "resolved": true
     },
@@ -1001,7 +816,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:207"
+        "evidence": "INSTRUCTION.md:208"
       },
       "resolved": true
     },
@@ -1015,7 +830,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:214"
+        "evidence": "INSTRUCTION.md:216"
       },
       "resolved": true
     },
@@ -1029,71 +844,7 @@
         "repo": "browser-use/video-use",
         "ref": "43cfc56",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:276"
-      },
-      "resolved": true
-    },
-    "mass-line": {
-      "path": "SKILL/management/tier3/mass-line",
-      "tier": "B",
-      "hash": "2116be9b8ed6b1cf215c976be809a37108a3ffa45e1da1676c98166a01168495",
-      "files": 3,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "meeting-summary": {
-      "path": "SKILL/management/tier3/meeting-summary",
-      "tier": "A",
-      "hash": "cf2587655b01edd4427468b3daa32f9ca206b13918cfb39dcd6239cd2422136f",
-      "files": 2,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "mgmt-discipline": {
-      "path": "SKILL/management/tier3/mgmt-discipline",
-      "tier": "B",
-      "hash": "f2f61e5c8c43f84c09d5b366abcfb94b6a40602353a6fa8b9bc01a0b75a47458",
-      "files": 16,
-      "origin": {
-        "type": "sibling",
-        "repo": "",
-        "ref": "",
-        "vendor": "",
-        "evidence": "INSTRUCTION.md:208"
-      },
-      "resolved": true
-    },
-    "mgmt-individual": {
-      "path": "SKILL/management/tier3/mgmt-individual",
-      "tier": "B",
-      "hash": "9e573cfa6e551b952c23f32223050bd537542b02b237038c9f08ae4d013a52d0",
-      "files": 81,
-      "origin": {
-        "type": "sibling",
-        "repo": "",
-        "ref": "",
-        "vendor": "",
-        "evidence": "INSTRUCTION.md:209"
-      },
-      "resolved": true
-    },
-    "mgmt-org": {
-      "path": "SKILL/management/tier3/mgmt-org",
-      "tier": "B",
-      "hash": "8396ea4ab39c5b2cb0946d9880709ba7bf869417c9dcc83228ff0fdab48e157e",
-      "files": 134,
-      "origin": {
-        "type": "sibling",
-        "repo": "",
-        "ref": "",
-        "vendor": "",
-        "evidence": "INSTRUCTION.md:210"
+        "evidence": "INSTRUCTION.md:278"
       },
       "resolved": true
     },
@@ -1107,7 +858,7 @@
         "repo": "ConardLi/garden-skills",
         "ref": "2b9a893",
         "vendor": "vendor/garden-skills",
-        "evidence": "INSTRUCTION.md:281"
+        "evidence": "INSTRUCTION.md:283"
       },
       "resolved": true
     },
@@ -1121,7 +872,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:249"
+        "evidence": "INSTRUCTION.md:251"
       },
       "resolved": true
     },
@@ -1135,20 +886,9 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:261"
+        "evidence": "INSTRUCTION.md:263"
       },
       "resolved": true
-    },
-    "one-on-one-prep": {
-      "path": "SKILL/management/tier3/one-on-one-prep",
-      "tier": "A",
-      "hash": "12c3b6a4fbc58ef9608d6284208ad425d91954d477865fa238c5205e2d8a706e",
-      "files": 2,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
     },
     "onetake": {
       "path": "SKILL/video/tier0/onetake",
@@ -1160,7 +900,21 @@
         "repo": "feitangyuan/onetake",
         "ref": "013a61a",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:278"
+        "evidence": "INSTRUCTION.md:280"
+      },
+      "resolved": true
+    },
+    "opc-orchestrator": {
+      "path": "SKILL/management/tier0/opc-orchestrator",
+      "tier": "A",
+      "hash": "37c882ce8ce73a542b52257dde3e667ed9b225673ff15095a2f5ad5964bed1d3",
+      "files": 66,
+      "origin": {
+        "type": "local",
+        "repo": "",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:214"
       },
       "resolved": true
     },
@@ -1169,17 +923,6 @@
       "tier": "B",
       "hash": "6b8ee8038205def106936e6ea383a93ce15f5685f50158c6b08f0c5564886947",
       "files": 8,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "overall-planning": {
-      "path": "SKILL/management/tier3/overall-planning",
-      "tier": "B",
-      "hash": "e12ebca63207dca16176bc1d143c2f40101f27bc1e26c72edcc82363bd6c6c5d",
-      "files": 2,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -1200,28 +943,6 @@
       },
       "resolved": true
     },
-    "performance-review": {
-      "path": "SKILL/management/tier3/performance-review",
-      "tier": "B",
-      "hash": "16dc589b6ee4234bb4e5ffc6b7a5432a59450c4034912ca952515aa17bf6673d",
-      "files": 2,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "pitch-book-creation": {
-      "path": "SKILL/management/tier3/pitch-book-creation",
-      "tier": "B",
-      "hash": "7c9e8189a1cdd84f5bc29f73b9e52eaa9c2bd59b671b1c37df22fcb0b4100728",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
     "pptx": {
       "path": "SKILL/content/tier1/pptx",
       "tier": "A",
@@ -1235,28 +956,6 @@
         "evidence": "INSTRUCTION.md:83"
       },
       "resolved": true
-    },
-    "practice-cognition": {
-      "path": "SKILL/management/tier3/practice-cognition",
-      "tier": "B",
-      "hash": "796342cc8c39879d950bd6f64605cebcc7d8cb80dd6a6bc27af0d0d006f19115",
-      "files": 2,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "precedent-transactions": {
-      "path": "SKILL/management/tier3/precedent-transactions",
-      "tier": "B",
-      "hash": "0f49f6ea7717a2187353138bf1e2e7099346c7c9034a21f14675643cb447db16",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
     },
     "presentation-skill": {
       "path": "SKILL/design/tier1/presentation-skill",
@@ -1272,69 +971,11 @@
       },
       "resolved": true
     },
-    "process-friction-cut": {
-      "path": "SKILL/management/tier3/process-friction-cut",
-      "tier": "A",
-      "hash": "33e68c74f7b7fb4966823f4944bfe0b32690e3a8292a48ac7e3779d3aa33762a",
-      "files": 2,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "process-motivation-design": {
-      "path": "SKILL/management/tier3/process-motivation-design",
-      "tier": "A",
-      "hash": "03d8144f4fed57dbc3504e05818f1dbd1d007380ae2309cd1a83be5f91c778ef",
-      "files": 2,
-      "origin": {
-        "type": "local",
-        "repo": "",
-        "ref": "",
-        "vendor": "",
-        "evidence": "INSTRUCTION.md:220"
-      },
-      "resolved": true
-    },
-    "process-reward-boost": {
-      "path": "SKILL/management/tier3/process-reward-boost",
-      "tier": "A",
-      "hash": "3b7210b703c16059e1fb5953050cdb2dce5ba9e433f935ecc3208dc061abdea9",
-      "files": 2,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "project-update": {
-      "path": "SKILL/management/tier3/project-update",
-      "tier": "A",
-      "hash": "5d25a9322b87d9f05664303b938d4f6e23b2b2f6af71790ca8168b65f58c4de1",
-      "files": 2,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
     "proposal": {
       "path": "SKILL/management/tier2/proposal",
       "tier": "B",
       "hash": "bea1d65a9ea23361a6813d64c19e6def97f54069b1276a933c3b96918b45e500",
       "files": 2,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "protracted-strategy": {
-      "path": "SKILL/management/tier3/protracted-strategy",
-      "tier": "B",
-      "hash": "8819a7f011cb1629ff1e552ae67bc367fbc29052225c66a779597c772056f2a4",
-      "files": 3,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -1351,7 +992,7 @@
         "repo": "cursor/plugins",
         "ref": "e58dd043600587dbaf58ba315e7f2b38373eeb43",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:239"
+        "evidence": "INSTRUCTION.md:241"
       },
       "resolved": true
     },
@@ -1365,7 +1006,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:260"
+        "evidence": "INSTRUCTION.md:262"
       },
       "resolved": true
     },
@@ -1379,7 +1020,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:264"
+        "evidence": "INSTRUCTION.md:266"
       },
       "resolved": true
     },
@@ -1405,31 +1046,6 @@
       },
       "resolved": false
     },
-    "renzhengfei-advisor": {
-      "path": "SKILL/management/tier3/renzhengfei-advisor",
-      "tier": "B",
-      "hash": "3bada7ab08cc3fdbb9360bdf23f461c87bb285504aaf2b2b02439c2a49e47334",
-      "files": 1,
-      "origin": {
-        "type": "sibling",
-        "repo": "",
-        "ref": "",
-        "vendor": "",
-        "evidence": "INSTRUCTION.md:211"
-      },
-      "resolved": true
-    },
-    "revenue-recognition": {
-      "path": "SKILL/management/tier3/revenue-recognition",
-      "tier": "B",
-      "hash": "a56ceb4e0cfc20398e751b90d5c8a8f7e806c1cb1bb6cf807e61c017b2c1b682",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
     "rigorous-proof": {
       "path": "SKILL/math/tier2/rigorous-proof",
       "tier": "B",
@@ -1440,7 +1056,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:227"
+        "evidence": "INSTRUCTION.md:229"
       },
       "resolved": true
     },
@@ -1458,17 +1074,6 @@
       },
       "resolved": true
     },
-    "sector-analysis": {
-      "path": "SKILL/management/tier3/sector-analysis",
-      "tier": "B",
-      "hash": "0cb7365d47a65857ee6730dfe118f7087ab7e2a8a89114578017fb66baa57bfb",
-      "files": 1,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
     "single-file-html-game": {
       "path": "SKILL/game-dev/tier0/single-file-html-game",
       "tier": "A",
@@ -1479,7 +1084,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:160"
+        "evidence": "INSTRUCTION.md:161"
       },
       "resolved": true
     },
@@ -1508,19 +1113,8 @@
     "slack-gif-creator": {
       "path": "vendor/anthropics-skills/skills/slack-gif-creator",
       "tier": "B",
-      "hash": "",
-      "files": 0,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
-    },
-    "spark-prairie-fire": {
-      "path": "SKILL/management/tier3/spark-prairie-fire",
-      "tier": "B",
-      "hash": "0c9d72e5f0b4fef36157ceb461a9c326952221e61797326406919c9fab53f22f",
-      "files": 2,
+      "hash": "eec098226d9e316e43af77e4b64f71983b3e6be5000269c060905854e5d43039",
+      "files": 7,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -1541,20 +1135,6 @@
       },
       "resolved": true
     },
-    "style-alibaba": {
-      "path": "SKILL/management/tier3/style-alibaba",
-      "tier": "A",
-      "hash": "88d4c0709bc3877b2d46153f8f967033978906f91c6dd68854fe06850ae67b2e",
-      "files": 2,
-      "origin": {
-        "type": "local",
-        "repo": "",
-        "ref": "",
-        "vendor": "",
-        "evidence": "INSTRUCTION.md:215"
-      },
-      "resolved": true
-    },
     "style-amazon": {
       "path": "SKILL/management/tier2/style-amazon",
       "tier": "A",
@@ -1565,21 +1145,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:216"
-      },
-      "resolved": true
-    },
-    "style-bytedance": {
-      "path": "SKILL/management/tier3/style-bytedance",
-      "tier": "A",
-      "hash": "56672870f4b66d1c868525c4dd77c64bc870d29f0c1f17e5c02a5adeae5d7c8f",
-      "files": 2,
-      "origin": {
-        "type": "local",
-        "repo": "",
-        "ref": "",
-        "vendor": "",
-        "evidence": "INSTRUCTION.md:217"
+        "evidence": "INSTRUCTION.md:218"
       },
       "resolved": true
     },
@@ -1593,7 +1159,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:218"
+        "evidence": "INSTRUCTION.md:220"
       },
       "resolved": true
     },
@@ -1607,7 +1173,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:219"
+        "evidence": "INSTRUCTION.md:221"
       },
       "resolved": true
     },
@@ -1622,20 +1188,6 @@
       },
       "resolved": false
     },
-    "style-tencent": {
-      "path": "SKILL/management/tier3/style-tencent",
-      "tier": "A",
-      "hash": "22ce0b653d07560824f7da2547a52068de4859bcf9bd8d05f2f5e5554402d251",
-      "files": 2,
-      "origin": {
-        "type": "local",
-        "repo": "",
-        "ref": "",
-        "vendor": "",
-        "evidence": "INSTRUCTION.md:221"
-      },
-      "resolved": true
-    },
     "systematic-debugging": {
       "path": "SKILL/software-development/tier1/systematic-debugging",
       "tier": "A",
@@ -1646,7 +1198,7 @@
         "repo": "obra/superpowers",
         "ref": "2ce8aa1",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:255"
+        "evidence": "INSTRUCTION.md:257"
       },
       "resolved": true
     },
@@ -1660,7 +1212,7 @@
         "repo": "Siitoo/Technical-Design-Document",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:161"
+        "evidence": "INSTRUCTION.md:162"
       },
       "resolved": true
     },
@@ -1688,7 +1240,21 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:416"
+        "evidence": "INSTRUCTION.md:418"
+      },
+      "resolved": true
+    },
+    "tygg-ai-film-studio": {
+      "path": "SKILL/video/tier1/tygg-ai-film-studio",
+      "tier": "A",
+      "hash": "b6190f1dbdc502fd98d17141ab7de260336ee38802d8bcd6ce9124cc436cbf0f",
+      "files": 49,
+      "origin": {
+        "type": "repo",
+        "repo": "SusamMinami/tygg-ai-film-studio",
+        "ref": "",
+        "vendor": "",
+        "evidence": "INSTRUCTION.md:535"
       },
       "resolved": true
     },
@@ -1702,20 +1268,9 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:167"
+        "evidence": "INSTRUCTION.md:168"
       },
       "resolved": true
-    },
-    "upward-email": {
-      "path": "SKILL/management/tier3/upward-email",
-      "tier": "B",
-      "hash": "bdd5fa875e5b66b394bcfd5f2b888ffb344358a2825b31eb8569f6577d16028a",
-      "files": 2,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
     },
     "video-production": {
       "path": "SKILL/design/tier0/video-production",
@@ -1741,7 +1296,7 @@
         "repo": "",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:292"
+        "evidence": "INSTRUCTION.md:294"
       },
       "resolved": true
     },
@@ -1776,8 +1331,8 @@
     "web-artifacts-builder": {
       "path": "vendor/anthropics-skills/skills/web-artifacts-builder",
       "tier": "B",
-      "hash": "",
-      "files": 0,
+      "hash": "5cd211af69609bac0a230889be46910ea2b86591c8eb283dd402674fe43893b2",
+      "files": 5,
       "origin": {
         "type": "unknown",
         "evidence": ""
@@ -1808,20 +1363,9 @@
         "repo": "ComposioHQ/awesome-claude-skills",
         "ref": "",
         "vendor": "",
-        "evidence": "INSTRUCTION.md:168"
+        "evidence": "INSTRUCTION.md:169"
       },
       "resolved": true
-    },
-    "weekly-report": {
-      "path": "SKILL/management/tier3/weekly-report",
-      "tier": "A",
-      "hash": "c165c7b975033e8e83da97334a5484432b0d2c444c052a1095035685f575abcb",
-      "files": 2,
-      "origin": {
-        "type": "unknown",
-        "evidence": ""
-      },
-      "resolved": false
     },
     "workflows": {
       "path": "SKILL/management/tier2/workflows",
@@ -1851,28 +1395,14 @@
     "xlsx": {
       "path": "vendor/anthropics-skills/skills/xlsx",
       "tier": "A",
-      "hash": "",
-      "files": 0,
+      "hash": "7c0b58bda8d02769e220e20fab85a311cf26515fa36e19ab399152b79c13695a",
+      "files": 53,
       "origin": {
         "type": "repo",
         "repo": "appautomaton/document-SKILLs",
         "ref": "dfb5685",
         "vendor": "vendor/document-SKILLs",
-        "evidence": "INSTRUCTION.md:334"
-      },
-      "resolved": true
-    },
-    "zhangyiming-advisor": {
-      "path": "SKILL/management/tier3/zhangyiming-advisor",
-      "tier": "B",
-      "hash": "ce7c2da1d1dd9aed1323cc8d4087e027a336b00f93dd59af695d51d3e0003b43",
-      "files": 1,
-      "origin": {
-        "type": "sibling",
-        "repo": "",
-        "ref": "",
-        "vendor": "",
-        "evidence": "INSTRUCTION.md:211"
+        "evidence": "INSTRUCTION.md:336"
       },
       "resolved": true
     }

@@ -1,0 +1,7 @@
+{
+  "stage": "00-orchestrator",
+  "status": "in_progress",
+  "completed_at": "",
+  "next_stage": "01-resource-audit",
+  "summary": ""
+}

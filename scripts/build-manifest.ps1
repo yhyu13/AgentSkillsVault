@@ -92,7 +92,21 @@ $HostSkills = @()
 # demo attached to its parent skill, not a peer skill. agent-eval-loop ships
 # examples/01-bug-repro-skill/SKILL.md as a worked example; without this skip it
 # became an install entry of its own.
-$skipDirs = '[\\/](\.git|\.github|\.changeset|\.claude-plugin|\.out-of-scope|\.cindy-worktrees|\.worktrees|node_modules|archived|vendor|docs|examples|TEMPLATE[A-Za-z0-9_-]*)[\\/]'
+# DISTILLED/ 是第三方 skill 的快照区（如 DISTILLED/opc-team），只做归档与评分，
+# 未走 provenance / 审计，绝不能进安装清单——否则 sync 会把它装进 14 个 store。
+# `examples/` is a skill PAYLOAD dir (AGENTS.md), so a SKILL.md inside it is a
+# demo attached to its parent skill, not a peer skill. agent-eval-loop ships
+# examples/01-bug-repro-skill/SKILL.md as a worked example; without this skip it
+# became an install entry of its own.
+#
+# 第二种写法专治「主理人 skill」：`SKILL/<cat>/tier<N>/<leaf>/skills/` 是内嵌的
+# 子 skill（humanize-ppt-team-lead 挂 5 个、opc-orchestrator 挂 8 个），是 payload
+# 不是同级 skill。不跳过的话一个包会炸成 6/9 条安装条目，其中几条还与仓内同名
+# skill（html-ppt）相撞。这里必须锚定 `tier<N>/<leaf>/skills/`，不能写成
+# 通用 `skills`——`SKILL/software-development/mattpocock/skills/...`、
+# `SKILL/video/tier2/video-use/skills/`、pstack 的 `references/upstream/.../skills`
+# 都是真正在用的路径，通用匹配会把它们一起吞掉。
+$skipDirs = '[\\/](\.git|\.github|\.changeset|\.claude-plugin|\.out-of-scope|\.cindy-worktrees|\.worktrees|node_modules|archived|vendor|docs|examples|DISTILLED|TEMPLATE[A-Za-z0-9_-]*)[\\/]|[\\/]tier\d[\\/][^\\/]+[\\/]skills[\\/]'
 
 $curated = @{}
 Get-ChildItem -LiteralPath $Vault -Recurse -Directory -ErrorAction SilentlyContinue |

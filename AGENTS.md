@@ -15,6 +15,14 @@ SKILL/<category>/tier<N>/<skill>/SKILL.md
 vendor/<repo>/                      upstream git submodules — source of truth for re-adding
                                     skills; NOT installed unless listed in the manifest
 docs/                               audits, reports, audit python scripts (not installable)
+DISTILLED/<team>/<leaf-skill>/      distilled packs: a third-party agent team flattened into one
+                                    self-contained skill, with the team's skills nested under
+                                    <leaf-skill>/skills/. Archived + scored only — never installed
+                                    (build-manifest.ps1 skips DISTILLED). Each pack ships
+                                    PROVENANCE.md (upstream path + per-skill delta) and audit/.
+                                    Once a pack is promoted into SKILL/, DISTILLED keeps only the
+                                    archive record (PROVENANCE.md / README.md / audit scores) and
+                                    the skill moves to SKILL/<category>/tier<N>/<leaf>/.
 scripts/                            manifest build / sync / verify tooling
 .kilo/                              harness-local sync scripts + pinned/removed skill lists
 ```
@@ -25,6 +33,14 @@ scripts/                            manifest build / sync / verify tooling
     Re-score and re-bucket with `docs/skill-capacity-audit/rearrange-tiers.ps1` after skills change.
   - `scripts/skill-tiers.txt` (`A` / `B` / `C`) is the *visibility* tier (always model-invocable /
     installed-but-hidden / not installed). It is unrelated to the folder name.
+- **Nested skills are payload, not install entries.** A “lead” skill may carry the
+team it orchestrates under `skills/` (`SKILL/<cat>/tier<N>/<leaf>/skills/<sub>/`).
+`build-manifest.ps1` skips exactly that shape (`tier<N>/<leaf>/skills/`), so one
+package stays one install entry instead of becoming six. The skip is deliberately
+scoped: `SKILL/software-development/mattpocock/skills/…`,
+`SKILL/video/tier2/video-use/skills/…` and the `references/upstream/…/skills/`
+trees under pstack are real paths and stay scanned. Sub-skills get no
+`INSTRUCTION.md` row of their own; the pack's row covers them.
 - `SKILL/` is the only source of curated skills. A skill dir is any directory that
   contains a `SKILL.md`; nesting used to be allowed (`software-development/mattpocock/skills/engineering/tdd`
   installs as `tdd`) — since 2026-11-10 every curated skill is flattened to

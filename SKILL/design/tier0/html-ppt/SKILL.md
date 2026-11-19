@@ -1,5 +1,6 @@
 ---
 name: html-ppt
+license: MIT
 description: HTML PPT Studio — author professional static HTML presentations in many styles, layouts, and animations, all driven by templates. Use when the user asks for a presentation, PPT, slides, keynote, deck, slideshow, "幻灯片", "演讲稿", "做一份 PPT", "做一份 slides", a reveal-style HTML deck, a 小红书 图文, or any kind of multi-slide pitch/report/sharing document that should look tasteful and be usable with keyboard navigation. Triggers include keywords like "presentation", "ppt", "slides", "deck", "keynote", "reveal", "slideshow", "幻灯片", "演讲稿", "分享稿", "小红书图文", "talk slides", "pitch deck", "tech sharing", "technical presentation. 也覆盖「讲解型 deck」：点一下出一段（逐步展开）、悬停提示、缩略图栏、全屏，浏览器内生成讲解配音，最后打包成离线也能放的单文件——这类需求见 references/narrated-deck.md 与 assets/narrated/
 ---
 
@@ -19,7 +20,7 @@ One command, no build. Pure static HTML/CSS/JS with only CDN webfonts.
 
 No network on the target machine? Point the CLI at a local copy
 (`npx skills add ./html-ppt-skill`), or just copy this folder into your agent's
-skills directory — `~/.claude/skills/html-ppt/` for Claude Code. Decks render
+skills directory (`<home>/.claude/skills/html-ppt/` for Claude Code). Decks render
 offline; only the webfonts fall back to the system stack. See
 [README.md](README.md#offline--manual-install).
 
@@ -43,7 +44,7 @@ text/notes into a presentable deck. Prefer this over building from scratch.
 
 ### 🎤 Presenter Mode (演讲者模式 + 逐字稿)
 
-If the user mentions any of: **演讲 / 分享 / 讲稿 / 逐字稿 / speaker notes / presenter view / 演讲者视图 / 提词器**, or says things like "我要去给团队讲 xxx", "要做一场技术分享", "怕讲不流畅", "想要一份带逐字稿的 PPT" — **use the `presenter-mode-reveal` full-deck template** and write 150–300 words of 逐字稿 in each slide's `<aside class="notes">`.
+If the user mentions any of: **演讲 / 分享 / 讲稿 / 逐字稿 / speaker notes / presenter view / 演讲者视图 / 提词器**, or says things like "我要去给团队讲 Redis 热 key 怎么防", "要做一场技术分享", "怕讲不流畅", "想要一份带逐字稿的 PPT" — **use the `presenter-mode-reveal` full-deck template** and write 150–300 words of 逐字稿 in each slide's `<aside class="notes">`.
 
 See [references/presenter-mode.md](references/presenter-mode.md) for the full authoring guide including the 3 rules of speaker script writing:
 1. **不是讲稿，是提示信号** — 加粗核心词 + 过渡句独立成段
@@ -208,7 +209,8 @@ All five are built on one primitive from `assets/base.css`:
 - `--img-ratio` (default `16/10`) and `--img-pos` (`object-position`) tune it.
 - `.img-scrim` / `.img-cap` / `.img-tag` are the scrim, caption and corner pill.
 - Images referenced from a deck are resolved relative to the deck's own
-  `index.html` — keep them in the deck folder, e.g. `examples/my-talk/shot.png`.
+  `index.html` — keep them in the deck folder (a `shot.png` sitting next to
+  `index.html`), never behind a drive letter or a leading slash.
 - `assets/demo-images/` holds the placeholder artwork used by these layouts:
   hand-written SVG, ~1 KB each, **no network needed**.
 
